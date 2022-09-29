@@ -1,0 +1,37 @@
+name: Flutter CI Linter
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the develop branch
+  push:
+    branches: [develop, master]
+  pull_request:
+    branches: [develop, master]
+jobs:
+  flutter_analyze:
+    name: Run flutter analyze
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java Version
+        uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+
+      - name: Get flutter dependencies
+        run: flutter pub get
+
+      - name: Run Analyze code
+        run: flutter analyze
+
+      - name: Run Code format lib/
+        run: flutter format --dry-run --set-exit-if-changed lib/
+
+      - name: Run Code format test/
+        run: flutter format --dry-run --set-exit-if-changed test/

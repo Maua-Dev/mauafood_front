@@ -1,5 +1,7 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/maua-dev/mauafood_front/badge)](https://www.codefactor.io/repository/github/maua-dev/mauafood_front)
 [![codecov](https://codecov.io/gh/Maua-Dev/mauafood_front/branch/develop/graph/badge.svg?token=GR7SIIK1QU)](https://codecov.io/gh/Maua-Dev/mauafood_front)
+[![WorkFlow CI Test](https://github.com/Maua-Dev/mauafood_front/actions/workflows/flutter_CI.yml/badge.svg)](https://github.com/Maua-Dev/mauafood_front/actions/workflows/flutter_CI.yml)
+[![WorkFlow CI Analyze](https://github.com/Maua-Dev/mauafood_front/actions/workflows/flutter_CI_analyze.yml/badge.svg)](https://github.com/Maua-Dev/mauafood_front/actions/workflows/flutter_CI_analyze.yml)
 # mauafood_front
 
 A new Flutter project.

@@ -1,3 +1,4 @@
+[![codecov](https://codecov.io/gh/Maua-Dev/mauafood_front/branch/develop/graph/badge.svg?token=GR7SIIK1QU)](https://codecov.io/gh/Maua-Dev/mauafood_front)
 # mauafood_front
 
 A new Flutter project.

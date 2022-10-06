@@ -1,11 +1,11 @@
 {
-    "name": "mauafood_front",
-    "short_name": "mauafood_front",
+    "name": "Mauá Food",
+    "short_name": "Mauá Food",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Mauá Food",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

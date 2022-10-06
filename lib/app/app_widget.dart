@@ -6,6 +6,7 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Modular.setInitialRoute('/');
     return MaterialApp.router(
       title: 'Mauá Food',
       theme: ThemeData(primarySwatch: Colors.blue),

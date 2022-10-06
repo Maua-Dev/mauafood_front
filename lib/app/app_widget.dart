@@ -9,7 +9,6 @@ class AppWidget extends StatelessWidget {
     Modular.setInitialRoute('/');
     return MaterialApp.router(
       title: 'Mauá Food',
-      theme: ThemeData(primarySwatch: Colors.blue),
       debugShowCheckedModeBanner: false,
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,

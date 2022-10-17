@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/app_module.dart';
+import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
 import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
 import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_interface.dart';
 import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasource_interface.dart';
@@ -25,7 +26,7 @@ void main() {
       name: 'name',
       description: 'description',
       price: 10,
-      type: 'type',
+      type: MealEnum.bebida,
     ),
   ];
 

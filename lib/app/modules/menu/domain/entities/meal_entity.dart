@@ -1,12 +1,14 @@
 import 'package:equatable/equatable.dart';
 
+import '../enum/meal_enum.dart';
+
 class Meal extends Equatable {
   final int id;
   final String name;
   final String description;
   final double price;
   final int? prepareTime;
-  final String type;
+  final MealEnum type;
 
   const Meal({
     required this.id,

@@ -1,4 +1,5 @@
 import '../../domain/entities/meal_entity.dart';
+import '../../domain/enum/meal_enum.dart';
 
 class MealModel extends Meal {
   const MealModel(
@@ -16,7 +17,7 @@ class MealModel extends Meal {
       description: json['description'],
       price: json['price'],
       prepareTime: json['prepareTime'] ?? '',
-      type: json['type'],
+      type: MealEnumExtension.stringToEnumMap(json['type']),
     );
   }
 

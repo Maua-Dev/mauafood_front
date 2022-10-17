@@ -1,12 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/widget_page.dart';
 
 class AppModule extends Module {
   @override
   List<Bind> get binds => [];
 
   @override
-  List<ModularRoute> get routes => [
-        ChildRoute('/', child: (context, args) => const WidgetPage()),
-      ];
+  List<ModularRoute> get routes => [];
 }

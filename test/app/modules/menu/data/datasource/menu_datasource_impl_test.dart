@@ -12,12 +12,51 @@ void main() {
   initModules([AppModule(), MenuModule()]);
   late MenuDatasourceInterface datasource;
 
+  // String mockJson = r'''[
+  //   {
+  //     "id": 0,
+  //     "name": "Macarronada",
+  //     "description":
+  //         "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
+  //     "price": 25.99,
+  //     "prepareTime": 20,
+  //     "type": "LANCHE"
+  //   },
+  //   {
+  //     "id": 1,
+  //     "name": "Refrigerante",
+  //     "description":
+  //         "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
+  //     "price": 25.99,
+  //     "prepareTime": 20,
+  //     "type": "BEBIDA"
+  //   },
+  //   {
+  //     "id": 2,
+  //     "name": "Macarronada",
+  //     "description":
+  //         "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
+  //     "price": 25.99,
+  //     "prepareTime": 20,
+  //     "type": "LANCHE"
+  //   }
+  // ]''';
+
   setUp(() {
     datasource = MenuDatasourceImpl();
   });
+  group('[TEST] - getMeals from json assets ', () {
+    test('returns correct a List<MealModel>', () async {
+      List<MealModel> data = await datasource.readJson();
+      expect(data, isA<List<MealModel>>());
+    });
 
-  test('[TEST] - getMeals from json assets', () async {
-    List<MealModel> data = await datasource.readJson();
-    expect(data, isA<List<MealModel>>());
+    // test('returns Exception', () async {
+    //   when(await rootBundle.loadString('assets/data/restaurant.json'))
+    //       .thenAnswer(
+    //     (realInvocation) => mockJson,
+    //   );
+    //   expect(await datasource.readJson(), throwsA(Exception()));
+    // });
   });
 }

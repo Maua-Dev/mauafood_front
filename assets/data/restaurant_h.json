@@ -1,5 +1,4 @@
 [
-    
     {
         "id" : 0,
         "name" : "Água Mineral",
@@ -27,7 +26,6 @@
         "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
-
     {
         "id" : 3,
         "name" : "Café/Leite",
@@ -223,7 +221,7 @@
         "description": "",
         "price" : 18.00,
         "prepareTime" : 20,
-        "type" : "PORÇÕES",
+        "type" : "PORCOES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -232,7 +230,7 @@
         "description": "",
         "price" : 10.00,
         "prepareTime" : 20,
-        "type" : "PORÇÕES",
+        "type" : "PORCOES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -241,7 +239,7 @@
         "description": "",
         "price" : 14.00,
         "prepareTime" : 20,
-        "type" : "PORÇÕES",
+        "type" : "PORCOES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -250,7 +248,7 @@
         "description": "",
         "price" : 20.00,
         "prepareTime" : 20,
-        "type" : "PORÇÕES",
+        "type" : "PORCOES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -295,7 +293,7 @@
         "description": "",
         "price" : 10.00,
         "prepareTime" : 20,
-        "type" : "SOBREMESAS",
+        "type" : "DOCES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -304,7 +302,7 @@
         "description": "",
         "price" : 8.50,
         "prepareTime" : 20,
-        "type" : "SOBREMESAS",
+        "type" : "DOCES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -313,7 +311,7 @@
         "description": "",
         "price" : 8.50,
         "prepareTime" : 20,
-        "type" : "SOBREMESAS",
+        "type" : "DOCES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -322,7 +320,7 @@
         "description": "",
         "price" : 10.00,
         "prepareTime" : 20,
-        "type" : "SOBREMESAS",
+        "type" : "DOCES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -404,6 +402,7 @@
         "price" : 36.00,
         "prepareTime" : 20,
         "type" : "PRATOS",
-         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     }
+
 ]

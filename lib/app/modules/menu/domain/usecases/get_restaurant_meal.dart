@@ -8,14 +8,31 @@ abstract class GetRestaurantMealInterface {
   Future<Either<Failure, List<Meal>>> call();
 }
 
-class GetRestaurantMealImpl implements GetRestaurantMealInterface {
+class GetRestaurantMealBibaImpl implements GetRestaurantMealInterface {
   final MenuRepositoryInterface repository;
 
-  GetRestaurantMealImpl({required this.repository});
+  GetRestaurantMealBibaImpl({required this.repository});
 
   @override
   Future<Either<Failure, List<Meal>>> call() async {
-    var result = await repository.getAllMeals();
+    var result = await repository.getBibaMeals();
+    return result.fold((failureResult) => result, (listResult) async {
+      return result.where(
+        (r) => r.isNotEmpty,
+        () => EmptyList(message: 'Lista vazia'),
+      );
+    });
+  }
+}
+
+class GetRestaurantMealHImpl implements GetRestaurantMealInterface {
+  final MenuRepositoryInterface repository;
+
+  GetRestaurantMealHImpl({required this.repository});
+
+  @override
+  Future<Either<Failure, List<Meal>>> call() async {
+    var result = await repository.getHMeals();
     return result.fold((failureResult) => result, (listResult) async {
       return result.where(
         (r) => r.isNotEmpty,

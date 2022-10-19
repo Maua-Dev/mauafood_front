@@ -32,9 +32,17 @@ class MockMenuDatasourceInterface extends _i1.Mock
   }
 
   @override
-  _i3.Future<List<_i4.MealModel>> readJson() => (super.noSuchMethod(
+  _i3.Future<List<_i4.MealModel>> readJsonBiba() => (super.noSuchMethod(
         Invocation.method(
-          #readJson,
+          #readJsonBiba,
+          [],
+        ),
+        returnValue: _i3.Future<List<_i4.MealModel>>.value(<_i4.MealModel>[]),
+      ) as _i3.Future<List<_i4.MealModel>>);
+  @override
+  _i3.Future<List<_i4.MealModel>> readJsonH() => (super.noSuchMethod(
+        Invocation.method(
+          #readJsonH,
           [],
         ),
         returnValue: _i3.Future<List<_i4.MealModel>>.value(<_i4.MealModel>[]),

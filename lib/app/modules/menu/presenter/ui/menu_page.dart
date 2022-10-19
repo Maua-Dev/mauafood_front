@@ -78,28 +78,31 @@ class MenuPage extends StatelessWidget {
                             minHeight: 35.0,
                             maxHeight: 50,
                           ),
-                          child: ListView.builder(
-                            itemCount: MealEnum.values.length,
-                            scrollDirection: Axis.horizontal,
-                            shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return FilterButtonWidget(
-                                myIndex: index,
-                                blocIndex: state.index,
-                                onPressed: MealEnum.values[index] ==
-                                        MealEnum.tudo
-                                    ? () {
-                                        BlocProvider.of<MenuBloc>(context)
-                                            .add(GetAllMealsEvent());
-                                      }
-                                    : () {
-                                        BlocProvider.of<MenuBloc>(context).add(
-                                            FilterMealTypeEvent(
-                                                mealType:
-                                                    MealEnum.values[index]));
-                                      },
-                              );
-                            },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            child: ListView.builder(
+                              itemCount: MealEnum.values.length,
+                              scrollDirection: Axis.horizontal,
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return FilterButtonWidget(
+                                  myIndex: index,
+                                  blocIndex: state.index,
+                                  onPressed: MealEnum.values[index] ==
+                                          MealEnum.tudo
+                                      ? () {
+                                          BlocProvider.of<MenuBloc>(context)
+                                              .add(GetAllMealsEvent());
+                                        }
+                                      : () {
+                                          BlocProvider.of<MenuBloc>(context)
+                                              .add(FilterMealTypeEvent(
+                                                  mealType:
+                                                      MealEnum.values[index]));
+                                        },
+                                );
+                              },
+                            ),
                           ),
                         );
                       } else {

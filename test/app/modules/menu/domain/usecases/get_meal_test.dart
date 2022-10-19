@@ -12,7 +12,8 @@ import 'get_meal_test.mocks.dart';
 
 @GenerateMocks([MenuRepositoryInterface])
 void main() {
-  late GetRestaurantMealInterface useCase;
+  late GetRestaurantMealInterface useCase1;
+  late GetRestaurantMealInterface useCase2;
   MenuRepositoryInterface repository = MockMenuRepositoryInterface();
   var listMock = const [
     Meal(
@@ -26,31 +27,64 @@ void main() {
   ];
 
   setUp(() {
-    useCase = GetRestaurantMealImpl(repository: repository);
+    useCase1 = GetRestaurantMealBibaImpl(repository: repository);
+    useCase2 = GetRestaurantMealHImpl(repository: repository);
   });
 
-  group('[TEST] - getAllMeal ', () {
+  group('[TEST] - GetRestaurantMealBibaImpl ', () {
     test('return List<Meal> if everything is correct', () async {
-      when(repository.getAllMeals()).thenAnswer(
+      when(repository.getBibaMeals()).thenAnswer(
         (realInvocation) async => Right(listMock),
       );
-      var result = await useCase();
+      when(repository.getHMeals()).thenAnswer(
+        (realInvocation) async => Right(listMock),
+      );
+      var result = await useCase1();
       expect(result.fold(id, id), isA<List<Meal>>());
     });
 
     test('return EmptyList if json is empty', () async {
-      when(repository.getAllMeals()).thenAnswer(
+      when(repository.getBibaMeals()).thenAnswer(
         (realInvocation) async => const Right(<Meal>[]),
       );
-      var result = await useCase();
+      var result = await useCase1();
       expect(result.fold(id, id), isA<EmptyList>());
     });
 
     test('return DatasourceResultNull if json is null', () async {
-      when(repository.getAllMeals()).thenAnswer(
+      when(repository.getBibaMeals()).thenAnswer(
         (realInvocation) async => Left(DatasourceResultNull(message: '')),
       );
-      var result = await useCase();
+      var result = await useCase1();
+      expect(result.fold(id, id), isA<DatasourceResultNull>());
+    });
+  });
+
+  group('[TEST] - GetRestaurantMealHImpl ', () {
+    test('return List<Meal> if everything is correct', () async {
+      when(repository.getHMeals()).thenAnswer(
+        (realInvocation) async => Right(listMock),
+      );
+      when(repository.getHMeals()).thenAnswer(
+        (realInvocation) async => Right(listMock),
+      );
+      var result = await useCase2();
+      expect(result.fold(id, id), isA<List<Meal>>());
+    });
+
+    test('return EmptyList if json is empty', () async {
+      when(repository.getHMeals()).thenAnswer(
+        (realInvocation) async => const Right(<Meal>[]),
+      );
+      var result = await useCase2();
+      expect(result.fold(id, id), isA<EmptyList>());
+    });
+
+    test('return DatasourceResultNull if json is null', () async {
+      when(repository.getHMeals()).thenAnswer(
+        (realInvocation) async => Left(DatasourceResultNull(message: '')),
+      );
+      var result = await useCase2();
       expect(result.fold(id, id), isA<DatasourceResultNull>());
     });
   });

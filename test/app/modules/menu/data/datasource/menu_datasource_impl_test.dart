@@ -46,8 +46,13 @@ void main() {
     datasource = MenuDatasourceImpl();
   });
   group('[TEST] - getMeals from json assets ', () {
-    test('returns correct a List<MealModel>', () async {
-      List<MealModel> data = await datasource.readJson();
+    test('returns correct a List<MealModel> from H', () async {
+      List<MealModel> data = await datasource.readJsonH();
+      expect(data, isA<List<MealModel>>());
+    });
+
+    test('returns correct a List<MealModel> from BIBA', () async {
+      List<MealModel> data = await datasource.readJsonBiba();
       expect(data, isA<List<MealModel>>());
     });
 

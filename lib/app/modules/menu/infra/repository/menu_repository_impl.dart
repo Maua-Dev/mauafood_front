@@ -11,10 +11,22 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
   MenuRepositoryImpl({required this.datasource});
 
   @override
-  Future<Either<Failure, List<Meal>>> getAllMeals() async {
+  Future<Either<Failure, List<Meal>>> getBibaMeals() async {
     List<Meal>? list;
     try {
-      list = await datasource.readJson();
+      list = await datasource.readJsonBiba();
+    } catch (e) {
+      return left(DatasourceResultNull(message: 'Json retornou nulo'));
+    }
+
+    return right(list);
+  }
+
+  @override
+  Future<Either<Failure, List<Meal>>> getHMeals() async {
+    List<Meal>? list;
+    try {
+      list = await datasource.readJsonH();
     } catch (e) {
       return left(DatasourceResultNull(message: 'Json retornou nulo'));
     }

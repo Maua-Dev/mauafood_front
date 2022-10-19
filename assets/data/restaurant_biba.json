@@ -383,7 +383,7 @@
         "description": "Mussarela/Tomate/Orégano/No Prato",
         "price" : 0.00,
         "prepareTime" : 20,
-        "type" : "QUEIJOS QUENTES",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -392,7 +392,7 @@
         "description": "Queijo Brancp/Tomate/Orégano/No Prato",
         "price" : 0.00,
         "prepareTime" : 20,
-        "type" : "QUEIJOS QUENTES",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -401,7 +401,7 @@
         "description": "Queijo Brancp/Tomate Seco/Orégano/No Prato",
         "price" : 0.00,
         "prepareTime" : 20,
-        "type" : "QUEIJOS QUENTES",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -410,7 +410,7 @@
         "description": "Contra Filé/Bacon/Cheddar/Catupiry/Batata Palha/No Prato",
         "price" : 0.00,
         "prepareTime" : 20,
-        "type" : "QUEIJOS QUENTES",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -419,7 +419,7 @@
         "description": "",
         "price" : 7.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -428,7 +428,7 @@
         "description": "",
         "price" : 8.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -437,7 +437,7 @@
         "description": "",
         "price" : 8.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -446,7 +446,7 @@
         "description": "",
         "price" : 8.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -455,7 +455,7 @@
         "description": "",
         "price" : 8.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -464,7 +464,7 @@
         "description": "",
         "price" : 15.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -473,7 +473,7 @@
         "description": "",
         "price" : 6.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -482,7 +482,7 @@
         "description": "",
         "price" : 5.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -491,7 +491,7 @@
         "description": "",
         "price" : 9.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -500,7 +500,7 @@
         "description": "",
         "price" : 11.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -509,7 +509,7 @@
         "description": "",
         "price" : 11.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -518,7 +518,7 @@
         "description": "",
         "price" : 6.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -527,7 +527,7 @@
         "description": "",
         "price" : 11.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -536,7 +536,7 @@
         "description": "",
         "price" : 9.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -545,7 +545,7 @@
         "description": "",
         "price" : 8.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -554,7 +554,7 @@
         "description": "",
         "price" : 11.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS FRIAS",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -563,7 +563,7 @@
         "description": "",
         "price" : 6.50,
         "prepareTime" : 20,
-        "type" : "BEBIDAS QUENTES",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -572,7 +572,7 @@
         "description": "",
         "price" : 7.50,
         "prepareTime" : 20,
-        "type" : "BEBIDAS QUENTES",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -581,7 +581,7 @@
         "description": "",
         "price" : 7.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS QUENTES",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -590,7 +590,7 @@
         "description": "",
         "price" : 9.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS QUENTES",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -599,7 +599,7 @@
         "description": "",
         "price" : 7.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS QUENTES",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -608,7 +608,7 @@
         "description": "",
         "price" : 9.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS QUENTES",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -617,7 +617,7 @@
         "description": "",
         "price" : 5.00,
         "prepareTime" : 20,
-        "type" : "BEBIDAS QUENTES",
+        "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
@@ -793,110 +793,47 @@
     },
     {
         "id" : 88,
-        "name" : "Ovo", 
-        "description": "",
-        "price" : 4.50,
-        "prepareTime" : 20,
-        "type" : "ADICIONAIS",
-        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
-    },
-    {
-        "id" : 89,
-        "name" : "Contra Filé", 
-        "description": "",
-        "price" : 17.00,
-        "prepareTime" : 20,
-        "type" : "ADICIONAIS",
-        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
-    },
-    {
-        "id" : 90,
-        "name" : "Filé de Frango", 
-        "description": "",
-        "price" : 13.00,
-        "prepareTime" : 20,
-        "type" : "ADICIONAIS",
-        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
-    },
-    {
-        "id" : 91,
-        "name" : "Bacon", 
-        "description": "",
-        "price" : 11.00,
-        "prepareTime" : 20,
-        "type" : "ADICIONAIS",
-        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
-    },
-    {
-        "id" : 92,
-        "name" : "Queijo Branco | Fat.", 
-        "description": "",
-        "price" : 7.00,
-        "prepareTime" : 20,
-        "type" : "ADICIONAIS",
-        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
-    },
-    {
-        "id" : 93,
-        "name" : "Batata Palha", 
-        "description": "",
-        "price" : 0.00,
-        "prepareTime" : 20,
-        "type" : "ADICIONAIS",
-        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
-    },
-    {
-        "id" : 94,
-        "name" : "Alface Tomate", 
-        "description": "",
-        "price" : 7.00,
-        "prepareTime" : 20,
-        "type" : "ADICIONAIS",
-        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
-    },
-    {
-        "id" : 95,
         "name" : "Fritas Pequenas", 
         "description": "",
         "price" : 14.00,
         "prepareTime" : 20,
-        "type" : "PORÇÕES",
+        "type" : "PORCOES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 96,
+        "id" : 89,
         "name" : "Fritas Médias", 
         "description": "",
         "price" : 18.00,
         "prepareTime" : 20,
-        "type" : "PORÇÕES",
+        "type" : "PORCOES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 97,
+        "id" : 90,
         "name" : "Fritas Gde Simples", 
         "description": "",
         "price" : 22.00,
         "prepareTime" : 20,
-        "type" : "PORÇÕES",
+        "type" : "PORCOES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 98,
+        "id" : 91,
         "name" : "Fritas Gde Completa", 
         "description": "",
         "price" : 30.00,
         "prepareTime" : 20,
-        "type" : "PORÇÕES",
+        "type" : "PORCOES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 99,
+        "id" : 92,
         "name" : "calabresa Acebol.", 
         "description": "",
         "price" : 16.00,
         "prepareTime" : 20,
-        "type" : "PORÇÕES",
+        "type" : "PORCOES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     }
 ]

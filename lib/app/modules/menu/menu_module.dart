@@ -12,7 +12,7 @@ class MenuModule extends Module {
   @override
   List<Bind> get binds => [
         Bind<GetRestaurantMealInterface>(
-            (i) => GetRestaurantMealImpl(repository: i())),
+            (i) => GetRestaurantMealBibaImpl(repository: i())),
         Bind<MenuBloc>((i) => MenuBloc(getRestaurantMeal: i())),
         Bind<MenuRepositoryInterface>(
             (i) => MenuRepositoryImpl(datasource: i())),

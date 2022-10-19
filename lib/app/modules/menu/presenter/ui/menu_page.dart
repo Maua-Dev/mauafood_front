@@ -120,10 +120,10 @@ class MenuPage extends StatelessWidget {
                               child: GridView.builder(
                                 itemCount: state.listMeal.length,
                                 gridDelegate:
-                                    const SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
+                                    const SliverGridDelegateWithMaxCrossAxisExtent(
                                   crossAxisSpacing: 16,
                                   mainAxisSpacing: 16,
+                                  maxCrossAxisExtent: 200,
                                 ),
                                 itemBuilder: (context, index) {
                                   return MealCardWidget(

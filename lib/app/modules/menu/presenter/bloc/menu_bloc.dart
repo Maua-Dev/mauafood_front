@@ -46,7 +46,8 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
         (list) {
           var filterList = list
               .where(
-                (e) => e.name.startsWith(event.search),
+                (e) =>
+                    e.name.toLowerCase().startsWith(event.search.toLowerCase()),
               )
               .toList();
           return MenuLoadedSuccessState(listMeal: filterList, index: 0);

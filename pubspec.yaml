@@ -20,6 +20,7 @@ dependencies:
   mockito: ^5.3.2
   build_runner: ^2.3.0
   google_fonts: ^2.0.1
+  bloc_test: ^9.1.0
 
 dev_dependencies:
   flutter_test:

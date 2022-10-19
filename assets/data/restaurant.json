@@ -1,132 +1,904 @@
 [
-    
     {
         "id" : 0,
-        "name" : "Macarronada",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "name" : "Lanche Mortadela",
+        "description": "Mortadela",
+        "price" : 14.00,
         "prepareTime" : 20,
         "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
         "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "name" : "X-Salada",
+        "description": "Hamburguer/Mussarela/Maionese/Alface/Tomate",
+        "price" : 16.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "id" : 2,
+        "name" : "X-Burguer",
+        "description": "Hamburguer/Mussarela/Maionese",
+        "price" : 8.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "id" : 3,
+        "name" : "X-Bacon",
+        "description": "Hamburguer/Bacon/Mussarela/Maionese/Alface/Tomate",
+        "price" : 18.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "id" : 4,
+        "name" : "X-Egg",
+        "description": "Hamburguer/Ovo/Mussarela/Maionese/Alface/Tomate",
+        "price" : 15.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "id" : 5,
+        "name" : "X-Calabresa",
+        "description": "Calabresa/Mussarela/Alface/Tomate",
+        "price" : 18.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "id" : 6,
+        "name" : "X-Frango",
+        "description": "Filé de Frango/Mussarela/Maionese/Alface/Tomate",
+        "price" : 18.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "id" : 7,
+        "name" : "Americano",
+        "description": "Presunto/Ovo/Mussarela/Maionese/Alface/Tomate/Orégano",
+        "price" : 16.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "id" : 8,
+        "name" : "Misto Quente",
+        "description": "Presunto/Mussarela/Orégano",
+        "price" : 12.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "id" : 9,
+        "name" : "Bauru",
+        "description": "Presunto/Mussarela/Tomate/Orégano",
+        "price" : 13.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "id" : 10,
+        "name" : "Churrasco",
+        "description": "Contra Filé",
+        "price" : 18.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "id" : 11,
+        "name" : "Ch. c/ Queijo",
+        "description": "Contra Filé/Mussarela",
+        "price" : 21.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "id" : 12,
+        "name" : "Ch. c/ Vinag.",
+        "description": "Contra Filé/Vinagrete",
+        "price" : 23.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
-        "id" : 1,
-        "name" : "Refrigerante",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
+        "id" : 13,
+        "name" : "Ch. c/ Queijo/Vinag.",
+        "description": "Contra Filé/Mussarela/Vinagrete",
+        "price" : 25.00,
         "prepareTime" : 20,
-        "type" : "BEBIDA",
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 14,
+        "name" : "Mort. c/ Mussarela",
+        "description": "Mortadela/Mussarela",
+        "price" : 17.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 15,
+        "name" : "Lanche Natural",
+        "description": "Peito de Peru/Mussarela/Alface/Tomate",
+        "price" : 14.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 16,
+        "name" : "X-Tudo",
+        "description": "2x Hamurguer/Ovo/Presunto/Calabresa/Bacon/Mussarela/Maionese/Alface/Tomate",
+        "price" : 26.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 17,
+        "name" : "Vasco de Frango",
+        "description": "Filé de Frango/Batata Palha/Catupiry/Mussarela",
+        "price" : 20.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 18,
+        "name" : "Vasco de Carne",
+        "description": "Contra Filé/Batata Palha/Catupiry/Mussarela",
+        "price" : 23.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 19,
+        "name" : "Vasco de Calabresa",
+        "description": "Calabresa/Batata Palha/Catupiry/Mussarela",
+        "price" : 19.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 20,
+        "name" : "Pão c/ Ovo",
+        "description": "Ovo",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 21,
+        "name" : "Pão c/ Ovo/Mussar.",
+        "description": "Ovo/Mussarela/Orégano",
+        "price" : 11.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 22,
+        "name" : "Misto/Batata Palha",
+        "description": "Presunto/Batata Palha/Mussarela/Orégano",
+        "price" : 14.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 23,
+        "name" : "Beirute Carne I", 
+        "description": "Carne/Alface/Tomate/Mussarela/Ovo",
+        "price" : 25.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 24,
+        "name" : "Beirute Carne II", 
+        "description": "Carne/Alface/Tomate/Mussarela/Ovo/Bacon/Cheddar",
+        "price" : 28.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 25,
+        "name" : "Beirute Frango", 
+        "description": "Frango/Alface/Tomate/Mussarela/Ovo",
+        "price" : 24.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 26,
+        "name" : "Beirute Calabresa", 
+        "description": "Calabresa/Alface/Tomate/Mussarela/Ovo",
+        "price" : 22.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 27,
+        "name" : "Cone Trufado", 
+        "description": "",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 28,
+        "name" : "Bolo de Pote", 
+        "description": "",
+        "price" : 14.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 29,
+        "name" : "Brigadeiro", 
+        "description": "",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 30,
+        "name" : "Sonho de Valsa", 
+        "description": "",
+        "price" : 4.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 31,
+        "name" : "Barra de Cereais", 
+        "description": "",
+        "price" : 6.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 32,
+        "name" : "Chocolates", 
+        "description": "",
+        "price" : 6.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 33,
+        "name" : "Paçoquita", 
+        "description": "",
+        "price" : 3.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 34,
+        "name" : "Trident", 
+        "description": "",
+        "price" : 6.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 35,
+        "name" : "Halls", 
+        "description": "",
+        "price" : 5.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 36,
+        "name" : "Sorvetes", 
+        "description": "",
+        "price" : 0.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 37,
+        "name" : "Salada de Fruta", 
+        "description": "",
+        "price" : 13.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 38,
+        "name" : "Açaí", 
+        "description": "",
+        "price" : 17.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 39,
+        "name" : "Gelatina Colorida", 
+        "description": "",
+        "price" : 13.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 40,
+        "name" : "Copo da Felicidade", 
+        "description": "",
+        "price" : 18.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 41,
+        "name" : "Musse/Chocolate", 
+        "description": "",
+        "price" : 15.00,
+        "prepareTime" : 20,
+        "type" : "DOCES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 42,
+        "name" : "Queijo Quente 01", 
+        "description": "Mussarela/Tomate/Orégano/No Prato",
+        "price" : 0.00,
+        "prepareTime" : 20,
+        "type" : "QUEIJOS QUENTES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 43,
+        "name" : "Queijo Quente 02", 
+        "description": "Queijo Brancp/Tomate/Orégano/No Prato",
+        "price" : 0.00,
+        "prepareTime" : 20,
+        "type" : "QUEIJOS QUENTES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 44,
+        "name" : "Queijo Quente 03", 
+        "description": "Queijo Brancp/Tomate Seco/Orégano/No Prato",
+        "price" : 0.00,
+        "prepareTime" : 20,
+        "type" : "QUEIJOS QUENTES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 45,
+        "name" : "Prima", 
+        "description": "Contra Filé/Bacon/Cheddar/Catupiry/Batata Palha/No Prato",
+        "price" : 0.00,
+        "prepareTime" : 20,
+        "type" : "QUEIJOS QUENTES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 46,
+        "name" : "Refrigerante Lata", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 47,
+        "name" : "Tônica Schweppes", 
+        "description": "",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 48,
+        "name" : "Suco Lata", 
+        "description": "",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 49,
+        "name" : "H2O", 
+        "description": "",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 50,
+        "name" : "Chá - Lata", 
+        "description": "",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 51,
+        "name" : "Energético", 
+        "description": "",
+        "price" : 15.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 52,
+        "name" : "Água c/ Gás", 
+        "description": "",
+        "price" : 6.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 53,
+        "name" : "Água s/ Gás", 
+        "description": "",
+        "price" : 5.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 54,
+        "name" : "Suco de Laranja", 
+        "description": "",
+        "price" : 9.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 55,
+        "name" : "Suco de Melância", 
+        "description": "",
+        "price" : 11.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 56,
+        "name" : "Suco Misto | Polpa", 
+        "description": "",
+        "price" : 11.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 57,
+        "name" : "Toddynho", 
+        "description": "",
+        "price" : 6.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 58,
+        "name" : "Vitamina Mista", 
+        "description": "",
+        "price" : 11.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 59,
+        "name" : "Gatorade", 
+        "description": "",
+        "price" : 9.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 60,
+        "name" : "Guaraviton", 
+        "description": "",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 61,
+        "name" : "Chocolate Batido", 
+        "description": "",
+        "price" : 11.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS FRIAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 62,
+        "name" : "Café - peq.", 
+        "description": "",
+        "price" : 6.50,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS QUENTES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 63,
+        "name" : "Café - gde.", 
+        "description": "",
+        "price" : 7.50,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS QUENTES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 64,
+        "name" : "Capuccino - peq.", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS QUENTES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 65,
+        "name" : "Capuccino - gde.", 
+        "description": "",
+        "price" : 9.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS QUENTES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 66,
+        "name" : "Chocolate - peq." , 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS QUENTES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 67,
+        "name" : "Chocolate - gde.", 
+        "description": "",
+        "price" : 9.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS QUENTES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 68,
+        "name" : "Chá Quente", 
+        "description": "",
+        "price" : 5.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDAS QUENTES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 69,
+        "name" : "Pão de Queijo", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 70,
+        "name" : "Coxinha", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 71,
+        "name" : "Esfihas", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 72,
+        "name" : "Folhadinhos", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 73,
+        "name" : "Quiche", 
+        "description": "",
+        "price" : 11.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 74,
+        "name" : "Empada", 
+        "description": "",
+        "price" : 9.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 75,
+        "name" : "Bauruzinho", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 76,
+        "name" : "Pão de Batata", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 77,
+        "name" : "Hamburgão", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 78,
+        "name" : "baguete Folhada", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 79,
+        "name" : "Pão na Chapa", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 80,
+        "name" : "Pão c/ requeijão", 
+        "description": "",
+        "price" : 11.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 81,
+        "name" : "Mini Pizza", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "SALGADOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 82,
+        "name" : "Salada / F. Frango", 
+        "description": "Filé de Frango - Mussarela/Alface/Tomate/Batata Frita/No Prato",
+        "price" : 24.00,
+        "prepareTime" : 20,
+        "type" : "SALADAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 83,
+        "name" : "Salada / C. Filé", 
+        "description": "Contra Filé - Mussarela/Alface/Tomate/Batata Frita/No Prato",
+        "price" : 27.00,
+        "prepareTime" : 20,
+        "type" : "SALADAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 84,
+        "name" : "Salada / Calabresa", 
+        "description": "Calabresa - Mussarela/Alface/Tomate/Batata Frita/No Prato",
+        "price" : 21.00,
+        "prepareTime" : 20,
+        "type" : "SALADAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 85,
+        "name" : "Salada Simples", 
+        "description": "Alface/Tomate/No Prato",
+        "price" : 10.00,
+        "prepareTime" : 20,
+        "type" : "SALADAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 86,
+        "name" : "Omelete c/ Salada", 
+        "description": "Ovo/Alface/Tomate/No Prato",
+        "price" : 26.00,
+        "prepareTime" : 20,
+        "type" : "SALADAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 87,
+        "name" : "Lasanha", 
+        "description": "Massa - Mussarela/Presunto/Molho ao sugo",
+        "price" : 28.00,
+        "prepareTime" : 20,
+        "type" : "SALADAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 88,
+        "name" : "Ovo", 
+        "description": "",
+        "price" : 4.50,
+        "prepareTime" : 20,
+        "type" : "ADICIONAIS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 89,
+        "name" : "Contra Filé", 
+        "description": "",
+        "price" : 17.00,
+        "prepareTime" : 20,
+        "type" : "ADICIONAIS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 90,
+        "name" : "Filé de Frango", 
+        "description": "",
+        "price" : 13.00,
+        "prepareTime" : 20,
+        "type" : "ADICIONAIS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 91,
+        "name" : "Bacon", 
+        "description": "",
+        "price" : 11.00,
+        "prepareTime" : 20,
+        "type" : "ADICIONAIS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 92,
+        "name" : "Queijo Branco | Fat.", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "ADICIONAIS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 93,
+        "name" : "Batata Palha", 
+        "description": "",
+        "price" : 0.00,
+        "prepareTime" : 20,
+        "type" : "ADICIONAIS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 94,
+        "name" : "Alface Tomate", 
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "ADICIONAIS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 95,
+        "name" : "Fritas Pequenas", 
+        "description": "",
+        "price" : 14.00,
+        "prepareTime" : 20,
+        "type" : "PORÇÕES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 96,
+        "name" : "Fritas Médias", 
+        "description": "",
+        "price" : 18.00,
+        "prepareTime" : 20,
+        "type" : "PORÇÕES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 97,
+        "name" : "Fritas Gde Simples", 
+        "description": "",
+        "price" : 22.00,
+        "prepareTime" : 20,
+        "type" : "PORÇÕES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 98,
+        "name" : "Fritas Gde Completa", 
+        "description": "",
+        "price" : 30.00,
+        "prepareTime" : 20,
+        "type" : "PORÇÕES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 99,
+        "name" : "calabresa Acebol.", 
+        "description": "",
+        "price" : 16.00,
+        "prepareTime" : 20,
+        "type" : "PORÇÕES",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     }
-    
 ]
 
 

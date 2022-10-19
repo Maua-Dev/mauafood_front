@@ -23,7 +23,7 @@ class FilterButtonWidget extends StatelessWidget {
           style: blocIndex == myIndex
               ? AppTextStyles.h2Highlight.copyWith(
                   decoration: TextDecoration.underline,
-                )
+                  fontWeight: FontWeight.bold)
               : AppTextStyles.h2Thin),
     );
   }

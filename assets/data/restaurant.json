@@ -6,7 +6,8 @@
         "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
         "price" : 25.99,
         "prepareTime" : 20,
-        "type" : "LANCHE"
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
         "id" : 1,
@@ -14,15 +15,8 @@
         "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
         "price" : 25.99,
         "prepareTime" : 20,
-        "type" : "BEBIDA"
-    },
-    {
-        "id" : 2,
-        "name" : "Macarronada",
-        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
-        "price" : 25.99,
-        "prepareTime" : 20,
-        "type" : "LANCHE"
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
         "id" : 1,
@@ -30,7 +24,8 @@
         "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
         "price" : 25.99,
         "prepareTime" : 20,
-        "type" : "BEBIDA"
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
         "id" : 1,
@@ -38,7 +33,8 @@
         "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
         "price" : 25.99,
         "prepareTime" : 20,
-        "type" : "BEBIDA"
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
         "id" : 1,
@@ -46,7 +42,8 @@
         "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
         "price" : 25.99,
         "prepareTime" : 20,
-        "type" : "BEBIDA"
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
         "id" : 1,
@@ -54,7 +51,8 @@
         "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
         "price" : 25.99,
         "prepareTime" : 20,
-        "type" : "BEBIDA"
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
         "id" : 1,
@@ -62,7 +60,8 @@
         "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
         "price" : 25.99,
         "prepareTime" : 20,
-        "type" : "BEBIDA"
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
         "id" : 1,
@@ -70,7 +69,8 @@
         "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
         "price" : 25.99,
         "prepareTime" : 20,
-        "type" : "BEBIDA"
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
         "id" : 1,
@@ -78,7 +78,8 @@
         "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
         "price" : 25.99,
         "prepareTime" : 20,
-        "type" : "BEBIDA"
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },
     {
         "id" : 1,
@@ -86,7 +87,44 @@
         "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
         "price" : 25.99,
         "prepareTime" : 20,
-        "type" : "BEBIDA"
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 1,
+        "name" : "Refrigerante",
+        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
+        "price" : 25.99,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 1,
+        "name" : "Refrigerante",
+        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
+        "price" : 25.99,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 1,
+        "name" : "Refrigerante",
+        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
+        "price" : 25.99,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 1,
+        "name" : "Refrigerante",
+        "description": "Servido de forma rápida esse prato possui diversos ingredientes. Feito para quem busca o melhor da gastronomia com o melhor preço.",
+        "price" : 25.99,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     }
     
 ]

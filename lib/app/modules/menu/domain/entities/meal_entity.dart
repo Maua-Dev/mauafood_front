@@ -7,10 +7,12 @@ class Meal extends Equatable {
   final String name;
   final String description;
   final double price;
+  final String photo;
   final int? prepareTime;
   final MealEnum type;
 
   const Meal({
+    required this.photo,
     required this.id,
     required this.name,
     required this.description,

@@ -16,11 +16,13 @@ void main() {
   MenuRepositoryInterface repository = MockMenuRepositoryInterface();
   var listMock = const [
     Meal(
-        id: 0,
-        name: 'name',
-        description: 'description',
-        price: 10,
-        type: MealEnum.bebida),
+      id: 0,
+      name: 'name',
+      description: 'description',
+      price: 10,
+      type: MealEnum.bebida,
+      photo: '',
+    ),
   ];
 
   setUp(() {

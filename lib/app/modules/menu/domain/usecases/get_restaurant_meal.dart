@@ -4,25 +4,23 @@ import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart
 import '../errors/errors.dart';
 import '../infra/menu_repository_interface.dart';
 
-abstract class GetMealInterface {
+abstract class GetRestaurantMealInterface {
   Future<Either<Failure, List<Meal>>> call();
 }
 
-class GetMeal implements GetMealInterface {
+class GetRestaurantMealImpl implements GetRestaurantMealInterface {
   final MenuRepositoryInterface repository;
 
-  GetMeal({required this.repository});
+  GetRestaurantMealImpl({required this.repository});
 
   @override
   Future<Either<Failure, List<Meal>>> call() async {
     var result = await repository.getAllMeals();
-    return result.fold(
-        (failure) =>
-            left(DatasourceResultNull(message: 'Dados retornaram nulos')),
-        (r) async {
-      var result = await repository.getAllMeals();
+    return result.fold((failureResult) => result, (listResult) async {
       return result.where(
-          (r) => r.isNotEmpty, () => EmptyList(message: 'Lista vazia'));
+        (r) => r.isNotEmpty,
+        () => EmptyList(message: 'Lista vazia'),
+      );
     });
   }
 }

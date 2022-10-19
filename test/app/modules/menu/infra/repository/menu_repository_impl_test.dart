@@ -27,6 +27,7 @@ void main() {
       description: 'description',
       price: 10,
       type: MealEnum.bebida,
+      photo: '',
     ),
   ];
 

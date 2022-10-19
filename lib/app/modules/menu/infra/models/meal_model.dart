@@ -8,7 +8,8 @@ class MealModel extends Meal {
       required super.description,
       required super.price,
       super.prepareTime,
-      required super.type});
+      required super.type,
+      required super.photo});
 
   factory MealModel.fromMap(Map<String, dynamic> json) {
     return MealModel(
@@ -18,6 +19,7 @@ class MealModel extends Meal {
       price: json['price'],
       prepareTime: json['prepareTime'] ?? '',
       type: MealEnumExtension.stringToEnumMap(json['type']),
+      photo: json['photo'],
     );
   }
 

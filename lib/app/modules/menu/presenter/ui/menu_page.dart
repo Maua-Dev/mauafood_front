@@ -123,7 +123,7 @@ class MenuPage extends StatelessWidget {
                                     const SliverGridDelegateWithMaxCrossAxisExtent(
                                   crossAxisSpacing: 16,
                                   mainAxisSpacing: 16,
-                                  maxCrossAxisExtent: 200,
+                                  maxCrossAxisExtent: 210,
                                 ),
                                 itemBuilder: (context, index) {
                                   return MealCardWidget(

@@ -1,0 +1,409 @@
+[
+    
+    {
+        "id" : 0,
+        "name" : "Água Mineral",
+        "description": "Garrafa de água mineral com 500ml",
+        "price" : 5.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },	
+    {
+        "id" : 1,
+        "name" : "Água de Coco",
+        "description": "Água de coco de 330ml",
+        "price" : 7.50,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 2,
+        "name" : "Café Expresso",
+        "description": "",
+        "price" : 6.50,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+
+    {
+        "id" : 3,
+        "name" : "Café/Leite",
+        "description": "Dose média de café ou leite",
+        "price" : 8.50,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 4,
+        "name" : "Fell Good Sabores",
+        "description": "Lata de chá Fell Good do sabor escolhido com 330ml",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 5,
+        "name" : "Chocolate Quente",
+        "description": "",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 6,
+        "name" : "RedBull",
+        "description": "",
+        "price" : 10.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 7,
+        "name" : "Gatorade",
+        "description": "",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 8,
+        "name" : "Vitamina",
+        "description": "",
+        "price" : 10.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 9,
+        "name" : "H20H",
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 10,
+        "name" : "Ice Tea",
+        "description": "",
+        "price" : 6.50,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 11,
+        "name" : "Bebidas Pilão",
+        "description": "",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 12,
+        "name" : "Refrigerantes",
+        "description": "",
+        "price" : 6.50,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 13,
+        "name" : "Sufresh",
+        "description": "",
+        "price" : 6.50,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 14,
+        "name" : "Limonada",
+        "description": "",
+        "price" : 5.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 15,
+        "name" : "Suco Fruta Laranja/Melancia",
+        "description": "",
+        "price" : 9.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 16,
+        "name" : "Suco Polpa com Água",
+        "description": "",
+        "price" : 7.50,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 17,
+        "name" : "Suco Polpa com Leite",
+        "description": "",
+        "price" : 10.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 18,
+        "name" : "Toddynho",
+        "description": "",
+        "price" : 5.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 19,
+        "name" : "Yogurte com Leite",
+        "description": "",
+        "price" : 9.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 20,
+        "name" : "Yogurte com Polpa e Leite",
+        "description": "",
+        "price" : 10.00,
+        "prepareTime" : 20,
+        "type" : "BEBIDA",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 21,
+        "name" : "Salgado",
+        "description": "",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 22,
+        "name" : "Pão de Queijo",
+        "description": "",
+        "price" : 7.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 23,
+        "name" : "Pão na Chapa",
+        "description": "",
+        "price" : 9.00,
+        "prepareTime" : 20,
+        "type" : "LANCHE",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 24,
+        "name" : "Fritas, Mandioca, Polenta",
+        "description": "",
+        "price" : 18.00,
+        "prepareTime" : 20,
+        "type" : "PORÇÕES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 25,
+        "name" : "Nuggets 4 unid.",
+        "description": "",
+        "price" : 10.00,
+        "prepareTime" : 20,
+        "type" : "PORÇÕES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 26,
+        "name" : "Nuggets 6 unid.",
+        "description": "",
+        "price" : 14.00,
+        "prepareTime" : 20,
+        "type" : "PORÇÕES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 27,
+        "name" : "Nuggets 10 unid.",
+        "description": "",
+        "price" : 20.00,
+        "prepareTime" : 20,
+        "type" : "PORÇÕES",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 28,
+        "name" : "Nhoque ou Talharim",
+        "description": "",
+        "price" : 30.00,
+        "prepareTime" : 20,
+        "type" : "MASSAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 29,
+        "name" : "Rondelli 4 Queijos/Pres. Queijo",
+        "description": "",
+        "price" : 36.00,
+        "prepareTime" : 20,
+        "type" : "MASSAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 30,
+        "name" : "Conchiglione 4 Queijos/Pres. Queijo",
+        "description": "",
+        "price" : 36.00,
+        "prepareTime" : 20,
+        "type" : "MASSAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 31,
+        "name" : "Massa + 4 Nuggets",
+        "description": "",
+        "price" : 8.00,
+        "prepareTime" : 20,
+        "type" : "MASSAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 32,
+        "name" : "Palha Italiana",
+        "description": "",
+        "price" : 10.00,
+        "prepareTime" : 20,
+        "type" : "SOBREMESAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 33,
+        "name" : "Brigadeiro",
+        "description": "",
+        "price" : 8.50,
+        "prepareTime" : 20,
+        "type" : "SOBREMESAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 34,
+        "name" : "Bolos",
+        "description": "",
+        "price" : 8.50,
+        "prepareTime" : 20,
+        "type" : "SOBREMESAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 35,
+        "name" : "Salada de Frutas",
+        "description": "",
+        "price" : 10.00,
+        "prepareTime" : 20,
+        "type" : "SOBREMESAS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 36,
+        "name" : "Nuggets 6 unid.",
+        "description": "",
+        "price" : 29.00,
+        "prepareTime" : 20,
+        "type" : "PRATOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 37,
+        "name" : "Omelete (pres, queijo, tomate)",
+        "description": "",
+        "price" : 32.00,
+        "prepareTime" : 20,
+        "type" : "PRATOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 38,
+        "name" : "Calabresa",
+        "description": "",
+        "price" : 32.00,
+        "prepareTime" : 20,
+        "type" : "PRATOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 39,
+        "name" : "Filé de Frango",
+        "description": "",
+        "price" : 32.00,
+        "prepareTime" : 20,
+        "type" : "PRATOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 40,
+        "name" : "Contra Filé",
+        "description": "",
+        "price" : 38.00,
+        "prepareTime" : 20,
+        "type" : "PRATOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 41,
+        "name" : "Parmegiana de Frango",
+        "description": "",
+        "price" : 35.00,
+        "prepareTime" : 20,
+        "type" : "PRATOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 42,
+        "name" : "Parmegiana de Carne",
+        "description": "",
+        "price" : 39.00,
+        "prepareTime" : 20,
+        "type" : "PRATOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 43,
+        "name" : "Strogonoff Frango",
+        "description": "",
+        "price" : 33.00,
+        "prepareTime" : 20,
+        "type" : "PRATOS",
+        "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    },
+    {
+        "id" : 44,
+        "name" : "Strogonoff Carne",
+        "description": "",
+        "price" : 36.00,
+        "prepareTime" : 20,
+        "type" : "PRATOS",
+         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
+    }
+]

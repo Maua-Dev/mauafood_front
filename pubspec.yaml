@@ -31,7 +31,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/data/restaurant.json
+    - assets/data/restaurant_biba.json
+    - assets/data/restaurant_h.json
 
 scripts:
   build: flutter pub run build_runner build

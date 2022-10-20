@@ -8,4 +8,5 @@ class AppColors {
   static Color letterHighlightColor = const Color(0xFF022893);
   static Color letterHighlightThinColor = const Color(0xFF025AC8);
   static Color buttonsColor = const Color(0xFF022893);
+ 
 }

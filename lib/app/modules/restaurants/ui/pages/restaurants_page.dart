@@ -5,7 +5,6 @@ import 'package:mauafood_front/app/modules/restaurants/ui/widgets/restaurant_wid
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
 import '../../../../shared/themes/app_text_styles.dart';
-import '../../domain/infra/restaurant_enum.dart';
 
 class RestaurantsPage extends StatelessWidget {
   const RestaurantsPage({super.key});
@@ -60,9 +59,8 @@ class RestaurantsPage extends StatelessWidget {
                     itemCount: controller.restaurants.length,
                     itemBuilder: (context, i) {
                       return RestaurantWidget(
-                        restaurantInfo: controller.restaurants[i].restaurantInfo,
-                        route: "/menu",
-                        
+                        restaurantInfo:
+                            controller.restaurants[i].restaurantInfo,
                       );
                     },
                   ),

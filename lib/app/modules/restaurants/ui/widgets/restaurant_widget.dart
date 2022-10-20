@@ -4,21 +4,16 @@ import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_e
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
-import '../../presenter/controllers/restaurant_controller.dart';
-
 class RestaurantWidget extends StatelessWidget {
   final RestaurantEnum restaurantInfo;
 
-  final String route;
   const RestaurantWidget({
     Key? key,
     required this.restaurantInfo,
-    required this.route,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var controller = Modular.get<RestaurantController>();
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16.0),
       child: Row(
@@ -68,9 +63,8 @@ class RestaurantWidget extends StatelessWidget {
                                 10), //a borda nao esta ficando arredondada
                           ),
                           backgroundColor: AppColors.backgroundColor),
-                      onPressed: () => Modular.to.navigate(route,
-                          arguments:
-                              controller.restaurants[i].restaurantInfo.name),
+                      onPressed: () => Modular.to
+                          .navigate('/menu', arguments: restaurantInfo),
                       child: Text(
                         "Ver cardápio",
                         style: AppTextStyles.h2HighlightBold,

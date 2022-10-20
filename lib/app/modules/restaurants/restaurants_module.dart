@@ -4,8 +4,6 @@ import 'package:mauafood_front/app/modules/restaurants/domain/usecases/get_resta
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/restaurants/ui/pages/restaurants_page.dart';
 
-import '../menu/presenter/ui/menu_page.dart';
-
 class RestaurantModule extends Module {
   @override
   List<Bind> get binds => [
@@ -16,8 +14,13 @@ class RestaurantModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-    ChildRoute(Modular.initialRoute, 
-    child:(context, args) => const RestaurantsPage()),
-    ModuleRoute('/menu', 
-    module:  MenuModule())];
+        ChildRoute(
+          Modular.initialRoute,
+          child: (context, args) => const RestaurantsPage(),
+        ),
+        ModuleRoute(
+          '/menu',
+          module: MenuModule(),
+        )
+      ];
 }

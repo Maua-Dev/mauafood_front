@@ -13,7 +13,8 @@ class MenuModule extends Module {
   List<Bind> get binds => [
         Bind<GetRestaurantMealInterface>(
             (i) => GetRestaurantMealBibaImpl(repository: i())),
-        Bind<MenuBloc>((i) => MenuBloc(getRestaurantMeal: i(), restaurant: i.args.data)),
+        Bind<MenuBloc>((i) =>
+            MenuBloc(getRestaurantMeal: i(), restaurantInfo: i.args.data)),
         Bind<MenuRepositoryInterface>(
             (i) => MenuRepositoryImpl(datasource: i())),
         Bind<MenuDatasourceInterface>((i) => MenuDatasourceImpl()),
@@ -24,8 +25,8 @@ class MenuModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute(
-          Modular.initialRoute,child: (context, args) => const MenuPage(),
+          Modular.initialRoute,
+          child: (context, args) => const MenuPage(),
         ),
-        
       ];
 }

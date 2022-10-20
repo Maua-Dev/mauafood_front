@@ -8,6 +8,7 @@ import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_m
 import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
 import 'package:mauafood_front/app/modules/menu/menu_module.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
+import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
@@ -22,6 +23,7 @@ void main() {
       MockGetRestaurantMealInterface();
   late MenuBloc bloc;
   var failure = Failure(message: '');
+  var restaurantEnum = RestaurantEnum.restaurantBiba;
   MealModel testMock = const MealModel(
     id: 0,
     name: 'name',
@@ -43,7 +45,8 @@ void main() {
   ];
 
   setUp(() {
-    bloc = MenuBloc(getRestaurantMeal: getRestaurantMeal);
+    bloc = MenuBloc(
+        getRestaurantMeal: getRestaurantMeal, restaurantInfo: restaurantEnum);
   });
 
   group('[TEST] - GetAllMealsEvent ', () {

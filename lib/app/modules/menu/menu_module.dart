@@ -24,8 +24,8 @@ class MenuModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ChildRoute(
-          Modular.initialRoute,
-          child: (context, args) => const MenuPage(),
+          Modular.initialRoute,child: (context, args) => const MenuPage(),
         ),
+        
       ];
 }

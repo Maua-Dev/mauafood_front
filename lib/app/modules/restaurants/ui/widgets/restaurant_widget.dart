@@ -20,11 +20,10 @@ class RestaurantWidget extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                width: 150,
+            child: SizedBox(
+              width: 150,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(20),
                 child: Image.network(
                   photoLink,
                   fit: BoxFit.fill,
@@ -40,12 +39,14 @@ class RestaurantWidget extends StatelessWidget {
                       ),
                     );
                   },
-                )),
+                ),
+              ),
+            ),
           ),
           Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Text(
                   name,
                   style: AppTextStyles.h1,
@@ -57,7 +58,8 @@ class RestaurantWidget extends StatelessWidget {
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10), //a borda nao esta ficando arredondada
+                            borderRadius: BorderRadius.circular(
+                                10), //a borda nao esta ficando arredondada
                           ),
                           backgroundColor: AppColors.backgroundColor),
                       onPressed: () {},

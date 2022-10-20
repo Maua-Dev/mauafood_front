@@ -53,15 +53,17 @@ class RestaurantsPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: (200.0 * controller.restaurants.length), //talvez tenha macacada aqui, uga
+                  height: (200.0 *
+                      controller.restaurants
+                          .length), //talvez tenha macacada aqui, uga
                   child: ListView.builder(
                     itemCount: controller.restaurants.length,
                     itemBuilder: (context, i) {
-                      return RestaurantWidget(                     // os widgets esão tortos um em relação ao outro
-                          name: controller.restaurants[i].restaurantInfo.name,
-                          photoLink: controller
-                              .restaurants[i].restaurantInfo.restaurantImg,
-                              route: "/menu",);
+                      return RestaurantWidget(
+                        restaurantInfo: controller.restaurants[i].restaurantInfo,
+                        route: "/menu",
+                        
+                      );
                     },
                   ),
                 )

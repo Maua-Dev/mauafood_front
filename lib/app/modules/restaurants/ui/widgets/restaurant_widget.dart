@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
@@ -62,7 +63,7 @@ class RestaurantWidget extends StatelessWidget {
                                 10), //a borda nao esta ficando arredondada
                           ),
                           backgroundColor: AppColors.backgroundColor),
-                      onPressed: () {},
+                      onPressed: () => Modular.to.navigate('/menu'),
                       child: Text(
                         "Ver cardápio",
                         style: AppTextStyles.h2HighlightBold,

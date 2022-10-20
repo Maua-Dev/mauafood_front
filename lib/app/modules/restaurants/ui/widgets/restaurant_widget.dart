@@ -6,10 +6,12 @@ import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 class RestaurantWidget extends StatelessWidget {
   final String photoLink;
   final String name;
+  final String route;
   const RestaurantWidget({
     Key? key,
     required this.name,
     required this.photoLink,
+    required this.route,
   }) : super(key: key);
 
   @override
@@ -63,7 +65,7 @@ class RestaurantWidget extends StatelessWidget {
                                 10), //a borda nao esta ficando arredondada
                           ),
                           backgroundColor: AppColors.backgroundColor),
-                      onPressed: () => Modular.to.navigate('/menu'),
+                      onPressed: () => Modular.to.navigate(route),
                       child: Text(
                         "Ver cardápio",
                         style: AppTextStyles.h2HighlightBold,

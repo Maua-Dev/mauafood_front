@@ -60,7 +60,8 @@ class RestaurantsPage extends StatelessWidget {
                       return RestaurantWidget(                     // os widgets esão tortos um em relação ao outro
                           name: controller.restaurants[i].restaurantInfo.name,
                           photoLink: controller
-                              .restaurants[i].restaurantInfo.restaurantImg);
+                              .restaurants[i].restaurantInfo.restaurantImg,
+                              route: "/menu",);
                     },
                   ),
                 )

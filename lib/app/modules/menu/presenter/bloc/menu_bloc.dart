@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
+import 'package:mauafood_front/app/modules/restaurants/domain/entities/restaurant_entity.dart';
 
 import '../../domain/entities/meal_entity.dart';
 import '../../domain/errors/errors.dart';
@@ -13,9 +14,10 @@ part 'menu_state.dart';
 
 class MenuBloc extends Bloc<MenuEvent, MenuState> {
   final GetRestaurantMealInterface getRestaurantMeal;
+  final Restaurant restaurant;
   late Either<Failure, List<Meal>> eitherListMeal;
 
-  MenuBloc({required this.getRestaurantMeal}) : super(MenuInitialState()) {
+  MenuBloc({required this.getRestaurantMeal, required this.restaurant}) : super(MenuInitialState()) {
     on<GetAllMealsEvent>(_loadAllMeal);
     on<SearchMealEvent>(_searchMeal);
     on<FilterMealTypeEvent>(_filterMeal);

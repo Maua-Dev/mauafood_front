@@ -35,18 +35,34 @@ void main() {
     repository = MenuRepositoryImpl(datasource: datasource);
   });
 
-  group('[TEST] - getAllMeals ', () {
+  group('[TEST] - getBibaMeals', () {
     test('return a List<Meal> correct', () async {
-      when(datasource.readJson())
+      when(datasource.readJsonBiba())
           .thenAnswer((realInvocation) async => listMock);
-      var list = await repository.getAllMeals();
+      var list = await repository.getBibaMeals();
       expect(list.fold(id, id), isA<List<MealModel>>());
     });
 
     test('return ErrorReadJson when json is null', () async {
-      when(datasource.readJson())
+      when(datasource.readJsonBiba())
           .thenThrow((realInvocation) async => Exception());
-      var list = await repository.getAllMeals();
+      var list = await repository.getBibaMeals();
+      expect(list.fold(id, id), isA<DatasourceResultNull>());
+    });
+  });
+
+  group('[TEST] - getHMeals', () {
+    test('return a List<Meal> correct', () async {
+      when(datasource.readJsonH())
+          .thenAnswer((realInvocation) async => listMock);
+      var list = await repository.getHMeals();
+      expect(list.fold(id, id), isA<List<MealModel>>());
+    });
+
+    test('return ErrorReadJson when json is null', () async {
+      when(datasource.readJsonH())
+          .thenThrow((realInvocation) async => Exception());
+      var list = await repository.getHMeals();
       expect(list.fold(id, id), isA<DatasourceResultNull>());
     });
   });

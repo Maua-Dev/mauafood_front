@@ -1,6 +1,16 @@
 import 'package:enum_to_string/enum_to_string.dart';
 
-enum MealEnum { tudo, lanche, bebida, doce, prato }
+enum MealEnum {
+  tudo,
+  lanche,
+  bebida,
+  doces,
+  pratos,
+  porcoes,
+  massas,
+  salgados,
+  saladas
+}
 
 extension MealEnumExtension on MealEnum {
   static MealEnum stringToEnumMap(String toMap) {
@@ -16,12 +26,20 @@ extension MealEnumExtension on MealEnum {
         return 'Lanche';
       case MealEnum.bebida:
         return 'Bebidas';
-      case MealEnum.doce:
+      case MealEnum.doces:
         return 'Doces';
-      case MealEnum.prato:
+      case MealEnum.pratos:
         return 'Pratos';
       case MealEnum.tudo:
         return 'Tudo';
+      case MealEnum.porcoes:
+        return 'Porções';
+      case MealEnum.massas:
+        return 'Massas';
+      case MealEnum.salgados:
+        return 'Salgados';
+      case MealEnum.saladas:
+        return 'Saladas';
     }
   }
 }

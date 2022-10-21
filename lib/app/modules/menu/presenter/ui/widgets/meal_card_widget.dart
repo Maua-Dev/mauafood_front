@@ -62,6 +62,8 @@ class MealCardWidget extends StatelessWidget {
                   children: [
                     Text(
                       name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.h2
                           .copyWith(fontWeight: FontWeight.bold),
                     ),

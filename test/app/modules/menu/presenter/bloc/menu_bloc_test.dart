@@ -23,7 +23,7 @@ void main() {
       MockGetRestaurantMealInterface();
   late MenuBloc bloc;
   var failure = Failure(message: '');
-  var restaurantEnum = RestaurantEnum.restaurantBiba;
+  var restaurantEnumMock = RestaurantEnum.restaurantBiba;
   MealModel testMock = const MealModel(
     id: 0,
     name: 'name',
@@ -46,7 +46,8 @@ void main() {
 
   setUp(() {
     bloc = MenuBloc(
-        getRestaurantMeal: getRestaurantMeal, restaurantInfo: restaurantEnum);
+        getRestaurantMeal: getRestaurantMeal,
+        restaurantInfo: restaurantEnumMock);
   });
 
   group('[TEST] - GetAllMealsEvent ', () {
@@ -54,7 +55,7 @@ void main() {
       'returns succesfull state',
       build: () => bloc,
       act: (bloc) {
-        when(getRestaurantMeal())
+        when(getRestaurantMeal(bloc.restaurantInfo))
             .thenAnswer((realInvocation) async => Right(listMock));
         bloc.add(GetAllMealsEvent());
       },
@@ -68,7 +69,7 @@ void main() {
       'returns error state',
       build: () => bloc,
       act: (bloc) {
-        when(getRestaurantMeal())
+        when(getRestaurantMeal(bloc.restaurantInfo))
             .thenAnswer((realInvocation) async => Left(failure));
         bloc.add(GetAllMealsEvent());
       },
@@ -84,7 +85,7 @@ void main() {
       'returns succesfull state',
       build: () => bloc,
       act: (bloc) {
-        when(getRestaurantMeal())
+        when(getRestaurantMeal(bloc.restaurantInfo))
             .thenAnswer((realInvocation) async => Right(listMock));
         bloc.eitherListMeal = Right(listMock);
         bloc.add(const SearchMealEvent(search: 'name'));
@@ -99,7 +100,7 @@ void main() {
       'returns error state',
       build: () => bloc,
       act: (bloc) {
-        when(getRestaurantMeal())
+        when(getRestaurantMeal(bloc.restaurantInfo))
             .thenAnswer((realInvocation) async => Left(failure));
         bloc.eitherListMeal = Left(failure);
         bloc.add(const SearchMealEvent(search: ''));
@@ -116,7 +117,7 @@ void main() {
       'returns succesfull state',
       build: () => bloc,
       act: (bloc) {
-        when(getRestaurantMeal())
+        when(getRestaurantMeal(bloc.restaurantInfo))
             .thenAnswer((realInvocation) async => Right(listMock));
         bloc.eitherListMeal = Right(listMock);
         bloc.add(const FilterMealTypeEvent(mealType: MealEnum.bebida));
@@ -132,7 +133,7 @@ void main() {
       'returns error state',
       build: () => bloc,
       act: (bloc) {
-        when(getRestaurantMeal())
+        when(getRestaurantMeal(bloc.restaurantInfo))
             .thenAnswer((realInvocation) async => Left(failure));
         bloc.eitherListMeal = Left(failure);
         bloc.add(const FilterMealTypeEvent(mealType: MealEnum.bebida));

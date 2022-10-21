@@ -64,7 +64,7 @@ class RestaurantWidget extends StatelessWidget {
                           ),
                           backgroundColor: AppColors.backgroundColor),
                       onPressed: () => Modular.to
-                          .navigate('/menu', arguments: restaurantInfo),
+                          .navigate('/menu/', arguments: restaurantInfo),
                       child: Text(
                         "Ver cardápio",
                         style: AppTextStyles.h2HighlightBold,

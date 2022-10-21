@@ -18,14 +18,15 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
 
   MenuBloc({required this.getRestaurantMeal, required this.restaurantInfo})
       : super(MenuInitialState()) {
-    on<GetAllMealsEvent>(_loadAllMeal);
+    on<GetAllMealsEvent>(_loadRestaurantMeal);
     on<SearchMealEvent>(_searchMeal);
     on<FilterMealTypeEvent>(_filterMeal);
   }
 
-  void _loadAllMeal(GetAllMealsEvent event, Emitter<MenuState> emit) async {
+  void _loadRestaurantMeal(
+      GetAllMealsEvent event, Emitter<MenuState> emit) async {
     emit(MenuLoadingState());
-    eitherListMeal = await getRestaurantMeal();
+    eitherListMeal = await getRestaurantMeal(restaurantInfo);
     emit(
       eitherListMeal.fold(
         (failure) => MenuErrorState(failure: failure),
@@ -40,7 +41,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     emit(MenuLoadingState());
     if (eitherListMeal.fold(
         (failure) => failure.message.isEmpty, (list) => list.isNotEmpty)) {
-      eitherListMeal = await getRestaurantMeal();
+      eitherListMeal = await getRestaurantMeal(restaurantInfo);
     }
     emit(
       eitherListMeal.fold(
@@ -62,7 +63,7 @@ class MenuBloc extends Bloc<MenuEvent, MenuState> {
     emit(MenuLoadingState());
     if (eitherListMeal.fold(
         (failure) => failure.message.isEmpty, (list) => list.isNotEmpty)) {
-      eitherListMeal = await getRestaurantMeal();
+      eitherListMeal = await getRestaurantMeal(restaurantInfo);
     }
     emit(
       eitherListMeal.fold(

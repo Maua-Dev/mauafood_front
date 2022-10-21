@@ -60,12 +60,15 @@ class MealCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      name,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.h2
-                          .copyWith(fontWeight: FontWeight.bold),
+                    FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        name,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextStyles.h2
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
                     ),
                     Text(
                       'R\$ $price',

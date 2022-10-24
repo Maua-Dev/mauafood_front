@@ -2,15 +2,15 @@ import 'package:mauafood_front/app/modules/restaurants/domain/usecases/get_resta
 
 import '../../domain/entities/restaurant_entity.dart';
 
-class RestaurantController{
+class RestaurantController {
   final GetRestaurantInterface getRestaurant;
   List<Restaurant> restaurants = [];
 
-  RestaurantController({required this.getRestaurant}){
+  RestaurantController({required this.getRestaurant}) {
     getRestaurants();
   }
 
-  void getRestaurants (){
+  void getRestaurants() {
     restaurants = getRestaurant();
   }
 }

@@ -12,83 +12,108 @@ class MealInfoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [ 
-          IconButton(onPressed: () {
-            Modular.to.pop('/menu');
-          },
-          icon: Icon(Icons.exit_to_app, 
-          color: AppColors.letterHighlightColor,
-          size: 32,)),
-          SizedBox(
-            width: double.infinity,
-            height: 300,
-            child: Image.network(
-              mealInfo.photo,
-              fit: BoxFit.contain,
-              loadingBuilder: (BuildContext context, Widget child,
-                  ImageChunkEvent? loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes!
-                        : null,
-                ),
-              );
-            },
-          ),
-          ),
-          const SizedBox(height: 32),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(mealInfo.name,
-                    style: AppTextStyles.h1,          
-                ),
-                const SizedBox(height: 8),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(mealInfo.price.toString().replaceAll('.', ','),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            IconButton(
+              onPressed: () {
+                Modular.to.pop('/menu');
+              },
+              icon: Icon(
+                Icons.exit_to_app,
+                color: AppColors.letterHighlightColor,
+                size: 32,
+              ),
+            ),
+            SizedBox(
+              width: double.infinity,
+              height: 300,
+              child: Image.network(
+                mealInfo.photo,
+                fit: BoxFit.contain,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              loadingProgress.expectedTotalBytes!
+                          : null,
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: 32),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    mealInfo.name,
+                    style: AppTextStyles.h1,
+                  ),
+                  const SizedBox(height: 8),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        mealInfo.price.toString().replaceAll('.', ','),
                         style: AppTextStyles.h1,
-                    ),
-                    Row(
-                      children: [
-                        Icon(Icons.access_time, color: AppColors.letterHighlightColor,),
-                        Text('${mealInfo.prepareTime} min',
+                      ),
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.access_time,
+                            color: AppColors.letterHighlightColor,
+                          ),
+                          Text(
+                            '${mealInfo.prepareTime} min',
                             style: AppTextStyles.h2Highlight,
-                        ),
-                      ],
-                    ),
-                    
-                  ],
-                ),
-                const SizedBox(height: 16,),
-                Text(mealInfo.description,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    mealInfo.description,
                     style: AppTextStyles.h2,
                     textAlign: TextAlign.left,
-                ),
-                const SizedBox(height: 110,),
-                Text('Recomendados', 
-                style: AppTextStyles.h1,
-                ),
-                const SizedBox(height: 8,),
-                SizedBox(
-                  height: 160,
-                  child: ListView.builder(shrinkWrap: true, scrollDirection: Axis.horizontal, itemCount: 5, itemBuilder: (context, index) {
-                      return MealListViewWidget(mealInfo: mealInfo,); 
-                    },
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    height: 110,
+                  ),
+                  Text(
+                    'Recomendados',
+                    style: AppTextStyles.h1,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  SizedBox(
+                    height: 160,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return RecommendationCardWidget(
+                          mealInfo: mealInfo,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

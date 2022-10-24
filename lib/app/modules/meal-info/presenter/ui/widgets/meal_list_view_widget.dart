@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../../menu/domain/entities/meal_entity.dart';
 
-class MealListViewWidget extends StatelessWidget {
+class RecommendationCardWidget extends StatelessWidget {
   final Meal mealInfo;
-  const MealListViewWidget({super.key, required this.mealInfo});
+  const RecommendationCardWidget({super.key, required this.mealInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -14,24 +14,24 @@ class MealListViewWidget extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: SizedBox(
-            width: 175,
-            child: Image.network(
-              mealInfo.photo,
-              fit: BoxFit.contain,
-              loadingBuilder: (BuildContext context, Widget child,
-                  ImageChunkEvent? loadingProgress) {
-                if (loadingProgress == null) return child;
-                return Center(
-                  child: CircularProgressIndicator(
-                    value: loadingProgress.expectedTotalBytes != null
-                        ? loadingProgress.cumulativeBytesLoaded /
-                            loadingProgress.expectedTotalBytes!
-                        : null,
-                  ),
-                );
-              },
-            ),
-          ),
+        width: 175,
+        child: Image.network(
+          mealInfo.photo,
+          fit: BoxFit.contain,
+          loadingBuilder: (BuildContext context, Widget child,
+              ImageChunkEvent? loadingProgress) {
+            if (loadingProgress == null) return child;
+            return Center(
+              child: CircularProgressIndicator(
+                value: loadingProgress.expectedTotalBytes != null
+                    ? loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes!
+                    : null,
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }

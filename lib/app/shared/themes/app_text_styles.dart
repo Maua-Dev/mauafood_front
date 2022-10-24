@@ -22,6 +22,11 @@ class AppTextStyles {
     fontSize: 16,
     fontWeight: FontWeight.normal,
   );
+  static TextStyle h2HighlightBold = TextStyle(
+    color: AppColors.letterHighlightColor,
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+  );
   static TextStyle h2ThinHighlight = TextStyle(
     color: AppColors.letterHighlightThinColor,
     fontSize: 16,

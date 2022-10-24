@@ -13,6 +13,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/menu_page.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/appbar/menu_appbar_widget.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/meal_card_widget.dart';
+import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
@@ -25,6 +26,8 @@ void main() {
   GetRestaurantMealInterface getRestaurantMeal =
       MockGetRestaurantMealInterface();
   late MenuBloc bloc;
+  var restaurantEnum = RestaurantEnum.restaurantBiba;
+
   MealModel testMock = const MealModel(
     id: 0,
     name: 'name',
@@ -46,7 +49,8 @@ void main() {
   ];
   setUpAll(() {
     HttpOverrides.global = null;
-    bloc = MenuBloc(getRestaurantMeal: getRestaurantMeal);
+    bloc = MenuBloc(
+        getRestaurantMeal: getRestaurantMeal, restaurantInfo: restaurantEnum);
   });
 
   tearDown(() {

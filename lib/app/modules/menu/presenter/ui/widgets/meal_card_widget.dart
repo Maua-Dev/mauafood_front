@@ -23,7 +23,7 @@ class MealCardWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             )),
         onPressed: () {
-          Modular.to.pushNamed('/meal-info/', arguments: meal);
+          Modular.to.pushNamed('/menu/meal-info/', arguments: meal);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +72,7 @@ class MealCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'R\$ ${meal.price}',
+                      'R\$ ${meal.price.toStringAsFixed(2).replaceAll('.', ',')}',
                       style: AppTextStyles.h2Highlight
                           .copyWith(fontWeight: FontWeight.bold),
                     ),

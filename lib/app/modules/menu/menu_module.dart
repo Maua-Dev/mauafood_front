@@ -4,6 +4,7 @@ import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_m
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/menu_page.dart';
 
+import '../meal-info/meal_info_module.dart';
 import 'domain/infra/menu_repository_interface.dart';
 import 'infra/datasources/menu_datasource_interface.dart';
 import 'infra/repository/menu_repository_impl.dart';
@@ -28,5 +29,6 @@ class MenuModule extends Module {
           Modular.initialRoute,
           child: (context, args) => const MenuPage(),
         ),
+        ModuleRoute('/meal-info/', module: MealInfoModule()),
       ];
 }

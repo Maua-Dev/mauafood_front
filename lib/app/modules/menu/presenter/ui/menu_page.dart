@@ -130,12 +130,7 @@ class MenuPage extends StatelessWidget {
                                 ),
                                 itemBuilder: (context, index) {
                                   return MealCardWidget(
-                                    name: state.listMeal[index].name,
-                                    price: state.listMeal[index].price
-                                        .toString()
-                                        .replaceAll('.', ','),
-                                    photoLink: state.listMeal[index].photo,
-                                  );
+                                      meal: state.listMeal[index]);
                                 },
                               ),
                             ),

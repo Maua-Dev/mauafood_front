@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
-import 'package:mauafood_front/app/modules/restaurants/ui/widgets/restaurant_widget.dart';
+import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/restaurant_widget.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
-import '../../../../shared/themes/app_text_styles.dart';
+import '../../../../../shared/themes/app_text_styles.dart';
 
 class RestaurantsPage extends StatelessWidget {
   const RestaurantsPage({super.key});
@@ -52,9 +52,7 @@ class RestaurantsPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: (200.0 *
-                      controller.restaurants
-                          .length), //talvez tenha macacada aqui, uga
+                  height: MediaQuery.of(context).size.height / 1.4,
                   child: ListView.builder(
                     itemCount: controller.restaurants.length,
                     itemBuilder: (context, i) {

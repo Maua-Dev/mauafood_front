@@ -22,7 +22,7 @@ class RestaurantWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
-              width: 150,
+              width: MediaQuery.of(context).size.width / 3,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(

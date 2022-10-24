@@ -56,7 +56,7 @@ class MenuPage extends StatelessWidget {
                   ),
                 );
               }),
-            ),
+            ), 
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -129,13 +129,7 @@ class MenuPage extends StatelessWidget {
                                   maxCrossAxisExtent: 210,
                                 ),
                                 itemBuilder: (context, index) {
-                                  return MealCardWidget(
-                                    name: state.listMeal[index].name,
-                                    price: state.listMeal[index].price
-                                        .toString()
-                                        .replaceAll('.', ','),
-                                    photoLink: state.listMeal[index].photo,
-                                  );
+                                  return MealCardWidget(meal: state.listMeal[index]);
                                 },
                               ),
                             ),

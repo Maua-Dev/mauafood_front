@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
+import '../../../domain/entities/meal_entity.dart';
+
 class MealCardWidget extends StatelessWidget {
-  final String name;
-  final String price;
-  final String photoLink;
+  final Meal meal;
   const MealCardWidget({
     Key? key,
-    required this.name,
-    required this.price,
-    required this.photoLink,
+    required this.meal,
   }) : super(key: key);
 
   @override
@@ -23,7 +22,9 @@ class MealCardWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             )),
-        onPressed: () {},
+        onPressed: () {
+          Modular.to.pushNamed('/meal-info/', arguments: meal);
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
@@ -35,7 +36,7 @@ class MealCardWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Image.network(
-                  photoLink,
+                  meal.photo,
                   fit: BoxFit.contain,
                   loadingBuilder: (BuildContext context, Widget child,
                       ImageChunkEvent? loadingProgress) {
@@ -63,7 +64,7 @@ class MealCardWidget extends StatelessWidget {
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Text(
-                        name,
+                        meal.name,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyles.h2
@@ -71,7 +72,7 @@ class MealCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      'R\$ $price',
+                      'R\$ ${meal.price}',
                       style: AppTextStyles.h2Highlight
                           .copyWith(fontWeight: FontWeight.bold),
                     ),

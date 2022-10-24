@@ -16,35 +16,49 @@ class MealInfoPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            IconButton(
-              onPressed: () {
-                Modular.to.pop('/menu');
-              },
-              icon: Icon(
-                Icons.exit_to_app,
-                color: AppColors.letterHighlightColor,
-                size: 32,
-              ),
-            ),
-            SizedBox(
-              width: double.infinity,
-              height: 300,
-              child: Image.network(
-                mealInfo.photo,
-                fit: BoxFit.contain,
-                loadingBuilder: (BuildContext context, Widget child,
-                    ImageChunkEvent? loadingProgress) {
-                  if (loadingProgress == null) return child;
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                          : null,
+            Stack(
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 300,
+                  child: Image.network(
+                    mealInfo.photo,
+                    fit: BoxFit.contain,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                Positioned(
+                  left: 16,
+                  top: 16,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Modular.to.pop('/menu');
+                    },
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.letterHighlightThinColor,
+                        padding: EdgeInsets.zero,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(5),
+                        )),
+                    child: Icon(
+                      Icons.arrow_back,
+                      color: AppColors.white,
+                      size: 32,
                     ),
-                  );
-                },
-              ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 32),
             Padding(
@@ -56,12 +70,12 @@ class MealInfoPage extends StatelessWidget {
                     mealInfo.name,
                     style: AppTextStyles.h1,
                   ),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 32),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        mealInfo.price.toString().replaceAll('.', ','),
+                        'R\$ ${mealInfo.price.toString().replaceAll('.', ',')}',
                         style: AppTextStyles.h1,
                       ),
                       Row(
@@ -79,15 +93,15 @@ class MealInfoPage extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(
-                    height: 16,
+                    height: 32,
                   ),
                   Text(
                     mealInfo.description,
-                    style: AppTextStyles.h2,
+                    style: AppTextStyles.h2Thin,
                     textAlign: TextAlign.left,
                   ),
                   const SizedBox(
-                    height: 110,
+                    height: 64,
                   ),
                   Text(
                     'Recomendados',

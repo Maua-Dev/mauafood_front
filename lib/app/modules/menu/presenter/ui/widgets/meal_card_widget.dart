@@ -23,7 +23,7 @@ class MealCardWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             )),
         onPressed: () {
-          Modular.to.pushNamed('/meal-info/', arguments: meal);
+          Modular.to.pushNamed('/menu/meal-info/', arguments: meal);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,13 +61,18 @@ class MealCardWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      meal.name,
-                      style: AppTextStyles.h2
-                          .copyWith(fontWeight: FontWeight.bold),
+                    FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        meal.name,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: AppTextStyles.h2
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
                     ),
                     Text(
-                      'R\$ ${meal.price}',
+                      'R\$ ${meal.price.toStringAsFixed(2).replaceAll('.', ',')}',
                       style: AppTextStyles.h2Highlight
                           .copyWith(fontWeight: FontWeight.bold),
                     ),

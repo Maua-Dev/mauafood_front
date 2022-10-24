@@ -12,6 +12,8 @@ import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart'
     as _i5;
 import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_meal.dart'
     as _i3;
+import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart'
+    as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -45,18 +47,19 @@ class MockGetRestaurantMealInterface extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>> call() =>
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>> call(
+          _i7.RestaurantEnum? restaurantInfo) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
-          [],
+          [restaurantInfo],
         ),
         returnValue: _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>>.value(
             _FakeEither_0<_i5.Failure, List<_i6.Meal>>(
           this,
           Invocation.method(
             #call,
-            [],
+            [restaurantInfo],
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>>);

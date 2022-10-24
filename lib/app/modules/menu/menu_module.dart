@@ -2,7 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/menu/data/datasource/menu_datasource_impl.dart';
 import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_meal.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/menu_page.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/ui/pages/menu_page.dart';
 
 import '../meal-info/meal_info_module.dart';
 import 'domain/infra/menu_repository_interface.dart';
@@ -13,7 +13,7 @@ class MenuModule extends Module {
   @override
   List<Bind> get binds => [
         Bind<GetRestaurantMealInterface>(
-            (i) => GetRestaurantMealBibaImpl(repository: i())),
+            (i) => GetRestaurantMealImpl(repository: i())),
         Bind<MenuBloc>((i) =>
             MenuBloc(getRestaurantMeal: i(), restaurantInfo: i.args.data)),
         Bind<MenuRepositoryInterface>(

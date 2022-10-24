@@ -30,8 +30,8 @@ void main() {
         ),
       ));
 
-      final iconButton = find.byType(IconButton);
-      expect(iconButton, findsOneWidget);
+      final elevatedButton = find.byType(ElevatedButton);
+      expect(elevatedButton, findsOneWidget);
       final sizedBox = find.byType(SizedBox);
       expect(sizedBox, findsAtLeastNWidgets(5));
       final texts = find.byType(Text);

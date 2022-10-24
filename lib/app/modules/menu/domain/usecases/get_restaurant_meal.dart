@@ -1,20 +1,29 @@
 import 'package:dartz/dartz.dart';
 import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
+import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 
 import '../errors/errors.dart';
 import '../infra/menu_repository_interface.dart';
 
 abstract class GetRestaurantMealInterface {
-  Future<Either<Failure, List<Meal>>> call();
+  Future<Either<Failure, List<Meal>>> call(RestaurantEnum restaurantInfo);
 }
 
-class GetRestaurantMealBibaImpl implements GetRestaurantMealInterface {
+class GetRestaurantMealImpl implements GetRestaurantMealInterface {
   final MenuRepositoryInterface repository;
 
-  GetRestaurantMealBibaImpl({required this.repository});
+  GetRestaurantMealImpl({required this.repository});
 
   @override
-  Future<Either<Failure, List<Meal>>> call() async {
+  Future<Either<Failure, List<Meal>>> call(RestaurantEnum restaurantInfo) {
+    if (restaurantInfo == RestaurantEnum.restaurantBiba) {
+      return getBibaMeals();
+    } else {
+      return getHMeals();
+    }
+  }
+
+  Future<Either<Failure, List<Meal>>> getBibaMeals() async {
     var result = await repository.getBibaMeals();
     return result.fold((failureResult) => result, (listResult) async {
       return result.where(
@@ -23,15 +32,8 @@ class GetRestaurantMealBibaImpl implements GetRestaurantMealInterface {
       );
     });
   }
-}
 
-class GetRestaurantMealHImpl implements GetRestaurantMealInterface {
-  final MenuRepositoryInterface repository;
-
-  GetRestaurantMealHImpl({required this.repository});
-
-  @override
-  Future<Either<Failure, List<Meal>>> call() async {
+  Future<Either<Failure, List<Meal>>> getHMeals() async {
     var result = await repository.getHMeals();
     return result.fold((failureResult) => result, (listResult) async {
       return result.where(

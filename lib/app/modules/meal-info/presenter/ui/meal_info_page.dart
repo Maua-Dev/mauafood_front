@@ -75,7 +75,7 @@ class MealInfoPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'R\$ ${mealInfo.price.toString().replaceAll('.', ',')}',
+                        'R\$ ${mealInfo.price.toStringAsFixed(2).replaceAll('.', ',')}',
                         style: AppTextStyles.h1,
                       ),
                       Row(

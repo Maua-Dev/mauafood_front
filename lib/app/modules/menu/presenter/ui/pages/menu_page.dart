@@ -10,6 +10,7 @@ import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
 import '../../../../restaurants/domain/infra/restaurant_enum.dart';
 import '../../../domain/enum/meal_enum.dart';
+import '../widgets/error_loading_menu_widget.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({super.key});
@@ -146,6 +147,11 @@ class MenuPage extends StatelessWidget {
                                   );
                                 },
                               ),
+                            );
+                          }
+                          if (state is MenuErrorState) {
+                            return ErrorLoadingMenuWidget(
+                              errorMessage: state.failure.message,
                             );
                           } else {
                             return const Text('Something went wrong!');

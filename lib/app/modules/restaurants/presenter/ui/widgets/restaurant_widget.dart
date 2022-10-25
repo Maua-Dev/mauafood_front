@@ -54,21 +54,23 @@ class RestaurantWidget extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                  height: 60,
-                  width: 220,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                                10), //a borda nao esta ficando arredondada
-                          ),
-                          backgroundColor: AppColors.backgroundColor),
-                      onPressed: () => Modular.to
-                          .navigate('/menu/', arguments: restaurantInfo),
-                      child: Text(
-                        "Ver cardápio",
-                        style: AppTextStyles.h2HighlightBold,
-                      )))
+                height: 60,
+                width: 220,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                            10), //a borda nao esta ficando arredondada
+                      ),
+                      backgroundColor: AppColors.backgroundColor),
+                  onPressed: () =>
+                      Modular.to.navigate('/menu/', arguments: restaurantInfo),
+                  child: Text(
+                    "Ver cardápio",
+                    style: AppTextStyles.h2HighlightBold,
+                  ),
+                ),
+              ),
             ],
           )
         ],

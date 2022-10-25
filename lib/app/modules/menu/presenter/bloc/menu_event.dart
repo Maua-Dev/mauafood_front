@@ -26,3 +26,12 @@ class FilterMealTypeEvent extends MenuEvent {
   @override
   List<Object> get props => [mealType];
 }
+
+class ChangeRestaurantEvent extends MenuEvent {
+  final RestaurantEnum restaurantEnum;
+
+  const ChangeRestaurantEvent({required this.restaurantEnum});
+
+  @override
+  List<Object> get props => [restaurantEnum];
+}

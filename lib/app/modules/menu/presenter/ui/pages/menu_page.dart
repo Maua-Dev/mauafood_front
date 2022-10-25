@@ -130,21 +130,30 @@ class MenuPage extends StatelessWidget {
                           }
                           if (state is MenuLoadedSuccessState) {
                             return Expanded(
-                              child: GridView.builder(
-                                itemCount: state.listMeal.length,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 24),
-                                gridDelegate:
-                                    const SliverGridDelegateWithMaxCrossAxisExtent(
-                                  crossAxisSpacing: 16,
-                                  mainAxisSpacing: 16,
-                                  maxCrossAxisExtent: 210,
-                                ),
-                                itemBuilder: (context, index) {
-                                  return MealCardWidget(
-                                    meal: state.listMeal[index],
-                                  );
+                              child: RefreshIndicator(
+                                backgroundColor: AppColors.white,
+                                color: AppColors.letterHighlightColor,
+                                strokeWidth: 3,
+                                onRefresh: () async {
+                                  BlocProvider.of<MenuBloc>(context)
+                                      .add(GetAllMealsEvent());
                                 },
+                                child: GridView.builder(
+                                  itemCount: state.listMeal.length,
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 24, vertical: 24),
+                                  gridDelegate:
+                                      const SliverGridDelegateWithMaxCrossAxisExtent(
+                                    crossAxisSpacing: 16,
+                                    mainAxisSpacing: 16,
+                                    maxCrossAxisExtent: 210,
+                                  ),
+                                  itemBuilder: (context, index) {
+                                    return MealCardWidget(
+                                      meal: state.listMeal[index],
+                                    );
+                                  },
+                                ),
                               ),
                             );
                           } else {

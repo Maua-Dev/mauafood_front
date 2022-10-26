@@ -4,7 +4,7 @@ class CartItemModel extends CartItem {
   const CartItemModel({required super.meal, required super.quantity});
 
   Map<String, dynamic> toJson() => {
-        'meal': meal,
+        'meal': meal.toJson(),
         'quantity': quantity,
       };
 }

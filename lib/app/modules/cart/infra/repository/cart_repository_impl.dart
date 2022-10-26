@@ -10,13 +10,13 @@ class CartRepositoryImpl implements CartRepositoryInterface {
   CartRepositoryImpl({required this.datasource});
 
   @override
-  Future<Either<Failure, void>> postCartDemand(List<CartItemModel> list) async {
+  Future<Either<Failure, bool>> postCartDemand(List<CartItemModel> list) async {
     try {
       await datasource.postCartDemand(list);
     } catch (e) {
       return left(DatasourceResultNull(message: 'Nenhum item encontrado.'));
     }
 
-    return right(null);
+    return right(true);
   }
 }

@@ -8,9 +8,10 @@ class CartDatasourceImpl implements CartDatasourceInterface {
   @override
   Future<void> postCartDemand(List<CartItemModel> list) async {
     try {
-      List<Map<String, dynamic>> mapList = list.map((e) {
-        e.toJson();
-      }).toList() as List<Map<String, dynamic>>;
+      List<Map<String, dynamic>> mapList = [];
+      for (int i = 0; i < list.length; i++) {
+        mapList.add(list[i].toJson());
+      }
       listMock = mapList;
     } catch (e) {
       throw Exception();

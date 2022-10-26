@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
+import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
 
 class CartItem extends Equatable {
-  final Meal meal;
+  final MealModel meal;
   final int quantity;
 
   const CartItem({required this.meal, required this.quantity});

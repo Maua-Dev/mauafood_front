@@ -4,5 +4,5 @@ import 'package:mauafood_front/app/modules/cart/infra/models/cart_item_model.dar
 import '../../../menu/domain/errors/errors.dart';
 
 abstract class CartRepositoryInterface {
-  Future<Either<Failure, void>> postCartDemand(List<CartItemModel> list);
+  Future<Either<Failure, bool>> postCartDemand(List<CartItemModel> list);
 }

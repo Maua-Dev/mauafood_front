@@ -8,6 +8,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/meal_card_w
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import '../../../domain/enum/meal_enum.dart';
+import '../widgets/error_loading_menu_widget.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({super.key});
@@ -125,31 +126,35 @@ class MenuPage extends StatelessWidget {
                         }
                         if (state is MenuLoadedSuccessState) {
                           return Expanded(
-                            child: RefreshIndicator(
-                              backgroundColor: AppColors.white,
-                              color: AppColors.letterHighlightColor,
-                              strokeWidth: 3,
-                              onRefresh: () async {
-                                BlocProvider.of<MenuBloc>(context)
-                                    .add(GetAllMealsEvent());
-                              },
-                              child: GridView.builder(
-                                itemCount: state.listMeal.length,
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 24),
-                                gridDelegate:
-                                    const SliverGridDelegateWithMaxCrossAxisExtent(
-                                  crossAxisSpacing: 16,
-                                  mainAxisSpacing: 16,
-                                  maxCrossAxisExtent: 210,
-                                ),
-                                itemBuilder: (context, index) {
-                                  return MealCardWidget(
-                                    meal: state.listMeal[index],
-                                  );
-                                },
+                              child: RefreshIndicator(
+                            backgroundColor: AppColors.white,
+                            color: AppColors.letterHighlightColor,
+                            strokeWidth: 3,
+                            onRefresh: () async {
+                              BlocProvider.of<MenuBloc>(context)
+                                  .add(GetAllMealsEvent());
+                            },
+                            child: GridView.builder(
+                              itemCount: state.listMeal.length,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 24),
+                              gridDelegate:
+                                  const SliverGridDelegateWithMaxCrossAxisExtent(
+                                crossAxisSpacing: 16,
+                                mainAxisSpacing: 16,
+                                maxCrossAxisExtent: 210,
                               ),
+                              itemBuilder: (context, index) {
+                                return MealCardWidget(
+                                  meal: state.listMeal[index],
+                                );
+                              },
                             ),
+                          ));
+                        }
+                        if (state is MenuErrorState) {
+                          return ErrorLoadingMenuWidget(
+                            errorMessage: state.failure.message,
                           );
                         } else {
                           return const Text('Something went wrong!');

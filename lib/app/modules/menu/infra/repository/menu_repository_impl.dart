@@ -16,7 +16,7 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
     try {
       list = await datasource.readJsonBiba();
     } catch (e) {
-      return left(DatasourceResultNull(message: 'Json retornou nulo'));
+      return left(DatasourceResultNull(message: 'Nenhum item encontrado.'));
     }
 
     return right(list);
@@ -28,7 +28,7 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
     try {
       list = await datasource.readJsonH();
     } catch (e) {
-      return left(DatasourceResultNull(message: 'Json retornou nulo'));
+      return left(DatasourceResultNull(message: 'Nenhum item encontrado.'));
     }
 
     return right(list);

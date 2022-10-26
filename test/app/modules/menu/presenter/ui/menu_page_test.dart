@@ -10,7 +10,7 @@ import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
 import 'package:mauafood_front/app/modules/menu/menu_module.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/pages/menu_page.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/appbar/drop_down_restaurant_widget.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/appbar/menu_appbar_widget.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/meal_card_widget.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 import 'package:mockito/annotations.dart';
@@ -74,7 +74,7 @@ void main() {
         ),
       ));
 
-      final appbar = find.byType(DropDownRestaurantWidget);
+      final appbar = find.byType(MenuAppbarWidget);
       expect(appbar, findsOneWidget);
       final textField = find.byType(TextField);
       expect(textField, findsOneWidget);

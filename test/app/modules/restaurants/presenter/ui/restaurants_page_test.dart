@@ -6,22 +6,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/pages/restaurants_page.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/restaurant_widget.dart';
 
-void main(){
-  
+void main() {
+  setUpAll(() {
+    HttpOverrides.global = null;
+  });
 
-    setUpAll((){
-      HttpOverrides.global = null;
-    });
-
-
-testWidgets('[WIDGETS TEST] - RestaurantsPage', (widgetTester) async{
-  mockNetworkImagesFor() async {
-    await widgetTester.pumpWidget(
-      const MaterialApp(
-        home: RestaurantsPage(
-          )
-      )
-    );
+  testWidgets('[WIDGETS TEST] - RestaurantsPage', (widgetTester) async {
+    mockNetworkImagesFor() async {
+      await widgetTester.pumpWidget(const MaterialApp(home: RestaurantsPage()));
       final appBar = find.byType(AppBar);
       expect(appBar, findsOneWidget);
       final restaurant = find.byType(RestaurantWidget);
@@ -38,7 +30,8 @@ testWidgets('[WIDGETS TEST] - RestaurantsPage', (widgetTester) async{
       expect(padding, findsNWidgets(3));
       final container = find.byType(Container);
       expect(container, findsOneWidget);
-  }
-});
-
+      final image = find.byType(Image);
+      expect(image, findsNWidgets(2));
+    }
+  });
 }

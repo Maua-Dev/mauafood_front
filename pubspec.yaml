@@ -1,11 +1,11 @@
 name: mauafood_front
 description: Mauá Food.
 
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: '>=2.18.0 <3.0.0'
+  sdk: ">=2.18.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -36,6 +36,7 @@ flutter:
     - assets/data/restaurant_biba.json
     - assets/data/restaurant_h.json
     - assets/images/mauafood_logo_cinza.png
+    - assets/images/mauafood_logo_marrom.png
 
 scripts:
   build: flutter pub run build_runner build

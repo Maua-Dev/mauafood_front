@@ -2,7 +2,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/app_module.dart';
 import 'package:mauafood_front/app/modules/cart/cart_module.dart';
-import 'package:mauafood_front/app/modules/cart/domain/entities/cart_item_entity.dart';
 import 'package:mauafood_front/app/modules/cart/domain/infra/cart_repository_interface.dart';
 import 'package:mauafood_front/app/modules/cart/infra/datasources/cart_datasource_interface.dart';
 import 'package:mauafood_front/app/modules/cart/infra/models/cart_item_model.dart';

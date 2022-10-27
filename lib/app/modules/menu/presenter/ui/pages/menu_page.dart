@@ -1,23 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/cart/presenter/bloc/cart_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/appbar/drop_down_restaurant_widget.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/filter_button_widget.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/meal_card_widget.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
+import 'package:mauafood_front/app/shared/utils/utils.dart';
 import '../../../domain/enum/meal_enum.dart';
 import '../widgets/error_loading_menu_widget.dart';
 
-class MenuPage extends StatelessWidget {
+class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
+
+  @override
+  State<MenuPage> createState() => _MenuPageState();
+}
+
+class _MenuPageState extends State<MenuPage> {
+  late CartBloc cartBloc;
+  late MenuBloc menuBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    cartBloc = Modular.get<CartBloc>();
+    cartBloc.add(const LoadCartEvent());
+    menuBloc = Modular.get<MenuBloc>();
+    menuBloc.add(GetAllMealsEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => Modular.get<MenuBloc>()..add(GetAllMealsEvent()),
+      body: BlocProvider.value(
+        value: menuBloc,
         child: Column(
           children: [
             BlocBuilder<MenuBloc, MenuState>(
@@ -68,7 +87,7 @@ class MenuPage extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                width: double.infinity,
+                width: Utils.width(context),
                 decoration: BoxDecoration(
                     color: AppColors.backgroundColor2,
                     borderRadius: const BorderRadius.only(
@@ -77,6 +96,12 @@ class MenuPage extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    IconButton(
+                        onPressed: () {
+                          Modular.to
+                              .pushNamed('/menu/cart/', arguments: cartBloc);
+                        },
+                        icon: const Icon(Icons.shopping_cart)),
                     const SizedBox(
                       height: 24,
                     ),
@@ -147,6 +172,13 @@ class MenuPage extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 return MealCardWidget(
                                   meal: state.listMeal[index],
+                                  onPressed: () {
+                                    Modular.to.pushNamed('/menu/meal-info/',
+                                        arguments: [
+                                          state.listMeal[index],
+                                          cartBloc
+                                        ]);
+                                  },
                                 );
                               },
                             ),

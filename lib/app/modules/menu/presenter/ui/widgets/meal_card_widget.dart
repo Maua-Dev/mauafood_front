@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
+import '../../../../../shared/utils/utils.dart';
 import '../../../domain/entities/meal_entity.dart';
 
 class MealCardWidget extends StatelessWidget {
   final Meal meal;
+  final Function()? onPressed;
   const MealCardWidget({
     Key? key,
     required this.meal,
+    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -22,16 +24,14 @@ class MealCardWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             )),
-        onPressed: () {
-          Modular.to.pushNamed('/menu/meal-info/', arguments: meal);
-        },
+        onPressed: onPressed,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.max,
           children: [
             Expanded(
               child: Container(
-                width: double.infinity,
+                width: Utils.width(context),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),

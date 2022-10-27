@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
+import 'package:mauafood_front/app/shared/utils/utils.dart';
 
 class ErrorLoadingMenuWidget extends StatelessWidget {
   final String errorMessage;
@@ -11,7 +12,7 @@ class ErrorLoadingMenuWidget extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         SizedBox(
-          width: double.infinity,
+          width: Utils.width(context),
           height: 300,
           child: Image.asset(
             'assets/images/mauafood_logo_cinza.png',

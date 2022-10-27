@@ -1,15 +1,16 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mauafood_front/app/modules/cart/presenter/bloc/cart_bloc.dart';
 import 'package:mauafood_front/app/modules/meal-info/presenter/ui/meal_info_page.dart';
 import 'package:mauafood_front/app/modules/meal-info/presenter/ui/widgets/meal_list_view_widget.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
 import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
+import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
-  Meal testMock = const Meal(
+  late CartBloc bloc;
+  MealModel testMock = const MealModel(
     id: 0,
     name: 'name',
     description: 'description',
@@ -20,6 +21,7 @@ void main() {
 
   setUpAll(() {
     HttpOverrides.global = null;
+    bloc = CartBloc();
   });
 
   testWidgets('[WIDGETS TEST] - MealInfoPage', (widgetTester) async {
@@ -27,6 +29,7 @@ void main() {
       await widgetTester.pumpWidget(MaterialApp(
         home: MealInfoPage(
           mealInfo: testMock,
+          bloc: bloc,
         ),
       ));
 

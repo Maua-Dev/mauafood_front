@@ -5,6 +5,7 @@ import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/rest
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
 import '../../../../../shared/themes/app_text_styles.dart';
+import '../../../../../shared/utils/utils.dart';
 
 class RestaurantsPage extends StatelessWidget {
   const RestaurantsPage({super.key});
@@ -41,7 +42,7 @@ class RestaurantsPage extends StatelessWidget {
                 borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(50),
                     topRight: Radius.circular(50))),
-            width: double.infinity,
+            width: Utils.width(context),
             child: Column(
               children: [
                 Padding(
@@ -52,7 +53,7 @@ class RestaurantsPage extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height / 1.4,
+                  height: Utils.height(context) / 1.4,
                   child: ListView.builder(
                     itemCount: controller.restaurants.length,
                     itemBuilder: (context, i) {

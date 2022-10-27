@@ -403,6 +403,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.0"
+  modular_bloc_bind:
+    dependency: "direct main"
+    description:
+      name: modular_bloc_bind
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   modular_core:
     dependency: transitive
     description:

@@ -1,14 +1,12 @@
 part of 'loading_bloc.dart';
 
-abstract class LoadingEvent extends Equatable {
-  const LoadingEvent();
+abstract class SplashEvent extends Equatable {
+  const SplashEvent();
 
   @override
   List<Object> get props => [];
 }
 
-
-class Loading extends LoadingEvent {
-  const Loading();
-  
+class LoadingEvent extends SplashEvent {
+  const LoadingEvent();
 }

@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/loading/presenter/ui/splash_page.dart';
+import 'package:mauafood_front/app/modules/splash/presenter/ui/splash_page.dart';
 
-class LoadingModule extends Module {
+class SplashModule extends Module {
   @override
   List<Bind> get binds => [];
 

@@ -12,7 +12,7 @@ class DemandInitialState extends DemandState {}
 class DemandLoadingState extends DemandState {}
 
 class DemandLoadedState extends DemandState {
-  final CartItem item;
+  final CartItemModel item;
 
   const DemandLoadedState({required this.item});
 

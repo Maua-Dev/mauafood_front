@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/cart/domain/entities/cart_item_entity.dart';
 import 'package:mauafood_front/app/modules/meal-info/presenter/bloc/demand_bloc.dart';
 import 'package:mauafood_front/app/modules/meal-info/presenter/ui/widgets/meal_list_view_widget.dart';
 import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import '../../../../shared/utils/utils.dart';
+import '../../../cart/infra/models/cart_item_model.dart';
 import '../../../cart/presenter/bloc/cart_bloc.dart';
 
 class MealInfoPage extends StatelessWidget {
@@ -26,7 +26,8 @@ class MealInfoPage extends StatelessWidget {
         providers: [
           BlocProvider(
               create: (context) => Modular.get<DemandBloc>()
-                ..add(LoadEvent(item: CartItem(meal: mealInfo, quantity: 0)))),
+                ..add(LoadEvent(
+                    item: CartItemModel(meal: mealInfo, quantity: 0)))),
         ],
         child: Material(
           elevation: 10,

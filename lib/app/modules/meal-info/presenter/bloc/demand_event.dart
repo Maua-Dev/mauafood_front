@@ -8,7 +8,7 @@ abstract class DemandEvent extends Equatable {
 }
 
 class LoadEvent extends DemandEvent {
-  final CartItem item;
+  final CartItemModel item;
 
   const LoadEvent({required this.item});
 
@@ -17,7 +17,7 @@ class LoadEvent extends DemandEvent {
 }
 
 class AddQuantityEvent extends DemandEvent {
-  final CartItem item;
+  final CartItemModel item;
 
   const AddQuantityEvent({required this.item});
 
@@ -26,7 +26,7 @@ class AddQuantityEvent extends DemandEvent {
 }
 
 class RemoveQuantityEvent extends DemandEvent {
-  final CartItem item;
+  final CartItemModel item;
 
   const RemoveQuantityEvent({required this.item});
 

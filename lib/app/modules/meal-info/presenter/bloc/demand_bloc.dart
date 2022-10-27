@@ -1,9 +1,7 @@
 import 'dart:async';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mauafood_front/app/modules/cart/domain/entities/cart_item_entity.dart';
-
+import '../../../cart/infra/models/cart_item_model.dart';
 part 'demand_event.dart';
 part 'demand_state.dart';
 
@@ -17,9 +15,10 @@ class DemandBloc extends Bloc<DemandEvent, DemandState> {
   FutureOr<void> _addQuantity(
       AddQuantityEvent event, Emitter<DemandState> emit) {
     emit(DemandLoadingState());
-    CartItem item = event.item;
+    CartItemModel item = event.item;
     if (event.item.quantity >= 0) {
-      item = CartItem(meal: event.item.meal, quantity: event.item.quantity + 1);
+      item = CartItemModel(
+          meal: event.item.meal, quantity: event.item.quantity + 1);
     }
     emit(DemandLoadedState(item: item));
   }
@@ -27,9 +26,10 @@ class DemandBloc extends Bloc<DemandEvent, DemandState> {
   FutureOr<void> _removeQuantity(
       RemoveQuantityEvent event, Emitter<DemandState> emit) {
     emit(DemandLoadingState());
-    CartItem item = event.item;
+    CartItemModel item = event.item;
     if (event.item.quantity > 0) {
-      item = CartItem(meal: event.item.meal, quantity: event.item.quantity - 1);
+      item = CartItemModel(
+          meal: event.item.meal, quantity: event.item.quantity - 1);
     }
     emit(DemandLoadedState(item: item));
   }

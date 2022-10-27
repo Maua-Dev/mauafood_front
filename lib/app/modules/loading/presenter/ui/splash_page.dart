@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/loading/presenter/bloc/loading_bloc.dart';
+import 'package:mauafood_front/app/modules/loading/presenter/bloc/splash_bloc.dart';
 
-class LoadingPage extends StatelessWidget {
-  const LoadingPage({super.key});
+class SplashPage extends StatelessWidget {
+  const SplashPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocProvider(
-        create: (context) => LoadingBloc()..add(const LoadingEvent()),
-        child: BlocBuilder<LoadingBloc, SplashState>(
+        create: (context) => SplashBloc()..add(const LoadingEvent()),
+        child: BlocBuilder<SplashBloc, SplashState>(
           builder: (context, state) {
             if (state is SplashLoadingState) {
               return Center(

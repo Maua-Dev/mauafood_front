@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/loading/presenter/ui/loading_page.dart';
+import 'package:mauafood_front/app/modules/loading/presenter/ui/splash_page.dart';
 
 class LoadingModule extends Module {
   @override
@@ -9,7 +9,7 @@ class LoadingModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
-          child: (context, args) => const LoadingPage(),
+          child: (context, args) => const SplashPage(),
         ),
       ];
 }

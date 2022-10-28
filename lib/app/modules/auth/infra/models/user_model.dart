@@ -1,0 +1,25 @@
+import 'package:mauafood_front/app/modules/auth/domain/entities/user_entity.dart';
+
+class UserModel extends User {
+  const UserModel({
+    required super.id,
+    required super.fullName,
+    required super.cpf,
+    required super.isStudent,
+    required super.email,
+    required super.password,
+    required super.notifications,
+  });
+
+  factory UserModel.fromMap(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'],
+      fullName: json['fullName'],
+      cpf: json['cpf'],
+      isStudent: json['isStudent'],
+      email: json['email'],
+      password: json['password'],
+      notifications: json['notifications'],
+    );
+  }
+}

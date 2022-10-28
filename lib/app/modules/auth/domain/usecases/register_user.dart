@@ -1,11 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:mauafood_front/app/modules/auth/domain/entities/user_entity.dart';
-import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
-
+import '../../infra/models/user_model.dart';
+import '../errors/auth_errors.dart';
 import '../infra/auth_repository_interface.dart';
 
 abstract class RegisterUserInterface {
-  Future<Either<Failure, bool>> call(User user);
+  Future<Either<RegisterError, bool>> call(UserModel user);
 }
 
 class RegisterUserImpl extends RegisterUserInterface {
@@ -14,7 +13,7 @@ class RegisterUserImpl extends RegisterUserInterface {
   RegisterUserImpl({required this.repository});
 
   @override
-  Future<Either<Failure, bool>> call(User user) async {
+  Future<Either<RegisterError, bool>> call(UserModel user) async {
     var result = await repository.registerUser(user);
     return result.fold(
         (failureResult) => result, (successResult) => Right(successResult));

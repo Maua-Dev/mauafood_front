@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:mauafood_front/app/modules/auth/domain/entities/user_entity.dart';
-
-import '../../../menu/domain/errors/errors.dart';
+import '../../infra/models/user_model.dart';
+import '../errors/auth_errors.dart';
 
 abstract class AuthRepositoryInterface {
-  Future<Either<Failure, bool>> registerUser(User user);
-  Future<Either<Failure, bool>> loginUser(String email, String password);
+  Future<Either<RegisterError, bool>> registerUser(UserModel user);
+  Future<Either<SignInError, bool>> loginUser(String email, String password);
 }

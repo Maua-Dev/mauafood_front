@@ -18,6 +18,7 @@ Future configureAmplify() async {
   try {
     await Amplify.configure(amplifyconfig);
   } catch (e) {
+    // ignore: avoid_print
     print('Amplify is already configured');
   }
 }

@@ -3,7 +3,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:mauafood_front/app/modules/auth/infra/datasources/auth_datasouce_interface.dart';
 import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
 
-class AuttDatasourceImpl extends AuthDatasourceInterface {
+class AuthDatasourceImpl extends AuthDatasourceInterface {
   @override
   Future<bool> postLoginUser(String email, String password) async {
     try {

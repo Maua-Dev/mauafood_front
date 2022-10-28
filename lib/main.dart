@@ -13,12 +13,11 @@ void main() async {
 }
 
 Future configureAmplify() async {
-  Amplify.addPlugins([AmplifyAuthCognito()]);
-
   try {
+    final auth = AmplifyAuthCognito();
+    await Amplify.addPlugins([auth]);
     await Amplify.configure(amplifyconfig);
   } catch (e) {
-    // ignore: avoid_print
-    print('Amplify is already configured');
+    safePrint('An error occurred configuring Amplify: $e');
   }
 }

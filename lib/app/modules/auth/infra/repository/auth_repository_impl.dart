@@ -16,11 +16,14 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
     try {
       result = await datasource.postLoginUser(email, password);
     } catch (e) {
-      return left(
-          SignInError(message: 'E-mail ou senha incorretos ou inexistentes.'));
+      return left(SignInError(message: 'Erro ao tentar autenticar.'));
     }
 
-    return right(result);
+    if (result) {
+      return right(result);
+    }
+    return left(
+        SignInError(message: 'E-mail ou senha incorretos ou inexistentes.'));
   }
 
   @override
@@ -29,8 +32,8 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
     try {
       result = await datasource.postRegisterUser(user);
     } catch (e) {
-      return left(RegisterError(
-          message: 'E-mail ou senha incorretos ou inexistentes.'));
+      return left(
+          RegisterError(message: 'Ocorreu algum erro ao tentar registro'));
     }
 
     return right(result);

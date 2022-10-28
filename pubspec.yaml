@@ -35,6 +35,7 @@ flutter:
   assets:
     - assets/data/restaurant_biba.json
     - assets/data/restaurant_h.json
+    - assets/images/mauafood_logo_cinza.png
 
 scripts:
   build: flutter pub run build_runner build

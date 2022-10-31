@@ -38,7 +38,9 @@ class AuthModule extends Module {
         ),
         ChildRoute(
           '/register',
-          child: (context, args) => const RegisterPage(),
+          child: (context, args) => RegisterPage(
+            authBloc: args.data,
+          ),
         ),
         ChildRoute(
           '/confirm-email',

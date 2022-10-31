@@ -7,21 +7,14 @@ import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/register/register_form_bloc.dart';
 
 class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+  final AuthBloc authBloc;
+  const RegisterPage({super.key, required this.authBloc});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  late AuthBloc authBloc;
-
-  @override
-  void initState() {
-    super.initState();
-    authBloc = Modular.get<AuthBloc>();
-  }
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ],
           child: BlocProvider.value(
-            value: authBloc,
+            value: widget.authBloc,
             child: BlocListener<AuthBloc, AuthState>(
               listener: (context, state) {
                 if (state is AuthErrorState) {
@@ -41,7 +34,8 @@ class _RegisterPageState extends State<RegisterPage> {
                       SnackBar(content: Text(state.error.message)));
                 }
                 if (state is AuthLoadedState) {
-                  Modular.to.navigate('/confirm-email', arguments: authBloc);
+                  Modular.to
+                      .navigate('/confirm-email', arguments: widget.authBloc);
                 }
               },
               child: Builder(

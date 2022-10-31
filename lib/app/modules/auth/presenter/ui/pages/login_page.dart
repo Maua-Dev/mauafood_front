@@ -80,7 +80,8 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         ElevatedButton(
                           onPressed: () async {
-                            Modular.to.pushNamed('/register');
+                            Modular.to
+                                .pushNamed('/register', arguments: authBloc);
                           },
                           child: const Text('Registrar'),
                         ),

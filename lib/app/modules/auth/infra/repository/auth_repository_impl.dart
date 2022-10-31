@@ -10,20 +10,20 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
   AuthRepositoryImpl({required this.datasource});
 
   @override
-  Future<Either<SignInError, bool>> loginUser(
+  Future<Either<SignUpError, bool>> loginUser(
       String email, String password) async {
     bool result;
     try {
       result = await datasource.postLoginUser(email, password);
     } catch (e) {
-      return left(SignInError(message: 'Erro ao tentar autenticar.'));
+      return left(SignUpError(message: 'Erro ao tentar autenticar.'));
     }
 
     if (result) {
       return right(result);
     }
     return left(
-        SignInError(message: 'E-mail ou senha incorretos ou inexistentes.'));
+        SignUpError(message: 'E-mail ou senha incorretos ou inexistentes.'));
   }
 
   @override
@@ -41,5 +41,25 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
     }
     return left(
         RegisterError(message: 'Ocorreu algum erro ao tentar registro.'));
+  }
+
+  @override
+  Future<Either<ConfirmationEmailError, bool>> confirmEmail(
+      String email, String confirmationCode) async {
+    bool result;
+    try {
+      result = await datasource.postEmailConfirmation(email, confirmationCode);
+    } catch (e) {
+      return left(ConfirmationEmailError(
+          message: 'Ocorreu algum erro ao confirmar email: $email.',
+          email: email));
+    }
+
+    if (result) {
+      return right(result);
+    }
+    return left(ConfirmationEmailError(
+        message: 'Ocorreu algum erro ao confirmar email: $email.',
+        email: email));
   }
 }

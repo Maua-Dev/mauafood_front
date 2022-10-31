@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/register_form_bloc.dart';
+
+import '../../bloc/auth/auth_bloc.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -32,7 +33,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   .showSnackBar(SnackBar(content: Text(state.error.message)));
             }
             if (state is AuthLoadedState) {
-              Modular.to.navigate('/restaurants/');
+              Modular.to.navigate('/confirm-email');
             }
           },
           child: Builder(

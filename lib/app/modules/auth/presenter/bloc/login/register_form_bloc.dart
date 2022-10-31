@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import '../auth_bloc.dart';
+
+import '../auth/auth_bloc.dart';
 
 class RegisterFormBloc extends FormBloc<String, String> {
   final AuthBloc authBloc;

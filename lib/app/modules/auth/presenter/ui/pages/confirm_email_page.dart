@@ -6,7 +6,8 @@ import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/confirm-email/confirm_email_bloc.dart';
 
 class ConfirmEmailPage extends StatelessWidget {
-  const ConfirmEmailPage({super.key});
+  final AuthBloc authBloc;
+  const ConfirmEmailPage({super.key, required this.authBloc});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +15,10 @@ class ConfirmEmailPage extends StatelessWidget {
       body: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => Modular.get<AuthBloc>(),
+            create: (context) => Modular.get<ConfirmEmailBloc>(),
           ),
           BlocProvider(
-            create: (context) => Modular.get<ConfirmEmailBloc>(),
+            create: (context) => authBloc,
           ),
         ],
         child: BlocListener<AuthBloc, AuthState>(
@@ -49,7 +50,7 @@ class ConfirmEmailPage extends StatelessWidget {
                           AutofillHints.email,
                         ],
                         decoration: const InputDecoration(
-                          labelText: 'Email',
+                          labelText: 'Código',
                           prefixIcon: Icon(Icons.email),
                         ),
                       ),

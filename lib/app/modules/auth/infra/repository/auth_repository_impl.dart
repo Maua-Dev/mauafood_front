@@ -16,7 +16,8 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
     try {
       result = await datasource.postLoginUser(email, password);
     } catch (e) {
-      return left(SignUpError(message: 'Erro ao tentar autenticar.'));
+      return left(
+          SignUpError(message: 'E-mail ou senha incorretos ou inexistentes.'));
     }
 
     if (result) {

@@ -1,8 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/confirm-email/confirm_email_bloc.dart';
-import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/register_form_bloc.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/login_bloc.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/register_form_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/confirm_email_page.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/login_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/register_page.dart';
 import 'data/datasource/auth_datasource_impl.dart';
 import 'domain/infra/auth_repository_interface.dart';
@@ -22,6 +24,7 @@ class AuthModule extends Module {
             (i) => AuthBloc(login: i(), register: i(), confirmEmail: i())),
         Bind<RegisterFormBloc>((i) => RegisterFormBloc(authBloc: i())),
         Bind<ConfirmEmailBloc>((i) => ConfirmEmailBloc(authBloc: i())),
+        Bind<LoginBloc>((i) => LoginBloc(authBloc: i())),
         Bind<AuthRepositoryInterface>(
             (i) => AuthRepositoryImpl(datasource: i())),
         Bind<AuthDatasourceInterface>((i) => AuthDatasourceImpl()),
@@ -31,6 +34,10 @@ class AuthModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
+          child: (context, args) => const LoginPage(),
+        ),
+        ChildRoute(
+          '/register',
           child: (context, args) => const RegisterPage(),
         ),
         ChildRoute(

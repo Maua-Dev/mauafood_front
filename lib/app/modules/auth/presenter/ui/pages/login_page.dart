@@ -1,13 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/login_bloc.dart';
 
 import '../../bloc/auth/auth_bloc.dart';
-import '../../bloc/confirm-email/confirm_email_bloc.dart';
 
-class ConfirmEmailPage extends StatelessWidget {
-  final AuthBloc authBloc;
-  const ConfirmEmailPage({super.key, required this.authBloc});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  late AuthBloc authBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    authBloc = Modular.get<AuthBloc>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +28,7 @@ class ConfirmEmailPage extends StatelessWidget {
         body: MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) => Modular.get<ConfirmEmailBloc>(),
+              create: (context) => Modular.get<LoginBloc>(),
             ),
             BlocProvider(
               create: (context) => authBloc,
@@ -35,8 +47,8 @@ class ConfirmEmailPage extends StatelessWidget {
             child: Builder(
               builder: (context) {
                 final confirmEmailFormBloc =
-                    BlocProvider.of<ConfirmEmailBloc>(context);
-                return FormBlocListener<ConfirmEmailBloc, String, String>(
+                    BlocProvider.of<LoginBloc>(context);
+                return FormBlocListener<LoginBloc, String, String>(
                   onFailure: (context, state) {
                     ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Ocorreu algum erro.')));
@@ -45,15 +57,32 @@ class ConfirmEmailPage extends StatelessWidget {
                     child: Column(
                       children: [
                         TextFieldBlocBuilder(
-                          textFieldBloc: confirmEmailFormBloc.code,
+                          textFieldBloc: confirmEmailFormBloc.email,
                           keyboardType: TextInputType.emailAddress,
                           autofillHints: const [
                             AutofillHints.email,
                           ],
                           decoration: const InputDecoration(
-                            labelText: 'Código',
+                            labelText: 'Email',
                             prefixIcon: Icon(Icons.email),
                           ),
+                        ),
+                        TextFieldBlocBuilder(
+                          textFieldBloc: confirmEmailFormBloc.password,
+                          keyboardType: TextInputType.emailAddress,
+                          autofillHints: const [
+                            AutofillHints.email,
+                          ],
+                          decoration: const InputDecoration(
+                            labelText: 'Senha',
+                            prefixIcon: Icon(Icons.email),
+                          ),
+                        ),
+                        ElevatedButton(
+                          onPressed: () async {
+                            Modular.to.pushNamed('/register');
+                          },
+                          child: const Text('Registrar'),
                         ),
                         ElevatedButton(
                           onPressed: () async {

@@ -1,4 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart';
+import 'package:mauafood_front/app/modules/auth/infra/repository/auth_storage_impl.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/confirm-email/confirm_email_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/login_bloc.dart';
@@ -20,8 +22,13 @@ class AuthModule extends Module {
         Bind<LoginUserInterface>((i) => LoginUserImpl(repository: i())),
         Bind<RegisterUserInterface>((i) => RegisterUserImpl(repository: i())),
         Bind<ConfirmEmailInterface>((i) => ConfirmEmailImpl(repository: i())),
-        Bind<AuthBloc>(
-            (i) => AuthBloc(login: i(), register: i(), confirmEmail: i())),
+        AsyncBind<AuthStorageInterface>((i) => AuthStorageImpl.instance()),
+        Bind<AuthBloc>((i) => AuthBloc(
+              login: i(),
+              register: i(),
+              confirmEmail: i(),
+              // storage: i(),
+            )),
         Bind<RegisterFormBloc>((i) => RegisterFormBloc(authBloc: i())),
         Bind<ConfirmEmailBloc>((i) => ConfirmEmailBloc(authBloc: i())),
         Bind<LoginBloc>((i) => LoginBloc(authBloc: i())),

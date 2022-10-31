@@ -19,7 +19,8 @@ class ConfirmEmailBloc extends FormBloc<String, String> {
 
   @override
   Future<void> submit() async {
-    authBloc.add(ConfirmEmail(email: authBloc.email, code: code.value));
+    authBloc.add(
+        ConfirmEmail(email: 'gabriel.godoybz@hotmail.com', code: code.value));
     emitSuccess();
   }
 

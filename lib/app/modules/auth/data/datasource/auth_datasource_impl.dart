@@ -23,7 +23,9 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       CognitoUserAttributeKey.email: user.email,
       const CognitoUserAttributeKey.custom('id'): user.id.toString(),
       CognitoUserAttributeKey.name: user.fullName,
-      CognitoUserAttributeKey.identities: user.cpf,
+      const CognitoUserAttributeKey.custom('cpf'): user.cpf,
+      CognitoUserAttributeKey.updatedAt:
+          DateTime.now().millisecondsSinceEpoch.toString(),
       const CognitoUserAttributeKey.custom('isStudent'):
           user.isStudent.toString(),
       const CognitoUserAttributeKey.custom('notifications'):

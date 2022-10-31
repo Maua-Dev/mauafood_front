@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class User extends Equatable {
-  final int id;
+  final String id;
   final String fullName;
   final String cpf;
   final bool isStudent;

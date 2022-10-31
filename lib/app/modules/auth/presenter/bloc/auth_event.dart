@@ -18,12 +18,24 @@ class LoginWithEmail extends AuthEvent {
 }
 
 class RegisterUser extends AuthEvent {
-  final UserModel user;
+  final String email;
+  final String password;
+  final String cpf;
+  final String fullName;
+  final bool isStudent;
+  final bool notifications;
 
-  const RegisterUser({required this.user});
+  const RegisterUser(
+      {required this.email,
+      required this.password,
+      required this.cpf,
+      required this.fullName,
+      required this.isStudent,
+      required this.notifications});
 
   @override
-  List<Object> get props => [user];
+  List<Object> get props =>
+      [email, password, cpf, fullName, isStudent, notifications];
 }
 
 class LogoutUser extends AuthEvent {

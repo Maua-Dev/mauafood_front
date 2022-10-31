@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth_bloc.dart';
-
-import '../../../../../shared/themes/app_colors.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/register_form_bloc.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -16,120 +15,156 @@ class RegisterPage extends StatefulWidget {
 class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
-    var id = TextEditingController();
-    var fullName = TextEditingController();
-    var cpf = TextEditingController();
-    var isStudent = false;
-    var email = TextEditingController();
-    var password = TextEditingController();
-    var notifications = false;
     return Scaffold(
-      body: BlocProvider(
-        create: (context) => Modular.get<AuthBloc>(),
-        child: BlocBuilder<AuthBloc, AuthState>(
-          builder: (context, state) {
-            return Column(
-              children: [
-                TextField(
-                  controller: id,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          width: 1,
-                          color: AppColors.backgroundColor2), //<-- SEE HERE
-                      borderRadius: BorderRadius.circular(50.0),
-                    ),
-                    labelText: 'id',
-                  ),
-                ),
-                TextField(
-                  controller: fullName,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          width: 1,
-                          color: AppColors.backgroundColor2), //<-- SEE HERE
-                      borderRadius: BorderRadius.circular(50.0),
-                    ),
-                    labelText: 'fullName',
-                  ),
-                ),
-                TextField(
-                  controller: cpf,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          width: 1,
-                          color: AppColors.backgroundColor2), //<-- SEE HERE
-                      borderRadius: BorderRadius.circular(50.0),
-                    ),
-                    labelText: 'cpf',
-                  ),
-                ),
-                Checkbox(
-                  value: isStudent,
-                  onChanged: (value) {
-                    setState(() {
-                      isStudent = value!;
-                    });
-                  },
-                  mouseCursor: SystemMouseCursors.click,
-                ),
-                TextField(
-                  controller: email,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          width: 1,
-                          color: AppColors.backgroundColor2), //<-- SEE HERE
-                      borderRadius: BorderRadius.circular(50.0),
-                    ),
-                    labelText: 'email',
-                  ),
-                ),
-                TextField(
-                  controller: password,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          width: 1,
-                          color: AppColors.backgroundColor2), //<-- SEE HERE
-                      borderRadius: BorderRadius.circular(50.0),
-                    ),
-                    labelText: 'password',
-                  ),
-                ),
-                Checkbox(
-                  value: notifications,
-                  onChanged: (value) {
-                    setState(() {
-                      notifications = value!;
-                    });
-                  },
-                  mouseCursor: SystemMouseCursors.click,
-                ),
-                IconButton(
-                    onPressed: () {
-                      BlocProvider.of<AuthBloc>(context).add(const RegisterUser(
-                          user: UserModel(
-                        id: 0,
-                        fullName: '',
-                        cpf: '',
-                        isStudent: true,
-                        email: 'gabriel.godoybz@hotmail.com',
-                        password: 'teste1',
-                        notifications: true,
-                      )));
-                    },
-                    icon: Icon(Icons.check))
-              ],
-            );
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => Modular.get<AuthBloc>(),
+          ),
+          BlocProvider(
+            create: (context) => Modular.get<RegisterFormBloc>(),
+          ),
+        ],
+        child: BlocListener<AuthBloc, AuthState>(
+          listener: (context, state) {
+            if (state is AuthErrorState) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(state.error.message)));
+            }
+            if (state is AuthLoadedState) {
+              Modular.to.navigate('/restaurants/');
+            }
           },
+          child: Builder(
+            builder: (context) {
+              final registerFormBloc =
+                  BlocProvider.of<RegisterFormBloc>(context);
+              return FormBlocListener<RegisterFormBloc, String, String>(
+                onFailure: (context, state) {
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('É necessário aceitar as notificações.')));
+                },
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      TextFieldBlocBuilder(
+                        textFieldBloc: registerFormBloc.email,
+                        keyboardType: TextInputType.emailAddress,
+                        autofillHints: const [
+                          AutofillHints.email,
+                        ],
+                        decoration: const InputDecoration(
+                          labelText: 'Email',
+                          prefixIcon: Icon(Icons.email),
+                        ),
+                      ),
+                      TextFieldBlocBuilder(
+                        textFieldBloc: registerFormBloc.emailConfirm,
+                        keyboardType: TextInputType.emailAddress,
+                        autofillHints: const [
+                          AutofillHints.email,
+                        ],
+                        decoration: const InputDecoration(
+                          labelText: 'Confirme seu email',
+                          prefixIcon: Icon(Icons.email),
+                        ),
+                      ),
+                      TextFieldBlocBuilder(
+                        textFieldBloc: registerFormBloc.password,
+                        keyboardType: TextInputType.visiblePassword,
+                        autofillHints: const [
+                          AutofillHints.password,
+                        ],
+                        decoration: const InputDecoration(
+                          labelText: 'Senha',
+                          prefixIcon: Icon(Icons.email),
+                        ),
+                      ),
+                      TextFieldBlocBuilder(
+                        textFieldBloc: registerFormBloc.passwordConfirm,
+                        keyboardType: TextInputType.visiblePassword,
+                        autofillHints: const [
+                          AutofillHints.password,
+                        ],
+                        decoration: const InputDecoration(
+                          labelText: 'Confirme sua senha',
+                          prefixIcon: Icon(Icons.email),
+                        ),
+                      ),
+                      TextFieldBlocBuilder(
+                        textFieldBloc: registerFormBloc.fullName,
+                        keyboardType: TextInputType.name,
+                        decoration: const InputDecoration(
+                          labelText: 'Nome Completo',
+                          prefixIcon: Icon(Icons.email),
+                        ),
+                      ),
+                      TextFieldBlocBuilder(
+                        textFieldBloc: registerFormBloc.cpf,
+                        keyboardType: TextInputType.name,
+                        inputFormatters: [
+                          MaskTextInputFormatter(
+                              mask: "###.###.###-##",
+                              filter: {"#": RegExp(r'[0-9]')})
+                        ],
+                        decoration: const InputDecoration(
+                          labelText: 'CPF',
+                          prefixIcon: Icon(Icons.email),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 250,
+                        child: CheckboxFieldBlocBuilder(
+                          booleanFieldBloc: registerFormBloc.isStudent,
+                          body: Container(
+                            alignment: Alignment.centerLeft,
+                            child: const Text('É estudante?'),
+                          ),
+                        ),
+                      ),
+                      TextFieldBlocBuilder(
+                        textFieldBloc: registerFormBloc.raFake,
+                        isEnabled: false,
+                        decoration: const InputDecoration(
+                          labelText: 'RA',
+                          prefixIcon: Icon(Icons.email),
+                        ),
+                      ),
+                      TextFieldBlocBuilder(
+                        textFieldBloc: registerFormBloc.ra,
+                        keyboardType: TextInputType.name,
+                        inputFormatters: [
+                          MaskTextInputFormatter(
+                              mask: "##.#####-#",
+                              filter: {"#": RegExp(r'[0-9]')})
+                        ],
+                        decoration: const InputDecoration(
+                          labelText: 'RA',
+                          prefixIcon: Icon(Icons.email),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 250,
+                        child: CheckboxFieldBlocBuilder(
+                          booleanFieldBloc: registerFormBloc.notifications,
+                          body: Container(
+                            alignment: Alignment.centerLeft,
+                            child: const Text('Notificação'),
+                          ),
+                        ),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          registerFormBloc.submit();
+                        },
+                        child: const Text('Registrar'),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

@@ -24,6 +24,10 @@ dependencies:
   network_image_mock: ^2.1.1
   amplify_auth_cognito: ^0.6.9
   amplify_flutter: ^0.6.9
+  uuid: ^3.0.6
+  flutter_form_bloc: ^0.30.1
+  cpf_cnpj_validator: ^2.0.0
+  mask_text_input_formatter: ^2.4.0
 
 dev_dependencies:
   flutter_test:

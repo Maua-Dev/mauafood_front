@@ -36,6 +36,10 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
           RegisterError(message: 'Ocorreu algum erro ao tentar registro'));
     }
 
-    return right(result);
+    if (result) {
+      return right(result);
+    }
+    return left(
+        RegisterError(message: 'Ocorreu algum erro ao tentar registro.'));
   }
 }

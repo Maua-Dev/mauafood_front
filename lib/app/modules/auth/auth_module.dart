@@ -1,5 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth_bloc.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/register_form_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/register_page.dart';
 import 'data/datasource/auth_datasource_impl.dart';
 import 'domain/infra/auth_repository_interface.dart';
@@ -14,6 +15,7 @@ class AuthModule extends Module {
         Bind<LoginUserInterface>((i) => LoginUserImpl(repository: i())),
         Bind<RegisterUserInterface>((i) => RegisterUserImpl(repository: i())),
         Bind<AuthBloc>((i) => AuthBloc(login: i(), register: i())),
+        Bind<RegisterFormBloc>((i) => RegisterFormBloc(authBloc: i())),
         Bind<AuthRepositoryInterface>(
             (i) => AuthRepositoryImpl(datasource: i())),
         Bind<AuthDatasourceInterface>((i) => AuthDatasourceImpl()),

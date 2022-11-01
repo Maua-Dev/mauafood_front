@@ -29,6 +29,8 @@ class AuthModule extends Module {
               confirmEmail: i(),
               // storage: i(),
             )),
+        // AsyncBind<AuthStorageInterface>((i) => AuthStorageImpl.instance(),
+        //     export: true),
         Bind<RegisterFormBloc>((i) => RegisterFormBloc(authBloc: i())),
         Bind<ConfirmEmailBloc>((i) => ConfirmEmailBloc(authBloc: i())),
         Bind<LoginBloc>((i) => LoginBloc(authBloc: i())),

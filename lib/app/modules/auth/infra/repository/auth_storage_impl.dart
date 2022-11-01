@@ -13,23 +13,23 @@ class AuthStorageImpl implements AuthStorageInterface {
   }
 
   @override
-  Future<void> saveId(String id) async {
-    await storage.put('id', id);
+  Future<void> saveRefreshToken(String refreshToken) async {
+    await storage.put('refreshToken', refreshToken);
   }
 
   @override
-  Future<void> saveFullName(String fullName) async {
-    await storage.put('fullName', fullName);
+  Future<void> saveAccessToken(String accessToken) async {
+    await storage.put('accessToken', accessToken);
   }
 
   @override
-  Future<String?> getId() async {
-    return await storage.get('id') as String?;
+  Future<String?> getRefreshToken() async {
+    return await storage.get('refreshToken') as String?;
   }
 
   @override
-  Future<String?> getFullName() async {
-    return await storage.get('fullName') as String?;
+  Future<String?> getAccessToken() async {
+    return await storage.get('accessToken') as String?;
   }
 
   @override

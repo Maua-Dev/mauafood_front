@@ -1,7 +1,7 @@
 abstract class AuthStorageInterface {
-  Future<void> saveId(String id);
-  Future<void> saveFullName(String fullName);
-  Future<String?> getId();
-  Future<String?> getFullName();
+  Future<void> saveRefreshToken(String refreshToken);
+  Future<void> saveAccessToken(String accessToken);
+  Future<String?> getRefreshToken();
+  Future<String?> getAccessToken();
   Future<void> cleanSecureStorage();
 }

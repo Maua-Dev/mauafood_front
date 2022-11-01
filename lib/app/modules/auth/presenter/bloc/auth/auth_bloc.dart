@@ -3,9 +3,11 @@ import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
 import 'package:uuid/uuid.dart';
+import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/confirm_email.dart';
 import '../../../domain/usecases/login_user.dart';
 import '../../../domain/usecases/register_user.dart';
@@ -23,12 +25,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   late Either<AuthErrors, bool> eitherIsConfirmed;
   String email = '';
   bool _loggedIn = false;
-  String _id = '';
-  String _fullName = '';
 
   bool get isLoggedIn => _loggedIn;
-  String get id => _id;
-  String get fullName => _fullName;
 
   AuthBloc(
       {
@@ -70,6 +68,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       return AuthErrorState(failure);
     }, (authSession) {
       _loggedIn = true;
+      // storage.saveAccessToken(authSession.userPoolTokens!.accessToken);
+      // storage.saveRefreshToken(authSession.userPoolTokens!.refreshToken);
       print(authSession.userPoolTokens!.refreshToken);
       print(authSession.userPoolTokens!.accessToken);
       return const AuthLoadedState(isLogged: true);
@@ -90,19 +90,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }));
   }
 
-  // Future<void> verifyIfHaveTokens() async {
-  //   try {
-  //     var id = await storage.getId();
-  //     var fullName = await storage.getFullName();
-  //     if (id!.isNotEmpty && fullName!.isNotEmpty) {
-  //       _loggedIn = true;
-  //     } else {
-  //       _loggedIn = false;
-  //       Modular.to.navigate('/login');
-  //     }
-  //   } catch (e) {
-  //     // ignore: avoid_print
-  //     print(e);
-  //   }
-  // }
+  Future<void> verifyIfHaveTokens() async {
+    try {
+      // var refreshToken = await storage.getRefreshToken();
+      // var accessToken = await storage.getAccessToken();
+      // if (refreshToken!.isNotEmpty && accessToken!.isNotEmpty) {
+      //   _loggedIn = true;
+      // } else {
+      //   _loggedIn = false;
+      //   Modular.to.navigate('/login');
+      // }
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
+  }
 }

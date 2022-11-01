@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/auth/auth_module.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/login_bloc.dart';
 
 import '../../bloc/auth/auth_bloc.dart';

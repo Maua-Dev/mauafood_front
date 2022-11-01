@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/error/ui/error_page.dart';
 import 'package:mauafood_front/app/modules/menu/menu_module.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/usecases/get_restaurant.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
@@ -21,6 +22,10 @@ class RestaurantModule extends Module {
         ModuleRoute(
           '/menu',
           module: MenuModule(),
-        )
+        ),
+        WildcardRoute(
+            child: (context, args) => const ErrorPage(
+                  errorMessage: "Not Found :(",
+                )),
       ];
 }

@@ -8,7 +8,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/meal_card_w
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import '../../../domain/enum/meal_enum.dart';
-import '../widgets/error_loading_menu_widget.dart';
+import '../../../../../shared/modules/error/error_loading_menu_widget.dart';
 
 class MenuPage extends StatelessWidget {
   const MenuPage({super.key});

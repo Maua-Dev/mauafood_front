@@ -35,8 +35,15 @@ class _MenuPageState extends State<MenuPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocProvider.value(
-        value: menuBloc,
+      body: MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => menuBloc,
+          ),
+          BlocProvider(
+            create: (context) => cartBloc,
+          )
+        ],
         child: Column(
           children: [
             BlocBuilder<MenuBloc, MenuState>(

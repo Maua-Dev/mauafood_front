@@ -1,12 +1,11 @@
 import 'dart:async';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
 import 'package:uuid/uuid.dart';
-import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/confirm_email.dart';
 import '../../../domain/usecases/login_user.dart';
 import '../../../domain/usecases/register_user.dart';
@@ -19,7 +18,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final RegisterUserInterface register;
   final ConfirmEmailInterface confirmEmail;
   // final AuthStorageInterface storage;
-  late Either<AuthErrors, bool> eitherIsLogged;
+  late Either<AuthErrors, CognitoAuthSession> eitherIsLogged;
   late Either<AuthErrors, bool> eitherIsRegistered;
   late Either<AuthErrors, bool> eitherIsConfirmed;
   String email = '';
@@ -69,15 +68,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     eitherIsLogged = await login(event.email, event.password);
     emit(eitherIsLogged.fold((failure) {
       return AuthErrorState(failure);
-    }, (isLogged) {
-      _loggedIn = isLogged;
-
-      return AuthLoadedState(isLogged: isLogged);
+    }, (authSession) {
+      _loggedIn = true;
+      print(authSession.userPoolTokens!.refreshToken);
+      print(authSession.userPoolTokens!.accessToken);
+      return const AuthLoadedState(isLogged: true);
     }));
-    // if (_loggedIn) {
-    //   await storage.saveId(_id);
-    //   await storage.saveFullName(_fullName);
-    // }
+
+    // await storage.saveId(_id);
+    // await storage.saveFullName(_fullName);
   }
 
   FutureOr<void> _confirmEmail(

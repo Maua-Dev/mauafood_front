@@ -5,6 +5,7 @@ import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/rest
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
 import '../../../../../shared/themes/app_text_styles.dart';
+import '../../../../auth/presenter/bloc/auth/auth_bloc.dart';
 
 class RestaurantsPage extends StatelessWidget {
   const RestaurantsPage({super.key});
@@ -12,6 +13,7 @@ class RestaurantsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var controller = Modular.get<RestaurantController>();
+    var authBloc = Modular.get<AuthBloc>();
 
     return Scaffold(
         backgroundColor: AppColors.letterHighlightThinColor,
@@ -27,7 +29,7 @@ class RestaurantsPage extends StatelessWidget {
               child: IconButton(
                 icon: const Icon(Icons.exit_to_app, size: 40),
                 onPressed: () {
-                  controller.logout();
+                  authBloc.add(const LogoutUser());
                 },
               ),
             )

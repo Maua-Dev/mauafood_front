@@ -7,24 +7,13 @@ import '../../domain/entities/restaurant_entity.dart';
 
 class RestaurantController {
   final GetRestaurantInterface getRestaurant;
-  final AuthStorageInterface storage;
   List<Restaurant> restaurants = [];
 
-  RestaurantController({required this.storage, required this.getRestaurant}) {
+  RestaurantController({required this.getRestaurant}) {
     getRestaurants();
   }
 
   void getRestaurants() {
     restaurants = getRestaurant();
-  }
-
-  Future<void> logout() async {
-    try {
-      await Amplify.Auth.signOut();
-      await storage.cleanSecureStorage();
-      Modular.to.navigate('/login');
-    } on AuthException catch (e) {
-      print(e.message);
-    }
   }
 }

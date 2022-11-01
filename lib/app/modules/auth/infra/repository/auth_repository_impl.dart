@@ -60,4 +60,14 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
         message: 'Ocorreu algum erro ao confirmar email: $email.',
         email: email));
   }
+
+  @override
+  Future<Either<LogoutError, void>> logoutUser() async {
+    try {
+      await datasource.postLogout();
+    } catch (e) {
+      return left(LogoutError(message: 'Erro ao fazer logout.'));
+    }
+    return const Right(null);
+  }
 }

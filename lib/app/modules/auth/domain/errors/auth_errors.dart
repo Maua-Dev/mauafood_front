@@ -12,6 +12,10 @@ class RegisterError extends AuthErrors {
   RegisterError({required super.message});
 }
 
+class LogoutError extends AuthErrors {
+  LogoutError({required super.message});
+}
+
 class ConfirmationEmailError extends AuthErrors {
   final String email;
   ConfirmationEmailError({required this.email, required super.message});

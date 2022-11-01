@@ -5,4 +5,5 @@ abstract class AuthDatasourceInterface {
   Future<CognitoAuthSession> postLoginUser(String email, String password);
   Future<bool> postRegisterUser(UserModel user);
   Future<bool> postEmailConfirmation(String email, String confirmationCode);
+  Future<void> postLogout();
 }

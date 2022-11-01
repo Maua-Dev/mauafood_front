@@ -13,6 +13,6 @@ class AppModule extends Module {
   @override
   List<ModularRoute> get routes => [
         ModuleRoute(Modular.initialRoute, module: RestaurantModule()),
-        ModuleRoute('/login', module: AuthModule()),
+        ModuleRoute('/login/', module: AuthModule()),
       ];
 }

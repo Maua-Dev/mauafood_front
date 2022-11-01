@@ -19,7 +19,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LoginUserInterface login;
   final RegisterUserInterface register;
   final ConfirmEmailInterface confirmEmail;
-  // final AuthStorageInterface storage;
+  final AuthStorageInterface storage;
   late Either<AuthErrors, CognitoAuthSession> eitherIsLogged;
   late Either<AuthErrors, bool> eitherIsRegistered;
   late Either<AuthErrors, bool> eitherIsConfirmed;
@@ -29,8 +29,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   bool get isLoggedIn => _loggedIn;
 
   AuthBloc(
-      {
-      // required this.storage,
+      {required this.storage,
       required this.confirmEmail,
       required this.login,
       required this.register})
@@ -68,15 +67,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       return AuthErrorState(failure);
     }, (authSession) {
       _loggedIn = true;
-      // storage.saveAccessToken(authSession.userPoolTokens!.accessToken);
-      // storage.saveRefreshToken(authSession.userPoolTokens!.refreshToken);
+      storage.saveAccessToken(authSession.userPoolTokens!.accessToken);
+      storage.saveRefreshToken(authSession.userPoolTokens!.refreshToken);
       print(authSession.userPoolTokens!.refreshToken);
       print(authSession.userPoolTokens!.accessToken);
       return const AuthLoadedState(isLogged: true);
     }));
-
-    // await storage.saveId(_id);
-    // await storage.saveFullName(_fullName);
   }
 
   FutureOr<void> _confirmEmail(
@@ -92,14 +88,15 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> verifyIfHaveTokens() async {
     try {
-      // var refreshToken = await storage.getRefreshToken();
-      // var accessToken = await storage.getAccessToken();
-      // if (refreshToken!.isNotEmpty && accessToken!.isNotEmpty) {
-      //   _loggedIn = true;
-      // } else {
-      //   _loggedIn = false;
-      //   Modular.to.navigate('/login');
-      // }
+      var refreshToken = await storage.getRefreshToken();
+      var accessToken = await storage.getAccessToken();
+      print(accessToken);
+      if (refreshToken!.isNotEmpty && accessToken!.isNotEmpty) {
+        _loggedIn = true;
+      } else {
+        _loggedIn = false;
+        Modular.to.navigate('/login');
+      }
     } catch (e) {
       // ignore: avoid_print
       print(e);

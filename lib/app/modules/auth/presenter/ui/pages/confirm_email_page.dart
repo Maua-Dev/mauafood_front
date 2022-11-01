@@ -29,7 +29,7 @@ class ConfirmEmailPage extends StatelessWidget {
                     .showSnackBar(SnackBar(content: Text(state.error.message)));
               }
               if (state is AuthLoadedState) {
-                Modular.to.navigate('/restaurants');
+                Modular.to.navigate('/');
               }
             },
             child: Builder(

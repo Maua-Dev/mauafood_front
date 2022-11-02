@@ -4,6 +4,7 @@ import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_m
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/pages/menu_page.dart';
 
+import '../error/presenter/ui/error_page.dart';
 import '../meal-info/meal_info_module.dart';
 import 'domain/infra/menu_repository_interface.dart';
 import 'infra/datasources/menu_datasource_interface.dart';
@@ -30,5 +31,9 @@ class MenuModule extends Module {
           child: (context, args) => const MenuPage(),
         ),
         ModuleRoute('/meal-info/', module: MealInfoModule()),
+        WildcardRoute(
+            child: (context, args) => const ErrorPage(
+                  errorMessage: "Page not found! :(",
+                ))
       ];
 }

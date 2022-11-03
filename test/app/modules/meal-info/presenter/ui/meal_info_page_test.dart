@@ -35,11 +35,11 @@ void main() {
       final sizedBox = find.byType(SizedBox);
       expect(sizedBox, findsAtLeastNWidgets(5));
       final texts = find.byType(Text);
-      expect(texts, findsAtLeastNWidgets(5));
+      expect(texts, findsAtLeastNWidgets(4));
       final columns = find.byType(Column);
       expect(columns, findsNWidgets(2));
       final rows = find.byType(Row);
-      expect(rows, findsNWidgets(2));
+      expect(rows, findsNWidgets(1));
       final listView = find.byType(ListView);
       expect(listView, findsOneWidget);
       final mealListView = find.byType(RecommendationCardWidget);

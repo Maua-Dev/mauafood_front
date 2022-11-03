@@ -20,7 +20,7 @@ class SplashPage extends StatelessWidget {
                     width: 250,
                     height: 250,
                     child: Image.asset(
-                      'assets/images/mauafood_logo_marrom.png',
+                      'assets/images/logos/brown_logo.png',
                     )),
               );
             }

@@ -12,22 +12,22 @@ void main() {
   });
   testWidgets('[WIDGETS TEST] - SplashPage must show widgets in bloc states',
       (widgetTester) async {
-    await widgetTester.pumpWidget(MaterialApp(
-      home: BlocProvider(
-        create: (context) => bloc,
-        child: const SplashPage(),
-      ),
-    ));
-    await widgetTester.pumpAndSettle();
+    await widgetTester
+        .runAsync(() async => await widgetTester.pumpWidget(MaterialApp(
+              home: BlocProvider(
+                create: (context) => bloc,
+                child: const SplashPage(),
+              ),
+            )));
     final sizedbox = find.byType(SizedBox);
-    expect(sizedbox, findsOneWidget);
+    expect(sizedbox, findsNothing);
     final image = find.byType(Image);
-    expect(image, findsOneWidget);
+    expect(image, findsNothing);
     final circularProgressIndicator = find.byType(CircularProgressIndicator);
-    expect(circularProgressIndicator, findsNothing);
+    expect(circularProgressIndicator, findsOneWidget);
 
     await widgetTester.runAsync(() async => bloc.add(const LoadingEvent()));
-    await widgetTester.pumpAndSettle();
+    await widgetTester.pump();
 
     expect(sizedbox, findsOneWidget);
     expect(image, findsOneWidget);

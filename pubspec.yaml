@@ -28,6 +28,12 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^2.0.0
   modular_test: ^2.0.0
+  flutter_launcher_icons: ^0.10.0
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logos/brown_logo.png"
 
 flutter:
   uses-material-design: true
@@ -35,7 +41,7 @@ flutter:
   assets:
     - assets/data/restaurant_biba.json
     - assets/data/restaurant_h.json
-    - assets/images/mauafood_logo_cinza.png
+    - assets/images/logos/grey_logo.png
 
 scripts:
   build: flutter pub run build_runner build

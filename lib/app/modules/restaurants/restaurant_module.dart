@@ -25,7 +25,7 @@ class RestaurantModule extends Module {
         ),
         WildcardRoute(
             child: (context, args) => const ErrorPage(
-                  errorMessage: "Not Found :(",
+                  errorMessage: "Page Not Found :(",
                 )),
       ];
 }

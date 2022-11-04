@@ -63,8 +63,8 @@ class RestaurantWidget extends StatelessWidget {
                             10), //a borda nao esta ficando arredondada
                       ),
                       backgroundColor: AppColors.backgroundColor),
-                  onPressed: () =>
-                      Modular.to.navigate('/menu/', arguments: restaurantInfo),
+                  onPressed: () => Modular.to.navigate('/restaurants/menu/',
+                      arguments: restaurantInfo),
                   child: Text(
                     "Ver cardápio",
                     style: AppTextStyles.h2HighlightBold,

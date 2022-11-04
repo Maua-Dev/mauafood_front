@@ -41,4 +41,18 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       throw Exception();
     }
   }
+
+  @override
+  Future<bool> postEmailConfirmation(
+      String email, String confirmationCode) async {
+    try {
+      SignUpResult res = await Amplify.Auth.confirmSignUp(
+        username: email,
+        confirmationCode: confirmationCode,
+      );
+      return res.isSignUpComplete;
+    } catch (e) {
+      throw Exception();
+    }
+  }
 }

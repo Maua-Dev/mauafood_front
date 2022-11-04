@@ -41,3 +41,13 @@ class RegisterUser extends AuthEvent {
 class LogoutUser extends AuthEvent {
   const LogoutUser();
 }
+
+class ConfirmEmail extends AuthEvent {
+  final String email;
+  final String code;
+
+  const ConfirmEmail({required this.email, required this.code});
+
+  @override
+  List<Object> get props => [email, code];
+}

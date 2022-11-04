@@ -50,7 +50,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       id: const Uuid().v4(),
       fullName: event.fullName,
       cpf: event.cpf,
-      isStudent: event.isStudent,
+      isStudent: false,
       email: event.email,
       password: event.password,
       notifications: event.notifications,

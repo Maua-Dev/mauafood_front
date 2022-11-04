@@ -1,10 +1,15 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
+import '../../../../../shared/themes/app_colors.dart';
+import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/register/register_form_bloc.dart';
+import '../widgets/checkbox_field_login_widget.dart';
+import '../widgets/text_field_login_widget.dart';
 
 class RegisterPage extends StatefulWidget {
   final AuthBloc authBloc;
@@ -19,6 +24,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: AppColors.backgroundColor2,
         body: MultiBlocProvider(
           providers: [
             BlocProvider(
@@ -49,121 +55,178 @@ class _RegisterPageState extends State<RegisterPage> {
                               Text('É necessário aceitar as notificações.')));
                     },
                     child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          TextFieldBlocBuilder(
-                            textFieldBloc: registerFormBloc.email,
-                            keyboardType: TextInputType.emailAddress,
-                            autofillHints: const [
-                              AutofillHints.email,
-                            ],
-                            decoration: const InputDecoration(
-                              labelText: 'Email',
-                              prefixIcon: Icon(Icons.email),
-                            ),
-                          ),
-                          TextFieldBlocBuilder(
-                            textFieldBloc: registerFormBloc.emailConfirm,
-                            keyboardType: TextInputType.emailAddress,
-                            autofillHints: const [
-                              AutofillHints.email,
-                            ],
-                            decoration: const InputDecoration(
-                              labelText: 'Confirme seu email',
-                              prefixIcon: Icon(Icons.email),
-                            ),
-                          ),
-                          TextFieldBlocBuilder(
-                            textFieldBloc: registerFormBloc.password,
-                            keyboardType: TextInputType.visiblePassword,
-                            autofillHints: const [
-                              AutofillHints.password,
-                            ],
-                            decoration: const InputDecoration(
-                              labelText: 'Senha',
-                              prefixIcon: Icon(Icons.email),
-                            ),
-                          ),
-                          TextFieldBlocBuilder(
-                            textFieldBloc: registerFormBloc.passwordConfirm,
-                            keyboardType: TextInputType.visiblePassword,
-                            autofillHints: const [
-                              AutofillHints.password,
-                            ],
-                            decoration: const InputDecoration(
-                              labelText: 'Confirme sua senha',
-                              prefixIcon: Icon(Icons.email),
-                            ),
-                          ),
-                          TextFieldBlocBuilder(
-                            textFieldBloc: registerFormBloc.fullName,
-                            keyboardType: TextInputType.name,
-                            decoration: const InputDecoration(
-                              labelText: 'Nome Completo',
-                              prefixIcon: Icon(Icons.email),
-                            ),
-                          ),
-                          TextFieldBlocBuilder(
-                            textFieldBloc: registerFormBloc.cpf,
-                            keyboardType: TextInputType.name,
-                            inputFormatters: [
-                              MaskTextInputFormatter(
-                                  mask: "###.###.###-##",
-                                  filter: {"#": RegExp(r'[0-9]')})
-                            ],
-                            decoration: const InputDecoration(
-                              labelText: 'CPF',
-                              prefixIcon: Icon(Icons.email),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 250,
-                            child: CheckboxFieldBlocBuilder(
-                              booleanFieldBloc: registerFormBloc.isStudent,
-                              body: Container(
-                                alignment: Alignment.centerLeft,
-                                child: const Text('É estudante?'),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 36, vertical: 16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Cadastre-se',
+                              style: AppTextStyles.h2HighlightBold.copyWith(
+                                color: Colors.black,
                               ),
                             ),
-                          ),
-                          TextFieldBlocBuilder(
-                            textFieldBloc: registerFormBloc.raFake,
-                            isEnabled: false,
-                            decoration: const InputDecoration(
-                              labelText: 'RA',
-                              prefixIcon: Icon(Icons.email),
+                            const SizedBox(
+                              height: 16,
                             ),
-                          ),
-                          TextFieldBlocBuilder(
-                            textFieldBloc: registerFormBloc.ra,
-                            keyboardType: TextInputType.name,
-                            inputFormatters: [
-                              MaskTextInputFormatter(
-                                  mask: "##.#####-#",
-                                  filter: {"#": RegExp(r'[0-9]')})
-                            ],
-                            decoration: const InputDecoration(
-                              labelText: 'RA',
-                              prefixIcon: Icon(Icons.email),
+                            TextFieldLoginWidget(
+                              keyboardType: TextInputType.name,
+                              textFieldBloc: registerFormBloc.fullName,
+                              hintText: 'Nome Completo',
                             ),
-                          ),
-                          SizedBox(
-                            width: 250,
-                            child: CheckboxFieldBlocBuilder(
+                            TextFieldLoginWidget(
+                              keyboardType: TextInputType.number,
+                              textFieldBloc: registerFormBloc.cpf,
+                              inputFormatters: [
+                                MaskTextInputFormatter(
+                                    mask: "###.###.###-##",
+                                    filter: {"#": RegExp(r'[0-9]')})
+                              ],
+                              hintText: 'CPF',
+                            ),
+                            TextFieldLoginWidget(
+                              keyboardType: TextInputType.emailAddress,
+                              textFieldBloc: registerFormBloc.email,
+                              hintText: 'E-mail',
+                              autoFillHints: const [
+                                AutofillHints.email,
+                              ],
+                            ),
+                            TextFieldLoginWidget(
+                              keyboardType: TextInputType.emailAddress,
+                              textFieldBloc: registerFormBloc.emailConfirm,
+                              hintText: 'Confirme seu e-mail',
+                              autoFillHints: const [
+                                AutofillHints.email,
+                              ],
+                            ),
+                            TextFieldLoginWidget(
+                              textFieldBloc: registerFormBloc.password,
+                              hintText: 'Senha',
+                              keyboardType: TextInputType.emailAddress,
+                              suffixButton: SuffixButton.obscureText,
+                              autoFillHints: const [
+                                AutofillHints.password,
+                              ],
+                            ),
+                            TextFieldLoginWidget(
+                              textFieldBloc: registerFormBloc.passwordConfirm,
+                              hintText: 'Confirme sua senha',
+                              keyboardType: TextInputType.emailAddress,
+                              suffixButton: SuffixButton.obscureText,
+                              autoFillHints: const [
+                                AutofillHints.password,
+                              ],
+                            ),
+                            CheckboxFieldLoginWidget(
+                              title: RichText(
+                                text: TextSpan(
+                                    text: 'Deseja receber ',
+                                    style: AppTextStyles.h2.copyWith(
+                                        fontSize: 16, color: Colors.black),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: 'notificações por e-mail',
+                                        style: AppTextStyles.h2HighlightBold
+                                            .copyWith(
+                                                fontSize: 16,
+                                                color: Colors.black),
+                                      ),
+                                      TextSpan(
+                                        text: '?',
+                                        style: AppTextStyles.h2.copyWith(
+                                            fontSize: 16, color: Colors.black),
+                                      ),
+                                    ]),
+                              ),
                               booleanFieldBloc: registerFormBloc.notifications,
-                              body: Container(
-                                alignment: Alignment.centerLeft,
-                                child: const Text('Notificação'),
+                            ),
+                            CheckboxFieldLoginWidget(
+                              title: RichText(
+                                text: TextSpan(
+                                    text: 'Deseja receber ',
+                                    style: AppTextStyles.h2.copyWith(
+                                        fontSize: 16, color: Colors.black),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: 'notificações pelo app',
+                                        style: AppTextStyles.h2HighlightBold
+                                            .copyWith(
+                                                fontSize: 16,
+                                                color: Colors.black),
+                                      ),
+                                      TextSpan(
+                                        text: '?',
+                                        style: AppTextStyles.h2.copyWith(
+                                            fontSize: 16, color: Colors.black),
+                                      ),
+                                    ]),
+                              ),
+                              booleanFieldBloc: registerFormBloc.notifications,
+                            ),
+                            const SizedBox(
+                              height: 24,
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: ElevatedButton(
+                                onPressed: () async {
+                                  registerFormBloc.submit();
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  minimumSize: const Size.fromHeight(50),
+                                ),
+                                child: BlocBuilder<AuthBloc, AuthState>(
+                                  builder: (context, state) {
+                                    if (state is AuthLoadingState) {
+                                      return CircularProgressIndicator(
+                                        color: AppColors.white,
+                                      );
+                                    }
+                                    return Text(
+                                      'Entrar',
+                                      style: AppTextStyles.h2HighlightBold
+                                          .copyWith(
+                                        color: AppColors.white,
+                                        fontSize: 16,
+                                      ),
+                                    );
+                                  },
+                                ),
                               ),
                             ),
-                          ),
-                          ElevatedButton(
-                            onPressed: () async {
-                              registerFormBloc.submit();
-                            },
-                            child: const Text('Registrar'),
-                          ),
-                        ],
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Align(
+                              alignment: Alignment.center,
+                              child: TextButton(
+                                onPressed: () {
+                                  Modular.to.pushNamed('/login/');
+                                },
+                                child: RichText(
+                                  text: TextSpan(
+                                      text: 'Já tem uma conta? ',
+                                      style: AppTextStyles.h2.copyWith(
+                                          fontSize: 16, color: Colors.black),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                            text: 'Entrar',
+                                            style: AppTextStyles.h2HighlightBold
+                                                .copyWith(
+                                                    fontSize: 16,
+                                                    color: Colors.black),
+                                            recognizer: TapGestureRecognizer()
+                                              ..onTap = () {
+                                                Modular.to.pushNamed('/login/');
+                                              })
+                                      ]),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   );

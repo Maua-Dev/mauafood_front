@@ -19,9 +19,6 @@ class RegisterFormBloc extends FormBloc<String, String> {
 
   final fullName = TextFieldBloc();
 
-  final ra = TextFieldBloc();
-  final raFake = TextFieldBloc();
-
   bool isEnable = false;
 
   Future<String?> _validateEmail(String? emailValue) async {
@@ -82,21 +79,6 @@ class RegisterFormBloc extends FormBloc<String, String> {
     return null;
   }
 
-  Future<String?> _validateRa(String? raValue) async {
-    if (isStudent.value) {
-      raValue = raValue!.replaceAll('.', '');
-      raValue = raValue.replaceAll('-', '');
-      if (raValue.isEmpty) {
-        return 'Campo obrigatório.';
-      } else if (raValue.length != 8) {
-        return 'RA inválido.';
-      }
-    }
-    return null;
-  }
-
-  final isStudent = BooleanFieldBloc();
-
   final notifications = BooleanFieldBloc();
 
   RegisterFormBloc({required this.authBloc}) {
@@ -108,42 +90,16 @@ class RegisterFormBloc extends FormBloc<String, String> {
         passwordConfirm,
         cpf,
         fullName,
-        isStudent,
-        raFake,
         notifications,
       ],
     );
 
     fullName.addAsyncValidators([_validateFullName]);
     cpf.addAsyncValidators([_validateCpf]);
-    password.addAsyncValidators([_validatePassword]);
-    passwordConfirm.addAsyncValidators([_validatePasswordConfirm]);
     email.addAsyncValidators([_validateEmail]);
     emailConfirm.addAsyncValidators([_validateEmailConfirm]);
-    isStudent.onValueChanges(
-      onData: (previous, current) async* {
-        removeFieldBlocs(
-          fieldBlocs: [
-            raFake,
-          ],
-        );
-        if (current.value) {
-          addFieldBlocs(fieldBlocs: [
-            ra,
-          ]);
-        } else {
-          removeFieldBlocs(
-            fieldBlocs: [
-              ra,
-            ],
-          );
-          addFieldBlocs(fieldBlocs: [
-            raFake,
-          ]);
-        }
-      },
-    );
-    ra.addAsyncValidators([_validateRa]);
+    password.addAsyncValidators([_validatePassword]);
+    passwordConfirm.addAsyncValidators([_validatePasswordConfirm]);
   }
 
   @override
@@ -154,7 +110,6 @@ class RegisterFormBloc extends FormBloc<String, String> {
           password: password.value,
           cpf: cpf.value,
           fullName: fullName.value,
-          isStudent: isStudent.value,
           notifications: notifications.value));
     } else {
       emitFailure();

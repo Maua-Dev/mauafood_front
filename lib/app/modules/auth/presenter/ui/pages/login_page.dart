@@ -99,9 +99,6 @@ class _LoginPageState extends State<LoginPage> {
                                   textFieldBloc: confirmEmailFormBloc.email,
                                   title: 'E-mail',
                                 ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
                                 TextFieldLoginWidget(
                                   textFieldBloc: confirmEmailFormBloc.password,
                                   title: 'Senha',
@@ -148,8 +145,8 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         TextButton(
                           onPressed: () async {
-                            Modular.to
-                                .pushNamed('/register', arguments: authBloc);
+                            Modular.to.pushNamed('/login/register',
+                                arguments: authBloc);
                           },
                           child: RichText(
                             text: TextSpan(
@@ -172,14 +169,17 @@ class _LoginPageState extends State<LoginPage> {
                                 ]),
                           ),
                         ),
-                        TextButton(
-                          onPressed: () async {
-                            Modular.to.pushNamed('/login/register',
-                                arguments: authBloc);
-                          },
-                          child: Text('Cadastre-se',
-                              style: AppTextStyles.h2HighlightBold
-                                  .copyWith(fontSize: 16, color: Colors.black)),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: TextButton(
+                            onPressed: () async {
+                              Modular.to.pushNamed('/login/register',
+                                  arguments: authBloc);
+                            },
+                            child: Text('Cadastre-se',
+                                style: AppTextStyles.h2HighlightBold.copyWith(
+                                    fontSize: 16, color: Colors.black)),
+                          ),
                         ),
                       ],
                     ),

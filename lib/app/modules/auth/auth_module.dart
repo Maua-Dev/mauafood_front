@@ -8,8 +8,6 @@ import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/register
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/confirm_email_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/login_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/register_page.dart';
-import '../auth_guard.dart';
-import '../restaurants/restaurant_module.dart';
 import 'data/datasource/auth_datasource_impl.dart';
 import 'domain/infra/auth_repository_interface.dart';
 import 'domain/usecases/confirm_email.dart';

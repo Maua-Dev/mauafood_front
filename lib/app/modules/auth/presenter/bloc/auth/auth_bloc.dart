@@ -73,8 +73,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       _loggedIn = true;
       storage.saveAccessToken(authSession.userPoolTokens!.accessToken);
       storage.saveRefreshToken(authSession.userPoolTokens!.refreshToken);
-      print(authSession.userPoolTokens!.refreshToken);
-      print(authSession.userPoolTokens!.accessToken);
       return const AuthLoadedState(isLogged: true);
     }));
   }
@@ -94,7 +92,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       var refreshToken = await storage.getRefreshToken();
       var accessToken = await storage.getAccessToken();
-      print(accessToken);
       if (refreshToken!.isNotEmpty && accessToken!.isNotEmpty) {
         _loggedIn = true;
       } else {

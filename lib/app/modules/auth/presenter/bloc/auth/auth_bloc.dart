@@ -5,6 +5,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user.dart';
 import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
 import 'package:uuid/uuid.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
@@ -19,6 +20,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LoginUserInterface login;
   final RegisterUserInterface register;
   final ConfirmEmailInterface confirmEmail;
+  final LogoutUserInterface logout;
   final AuthStorageInterface storage;
   late Either<AuthErrors, CognitoAuthSession> eitherIsLogged;
   late Either<AuthErrors, bool> eitherIsRegistered;
@@ -29,7 +31,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   bool get isLoggedIn => _loggedIn;
 
   AuthBloc(
-      {required this.storage,
+      {required this.logout,
+      required this.storage,
       required this.confirmEmail,
       required this.login,
       required this.register})
@@ -37,6 +40,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<RegisterUser>(_registerUser);
     on<LoginWithEmail>(_loginWithEmail);
     on<ConfirmEmail>(_confirmEmail);
+    on<LogoutUser>(_logoutUser);
   }
 
   FutureOr<void> _registerUser(
@@ -95,11 +99,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         _loggedIn = true;
       } else {
         _loggedIn = false;
-        Modular.to.navigate('/login');
+        Modular.to.navigate('/login/');
       }
     } catch (e) {
       // ignore: avoid_print
       print(e);
+    }
+  }
+
+  FutureOr<void> _logoutUser(LogoutUser event, Emitter<AuthState> emit) async {
+    emit(AuthLoadingState());
+    var result = await logout();
+    emit(result.fold((failure) {
+      return AuthErrorState(failure);
+    }, (isConfirmed) {
+      return const AuthLoadedState(isLogged: false);
+    }));
+    if (state is AuthLoadedState) {
+      await storage.cleanSecureStorage();
+      Modular.to.navigate('/login/');
     }
   }
 }

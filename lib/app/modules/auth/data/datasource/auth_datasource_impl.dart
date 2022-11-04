@@ -63,4 +63,13 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       throw Exception();
     }
   }
+
+  @override
+  Future<void> postLogout() async {
+    try {
+      await Amplify.Auth.signOut();
+    } catch (e) {
+      throw Exception();
+    }
+  }
 }

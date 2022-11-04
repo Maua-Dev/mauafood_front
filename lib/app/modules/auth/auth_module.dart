@@ -14,6 +14,7 @@ import 'data/datasource/auth_datasource_impl.dart';
 import 'domain/infra/auth_repository_interface.dart';
 import 'domain/usecases/confirm_email.dart';
 import 'domain/usecases/login_user.dart';
+import 'domain/usecases/logout_user.dart';
 import 'domain/usecases/register_user.dart';
 import 'infra/datasources/auth_datasouce_interface.dart';
 import 'infra/repository/auth_repository_impl.dart';
@@ -27,9 +28,12 @@ class AuthModule extends Module {
             export: true),
         Bind<ConfirmEmailInterface>((i) => ConfirmEmailImpl(repository: i()),
             export: true),
+        Bind<LogoutUserInterface>((i) => LogoutUserImpl(repository: i()),
+            export: true),
         AsyncBind<AuthStorageInterface>((i) => AuthStorageImpl.instance()),
         Bind<AuthBloc>(
             (i) => AuthBloc(
+                  logout: i(),
                   login: i(),
                   register: i(),
                   confirmEmail: i(),

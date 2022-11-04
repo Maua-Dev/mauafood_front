@@ -10,8 +10,9 @@ class RestaurantModule extends Module {
   @override
   List<Bind> get binds => [
         Bind<GetRestaurantInterface>((i) => GetRestaurantImpl()),
-        Bind<RestaurantController>(
-            (i) => RestaurantController(getRestaurant: i(), storage: i()))
+        Bind<RestaurantController>((i) => RestaurantController(
+              getRestaurant: i(),
+            ))
       ];
 
   @override

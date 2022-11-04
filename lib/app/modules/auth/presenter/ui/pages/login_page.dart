@@ -68,7 +68,7 @@ class _LoginPageState extends State<LoginPage> {
                             width: double.infinity,
                             height: MediaQuery.of(context).size.height / 3,
                             child: Image.asset(
-                              'assets/images/logos/grey_logo.png',
+                              'assets/images/logos/transparent_logo.png',
                               fit: BoxFit.contain,
                             ),
                           ),

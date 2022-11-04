@@ -51,6 +51,7 @@ flutter:
     - assets/data/restaurant_h.json
     - assets/images/logos/brown_logo.png
     - assets/images/logos/grey_logo.png
+    - assets/images/logos/transparent_logo.png
 
 scripts:
   build: flutter pub run build_runner build

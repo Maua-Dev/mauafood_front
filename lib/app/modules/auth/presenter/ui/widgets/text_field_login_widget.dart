@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
 class TextFieldLoginWidget extends StatelessWidget {
@@ -8,6 +9,7 @@ class TextFieldLoginWidget extends StatelessWidget {
   final TextInputType? keyboardType;
   final Iterable<String>? autoFillHints;
   final SuffixButton? suffixButton;
+  final String? hintText;
 
   const TextFieldLoginWidget({
     super.key,
@@ -16,6 +18,7 @@ class TextFieldLoginWidget extends StatelessWidget {
     this.keyboardType,
     this.autoFillHints,
     this.suffixButton,
+    this.hintText,
   });
 
   @override
@@ -28,6 +31,7 @@ class TextFieldLoginWidget extends StatelessWidget {
           style: AppTextStyles.h2,
         ),
         TextFieldBlocBuilder(
+          textAlign: TextAlign.start,
           textFieldBloc: textFieldBloc,
           keyboardType: keyboardType ?? TextInputType.emailAddress,
           suffixButton: suffixButton,
@@ -35,7 +39,14 @@ class TextFieldLoginWidget extends StatelessWidget {
               const [
                 AutofillHints.email,
               ],
-          decoration: const InputDecoration(border: OutlineInputBorder()),
+          cursorColor: AppColors.buttonsColor,
+          textStyle: AppTextStyles.h2,
+          decoration: InputDecoration(
+              hintText: hintText,
+              border: const OutlineInputBorder(),
+              focusedBorder: OutlineInputBorder(
+                  borderSide:
+                      BorderSide(color: AppColors.buttonsColor, width: 2))),
         ),
       ],
     );

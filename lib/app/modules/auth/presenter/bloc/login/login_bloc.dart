@@ -4,23 +4,24 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
 import '../auth/auth_bloc.dart';
 
-class ConfirmEmailBloc extends FormBloc<String, String> {
+class LoginBloc extends FormBloc<String, String> {
   final AuthBloc authBloc;
 
-  final code = TextFieldBloc();
+  final email = TextFieldBloc();
+  final password = TextFieldBloc();
 
-  ConfirmEmailBloc({required this.authBloc}) {
+  LoginBloc({required this.authBloc}) {
     addFieldBlocs(
       fieldBlocs: [
-        code,
+        email,
+        password,
       ],
     );
   }
 
   @override
   Future<void> submit() async {
-    authBloc.add(
-        ConfirmEmail(email: 'gabriel.godoybz@hotmail.com', code: code.value));
+    authBloc.add(LoginWithEmail(email: email.value, password: password.value));
     emitSuccess();
   }
 

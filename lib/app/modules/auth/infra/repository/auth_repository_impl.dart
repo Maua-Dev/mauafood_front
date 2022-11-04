@@ -1,3 +1,4 @@
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
 import 'package:dartz/dartz.dart';
 import '../../domain/errors/auth_errors.dart';
@@ -10,20 +11,17 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
   AuthRepositoryImpl({required this.datasource});
 
   @override
-  Future<Either<SignUpError, bool>> loginUser(
+  Future<Either<SignUpError, CognitoAuthSession>> loginUser(
       String email, String password) async {
-    bool result;
+    CognitoAuthSession result;
     try {
       result = await datasource.postLoginUser(email, password);
     } catch (e) {
-      return left(SignUpError(message: 'Erro ao tentar autenticar.'));
+      return left(
+          SignUpError(message: 'E-mail ou senha incorretos ou inexistentes.'));
     }
 
-    if (result) {
-      return right(result);
-    }
-    return left(
-        SignUpError(message: 'E-mail ou senha incorretos ou inexistentes.'));
+    return right(result);
   }
 
   @override

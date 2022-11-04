@@ -26,7 +26,9 @@ class RestaurantsPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: IconButton(
                 icon: const Icon(Icons.exit_to_app, size: 40),
-                onPressed: () {},
+                onPressed: () {
+                  controller.logout();
+                },
               ),
             )
           ],

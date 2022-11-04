@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
 import 'package:uuid/uuid.dart';
+import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/confirm_email.dart';
 import '../../../domain/usecases/login_user.dart';
 import '../../../domain/usecases/register_user.dart';
@@ -16,13 +19,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LoginUserInterface login;
   final RegisterUserInterface register;
   final ConfirmEmailInterface confirmEmail;
-  late Either<AuthErrors, bool> eitherIsLogged;
+  final AuthStorageInterface storage;
+  late Either<AuthErrors, CognitoAuthSession> eitherIsLogged;
   late Either<AuthErrors, bool> eitherIsRegistered;
   late Either<AuthErrors, bool> eitherIsConfirmed;
-  late String email;
+  String email = '';
+  bool _loggedIn = false;
+
+  bool get isLoggedIn => _loggedIn;
 
   AuthBloc(
-      {required this.confirmEmail, required this.login, required this.register})
+      {required this.storage,
+      required this.confirmEmail,
+      required this.login,
+      required this.register})
       : super(AuthInitialState()) {
     on<RegisterUser>(_registerUser);
     on<LoginWithEmail>(_loginWithEmail);
@@ -44,9 +54,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     eitherIsRegistered = await register(user);
     emit(eitherIsRegistered.fold((failure) {
       return AuthErrorState(failure);
-    }, (isLogged) {
-      email = event.email;
-      return AuthLoadedState(isLogged: isLogged);
+    }, (isRegistered) {
+      return AuthLoadedState(isLogged: isRegistered);
     }));
   }
 
@@ -56,8 +65,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     eitherIsLogged = await login(event.email, event.password);
     emit(eitherIsLogged.fold((failure) {
       return AuthErrorState(failure);
-    }, (isLogged) {
-      return AuthLoadedState(isLogged: isLogged);
+    }, (authSession) {
+      _loggedIn = true;
+      storage.saveAccessToken(authSession.userPoolTokens!.accessToken);
+      storage.saveRefreshToken(authSession.userPoolTokens!.refreshToken);
+      print(authSession.userPoolTokens!.refreshToken);
+      print(authSession.userPoolTokens!.accessToken);
+      return const AuthLoadedState(isLogged: true);
     }));
   }
 
@@ -67,8 +81,25 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     eitherIsConfirmed = await confirmEmail(event.email, event.code);
     emit(eitherIsConfirmed.fold((failure) {
       return AuthErrorState(failure);
-    }, (isLogged) {
-      return AuthLoadedState(isLogged: isLogged);
+    }, (isConfirmed) {
+      return AuthLoadedState(isLogged: isConfirmed);
     }));
+  }
+
+  Future<void> verifyIfHaveTokens() async {
+    try {
+      var refreshToken = await storage.getRefreshToken();
+      var accessToken = await storage.getAccessToken();
+      print(accessToken);
+      if (refreshToken!.isNotEmpty && accessToken!.isNotEmpty) {
+        _loggedIn = true;
+      } else {
+        _loggedIn = false;
+        Modular.to.navigate('/login');
+      }
+    } catch (e) {
+      // ignore: avoid_print
+      print(e);
+    }
   }
 }

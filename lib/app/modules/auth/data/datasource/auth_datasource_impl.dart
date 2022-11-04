@@ -5,13 +5,20 @@ import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
 
 class AuthDatasourceImpl extends AuthDatasourceInterface {
   @override
-  Future<bool> postLoginUser(String email, String password) async {
+  Future<CognitoAuthSession> postLoginUser(
+      String email, String password) async {
     try {
-      SignInResult res = await Amplify.Auth.signIn(
+      late CognitoAuthSession result;
+      await Amplify.Auth.signOut();
+      await Amplify.Auth.signIn(
         username: email,
         password: password,
-      );
-      return res.isSignedIn;
+      ).whenComplete(() async {
+        result = await Amplify.Auth.fetchAuthSession(
+                options: CognitoSessionOptions(getAWSCredentials: true))
+            as CognitoAuthSession;
+      });
+      return result;
     } catch (e) {
       throw Exception();
     }
@@ -36,6 +43,7 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
           username: user.email,
           password: user.password,
           options: CognitoSignUpOptions(userAttributes: userAttributes));
+
       return res.isSignUpComplete;
     } catch (e) {
       throw Exception();

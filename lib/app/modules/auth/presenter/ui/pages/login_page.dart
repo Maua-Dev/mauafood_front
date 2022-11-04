@@ -1,9 +1,13 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/login_bloc.dart';
+import 'package:mauafood_front/app/shared/themes/app_colors.dart';
+import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
 import '../../bloc/auth/auth_bloc.dart';
+import '../widgets/text_field_login_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -25,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: AppColors.backgroundColor2,
         body: MultiBlocProvider(
           providers: [
             BlocProvider(
@@ -40,8 +45,9 @@ class _LoginPageState extends State<LoginPage> {
                 ScaffoldMessenger.of(context)
                     .showSnackBar(SnackBar(content: Text(state.error.message)));
               }
+
               if (state is AuthLoadedState) {
-                Modular.to.navigate('/');
+                Modular.to.navigate('/restaurants');
               }
             },
             child: Builder(
@@ -51,45 +57,129 @@ class _LoginPageState extends State<LoginPage> {
                 return FormBlocListener<LoginBloc, String, String>(
                   onFailure: (context, state) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Ocorreu algum erro.')));
+                        SnackBar(content: Text(state.failureResponse!)));
                   },
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        TextFieldBlocBuilder(
-                          textFieldBloc: confirmEmailFormBloc.email,
-                          keyboardType: TextInputType.emailAddress,
-                          autofillHints: const [
-                            AutofillHints.email,
-                          ],
-                          decoration: const InputDecoration(
-                            labelText: 'Email',
-                            prefixIcon: Icon(Icons.email),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 64),
+                          child: SizedBox(
+                            width: double.infinity,
+                            height: MediaQuery.of(context).size.height / 3,
+                            child: Image.asset(
+                              'assets/images/logos/grey_logo.png',
+                              fit: BoxFit.contain,
+                            ),
                           ),
                         ),
-                        TextFieldBlocBuilder(
-                          textFieldBloc: confirmEmailFormBloc.password,
-                          keyboardType: TextInputType.emailAddress,
-                          autofillHints: const [
-                            AutofillHints.email,
-                          ],
-                          decoration: const InputDecoration(
-                            labelText: 'Senha',
-                            prefixIcon: Icon(Icons.email),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 8),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 24, horizontal: 20),
+                            decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Login',
+                                  style: AppTextStyles.h2HighlightBold.copyWith(
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 24,
+                                ),
+                                TextFieldLoginWidget(
+                                  textFieldBloc: confirmEmailFormBloc.email,
+                                  title: 'E-mail',
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                TextFieldLoginWidget(
+                                  textFieldBloc: confirmEmailFormBloc.password,
+                                  title: 'Senha',
+                                  keyboardType: TextInputType.emailAddress,
+                                  suffixButton: SuffixButton.obscureText,
+                                  autoFillHints: const [
+                                    AutofillHints.password,
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                ),
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: ElevatedButton(
+                                    onPressed: () async {
+                                      confirmEmailFormBloc.submit();
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      minimumSize: const Size.fromHeight(50),
+                                    ),
+                                    child: BlocBuilder<AuthBloc, AuthState>(
+                                      builder: (context, state) {
+                                        if (state is AuthLoadingState) {
+                                          return CircularProgressIndicator(
+                                            color: AppColors.white,
+                                          );
+                                        }
+                                        return Text(
+                                          'Entrar',
+                                          style: AppTextStyles.h2HighlightBold
+                                              .copyWith(
+                                            color: AppColors.white,
+                                            fontSize: 16,
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                        ElevatedButton(
+                        TextButton(
                           onPressed: () async {
                             Modular.to
                                 .pushNamed('/register', arguments: authBloc);
                           },
-                          child: const Text('Registrar'),
+                          child: RichText(
+                            text: TextSpan(
+                                text: 'É aluno Mauá? ',
+                                style: AppTextStyles.h2.copyWith(
+                                    fontSize: 16, color: Colors.black),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: 'Entre com seu R.A.',
+                                      style: AppTextStyles.h2HighlightBold
+                                          .copyWith(
+                                              fontSize: 16,
+                                              color: Colors.black),
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Modular.to.pushNamed(
+                                              '/login/register',
+                                              arguments: authBloc);
+                                        })
+                                ]),
+                          ),
                         ),
-                        ElevatedButton(
+                        TextButton(
                           onPressed: () async {
-                            confirmEmailFormBloc.submit();
+                            Modular.to.pushNamed('/login/register',
+                                arguments: authBloc);
                           },
-                          child: const Text('Confirmar'),
+                          child: Text('Cadastre-se',
+                              style: AppTextStyles.h2HighlightBold
+                                  .copyWith(fontSize: 16, color: Colors.black)),
                         ),
                       ],
                     ),

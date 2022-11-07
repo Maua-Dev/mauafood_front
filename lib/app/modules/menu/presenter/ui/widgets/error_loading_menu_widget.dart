@@ -14,7 +14,7 @@ class ErrorLoadingMenuWidget extends StatelessWidget {
           width: double.infinity,
           height: 300,
           child: Image.asset(
-            'assets/images/mauafood_logo_cinza.png',
+            'assets/images/logos/grey_logo.png',
             fit: BoxFit.contain,
           ),
         ),

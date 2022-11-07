@@ -23,7 +23,7 @@ class MealCardWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             )),
         onPressed: () {
-          Modular.to.pushNamed('/menu/meal-info/', arguments: meal);
+          Modular.to.pushNamed('/restaurants/menu/meal-info/', arguments: meal);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

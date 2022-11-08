@@ -7,19 +7,32 @@ class User extends Equatable {
   final bool isStudent;
   final String email;
   final String password;
-  final bool notifications;
+  final bool emailNotifications;
+  final bool appNotifications;
+  final bool acceptTerms;
 
   const User({
+    required this.appNotifications,
+    required this.acceptTerms,
     required this.id,
     required this.fullName,
     required this.cpf,
     required this.isStudent,
     required this.email,
     required this.password,
-    required this.notifications,
+    required this.emailNotifications,
   });
 
   @override
-  List<Object?> get props =>
-      [id, fullName, cpf, isStudent, email, password, notifications];
+  List<Object?> get props => [
+        id,
+        fullName,
+        cpf,
+        isStudent,
+        email,
+        password,
+        emailNotifications,
+        appNotifications,
+        acceptTerms,
+      ];
 }

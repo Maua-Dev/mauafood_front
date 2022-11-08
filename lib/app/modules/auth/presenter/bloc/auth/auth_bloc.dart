@@ -53,7 +53,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       isStudent: false,
       email: event.email,
       password: event.password,
-      notifications: event.notifications,
+      appNotifications: event.appNotifications,
+      emailNotifications: event.emailNotifications,
+      acceptTerms: event.acceptTerms,
     );
     eitherIsRegistered = await register(user);
     emit(eitherIsRegistered.fold((failure) {

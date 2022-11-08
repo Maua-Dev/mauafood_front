@@ -25,17 +25,12 @@
         ],
         "signupAttributes": [
           "EMAIL",
-          "NAME",
-          "UPDATED_AT"
+          "UPDATED_AT",
+          "NAME"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": [
-            "REQUIRES_LOWERCASE",
-            "REQUIRES_NUMBERS",
-            "REQUIRES_SYMBOLS",
-            "REQUIRES_UPPERCASE"
-          ]
+          "passwordPolicyCharacters": []
         },
         "mfaConfiguration": "OFF",
         "mfaTypes": [
@@ -46,20 +41,20 @@
         ]
       },
       "output": {
-        "UserPoolId": "sa-east-1_DTXbETxrf",
-        "AppClientIDWeb": "6jrlj4btjvsg6fuatuu1vu5k67",
-        "AppClientID": "6ofeuk6lnahkgm6kl8crem996f",
-        "IdentityPoolId": "sa-east-1:1f49e0de-5125-4115-8f1e-957692b178f7",
-        "UserPoolArn": "arn:aws:cognito-idp:sa-east-1:264055331071:userpool/sa-east-1_DTXbETxrf",
+        "UserPoolId": "sa-east-1_uK7GPHvEU",
+        "AppClientIDWeb": "5pjcg2at1cl692vp1tpj7lspab",
+        "AppClientID": "29batn2po1sktvnmo53b03tqlq",
+        "IdentityPoolId": "sa-east-1:f8c49b17-05ee-4f65-89f5-e2581c35fffd",
+        "UserPoolArn": "arn:aws:cognito-idp:sa-east-1:264055331071:userpool/sa-east-1_uK7GPHvEU",
         "IdentityPoolName": "testAuthIdentityPool__dev",
         "UserPoolName": "mauafoodfront"
       },
-      "lastPushTimeStamp": "2022-10-29T03:17:26.072Z",
+      "lastPushTimeStamp": "2022-11-08T23:50:35.053Z",
       "providerMetadata": {
         "s3TemplateURL": "https://s3.amazonaws.com/amplify-mauafoodfront-dev-02108-deployment/amplify-cfn-templates/auth/mauafoodfront-cloudformation-template.json",
         "logicalId": "authmauafoodfront"
       },
-      "lastPushDirHash": "dQnWYlSyMNC9byK2zxqiFWz5LeU="
+      "lastPushDirHash": "9epWKM+RnuDYqWhYc/EdYAYd7P8="
     }
   }
 }

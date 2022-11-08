@@ -28,15 +28,18 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
   Future<bool> postRegisterUser(UserModel user) async {
     Map<CognitoUserAttributeKey, String> userAttributes = {
       CognitoUserAttributeKey.email: user.email,
-      const CognitoUserAttributeKey.custom('id'): user.id.toString(),
       CognitoUserAttributeKey.name: user.fullName,
       const CognitoUserAttributeKey.custom('cpf'): user.cpf,
       CognitoUserAttributeKey.updatedAt:
           DateTime.now().millisecondsSinceEpoch.toString(),
       const CognitoUserAttributeKey.custom('isStudent'):
           user.isStudent.toString(),
-      const CognitoUserAttributeKey.custom('notifications'):
-          user.notifications.toString(),
+      const CognitoUserAttributeKey.custom('appNotifications'):
+          user.appNotifications.toString(),
+      const CognitoUserAttributeKey.custom('emailNotifications'):
+          user.emailNotifications.toString(),
+      const CognitoUserAttributeKey.custom('acceptTerms'):
+          user.acceptTerms.toString(),
     };
     try {
       SignUpResult res = await Amplify.Auth.signUp(

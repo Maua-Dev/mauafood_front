@@ -22,17 +22,33 @@ class RegisterUser extends AuthEvent {
   final String password;
   final String cpf;
   final String fullName;
-  final bool notifications;
+  final bool appNotifications;
+  final bool emailNotifications;
+  final bool acceptTerms;
+  final bool isStudent;
 
-  const RegisterUser(
-      {required this.email,
-      required this.password,
-      required this.cpf,
-      required this.fullName,
-      required this.notifications});
+  const RegisterUser({
+    required this.isStudent,
+    required this.appNotifications,
+    required this.emailNotifications,
+    required this.acceptTerms,
+    required this.email,
+    required this.password,
+    required this.cpf,
+    required this.fullName,
+  });
 
   @override
-  List<Object> get props => [email, password, cpf, fullName, notifications];
+  List<Object> get props => [
+        email,
+        password,
+        cpf,
+        fullName,
+        appNotifications,
+        emailNotifications,
+        acceptTerms,
+        isStudent,
+      ];
 }
 
 class LogoutUser extends AuthEvent {

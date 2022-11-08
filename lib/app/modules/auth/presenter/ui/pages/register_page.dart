@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
@@ -50,14 +51,13 @@ class _RegisterPageState extends State<RegisterPage> {
                       BlocProvider.of<RegisterFormBloc>(context);
                   return FormBlocListener<RegisterFormBloc, String, String>(
                     onFailure: (context, state) {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content:
-                              Text('É necessário aceitar as notificações.')));
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(state.failureResponse!)));
                     },
                     child: SingleChildScrollView(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 36, vertical: 16),
+                            horizontal: 24, vertical: 32),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -94,14 +94,6 @@ class _RegisterPageState extends State<RegisterPage> {
                               ],
                             ),
                             TextFieldLoginWidget(
-                              keyboardType: TextInputType.emailAddress,
-                              textFieldBloc: registerFormBloc.emailConfirm,
-                              hintText: 'Confirme seu e-mail',
-                              autoFillHints: const [
-                                AutofillHints.email,
-                              ],
-                            ),
-                            TextFieldLoginWidget(
                               textFieldBloc: registerFormBloc.password,
                               hintText: 'Senha',
                               keyboardType: TextInputType.emailAddress,
@@ -124,46 +116,72 @@ class _RegisterPageState extends State<RegisterPage> {
                                 text: TextSpan(
                                     text: 'Deseja receber ',
                                     style: AppTextStyles.h2.copyWith(
-                                        fontSize: 16, color: Colors.black),
+                                        fontSize: 14, color: Colors.black),
                                     children: <TextSpan>[
                                       TextSpan(
                                         text: 'notificações por e-mail',
                                         style: AppTextStyles.h2HighlightBold
                                             .copyWith(
-                                                fontSize: 16,
+                                                fontSize: 14,
                                                 color: Colors.black),
                                       ),
                                       TextSpan(
                                         text: '?',
                                         style: AppTextStyles.h2.copyWith(
-                                            fontSize: 16, color: Colors.black),
+                                            fontSize: 14, color: Colors.black),
                                       ),
                                     ]),
                               ),
-                              booleanFieldBloc: registerFormBloc.notifications,
+                              booleanFieldBloc:
+                                  registerFormBloc.emailNotifications,
                             ),
                             CheckboxFieldLoginWidget(
                               title: RichText(
                                 text: TextSpan(
                                     text: 'Deseja receber ',
                                     style: AppTextStyles.h2.copyWith(
-                                        fontSize: 16, color: Colors.black),
+                                        fontSize: 14, color: Colors.black),
                                     children: <TextSpan>[
                                       TextSpan(
                                         text: 'notificações pelo app',
                                         style: AppTextStyles.h2HighlightBold
                                             .copyWith(
-                                                fontSize: 16,
+                                                fontSize: 14,
                                                 color: Colors.black),
                                       ),
                                       TextSpan(
                                         text: '?',
                                         style: AppTextStyles.h2.copyWith(
-                                            fontSize: 16, color: Colors.black),
+                                            fontSize: 14, color: Colors.black),
                                       ),
                                     ]),
                               ),
-                              booleanFieldBloc: registerFormBloc.notifications,
+                              booleanFieldBloc:
+                                  registerFormBloc.appNotifications,
+                            ),
+                            CheckboxFieldLoginWidget(
+                              title: MouseRegion(
+                                cursor: SystemMouseCursors.click,
+                                child: GestureDetector(
+                                  onTap: () => {
+                                    launchUrl(
+                                      Uri.parse(
+                                          'https://maua.br/a-maua/politica-de-privacidade'),
+                                      mode: LaunchMode.externalApplication,
+                                    ),
+                                  },
+                                  child: Text(
+                                    'Li e aceito os Termos de Uso',
+                                    style:
+                                        AppTextStyles.h2HighlightBold.copyWith(
+                                      fontSize: 14,
+                                      color: Colors.black,
+                                      decoration: TextDecoration.underline,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              booleanFieldBloc: registerFormBloc.acceptTerms,
                             ),
                             const SizedBox(
                               height: 24,

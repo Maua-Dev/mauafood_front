@@ -9,8 +9,6 @@ class RegisterFormBloc extends FormBloc<String, String> {
 
   final email = TextFieldBloc();
 
-  final emailConfirm = TextFieldBloc();
-
   final password = TextFieldBloc();
 
   final passwordConfirm = TextFieldBloc();
@@ -29,13 +27,6 @@ class RegisterFormBloc extends FormBloc<String, String> {
       return 'Campo obrigatório.';
     } else if (!regExp.hasMatch(emailValue)) {
       return 'E-mail inválido.';
-    }
-    return null;
-  }
-
-  Future<String?> _validateEmailConfirm(String? emailConfirmValue) async {
-    if (email.value != emailConfirmValue) {
-      return 'Emails devem ser iguais.';
     }
     return null;
   }
@@ -79,40 +70,53 @@ class RegisterFormBloc extends FormBloc<String, String> {
     return null;
   }
 
-  final notifications = BooleanFieldBloc();
+  final emailNotifications = BooleanFieldBloc();
+  final appNotifications = BooleanFieldBloc();
+  final acceptTerms = BooleanFieldBloc();
 
   RegisterFormBloc({required this.authBloc}) {
     addFieldBlocs(
       fieldBlocs: [
         email,
-        emailConfirm,
         password,
         passwordConfirm,
         cpf,
         fullName,
-        notifications,
+        emailNotifications,
+        appNotifications,
+        acceptTerms,
       ],
     );
 
     fullName.addAsyncValidators([_validateFullName]);
     cpf.addAsyncValidators([_validateCpf]);
     email.addAsyncValidators([_validateEmail]);
-    emailConfirm.addAsyncValidators([_validateEmailConfirm]);
     password.addAsyncValidators([_validatePassword]);
     passwordConfirm.addAsyncValidators([_validatePasswordConfirm]);
   }
 
   @override
   Future<void> submit() async {
-    if (notifications.value) {
+    if (email.value == '' ||
+        password.value == '' ||
+        cpf.value == '' ||
+        passwordConfirm.value == '' ||
+        fullName.value == '') {
+      emitFailure(
+          failureResponse: 'Certifique-se de que preencheu todos os campos.');
+    } else if (acceptTerms.value) {
       authBloc.add(RegisterUser(
-          email: email.value,
-          password: password.value,
-          cpf: cpf.value,
-          fullName: fullName.value,
-          notifications: notifications.value));
+        email: email.value,
+        password: password.value,
+        cpf: cpf.value,
+        fullName: fullName.value,
+        emailNotifications: emailNotifications.value,
+        appNotifications: appNotifications.value,
+        acceptTerms: acceptTerms.value,
+        isStudent: false,
+      ));
     } else {
-      emitFailure();
+      emitFailure(failureResponse: 'É necessário aceitar os Termos de Uso.');
     }
     emitSuccess();
   }

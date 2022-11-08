@@ -8,7 +8,9 @@ class UserModel extends User {
     required super.isStudent,
     required super.email,
     required super.password,
-    required super.notifications,
+    required super.appNotifications,
+    required super.emailNotifications,
+    required super.acceptTerms,
   });
 
   factory UserModel.fromMap(Map<String, dynamic> json) {
@@ -19,7 +21,9 @@ class UserModel extends User {
       isStudent: json['isStudent'],
       email: json['email'],
       password: json['password'],
-      notifications: json['notifications'],
+      emailNotifications: json['emailNotifications'],
+      appNotifications: json['appNotifications'],
+      acceptTerms: json['acceptTerms'],
     );
   }
 }

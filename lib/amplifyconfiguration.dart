@@ -12,15 +12,15 @@ const amplifyconfig = ''' {
                 "CredentialsProvider": {
                     "CognitoIdentity": {
                         "Default": {
-                            "PoolId": "sa-east-1:1f49e0de-5125-4115-8f1e-957692b178f7",
+                            "PoolId": "sa-east-1:f8c49b17-05ee-4f65-89f5-e2581c35fffd",
                             "Region": "sa-east-1"
                         }
                     }
                 },
                 "CognitoUserPool": {
                     "Default": {
-                        "PoolId": "sa-east-1_DTXbETxrf",
-                        "AppClientId": "6ofeuk6lnahkgm6kl8crem996f",
+                        "PoolId": "sa-east-1_uK7GPHvEU",
+                        "AppClientId": "29batn2po1sktvnmo53b03tqlq",
                         "Region": "sa-east-1"
                     }
                 },
@@ -33,17 +33,12 @@ const amplifyconfig = ''' {
                         ],
                         "signupAttributes": [
                             "EMAIL",
-                            "NAME",
-                            "UPDATED_AT"
+                            "UPDATED_AT",
+                            "NAME"
                         ],
                         "passwordProtectionSettings": {
                             "passwordPolicyMinLength": 8,
-                            "passwordPolicyCharacters": [
-                                "REQUIRES_LOWERCASE",
-                                "REQUIRES_NUMBERS",
-                                "REQUIRES_SYMBOLS",
-                                "REQUIRES_UPPERCASE"
-                            ]
+                            "passwordPolicyCharacters": []
                         },
                         "mfaConfiguration": "OFF",
                         "mfaTypes": [

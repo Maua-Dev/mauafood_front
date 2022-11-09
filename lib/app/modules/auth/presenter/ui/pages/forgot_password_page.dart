@@ -8,15 +8,10 @@ import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/forgot-password/forgot_password_bloc.dart';
 import '../widgets/text_field_login_widget.dart';
 
-class ForgotPasswordPage extends StatefulWidget {
+class ForgotPasswordPage extends StatelessWidget {
   final AuthBloc authBloc;
   const ForgotPasswordPage({super.key, required this.authBloc});
 
-  @override
-  State<ForgotPasswordPage> createState() => _ForgotPasswordPageState();
-}
-
-class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,7 +24,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             ),
           ],
           child: BlocProvider.value(
-            value: widget.authBloc,
+            value: authBloc,
             child: BlocListener<AuthBloc, AuthState>(
               listener: (context, state) {
                 if (state is AuthErrorState) {

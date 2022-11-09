@@ -7,6 +7,7 @@ import 'package:mauafood_front/app/modules/auth/presenter/bloc/confirm-email/con
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/forgot-password/forgot_password_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/login_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/register_form_bloc.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/change_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/confirm_email_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/forgot_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/login_page.dart';

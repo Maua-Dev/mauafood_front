@@ -101,7 +101,7 @@ class _LoginPageState extends State<LoginPage> {
                                 TextFieldLoginWidget(
                                   textFieldBloc: confirmEmailFormBloc.password,
                                   title: 'Senha',
-                                  keyboardType: TextInputType.emailAddress,
+                                  keyboardType: TextInputType.visiblePassword,
                                   suffixButton: SuffixButton.obscureText,
                                   autoFillHints: const [
                                     AutofillHints.password,
@@ -144,7 +144,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         TextButton(
                           onPressed: () async {
-                            Modular.to.pushNamed('/login/forgot-password/',
+                            Modular.to.pushNamed('/login/forgot-password',
                                 arguments: authBloc);
                           },
                           child: Text(

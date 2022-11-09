@@ -136,7 +136,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       return AuthErrorState(failure);
     }, (isConfirmed) {
       if (isConfirmed) {
-        Modular.to.navigate('/login/change-password/');
         return AuthLoadedState(isLogged: _loggedIn);
       } else {
         return AuthErrorState(

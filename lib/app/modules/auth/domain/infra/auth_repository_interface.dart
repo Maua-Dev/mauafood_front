@@ -10,4 +10,7 @@ abstract class AuthRepositoryInterface {
   Future<Either<ConfirmationEmailError, bool>> confirmEmail(
       String email, String confirmationCode);
   Future<Either<LogoutError, void>> logoutUser();
+  Future<Either<ResetPasswordError, void>> resetPassword(String email);
+  Future<Either<ResetPasswordError, void>> confirmResetPassword(
+      String email, String newPassword, String confirmationCode);
 }

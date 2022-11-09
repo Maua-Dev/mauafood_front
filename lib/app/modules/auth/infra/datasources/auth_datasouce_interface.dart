@@ -6,4 +6,7 @@ abstract class AuthDatasourceInterface {
   Future<bool> postRegisterUser(UserModel user);
   Future<bool> postEmailConfirmation(String email, String confirmationCode);
   Future<void> postLogout();
+  Future<void> postResetPassword(String email);
+  Future<void> postConfirmResetPassword(
+      String email, String newPassword, String confirmationCode);
 }

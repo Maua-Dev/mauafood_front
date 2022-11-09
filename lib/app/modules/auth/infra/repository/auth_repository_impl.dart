@@ -70,4 +70,27 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
     }
     return const Right(null);
   }
+
+  @override
+  Future<Either<ResetPasswordError, void>> resetPassword(String email) async {
+    try {
+      await datasource.postResetPassword(email);
+    } catch (e) {
+      return left(ResetPasswordError(message: 'Erro ao fazer resetar senha.'));
+    }
+    return const Right(null);
+  }
+
+  @override
+  Future<Either<ResetPasswordError, void>> confirmResetPassword(
+      String email, String newPassword, String confirmationCode) async {
+    try {
+      await datasource.postConfirmResetPassword(
+          email, newPassword, confirmationCode);
+    } catch (e) {
+      return left(
+          ResetPasswordError(message: 'Erro ao fazer redefinir senha.'));
+    }
+    return const Right(null);
+  }
 }

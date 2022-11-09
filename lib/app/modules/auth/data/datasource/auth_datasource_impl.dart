@@ -75,4 +75,29 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       throw Exception();
     }
   }
+
+  @override
+  Future<void> postResetPassword(String email) async {
+    try {
+      await Amplify.Auth.resetPassword(
+        username: email,
+      );
+    } catch (e) {
+      throw Exception();
+    }
+  }
+
+  @override
+  Future<void> postConfirmResetPassword(
+      String email, String newPassword, String confirmationCode) async {
+    try {
+      await Amplify.Auth.confirmResetPassword(
+        username: email,
+        newPassword: newPassword,
+        confirmationCode: confirmationCode,
+      );
+    } catch (e) {
+      throw Exception();
+    }
+  }
 }

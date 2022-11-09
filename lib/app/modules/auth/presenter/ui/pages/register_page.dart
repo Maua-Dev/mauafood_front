@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -230,15 +229,12 @@ class _RegisterPageState extends State<RegisterPage> {
                                           fontSize: 16, color: Colors.black),
                                       children: <TextSpan>[
                                         TextSpan(
-                                            text: 'Entrar',
-                                            style: AppTextStyles.h2HighlightBold
-                                                .copyWith(
-                                                    fontSize: 16,
-                                                    color: Colors.black),
-                                            recognizer: TapGestureRecognizer()
-                                              ..onTap = () {
-                                                Modular.to.pushNamed('/login/');
-                                              })
+                                          text: 'Entrar',
+                                          style: AppTextStyles.h2HighlightBold
+                                              .copyWith(
+                                                  fontSize: 16,
+                                                  color: Colors.black),
+                                        )
                                       ]),
                                 ),
                               ),

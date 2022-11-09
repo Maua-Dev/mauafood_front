@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -145,28 +144,13 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         TextButton(
                           onPressed: () async {
-                            Modular.to.pushNamed('/login/register',
+                            Modular.to.pushNamed('/login/forgot-password/',
                                 arguments: authBloc);
                           },
-                          child: RichText(
-                            text: TextSpan(
-                                text: 'É aluno Mauá? ',
-                                style: AppTextStyles.h2.copyWith(
-                                    fontSize: 16, color: Colors.black),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                      text: 'Entre com seu R.A.',
-                                      style: AppTextStyles.h2HighlightBold
-                                          .copyWith(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                      recognizer: TapGestureRecognizer()
-                                        ..onTap = () {
-                                          Modular.to.pushNamed(
-                                              '/login/register',
-                                              arguments: authBloc);
-                                        })
-                                ]),
+                          child: Text(
+                            'Esqueceu a senha?',
+                            style: AppTextStyles.h2HighlightBold
+                                .copyWith(fontSize: 16, color: Colors.black),
                           ),
                         ),
                         Padding(

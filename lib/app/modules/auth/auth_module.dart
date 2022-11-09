@@ -4,9 +4,11 @@ import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_pa
 import 'package:mauafood_front/app/modules/auth/infra/repository/auth_storage_impl.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/confirm-email/confirm_email_bloc.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/bloc/forgot-password/forgot_password_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/login_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/register_form_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/confirm_email_page.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/forgot_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/login_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/register_page.dart';
 import 'data/datasource/auth_datasource_impl.dart';
@@ -15,7 +17,7 @@ import 'domain/usecases/confirm_email.dart';
 import 'domain/usecases/login_user.dart';
 import 'domain/usecases/logout_user.dart';
 import 'domain/usecases/register_user.dart';
-import 'domain/usecases/reset_password.dart';
+import 'domain/usecases/forgot_password.dart';
 import 'infra/datasources/auth_datasouce_interface.dart';
 import 'infra/repository/auth_repository_impl.dart';
 
@@ -30,7 +32,8 @@ class AuthModule extends Module {
             export: true),
         Bind<LogoutUserInterface>((i) => LogoutUserImpl(repository: i()),
             export: true),
-        Bind<ResetPasswordInterface>((i) => ResetPasswordImpl(repository: i()),
+        Bind<ForgotPasswordInterface>(
+            (i) => ForgotPasswordImpl(repository: i()),
             export: true),
         Bind<ConfirmResetPasswordInterface>(
             (i) => ConfirmResetPasswordImpl(repository: i()),
@@ -44,7 +47,7 @@ class AuthModule extends Module {
                   confirmEmail: i(),
                   storage: i(),
                   confirmResetPassword: i(),
-                  resetPassword: i(),
+                  forgotPassword: i(),
                 ),
             export: true),
         AsyncBind<AuthStorageInterface>((i) => AuthStorageImpl.instance(),
@@ -52,6 +55,8 @@ class AuthModule extends Module {
         Bind<RegisterFormBloc>((i) => RegisterFormBloc(authBloc: i()),
             export: true),
         Bind<ConfirmEmailBloc>((i) => ConfirmEmailBloc(authBloc: i()),
+            export: true),
+        Bind<ForgotPasswordBloc>((i) => ForgotPasswordBloc(authBloc: i()),
             export: true),
         Bind<LoginBloc>((i) => LoginBloc(authBloc: i()), export: true),
         Bind<AuthRepositoryInterface>(
@@ -74,6 +79,14 @@ class AuthModule extends Module {
         ChildRoute(
           '/confirm-email',
           child: (context, args) => ConfirmEmailPage(authBloc: args.data),
+        ),
+        ChildRoute(
+          '/forgot-password',
+          child: (context, args) => ForgotPasswordPage(authBloc: args.data),
+        ),
+        ChildRoute(
+          '/change-password',
+          child: (context, args) => ChangePasswordPage(authBloc: args.data),
         ),
       ];
 }

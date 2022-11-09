@@ -4,7 +4,7 @@ import '../errors/auth_errors.dart';
 import '../infra/auth_repository_interface.dart';
 
 abstract class ConfirmResetPasswordInterface {
-  Future<Either<ResetPasswordError, void>> call(
+  Future<Either<ForgotPasswordError, void>> call(
       String email, String newPassword, String confirmationCode);
 }
 
@@ -14,7 +14,7 @@ class ConfirmResetPasswordImpl extends ConfirmResetPasswordInterface {
   ConfirmResetPasswordImpl({required this.repository});
 
   @override
-  Future<Either<ResetPasswordError, void>> call(
+  Future<Either<ForgotPasswordError, void>> call(
       String email, String newPassword, String confirmationCode) async {
     var result = await repository.confirmResetPassword(
         email, newPassword, confirmationCode);

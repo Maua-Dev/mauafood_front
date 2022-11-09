@@ -16,8 +16,8 @@ class LogoutError extends AuthErrors {
   LogoutError({required super.message});
 }
 
-class ResetPasswordError extends AuthErrors {
-  ResetPasswordError({required super.message});
+class ForgotPasswordError extends AuthErrors {
+  ForgotPasswordError({required super.message});
 }
 
 class ConfirmationEmailError extends AuthErrors {

@@ -77,11 +77,12 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
   }
 
   @override
-  Future<void> postResetPassword(String email) async {
+  Future<bool> postForgotPassword(String email) async {
     try {
-      await Amplify.Auth.resetPassword(
+      var result = await Amplify.Auth.resetPassword(
         username: email,
       );
+      return result.isPasswordReset;
     } catch (e) {
       throw Exception();
     }

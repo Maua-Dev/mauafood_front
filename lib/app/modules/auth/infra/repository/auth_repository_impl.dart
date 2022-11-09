@@ -51,12 +51,9 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
   @override
   Future<Either<ForgotPasswordError, void>> confirmResetPassword(
       String email, String newPassword, String confirmationCode) async {
-    try {
-      await datasource.postConfirmResetPassword(
-          email, newPassword, confirmationCode);
-    } catch (e) {
-      return left(ForgotPasswordError(message: 'Erro ao redefinir senha.'));
-    }
-    return const Right(null);
+    var result = await datasource.postConfirmResetPassword(
+        email, newPassword, confirmationCode);
+    return result.fold(
+        (failureResult) => result, (successResult) => Right(successResult));
   }
 }

@@ -22,6 +22,10 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
             as CognitoAuthSession;
       });
       return right(result);
+    } on LimitExceededException {
+      return left(SignUpError(
+        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+      ));
     } on SignedOutException {
       return left(SignUpError(message: 'E-mail ou senha incorretos.'));
     } on NotAuthorizedException {
@@ -61,6 +65,10 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
           options: CognitoSignUpOptions(userAttributes: userAttributes));
 
       return right(res.isSignUpComplete);
+    } on LimitExceededException {
+      return left(RegisterError(
+        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+      ));
     } on UsernameExistsException {
       return left(
           RegisterError(message: 'Já existe um cadastro com este e-mail.'));
@@ -86,6 +94,11 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
         confirmationCode: confirmationCode,
       );
       return right(res.isSignUpComplete);
+    } on LimitExceededException {
+      return left(ConfirmationEmailError(
+        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+        email: email,
+      ));
     } on TooManyFailedAttemptsException {
       return left(ConfirmationEmailError(
         message:
@@ -118,13 +131,17 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
     try {
       await Amplify.Auth.signOut();
       return const Right(null);
+    } on LimitExceededException {
+      return left(LogoutError(
+        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+      ));
     } on InternalErrorException {
       return left(LogoutError(
         message: 'Estamos com problemas internos, tente mais tarde.',
       ));
     } catch (e) {
       return left(LogoutError(
-        message: 'Erro ao tentar fazer logout, aguarde.',
+        message: 'Erro ao tentar fazer logout, tente mais tarde.',
       ));
     }
   }
@@ -137,6 +154,10 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
         username: email,
       );
       return right(result.isPasswordReset);
+    } on LimitExceededException {
+      return left(ForgotPasswordError(
+        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+      ));
     } on UserNotConfirmedException {
       return left(ForgotPasswordError(
         message: 'E-mail não confirmado, confirme-o.',
@@ -155,13 +176,13 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       ));
     } catch (e) {
       return left(ForgotPasswordError(
-        message: 'Erro ao tentar mudar senha, aguarde.',
+        message: 'Erro ao tentar resetar senha, tente mais tarde.',
       ));
     }
   }
 
   @override
-  Future<void> postConfirmResetPassword(
+  Future<Either<ForgotPasswordError, void>> postConfirmResetPassword(
       String email, String newPassword, String confirmationCode) async {
     try {
       await Amplify.Auth.confirmResetPassword(
@@ -169,8 +190,27 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
         newPassword: newPassword,
         confirmationCode: confirmationCode,
       );
+      return const Right(null);
+    } on LimitExceededException {
+      return left(ForgotPasswordError(
+        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+      ));
+    } on CodeMismatchException {
+      return left(ForgotPasswordError(
+        message: 'Código fornecido está errado, tente novamente.',
+      ));
+    } on UserNotConfirmedException {
+      return left(ForgotPasswordError(
+        message: 'E-mail não confirmado, confirme-o.',
+      ));
+    } on InternalErrorException {
+      return left(ForgotPasswordError(
+        message: 'Estamos com problemas internos, tente mais tarde.',
+      ));
     } catch (e) {
-      throw Exception();
+      return left(ForgotPasswordError(
+        message: 'Erro ao tentar mudar senha, tente mais tarde.',
+      ));
     }
   }
 }

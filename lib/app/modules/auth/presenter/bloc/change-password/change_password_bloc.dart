@@ -67,7 +67,7 @@ class ChangePasswordBloc extends FormBloc<String, String> {
           newPassword: password.value));
       emitSuccess();
     } else {
-      emitFailure(failureResponse: 'Erro os campos inseridos.');
+      emitFailure(failureResponse: 'Erro com os campos inseridos.');
     }
   }
 

@@ -1,11 +1,10 @@
 import 'dart:async';
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
-
-import '../auth/auth_bloc.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/bloc/register_bloc.dart';
 
 class RegisterFormBloc extends FormBloc<String, String> {
-  final AuthBloc authBloc;
+  final RegisterBloc registerBloc;
 
   final email = TextFieldBloc();
 
@@ -74,7 +73,7 @@ class RegisterFormBloc extends FormBloc<String, String> {
   final appNotifications = BooleanFieldBloc();
   final acceptTerms = BooleanFieldBloc();
 
-  RegisterFormBloc({required this.authBloc}) {
+  RegisterFormBloc({required this.registerBloc}) {
     addFieldBlocs(
       fieldBlocs: [
         email,
@@ -105,7 +104,7 @@ class RegisterFormBloc extends FormBloc<String, String> {
       emitFailure(
           failureResponse: 'Certifique-se de que preencheu todos os campos.');
     } else if (acceptTerms.value) {
-      authBloc.add(RegisterUser(
+      registerBloc.add(RegisterUser(
         email: email.value,
         password: password.value,
         cpf: cpf.value,

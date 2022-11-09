@@ -121,7 +121,8 @@ class ForgotPasswordPage extends StatelessWidget {
                               alignment: Alignment.center,
                               child: TextButton(
                                 onPressed: () {
-                                  Modular.to.pushNamed('/login/');
+                                  Modular.to
+                                      .popUntil(ModalRoute.withName('/login'));
                                 },
                                 child: RichText(
                                   text: TextSpan(

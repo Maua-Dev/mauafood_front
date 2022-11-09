@@ -6,12 +6,14 @@ import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.da
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/confirm-email/confirm_email_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/forgot-password/forgot_password_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/login_bloc.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/bloc/register_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/register_form_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/change_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/confirm_email_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/forgot_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/login_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/register_page.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/success_confirm_page.dart';
 import 'data/datasource/auth_datasource_impl.dart';
 import 'domain/infra/auth_repository_interface.dart';
 import 'domain/usecases/confirm_email.dart';
@@ -44,18 +46,21 @@ class AuthModule extends Module {
             (i) => AuthBloc(
                   logout: i(),
                   login: i(),
-                  register: i(),
-                  confirmEmail: i(),
                   storage: i(),
                   confirmResetPassword: i(),
                   forgotPassword: i(),
                 ),
             export: true),
+        Bind<RegisterBloc>(
+            (i) => RegisterBloc(confirmEmail: i(), register: i()),
+            export: true),
         AsyncBind<AuthStorageInterface>((i) => AuthStorageImpl.instance(),
             export: true),
-        Bind<RegisterFormBloc>((i) => RegisterFormBloc(authBloc: i()),
+        Bind<RegisterFormBloc>((i) => RegisterFormBloc(registerBloc: i()),
             export: true),
-        Bind<ConfirmEmailBloc>((i) => ConfirmEmailBloc(authBloc: i()),
+        Bind<ConfirmEmailBloc>(
+            (i) => ConfirmEmailBloc(
+                registerBloc: i.args.data[0], email: i.args.data[1]),
             export: true),
         Bind<ForgotPasswordBloc>((i) => ForgotPasswordBloc(authBloc: i()),
             export: true),
@@ -73,13 +78,12 @@ class AuthModule extends Module {
             child: (context, args) => const LoginPage()),
         ChildRoute(
           '/register',
-          child: (context, args) => RegisterPage(
-            authBloc: args.data,
-          ),
+          child: (context, args) => const RegisterPage(),
         ),
         ChildRoute(
           '/confirm-email',
-          child: (context, args) => ConfirmEmailPage(authBloc: args.data),
+          child: (context, args) =>
+              ConfirmEmailPage(registerBloc: args.data[0]),
         ),
         ChildRoute(
           '/forgot-password',
@@ -88,6 +92,10 @@ class AuthModule extends Module {
         ChildRoute(
           '/change-password',
           child: (context, args) => ChangePasswordPage(authBloc: args.data),
+        ),
+        ChildRoute(
+          '/success-confirm',
+          child: (context, args) => const SuccessConfirmPage(),
         ),
       ];
 }

@@ -28,7 +28,7 @@ class ChangePasswordBloc extends FormBloc<String, String> {
     } else if (await password.validate() && await confirmPassword.validate()) {
       authBloc.add(ConfirmResetPassword(
           email: '', confirmationCode: '', newPassword: password.value));
-      Modular.to.navigate('/login/change-password/', arguments: authBloc);
+      Modular.to.pushNamed('/login/change-password/', arguments: authBloc);
       emitSuccess();
     } else {
       emitFailure(failureResponse: 'Erro com e-mail inserido.');

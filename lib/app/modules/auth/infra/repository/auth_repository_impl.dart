@@ -35,11 +35,7 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
           RegisterError(message: 'Ocorreu algum erro ao tentar registro'));
     }
 
-    if (result) {
-      return right(result);
-    }
-    return left(
-        RegisterError(message: 'Ocorreu algum erro ao tentar registro.'));
+    return right(result);
   }
 
   @override
@@ -50,16 +46,10 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
       result = await datasource.postEmailConfirmation(email, confirmationCode);
     } catch (e) {
       return left(ConfirmationEmailError(
-          message: 'Ocorreu algum erro ao confirmar email: $email.',
-          email: email));
+          message: 'Código errado ou e-mail não existente.', email: email));
     }
 
-    if (result) {
-      return right(result);
-    }
-    return left(ConfirmationEmailError(
-        message: 'Ocorreu algum erro ao confirmar email: $email.',
-        email: email));
+    return right(result);
   }
 
   @override

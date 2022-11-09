@@ -31,7 +31,8 @@ class ChangePasswordPage extends StatelessWidget {
                       SnackBar(content: Text(state.error.message)));
                 }
                 if (state is AuthLoadedState) {
-                  Modular.to.navigate('/confirm-email', arguments: authBloc);
+                  Modular.to
+                      .pushNamed('/login/confirm-email', arguments: authBloc);
                 }
               },
               child: Builder(

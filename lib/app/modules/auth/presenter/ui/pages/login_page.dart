@@ -46,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
               }
 
               if (state is AuthLoadedState) {
-                Modular.to.navigate('/restaurants');
+                Modular.to.pushNamed('/restaurants');
               }
             },
             child: Builder(

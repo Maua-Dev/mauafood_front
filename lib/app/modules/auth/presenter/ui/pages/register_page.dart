@@ -203,7 +203,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                       );
                                     }
                                     return Text(
-                                      'Entrar',
+                                      'Cadastrar',
                                       style: AppTextStyles.h2HighlightBold
                                           .copyWith(
                                         color: AppColors.white,

@@ -43,14 +43,9 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
 
   @override
   Future<Either<ForgotPasswordError, bool>> forgotPassword(String email) async {
-    bool result;
-    try {
-      result = await datasource.postForgotPassword(email);
-    } catch (e) {
-      return left(ForgotPasswordError(
-          message: 'Usuário não existe ou não confirmou e-mail.'));
-    }
-    return Right(result);
+    var result = await datasource.postForgotPassword(email);
+    return result.fold(
+        (failureResult) => result, (successResult) => Right(successResult));
   }
 
   @override

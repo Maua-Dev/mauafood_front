@@ -130,14 +130,33 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
   }
 
   @override
-  Future<bool> postForgotPassword(String email) async {
+  Future<Either<ForgotPasswordError, bool>> postForgotPassword(
+      String email) async {
     try {
       var result = await Amplify.Auth.resetPassword(
         username: email,
       );
-      return result.isPasswordReset;
+      return right(result.isPasswordReset);
+    } on UserNotConfirmedException {
+      return left(ForgotPasswordError(
+        message: 'E-mail não confirmado, confirme-o.',
+      ));
+    } on UserNotFoundException {
+      return left(ForgotPasswordError(
+        message: 'E-mail não encontrado, certifique-se de que fez cadastro.',
+      ));
+    } on InvalidParameterException {
+      return left(ForgotPasswordError(
+        message: 'E-mail não confirmado, confirme-o antes de mudar a senha.',
+      ));
+    } on InternalErrorException {
+      return left(ForgotPasswordError(
+        message: 'Estamos com problemas internos, tente mais tarde.',
+      ));
     } catch (e) {
-      throw Exception();
+      return left(ForgotPasswordError(
+        message: 'Erro ao tentar mudar senha, aguarde.',
+      ));
     }
   }
 

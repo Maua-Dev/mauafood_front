@@ -64,3 +64,24 @@ class ConfirmEmail extends AuthEvent {
   @override
   List<Object> get props => [email, code];
 }
+
+class ResetPassword extends AuthEvent {
+  final String email;
+  const ResetPassword({required this.email});
+
+  @override
+  List<Object> get props => [email];
+}
+
+class ConfirmResetPassword extends AuthEvent {
+  final String email;
+  final String newPassword;
+  final String confirmationCode;
+  const ConfirmResetPassword(
+      {required this.newPassword,
+      required this.confirmationCode,
+      required this.email});
+
+  @override
+  List<Object> get props => [email, newPassword, confirmationCode];
+}

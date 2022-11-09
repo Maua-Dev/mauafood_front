@@ -6,10 +6,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/reset_password.dart';
 import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
 import 'package:uuid/uuid.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/confirm_email.dart';
+import '../../../domain/usecases/confirm_reset_password.dart';
 import '../../../domain/usecases/login_user.dart';
 import '../../../domain/usecases/register_user.dart';
 
@@ -21,6 +23,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final RegisterUserInterface register;
   final ConfirmEmailInterface confirmEmail;
   final LogoutUserInterface logout;
+  final ResetPasswordInterface resetPassword;
+  final ConfirmResetPasswordInterface confirmResetPassword;
   final AuthStorageInterface storage;
   late Either<AuthErrors, CognitoAuthSession> eitherIsLogged;
   late Either<AuthErrors, bool> eitherIsRegistered;
@@ -31,7 +35,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   bool get isLoggedIn => _loggedIn;
 
   AuthBloc(
-      {required this.logout,
+      {required this.resetPassword,
+      required this.confirmResetPassword,
+      required this.logout,
       required this.storage,
       required this.confirmEmail,
       required this.login,
@@ -41,6 +47,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginWithEmail>(_loginWithEmail);
     on<ConfirmEmail>(_confirmEmail);
     on<LogoutUser>(_logoutUser);
+    on<ResetPassword>(_resetPassword);
+    on<ConfirmResetPassword>(_confirmResetPassword);
   }
 
   FutureOr<void> _registerUser(
@@ -116,6 +124,35 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }));
     if (state is AuthLoadedState) {
       await storage.cleanSecureStorage();
+      Modular.to.navigate('/login/');
+    }
+  }
+
+  FutureOr<void> _resetPassword(
+      ResetPassword event, Emitter<AuthState> emit) async {
+    emit(AuthLoadingState());
+    var result = await resetPassword(event.email);
+    emit(result.fold((failure) {
+      return AuthErrorState(failure);
+    }, (isConfirmed) {
+      return AuthLoadedState(isLogged: _loggedIn);
+    }));
+    if (state is AuthLoadedState) {
+      Modular.to.navigate('/reset-password/');
+    }
+  }
+
+  FutureOr<void> _confirmResetPassword(
+      ConfirmResetPassword event, Emitter<AuthState> emit) async {
+    emit(AuthLoadingState());
+    var result = await confirmResetPassword(
+        event.email, event.newPassword, event.confirmationCode);
+    emit(result.fold((failure) {
+      return AuthErrorState(failure);
+    }, (isConfirmed) {
+      return AuthLoadedState(isLogged: _loggedIn);
+    }));
+    if (state is AuthLoadedState) {
       Modular.to.navigate('/login/');
     }
   }

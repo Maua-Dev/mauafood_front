@@ -27,15 +27,9 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
 
   @override
   Future<Either<RegisterError, bool>> registerUser(UserModel user) async {
-    bool result;
-    try {
-      result = await datasource.postRegisterUser(user);
-    } catch (e) {
-      return left(
-          RegisterError(message: 'Ocorreu algum erro ao tentar registro'));
-    }
-
-    return right(result);
+    var result = await datasource.postRegisterUser(user);
+    return result.fold(
+        (failureResult) => result, (successResult) => Right(successResult));
   }
 
   @override

@@ -1,7 +1,10 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
+import 'package:dartz/dartz.dart';
 import 'package:mauafood_front/app/modules/auth/infra/datasources/auth_datasouce_interface.dart';
 import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
+
+import '../../domain/errors/auth_errors.dart';
 
 class AuthDatasourceImpl extends AuthDatasourceInterface {
   @override
@@ -25,7 +28,7 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
   }
 
   @override
-  Future<bool> postRegisterUser(UserModel user) async {
+  Future<Either<RegisterError, bool>> postRegisterUser(UserModel user) async {
     Map<CognitoUserAttributeKey, String> userAttributes = {
       CognitoUserAttributeKey.email: user.email,
       CognitoUserAttributeKey.name: user.fullName,
@@ -47,9 +50,18 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
           password: user.password,
           options: CognitoSignUpOptions(userAttributes: userAttributes));
 
-      return res.isSignUpComplete;
+      return right(res.isSignUpComplete);
+    } on UsernameExistsException {
+      return left(
+          RegisterError(message: 'Já existe um cadastro com este e-mail.'));
+    } on InvalidParameterException {
+      return left(
+          RegisterError(message: 'Algum campo preenchido de forma errada.'));
+    } on InternalErrorException {
+      return left(RegisterError(
+          message: 'Estamos com problemas internos, tente mais tarde.'));
     } catch (e) {
-      throw Exception();
+      throw RegisterError(message: 'Ocorreu algum erro ao tentar cadastrar.');
     }
   }
 

@@ -1,8 +1,5 @@
 import 'dart:async';
-
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-
 import '../auth/auth_bloc.dart';
 
 class ChangePasswordBloc extends FormBloc<String, String> {

@@ -36,12 +36,9 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
 
   @override
   Future<Either<LogoutError, void>> logoutUser() async {
-    try {
-      await datasource.postLogout();
-    } catch (e) {
-      return left(LogoutError(message: 'Erro ao fazer logout.'));
-    }
-    return const Right(null);
+    var result = await datasource.postLogout();
+    return result.fold(
+        (failureResult) => result, (successResult) => Right(successResult));
   }
 
   @override

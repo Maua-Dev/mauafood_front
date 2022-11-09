@@ -114,11 +114,18 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
   }
 
   @override
-  Future<void> postLogout() async {
+  Future<Either<LogoutError, void>> postLogout() async {
     try {
       await Amplify.Auth.signOut();
+      return const Right(null);
+    } on InternalErrorException {
+      return left(LogoutError(
+        message: 'Estamos com problemas internos, tente mais tarde.',
+      ));
     } catch (e) {
-      throw Exception();
+      return left(LogoutError(
+        message: 'Erro ao tentar fazer logout, aguarde.',
+      ));
     }
   }
 

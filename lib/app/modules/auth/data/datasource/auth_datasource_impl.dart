@@ -8,7 +8,7 @@ import '../../domain/errors/auth_errors.dart';
 
 class AuthDatasourceImpl extends AuthDatasourceInterface {
   @override
-  Future<CognitoAuthSession> postLoginUser(
+  Future<Either<SignUpError, CognitoAuthSession>> postLoginUser(
       String email, String password) async {
     try {
       late CognitoAuthSession result;
@@ -21,9 +21,19 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
                 options: CognitoSessionOptions(getAWSCredentials: true))
             as CognitoAuthSession;
       });
-      return result;
+      return right(result);
+    } on SignedOutException {
+      return left(SignUpError(message: 'E-mail ou senha incorretos.'));
+    } on NotAuthorizedException {
+      return left(SignUpError(message: 'E-mail ou senha incorretos.'));
+    } on UserNotConfirmedException {
+      return left(SignUpError(message: 'E-mail não confirmado, confirme-o.'));
+    } on UserNotFoundException {
+      return left(SignUpError(
+          message: 'E-mail ou senha incorretos ou e-mail não cadastrado.'));
     } catch (e) {
-      throw Exception();
+      return left(
+          SignUpError(message: 'Algo deu errado, tente novamente mais tarde.'));
     }
   }
 
@@ -61,7 +71,9 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       return left(RegisterError(
           message: 'Estamos com problemas internos, tente mais tarde.'));
     } catch (e) {
-      throw RegisterError(message: 'Ocorreu algum erro ao tentar cadastrar.');
+      return left(RegisterError(
+          message:
+              'Ocorreu algum erro ao tentar cadastrar, tente novamente mais tarde.'));
     }
   }
 

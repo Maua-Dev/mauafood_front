@@ -13,16 +13,9 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
   @override
   Future<Either<SignUpError, CognitoAuthSession>> loginUser(
       String email, String password) async {
-    CognitoAuthSession result;
-    try {
-      result = await datasource.postLoginUser(email, password);
-    } catch (e) {
-      return left(SignUpError(
-          message:
-              'E-mail ou senha incorretos, inexistentes ou e-mail não confirmado.'));
-    }
-
-    return right(result);
+    var result = await datasource.postLoginUser(email, password);
+    return result.fold(
+        (failureResult) => result, (successResult) => Right(successResult));
   }
 
   @override

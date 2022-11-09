@@ -66,7 +66,7 @@ class ChangePasswordBloc extends FormBloc<String, String> {
         await code.validate()) {
       authBloc.add(ChangePassword(
           email: email,
-          confirmationCode: password.value,
+          confirmationCode: code.value,
           newPassword: password.value));
       emitSuccess();
     } else {

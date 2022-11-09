@@ -79,6 +79,7 @@ class ChangePasswordPage extends StatelessWidget {
                           TextFieldLoginWidget(
                             textFieldBloc: changePasswordFormBloc.code,
                             title: 'Código',
+                            keyboardType: TextInputType.number,
                           ),
                           TextFieldLoginWidget(
                             textFieldBloc: changePasswordFormBloc.password,

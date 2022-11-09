@@ -66,16 +66,38 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
   }
 
   @override
-  Future<bool> postEmailConfirmation(
+  Future<Either<ConfirmationEmailError, bool>> postEmailConfirmation(
       String email, String confirmationCode) async {
     try {
       SignUpResult res = await Amplify.Auth.confirmSignUp(
         username: email,
         confirmationCode: confirmationCode,
       );
-      return res.isSignUpComplete;
+      return right(res.isSignUpComplete);
+    } on TooManyFailedAttemptsException {
+      return left(ConfirmationEmailError(
+        message:
+            'Parece que você tentou errou o código muitas vezes, entre em contato.',
+        email: email,
+      ));
+    } on UserNotFoundException {
+      return left(ConfirmationEmailError(
+        message: 'Não encontramos um e-mail cadastrado para $email',
+        email: email,
+      ));
+    } on InternalErrorException {
+      return left(ConfirmationEmailError(
+        message: 'Estamos com problemas internos, tente mais tarde.',
+        email: email,
+      ));
+    } on CodeMismatchException {
+      return left(ConfirmationEmailError(
+        message: 'Código fornecido está errado, tente novamente.',
+        email: email,
+      ));
     } catch (e) {
-      throw Exception();
+      throw ConfirmationEmailError(
+          message: 'Ocorreu algum erro ao confirmar e-mail.', email: email);
     }
   }
 

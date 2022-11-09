@@ -35,15 +35,10 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
   @override
   Future<Either<ConfirmationEmailError, bool>> confirmEmail(
       String email, String confirmationCode) async {
-    bool result;
-    try {
-      result = await datasource.postEmailConfirmation(email, confirmationCode);
-    } catch (e) {
-      return left(ConfirmationEmailError(
-          message: 'Código errado ou e-mail não existente.', email: email));
-    }
-
-    return right(result);
+    var result =
+        await datasource.postEmailConfirmation(email, confirmationCode);
+    return result.fold(
+        (failureResult) => result, (successResult) => Right(successResult));
   }
 
   @override

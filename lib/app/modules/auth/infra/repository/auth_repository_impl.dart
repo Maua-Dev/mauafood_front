@@ -81,8 +81,7 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
       await datasource.postConfirmResetPassword(
           email, newPassword, confirmationCode);
     } catch (e) {
-      return left(
-          ForgotPasswordError(message: 'Erro ao fazer redefinir senha.'));
+      return left(ForgotPasswordError(message: 'Erro ao redefinir senha.'));
     }
     return const Right(null);
   }

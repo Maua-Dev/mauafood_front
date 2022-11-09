@@ -29,11 +29,11 @@ class ForgotPassword extends AuthEvent {
   List<Object> get props => [email];
 }
 
-class ConfirmResetPassword extends AuthEvent {
+class ChangePassword extends AuthEvent {
   final String email;
   final String newPassword;
   final String confirmationCode;
-  const ConfirmResetPassword(
+  const ChangePassword(
       {required this.newPassword,
       required this.confirmationCode,
       required this.email});

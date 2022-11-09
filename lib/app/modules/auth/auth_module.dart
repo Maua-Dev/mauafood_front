@@ -3,6 +3,7 @@ import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interf
 import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_password.dart';
 import 'package:mauafood_front/app/modules/auth/infra/repository/auth_storage_impl.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/bloc/change-password/change_password_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/confirm-email/confirm_email_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/forgot-password/forgot_password_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/login_bloc.dart';
@@ -13,6 +14,7 @@ import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/confirm_email
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/forgot_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/login_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/register_page.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/success_change_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/success_confirm_page.dart';
 import 'data/datasource/auth_datasource_impl.dart';
 import 'domain/infra/auth_repository_interface.dart';
@@ -64,6 +66,10 @@ class AuthModule extends Module {
             export: true),
         Bind<ForgotPasswordBloc>((i) => ForgotPasswordBloc(authBloc: i()),
             export: true),
+        Bind<ChangePasswordBloc>(
+            (i) => ChangePasswordBloc(
+                authBloc: i.args.data[0], email: i.args.data[1]),
+            export: true),
         Bind<LoginBloc>((i) => LoginBloc(authBloc: i()), export: true),
         Bind<AuthRepositoryInterface>(
             (i) => AuthRepositoryImpl(datasource: i()),
@@ -91,11 +97,15 @@ class AuthModule extends Module {
         ),
         ChildRoute(
           '/change-password',
-          child: (context, args) => ChangePasswordPage(authBloc: args.data),
+          child: (context, args) => ChangePasswordPage(authBloc: args.data[0]),
         ),
         ChildRoute(
           '/success-confirm',
           child: (context, args) => const SuccessConfirmPage(),
+        ),
+        ChildRoute(
+          '/success-change-password',
+          child: (context, args) => const SuccessChangePasswordPage(),
         ),
       ];
 }

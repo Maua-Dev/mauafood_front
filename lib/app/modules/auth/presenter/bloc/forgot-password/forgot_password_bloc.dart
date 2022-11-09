@@ -39,7 +39,7 @@ class ForgotPasswordBloc extends FormBloc<String, String> {
       authBloc.add(ForgotPassword(email: email.value));
       emitSuccess();
     } else {
-      emitFailure(failureResponse: 'Erro com input de e-mail.');
+      emitFailure(failureResponse: 'E-mail inválido.');
     }
   }
 

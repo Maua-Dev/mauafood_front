@@ -20,6 +20,19 @@ class AuthLoadedState extends AuthState {
   List<Object> get props => [isLogged];
 }
 
+class AuthConfirmResetState extends AuthState {
+  final bool isReseted;
+
+  const AuthConfirmResetState({required this.isReseted});
+
+  @override
+  List<Object> get props => [isReseted];
+}
+
+class AuthChangePasswordCompleteState extends AuthState {
+  const AuthChangePasswordCompleteState();
+}
+
 class AuthErrorState extends AuthState {
   final AuthErrors error;
 

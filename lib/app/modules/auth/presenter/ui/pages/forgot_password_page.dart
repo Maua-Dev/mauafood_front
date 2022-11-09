@@ -23,21 +23,21 @@ class ForgotPasswordPage extends StatelessWidget {
               create: (context) => Modular.get<ForgotPasswordBloc>(),
             ),
           ],
-          child: BlocProvider.value(
-            value: authBloc,
-            child: BlocListener<AuthBloc, AuthState>(
-              listener: (context, state) {
-                if (state is AuthErrorState) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.error.message)));
-                }
-                if (state is AuthLoadedState) {}
-              },
-              child: Builder(builder: (context) {
-                final forgotPasswordFormBloc =
-                    BlocProvider.of<ForgotPasswordBloc>(context);
-
-                return FormBlocListener<ForgotPasswordBloc, String, String>(
+          child: Builder(builder: (context) {
+            final forgotPasswordFormBloc =
+                BlocProvider.of<ForgotPasswordBloc>(context);
+            return BlocProvider.value(
+              value: authBloc,
+              child: BlocListener<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  if (state is AuthConfirmResetState) {
+                    Modular.to.pushNamed('/login/change-password', arguments: [
+                      authBloc,
+                      forgotPasswordFormBloc.email.value
+                    ]);
+                  }
+                },
+                child: FormBlocListener<ForgotPasswordBloc, String, String>(
                   onFailure: (context, state) {
                     ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(content: Text(state.failureResponse!)));
@@ -144,10 +144,10 @@ class ForgotPasswordPage extends StatelessWidget {
                           ]),
                     ),
                   ),
-                );
-              }),
-            ),
-          ),
+                ),
+              ),
+            );
+          }),
         ),
       ),
     );

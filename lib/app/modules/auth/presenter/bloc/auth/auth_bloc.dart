@@ -35,7 +35,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginWithEmail>(_loginWithEmail);
     on<LogoutUser>(_logoutUser);
     on<ForgotPassword>(_forgotPassword);
-    on<ConfirmResetPassword>(_confirmResetPassword);
+    on<ChangePassword>(_changePassword);
   }
 
   FutureOr<void> _loginWithEmail(
@@ -88,28 +88,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     var result = await forgotPassword(event.email);
     emit(result.fold((failure) {
       return AuthErrorState(failure);
-    }, (isConfirmed) {
-      if (isConfirmed) {
-        return AuthLoadedState(isLogged: _loggedIn);
-      } else {
-        return AuthErrorState(
-            ForgotPasswordError(message: 'Resete de senha não autorizado.'));
-      }
+    }, (isReseted) {
+      return AuthConfirmResetState(isReseted: isReseted);
     }));
   }
 
-  FutureOr<void> _confirmResetPassword(
-      ConfirmResetPassword event, Emitter<AuthState> emit) async {
+  FutureOr<void> _changePassword(
+      ChangePassword event, Emitter<AuthState> emit) async {
     emit(AuthLoadingState());
     var result = await confirmResetPassword(
         event.email, event.newPassword, event.confirmationCode);
     emit(result.fold((failure) {
       return AuthErrorState(failure);
     }, (isConfirmed) {
-      return AuthLoadedState(isLogged: _loggedIn);
+      return const AuthChangePasswordCompleteState();
     }));
-    if (state is AuthLoadedState) {
-      Modular.to.popUntil(ModalRoute.withName('/login'));
-    }
   }
 }

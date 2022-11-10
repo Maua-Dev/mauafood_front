@@ -26,4 +26,14 @@ class MealModel extends Meal {
   static List<MealModel> fromMaps(List array) {
     return array.map((e) => MealModel.fromMap(e)).toList();
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name,
+        'description': description,
+        'price': price,
+        'prepareTime': prepareTime,
+        'type': type.name,
+        'photo': photo,
+      };
 }

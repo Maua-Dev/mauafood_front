@@ -4,6 +4,8 @@ import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_e
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
+import '../../../../../shared/utils/utils.dart';
+
 class RestaurantWidget extends StatelessWidget {
   final RestaurantEnum restaurantInfo;
 
@@ -22,7 +24,7 @@ class RestaurantWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width / 3,
+              width: Utils.width(context) / 3,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(20),
                 child: Image.network(

@@ -1,8 +1,7 @@
 import 'dart:async';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mauafood_front/app/modules/cart/domain/entities/cart_item_entity.dart';
+import '../../infra/models/cart_item_model.dart';
 
 part 'cart_event.dart';
 part 'cart_state.dart';
@@ -30,7 +29,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   FutureOr<void> _onDeleteItem(DeleteItemEvent event, Emitter<CartState> emit) {
     final state = this.state;
     if (state is CartLoadedState) {
-      List<CartItem> list = state.cartItems
+      List<CartItemModel> list = state.cartItems
           .where((item) => item.meal.id != event.item.meal.id)
           .toList();
       emit(CartLoadedState(cartItems: list));
@@ -40,7 +39,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   FutureOr<void> _onUpdateItem(UpdateItemEvent event, Emitter<CartState> emit) {
     final state = this.state;
     if (state is CartLoadedState) {
-      List<CartItem> list = state.cartItems
+      List<CartItemModel> list = state.cartItems
           .map((e) => e.meal.id == event.item.meal.id ? event.item : e)
           .toList();
       emit(CartLoadedState(cartItems: list));

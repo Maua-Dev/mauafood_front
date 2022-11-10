@@ -12,7 +12,7 @@ class CartInitialState extends CartState {}
 class CartLoadingState extends CartState {}
 
 class CartLoadedState extends CartState {
-  final List<CartItem> cartItems;
+  final List<CartItemModel> cartItems;
 
   const CartLoadedState({required this.cartItems});
 

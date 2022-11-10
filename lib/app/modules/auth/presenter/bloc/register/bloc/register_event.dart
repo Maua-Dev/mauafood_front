@@ -50,3 +50,11 @@ class ConfirmEmail extends RegisterEvent {
   @override
   List<Object> get props => [email, code];
 }
+
+class ResendConfirmationCode extends RegisterEvent {
+  final String email;
+  const ResendConfirmationCode({required this.email});
+
+  @override
+  List<Object> get props => [];
+}

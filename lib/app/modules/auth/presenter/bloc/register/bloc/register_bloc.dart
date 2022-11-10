@@ -8,6 +8,7 @@ import 'package:uuid/uuid.dart';
 import '../../../../domain/errors/auth_errors.dart';
 import '../../../../domain/usecases/confirm_email.dart';
 import '../../../../domain/usecases/register_user.dart';
+import '../../../../domain/usecases/resend_confirmation_code.dart';
 import '../../../../infra/models/user_model.dart';
 
 part 'register_event.dart';
@@ -16,12 +17,17 @@ part 'register_state.dart';
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final RegisterUserInterface register;
   final ConfirmEmailInterface confirmEmail;
+  final ResendConfirmationCodeInterface resendConfirmationCode;
   late Either<AuthErrors, bool> eitherIsRegistered;
   late Either<AuthErrors, bool> eitherIsConfirmed;
-  RegisterBloc({required this.register, required this.confirmEmail})
+  RegisterBloc(
+      {required this.resendConfirmationCode,
+      required this.register,
+      required this.confirmEmail})
       : super(RegisterInitialState()) {
     on<RegisterUser>(_registerUser);
     on<ConfirmEmail>(_confirmEmail);
+    on<ResendConfirmationCode>(_resendConfirmationCode);
   }
 
   FutureOr<void> _registerUser(
@@ -54,6 +60,17 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       return RegisterErrorState(error: failure);
     }, (isConfirmed) {
       return ConfirmLoadedState(isConfirmed: isConfirmed);
+    }));
+  }
+
+  FutureOr<void> _resendConfirmationCode(
+      ResendConfirmationCode event, Emitter<RegisterState> emit) async {
+    emit(RegisterLoadingState());
+    var result = await resendConfirmationCode(event.email);
+    emit(result.fold((failure) {
+      return RegisterErrorState(error: failure);
+    }, (isConfirmed) {
+      return const RegisterLoadedState();
     }));
   }
 }

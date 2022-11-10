@@ -20,6 +20,10 @@ class ForgotPasswordError extends AuthErrors {
   ForgotPasswordError({required super.message});
 }
 
+class ResendCodeError extends AuthErrors {
+  ResendCodeError({required super.message});
+}
+
 class ConfirmationEmailError extends AuthErrors {
   final String email;
   ConfirmationEmailError({required this.email, required super.message});

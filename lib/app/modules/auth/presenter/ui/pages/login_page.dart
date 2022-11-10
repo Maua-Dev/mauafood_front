@@ -153,6 +153,16 @@ class _LoginPageState extends State<LoginPage> {
                                 .copyWith(fontSize: 16, color: Colors.black),
                           ),
                         ),
+                        TextButton(
+                          onPressed: () async {
+                            Modular.to.pushNamed('/login/resend-code');
+                          },
+                          child: Text(
+                            'Confirmação de e-mail',
+                            style: AppTextStyles.h2HighlightBold
+                                .copyWith(fontSize: 16, color: Colors.black),
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(bottom: 16),
                           child: TextButton(

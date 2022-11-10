@@ -56,4 +56,11 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
     return result.fold(
         (failureResult) => result, (successResult) => Right(successResult));
   }
+
+  @override
+  Future<Either<ResendCodeError, void>> postResendCode(String email) async {
+    var result = await datasource.postResendCode(email);
+    return result.fold(
+        (failureResult) => result, (successResult) => Right(successResult));
+  }
 }

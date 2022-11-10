@@ -29,7 +29,7 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
     } on SignedOutException {
       return left(SignUpError(message: 'E-mail ou senha incorretos.'));
     } on NotAuthorizedException {
-      return left(SignUpError(message: 'E-mail ou senha incorretos.'));
+      return left(SignUpError(message: 'E-mail não confirmado, confirme-o.'));
     } on UserNotConfirmedException {
       return left(SignUpError(message: 'E-mail não confirmado, confirme-o.'));
     } on UserNotFoundException {
@@ -210,6 +210,18 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
     } catch (e) {
       return left(ForgotPasswordError(
         message: 'Erro ao tentar mudar senha, tente mais tarde.',
+      ));
+    }
+  }
+
+  @override
+  Future<Either<ResendCodeError, void>> postResendCode(String email) async {
+    try {
+      await Amplify.Auth.resendSignUpCode(username: email);
+      return const Right(null);
+    } catch (e) {
+      return left(ResendCodeError(
+        message: 'Erro ao tentar enviar código, tente mais tarde.',
       ));
     }
   }

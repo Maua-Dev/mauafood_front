@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_password.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/resend_confirmation_code.dart';
 import 'package:mauafood_front/app/modules/auth/infra/repository/auth_storage_impl.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/change-password/change_password_bloc.dart';
@@ -9,11 +10,13 @@ import 'package:mauafood_front/app/modules/auth/presenter/bloc/forgot-password/f
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/login_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/bloc/register_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/register_form_bloc.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/bloc/resend-code/resend_code_form_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/change_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/confirm_email_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/forgot_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/login_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/register_page.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/resend_confirmation_code_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/success_change_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/success_confirm_page.dart';
 import 'data/datasource/auth_datasource_impl.dart';
@@ -37,6 +40,9 @@ class AuthModule extends Module {
             export: true),
         Bind<LogoutUserInterface>((i) => LogoutUserImpl(repository: i()),
             export: true),
+        Bind<ResendConfirmationCodeInterface>(
+            (i) => ResendConfirmationCodeImpl(repository: i()),
+            export: true),
         Bind<ForgotPasswordInterface>(
             (i) => ForgotPasswordImpl(repository: i()),
             export: true),
@@ -54,7 +60,10 @@ class AuthModule extends Module {
                 ),
             export: true),
         Bind<RegisterBloc>(
-            (i) => RegisterBloc(confirmEmail: i(), register: i()),
+            (i) => RegisterBloc(
+                confirmEmail: i(), register: i(), resendConfirmationCode: i()),
+            export: true),
+        Bind<ResendCodeFormBloc>((i) => ResendCodeFormBloc(registerBloc: i()),
             export: true),
         AsyncBind<AuthStorageInterface>((i) => AuthStorageImpl.instance(),
             export: true),
@@ -106,6 +115,10 @@ class AuthModule extends Module {
         ChildRoute(
           '/success-change-password',
           child: (context, args) => const SuccessChangePasswordPage(),
+        ),
+        ChildRoute(
+          '/resend-code',
+          child: (context, args) => const ResendConfirmationCodePage(),
         ),
       ];
 }

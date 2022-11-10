@@ -14,4 +14,5 @@ abstract class AuthDatasourceInterface {
   Future<Either<ForgotPasswordError, bool>> postForgotPassword(String email);
   Future<Either<ForgotPasswordError, void>> postConfirmResetPassword(
       String email, String newPassword, String confirmationCode);
+  Future<Either<ResendCodeError, void>> postResendCode(String email);
 }

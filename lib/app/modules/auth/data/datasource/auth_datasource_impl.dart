@@ -219,6 +219,22 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
     try {
       await Amplify.Auth.resendSignUpCode(username: email);
       return const Right(null);
+    } on UserNotFoundException {
+      return left(ResendCodeError(
+        message: 'E-mail não encontrado, certifique-se de que fez cadastro.',
+      ));
+    } on LimitExceededException {
+      return left(ResendCodeError(
+        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+      ));
+    } on InternalErrorException {
+      return left(ResendCodeError(
+        message: 'Estamos com problemas internos, tente mais tarde.',
+      ));
+    } on CodeDeliveryFailureException {
+      return left(ResendCodeError(
+        message: 'Falha ao enviar código para o e-mail, tente novamente.',
+      ));
     } catch (e) {
       return left(ResendCodeError(
         message: 'Erro ao tentar enviar código, tente mais tarde.',

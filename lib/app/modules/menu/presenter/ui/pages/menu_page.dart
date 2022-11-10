@@ -92,57 +92,12 @@ class _MenuPageState extends State<MenuPage> {
                 );
               }),
             ),
-            Expanded(
-                child: Container(
-                    width: Utils.width(context),
-                    decoration: BoxDecoration(
-                        color: AppColors.backgroundColor2,
-                        borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(50),
-                            topRight: Radius.circular(50))),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          IconButton(
-                              onPressed: () {
-                                Modular.to.pushNamed('/menu/cart/',
-                                    arguments: cartBloc);
-                              },
-                              icon: const Icon(Icons.shopping_cart)),
-                          const SizedBox(
-                            height: 24,
-                          ),
-                          BlocBuilder<MenuBloc, MenuState>(
-                              builder: (context, state) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 16, horizontal: 24),
-                              child: TextField(
-                                onChanged: (value) {
-                                  BlocProvider.of<MenuBloc>(context)
-                                      .add(SearchMealEvent(search: value));
-                                },
-                                keyboardType: TextInputType.emailAddress,
-                                decoration: InputDecoration(
-                                  border: OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        width: 1,
-                                        color: AppColors
-                                            .backgroundColor2), //<-- SEE HERE
-                                    borderRadius: BorderRadius.circular(50.0),
-                                  ),
-                                  labelStyle: AppTextStyles.h2Highlight
-                                      .copyWith(fontWeight: FontWeight.bold),
-                                  labelText: 'Pesquisa',
-                                  prefixIcon: Icon(
-                                    Icons.search,
-                                    color: AppColors.letterHighlightColor,
-                                  ),
-                                ),
-                              ),
-                            );
-                          }),
-                        ]))),
+            IconButton(
+                onPressed: () {
+                  Modular.to.pushNamed('/restaurants/menu/cart/',
+                      arguments: cartBloc);
+                },
+                icon: const Icon(Icons.shopping_cart)),
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -224,6 +179,14 @@ class _MenuPageState extends State<MenuPage> {
                               itemBuilder: (context, index) {
                                 return MealCardWidget(
                                   meal: state.listMeal[index],
+                                  onPressed: () {
+                                    Modular.to.pushNamed(
+                                        '/restaurants/menu/meal-info/',
+                                        arguments: [
+                                          state.listMeal[index],
+                                          cartBloc
+                                        ]);
+                                  },
                                 );
                               },
                             ),

@@ -15,7 +15,6 @@ class ResendConfirmationCodeImpl extends ResendConfirmationCodeInterface {
   @override
   Future<Either<ResendCodeError, void>> call(String email) async {
     var result = await repository.postResendCode(email);
-    print(email);
     return result.fold(
         (failureResult) => result, (successResult) => Right(successResult));
   }

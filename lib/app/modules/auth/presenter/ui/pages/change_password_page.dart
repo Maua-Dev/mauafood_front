@@ -6,6 +6,8 @@ import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/change-password/change_password_bloc.dart';
+import '../widgets/auth_button_widget.dart';
+import '../widgets/text_button_login_widget.dart';
 import '../widgets/text_field_login_widget.dart';
 
 class ChangePasswordPage extends StatelessWidget {
@@ -103,33 +105,22 @@ class ChangePasswordPage extends StatelessWidget {
                           const SizedBox(
                             height: 36,
                           ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: ElevatedButton(
-                              onPressed: () async {
-                                changePasswordFormBloc.submit();
-                              },
-                              style: ElevatedButton.styleFrom(
-                                minimumSize: const Size.fromHeight(50),
-                              ),
-                              child: BlocBuilder<AuthBloc, AuthState>(
-                                builder: (context, state) {
-                                  if (state is AuthLoadingState) {
-                                    return CircularProgressIndicator(
-                                      color: AppColors.white,
-                                    );
-                                  }
-                                  return Text(
-                                    'Enviar',
-                                    style:
-                                        AppTextStyles.h2HighlightBold.copyWith(
-                                      color: AppColors.white,
-                                      fontSize: 16,
-                                    ),
-                                  );
-                                },
-                              ),
-                            ),
+                          AuthButtonWidget(
+                            onPressed: () async {
+                              changePasswordFormBloc.submit();
+                            },
+                            title: 'Enviar',
+                          ),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          TextButtonLoginWidget(
+                            onPressed: () {
+                              Modular.to
+                                  .popUntil(ModalRoute.withName('/login'));
+                            },
+                            text: 'Já tem uma senha? ',
+                            highlightText: 'Faça o login',
                           ),
                         ],
                       ),

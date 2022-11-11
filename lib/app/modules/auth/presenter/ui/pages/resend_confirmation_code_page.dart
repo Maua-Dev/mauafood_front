@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/register/bloc/register_bloc.dart';
 import '../../bloc/resend-code/resend_code_form_bloc.dart';
+import '../widgets/register_button_widget.dart';
+import '../widgets/text_button_login_widget.dart';
 import '../widgets/text_field_login_widget.dart';
 
 class ResendConfirmationCodePage extends StatefulWidget {
@@ -38,15 +39,13 @@ class _ResendConfirmationCodePageState
           ),
         ],
         child: Builder(builder: (context) {
-          final forgotPasswordFormBloc =
+          final resendCodeFormBloc =
               BlocProvider.of<ResendCodeFormBloc>(context);
           return BlocListener<RegisterBloc, RegisterState>(
             listener: (context, state) {
               if (state is RegisterLoadedState) {
-                Modular.to.pushNamed('/login/confirm-email', arguments: [
-                  registerBloc,
-                  forgotPasswordFormBloc.email.value
-                ]);
+                Modular.to.pushNamed('/login/confirm-email',
+                    arguments: [registerBloc, resendCodeFormBloc.email.value]);
               }
             },
             child: FormBlocListener<ResendCodeFormBloc, String, String>(
@@ -91,65 +90,27 @@ class _ResendConfirmationCodePageState
                           height: 24,
                         ),
                         TextFieldLoginWidget(
-                          textFieldBloc: forgotPasswordFormBloc.email,
+                          textFieldBloc: resendCodeFormBloc.email,
                           title: 'E-mail',
                         ),
                         const SizedBox(
                           height: 48,
                         ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: ElevatedButton(
-                            onPressed: () async {
-                              forgotPasswordFormBloc.submit();
-                            },
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size.fromHeight(50),
-                            ),
-                            child: BlocBuilder<RegisterBloc, RegisterState>(
-                              builder: (context, state) {
-                                if (state is RegisterLoadingState) {
-                                  return CircularProgressIndicator(
-                                    color: AppColors.white,
-                                  );
-                                }
-                                return Text(
-                                  'Enviar',
-                                  style: AppTextStyles.h2HighlightBold.copyWith(
-                                    color: AppColors.white,
-                                    fontSize: 16,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
+                        RegisterButtonWidget(
+                          onPressed: () {
+                            resendCodeFormBloc.submit();
+                          },
+                          title: 'Enviar',
                         ),
                         const SizedBox(
                           height: 16,
                         ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: TextButton(
-                            onPressed: () {
-                              Modular.to
-                                  .popUntil(ModalRoute.withName('/login'));
-                            },
-                            child: RichText(
-                              text: TextSpan(
-                                  text: 'Já tem uma senha? ',
-                                  style: AppTextStyles.h2.copyWith(
-                                      fontSize: 16, color: Colors.black),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: 'Faça o login',
-                                      style: AppTextStyles.h2HighlightBold
-                                          .copyWith(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                    )
-                                  ]),
-                            ),
-                          ),
+                        TextButtonLoginWidget(
+                          onPressed: () {
+                            Modular.to.popUntil(ModalRoute.withName('/login'));
+                          },
+                          text: 'Já tem uma senha? ',
+                          highlightText: 'Faça o login',
                         ),
                       ]),
                 ),

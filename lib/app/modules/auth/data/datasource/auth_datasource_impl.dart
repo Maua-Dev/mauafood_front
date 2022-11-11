@@ -94,6 +94,11 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
         confirmationCode: confirmationCode,
       );
       return right(res.isSignUpComplete);
+    } on InvalidParameterException {
+      return left(ConfirmationEmailError(
+        message: 'E-mail, provavelmente, já confirmado.',
+        email: email,
+      ));
     } on LimitExceededException {
       return left(ConfirmationEmailError(
         message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
@@ -219,6 +224,10 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
     try {
       await Amplify.Auth.resendSignUpCode(username: email);
       return const Right(null);
+    } on InvalidParameterException {
+      return left(ResendCodeError(
+        message: 'E-mail, provavelmente, já confirmado.',
+      ));
     } on UserNotFoundException {
       return left(ResendCodeError(
         message: 'E-mail não encontrado, certifique-se de que fez cadastro.',

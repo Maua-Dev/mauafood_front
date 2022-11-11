@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
+import '../widgets/button_widget.dart';
 
 class SuccessConfirmPage extends StatelessWidget {
   const SuccessConfirmPage({super.key});
@@ -12,8 +13,9 @@ class SuccessConfirmPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
+          padding: const EdgeInsets.symmetric(horizontal: 24),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 64),
@@ -35,20 +37,11 @@ class SuccessConfirmPage extends StatelessWidget {
               const SizedBox(
                 height: 64,
               ),
-              ElevatedButton(
+              ButtonWidget(
                 onPressed: () async {
                   Modular.to.popUntil(ModalRoute.withName('/login'));
                 },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                ),
-                child: Text(
-                  'Login',
-                  style: AppTextStyles.h2HighlightBold.copyWith(
-                    color: AppColors.white,
-                    fontSize: 16,
-                  ),
-                ),
+                title: 'Login',
               ),
             ],
           ),

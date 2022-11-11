@@ -6,6 +6,8 @@ import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
 import '../../bloc/auth/auth_bloc.dart';
+import '../widgets/auth_button_widget.dart';
+import '../widgets/text_button_login_widget.dart';
 import '../widgets/text_field_login_widget.dart';
 
 class LoginPage extends StatefulWidget {
@@ -110,70 +112,34 @@ class _LoginPageState extends State<LoginPage> {
                                 const SizedBox(
                                   height: 8,
                                 ),
-                                Align(
-                                  alignment: Alignment.center,
-                                  child: ElevatedButton(
-                                    onPressed: () async {
-                                      confirmEmailFormBloc.submit();
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                      minimumSize: const Size.fromHeight(50),
-                                    ),
-                                    child: BlocBuilder<AuthBloc, AuthState>(
-                                      builder: (context, state) {
-                                        if (state is AuthLoadingState) {
-                                          return CircularProgressIndicator(
-                                            color: AppColors.white,
-                                          );
-                                        }
-                                        return Text(
-                                          'Entrar',
-                                          style: AppTextStyles.h2HighlightBold
-                                              .copyWith(
-                                            color: AppColors.white,
-                                            fontSize: 16,
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
+                                AuthButtonWidget(
+                                  onPressed: () async {
+                                    confirmEmailFormBloc.submit();
+                                  },
+                                  title: 'Entrar',
                                 ),
                               ],
                             ),
                           ),
                         ),
-                        TextButton(
-                          onPressed: () async {
+                        TextButtonLoginWidget(
+                          onPressed: () {
                             Modular.to.pushNamed('/login/forgot-password',
                                 arguments: authBloc);
                           },
-                          child: Text(
-                            'Esqueceu a senha?',
-                            style: AppTextStyles.h2HighlightBold
-                                .copyWith(fontSize: 16, color: Colors.black),
-                          ),
+                          highlightText: 'Esqueceu a senha?',
                         ),
-                        TextButton(
-                          onPressed: () async {
+                        TextButtonLoginWidget(
+                          onPressed: () {
                             Modular.to.pushNamed('/login/resend-code');
                           },
-                          child: Text(
-                            'Confirmação de e-mail',
-                            style: AppTextStyles.h2HighlightBold
-                                .copyWith(fontSize: 16, color: Colors.black),
-                          ),
+                          highlightText: 'Confirmação de e-mail',
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 16),
-                          child: TextButton(
-                            onPressed: () async {
-                              Modular.to.pushNamed('/login/register',
-                                  arguments: authBloc);
-                            },
-                            child: Text('Cadastre-se',
-                                style: AppTextStyles.h2HighlightBold.copyWith(
-                                    fontSize: 16, color: Colors.black)),
-                          ),
+                        TextButtonLoginWidget(
+                          onPressed: () {
+                            Modular.to.pushNamed('/login/register');
+                          },
+                          highlightText: 'Cadastre-se',
                         ),
                       ],
                     ),

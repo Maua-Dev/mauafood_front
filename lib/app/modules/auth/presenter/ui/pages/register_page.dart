@@ -9,6 +9,8 @@ import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/register/register_form_bloc.dart';
 import '../widgets/checkbox_field_login_widget.dart';
+import '../widgets/register_button_widget.dart';
+import '../widgets/text_button_login_widget.dart';
 import '../widgets/text_field_login_widget.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -188,59 +190,21 @@ class _RegisterPageState extends State<RegisterPage> {
                         const SizedBox(
                           height: 24,
                         ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: ElevatedButton(
-                            onPressed: () async {
-                              registerFormBloc.submit();
-                            },
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size.fromHeight(50),
-                            ),
-                            child: BlocBuilder<RegisterBloc, RegisterState>(
-                              builder: (context, state) {
-                                if (state is RegisterLoadingState) {
-                                  return CircularProgressIndicator(
-                                    color: AppColors.white,
-                                  );
-                                }
-                                return Text(
-                                  'Cadastrar',
-                                  style: AppTextStyles.h2HighlightBold.copyWith(
-                                    color: AppColors.white,
-                                    fontSize: 16,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
+                        RegisterButtonWidget(
+                          onPressed: () {
+                            registerFormBloc.submit();
+                          },
+                          title: 'Cadastrar',
                         ),
                         const SizedBox(
                           height: 16,
                         ),
-                        Align(
-                          alignment: Alignment.center,
-                          child: TextButton(
-                            onPressed: () {
-                              Modular.to
-                                  .popUntil(ModalRoute.withName('/login'));
-                            },
-                            child: RichText(
-                              text: TextSpan(
-                                  text: 'Já tem uma conta? ',
-                                  style: AppTextStyles.h2.copyWith(
-                                      fontSize: 16, color: Colors.black),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: 'Entrar',
-                                      style: AppTextStyles.h2HighlightBold
-                                          .copyWith(
-                                              fontSize: 16,
-                                              color: Colors.black),
-                                    )
-                                  ]),
-                            ),
-                          ),
+                        TextButtonLoginWidget(
+                          onPressed: () {
+                            Modular.to.popUntil(ModalRoute.withName('/login'));
+                          },
+                          text: 'Já tem uma conta? ',
+                          highlightText: 'Entrar',
                         ),
                       ],
                     ),

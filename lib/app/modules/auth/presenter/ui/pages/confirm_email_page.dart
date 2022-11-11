@@ -6,6 +6,7 @@ import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/bloc/reg
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/confirm-email/confirm_email_bloc.dart';
+import '../widgets/register_button_widget.dart';
 import '../widgets/text_field_login_widget.dart';
 
 class ConfirmEmailPage extends StatelessWidget {
@@ -83,23 +84,11 @@ class ConfirmEmailPage extends StatelessWidget {
                             const SizedBox(
                               height: 48,
                             ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: ElevatedButton(
-                                onPressed: () async {
-                                  confirmEmailFormBloc.submit();
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  minimumSize: const Size.fromHeight(50),
-                                ),
-                                child: Text(
-                                  'Confirmar',
-                                  style: AppTextStyles.h2HighlightBold.copyWith(
-                                    color: AppColors.white,
-                                    fontSize: 16,
-                                  ),
-                                ),
-                              ),
+                            RegisterButtonWidget(
+                              onPressed: () {
+                                confirmEmailFormBloc.submit();
+                              },
+                              title: 'Confirmar',
                             ),
                           ],
                         ),

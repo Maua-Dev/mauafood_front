@@ -2,7 +2,7 @@ import 'package:mauafood_front/app/modules/auth/domain/entities/user_entity.dart
 
 class UserModel extends User {
   const UserModel({
-    required super.id,
+    super.id,
     required super.fullName,
     required super.cpf,
     required super.isStudent,

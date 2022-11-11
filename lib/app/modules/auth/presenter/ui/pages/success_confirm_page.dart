@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-
-import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../widgets/button_widget.dart';
 

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/bloc/register_bloc.dart';
-
-import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/confirm-email/confirm_email_bloc.dart';
 import '../widgets/register_button_widget.dart';

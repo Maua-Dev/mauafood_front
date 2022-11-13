@@ -8,7 +8,6 @@ import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/filter_butt
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/meal_card_widget.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
-import 'package:mauafood_front/app/shared/utils/utils.dart';
 import '../../../domain/enum/meal_enum.dart';
 import '../widgets/error_loading_menu_widget.dart';
 

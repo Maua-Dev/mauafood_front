@@ -6,6 +6,7 @@ import 'package:mauafood_front/app/modules/meal-info/presenter/ui/widgets/meal_l
 import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
+import 'package:uuid/uuid.dart';
 import '../../../../shared/utils/utils.dart';
 import '../../../cart/presenter/bloc/cart_bloc.dart';
 import '../../../cart/presenter/ui/widgets/quantity_item_widget.dart';
@@ -27,6 +28,7 @@ class _MealInfoPageState extends State<MealInfoPage> {
   int quantity = 0;
   @override
   Widget build(BuildContext context) {
+    var uuid = const Uuid();
     return SafeArea(
       child: Scaffold(
         bottomSheet: MultiBlocProvider(
@@ -70,7 +72,8 @@ class _MealInfoPageState extends State<MealInfoPage> {
                               widget.bloc.add(AddItemEvent(
                                   item: CartItemModel(
                                       meal: widget.mealInfo,
-                                      quantity: quantity)));
+                                      quantity: quantity,
+                                      id: uuid.v4())));
                               Modular.to.pop();
                             },
                       style: ElevatedButton.styleFrom(

@@ -3,7 +3,8 @@ import 'package:mauafood_front/app/modules/cart/domain/entities/cart_item_entity
 import '../../../menu/infra/models/meal_model.dart';
 
 class CartItemModel extends CartItem {
-  const CartItemModel({required super.meal, required super.quantity});
+  const CartItemModel(
+      {required super.meal, required super.quantity, required super.id});
 
   Map<String, dynamic> toJson() => {
         'meal': meal.toJson(),
@@ -11,10 +12,13 @@ class CartItemModel extends CartItem {
       };
   CartItemModel copyWith({
     MealModel? meal,
-    String? activityCode,
+    String? id,
     int? quantity,
   }) {
     return CartItemModel(
-        meal: meal ?? this.meal, quantity: quantity ?? this.quantity);
+      meal: meal ?? this.meal,
+      quantity: quantity ?? this.quantity,
+      id: id ?? this.id,
+    );
   }
 }

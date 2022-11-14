@@ -35,10 +35,10 @@ class UpdateItemEvent extends CartEvent {
 }
 
 class DeleteItemEvent extends CartEvent {
-  final CartItemModel item;
+  final String id;
 
-  const DeleteItemEvent({required this.item});
+  const DeleteItemEvent({required this.id});
 
   @override
-  List<Object> get props => [item];
+  List<Object> get props => [id];
 }

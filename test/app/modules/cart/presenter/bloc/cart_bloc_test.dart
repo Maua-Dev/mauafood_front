@@ -16,16 +16,16 @@ void main() {
 
   late CartBloc bloc;
   var itemMock = const CartItemModel(
-    meal: MealModel(
-      photo: '',
-      id: 10,
-      name: 'name',
-      description: 'description',
-      price: 10,
-      type: MealEnum.bebida,
-    ),
-    quantity: 10,
-  );
+      meal: MealModel(
+        photo: '',
+        id: 10,
+        name: 'name',
+        description: 'description',
+        price: 10,
+        type: MealEnum.bebida,
+      ),
+      quantity: 10,
+      id: '123');
   List<CartItemModel> listMock = [itemMock];
 
   setUp(() {
@@ -66,7 +66,7 @@ void main() {
       build: () => bloc,
       act: (bloc) {
         bloc.add(LoadCartEvent(cartItems: listMock));
-        bloc.add(DeleteItemEvent(item: itemMock));
+        bloc.add(DeleteItemEvent(id: itemMock.id));
       },
       expect: () => [
         CartLoadedState(cartItems: listMock),
@@ -77,16 +77,16 @@ void main() {
 
   group('[TEST] - UpdateItemEvent', () {
     var item = const CartItemModel(
-      meal: MealModel(
-        photo: '',
-        id: 10,
-        name: 'name',
-        description: 'description',
-        price: 10,
-        type: MealEnum.doces,
-      ),
-      quantity: 10,
-    );
+        meal: MealModel(
+          photo: '',
+          id: 10,
+          name: 'name',
+          description: 'description',
+          price: 10,
+          type: MealEnum.doces,
+        ),
+        quantity: 10,
+        id: '123');
     blocTest(
       'UPDATES an item adter LoadCart',
       build: () => bloc,

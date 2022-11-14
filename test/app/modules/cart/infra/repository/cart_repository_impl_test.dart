@@ -22,16 +22,16 @@ void main() {
   CartDatasourceInterface datasource = MockCartDatasourceInterface();
   late CartRepositoryInterface repository;
   var itemMock = const CartItemModel(
-    meal: MealModel(
-      photo: '',
-      id: 10,
-      name: 'name',
-      description: 'description',
-      price: 10,
-      type: MealEnum.bebida,
-    ),
-    quantity: 10,
-  );
+      meal: MealModel(
+        photo: '',
+        id: 10,
+        name: 'name',
+        description: 'description',
+        price: 10,
+        type: MealEnum.bebida,
+      ),
+      quantity: 10,
+      id: '123');
   List<CartItemModel> listMock = [itemMock];
 
   setUp(() {

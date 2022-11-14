@@ -93,7 +93,7 @@ class CartItemWidget extends StatelessWidget {
                                           ElevatedButton(
                                             onPressed: () {
                                               Modular.get<CartBloc>().add(
-                                                  DeleteItemEvent(item: item));
+                                                  DeleteItemEvent(id: item.id));
                                               Modular.to.pop();
                                             },
                                             style: ElevatedButton.styleFrom(

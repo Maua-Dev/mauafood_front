@@ -29,9 +29,8 @@ class CartBloc extends Bloc<CartEvent, CartState> {
   FutureOr<void> _onDeleteItem(DeleteItemEvent event, Emitter<CartState> emit) {
     final state = this.state;
     if (state is CartLoadedState) {
-      List<CartItemModel> list = state.cartItems
-          .where((item) => item.meal.id != event.item.meal.id)
-          .toList();
+      List<CartItemModel> list =
+          state.cartItems.where((item) => item.id != event.id).toList();
       emit(CartLoadedState(cartItems: list));
     }
   }
@@ -40,7 +39,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     final state = this.state;
     if (state is CartLoadedState) {
       List<CartItemModel> list = state.cartItems
-          .map((e) => e.meal.id == event.item.meal.id ? event.item : e)
+          .map((e) => e.id == event.item.id ? event.item : e)
           .toList();
       emit(CartLoadedState(cartItems: list));
     }

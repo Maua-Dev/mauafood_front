@@ -15,16 +15,16 @@ import 'post_car_demand_test.mocks.dart';
 void main() {
   late PostCartDemandInterface useCase;
   var itemMock = const CartItemModel(
-    meal: MealModel(
-      photo: '',
-      id: 10,
-      name: 'name',
-      description: 'description',
-      price: 10,
-      type: MealEnum.bebida,
-    ),
-    quantity: 10,
-  );
+      meal: MealModel(
+        photo: '',
+        id: 10,
+        name: 'name',
+        description: 'description',
+        price: 10,
+        type: MealEnum.bebida,
+      ),
+      quantity: 10,
+      id: '123');
   List<CartItemModel> listMock = [itemMock];
   CartRepositoryInterface repository = MockCartRepositoryInterface();
 

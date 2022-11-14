@@ -57,11 +57,13 @@ class CartPage extends StatelessWidget {
               ),
               Expanded(
                 child: Container(
+                  padding: const EdgeInsets.only(top: 16),
                   decoration: BoxDecoration(
-                      color: AppColors.backgroundColor2,
-                      borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(50),
-                          topRight: Radius.circular(50))),
+                    color: AppColors.backgroundColor2,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(50),
+                    ),
+                  ),
                   width: Utils.width(context),
                   child: BlocBuilder<CartBloc, CartState>(
                     builder: (context, state) {

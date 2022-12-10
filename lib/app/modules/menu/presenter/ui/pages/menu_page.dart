@@ -56,47 +56,65 @@ class _MenuPageState extends State<MenuPage> {
                 );
               },
             ),
-            ConstrainedBox(
-              constraints: const BoxConstraints(
-                minHeight: 35.0,
-                maxHeight: 100,
-              ),
-              child:
-                  BlocBuilder<MenuBloc, MenuState>(builder: (context, state) {
-                return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-                  child: TextField(
-                    onChanged: (value) {
-                      BlocProvider.of<MenuBloc>(context)
-                          .add(SearchMealEvent(search: value));
-                    },
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 1,
-                            color: AppColors.backgroundColor2), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      labelStyle: AppTextStyles.h2Highlight
-                          .copyWith(fontWeight: FontWeight.bold),
-                      labelText: 'Pesquisa',
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: AppColors.letterHighlightColor,
+            BlocBuilder<MenuBloc, MenuState>(builder: (context, state) {
+              return Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: TextField(
+                        onChanged: (value) {
+                          BlocProvider.of<MenuBloc>(context)
+                              .add(SearchMealEvent(search: value));
+                        },
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                width: 1,
+                                color:
+                                    AppColors.backgroundColor2), //<-- SEE HERE
+                            borderRadius: BorderRadius.circular(50.0),
+                          ),
+                          labelStyle: AppTextStyles.h2Highlight
+                              .copyWith(fontWeight: FontWeight.bold),
+                          labelText: 'Pesquisa',
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: AppColors.letterHighlightColor,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                );
-              }),
-            ),
-            IconButton(
-                onPressed: () {
-                  Modular.to.pushNamed('/restaurants/menu/cart/',
-                      arguments: cartBloc);
-                },
-                icon: const Icon(Icons.shopping_cart)),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Modular.to.pushNamed('/restaurants/menu/cart/',
+                              arguments: cartBloc);
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.buttonsColor,
+                            padding: EdgeInsets.zero,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            )),
+                        child: Icon(
+                          Icons.shopping_cart,
+                          color: AppColors.white,
+                          size: 32,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+              );
+            }),
             Expanded(
               child: Container(
                 width: double.infinity,

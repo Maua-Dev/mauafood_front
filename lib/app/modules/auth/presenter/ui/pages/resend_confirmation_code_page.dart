@@ -43,6 +43,10 @@ class _ResendConfirmationCodePageState
               BlocProvider.of<ResendCodeFormBloc>(context);
           return BlocListener<RegisterBloc, RegisterState>(
             listener: (context, state) {
+              if (state is RegisterErrorState) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(state.error.message)));
+              }
               if (state is RegisterLoadedState) {
                 Modular.to.pushNamed('/login/confirm-email',
                     arguments: [registerBloc, resendCodeFormBloc.email.value]);

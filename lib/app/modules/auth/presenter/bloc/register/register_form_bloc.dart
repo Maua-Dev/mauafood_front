@@ -112,7 +112,7 @@ class RegisterFormBloc extends FormBloc<String, String> {
         emailNotifications: emailNotifications.value,
         appNotifications: appNotifications.value,
         acceptTerms: acceptTerms.value,
-        isStudent: false,
+        role: 'USER ',
       ));
     } else {
       emitFailure(failureResponse: 'É necessário aceitar os Termos de Uso.');

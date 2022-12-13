@@ -15,10 +15,10 @@ class RegisterUser extends RegisterEvent {
   final bool appNotifications;
   final bool emailNotifications;
   final bool acceptTerms;
-  final bool isStudent;
+  final String role;
 
   const RegisterUser({
-    required this.isStudent,
+    required this.role,
     required this.appNotifications,
     required this.emailNotifications,
     required this.acceptTerms,
@@ -37,7 +37,7 @@ class RegisterUser extends RegisterEvent {
         appNotifications,
         emailNotifications,
         acceptTerms,
-        isStudent,
+        role,
       ];
 }
 

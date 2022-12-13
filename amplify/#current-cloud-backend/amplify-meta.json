@@ -15,46 +15,42 @@
   "auth": {
     "mauafoodfront": {
       "service": "Cognito",
+      "serviceType": "imported",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
       "customAuth": false,
+      "output": {
+        "UserPoolId": "sa-east-1_RarVOqFlT",
+        "UserPoolName": "mauafood-2022-back-user-pool-DEV",
+        "AppClientID": "4sjuri44nd2f7hbb6asrna3cbk",
+        "AppClientIDWeb": "4sjuri44nd2f7hbb6asrna3cbk"
+      },
       "frontendAuthConfig": {
         "socialProviders": [],
         "usernameAttributes": [
           "EMAIL"
         ],
         "signupAttributes": [
+          "NAME",
           "EMAIL",
-          "UPDATED_AT",
-          "NAME"
+          "UPDATED_AT"
         ],
         "passwordProtectionSettings": {
           "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": []
+          "passwordPolicyCharacters": [
+            "REQUIRES_LOWERCASE",
+            "REQUIRES_UPPERCASE",
+            "REQUIRES_NUMBERS",
+            "REQUIRES_SYMBOLS"
+          ]
         },
         "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
+        "mfaTypes": [],
         "verificationMechanisms": [
           "EMAIL"
         ]
       },
-      "output": {
-        "UserPoolId": "sa-east-1_uK7GPHvEU",
-        "AppClientIDWeb": "5pjcg2at1cl692vp1tpj7lspab",
-        "AppClientID": "29batn2po1sktvnmo53b03tqlq",
-        "IdentityPoolId": "sa-east-1:f8c49b17-05ee-4f65-89f5-e2581c35fffd",
-        "UserPoolArn": "arn:aws:cognito-idp:sa-east-1:264055331071:userpool/sa-east-1_uK7GPHvEU",
-        "IdentityPoolName": "testAuthIdentityPool__dev",
-        "UserPoolName": "mauafoodfront"
-      },
-      "lastPushTimeStamp": "2022-11-08T23:50:35.053Z",
-      "providerMetadata": {
-        "s3TemplateURL": "https://s3.amazonaws.com/amplify-mauafoodfront-dev-02108-deployment/amplify-cfn-templates/auth/mauafoodfront-cloudformation-template.json",
-        "logicalId": "authmauafoodfront"
-      },
-      "lastPushDirHash": "9epWKM+RnuDYqWhYc/EdYAYd7P8="
+      "lastPushTimeStamp": "2022-12-13T19:02:25.224Z"
     }
   }
 }

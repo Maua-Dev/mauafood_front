@@ -39,7 +39,7 @@ void main() {
     id: null,
     fullName: 'fullName',
     cpf: 'cpf',
-    isStudent: false,
+    role: 'USER',
     email: 'email',
     password: 'password',
     appNotifications: true,
@@ -50,7 +50,7 @@ void main() {
     id: null,
     fullName: '',
     cpf: 'cpf',
-    isStudent: false,
+    role: 'USER',
     email: 'email',
     password: 'password',
     appNotifications: true,
@@ -117,7 +117,7 @@ void main() {
           email: userError.email,
           emailNotifications: userError.emailNotifications,
           fullName: userError.fullName,
-          isStudent: userError.isStudent,
+          role: userError.role,
           password: userError.password,
         )));
     await widgetTester.pumpAndSettle(const Duration(seconds: 1));

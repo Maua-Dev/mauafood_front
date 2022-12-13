@@ -17,7 +17,7 @@ void main() {
     id: '',
     fullName: 'fullName',
     cpf: 'cpf',
-    isStudent: true,
+    role: 'USER',
     email: 'email',
     password: 'password',
     appNotifications: true,

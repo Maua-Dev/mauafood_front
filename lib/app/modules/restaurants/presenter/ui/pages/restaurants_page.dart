@@ -30,6 +30,7 @@ class RestaurantsPage extends StatelessWidget {
                 icon: const Icon(Icons.exit_to_app, size: 40),
                 onPressed: () {
                   authBloc.add(const LogoutUser());
+                  Modular.to.pushNamed('/login');
                 },
               ),
             )

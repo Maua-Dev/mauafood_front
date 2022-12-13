@@ -35,12 +35,12 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     var user = UserModel(
       fullName: event.fullName,
       cpf: event.cpf,
-      isStudent: false,
       email: event.email,
       password: event.password,
       appNotifications: event.appNotifications,
       emailNotifications: event.emailNotifications,
       acceptTerms: event.acceptTerms,
+      role: 'USER',
     );
     eitherIsRegistered = await register(user);
     emit(eitherIsRegistered.fold((failure) {

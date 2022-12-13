@@ -14,7 +14,12 @@
     "categories": {
       "auth": {
         "mauafoodfrontd190f756": {},
-        "mauafoodfront": {},
+        "mauafoodfront": {
+          "userPoolId": "sa-east-1_RarVOqFlT",
+          "userPoolName": "mauafood-2022-back-user-pool-DEV",
+          "webClientId": "4sjuri44nd2f7hbb6asrna3cbk",
+          "nativeClientId": "4sjuri44nd2f7hbb6asrna3cbk"
+        },
         "mauafoodfront0f2ea283": {}
       }
     }

@@ -39,10 +39,10 @@ void main() {
   String email = 'gabriel.godoybz@hotmail.com';
   String confirmationCode = '123';
   UserModel user = const UserModel(
-    id: null,
+    id: '',
     fullName: 'fullName',
     cpf: 'cpf',
-    isStudent: false,
+    role: 'USER',
     email: 'email',
     password: 'password',
     appNotifications: true,
@@ -65,8 +65,8 @@ void main() {
           email: user.email,
           emailNotifications: user.emailNotifications,
           fullName: user.fullName,
-          isStudent: user.isStudent,
           password: user.password,
+          role: 'USER',
         ));
       },
       expect: () => [
@@ -81,14 +81,15 @@ void main() {
       act: (bloc) {
         when(register(user)).thenAnswer((realInvocation) async => Left(error));
         bloc.add(RegisterUser(
-            acceptTerms: user.acceptTerms,
-            appNotifications: user.appNotifications,
-            cpf: user.cpf,
-            email: user.email,
-            emailNotifications: user.emailNotifications,
-            fullName: user.fullName,
-            isStudent: user.isStudent,
-            password: user.password));
+          acceptTerms: user.acceptTerms,
+          appNotifications: user.appNotifications,
+          cpf: user.cpf,
+          email: user.email,
+          emailNotifications: user.emailNotifications,
+          fullName: user.fullName,
+          role: 'USER',
+          password: user.password,
+        ));
       },
       expect: () => [
         RegisterLoadingState(),

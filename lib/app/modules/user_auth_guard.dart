@@ -4,8 +4,8 @@ import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.da
 import '../app_module.dart';
 import 'auth/auth_module.dart';
 
-class AuthGuard extends RouteGuard {
-  AuthGuard()
+class UserAuthGuard extends RouteGuard {
+  UserAuthGuard()
       : super(
           redirectTo: '/login/',
         );
@@ -18,7 +18,7 @@ class AuthGuard extends RouteGuard {
     if (!authController.isLoggedIn) {
       await authController.verifyIfHaveTokens();
     }
-    if (authController.isLoggedIn) {
+    if (authController.isLoggedIn && authController.userRole == 'USER') {
       return true;
     }
     return false;

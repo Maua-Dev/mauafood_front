@@ -13,8 +13,9 @@ class AuthLoadingState extends AuthState {}
 
 class AuthLoadedState extends AuthState {
   final bool isLogged;
+  final String userRole;
 
-  const AuthLoadedState({required this.isLogged});
+  const AuthLoadedState({required this.userRole, required this.isLogged});
 
   @override
   List<Object> get props => [isLogged];

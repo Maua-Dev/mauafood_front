@@ -50,9 +50,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     var userAttributes = await getUserAttributes();
     userAttributes.fold((failure) => emit(AuthErrorState(failure)),
         (attributes) {
-      for (final element in attributes) {
-        print('key: ${element.userAttributeKey}; value: ${element.value}');
-      }
+      _userRole = attributes
+          .firstWhere(
+              (element) => element.userAttributeKey.toString() == 'custom:role')
+          .value;
     });
     emit(eitherIsLogged.fold((failure) {
       return AuthErrorState(failure);
@@ -60,7 +61,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       _loggedIn = true;
       storage.saveAccessToken(authSession.userPoolTokens!.accessToken);
       storage.saveRefreshToken(authSession.userPoolTokens!.refreshToken);
-      return const AuthLoadedState(isLogged: true);
+      return AuthLoadedState(isLogged: _loggedIn, userRole: userRole);
     }));
   }
 
@@ -86,7 +87,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(result.fold((failure) {
       return AuthErrorState(failure);
     }, (isConfirmed) {
-      return const AuthLoadedState(isLogged: false);
+      return AuthLoadedState(isLogged: false, userRole: userRole);
     }));
     if (state is AuthLoadedState) {
       await storage.cleanSecureStorage();

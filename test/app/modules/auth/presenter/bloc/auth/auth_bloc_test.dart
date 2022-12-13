@@ -80,7 +80,7 @@ void main() {
       },
       expect: () => [
         AuthLoadingState(),
-        const AuthLoadedState(isLogged: true),
+        const AuthLoadedState(isLogged: true, userRole: ''),
       ],
     );
 
@@ -110,7 +110,7 @@ void main() {
       },
       expect: () => [
         AuthLoadingState(),
-        const AuthLoadedState(isLogged: false),
+        const AuthLoadedState(isLogged: false, userRole: ''),
       ],
     );
 

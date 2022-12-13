@@ -249,4 +249,33 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       ));
     }
   }
+
+  @override
+  Future<Either<GetUserAttributesError, List<AuthUserAttribute>>>
+      getUserAttributes() async {
+    try {
+      late List<AuthUserAttribute> result;
+      result = await Amplify.Auth.fetchUserAttributes();
+      return right(result);
+    } on LimitExceededException {
+      return left(GetUserAttributesError(
+        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+      ));
+    } on SignedOutException {
+      return left(
+          GetUserAttributesError(message: 'E-mail ou senha incorretos.'));
+    } on NotAuthorizedException {
+      return left(GetUserAttributesError(
+          message: 'E-mail não confirmado, confirme-o.'));
+    } on UserNotConfirmedException {
+      return left(GetUserAttributesError(
+          message: 'E-mail não confirmado, confirme-o.'));
+    } on UserNotFoundException {
+      return left(GetUserAttributesError(
+          message: 'E-mail ou senha incorretos ou e-mail não cadastrado.'));
+    } catch (e) {
+      return left(GetUserAttributesError(
+          message: 'Algo deu errado, tente novamente mais tarde.'));
+    }
+  }
 }

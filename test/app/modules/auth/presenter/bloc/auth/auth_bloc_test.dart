@@ -11,6 +11,7 @@ import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_password.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
@@ -25,6 +26,7 @@ import 'auth_bloc_test.mocks.dart';
   LogoutUserInterface,
   ForgotPasswordInterface,
   ConfirmResetPasswordInterface,
+  GetUserAttributesInterface,
   AuthStorageInterface
 ])
 void main() {
@@ -32,6 +34,8 @@ void main() {
   LoginUserInterface login = MockLoginUserInterface();
   LogoutUserInterface logout = MockLogoutUserInterface();
   ForgotPasswordInterface forgotPassword = MockForgotPasswordInterface();
+  GetUserAttributesInterface getUserAttributes =
+      MockGetUserAttributesInterface();
   ConfirmResetPasswordInterface confirmResetPassword =
       MockConfirmResetPasswordInterface();
   AuthStorageInterface storage = MockAuthStorageInterface();
@@ -39,11 +43,13 @@ void main() {
   setUp(() {
     WidgetsFlutterBinding.ensureInitialized();
     bloc = AuthBloc(
-        login: login,
-        logout: logout,
-        confirmResetPassword: confirmResetPassword,
-        forgotPassword: forgotPassword,
-        storage: storage);
+      login: login,
+      logout: logout,
+      confirmResetPassword: confirmResetPassword,
+      forgotPassword: forgotPassword,
+      storage: storage,
+      getUserAttributes: getUserAttributes,
+    );
   });
 
   String email = 'gabriel.godoybz@hotmail.com';

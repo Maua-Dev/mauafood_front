@@ -10,6 +10,7 @@ import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_password.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
@@ -30,6 +31,7 @@ import '../../bloc/auth/auth_bloc_test.mocks.dart';
   LogoutUserInterface,
   ForgotPasswordInterface,
   ConfirmResetPasswordInterface,
+  GetUserAttributesInterface,
   AuthStorageInterface
 ])
 void main() {
@@ -38,6 +40,8 @@ void main() {
   ForgotPasswordInterface forgotPassword = MockForgotPasswordInterface();
   ConfirmResetPasswordInterface confirmResetPassword =
       MockConfirmResetPasswordInterface();
+  GetUserAttributesInterface getUserAttributes =
+      MockGetUserAttributesInterface();
   AuthStorageInterface storage = MockAuthStorageInterface();
   late AuthBloc bloc;
   late ChangePasswordBloc formBloc;
@@ -46,12 +50,12 @@ void main() {
     HttpOverrides.global = null;
 
     bloc = AuthBloc(
-      login: login,
-      logout: logout,
-      confirmResetPassword: confirmResetPassword,
-      forgotPassword: forgotPassword,
-      storage: storage,
-    );
+        login: login,
+        logout: logout,
+        confirmResetPassword: confirmResetPassword,
+        forgotPassword: forgotPassword,
+        storage: storage,
+        getUserAttributes: getUserAttributes);
     formBloc = ChangePasswordBloc(authBloc: bloc, email: '');
     initModules(
       [AppModule(), AuthModule()],

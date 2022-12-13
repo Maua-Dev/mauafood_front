@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
@@ -19,13 +20,17 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final LogoutUserInterface logout;
   final ForgotPasswordInterface forgotPassword;
   final ConfirmResetPasswordInterface confirmResetPassword;
+  final GetUserAttributesInterface getUserAttributes;
   final AuthStorageInterface storage;
   late Either<AuthErrors, CognitoAuthSession> eitherIsLogged;
   bool _loggedIn = false;
+  String _userRole = '';
 
   bool get isLoggedIn => _loggedIn;
+  String get userRole => _userRole;
 
   AuthBloc({
+    required this.getUserAttributes,
     required this.forgotPassword,
     required this.confirmResetPassword,
     required this.logout,
@@ -42,6 +47,13 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       LoginWithEmail event, Emitter<AuthState> emit) async {
     emit(AuthLoadingState());
     eitherIsLogged = await login(event.email, event.password);
+    var userAttributes = await getUserAttributes();
+    userAttributes.fold((failure) => emit(AuthErrorState(failure)),
+        (attributes) {
+      for (final element in attributes) {
+        print('key: ${element.userAttributeKey}; value: ${element.value}');
+      }
+    });
     emit(eitherIsLogged.fold((failure) {
       return AuthErrorState(failure);
     }, (authSession) {

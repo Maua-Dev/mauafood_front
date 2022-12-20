@@ -32,6 +32,17 @@ class MenuPage extends StatelessWidget {
                   );
                 },
               ),
+              // button pop up contact to the restaurant
+              ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => const AlertDialog(
+                              title: Text('Teste'),
+                              content: Text('Teste'),
+                            ));
+                  },
+                  child: const Text('Teste')),
               ConstrainedBox(
                 constraints: const BoxConstraints(
                   minHeight: 35.0,

@@ -79,18 +79,6 @@ class MealInfoPage extends StatelessWidget {
                           'R\$ ${mealInfo.price.toStringAsFixed(2).replaceAll('.', ',')}',
                           style: AppTextStyles.h1,
                         ),
-                        // Row(
-                        //   children: [
-                        //     Icon(
-                        //       Icons.access_time,
-                        //       color: AppColors.letterHighlightColor,
-                        //     ),
-                        //     Text(
-                        //       '${mealInfo.prepareTime} min',
-                        //       style: AppTextStyles.h2Highlight,
-                        //     ),
-                        //   ],
-                        // ),
                       ],
                     ),
                     const SizedBox(

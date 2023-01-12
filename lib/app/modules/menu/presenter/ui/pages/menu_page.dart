@@ -7,6 +7,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/filter_butt
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/meal_card_widget.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 import '../../../domain/enum/meal_enum.dart';
 import '../widgets/error_loading_menu_widget.dart';
 
@@ -87,7 +88,7 @@ class MenuPage extends StatelessWidget {
                         ),
                         labelStyle: AppTextStyles.h2Highlight
                             .copyWith(fontWeight: FontWeight.bold),
-                        labelText: 'Pesquisa',
+                        labelText: S.of(context).searchTitle,
                         prefixIcon: Icon(
                           Icons.search,
                           color: AppColors.letterHighlightColor,
@@ -190,7 +191,7 @@ class MenuPage extends StatelessWidget {
                               errorMessage: state.failure.message,
                             );
                           } else {
-                            return const Text('Something went wrong!');
+                            return Text(S.of(context).errorGeneric);
                           }
                         },
                       ),

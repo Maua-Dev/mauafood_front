@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/app_module.dart';
@@ -8,6 +10,7 @@ import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasourc
 import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
 import 'package:mauafood_front/app/modules/menu/infra/repository/menu_repository_impl.dart';
 import 'package:mauafood_front/app/modules/menu/menu_module.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
@@ -31,7 +34,8 @@ void main() {
     ),
   ];
 
-  setUp(() {
+  setUp(() async {
+    await S.load(const Locale.fromSubtags(languageCode: 'en'));
     repository = MenuRepositoryImpl(datasource: datasource);
   });
 

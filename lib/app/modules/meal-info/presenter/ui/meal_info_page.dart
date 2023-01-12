@@ -4,6 +4,7 @@ import 'package:mauafood_front/app/modules/meal-info/presenter/ui/widgets/meal_l
 import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 
 class MealInfoPage extends StatelessWidget {
   final Meal mealInfo;
@@ -76,7 +77,7 @@ class MealInfoPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'R\$ ${mealInfo.price.toStringAsFixed(2).replaceAll('.', ',')}',
+                          S.of(context).mealPriceCurrency(mealInfo.price),
                           style: AppTextStyles.h1,
                         ),
                       ],
@@ -93,7 +94,7 @@ class MealInfoPage extends StatelessWidget {
                       height: 64,
                     ),
                     Text(
-                      'Recomendados',
+                      S.of(context).recommendedTitle,
                       style: AppTextStyles.h1,
                     ),
                     const SizedBox(

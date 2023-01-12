@@ -37,12 +37,33 @@ class MenuPage extends StatelessWidget {
                   onPressed: () {
                     showDialog(
                         context: context,
-                        builder: (context) => const AlertDialog(
-                              title: Text('Teste'),
-                              content: Text('Teste'),
+                        builder: (context) => AlertDialog(
+                              title: const  Text('Digite seu pedido de ajuda aqui aqui:'),
+                              content:  const TextField(
+                                decoration: InputDecoration(
+                                    border: OutlineInputBorder(),
+                                    labelText: 'Digite aqui'
+                                  ),
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  child: const Text('Cancelar'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                                TextButton(
+                                  child: const Text('Enviar'),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],  
+                              
                             ));
                   },
-                  child: const Text('Teste')),
+                  child: const Text('Contato')
+                ),
               ConstrainedBox(
                 constraints: const BoxConstraints(
                   minHeight: 35.0,

@@ -98,4 +98,23 @@ void main() {
       expect(mealCards, findsAtLeastNWidgets(2));
     });
   });
+
+  testWidgets('[WiDGET TEST] - A contact button test', (widgetTester) async {
+    mockNetworkImagesFor(() async {
+      when(getRestaurantMeal(bloc.restaurantInfo))
+          .thenAnswer((realInvocation) async => Right(listMock));
+
+      await widgetTester.pumpWidget(MaterialApp(
+        home: BlocProvider(
+          create: (context) => bloc,
+          child: const MenuPage(),
+        ),
+      ));
+
+      final contactTextButton = find.text('Contato');
+      final contactButtonPopUp = find.byType(ElevatedButton);
+      expect(contactTextButton, findsOneWidget);
+      expect(contactButtonPopUp, findsOneWidget);
+    });
+  });
 }

@@ -33,7 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': '',
           })}";
 
-  static String m1(amount) => "${amount}";
+  static String m1(amount) => "${amount} ";
 
   static String m2(restaurant) => "${Intl.select(restaurant, {
             'biba':

@@ -13,7 +13,7 @@
 
 
     "mealNameSchema": "{meal, select, tudo{Tudo} lanche{Lanche} bebida{Bebidas} doces{Doces} pratos{Pratos} porcoes{Porções} massas{Massas} salgados{Salgados} saladas{Saladas} other{}}",
-    "mealPriceCurrency": "{amount}",
+    "mealPriceCurrency": "{amount} ",
     "@mealPriceCurrency" : {
         "placeholders": {
             "amount": {

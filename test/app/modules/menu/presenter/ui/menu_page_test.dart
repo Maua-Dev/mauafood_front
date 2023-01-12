@@ -95,6 +95,12 @@ void main() {
       final mealCards = find.byType(MealCardWidget);
       expect(mealCards, findsNWidgets(0));
 
+      // Contact button test
+      final contactTextButton = find.text('Contato');
+      final contactButtonPopUp = find.byType(ElevatedButton);
+      expect(contactTextButton, findsOneWidget);
+      expect(contactButtonPopUp, findsOneWidget);
+
       await widgetTester.runAsync(() async => bloc.add(GetAllMealsEvent()));
       await widgetTester.pump();
 
@@ -104,25 +110,6 @@ void main() {
       expect(listViewVertical, findsNothing);
       expect(gridView, findsNothing);
       expect(mealCards, findsNothing);
-    });
-  });
-
-  testWidgets('[WiDGET TEST] - A contact button test', (widgetTester) async {
-    mockNetworkImagesFor(() async {
-      when(getRestaurantMeal(bloc.restaurantInfo))
-          .thenAnswer((realInvocation) async => Right(listMock));
-
-      await widgetTester.pumpWidget(MaterialApp(
-        home: BlocProvider(
-          create: (context) => bloc,
-          child: const MenuPage(),
-        ),
-      ));
-
-      final contactTextButton = find.text('Contato');
-      final contactButtonPopUp = find.byType(ElevatedButton);
-      expect(contactTextButton, findsOneWidget);
-      expect(contactButtonPopUp, findsOneWidget);
     });
   });
 }

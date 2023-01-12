@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/appbar/drop_down_restaurant_widget.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/contact_dialog.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/filter_button_widget.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/meal_card_widget.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -34,35 +35,7 @@ class MenuPage extends StatelessWidget {
                 },
               ),
               // button pop up contact to the restaurant
-              ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                              title: const Text(
-                                  'Digite seu pedido de ajuda aqui aqui:'),
-                              content: const TextField(
-                                decoration: InputDecoration(
-                                    border: OutlineInputBorder(),
-                                    labelText: 'Digite aqui'),
-                              ),
-                              actions: <Widget>[
-                                TextButton(
-                                  child: const Text('Cancelar'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                                TextButton(
-                                  child: const Text('Enviar'),
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                ),
-                              ],
-                            ));
-                  },
-                  child: const Text('Contato')),
+              const ContactDialog(),
               ConstrainedBox(
                 constraints: const BoxConstraints(
                   minHeight: 35.0,

@@ -32,6 +32,7 @@
     },
 
 
+    
     "errorGeneric": "Something went wrong!",
     "errorItemNotFound": "No items found.",
     "errorEmptyList": "Empty List.",

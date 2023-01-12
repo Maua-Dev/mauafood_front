@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/auth/auth_bloc.dart';
@@ -62,7 +63,7 @@ class ChangePasswordPage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'Alterar senha',
+                            S.of(context).changePasswordTitle,
                             style: AppTextStyles.h2HighlightBold.copyWith(
                               color: Colors.black,
                             ),
@@ -71,7 +72,7 @@ class ChangePasswordPage extends StatelessWidget {
                             height: 16,
                           ),
                           Text(
-                            'Enviamos um código de confirmação em seu e-mail, digite-o no campo abaixo.',
+                            S.of(context).sendCodeEmailInstructionsTitle,
                             style: AppTextStyles.h2
                                 .copyWith(color: Colors.black, fontSize: 14),
                           ),
@@ -80,12 +81,12 @@ class ChangePasswordPage extends StatelessWidget {
                           ),
                           TextFieldLoginWidget(
                             textFieldBloc: changePasswordFormBloc.code,
-                            title: 'Código',
+                            title: S.of(context).codeTitle,
                             keyboardType: TextInputType.number,
                           ),
                           TextFieldLoginWidget(
                             textFieldBloc: changePasswordFormBloc.password,
-                            title: 'Nova senha',
+                            title: S.of(context).newPasswordTitle,
                             keyboardType: TextInputType.visiblePassword,
                             suffixButton: SuffixButton.obscureText,
                             autoFillHints: const [
@@ -95,7 +96,7 @@ class ChangePasswordPage extends StatelessWidget {
                           TextFieldLoginWidget(
                             textFieldBloc:
                                 changePasswordFormBloc.passwordConfirm,
-                            title: 'Confirme a nova senha',
+                            title: S.of(context).confirmNewPasswordTitle,
                             keyboardType: TextInputType.visiblePassword,
                             suffixButton: SuffixButton.obscureText,
                             autoFillHints: const [
@@ -109,7 +110,7 @@ class ChangePasswordPage extends StatelessWidget {
                             onPressed: () async {
                               changePasswordFormBloc.submit();
                             },
-                            title: 'Enviar',
+                            title: S.of(context).sendTitle,
                           ),
                           const SizedBox(
                             height: 16,
@@ -119,8 +120,8 @@ class ChangePasswordPage extends StatelessWidget {
                               Modular.to
                                   .popUntil(ModalRoute.withName('/login'));
                             },
-                            text: 'Já tem uma senha? ',
-                            highlightText: 'Faça o login',
+                            text: S.of(context).havePasswordTitle,
+                            highlightText: S.of(context).doLoginTitle,
                           ),
                         ],
                       ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/auth/auth_bloc.dart';
@@ -65,7 +66,7 @@ class ForgotPasswordPage extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Esqueceu a senha?',
+                              S.of(context).forgotPasswordTitle,
                               style: AppTextStyles.h2HighlightBold.copyWith(
                                 color: Colors.black,
                               ),
@@ -74,7 +75,7 @@ class ForgotPasswordPage extends StatelessWidget {
                               height: 32,
                             ),
                             Text(
-                              'Por favor, digite seu e-mail, vamos mandar um código de verificação para alterar sua senha.',
+                              S.of(context).confirmationCodeInstructionsTitle,
                               style: AppTextStyles.h2
                                   .copyWith(color: Colors.black, fontSize: 14),
                             ),
@@ -83,7 +84,7 @@ class ForgotPasswordPage extends StatelessWidget {
                             ),
                             TextFieldLoginWidget(
                               textFieldBloc: forgotPasswordFormBloc.email,
-                              title: 'E-mail',
+                              title: S.of(context).emailTitle,
                             ),
                             const SizedBox(
                               height: 48,
@@ -92,7 +93,7 @@ class ForgotPasswordPage extends StatelessWidget {
                               onPressed: () async {
                                 forgotPasswordFormBloc.submit();
                               },
-                              title: 'Enviar',
+                              title: S.of(context).sendTitle,
                             ),
                             const SizedBox(
                               height: 16,
@@ -102,8 +103,8 @@ class ForgotPasswordPage extends StatelessWidget {
                                 Modular.to
                                     .popUntil(ModalRoute.withName('/login'));
                               },
-                              text: 'Já tem uma senha? ',
-                              highlightText: 'Faça o login',
+                              text: S.of(context).havePasswordTitle,
+                              highlightText: S.of(context).doLoginTitle,
                             ),
                           ]),
                     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../widgets/button_widget.dart';
 
@@ -27,7 +28,7 @@ class SuccessChangePasswordPage extends StatelessWidget {
                 ),
               ),
               Text(
-                'Senha alterada com sucesso!',
+                S.of(context).successChangePassword,
                 style: AppTextStyles.h2HighlightBold.copyWith(
                   color: Colors.black,
                 ),
@@ -39,7 +40,7 @@ class SuccessChangePasswordPage extends StatelessWidget {
                 onPressed: () async {
                   Modular.to.popUntil(ModalRoute.withName('/login'));
                 },
-                title: 'Login',
+                title: S.of(context).loginTitle,
               ),
             ],
           ),

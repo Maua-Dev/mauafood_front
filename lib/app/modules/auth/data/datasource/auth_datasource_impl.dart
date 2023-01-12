@@ -3,6 +3,7 @@ import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:dartz/dartz.dart';
 import 'package:mauafood_front/app/modules/auth/infra/datasources/auth_datasouce_interface.dart';
 import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 
 import '../../domain/errors/auth_errors.dart';
 
@@ -24,20 +25,22 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       return right(result);
     } on LimitExceededException {
       return left(SignUpError(
-        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+        message: S.current.loginErrorsSchema('limitExceeded'),
       ));
     } on SignedOutException {
-      return left(SignUpError(message: 'E-mail ou senha incorretos.'));
-    } on NotAuthorizedException {
-      return left(SignUpError(message: 'E-mail não confirmado, confirme-o.'));
-    } on UserNotConfirmedException {
-      return left(SignUpError(message: 'E-mail não confirmado, confirme-o.'));
-    } on UserNotFoundException {
-      return left(SignUpError(
-          message: 'E-mail ou senha incorretos ou e-mail não cadastrado.'));
-    } catch (e) {
       return left(
-          SignUpError(message: 'Algo deu errado, tente novamente mais tarde.'));
+          SignUpError(message: S.current.loginErrorsSchema('signedOut')));
+    } on NotAuthorizedException {
+      return left(
+          SignUpError(message: S.current.loginErrorsSchema('notAuthorized')));
+    } on UserNotConfirmedException {
+      return left(SignUpError(
+          message: S.current.loginErrorsSchema('userNotConfirmed')));
+    } on UserNotFoundException {
+      return left(
+          SignUpError(message: S.current.loginErrorsSchema('userNotFound')));
+    } catch (e) {
+      return left(SignUpError(message: S.current.loginErrorsSchema('other')));
     }
   }
 
@@ -67,21 +70,20 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       return right(res.isSignUpComplete);
     } on LimitExceededException {
       return left(RegisterError(
-        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+        message: S.current.registerErrorsSchema('limitExceeded'),
       ));
     } on UsernameExistsException {
-      return left(
-          RegisterError(message: 'Já existe um cadastro com este e-mail.'));
+      return left(RegisterError(
+          message: S.current.registerErrorsSchema('usernameExists')));
     } on InvalidParameterException {
-      return left(
-          RegisterError(message: 'Algum campo preenchido de forma errada.'));
+      return left(RegisterError(
+          message: S.current.registerErrorsSchema('invalidParameter')));
     } on InternalErrorException {
       return left(RegisterError(
-          message: 'Estamos com problemas internos, tente mais tarde.'));
+          message: S.current.registerErrorsSchema('internalError')));
     } catch (e) {
-      return left(RegisterError(
-          message:
-              'Ocorreu algum erro ao tentar cadastrar, tente novamente mais tarde.'));
+      return left(
+          RegisterError(message: S.current.registerErrorsSchema('other')));
     }
   }
 
@@ -96,38 +98,40 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       return right(res.isSignUpComplete);
     } on InvalidParameterException {
       return left(ConfirmationEmailError(
-        message: 'E-mail, provavelmente, já confirmado.',
+        message: S.current.emailConfirmationErrorsSchema('invalidParameter'),
         email: email,
       ));
     } on LimitExceededException {
       return left(ConfirmationEmailError(
-        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+        message: S.current.emailConfirmationErrorsSchema('limitExceeded'),
         email: email,
       ));
     } on TooManyFailedAttemptsException {
       return left(ConfirmationEmailError(
         message:
-            'Parece que você tentou errou o código muitas vezes, entre em contato.',
+            S.current.emailConfirmationErrorsSchema('tooManyFailedAttempts'),
         email: email,
       ));
     } on UserNotFoundException {
       return left(ConfirmationEmailError(
-        message: 'Não encontramos um e-mail cadastrado para $email',
+        message: S.current.emailConfirmationErrorsSchema('userNotFound'),
         email: email,
       ));
     } on InternalErrorException {
       return left(ConfirmationEmailError(
-        message: 'Estamos com problemas internos, tente mais tarde.',
+        message: S.current.emailConfirmationErrorsSchema('internalError'),
         email: email,
       ));
     } on CodeMismatchException {
       return left(ConfirmationEmailError(
-        message: 'Código fornecido está errado, tente novamente.',
+        message: S.current.emailConfirmationErrorsSchema('codeMismatch'),
         email: email,
       ));
     } catch (e) {
       throw ConfirmationEmailError(
-          message: 'Ocorreu algum erro ao confirmar e-mail.', email: email);
+        message: S.current.emailConfirmationErrorsSchema('other'),
+        email: email,
+      );
     }
   }
 
@@ -138,15 +142,15 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       return const Right(null);
     } on LimitExceededException {
       return left(LogoutError(
-        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+        message: S.current.logoutErrorsSchema('limitExceeded'),
       ));
     } on InternalErrorException {
       return left(LogoutError(
-        message: 'Estamos com problemas internos, tente mais tarde.',
+        message: S.current.logoutErrorsSchema('internalError'),
       ));
     } catch (e) {
       return left(LogoutError(
-        message: 'Erro ao tentar fazer logout, tente mais tarde.',
+        message: S.current.logoutErrorsSchema('other'),
       ));
     }
   }
@@ -161,27 +165,27 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       return right(result.isPasswordReset);
     } on LimitExceededException {
       return left(ForgotPasswordError(
-        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+        message: S.current.forgotPasswordErrorsSchema('limitExceeded'),
       ));
     } on UserNotConfirmedException {
       return left(ForgotPasswordError(
-        message: 'E-mail não confirmado, confirme-o.',
+        message: S.current.forgotPasswordErrorsSchema('userNotConfirmed'),
       ));
     } on UserNotFoundException {
       return left(ForgotPasswordError(
-        message: 'E-mail não encontrado, certifique-se de que fez cadastro.',
+        message: S.current.forgotPasswordErrorsSchema('userNotFound'),
       ));
     } on InvalidParameterException {
       return left(ForgotPasswordError(
-        message: 'E-mail não confirmado, confirme-o antes de mudar a senha.',
+        message: S.current.forgotPasswordErrorsSchema('invalidParameter'),
       ));
     } on InternalErrorException {
       return left(ForgotPasswordError(
-        message: 'Estamos com problemas internos, tente mais tarde.',
+        message: S.current.forgotPasswordErrorsSchema('internalError'),
       ));
     } catch (e) {
       return left(ForgotPasswordError(
-        message: 'Erro ao tentar resetar senha, tente mais tarde.',
+        message: S.current.forgotPasswordErrorsSchema('other'),
       ));
     }
   }
@@ -198,23 +202,23 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       return const Right(null);
     } on LimitExceededException {
       return left(ForgotPasswordError(
-        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+        message: S.current.confirmResetPasswordErrorsSchema('limitExceeded'),
       ));
     } on CodeMismatchException {
       return left(ForgotPasswordError(
-        message: 'Código fornecido está errado, tente novamente.',
+        message: S.current.confirmResetPasswordErrorsSchema('codeMismatch'),
       ));
     } on UserNotConfirmedException {
       return left(ForgotPasswordError(
-        message: 'E-mail não confirmado, confirme-o.',
+        message: S.current.confirmResetPasswordErrorsSchema('userNotConfirmed'),
       ));
     } on InternalErrorException {
       return left(ForgotPasswordError(
-        message: 'Estamos com problemas internos, tente mais tarde.',
+        message: S.current.confirmResetPasswordErrorsSchema('internalError'),
       ));
     } catch (e) {
       return left(ForgotPasswordError(
-        message: 'Erro ao tentar mudar senha, tente mais tarde.',
+        message: S.current.confirmResetPasswordErrorsSchema('other'),
       ));
     }
   }
@@ -226,27 +230,27 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       return const Right(null);
     } on InvalidParameterException {
       return left(ResendCodeError(
-        message: 'E-mail, provavelmente, já confirmado.',
+        message: S.current.resendCodeErrorsSchema('invalidParameter'),
       ));
     } on UserNotFoundException {
       return left(ResendCodeError(
-        message: 'E-mail não encontrado, certifique-se de que fez cadastro.',
+        message: S.current.resendCodeErrorsSchema('userNotFound'),
       ));
     } on LimitExceededException {
       return left(ResendCodeError(
-        message: 'Muitas tentativas em sequência, tente novamente mais tarde.',
+        message: S.current.resendCodeErrorsSchema('limitExceeded'),
       ));
     } on InternalErrorException {
       return left(ResendCodeError(
-        message: 'Estamos com problemas internos, tente mais tarde.',
+        message: S.current.resendCodeErrorsSchema('internalError'),
       ));
     } on CodeDeliveryFailureException {
       return left(ResendCodeError(
-        message: 'Falha ao enviar código para o e-mail, tente novamente.',
+        message: S.current.resendCodeErrorsSchema('codeDeliveryFailure'),
       ));
     } catch (e) {
       return left(ResendCodeError(
-        message: 'Erro ao tentar enviar código, tente mais tarde.',
+        message: S.current.resendCodeErrorsSchema('other'),
       ));
     }
   }

@@ -5,6 +5,7 @@ import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/login_bloc.
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
+import '../../../../../../generated/l10n.dart';
 import '../../bloc/auth/auth_bloc.dart';
 import '../widgets/auth_button_widget.dart';
 import '../widgets/text_button_login_widget.dart';
@@ -88,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Login',
+                                  S.of(context).loginTitle,
                                   style: AppTextStyles.h2HighlightBold.copyWith(
                                     color: Colors.black,
                                   ),
@@ -98,11 +99,11 @@ class _LoginPageState extends State<LoginPage> {
                                 ),
                                 TextFieldLoginWidget(
                                   textFieldBloc: confirmEmailFormBloc.email,
-                                  title: 'E-mail',
+                                  title: S.of(context).emailTitle,
                                 ),
                                 TextFieldLoginWidget(
                                   textFieldBloc: confirmEmailFormBloc.password,
-                                  title: 'Senha',
+                                  title: S.of(context).passwordTitle,
                                   keyboardType: TextInputType.visiblePassword,
                                   suffixButton: SuffixButton.obscureText,
                                   autoFillHints: const [
@@ -116,7 +117,7 @@ class _LoginPageState extends State<LoginPage> {
                                   onPressed: () async {
                                     confirmEmailFormBloc.submit();
                                   },
-                                  title: 'Entrar',
+                                  title: S.of(context).enterTitle,
                                 ),
                               ],
                             ),
@@ -127,19 +128,19 @@ class _LoginPageState extends State<LoginPage> {
                             Modular.to.pushNamed('/login/forgot-password',
                                 arguments: authBloc);
                           },
-                          highlightText: 'Esqueceu a senha?',
+                          highlightText: S.of(context).forgotPasswordTitle,
                         ),
                         TextButtonLoginWidget(
                           onPressed: () {
                             Modular.to.pushNamed('/login/resend-code');
                           },
-                          highlightText: 'Confirmação de e-mail',
+                          highlightText: S.of(context).emailConfirmationTitle,
                         ),
                         TextButtonLoginWidget(
                           onPressed: () {
                             Modular.to.pushNamed('/login/register');
                           },
-                          highlightText: 'Cadastre-se',
+                          highlightText: S.of(context).registerTitle,
                         ),
                       ],
                     ),

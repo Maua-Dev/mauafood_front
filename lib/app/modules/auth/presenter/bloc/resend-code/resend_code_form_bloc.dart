@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 
 import '../register/bloc/register_bloc.dart';
 
@@ -23,9 +24,9 @@ class ResendCodeFormBloc extends FormBloc<String, String> {
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
     RegExp regExp = RegExp(pattern);
     if (emailValue!.isEmpty) {
-      return 'Campo obrigatório.';
+      return S.current.requiredFieldAlert;
     } else if (!regExp.hasMatch(emailValue)) {
-      return 'E-mail inválido.';
+      return S.current.invalidEmailAlert;
     }
     return null;
   }
@@ -33,13 +34,12 @@ class ResendCodeFormBloc extends FormBloc<String, String> {
   @override
   Future<void> submit() async {
     if (email.value == '') {
-      emitFailure(
-          failureResponse: 'Certifique-se que digitou e-mail corretamente.');
+      emitFailure(failureResponse: S.current.typeEmailCorrectlyAlert);
     } else if (await email.validate()) {
       registerBloc.add(ResendConfirmationCode(email: email.value));
       emitSuccess();
     } else {
-      emitFailure(failureResponse: 'E-mail inválido.');
+      emitFailure(failureResponse: S.current.invalidEmailAlert);
     }
   }
 

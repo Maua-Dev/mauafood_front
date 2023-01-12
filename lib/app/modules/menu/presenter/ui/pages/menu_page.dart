@@ -38,12 +38,12 @@ class MenuPage extends StatelessWidget {
                     showDialog(
                         context: context,
                         builder: (context) => AlertDialog(
-                              title: const  Text('Digite seu pedido de ajuda aqui aqui:'),
-                              content:  const TextField(
+                              title: const Text(
+                                  'Digite seu pedido de ajuda aqui aqui:'),
+                              content: const TextField(
                                 decoration: InputDecoration(
                                     border: OutlineInputBorder(),
-                                    labelText: 'Digite aqui'
-                                  ),
+                                    labelText: 'Digite aqui'),
                               ),
                               actions: <Widget>[
                                 TextButton(
@@ -58,12 +58,10 @@ class MenuPage extends StatelessWidget {
                                     Navigator.of(context).pop();
                                   },
                                 ),
-                              ],  
-                              
+                              ],
                             ));
                   },
-                  child: const Text('Contato')
-                ),
+                  child: const Text('Contato')),
               ConstrainedBox(
                 constraints: const BoxConstraints(
                   minHeight: 35.0,

@@ -61,7 +61,7 @@ class MenuPage extends StatelessWidget {
                         labelText: S.of(context).searchTitle,
                         prefixIcon: Icon(
                           Icons.search,
-                          color: AppColors.letterHighlightColor,
+                          color: AppColors.mainBlueColor,
                         ),
                       ),
                     ),
@@ -132,7 +132,7 @@ class MenuPage extends StatelessWidget {
                             return Expanded(
                                 child: RefreshIndicator(
                               backgroundColor: AppColors.white,
-                              color: AppColors.letterHighlightColor,
+                              color: AppColors.mainBlueColor,
                               strokeWidth: 3,
                               onRefresh: () async {
                                 BlocProvider.of<MenuBloc>(context)

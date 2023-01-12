@@ -15,45 +15,50 @@ class RestaurantsPage extends StatelessWidget {
     var controller = Modular.get<RestaurantController>();
 
     return Scaffold(
-        backgroundColor: AppColors.letterHighlightThinColor,
-        appBar: AppBar(
-          title: Text(
-            S.of(context).appTitle,
-            style: const TextStyle(
-                color: Colors.white, fontWeight: FontWeight.w500, fontSize: 24),
-          ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: IconButton(
-                icon: const Icon(Icons.exit_to_app, size: 40),
-                onPressed: () {},
-              ),
-            )
-          ],
-          backgroundColor: AppColors.letterHighlightThinColor,
-          elevation: 0,
-        ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 40),
-          child: Container(
-            decoration: BoxDecoration(
-                color: AppColors.backgroundColor2,
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    topRight: Radius.circular(50))),
-            width: double.infinity,
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    S.of(context).restaurantsTitle,
-                    style: AppTextStyles.h1,
-                  ),
+        backgroundColor: AppColors.mainBlueColor,
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 140),
+          child: AppBar(
+            title: Text(
+              S.of(context).appTitle,
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 24),
+            ),
+            actions: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                child: IconButton(
+                  icon: const Icon(Icons.exit_to_app, size: 40),
+                  onPressed: () {},
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 1.4,
+              )
+            ],
+            backgroundColor: AppColors.mainBlueColor,
+            elevation: 0,
+          ),
+        ),
+        body: Container(
+          decoration: BoxDecoration(
+              color: AppColors.backgroundColor2,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(50),
+              )),
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 32),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  S.of(context).restaurantsTitle,
+                  style: AppTextStyles.h1,
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Expanded(
                   child: ListView.builder(
                     itemCount: controller.restaurants.length,
                     itemBuilder: (context, i) {

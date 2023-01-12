@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 
 class RestaurantWidget extends StatelessWidget {
   final RestaurantEnum restaurantInfo;
@@ -66,7 +67,7 @@ class RestaurantWidget extends StatelessWidget {
                   onPressed: () => Modular.to.navigate('/restaurants/menu/',
                       arguments: restaurantInfo),
                   child: Text(
-                    "Ver cardápio",
+                    S.of(context).seeMenuTitle,
                     style: AppTextStyles.h2HighlightBold,
                   ),
                 ),

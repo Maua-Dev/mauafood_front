@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/restaurant_widget.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../../../auth/presenter/bloc/auth/auth_bloc.dart';
@@ -18,9 +19,9 @@ class RestaurantsPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: AppColors.letterHighlightThinColor,
         appBar: AppBar(
-          title: const Text(
-            "Mauá Food",
-            style: TextStyle(
+          title: Text(
+            S.of(context).appTitle,
+            style: const TextStyle(
                 color: Colors.white, fontWeight: FontWeight.w500, fontSize: 24),
           ),
           actions: [
@@ -51,7 +52,7 @@ class RestaurantsPage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
-                    'Restaurantes',
+                    S.of(context).restaurantsTitle,
                     style: AppTextStyles.h1,
                   ),
                 ),

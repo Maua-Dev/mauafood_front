@@ -16,28 +16,17 @@ class RestaurantsPage extends StatelessWidget {
 
     return Scaffold(
         backgroundColor: AppColors.mainBlueColor,
-        appBar: PreferredSize(
-          preferredSize: const Size(double.infinity, 140),
-          child: AppBar(
-            title: Text(
-              S.of(context).appTitle,
-              style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 24),
+        appBar: AppBar(
+          toolbarHeight: 150,
+          centerTitle: true,
+          title: SizedBox(
+            child: Image.asset(
+              'assets/images/logos/white_logo.png',
+              fit: BoxFit.cover,
             ),
-            actions: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                child: IconButton(
-                  icon: const Icon(Icons.exit_to_app, size: 40),
-                  onPressed: () {},
-                ),
-              )
-            ],
-            backgroundColor: AppColors.mainBlueColor,
-            elevation: 0,
           ),
+          backgroundColor: AppColors.mainBlueColor,
+          elevation: 0,
         ),
         body: Container(
           decoration: BoxDecoration(
@@ -47,16 +36,17 @@ class RestaurantsPage extends StatelessWidget {
               )),
           width: double.infinity,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 32),
+            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   S.of(context).restaurantsTitle,
-                  style: AppTextStyles.h1,
+                  style:
+                      AppTextStyles.h1.copyWith(color: AppColors.mainBlueColor),
                 ),
                 const SizedBox(
-                  height: 8,
+                  height: 16,
                 ),
                 Expanded(
                   child: ListView.builder(

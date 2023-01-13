@@ -56,6 +56,12 @@ class MenuPage extends StatelessWidget {
                               color: AppColors.backgroundColor2), //<-- SEE HERE
                           borderRadius: BorderRadius.circular(50.0),
                         ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 1,
+                              color: AppColors.mainBlueColor), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
                         labelStyle: AppTextStyles.h2Highlight
                             .copyWith(fontWeight: FontWeight.bold),
                         labelText: S.of(context).searchTitle,
@@ -91,8 +97,9 @@ class MenuPage extends StatelessWidget {
                               maxHeight: 50,
                             ),
                             child: Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 16,
+                              ),
                               child: ListView.builder(
                                 itemCount: MealEnum.values.length,
                                 scrollDirection: Axis.horizontal,

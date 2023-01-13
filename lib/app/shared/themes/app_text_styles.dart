@@ -4,7 +4,7 @@ import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 class AppTextStyles {
   static TextStyle h1 = TextStyle(
     color: AppColors.letterColor,
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: FontWeight.bold,
   );
   static TextStyle h2 = TextStyle(

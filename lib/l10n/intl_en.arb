@@ -12,6 +12,8 @@
 
 
     "typeContact": "Contact us",
+    "labelTextField": "Message",
+    "labelButton": "Send",
 
 
     "mealNameSchema": "{meal, select, tudo{All} lanche{Sandwich} bebida{Drinks} doces{Candies} pratos{Dishes} porcoes{Portions} massas{Pastas} salgados{Snacks} saladas{Salads} other{}}",

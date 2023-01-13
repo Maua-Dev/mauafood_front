@@ -23,7 +23,7 @@ class ContactDialog extends StatelessWidget {
               style: AppTextStyles.h2.copyWith(fontWeight: FontWeight.bold)),
           content: TextFieldContactWidget(
             textFieldBloc: contactFormBloc.message,
-            title: 'Mensagem',
+            title: S.of(context).labelTextField,
           ),
           scrollable: false,
           shape: RoundedRectangleBorder(
@@ -44,7 +44,7 @@ class ContactDialog extends StatelessWidget {
                       MaterialStateProperty.all<Color>(AppColors.buttonsColor),
                 ),
                 child: Text(
-                  'Enviar',
+                  S.of(context).labelButton,
                   style: TextStyle(
                     color: AppColors.white,
                     fontSize: 16,

@@ -57,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "errorItemNotFound":
             MessageLookupByLibrary.simpleMessage("No items found."),
+        "labelButton": MessageLookupByLibrary.simpleMessage("Send"),
+        "labelTextField": MessageLookupByLibrary.simpleMessage("Message"),
         "mealNameSchema": m0,
         "mealPriceCurrency": m1,
         "recommendedTitle": MessageLookupByLibrary.simpleMessage("Recommended"),

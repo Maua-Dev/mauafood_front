@@ -38,7 +38,8 @@ class ContactDialog extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
-                  minimumSize: MaterialStateProperty.all<Size>(Size(200, 60)),
+                  minimumSize:
+                      MaterialStateProperty.all<Size>(const Size(200, 60)),
                   backgroundColor:
                       MaterialStateProperty.all<Color>(AppColors.buttonsColor),
                 ),

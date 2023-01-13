@@ -66,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "restaurantsTitle":
             MessageLookupByLibrary.simpleMessage("Restaurantes"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Pesquisa"),
-        "seeMenuTitle": MessageLookupByLibrary.simpleMessage("Ver cardápio")
+        "seeMenuTitle": MessageLookupByLibrary.simpleMessage("Ver cardápio"),
+        "typeContact":
+            MessageLookupByLibrary.simpleMessage("Entre em contato conosco")
       };
 }

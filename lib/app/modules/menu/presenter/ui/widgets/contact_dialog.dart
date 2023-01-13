@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 
 class ContactDialog extends StatelessWidget {
   const ContactDialog({super.key});
@@ -10,7 +11,7 @@ class ContactDialog extends StatelessWidget {
           showDialog(
               context: context,
               builder: (context) => AlertDialog(
-                    title: const Text('Digite seu pedido de ajuda aqui aqui:'),
+                    title: Text(S.of(context).typeContact),
                     content: const TextField(
                       decoration: InputDecoration(
                           border: OutlineInputBorder(),

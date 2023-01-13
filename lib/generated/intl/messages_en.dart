@@ -64,6 +64,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "restaurantsNameSchema": m3,
         "restaurantsTitle": MessageLookupByLibrary.simpleMessage("Restaurants"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Search"),
-        "seeMenuTitle": MessageLookupByLibrary.simpleMessage("See menu")
+        "seeMenuTitle": MessageLookupByLibrary.simpleMessage("See menu"),
+        "typeContact": MessageLookupByLibrary.simpleMessage("Contact us")
       };
 }

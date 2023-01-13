@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/cart/infra/models/cart_item_model.dart';
-import 'package:mauafood_front/app/modules/meal-info/presenter/ui/widgets/meal_list_view_widget.dart';
+import 'package:mauafood_front/app/modules/meal-info/presenter/ui/widgets/accompaniments_widget.dart';
+import 'package:mauafood_front/app/modules/meal-info/presenter/ui/widgets/textfield.dart';
 import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
@@ -180,30 +182,66 @@ class _MealInfoPageState extends State<MealInfoPage> {
                   ],
                 ),
               ),
-              Container(
-                height: 56,
-                width: double.infinity,
-                color: AppColors.backgroundColor3,
-                child: const Text(
-                  'Escolha o acompanhamento',
+              AccompanimentsWidget(mealInfo: widget.mealInfo),
+              const SizedBox(height: 80),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    const Icon(Icons.message),
+                    const SizedBox(width: 8),
+                    Text('Alguma observação?',
+                        style: AppTextStyles.h2ThinHighlight),
+                  ],
                 ),
               ),
-              InkWell(
-                mouseCursor: MouseCursor.defer,
-                onTap: () {},
-                child: Padding(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    child: Row(mainAxisSize: MainAxisSize.max, children: [
-                      const Text('Mostarda'),
-                      const Spacer(),
-                      Image.network(
-                        widget.mealInfo.photo,
-                        fit: BoxFit.contain,
-                        width: 50,
-                        height: 50,
+              const SizedBox(height: 8),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: TextFieldObservation(),
+              ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: AppColors.white,
+                    border: Border.all(color: AppColors.buttonsColor),
+                    borderRadius: BorderRadius.circular(5),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.letterColor.withOpacity(0.2),
+                        blurRadius: 5,
+                        offset: const Offset(0, 5),
                       ),
-                    ])),
+                    ],
+                  ),
+                  width: 440,
+                  height: 40,
+                  child: Row(
+                    children: [
+                      ElevatedButton(
+                          onPressed: () {},
+                          style: ButtonStyle(
+                              minimumSize: MaterialStateProperty.all(
+                                  const Size(240, 45)),
+                              backgroundColor: MaterialStateProperty.all(
+                                  AppColors.buttonsColor),
+                              padding:
+                                  MaterialStateProperty.all(EdgeInsets.zero),
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ))),
+                          child: const Text('Confirmar Pedido')),
+                      const Spacer(),
+                      Text(
+                          'R\$ ${widget.mealInfo.price.toStringAsFixed(2).replaceAll('.', ',')}',
+                          style: AppTextStyles.h2ThinHighlight),
+                      const SizedBox(width: 16),
+                    ],
+                  ),
+                ),
               ),
               const SizedBox(height: 32),
             ],

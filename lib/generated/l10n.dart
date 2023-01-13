@@ -143,20 +143,20 @@ class S {
   }
 
   /// `Message`
-  String get labelTextField {
+  String get labelMessage {
     return Intl.message(
       'Message',
-      name: 'labelTextField',
+      name: 'labelMessage',
       desc: '',
       args: [],
     );
   }
 
-  /// `Send`
-  String get labelButton {
+  /// `Send now`
+  String get labelSend {
     return Intl.message(
-      'Send',
-      name: 'labelButton',
+      'Send now',
+      name: 'labelSend',
       desc: '',
       args: [],
     );

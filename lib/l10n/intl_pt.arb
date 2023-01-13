@@ -12,8 +12,8 @@
 
 
     "typeContact": "Entre em contato conosco",
-    "labelTextField": "Mensagem",
-    "labelButton": "Enviar",
+    "labelMessage": "Mensagem",
+    "labelSend": "Enviar agora",
 
 
     "mealNameSchema": "{meal, select, tudo{Tudo} lanche{Lanche} bebida{Bebidas} doces{Doces} pratos{Pratos} porcoes{Porções} massas{Massas} salgados{Salgados} saladas{Saladas} other{}}",

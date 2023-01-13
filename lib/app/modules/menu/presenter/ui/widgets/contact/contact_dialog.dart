@@ -19,11 +19,12 @@ class ContactDialog extends StatelessWidget {
         final contactFormBloc = BlocProvider.of<ContactFormBloc>(context);
         return AlertDialog(
           backgroundColor: AppColors.backgroundColor2,
+          actionsPadding: const EdgeInsets.only(bottom: 16),
           title: Text(S.of(context).typeContact,
               style: AppTextStyles.h2.copyWith(fontWeight: FontWeight.bold)),
           content: TextFieldContactWidget(
             textFieldBloc: contactFormBloc.message,
-            title: S.of(context).labelTextField,
+            title: S.of(context).labelMessage,
           ),
           scrollable: false,
           shape: RoundedRectangleBorder(
@@ -41,10 +42,10 @@ class ContactDialog extends StatelessWidget {
                   minimumSize:
                       MaterialStateProperty.all<Size>(const Size(200, 60)),
                   backgroundColor:
-                      MaterialStateProperty.all<Color>(AppColors.buttonsColor),
+                      MaterialStateProperty.all<Color>(AppColors.mainBlueColor),
                 ),
                 child: Text(
-                  S.of(context).labelButton,
+                  S.of(context).labelSend.toUpperCase(),
                   style: TextStyle(
                     color: AppColors.white,
                     fontSize: 16,

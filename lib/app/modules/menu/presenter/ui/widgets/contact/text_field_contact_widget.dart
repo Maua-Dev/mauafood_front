@@ -40,16 +40,16 @@ class TextFieldContactWidget extends StatelessWidget {
           textFieldBloc: textFieldBloc,
           expands: false,
           keyboardType: TextInputType.text,
-          cursorColor: AppColors.buttonsColor,
+          cursorColor: AppColors.mainBlueColor,
           textStyle: AppTextStyles.h2,
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               hintText: hintText,
-              suffixIconColor: AppColors.buttonsColor,
+              suffixIconColor: AppColors.mainBlueColor,
               border: const OutlineInputBorder(),
               focusedBorder: OutlineInputBorder(
                   borderSide:
-                      BorderSide(color: AppColors.buttonsColor, width: 2))),
+                      BorderSide(color: AppColors.mainBlueColor, width: 2))),
         ),
         // const SizedBox(
         //   height: 8,

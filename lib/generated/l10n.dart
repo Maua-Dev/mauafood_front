@@ -132,6 +132,36 @@ class S {
     );
   }
 
+  /// `Contact us`
+  String get typeContact {
+    return Intl.message(
+      'Contact us',
+      name: 'typeContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Message`
+  String get labelTextField {
+    return Intl.message(
+      'Message',
+      name: 'labelTextField',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get labelButton {
+    return Intl.message(
+      'Send',
+      name: 'labelButton',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{meal, select, tudo{All} lanche{Sandwich} bebida{Drinks} doces{Candies} pratos{Dishes} porcoes{Portions} massas{Pastas} salgados{Snacks} saladas{Salads} other{}}`
   String mealNameSchema(Object meal) {
     return Intl.select(

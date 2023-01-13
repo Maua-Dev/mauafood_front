@@ -38,6 +38,7 @@ class TextFieldContactWidget extends StatelessWidget {
         TextFieldBlocBuilder(
           textAlign: TextAlign.start,
           textFieldBloc: textFieldBloc,
+          expands: false,
           keyboardType: TextInputType.text,
           cursorColor: AppColors.buttonsColor,
           textStyle: AppTextStyles.h2,

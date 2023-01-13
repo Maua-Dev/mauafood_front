@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -40,6 +39,10 @@ void main() {
 
       final elevatedButton = find.byType(ElevatedButton);
       expect(elevatedButton, findsOneWidget);
+      final circularProgress = find.byType(CircularProgressIndicator);
+      expect(circularProgress, findsNothing);
+      final center = find.byType(Center);
+      expect(center, findsWidgets);
       final sizedBox = find.byType(SizedBox);
       expect(sizedBox, findsAtLeastNWidgets(5));
       final texts = find.byType(Text);

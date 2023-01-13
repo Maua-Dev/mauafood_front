@@ -48,7 +48,7 @@ class MealInfoPage extends StatelessWidget {
                         Modular.to.pop('/menu');
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.letterHighlightThinColor,
+                          backgroundColor: AppColors.mainBlueColor,
                           padding: EdgeInsets.zero,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),

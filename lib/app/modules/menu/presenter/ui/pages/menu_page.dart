@@ -80,8 +80,8 @@ class MenuPage extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: AppColors.backgroundColor2,
                       borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(50),
-                          topRight: Radius.circular(50))),
+                        topLeft: Radius.circular(40),
+                      )),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

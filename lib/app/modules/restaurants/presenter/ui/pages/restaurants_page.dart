@@ -32,11 +32,11 @@ class RestaurantsPage extends StatelessWidget {
           decoration: BoxDecoration(
               color: AppColors.backgroundColor2,
               borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(50),
+                topLeft: Radius.circular(40),
               )),
           width: double.infinity,
           child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

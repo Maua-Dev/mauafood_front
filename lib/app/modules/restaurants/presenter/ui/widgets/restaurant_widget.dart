@@ -19,7 +19,7 @@ class RestaurantWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.only(bottom: 16),
       child: InkWell(
         onTap: () => Modular.to
             .navigate('/restaurants/menu/', arguments: restaurantInfo),

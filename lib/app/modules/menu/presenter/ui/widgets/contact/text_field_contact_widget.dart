@@ -51,9 +51,6 @@ class TextFieldContactWidget extends StatelessWidget {
                   borderSide:
                       BorderSide(color: AppColors.mainBlueColor, width: 2))),
         ),
-        // const SizedBox(
-        //   height: 8,
-        // ),
       ],
     );
   }

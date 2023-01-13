@@ -57,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "errorItemNotFound":
             MessageLookupByLibrary.simpleMessage("No items found."),
+        "labelMessage": MessageLookupByLibrary.simpleMessage("Message"),
+        "labelSend": MessageLookupByLibrary.simpleMessage("Send now"),
         "mealNameSchema": m0,
         "mealPriceCurrency": m1,
         "recommendedTitle": MessageLookupByLibrary.simpleMessage("Recommended"),
@@ -64,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "restaurantsNameSchema": m3,
         "restaurantsTitle": MessageLookupByLibrary.simpleMessage("Restaurants"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Search"),
-        "seeMenuTitle": MessageLookupByLibrary.simpleMessage("See menu")
+        "seeMenuTitle": MessageLookupByLibrary.simpleMessage("See menu"),
+        "typeContact": MessageLookupByLibrary.simpleMessage("Contact us")
       };
 }

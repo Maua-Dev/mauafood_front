@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/appbar/drop_down_restaurant_widget.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/contact/contact_dialog.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/filter_button_widget.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/meal_card_widget.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -33,6 +34,14 @@ class MenuPage extends StatelessWidget {
                   );
                 },
               ),
+              // button pop up contact to the restaurant
+              ElevatedButton(
+                  onPressed: () {
+                    showDialog(
+                        context: context,
+                        builder: (context) => const ContactDialog());
+                  },
+                  child: const Text('Contato')),
               ConstrainedBox(
                 constraints: const BoxConstraints(
                   minHeight: 35.0,

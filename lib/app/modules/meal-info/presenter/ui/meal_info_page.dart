@@ -31,70 +31,6 @@ class _MealInfoPageState extends State<MealInfoPage> {
     var uuid = const Uuid();
     return SafeArea(
       child: Scaffold(
-        bottomSheet: MultiBlocProvider(
-          providers: [
-            BlocProvider(create: (context) => widget.bloc),
-          ],
-          child: Material(
-            elevation: 10,
-            child: SizedBox(
-              width: Utils.width(context),
-              height: Utils.height(context) / 5,
-              child: Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: Utils.width(context) / 18),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    QuantityItemWidget(
-                      quantity: quantity.toString(),
-                      addQuantity: () {
-                        if (quantity >= 0) {
-                          setState(() {
-                            quantity++;
-                          });
-                        }
-                      },
-                      removeQuantity: quantity == 0
-                          ? null
-                          : () {
-                              if (quantity > 0) {
-                                setState(() {
-                                  quantity--;
-                                });
-                              }
-                            },
-                    ),
-                    ElevatedButton(
-                      onPressed: quantity == 0
-                          ? null
-                          : () {
-                              widget.bloc.add(AddItemEvent(
-                                  item: CartItemModel(
-                                      meal: widget.mealInfo,
-                                      quantity: quantity,
-                                      id: uuid.v4())));
-                              Modular.to.pop();
-                            },
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.buttonsColor,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 7, horizontal: 32),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          )),
-                      child: Text(
-                        'Adicionar',
-                        style: AppTextStyles.h2
-                            .copyWith(color: AppColors.white, fontSize: 22),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -172,40 +108,104 @@ class _MealInfoPageState extends State<MealInfoPage> {
                       textAlign: TextAlign.left,
                     ),
                     const SizedBox(
-                      height: 64,
+                      height: 32,
                     ),
-                    Text(
-                      'Recomendados',
-                      style: AppTextStyles.h1,
+                    MultiBlocProvider(
+                      providers: [
+                        BlocProvider(create: (context) => widget.bloc),
+                      ],
+                      child: Material(
+                        child: SizedBox(
+                          width: Utils.width(context),
+                          height: Utils.height(context) / 5,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: Utils.width(context) / 18),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                QuantityItemWidget(
+                                  spaceAround: MainAxisAlignment.spaceBetween,
+                                  width: 160,
+                                  quantity: quantity.toString(),
+                                  addQuantity: () {
+                                    if (quantity >= 0) {
+                                      setState(() {
+                                        quantity++;
+                                      });
+                                    }
+                                  },
+                                  removeQuantity: quantity == 0
+                                      ? null
+                                      : () {
+                                          if (quantity > 0) {
+                                            setState(() {
+                                              quantity--;
+                                            });
+                                          }
+                                        },
+                                ),
+                                const SizedBox(height: 16),
+                                ElevatedButton(
+                                  onPressed: quantity == 0
+                                      ? null
+                                      : () {
+                                          widget.bloc.add(AddItemEvent(
+                                              item: CartItemModel(
+                                                  meal: widget.mealInfo,
+                                                  quantity: quantity,
+                                                  id: uuid.v4())));
+                                          Modular.to.pop();
+                                        },
+                                  style: ElevatedButton.styleFrom(
+                                      backgroundColor: AppColors.buttonsColor,
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 7, horizontal: 32),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                      )),
+                                  child: Text(
+                                    'Adicionar',
+                                    style: AppTextStyles.h2.copyWith(
+                                        color: AppColors.white, fontSize: 22),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    const SizedBox(height: 32),
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 16),
-                child: SizedBox(
-                  height: 160,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 3,
-                    itemBuilder: (context, index) {
-                      return RecommendationCardWidget(
-                        mealInfo: widget.mealInfo,
-                      );
-                    },
-                  ),
+              Container(
+                height: 56,
+                width: double.infinity,
+                color: AppColors.backgroundColor3,
+                child: const Text(
+                  'Escolha o acompanhamento',
                 ),
               ),
-              SizedBox(
-                height: Utils.height(context) / 5,
+              InkWell(
+                mouseCursor: MouseCursor.defer,
+                onTap: () {},
+                child: Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Row(mainAxisSize: MainAxisSize.max, children: [
+                      const Text('Mostarda'),
+                      const Spacer(),
+                      Image.network(
+                        widget.mealInfo.photo,
+                        fit: BoxFit.contain,
+                        width: 50,
+                        height: 50,
+                      ),
+                    ])),
               ),
-              const SizedBox(
-                height: 16,
-              )
+              const SizedBox(height: 32),
             ],
           ),
         ),

@@ -7,16 +7,21 @@ class QuantityItemWidget extends StatelessWidget {
   final String quantity;
   final Function()? addQuantity;
   final Function()? removeQuantity;
+  final double? width;
+  final MainAxisAlignment? spaceAround;
   const QuantityItemWidget(
       {super.key,
       required this.quantity,
       this.addQuantity,
-      this.removeQuantity});
+      this.removeQuantity,
+      this.width,
+      this.spaceAround});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 40,
+      width: width ?? 100,
       decoration: BoxDecoration(
         color: AppColors.buttonsColor,
         borderRadius: const BorderRadius.all(
@@ -24,6 +29,7 @@ class QuantityItemWidget extends StatelessWidget {
         ),
       ),
       child: Row(
+        mainAxisAlignment: spaceAround ?? MainAxisAlignment.spaceAround,
         children: [
           IconButton(
             padding: EdgeInsets.zero,

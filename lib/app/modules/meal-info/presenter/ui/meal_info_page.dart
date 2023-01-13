@@ -93,26 +93,21 @@ class MealInfoPage extends StatelessWidget {
                     const SizedBox(
                       height: 64,
                     ),
-                    Text(
-                      S.of(context).recommendedTitle,
-                      style: AppTextStyles.h1,
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
+                    // Button add and remove items
                     SizedBox(
-                      height: 160,
-                      child: ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 3,
-                        itemBuilder: (context, index) {
-                          return RecommendationCardWidget(
-                            mealInfo: mealInfo,
-                          );
-                        },
+                      width: 152,
+                      height: 80,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          IconButton(
+                              onPressed: () {}, icon: const Icon(Icons.remove)),
+                          Text('1', style: AppTextStyles.h1),
+                          IconButton(
+                              onPressed: () {}, icon: const Icon(Icons.add)),
+                        ],
                       ),
-                    ),
+                    )
                   ],
                 ),
               ),

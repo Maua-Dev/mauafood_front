@@ -29,21 +29,16 @@ class TextFieldContactWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         Text(
           title,
           style: AppTextStyles.h2,
         ),
         TextFieldBlocBuilder(
-          inputFormatters: inputFormatters,
           textAlign: TextAlign.start,
           textFieldBloc: textFieldBloc,
           keyboardType: TextInputType.text,
-          suffixButton: suffixButton,
-          autofillHints: autoFillHints ??
-              const [
-                AutofillHints.email,
-              ],
           cursorColor: AppColors.buttonsColor,
           textStyle: AppTextStyles.h2,
           decoration: InputDecoration(

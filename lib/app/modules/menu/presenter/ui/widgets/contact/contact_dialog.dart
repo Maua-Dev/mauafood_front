@@ -12,16 +12,14 @@ class ContactDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => Modular.get<ContactFormBloc>(),
-      child: Builder(builder: (context) {
-        final contactFormBloc = BlocProvider.of<ContactFormBloc>(context);
-        return AlertDialog(
+        create: (context) => Modular.get<ContactFormBloc>(),
+        child: AlertDialog(
           title: Text(S.of(context).typeContact),
           content: TextFieldContactWidget(
-            textFieldBloc: contactFormBloc.message,
+            textFieldBloc: Modular.get<ContactFormBloc>().message,
             title: 'Texto',
           ),
-          actions: <Widget>[
+          actions: [
             TextButton(
               child: const Text('Cancelar'),
               onPressed: () {
@@ -35,8 +33,6 @@ class ContactDialog extends StatelessWidget {
               },
             ),
           ],
-        );
-      }),
-    );
+        ));
   }
 }

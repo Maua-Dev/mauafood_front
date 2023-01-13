@@ -85,50 +85,50 @@ class MenuPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const SizedBox(
-                        height: 24,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 24, bottom: 16),
+                        child: BlocBuilder<MenuBloc, MenuState>(
+                            builder: (context, state) {
+                          if (state is MenuLoadedSuccessState) {
+                            return ConstrainedBox(
+                              constraints: const BoxConstraints(
+                                minHeight: 35.0,
+                                maxHeight: 50,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                ),
+                                child: ListView.builder(
+                                  itemCount: MealEnum.values.length,
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  itemBuilder: (context, index) {
+                                    return FilterButtonWidget(
+                                      myIndex: index,
+                                      blocIndex: state.index,
+                                      onPressed: MealEnum.values[index] ==
+                                              MealEnum.tudo
+                                          ? () {
+                                              BlocProvider.of<MenuBloc>(context)
+                                                  .add(GetAllMealsEvent());
+                                            }
+                                          : () {
+                                              BlocProvider.of<MenuBloc>(context)
+                                                  .add(FilterMealTypeEvent(
+                                                      mealType: MealEnum
+                                                          .values[index]));
+                                            },
+                                    );
+                                  },
+                                ),
+                              ),
+                            );
+                          } else {
+                            return const SizedBox.shrink();
+                          }
+                        }),
                       ),
-                      BlocBuilder<MenuBloc, MenuState>(
-                          builder: (context, state) {
-                        if (state is MenuLoadedSuccessState) {
-                          return ConstrainedBox(
-                            constraints: const BoxConstraints(
-                              minHeight: 35.0,
-                              maxHeight: 50,
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 16,
-                              ),
-                              child: ListView.builder(
-                                itemCount: MealEnum.values.length,
-                                scrollDirection: Axis.horizontal,
-                                shrinkWrap: true,
-                                itemBuilder: (context, index) {
-                                  return FilterButtonWidget(
-                                    myIndex: index,
-                                    blocIndex: state.index,
-                                    onPressed: MealEnum.values[index] ==
-                                            MealEnum.tudo
-                                        ? () {
-                                            BlocProvider.of<MenuBloc>(context)
-                                                .add(GetAllMealsEvent());
-                                          }
-                                        : () {
-                                            BlocProvider.of<MenuBloc>(context)
-                                                .add(FilterMealTypeEvent(
-                                                    mealType: MealEnum
-                                                        .values[index]));
-                                          },
-                                  );
-                                },
-                              ),
-                            ),
-                          );
-                        } else {
-                          return const SizedBox.shrink();
-                        }
-                      }),
                       BlocBuilder<MenuBloc, MenuState>(
                         builder: (context, state) {
                           if (state is MenuLoadingState) {
@@ -148,7 +148,7 @@ class MenuPage extends StatelessWidget {
                               child: GridView.builder(
                                 itemCount: state.listMeal.length,
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 24),
+                                    horizontal: 24, vertical: 8),
                                 gridDelegate:
                                     const SliverGridDelegateWithMaxCrossAxisExtent(
                                   crossAxisSpacing: 16,

@@ -31,9 +31,11 @@ class FilterButtonWidget extends StatelessWidget {
         onPressed: onPressed,
         child: Text(MealEnum.values[myIndex].name,
             style: blocIndex == myIndex
-                ? AppTextStyles.h2Thin.copyWith(color: AppColors.white)
-                : AppTextStyles.h2Thin
-                    .copyWith(color: AppColors.mainBlueColor)),
+                ? AppTextStyles.h2Thin.copyWith(
+                    color: AppColors.white, fontWeight: FontWeight.bold)
+                : AppTextStyles.h2Thin.copyWith(
+                    color: AppColors.mainBlueColor,
+                  )),
       ),
     );
   }

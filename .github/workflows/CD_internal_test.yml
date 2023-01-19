@@ -1,0 +1,30 @@
+name: Deploy to Play Store Intern Test
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps: 
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Flutter
+      uses: subosito/flutter-action@v1
+      with:
+        flutter-version: stable
+
+    - name: Build App Bundle
+      run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+
+    - name: Deploy to Play Store
+      uses: r0adkll/upload-bundle-action@v1
+      with:
+        service_account_json: ${{ secrets.PLAY_STORE_API }}
+        track: internal
+        bundle: build/app/outputs/bundle/release/app.aab
+        internal_testing: true

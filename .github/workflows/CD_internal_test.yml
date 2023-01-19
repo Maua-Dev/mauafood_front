@@ -8,21 +8,25 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-    - name: Set up Flutter
-      uses: subosito/flutter-action@v1
-      with:
-        flutter-version: stable
+      - name: Setup Java Version
+        uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
 
-    - name: Build App Bundle
-      run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
 
-    - name: Deploy to Play Store
-      uses: r0adkll/upload-google-play@v1
-      with:
-        serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_API }}
-        packageName: br.com.dev.mauafood_front
-        releaseFiles: build/app/outputs/bundle/release/app.aab
-        track: internal
+      - name: Build App Bundle
+        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+
+      - name: Deploy to Play Store
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_API }}
+          packageName: br.com.dev.mauafood_front
+          releaseFiles: build/app/outputs/bundle/release/app.aab
+          track: internal

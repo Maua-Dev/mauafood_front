@@ -47,6 +47,7 @@ flutter:
     - assets/images/logos/brown_logo.png
     - assets/images/logos/grey_logo.png
     - assets/images/logos/white_logo.png
+    - assets/images/logos/mauafood_logo_correct.gif
 
 scripts:
   build: flutter pub run build_runner build

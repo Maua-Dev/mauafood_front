@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../../domain/enum/meal_enum.dart';
@@ -15,16 +16,27 @@ class FilterButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPressed,
-      style: TextButton.styleFrom(
-          padding: const EdgeInsets.symmetric(horizontal: 16)),
-      child: Text(MealEnum.values[myIndex].name,
-          style: blocIndex == myIndex
-              ? AppTextStyles.h2Highlight.copyWith(
-                  decoration: TextDecoration.underline,
-                  fontWeight: FontWeight.bold)
-              : AppTextStyles.h2Thin),
+    return Padding(
+      padding: const EdgeInsets.only(right: 6, bottom: 4),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          padding: EdgeInsets.zero,
+          fixedSize: const Size(80, 0),
+          backgroundColor:
+              blocIndex == myIndex ? AppColors.mainBlueColor : Colors.white,
+        ),
+        onPressed: onPressed,
+        child: Text(MealEnum.values[myIndex].name,
+            style: blocIndex == myIndex
+                ? AppTextStyles.h2Thin.copyWith(
+                    color: AppColors.white, fontWeight: FontWeight.bold)
+                : AppTextStyles.h2Thin.copyWith(
+                    color: AppColors.mainBlueColor,
+                  )),
+      ),
     );
   }
 }

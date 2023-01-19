@@ -1,11 +1,12 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/meal-info/presenter/ui/meal_info_page.dart';
 import 'package:mauafood_front/app/modules/meal-info/presenter/ui/widgets/meal_list_view_widget.dart';
 import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
 import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
@@ -25,6 +26,12 @@ void main() {
   testWidgets('[WIDGETS TEST] - MealInfoPage', (widgetTester) async {
     mockNetworkImagesFor(() async {
       await widgetTester.pumpWidget(MaterialApp(
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
         home: MealInfoPage(
           mealInfo: testMock,
         ),
@@ -32,6 +39,10 @@ void main() {
 
       final elevatedButton = find.byType(ElevatedButton);
       expect(elevatedButton, findsOneWidget);
+      final circularProgress = find.byType(CircularProgressIndicator);
+      expect(circularProgress, findsNothing);
+      final center = find.byType(Center);
+      expect(center, findsWidgets);
       final sizedBox = find.byType(SizedBox);
       expect(sizedBox, findsAtLeastNWidgets(5));
       final texts = find.byType(Text);

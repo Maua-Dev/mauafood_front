@@ -112,7 +112,7 @@ void main() {
     );
   });
 
-  group('[TEST] - FilterMealTypeEvent ', () {
+  group('[TEST] - FilterMealTypeEvent', () {
     blocTest(
       'returns succesfull state',
       build: () => bloc,
@@ -137,6 +137,40 @@ void main() {
             .thenAnswer((realInvocation) async => Left(failure));
         bloc.eitherListMeal = Left(failure);
         bloc.add(const FilterMealTypeEvent(mealType: MealEnum.bebida));
+      },
+      expect: () => [
+        MenuLoadingState(),
+        MenuErrorState(failure: failure),
+      ],
+    );
+  });
+
+  group('[TEST] - ChangeRestaurantEvent', () {
+    blocTest(
+      'returns succesfull state',
+      build: () => bloc,
+      act: (bloc) {
+        when(getRestaurantMeal(bloc.restaurantInfo))
+            .thenAnswer((realInvocation) async => Right(listMock));
+        bloc.eitherListMeal = Right(listMock);
+        bloc.add(const ChangeRestaurantEvent(
+            restaurantEnum: RestaurantEnum.restaurantBiba));
+      },
+      expect: () => [
+        MenuLoadingState(),
+        MenuLoadedSuccessState(listMeal: listMock, index: 0)
+      ],
+    );
+
+    blocTest(
+      'returns error state',
+      build: () => bloc,
+      act: (bloc) {
+        when(getRestaurantMeal(bloc.restaurantInfo))
+            .thenAnswer((realInvocation) async => Left(failure));
+        bloc.eitherListMeal = Left(failure);
+        bloc.add(const ChangeRestaurantEvent(
+            restaurantEnum: RestaurantEnum.restaurantBiba));
       },
       expect: () => [
         MenuLoadingState(),

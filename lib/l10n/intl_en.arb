@@ -1,0 +1,44 @@
+{
+    "appTitle": "Mauá Food",
+    "searchTitle": "Search",
+    "restaurantsTitle": "Restaurants",
+    "seeMenuTitle": "See menu",
+    "recommendedTitle": "Recommended",
+
+
+
+    "restaurantsNameSchema": "{restaurant, select, biba{Souza de Abreu} h{H Restaurant} other{}}",
+    "restaurantsImageSchema": "{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} other{}}",
+
+
+    "typeContact": "Contact us",
+    "labelMessage": "Message",
+    "labelSend": "Send now",
+
+
+    "mealNameSchema": "{meal, select, tudo{All} lanche{Sandwich} bebida{Drinks} doces{Candies} pratos{Dishes} porcoes{Portions} massas{Pastas} salgados{Snacks} saladas{Salads} other{}}",
+    "mealPriceCurrency": "{amount} ",
+    "@mealPriceCurrency" : {
+        "placeholders": {
+            "amount": {
+                "type": "double",
+                "format": "currency",
+                "example": "R$1000,00",
+                "description": "Price",
+                "optionalParameters": {
+                    "decimalDigits": 2,
+                    "name": "BRL",
+                    "symbol": "R$",
+                    "customPattern": "¤#0.00"
+                }
+            }
+        }
+    },
+
+
+    
+    "errorGeneric": "Something went wrong!",
+    "errorItemNotFound": "No items found.",
+    "errorEmptyList": "Empty List.",
+    "": ""
+}

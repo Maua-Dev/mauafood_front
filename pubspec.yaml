@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+        sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_modular: ^5.0.3
   flutter_bloc: ^8.1.1
@@ -22,6 +24,7 @@ dependencies:
   google_fonts: ^2.0.1
   bloc_test: ^9.1.0
   network_image_mock: ^2.1.1
+  flutter_form_bloc: ^0.30.1
 
 dev_dependencies:
   flutter_test:
@@ -43,7 +46,10 @@ flutter:
     - assets/data/restaurant_h.json
     - assets/images/logos/brown_logo.png
     - assets/images/logos/grey_logo.png
+    - assets/images/logos/white_logo.png
 
 scripts:
   build: flutter pub run build_runner build
   watch: flutter pub run build_runner watch --delete-conflicting-outputs
+flutter_intl:
+  enabled: true

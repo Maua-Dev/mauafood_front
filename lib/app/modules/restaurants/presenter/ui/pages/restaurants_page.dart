@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/restaurant_widget.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 
 import '../../../../../shared/themes/app_text_styles.dart';
 
@@ -14,45 +15,40 @@ class RestaurantsPage extends StatelessWidget {
     var controller = Modular.get<RestaurantController>();
 
     return Scaffold(
-        backgroundColor: AppColors.letterHighlightThinColor,
+        backgroundColor: AppColors.mainBlueColor,
         appBar: AppBar(
-          title: const Text(
-            "Mauá Food",
-            style: TextStyle(
-                color: Colors.white, fontWeight: FontWeight.w500, fontSize: 24),
+          toolbarHeight: 150,
+          centerTitle: true,
+          title: SizedBox(
+            child: Image.asset(
+              'assets/images/logos/white_logo.png',
+              fit: BoxFit.cover,
+            ),
           ),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: IconButton(
-                icon: const Icon(Icons.exit_to_app, size: 40),
-                onPressed: () {},
-              ),
-            )
-          ],
-          backgroundColor: AppColors.letterHighlightThinColor,
+          backgroundColor: AppColors.mainBlueColor,
           elevation: 0,
         ),
-        body: Padding(
-          padding: const EdgeInsets.only(top: 40),
-          child: Container(
-            decoration: BoxDecoration(
-                color: AppColors.backgroundColor2,
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(50),
-                    topRight: Radius.circular(50))),
-            width: double.infinity,
+        body: Container(
+          decoration: BoxDecoration(
+              color: AppColors.backgroundColor2,
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(40),
+              )),
+          width: double.infinity,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Restaurantes',
-                    style: AppTextStyles.h1,
-                  ),
+                Text(
+                  S.of(context).restaurantsTitle,
+                  style:
+                      AppTextStyles.h1.copyWith(color: AppColors.mainBlueColor),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 1.4,
+                const SizedBox(
+                  height: 16,
+                ),
+                Expanded(
                   child: ListView.builder(
                     itemCount: controller.restaurants.length,
                     itemBuilder: (context, i) {

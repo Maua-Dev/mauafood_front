@@ -6,43 +6,27 @@ on:
       - develop
 jobs:
   build:
-    name: Build APK and Create release
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: Update KeyStore password in gradle properties
-      run: sed -i 's/#{KEYSTORE_PASS}#/${{ secrets.KEYSTORE_PASS }}/g' android/key.properties
-    - name: Update KeyStore key password in gradle properties
-      run: sed -i 's/#{KEYSTORE_KEY_PASS}#/${{ secrets.KEYSTORE_KEY_PASS }}/g' android/key.properties
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '12.x'
-    - uses: subosito/flutter-action@v1
-      with:
-        flutter-version: '1.17.0'
-    - run: flutter pub get
-    - run: flutter test
-    - run: flutter build apk --release --split-per-abi
-    - run: flutter build appbundle
-    - name: Upload app bundle
-      uses: actions/upload-artifact@v2
-      with:
-        name: appbundle
-        path: build/app/outputs/bundle/release/app-release.aab
-  release:
-    name: Release app to internal track
-    needs: [ build ]
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v1
-    - name: Get appbundle from artifacts
-      uses: actions/download-artifact@v2
-      with:
-        name: appbundle
-    - name: Release app to internal track
-      uses: r0adkll/upload-google-play@v1
-      with:
-        serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_API }}
-        packageName: br.com.dev.mauafood_front
-        releaseFile: app/build/outputs/bundle/release/app-release.aab
-        track: internal
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java Version
+        uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+
+      - name: Build App Bundle
+        run: flutter build appbundle --target-platform android-arm,android-arm64,android-x64
+
+      - name: Deploy to Play Store
+        uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_API }}
+          packageName: br.com.dev.mauafood_front
+          releaseFiles: build/app/outputs/bundle/release/app.aab
+          track: internal

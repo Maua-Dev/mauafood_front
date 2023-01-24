@@ -20,7 +20,7 @@ class SplashPage extends StatelessWidget {
               return Center(
                 child: SizedBox(
                     child: Image.asset(
-                  'assets/images/logos/mauafood_logo_correct.gif',
+                  'assets/images/logos/mauafood_logo_black.gif',
                   fit: BoxFit.cover,
                 )),
               );

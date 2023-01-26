@@ -42,10 +42,10 @@ jobs:
           run: flutter build appbundle
 
         - name: Deploy to Play Store
-          uses: r0adkll/upload-google-play@v1.0.15
+          uses: r0adkll/upload-google-play@v1
           with:
             serviceAccountJsonPlainText: ${{ secrets.PLAY_STORE_API }}
             packageName: br.com.dev.mauafood_front
             releaseFiles: build/app/outputs/bundle/release/app-release.aab
             track: internal
-            status: completed
+            status: draft

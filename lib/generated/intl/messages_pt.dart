@@ -195,6 +195,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Por favor, insira o nome completo."),
         "invalidPasswordAlert":
             MessageLookupByLibrary.simpleMessage("Senha inválida."),
+        "labelMessage": MessageLookupByLibrary.simpleMessage("Mensagem"),
+        "labelSend": MessageLookupByLibrary.simpleMessage("Enviar agora"),
         "loginErrorsSchema": m3,
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "logoutErrorsSchema": m4,
@@ -232,6 +234,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("E-mail confirmado!"),
         "termsAcceptAlert": MessageLookupByLibrary.simpleMessage(
             "É necessário aceitar os Termos de Uso."),
+        "typeContact":
+            MessageLookupByLibrary.simpleMessage("Entre em contato conosco"),
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se que digitou e-mail corretamente."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(

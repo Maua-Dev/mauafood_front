@@ -186,6 +186,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter the full name."),
         "invalidPasswordAlert":
             MessageLookupByLibrary.simpleMessage("Invalid password."),
+        "labelMessage": MessageLookupByLibrary.simpleMessage("Message"),
+        "labelSend": MessageLookupByLibrary.simpleMessage("Send now"),
         "loginErrorsSchema": m3,
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "logoutErrorsSchema": m4,
@@ -222,6 +224,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Email confirmed!"),
         "termsAcceptAlert": MessageLookupByLibrary.simpleMessage(
             "It is necessary to accept the Terms of Use."),
+        "typeContact": MessageLookupByLibrary.simpleMessage("Contact us"),
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure you typed email correctly."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(

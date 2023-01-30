@@ -48,7 +48,7 @@ class MealInfoPage extends StatelessWidget {
                         Modular.to.pop('/menu');
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.letterHighlightThinColor,
+                          backgroundColor: AppColors.mainBlueColor,
                           padding: EdgeInsets.zero,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
@@ -80,18 +80,6 @@ class MealInfoPage extends StatelessWidget {
                           S.of(context).mealPriceCurrency(mealInfo.price),
                           style: AppTextStyles.h1,
                         ),
-                        // Row(
-                        //   children: [
-                        //     Icon(
-                        //       Icons.access_time,
-                        //       color: AppColors.letterHighlightColor,
-                        //     ),
-                        //     Text(
-                        //       '${mealInfo.prepareTime} min',
-                        //       style: AppTextStyles.h2Highlight,
-                        //     ),
-                        //   ],
-                        // ),
                       ],
                     ),
                     const SizedBox(

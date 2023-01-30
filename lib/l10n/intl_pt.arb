@@ -60,6 +60,10 @@
     "restaurantsImageSchema": "{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} other{}}",
 
 
+    "typeContact": "Entre em contato conosco",
+    "labelMessage": "Mensagem",
+    "labelSend": "Enviar agora",
+
 
     "mealNameSchema": "{meal, select, tudo{Tudo} lanche{Lanche} bebida{Bebidas} doces{Doces} pratos{Pratos} porcoes{Porções} massas{Massas} salgados{Salgados} saladas{Saladas} other{}}",
     "mealPriceCurrency": "{amount} ",

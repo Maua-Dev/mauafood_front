@@ -9,36 +9,46 @@ const amplifyconfig = ''' {
                 "IdentityManager": {
                     "Default": {}
                 },
+                "CredentialsProvider": {
+                    "CognitoIdentity": {
+                        "Default": {
+                            "PoolId": "sa-east-1:2ded43cb-88b9-481c-a383-8fe601470262",
+                            "Region": "sa-east-1"
+                        }
+                    }
+                },
                 "CognitoUserPool": {
                     "Default": {
-                        "PoolId": "sa-east-1_RarVOqFlT",
-                        "AppClientId": "4sjuri44nd2f7hbb6asrna3cbk",
+                        "PoolId": "sa-east-1_nqXQMfePq",
+                        "AppClientId": "1vd1huuqr6etmhmhods8jqug25",
                         "Region": "sa-east-1"
                     }
                 },
                 "Auth": {
                     "Default": {
                         "authenticationFlowType": "USER_SRP_AUTH",
-                        "socialProviders": [],
-                        "usernameAttributes": [
-                            "EMAIL"
-                        ],
-                        "signupAttributes": [
-                            "NAME",
-                            "EMAIL",
-                            "UPDATED_AT"
+                        "mfaConfiguration": "OFF",
+                        "mfaTypes": [
+                            "SMS"
                         ],
                         "passwordProtectionSettings": {
                             "passwordPolicyMinLength": 8,
                             "passwordPolicyCharacters": [
                                 "REQUIRES_LOWERCASE",
-                                "REQUIRES_UPPERCASE",
                                 "REQUIRES_NUMBERS",
-                                "REQUIRES_SYMBOLS"
+                                "REQUIRES_SYMBOLS",
+                                "REQUIRES_UPPERCASE"
                             ]
                         },
-                        "mfaConfiguration": "OFF",
-                        "mfaTypes": [],
+                        "signupAttributes": [
+                            "EMAIL",
+                            "UPDATED_AT",
+                            "NAME"
+                        ],
+                        "socialProviders": [],
+                        "usernameAttributes": [
+                            "EMAIL"
+                        ],
                         "verificationMechanisms": [
                             "EMAIL"
                         ]

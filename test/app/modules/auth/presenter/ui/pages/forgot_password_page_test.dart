@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart' as modular;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/app_module.dart';
@@ -18,6 +19,7 @@ import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/forgot_passwo
 import 'package:mauafood_front/app/modules/auth/presenter/ui/widgets/auth_button_widget.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/widgets/text_button_login_widget.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/widgets/text_field_login_widget.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
@@ -76,6 +78,12 @@ void main() {
       when(forgotPassword('error'))
           .thenAnswer((realInvocation) async => Left(error));
       await widgetTester.pumpWidget(MaterialApp(
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
         home: BlocProvider(
           create: (context) => bloc,
           child: ForgotPasswordPage(

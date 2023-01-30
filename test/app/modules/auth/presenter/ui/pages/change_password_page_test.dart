@@ -22,6 +22,8 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 
 import '../../bloc/auth/auth_bloc_test.mocks.dart';
 
@@ -76,6 +78,12 @@ void main() {
       when(confirmResetPassword('error', 'error', 'error'))
           .thenAnswer((realInvocation) async => Left(error));
       await widgetTester.pumpWidget(MaterialApp(
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
         home: BlocProvider(
           create: (context) => bloc,
           child: ChangePasswordPage(

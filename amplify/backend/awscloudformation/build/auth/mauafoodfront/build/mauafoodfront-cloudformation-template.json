@@ -165,10 +165,10 @@
             "MinimumLength": {
               "Ref": "passwordPolicyMinLength"
             },
-            "RequireLowercase": true,
-            "RequireNumbers": true,
-            "RequireSymbols": true,
-            "RequireUppercase": true
+            "RequireLowercase": false,
+            "RequireNumbers": false,
+            "RequireSymbols": false,
+            "RequireUppercase": false
           }
         },
         "Schema": [
@@ -179,12 +179,12 @@
           },
           {
             "Mutable": true,
-            "Name": "name",
+            "Name": "updated_at",
             "Required": true
           },
           {
             "Mutable": true,
-            "Name": "updated_at",
+            "Name": "name",
             "Required": true
           }
         ],
@@ -229,7 +229,7 @@
         "UserPoolId": {
           "Ref": "UserPool"
         },
-        "ClientName": "mauafo4c2e1d92_app_clientWeb",
+        "ClientName": "mauafoa96238c2_app_clientWeb",
         "RefreshTokenValidity": {
           "Ref": "userpoolClientRefreshTokenValidity"
         },
@@ -247,7 +247,7 @@
         "UserPoolId": {
           "Ref": "UserPool"
         },
-        "ClientName": "mauafo4c2e1d92_app_client",
+        "ClientName": "mauafoa96238c2_app_client",
         "GenerateSecret": {
           "Ref": "userpoolClientGenerateSecret"
         },
@@ -287,7 +287,7 @@
               "Fn::Join": [
                 "",
                 [
-                  "upClientLambdaRole4c2e1d92",
+                  "upClientLambdaRolea96238c2",
                   {
                     "Fn::Select": [
                       3,
@@ -355,7 +355,7 @@
             }
           ]
         },
-        "PolicyName": "mauafo4c2e1d92_userpoolclient_lambda_iam_policy",
+        "PolicyName": "mauafoa96238c2_userpoolclient_lambda_iam_policy",
         "Roles": [
           {
             "Ref": "UserPoolClientRole"
@@ -398,7 +398,7 @@
             }
           ]
         },
-        "PolicyName": "mauafo4c2e1d92_userpoolclient_lambda_log_policy",
+        "PolicyName": "mauafoa96238c2_userpoolclient_lambda_log_policy",
         "Roles": [
           {
             "Ref": "UserPoolClientRole"

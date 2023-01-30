@@ -23,8 +23,6 @@ class MenuModule extends Module {
         Bind<MenuRepositoryInterface>(
             (i) => MenuRepositoryImpl(datasource: i())),
         Bind<MenuDatasourceInterface>((i) => MenuDatasourceImpl()),
-        Bind<MenuRepositoryInterface>(
-            (i) => MenuRepositoryImpl(datasource: i())),
       ];
 
   @override

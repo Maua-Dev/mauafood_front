@@ -1,9 +1,58 @@
 {
     "appTitle": "Mauá Food",
+    "questionMark": "?",
+    "appAcceptTerms": "Li e aceito os Termos de Uso",
+
+
+
+    "emailTitle": "E-mail",
+    "passwordTitle": "Senha",
+    "confirmPasswordTitle": "Confirme sua senha",
+    "newPasswordTitle": "Nova senha",
+    "confirmNewPasswordTitle": "Confirme a nova senha",
+    "confirmEmailTitle": "Confirme seu e-mail",
+    "fullNameTitle": "Nome Completo",
+    "cpfTitle": "CPF",
+    "enterTitle": "Entrar",
+    "registerTitle": "Cadastrar",
+    "sendTitle": "Enviar",
+    "codeTitle": "Código",
+    "confirmTitle": "Confirmar",
+    "notificationsOptionsSchema": "{notifications, select, normalPart{Deseja receber } email{notificações por e-mail} app{notificações pelo app} other{}}",
+
+    "requiredFieldAlert": "Campo obrigatório.",
+    "invalidEmailAlert": "E-mail inválido.",
+    "invalidPasswordAlert": "Senha inválida.",
+    "invalidCpfAlert": "CPF inválido.",
+    "invalidCodeAlert": "Código inválido.",
+    "invalidFullNameAlert": "Por favor, insira o nome completo.",
+    "typeEmailCorrectlyAlert": "Certifique-se que digitou e-mail corretamente.",
+    "typeEmailPasswordAlert": "Certifique-se que digitou e-mail e senha.",
+    "equalPasswordAlert": "Senhas devem ser iguais.",
+    "passwordInstructionsAlert": "Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \\$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres",
+    "correctFieldsInstructionsAlert": "Certifique-se que os campos estão corretos.",
+    "fillFieldsInstructionsAlert": "Certifique-se de que preencheu todos os campos.",
+    "termsAcceptAlert": "É necessário aceitar os Termos de Uso.",
+    "codeErrorAlert": "Erro com código.",
+
+    "forgotPasswordTitle": "Esqueceu a senha?",
+    "changePasswordTitle": "Alterar senha",
+    "emailConfirmationTitle": "Confirmação de e-mail",
+    "resendConfirmationCodeTitle": "Reeviar código de confirmação",
+    "confirmationCodeInstructionsTitle": "Por favor, digite seu e-mail, vamos mandar um código de verificação.",
+    "sendCodeEmailInstructionsTitle": "Enviamos um código de confirmação em seu e-mail, digite-o no campo abaixo.",
+    "registerEmailInstructionsTitle": "Para completar seu cadastro enviamos um e-mail com um código, insira-o no campo abaixo.",
+
+
+
     "searchTitle": "Pesquisa",
     "restaurantsTitle": "Restaurantes",
     "seeMenuTitle": "Ver cardápio",
     "recommendedTitle": "Recomendados",
+    "loginTitle": "Login",
+    "doLoginTitle": "Faça o login",
+    "havePasswordTitle": "Já tem uma senha?",
+    "haveAccountTitle": "Já tem uma conta?",
 
 
 
@@ -36,9 +85,24 @@
     },
 
 
+
+    "successChangePassword": "Senha alterada com sucesso!",
+    "successConfirmEmail": "E-mail confirmado!",
+
+
     
     "errorGeneric": "Algo deu errado!",
     "errorItemNotFound": "Nenhum item encontrado.",
-    "errorEmptyList": "Lista vazia.", 
+    "errorEmptyList": "Lista vazia.",
+    "errorEmailOrPassword": "Erro com e-mail ou senha.",
+    "errorFields": "Erro com os campos inseridos.",
+
+    "loginErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} signedOut{E-mail ou senha incorretos.} notAuthorized{E-mail não confirmado, confirme-o.} userNotConfirmed{E-mail não confirmado, confirme-o.} userNotFound{E-mail ou senha incorretos ou e-mail não cadastrado.} other{Algo deu errado ao logar, tente novamente mais tarde.}}",
+    "registerErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} usernameExists{Já existe um cadastro com este e-mail.} invalidParameter{Algum campo preenchido de forma errada.} internalError{Estamos com problemas internos, tente mais tarde.} other{Ocorreu algum erro ao tentar cadastrar, tente novamente mais tarde.}}",
+    "emailConfirmationErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} invalidParameter{E-mail, provavelmente, já confirmado.} tooManyFailedAttempts{Parece que você tentou errou o código muitas vezes, entre em contato.} userNotFound{Não encontramos este e-mail cadastrado.} internalError{Estamos com problemas internos, tente mais tarde.} codeMismatch{Código fornecido está errado, tente novamente.} other{Ocorreu algum erro ao confirmar e-mail.}}",
+    "logoutErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} internalError{Estamos com problemas internos, tente mais tarde.} other{Erro ao tentar fazer logout, tente mais tarde.}}",
+    "forgotPasswordErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} userNotConfirmed{E-mail não confirmado, confirme-o.} userNotFound{E-mail não encontrado, certifique-se de que fez cadastro.} invalidParameter{E-mail não confirmado, confirme-o antes de mudar a senha.} internalError{Estamos com problemas internos, tente mais tarde.} other{Erro ao tentar resetar senha, tente mais tarde.}}",
+    "confirmResetPasswordErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} codeMismatch{Código fornecido está errado, tente novamente.} userNotConfirmed{E-mail não confirmado, confirme-o.} internalError{Estamos com problemas internos, tente mais tarde.} other{Erro ao tentar mudar senha, tente mais tarde.}}",
+    "resendCodeErrorsSchema": "{schema, select, invalidParameter{E-mail, provavelmente, já confirmado.} userNotFound{E-mail não encontrado, certifique-se de que fez cadastro.} limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} internalError{Estamos com problemas internos, tente mais tarde.} codeDeliveryFailure{Falha ao enviar código para o e-mail, tente novamente.} other{Erro ao tentar enviar código, tente mais tarde.}}",
     "": ""
 }

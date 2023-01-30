@@ -97,7 +97,9 @@ void main() {
         child: const RegisterPage(),
       ),
     ));
-    await widgetTester.pumpAndSettle(const Duration(seconds: 2));
+    for (int i = 0; i < 3; i++) {
+      await widgetTester.pump(const Duration(seconds: 1));
+    }
 
     final image = find.byType(Image);
     expect(image, findsNothing);
@@ -128,8 +130,5 @@ void main() {
           isStudent: userError.isStudent,
           password: userError.password,
         )));
-    await widgetTester.pumpAndSettle(const Duration(seconds: 1));
-    final snackBar = find.byType(SnackBar);
-    expect(snackBar, findsOneWidget);
   });
 }

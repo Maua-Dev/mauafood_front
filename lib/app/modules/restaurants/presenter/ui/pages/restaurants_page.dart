@@ -27,6 +27,7 @@ class RestaurantsPage extends StatelessWidget {
           ),
           backgroundColor: AppColors.mainBlueColor,
           elevation: 0,
+          automaticallyImplyLeading: false,
         ),
         body: Container(
           decoration: BoxDecoration(

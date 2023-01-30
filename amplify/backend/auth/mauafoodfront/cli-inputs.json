@@ -3,7 +3,7 @@
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "mauafoa96238c2",
+    "resourceNameTruncated": "mauafocc9ec04b",
     "userPoolName": "mauafoodfront",
     "autoVerifiedAttributes": [
       "email"
@@ -14,11 +14,16 @@
     ],
     "smsAuthenticationMessage": "Your authentication code is {####}",
     "smsVerificationMessage": "Your verification code is {####}",
-    "emailVerificationSubject": "Your verification code",
-    "emailVerificationMessage": "Your verification code is {####}",
+    "emailVerificationSubject": "Verification code: {####}",
+    "emailVerificationMessage": "Verification code: {####}",
     "defaultPasswordPolicy": false,
     "passwordPolicyMinLength": 8,
-    "passwordPolicyCharacters": [],
+    "passwordPolicyCharacters": [
+      "Requires Lowercase",
+      "Requires Numbers",
+      "Requires Symbols",
+      "Requires Uppercase"
+    ],
     "requiredAttributes": [
       "email",
       "updated_at",
@@ -29,9 +34,9 @@
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "mauafoa96238c2_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "mauafocc9ec04b_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "a96238c2",
+    "sharedId": "cc9ec04b",
     "resourceName": "mauafoodfront",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",

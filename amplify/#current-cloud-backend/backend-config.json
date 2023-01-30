@@ -1,32 +1,45 @@
 {
   "auth": {
     "mauafoodfront": {
-      "service": "Cognito",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [],
       "customAuth": false,
-      "frontendAuthConfig": {
-        "socialProviders": [],
-        "usernameAttributes": [
-          "EMAIL"
-        ],
-        "signupAttributes": [
-          "EMAIL",
-          "UPDATED_AT",
-          "NAME"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyMinLength": 8,
-          "passwordPolicyCharacters": []
-        },
-        "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
-      }
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
+  "parameters": {
+    "AMPLIFY_auth_mauafoodfront_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "mauafoodfront"
+        }
+      ]
+    },
+    "AMPLIFY_auth_mauafoodfront_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "mauafoodfront"
+        }
+      ]
+    },
+    "AMPLIFY_auth_mauafoodfront_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "mauafoodfront"
+        }
+      ]
+    },
+    "AMPLIFY_auth_mauafoodfront_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "mauafoodfront"
+        }
+      ]
     }
   }
 }

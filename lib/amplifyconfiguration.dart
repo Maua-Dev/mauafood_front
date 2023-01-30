@@ -9,18 +9,10 @@ const amplifyconfig = ''' {
                 "IdentityManager": {
                     "Default": {}
                 },
-                "CredentialsProvider": {
-                    "CognitoIdentity": {
-                        "Default": {
-                            "PoolId": "sa-east-1:f8c49b17-05ee-4f65-89f5-e2581c35fffd",
-                            "Region": "sa-east-1"
-                        }
-                    }
-                },
                 "CognitoUserPool": {
                     "Default": {
-                        "PoolId": "sa-east-1_uK7GPHvEU",
-                        "AppClientId": "29batn2po1sktvnmo53b03tqlq",
+                        "PoolId": "sa-east-1_RarVOqFlT",
+                        "AppClientId": "4sjuri44nd2f7hbb6asrna3cbk",
                         "Region": "sa-east-1"
                     }
                 },
@@ -32,18 +24,21 @@ const amplifyconfig = ''' {
                             "EMAIL"
                         ],
                         "signupAttributes": [
+                            "NAME",
                             "EMAIL",
-                            "UPDATED_AT",
-                            "NAME"
+                            "UPDATED_AT"
                         ],
                         "passwordProtectionSettings": {
                             "passwordPolicyMinLength": 8,
-                            "passwordPolicyCharacters": []
+                            "passwordPolicyCharacters": [
+                                "REQUIRES_LOWERCASE",
+                                "REQUIRES_UPPERCASE",
+                                "REQUIRES_NUMBERS",
+                                "REQUIRES_SYMBOLS"
+                            ]
                         },
                         "mfaConfiguration": "OFF",
-                        "mfaTypes": [
-                            "SMS"
-                        ],
+                        "mfaTypes": [],
                         "verificationMechanisms": [
                             "EMAIL"
                         ]

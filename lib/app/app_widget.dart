@@ -27,10 +27,6 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
           fontFamily: GoogleFonts.lato().fontFamily,
           scaffoldBackgroundColor: AppColors.backgroundColor,
-          elevatedButtonTheme: ElevatedButtonThemeData(
-              style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.buttonsColor,
-          )),
           appBarTheme: AppBarTheme(
             backgroundColor: AppColors.backgroundColor,
           )),

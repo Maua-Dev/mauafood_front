@@ -63,7 +63,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       _loggedIn = true;
       storage.saveAccessToken(authSession.userPoolTokens!.accessToken);
       storage.saveRefreshToken(authSession.userPoolTokens!.refreshToken);
-      return AuthLoadedState(isLogged: _loggedIn, userRole: userRole!);
+      return AuthLoadedState(
+          isLogged: _loggedIn, userRole: userRole ?? UserRolesEnum.user);
     }));
   }
 
@@ -89,7 +90,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(result.fold((failure) {
       return AuthErrorState(failure);
     }, (isConfirmed) {
-      return AuthLoadedState(isLogged: false, userRole: userRole!);
+      return AuthLoadedState(
+          isLogged: false, userRole: userRole ?? UserRolesEnum.user);
     }));
     if (state is AuthLoadedState) {
       await storage.cleanSecureStorage();

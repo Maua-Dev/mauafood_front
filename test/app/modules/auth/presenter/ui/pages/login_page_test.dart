@@ -29,7 +29,7 @@ import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
-import '../../bloc/auth/auth_bloc_test.mocks.dart';
+import 'login_page_test.mocks.dart';
 
 @GenerateMocks([
   LoginUserInterface,
@@ -38,6 +38,7 @@ import '../../bloc/auth/auth_bloc_test.mocks.dart';
   ConfirmResetPasswordInterface,
   AuthStorageInterface,
   GetUserAttributesInterface,
+  AuthUserAttribute,
 ])
 void main() {
   LoginUserInterface login = MockLoginUserInterface();
@@ -82,6 +83,7 @@ void main() {
       (widgetTester) async {
     mockNetworkImagesFor(() async {
       var error = SignUpError(message: '');
+      var errorGetUser = GetUserAttributesError(message: '');
       when(login('', ''))
           .thenAnswer((realInvocation) async => Right(CognitoAuthSession(
               isSignedIn: true,
@@ -93,8 +95,11 @@ void main() {
               identityId: '123',
               userSub: '123',
               userPoolTokens: AWSCognitoUserPoolTokens.init(tokens: map))));
-      when(login('error', 'error'))
+      when(login('gabriel.godoybz@hotmail.com', 'Teste01@'))
           .thenAnswer((realInvocation) async => Left(error));
+
+      when(getUserAttributes())
+          .thenAnswer((realInvocation) async => Left(errorGetUser));
       await widgetTester.pumpWidget(MaterialApp(
         localizationsDelegates: const [
           S.delegate,

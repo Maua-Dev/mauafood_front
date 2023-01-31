@@ -61,6 +61,7 @@ void main() {
 
   group('[TEST] - LoginWithEmail', () {
     var error = SignUpError(message: '');
+    var errorGetUser = GetUserAttributesError(message: '');
     blocTest(
       'returns succesfull state',
       build: () => bloc,
@@ -76,10 +77,13 @@ void main() {
                 identityId: '123',
                 userSub: '123',
                 userPoolTokens: AWSCognitoUserPoolTokens.init(tokens: map))));
+        when(getUserAttributes())
+            .thenAnswer((realInvocation) async => Left(errorGetUser));
         bloc.add(LoginWithEmail(email: email, password: password));
       },
       expect: () => [
         AuthLoadingState(),
+        AuthErrorState(errorGetUser),
         const AuthLoadedState(isLogged: true, userRole: UserRolesEnum.user),
       ],
     );
@@ -90,10 +94,13 @@ void main() {
       act: (bloc) {
         when(login(email, password))
             .thenAnswer((realInvocation) async => Left(error));
+        when(getUserAttributes())
+            .thenAnswer((realInvocation) async => Left(errorGetUser));
         bloc.add(LoginWithEmail(email: email, password: password));
       },
       expect: () => [
         AuthLoadingState(),
+        AuthErrorState(errorGetUser),
         AuthErrorState(error),
       ],
     );

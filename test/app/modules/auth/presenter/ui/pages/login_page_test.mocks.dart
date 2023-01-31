@@ -3,12 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart' as _i6;
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart' as _i3;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart'
-    as _i5;
+    as _i6;
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart'
     as _i10;
 import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_password.dart'
@@ -18,7 +18,7 @@ import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password.
 import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes.dart'
     as _i11;
 import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user.dart'
-    as _i3;
+    as _i4;
 import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user.dart'
     as _i7;
 import 'package:mockito/mockito.dart' as _i1;
@@ -44,17 +44,28 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
+class _FakeUserAttributeKey_1 extends _i1.SmartFake
+    implements _i3.UserAttributeKey {
+  _FakeUserAttributeKey_1(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [LoginUserInterface].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginUserInterface extends _i1.Mock
-    implements _i3.LoginUserInterface {
+    implements _i4.LoginUserInterface {
   MockLoginUserInterface() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>> call(
+  _i5.Future<_i2.Either<_i6.SignUpError, _i3.CognitoAuthSession>> call(
     String? email,
     String? password,
   ) =>
@@ -66,9 +77,9 @@ class MockLoginUserInterface extends _i1.Mock
             password,
           ],
         ),
-        returnValue: _i4.Future<
-                _i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>>.value(
-            _FakeEither_0<_i5.SignUpError, _i6.CognitoAuthSession>(
+        returnValue: _i5.Future<
+                _i2.Either<_i6.SignUpError, _i3.CognitoAuthSession>>.value(
+            _FakeEither_0<_i6.SignUpError, _i3.CognitoAuthSession>(
           this,
           Invocation.method(
             #call,
@@ -78,7 +89,7 @@ class MockLoginUserInterface extends _i1.Mock
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>>);
+      ) as _i5.Future<_i2.Either<_i6.SignUpError, _i3.CognitoAuthSession>>);
 }
 
 /// A class which mocks [LogoutUserInterface].
@@ -91,20 +102,20 @@ class MockLogoutUserInterface extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.LogoutError, void>> call() => (super.noSuchMethod(
+  _i5.Future<_i2.Either<_i6.LogoutError, void>> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.LogoutError, void>>.value(
-            _FakeEither_0<_i5.LogoutError, void>(
+        returnValue: _i5.Future<_i2.Either<_i6.LogoutError, void>>.value(
+            _FakeEither_0<_i6.LogoutError, void>(
           this,
           Invocation.method(
             #call,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.LogoutError, void>>);
+      ) as _i5.Future<_i2.Either<_i6.LogoutError, void>>);
 }
 
 /// A class which mocks [ForgotPasswordInterface].
@@ -117,22 +128,22 @@ class MockForgotPasswordInterface extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.ForgotPasswordError, bool>> call(String? email) =>
+  _i5.Future<_i2.Either<_i6.ForgotPasswordError, bool>> call(String? email) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [email],
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i5.ForgotPasswordError, bool>>.value(
-                _FakeEither_0<_i5.ForgotPasswordError, bool>(
+            _i5.Future<_i2.Either<_i6.ForgotPasswordError, bool>>.value(
+                _FakeEither_0<_i6.ForgotPasswordError, bool>(
           this,
           Invocation.method(
             #call,
             [email],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.ForgotPasswordError, bool>>);
+      ) as _i5.Future<_i2.Either<_i6.ForgotPasswordError, bool>>);
 }
 
 /// A class which mocks [ConfirmResetPasswordInterface].
@@ -145,7 +156,7 @@ class MockConfirmResetPasswordInterface extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.ForgotPasswordError, void>> call(
+  _i5.Future<_i2.Either<_i6.ForgotPasswordError, void>> call(
     String? email,
     String? newPassword,
     String? confirmationCode,
@@ -160,8 +171,8 @@ class MockConfirmResetPasswordInterface extends _i1.Mock
           ],
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i5.ForgotPasswordError, void>>.value(
-                _FakeEither_0<_i5.ForgotPasswordError, void>(
+            _i5.Future<_i2.Either<_i6.ForgotPasswordError, void>>.value(
+                _FakeEither_0<_i6.ForgotPasswordError, void>(
           this,
           Invocation.method(
             #call,
@@ -172,7 +183,7 @@ class MockConfirmResetPasswordInterface extends _i1.Mock
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.ForgotPasswordError, void>>);
+      ) as _i5.Future<_i2.Either<_i6.ForgotPasswordError, void>>);
 }
 
 /// A class which mocks [AuthStorageInterface].
@@ -185,49 +196,49 @@ class MockAuthStorageInterface extends _i1.Mock
   }
 
   @override
-  _i4.Future<void> saveRefreshToken(String? refreshToken) =>
+  _i5.Future<void> saveRefreshToken(String? refreshToken) =>
       (super.noSuchMethod(
         Invocation.method(
           #saveRefreshToken,
           [refreshToken],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
   @override
-  _i4.Future<void> saveAccessToken(String? accessToken) => (super.noSuchMethod(
+  _i5.Future<void> saveAccessToken(String? accessToken) => (super.noSuchMethod(
         Invocation.method(
           #saveAccessToken,
           [accessToken],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
   @override
-  _i4.Future<String?> getRefreshToken() => (super.noSuchMethod(
+  _i5.Future<String?> getRefreshToken() => (super.noSuchMethod(
         Invocation.method(
           #getRefreshToken,
           [],
         ),
-        returnValue: _i4.Future<String?>.value(),
-      ) as _i4.Future<String?>);
+        returnValue: _i5.Future<String?>.value(),
+      ) as _i5.Future<String?>);
   @override
-  _i4.Future<String?> getAccessToken() => (super.noSuchMethod(
+  _i5.Future<String?> getAccessToken() => (super.noSuchMethod(
         Invocation.method(
           #getAccessToken,
           [],
         ),
-        returnValue: _i4.Future<String?>.value(),
-      ) as _i4.Future<String?>);
+        returnValue: _i5.Future<String?>.value(),
+      ) as _i5.Future<String?>);
   @override
-  _i4.Future<void> cleanSecureStorage() => (super.noSuchMethod(
+  _i5.Future<void> cleanSecureStorage() => (super.noSuchMethod(
         Invocation.method(
           #cleanSecureStorage,
           [],
         ),
-        returnValue: _i4.Future<void>.value(),
-        returnValueForMissingStub: _i4.Future<void>.value(),
-      ) as _i4.Future<void>);
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
 }
 
 /// A class which mocks [GetUserAttributesInterface].
@@ -240,23 +251,55 @@ class MockGetUserAttributesInterface extends _i1.Mock
   }
 
   @override
-  _i4.Future<
-      _i2.Either<_i5.GetUserAttributesError,
-          List<_i6.AuthUserAttribute>>> call() => (super.noSuchMethod(
+  _i5.Future<
+      _i2.Either<_i6.GetUserAttributesError,
+          List<_i3.AuthUserAttribute>>> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i4.Future<
-            _i2.Either<_i5.GetUserAttributesError,
-                List<_i6.AuthUserAttribute>>>.value(_FakeEither_0<
-            _i5.GetUserAttributesError, List<_i6.AuthUserAttribute>>(
+        returnValue: _i5.Future<
+            _i2.Either<_i6.GetUserAttributesError,
+                List<_i3.AuthUserAttribute>>>.value(_FakeEither_0<
+            _i6.GetUserAttributesError, List<_i3.AuthUserAttribute>>(
           this,
           Invocation.method(
             #call,
             [],
           ),
         )),
-      ) as _i4.Future<
-          _i2.Either<_i5.GetUserAttributesError, List<_i6.AuthUserAttribute>>>);
+      ) as _i5.Future<
+          _i2.Either<_i6.GetUserAttributesError, List<_i3.AuthUserAttribute>>>);
+}
+
+/// A class which mocks [AuthUserAttribute].
+///
+/// See the documentation for Mockito's code generation for more information.
+// ignore: must_be_immutable
+class MockAuthUserAttribute extends _i1.Mock implements _i3.AuthUserAttribute {
+  MockAuthUserAttribute() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i3.UserAttributeKey get userAttributeKey => (super.noSuchMethod(
+        Invocation.getter(#userAttributeKey),
+        returnValue: _FakeUserAttributeKey_1(
+          this,
+          Invocation.getter(#userAttributeKey),
+        ),
+      ) as _i3.UserAttributeKey);
+  @override
+  String get value => (super.noSuchMethod(
+        Invocation.getter(#value),
+        returnValue: '',
+      ) as String);
+  @override
+  Map<String, Object?> serializeAsMap() => (super.noSuchMethod(
+        Invocation.method(
+          #serializeAsMap,
+          [],
+        ),
+        returnValue: <String, Object?>{},
+      ) as Map<String, Object?>);
 }

@@ -1,11 +1,12 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
 
 import '../app_module.dart';
+import '../shared/infra/user_roles_enum.dart';
 import 'auth/auth_module.dart';
+import 'auth/presenter/bloc/auth/auth_bloc.dart';
 
-class AuthGuard extends RouteGuard {
-  AuthGuard()
+class EmployeeAuthGuard extends RouteGuard {
+  EmployeeAuthGuard()
       : super(
           redirectTo: '/login/',
         );
@@ -18,7 +19,8 @@ class AuthGuard extends RouteGuard {
     if (!authController.isLoggedIn) {
       await authController.verifyIfHaveTokens();
     }
-    if (authController.isLoggedIn) {
+    if (authController.isLoggedIn &&
+        authController.userRole == UserRolesEnum.employee) {
       return true;
     }
     return false;

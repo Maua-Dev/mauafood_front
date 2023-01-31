@@ -8,8 +8,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password.dart';
+import '../../../../../shared/infra/user_roles_enum.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/confirm_reset_password.dart';
+import '../../../domain/usecases/get_user_attributes.dart';
 import '../../../domain/usecases/login_user.dart';
 part 'auth_event.dart';
 part 'auth_state.dart';
@@ -20,12 +22,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final ForgotPasswordInterface forgotPassword;
   final ConfirmResetPasswordInterface confirmResetPassword;
   final AuthStorageInterface storage;
+  final GetUserAttributesInterface getUserAttributes;
   late Either<AuthErrors, CognitoAuthSession> eitherIsLogged;
   bool _loggedIn = false;
+  UserRolesEnum? _userRole;
 
   bool get isLoggedIn => _loggedIn;
+  UserRolesEnum? get userRole => _userRole;
 
   AuthBloc({
+    required this.getUserAttributes,
     required this.forgotPassword,
     required this.confirmResetPassword,
     required this.logout,
@@ -42,13 +48,23 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       LoginWithEmail event, Emitter<AuthState> emit) async {
     emit(AuthLoadingState());
     eitherIsLogged = await login(event.email, event.password);
+    var userAttributes = await getUserAttributes();
+    userAttributes.fold((failure) => emit(AuthErrorState(failure)),
+        (attributes) {
+      var role = attributes
+          .firstWhere(
+              (element) => element.userAttributeKey.toString() == 'custom:role')
+          .value;
+      _userRole = UserRolesEnumExtension.stringToEnumMap(role);
+    });
     emit(eitherIsLogged.fold((failure) {
       return AuthErrorState(failure);
     }, (authSession) {
       _loggedIn = true;
       storage.saveAccessToken(authSession.userPoolTokens!.accessToken);
       storage.saveRefreshToken(authSession.userPoolTokens!.refreshToken);
-      return const AuthLoadedState(isLogged: true);
+      return AuthLoadedState(
+          isLogged: _loggedIn, userRole: userRole ?? UserRolesEnum.user);
     }));
   }
 
@@ -74,7 +90,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(result.fold((failure) {
       return AuthErrorState(failure);
     }, (isConfirmed) {
-      return const AuthLoadedState(isLogged: false);
+      return AuthLoadedState(
+          isLogged: false, userRole: userRole ?? UserRolesEnum.user);
     }));
     if (state is AuthLoadedState) {
       await storage.cleanSecureStorage();

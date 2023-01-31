@@ -11,9 +11,11 @@ import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_password.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
+import 'package:mauafood_front/app/shared/infra/user_roles_enum.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
@@ -25,7 +27,8 @@ import 'auth_bloc_test.mocks.dart';
   LogoutUserInterface,
   ForgotPasswordInterface,
   ConfirmResetPasswordInterface,
-  AuthStorageInterface
+  AuthStorageInterface,
+  GetUserAttributesInterface,
 ])
 void main() {
   initModules([AppModule(), AuthModule()]);
@@ -34,6 +37,8 @@ void main() {
   ForgotPasswordInterface forgotPassword = MockForgotPasswordInterface();
   ConfirmResetPasswordInterface confirmResetPassword =
       MockConfirmResetPasswordInterface();
+  GetUserAttributesInterface getUserAttributes =
+      MockGetUserAttributesInterface();
   AuthStorageInterface storage = MockAuthStorageInterface();
   late AuthBloc bloc;
   setUp(() {
@@ -43,7 +48,8 @@ void main() {
         logout: logout,
         confirmResetPassword: confirmResetPassword,
         forgotPassword: forgotPassword,
-        storage: storage);
+        storage: storage,
+        getUserAttributes: getUserAttributes);
   });
 
   String email = 'gabriel.godoybz@hotmail.com';
@@ -55,6 +61,7 @@ void main() {
 
   group('[TEST] - LoginWithEmail', () {
     var error = SignUpError(message: '');
+    var errorGetUser = GetUserAttributesError(message: '');
     blocTest(
       'returns succesfull state',
       build: () => bloc,
@@ -70,11 +77,14 @@ void main() {
                 identityId: '123',
                 userSub: '123',
                 userPoolTokens: AWSCognitoUserPoolTokens.init(tokens: map))));
+        when(getUserAttributes())
+            .thenAnswer((realInvocation) async => Left(errorGetUser));
         bloc.add(LoginWithEmail(email: email, password: password));
       },
       expect: () => [
         AuthLoadingState(),
-        const AuthLoadedState(isLogged: true),
+        AuthErrorState(errorGetUser),
+        const AuthLoadedState(isLogged: true, userRole: UserRolesEnum.user),
       ],
     );
 
@@ -84,10 +94,13 @@ void main() {
       act: (bloc) {
         when(login(email, password))
             .thenAnswer((realInvocation) async => Left(error));
+        when(getUserAttributes())
+            .thenAnswer((realInvocation) async => Left(errorGetUser));
         bloc.add(LoginWithEmail(email: email, password: password));
       },
       expect: () => [
         AuthLoadingState(),
+        AuthErrorState(errorGetUser),
         AuthErrorState(error),
       ],
     );
@@ -104,7 +117,7 @@ void main() {
       },
       expect: () => [
         AuthLoadingState(),
-        const AuthLoadedState(isLogged: false),
+        const AuthLoadedState(isLogged: false, userRole: UserRolesEnum.user),
       ],
     );
 

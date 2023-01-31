@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_password.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/resend_confirmation_code.dart';
 import 'package:mauafood_front/app/modules/auth/infra/repository/auth_storage_impl.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
@@ -49,6 +50,9 @@ class AuthModule extends Module {
         Bind<ConfirmResetPasswordInterface>(
             (i) => ConfirmResetPasswordImpl(repository: i()),
             export: true),
+        Bind<GetUserAttributesInterface>(
+            (i) => GetUserAttributesImpl(repository: i()),
+            export: true),
         AsyncBind<AuthStorageInterface>((i) => AuthStorageImpl.instance()),
         Bind<AuthBloc>(
             (i) => AuthBloc(
@@ -57,6 +61,7 @@ class AuthModule extends Module {
                   storage: i(),
                   confirmResetPassword: i(),
                   forgotPassword: i(),
+                  getUserAttributes: i(),
                 ),
             export: true),
         Bind<RegisterBloc>(

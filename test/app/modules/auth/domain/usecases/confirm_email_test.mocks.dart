@@ -194,4 +194,25 @@ class MockAuthRepositoryInterface extends _i1.Mock
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.ResendCodeError, void>>);
+  @override
+  _i4.Future<
+      _i2.Either<_i5.GetUserAttributesError,
+          List<_i7.AuthUserAttribute>>> getUserAttributes() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getUserAttributes,
+          [],
+        ),
+        returnValue: _i4.Future<
+            _i2.Either<_i5.GetUserAttributesError,
+                List<_i7.AuthUserAttribute>>>.value(_FakeEither_0<
+            _i5.GetUserAttributesError, List<_i7.AuthUserAttribute>>(
+          this,
+          Invocation.method(
+            #getUserAttributes,
+            [],
+          ),
+        )),
+      ) as _i4.Future<
+          _i2.Either<_i5.GetUserAttributesError, List<_i7.AuthUserAttribute>>>);
 }

@@ -5,7 +5,7 @@ import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/res
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/pages/restaurants_page.dart';
 
 import '../auth/auth_module.dart';
-import '../auth_guard.dart';
+import '../user_auth_guard.dart';
 
 class RestaurantModule extends Module {
   @override
@@ -22,7 +22,7 @@ class RestaurantModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute,
             child: (context, args) => const RestaurantsPage(),
-            guards: [AuthGuard()]),
-        ModuleRoute('/menu', module: MenuModule(), guards: [AuthGuard()])
+            guards: [UserAuthGuard()]),
+        ModuleRoute('/menu', module: MenuModule(), guards: [UserAuthGuard()])
       ];
 }

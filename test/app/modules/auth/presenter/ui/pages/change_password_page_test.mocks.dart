@@ -15,6 +15,8 @@ import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_pa
     as _i9;
 import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password.dart'
     as _i8;
+import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes.dart'
+    as _i11;
 import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user.dart'
     as _i3;
 import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user.dart'
@@ -226,4 +228,35 @@ class MockAuthStorageInterface extends _i1.Mock
         returnValue: _i4.Future<void>.value(),
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
+}
+
+/// A class which mocks [GetUserAttributesInterface].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetUserAttributesInterface extends _i1.Mock
+    implements _i11.GetUserAttributesInterface {
+  MockGetUserAttributesInterface() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<
+      _i2.Either<_i5.GetUserAttributesError,
+          List<_i6.AuthUserAttribute>>> call() => (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i4.Future<
+            _i2.Either<_i5.GetUserAttributesError,
+                List<_i6.AuthUserAttribute>>>.value(_FakeEither_0<
+            _i5.GetUserAttributesError, List<_i6.AuthUserAttribute>>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
+      ) as _i4.Future<
+          _i2.Either<_i5.GetUserAttributesError, List<_i6.AuthUserAttribute>>>);
 }

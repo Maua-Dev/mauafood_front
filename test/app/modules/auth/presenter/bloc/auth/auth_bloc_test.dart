@@ -15,6 +15,7 @@ import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attribu
 import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
+import 'package:mauafood_front/app/shared/infra/user_roles_enum.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
@@ -79,7 +80,7 @@ void main() {
       },
       expect: () => [
         AuthLoadingState(),
-        const AuthLoadedState(isLogged: true, userRole: ''),
+        const AuthLoadedState(isLogged: true, userRole: UserRolesEnum.user),
       ],
     );
 
@@ -109,7 +110,7 @@ void main() {
       },
       expect: () => [
         AuthLoadingState(),
-        const AuthLoadedState(isLogged: false, userRole: ''),
+        const AuthLoadedState(isLogged: false, userRole: UserRolesEnum.user),
       ],
     );
 

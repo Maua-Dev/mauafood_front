@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
 
 import '../app_module.dart';
+import '../shared/infra/user_roles_enum.dart';
 import 'auth/auth_module.dart';
 
 class UserAuthGuard extends RouteGuard {
@@ -18,7 +19,8 @@ class UserAuthGuard extends RouteGuard {
     if (!authController.isLoggedIn) {
       await authController.verifyIfHaveTokens();
     }
-    if (authController.isLoggedIn && authController.userRole == 'USER') {
+    if (authController.isLoggedIn &&
+        authController.userRole == UserRolesEnum.user) {
       return true;
     }
     return false;

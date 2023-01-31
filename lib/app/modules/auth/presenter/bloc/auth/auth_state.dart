@@ -13,7 +13,7 @@ class AuthLoadingState extends AuthState {}
 
 class AuthLoadedState extends AuthState {
   final bool isLogged;
-  final String userRole;
+  final UserRolesEnum userRole;
 
   const AuthLoadedState({required this.userRole, required this.isLogged});
 

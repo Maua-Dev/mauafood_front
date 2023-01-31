@@ -1,6 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../app_module.dart';
+import '../shared/infra/user_roles_enum.dart';
 import 'auth/auth_module.dart';
 import 'auth/presenter/bloc/auth/auth_bloc.dart';
 
@@ -18,7 +19,8 @@ class EmployeeAuthGuard extends RouteGuard {
     if (!authController.isLoggedIn) {
       await authController.verifyIfHaveTokens();
     }
-    if (authController.isLoggedIn && authController.userRole == 'EMPLOYEE') {
+    if (authController.isLoggedIn &&
+        authController.userRole == UserRolesEnum.employee) {
       return true;
     }
     return false;

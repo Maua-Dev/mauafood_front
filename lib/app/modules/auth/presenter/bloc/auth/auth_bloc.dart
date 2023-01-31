@@ -8,6 +8,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password.dart';
+import '../../../../../shared/infra/user_roles_enum.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/confirm_reset_password.dart';
 import '../../../domain/usecases/get_user_attributes.dart';
@@ -24,10 +25,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final GetUserAttributesInterface getUserAttributes;
   late Either<AuthErrors, CognitoAuthSession> eitherIsLogged;
   bool _loggedIn = false;
-  String _userRole = '';
+  UserRolesEnum? _userRole;
 
   bool get isLoggedIn => _loggedIn;
-  String get userRole => _userRole;
+  UserRolesEnum? get userRole => _userRole;
 
   AuthBloc({
     required this.getUserAttributes,
@@ -50,10 +51,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     var userAttributes = await getUserAttributes();
     userAttributes.fold((failure) => emit(AuthErrorState(failure)),
         (attributes) {
-      _userRole = attributes
+      var role = attributes
           .firstWhere(
               (element) => element.userAttributeKey.toString() == 'custom:role')
           .value;
+      _userRole = UserRolesEnumExtension.stringToEnumMap(role);
     });
     emit(eitherIsLogged.fold((failure) {
       return AuthErrorState(failure);
@@ -61,7 +63,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       _loggedIn = true;
       storage.saveAccessToken(authSession.userPoolTokens!.accessToken);
       storage.saveRefreshToken(authSession.userPoolTokens!.refreshToken);
-      return AuthLoadedState(isLogged: _loggedIn, userRole: userRole);
+      return AuthLoadedState(isLogged: _loggedIn, userRole: userRole!);
     }));
   }
 
@@ -87,7 +89,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     emit(result.fold((failure) {
       return AuthErrorState(failure);
     }, (isConfirmed) {
-      return AuthLoadedState(isLogged: false, userRole: userRole);
+      return AuthLoadedState(isLogged: false, userRole: userRole!);
     }));
     if (state is AuthLoadedState) {
       await storage.cleanSecureStorage();

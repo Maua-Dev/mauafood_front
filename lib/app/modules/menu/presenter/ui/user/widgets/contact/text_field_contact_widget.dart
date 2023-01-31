@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
-import '../../../../../../shared/themes/app_colors.dart';
-import '../../../../../../shared/themes/app_text_styles.dart';
+import '../../../../../../../shared/themes/app_colors.dart';
+import '../../../../../../../shared/themes/app_text_styles.dart';
 
 class TextFieldContactWidget extends StatelessWidget {
   final TextFieldBloc textFieldBloc;

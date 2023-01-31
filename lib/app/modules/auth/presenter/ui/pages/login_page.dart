@@ -53,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                 if (state.userRole == UserRolesEnum.employee) {
                   Modular.to.pushNamed('/employee');
                 } else {
-                  Modular.to.pushNamed('/restaurants/');
+                  Modular.to.pushNamed('/user');
                 }
               }
             },

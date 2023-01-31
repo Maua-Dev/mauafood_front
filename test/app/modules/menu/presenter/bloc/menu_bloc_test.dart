@@ -6,7 +6,7 @@ import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
 import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
 import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_meal.dart';
 import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
-import 'package:mauafood_front/app/modules/menu/menu_module.dart';
+import 'package:mauafood_front/app/modules/menu/user_menu_module.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 import 'package:mockito/annotations.dart';
@@ -17,7 +17,7 @@ import 'menu_bloc_test.mocks.dart';
 
 @GenerateMocks([GetRestaurantMealInterface])
 void main() {
-  initModules([AppModule(), MenuModule()]);
+  initModules([AppModule(), UserMenuModule()]);
 
   GetRestaurantMealInterface getRestaurantMeal =
       MockGetRestaurantMealInterface();

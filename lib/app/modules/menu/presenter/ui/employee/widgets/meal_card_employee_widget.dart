@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
-import 'package:mauafood_front/app/shared/themes/app_colors.dart';
-import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
-import 'package:mauafood_front/app/shared/utils/utils.dart';
-import 'package:mauafood_front/generated/l10n.dart';
+import '../../../../../../shared/themes/app_colors.dart';
+import '../../../../../../shared/themes/app_text_styles.dart';
+import '../../../../../../shared/utils/utils.dart';
+import '../../../../../../shared/widgets/circular_progress_indicator_custom_widget.dart';
+import '../../../../domain/entities/meal_entity.dart';
 
-import '../../../../../shared/widgets/circular_progress_indicator_custom_widget.dart';
-
-class RestaurantWidget extends StatelessWidget {
-  final RestaurantEnum restaurantInfo;
-
-  const RestaurantWidget({
-    Key? key,
-    required this.restaurantInfo,
-  }) : super(key: key);
+class MealCardEmployeeWidget extends StatelessWidget {
+  final Meal meal;
+  const MealCardEmployeeWidget({super.key, required this.meal});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: InkWell(
-        onTap: () =>
-            Modular.to.navigate('/user/menu/', arguments: restaurantInfo),
+        onTap: () {},
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
@@ -40,7 +32,7 @@ class RestaurantWidget extends StatelessWidget {
                     child: FittedBox(
                       fit: BoxFit.fill,
                       child: Image.network(
-                        restaurantInfo.restaurantImg,
+                        meal.photo,
                         loadingBuilder: (BuildContext context, Widget child,
                             ImageChunkEvent? loadingProgress) {
                           if (loadingProgress == null) return child;
@@ -70,16 +62,31 @@ class RestaurantWidget extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: Text(
-                        restaurantInfo.name,
+                        meal.name,
                         style: AppTextStyles.h1.copyWith(
                             fontSize: 20, color: AppColors.mainBlueColor),
                       ),
                     ),
                     Text(
-                      S.of(context).seeMenuTitle,
+                      meal.description,
                       style: AppTextStyles.h2.copyWith(
                           fontSize: 18, color: AppColors.mainBlueColor),
                     ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          meal.price.toString(),
+                          style: AppTextStyles.h2.copyWith(
+                              fontSize: 18, color: AppColors.mainBlueColor),
+                        ),
+                        Text(
+                          meal.prepareTime.toString(),
+                          style: AppTextStyles.h2.copyWith(
+                              fontSize: 18, color: AppColors.mainBlueColor),
+                        ),
+                      ],
+                    )
                   ],
                 )
               ],

@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/menu_module.dart';
+import 'package:mauafood_front/app/modules/menu/user_menu_module.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/usecases/get_restaurant.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/pages/restaurants_page.dart';
@@ -23,6 +23,7 @@ class RestaurantModule extends Module {
         ChildRoute(Modular.initialRoute,
             child: (context, args) => const RestaurantsPage(),
             guards: [UserAuthGuard()]),
-        ModuleRoute('/menu', module: MenuModule(), guards: [UserAuthGuard()])
+        ModuleRoute('/menu',
+            module: UserMenuModule(), guards: [UserAuthGuard()])
       ];
 }

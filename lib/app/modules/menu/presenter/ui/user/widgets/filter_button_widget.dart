@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
-import '../../../../../shared/themes/app_text_styles.dart';
-import '../../../domain/enum/meal_enum.dart';
+import '../../../../../../shared/themes/app_text_styles.dart';
+import '../../../../domain/enum/meal_enum.dart';
 
 class FilterButtonWidget extends StatelessWidget {
   final int myIndex;

@@ -4,10 +4,12 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
+
 import '../../../restaurants/domain/infra/restaurant_enum.dart';
 import '../../domain/entities/meal_entity.dart';
 import '../../domain/errors/errors.dart';
 import '../../domain/usecases/get_restaurant_meal.dart';
+
 part 'menu_event.dart';
 part 'menu_state.dart';
 

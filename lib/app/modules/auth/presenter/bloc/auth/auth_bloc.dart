@@ -56,6 +56,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
               (element) => element.userAttributeKey.toString() == 'custom:role')
           .value;
       _userRole = UserRolesEnumExtension.stringToEnumMap(role);
+      storage.saveRole(role);
     });
     emit(eitherIsLogged.fold((failure) {
       return AuthErrorState(failure);
@@ -72,8 +73,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     try {
       var refreshToken = await storage.getRefreshToken();
       var accessToken = await storage.getAccessToken();
-      if (refreshToken!.isNotEmpty && accessToken!.isNotEmpty) {
+      var role = await storage.getRole();
+      if (refreshToken!.isNotEmpty &&
+          accessToken!.isNotEmpty &&
+          role!.isNotEmpty) {
         _loggedIn = true;
+        _userRole = UserRolesEnumExtension.stringToEnumMap(role);
       } else {
         _loggedIn = false;
         Modular.to.navigate('/login/');

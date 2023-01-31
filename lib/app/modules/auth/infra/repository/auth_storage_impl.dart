@@ -36,4 +36,14 @@ class AuthStorageImpl implements AuthStorageInterface {
   Future<void> cleanSecureStorage() async {
     await storage.clear();
   }
+
+  @override
+  Future<String?> getRole() async {
+    return await storage.get('role') as String?;
+  }
+
+  @override
+  Future<void> saveRole(String role) async {
+    await storage.put('role', role);
+  }
 }

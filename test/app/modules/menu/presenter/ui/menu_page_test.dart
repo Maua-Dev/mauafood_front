@@ -11,7 +11,7 @@ import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/meal_card_widget.dart';
 import 'package:mauafood_front/app/modules/menu/user_menu_module.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/menu_page.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_menu_page.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/appbar/drop_down_restaurant_widget.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -78,7 +78,7 @@ void main() {
         supportedLocales: S.delegate.supportedLocales,
         home: BlocProvider(
           create: (context) => bloc,
-          child: const MenuPage(),
+          child: const UserMenuPage(),
         ),
       ));
 

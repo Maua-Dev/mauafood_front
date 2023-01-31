@@ -12,8 +12,8 @@ import '../widgets/error_loading_menu_widget.dart';
 import '../widgets/filter_button_widget.dart';
 import '../widgets/meal_card_widget.dart';
 
-class MenuPage extends StatelessWidget {
-  const MenuPage({super.key});
+class UserMenuPage extends StatelessWidget {
+  const UserMenuPage({super.key});
 
   @override
   Widget build(BuildContext context) {

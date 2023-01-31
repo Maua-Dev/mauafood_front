@@ -51,9 +51,9 @@ class _LoginPageState extends State<LoginPage> {
 
               if (state is AuthLoadedState) {
                 if (state.userRole == UserRolesEnum.employee) {
-                  Modular.to.pushNamed('/employee');
+                  Modular.to.pushNamed('/employee/');
                 } else {
-                  Modular.to.pushNamed('/user');
+                  Modular.to.pushNamed('/user/');
                 }
               }
             },

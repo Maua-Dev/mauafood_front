@@ -3,7 +3,7 @@ import 'package:mauafood_front/app/modules/menu/data/datasource/menu_datasource_
 import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_meal.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/contact/contact_form_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/menu_page.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_menu_page.dart';
 
 import '../meal-info/meal_info_module.dart';
 import '../restaurants/restaurant_module.dart';
@@ -33,7 +33,7 @@ class UserMenuModule extends Module {
             module: RestaurantModule(), guards: [UserAuthGuard()]),
         ChildRoute(
           '/menu',
-          child: (context, args) => const MenuPage(),
+          child: (context, args) => const UserMenuPage(),
           guards: [UserAuthGuard()],
         ),
         ModuleRoute(

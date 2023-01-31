@@ -2,7 +2,7 @@ name: mauafood_front
 description: Mauá Food.
 
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.1.0+10
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
@@ -10,6 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+        sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_modular: ^5.0.3
   flutter_bloc: ^8.1.1
@@ -53,7 +55,12 @@ flutter:
     - assets/images/logos/brown_logo.png
     - assets/images/logos/grey_logo.png
     - assets/images/logos/transparent_logo.png
+    - assets/images/logos/white_logo.png
+    - assets/images/logos/mauafood_logo_correct.gif
+    - assets/images/logos/mauafood_logo_black.gif
 
 scripts:
   build: flutter pub run build_runner build
   watch: flutter pub run build_runner watch --delete-conflicting-outputs
+flutter_intl:
+  enabled: true

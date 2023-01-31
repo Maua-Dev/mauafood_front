@@ -3,6 +3,8 @@ import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/bloc/register_bloc.dart';
 
+import '../../../../../../generated/l10n.dart';
+
 class RegisterFormBloc extends FormBloc<String, String> {
   final RegisterBloc registerBloc;
 
@@ -23,9 +25,9 @@ class RegisterFormBloc extends FormBloc<String, String> {
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
     RegExp regExp = RegExp(pattern);
     if (emailValue!.isEmpty) {
-      return 'Campo obrigatório.';
+      return S.current.requiredFieldAlert;
     } else if (!regExp.hasMatch(emailValue)) {
-      return 'E-mail inválido.';
+      return S.current.invalidEmailAlert;
     }
     return null;
   }
@@ -35,16 +37,16 @@ class RegisterFormBloc extends FormBloc<String, String> {
         r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
     RegExp regExp = RegExp(pattern);
     if (passwordValue!.isEmpty) {
-      return 'Campo obrigatório.';
+      return S.current.requiredFieldAlert;
     } else if (!regExp.hasMatch(passwordValue)) {
-      return 'Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres';
+      return S.current.passwordInstructionsAlert;
     }
     return null;
   }
 
   Future<String?> _validatePasswordConfirm(String? passwordConfirmValue) async {
     if (password.value != passwordConfirmValue) {
-      return 'Senhas devem ser iguais.';
+      return S.current.equalPasswordAlert;
     }
     return null;
   }
@@ -53,18 +55,18 @@ class RegisterFormBloc extends FormBloc<String, String> {
     cpfValue = cpfValue!.replaceAll('.', '');
     cpfValue = cpfValue.replaceAll('-', '');
     if (cpfValue.isEmpty) {
-      return 'Campo obrigatório.';
+      return S.current.requiredFieldAlert;
     } else if (!CPFValidator.isValid(cpfValue)) {
-      return 'CPF inválido.';
+      return S.current.invalidCpfAlert;
     }
     return null;
   }
 
   Future<String?> _validateFullName(String? fullNameValue) async {
     if (fullNameValue!.isEmpty) {
-      return 'Campo obrigatório.';
+      return S.current.requiredFieldAlert;
     } else if (fullNameValue.split(' ').length < 2) {
-      return 'Por favor, insira o nome completo.';
+      return S.current.invalidFullNameAlert;
     }
     return null;
   }
@@ -101,8 +103,7 @@ class RegisterFormBloc extends FormBloc<String, String> {
         cpf.value == '' ||
         passwordConfirm.value == '' ||
         fullName.value == '') {
-      emitFailure(
-          failureResponse: 'Certifique-se de que preencheu todos os campos.');
+      emitFailure(failureResponse: S.current.fillFieldsInstructionsAlert);
     } else if (acceptTerms.value) {
       registerBloc.add(RegisterUser(
         email: email.value,
@@ -112,10 +113,10 @@ class RegisterFormBloc extends FormBloc<String, String> {
         emailNotifications: emailNotifications.value,
         appNotifications: appNotifications.value,
         acceptTerms: acceptTerms.value,
-        role: 'USER ',
+        role: 'USER',
       ));
     } else {
-      emitFailure(failureResponse: 'É necessário aceitar os Termos de Uso.');
+      emitFailure(failureResponse: S.current.termsAcceptAlert);
     }
     emitSuccess();
   }

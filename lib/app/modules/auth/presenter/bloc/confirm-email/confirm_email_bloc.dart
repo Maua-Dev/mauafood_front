@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
+import '../../../../../../generated/l10n.dart';
 import '../register/bloc/register_bloc.dart';
 
 class ConfirmEmailBloc extends FormBloc<String, String> {
@@ -19,9 +20,9 @@ class ConfirmEmailBloc extends FormBloc<String, String> {
 
   Future<String?> _validateCode(String? code) async {
     if (code!.isEmpty) {
-      return 'Campo obrigatório.';
+      return S.current.requiredFieldAlert;
     } else if (code.length != 6) {
-      return 'Código inválido.';
+      return S.current.invalidCodeAlert;
     }
     return null;
   }
@@ -32,7 +33,7 @@ class ConfirmEmailBloc extends FormBloc<String, String> {
       registerBloc.add(ConfirmEmail(email: email, code: code.value));
       emitSuccess();
     } else {
-      emitFailure(failureResponse: 'Erro com código.');
+      emitFailure(failureResponse: S.current.codeErrorAlert);
     }
   }
 

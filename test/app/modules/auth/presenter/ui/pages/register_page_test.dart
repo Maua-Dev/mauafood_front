@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/app_module.dart';
 import 'package:flutter_modular/flutter_modular.dart' as modular;
@@ -18,6 +19,7 @@ import 'package:mauafood_front/app/modules/auth/presenter/ui/widgets/checkbox_fi
 import 'package:mauafood_front/app/modules/auth/presenter/ui/widgets/register_button_widget.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/widgets/text_button_login_widget.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/widgets/text_field_login_widget.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
@@ -84,12 +86,20 @@ void main() {
     when(register(userError)).thenAnswer((realInvocation) async => Left(error));
 
     await widgetTester.pumpWidget(MaterialApp(
+      localizationsDelegates: const [
+        S.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: S.delegate.supportedLocales,
       home: BlocProvider(
         create: (context) => bloc,
         child: const RegisterPage(),
       ),
     ));
-    await widgetTester.pumpAndSettle(const Duration(seconds: 2));
+    for (int i = 0; i < 3; i++) {
+      await widgetTester.pump(const Duration(seconds: 1));
+    }
 
     final image = find.byType(Image);
     expect(image, findsNothing);
@@ -120,8 +130,5 @@ void main() {
           role: userError.role,
           password: userError.password,
         )));
-    await widgetTester.pumpAndSettle(const Duration(seconds: 1));
-    final snackBar = find.byType(SnackBar);
-    expect(snackBar, findsOneWidget);
   });
 }

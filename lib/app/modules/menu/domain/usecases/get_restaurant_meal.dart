@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
-import 'package:mauafood_front/generated/l10n.dart';
 
 import '../errors/errors.dart';
 import '../infra/menu_repository_interface.dart';
@@ -29,7 +28,7 @@ class GetRestaurantMealImpl implements GetRestaurantMealInterface {
     return result.fold((failureResult) => result, (listResult) async {
       return result.where(
         (r) => r.isNotEmpty,
-        () => EmptyList(message: S.current.errorEmptyList),
+        () => EmptyList(message: 'Lista vazia'),
       );
     });
   }
@@ -39,7 +38,7 @@ class GetRestaurantMealImpl implements GetRestaurantMealInterface {
     return result.fold((failureResult) => result, (listResult) async {
       return result.where(
         (r) => r.isNotEmpty,
-        () => EmptyList(message: S.current.errorEmptyList),
+        () => EmptyList(message: 'Lista vazia'),
       );
     });
   }

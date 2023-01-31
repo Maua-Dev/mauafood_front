@@ -1,24 +1,22 @@
-import 'package:mauafood_front/generated/l10n.dart';
-
 enum RestaurantEnum { restaurantBiba, restaurantH }
 
 extension RestaurantEnumExtension on RestaurantEnum {
   String get name {
     switch (this) {
       case RestaurantEnum.restaurantBiba:
-        return S.current.restaurantsNameSchema('biba');
+        return 'Souza de Abreu';
       case RestaurantEnum.restaurantH:
-        return S.current.restaurantsNameSchema('h');
+        return 'Restaurante do H';
     }
   }
 
   String get restaurantImg {
     switch (this) {
       case RestaurantEnum.restaurantBiba:
-        return S.current.restaurantsImageSchema('biba');
+        return 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg';
 
       case RestaurantEnum.restaurantH:
-        return S.current.restaurantsImageSchema('h');
+        return 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg';
     }
   }
 }

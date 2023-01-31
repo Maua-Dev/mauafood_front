@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
@@ -8,7 +6,6 @@ import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
 import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_interface.dart';
 import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_meal.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
-import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
@@ -31,8 +28,7 @@ void main() {
     ),
   ];
 
-  setUp(() async {
-    await S.load(const Locale.fromSubtags(languageCode: 'en'));
+  setUp(() {
     useCase = GetRestaurantMealImpl(repository: repository);
   });
 

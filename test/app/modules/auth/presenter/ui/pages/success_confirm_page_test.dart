@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/success_confirm_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/widgets/button_widget.dart';
-import 'package:mauafood_front/generated/l10n.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
@@ -12,14 +10,8 @@ void main() {
       (widgetTester) async {
     mockNetworkImagesFor(() async {});
     await widgetTester.pumpWidget(
-      MaterialApp(
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        home: const SuccessConfirmPage(),
+      const MaterialApp(
+        home: SuccessConfirmPage(),
       ),
     );
     final image = find.byType(Image);

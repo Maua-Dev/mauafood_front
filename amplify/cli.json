@@ -14,10 +14,10 @@
             "showfieldauthnotification": false,
             "usesubusernamefordefaultidentityclaim": true,
             "usefieldnameforprimarykeyconnectionfield": false,
-            "enableautoindexquerynames": true,
-            "respectprimarykeyattributesonconnectionfield": true,
+            "enableautoindexquerynames": false,
+            "respectprimarykeyattributesonconnectionfield": false,
             "shoulddeepmergedirectiveconfigdefaults": false,
-            "populateownerfieldforstaticgroupauth": true
+            "populateownerfieldforstaticgroupauth": false
         },
         "frontend-ios": {
             "enablexcodeintegration": true
@@ -57,6 +57,6 @@
         }
     },
     "debug": {
-        "shareProjectConfig": false
+        "shareProjectConfig": true
     }
 }

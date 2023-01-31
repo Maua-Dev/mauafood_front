@@ -3,12 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/appbar/drop_down_restaurant_widget.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/contact/contact_dialog.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/filter_button_widget.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/meal_card_widget.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
-import 'package:mauafood_front/generated/l10n.dart';
 import '../../../domain/enum/meal_enum.dart';
 import '../widgets/error_loading_menu_widget.dart';
 
@@ -34,14 +32,6 @@ class MenuPage extends StatelessWidget {
                   );
                 },
               ),
-              // button pop up contact to the restaurant
-              ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => const ContactDialog());
-                  },
-                  child: const Text('Contato')),
               ConstrainedBox(
                 constraints: const BoxConstraints(
                   minHeight: 35.0,
@@ -65,18 +55,12 @@ class MenuPage extends StatelessWidget {
                               color: AppColors.backgroundColor2), //<-- SEE HERE
                           borderRadius: BorderRadius.circular(50.0),
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: AppColors.mainBlueColor), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
                         labelStyle: AppTextStyles.h2Highlight
                             .copyWith(fontWeight: FontWeight.bold),
-                        labelText: S.of(context).searchTitle,
+                        labelText: 'Pesquisa',
                         prefixIcon: Icon(
                           Icons.search,
-                          color: AppColors.mainBlueColor,
+                          color: AppColors.letterHighlightColor,
                         ),
                       ),
                     ),
@@ -89,55 +73,54 @@ class MenuPage extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: AppColors.backgroundColor2,
                       borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                      )),
+                          topLeft: Radius.circular(50),
+                          topRight: Radius.circular(50))),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 24, bottom: 16),
-                        child: BlocBuilder<MenuBloc, MenuState>(
-                            builder: (context, state) {
-                          if (state is MenuLoadedSuccessState) {
-                            return ConstrainedBox(
-                              constraints: const BoxConstraints(
-                                minHeight: 35.0,
-                                maxHeight: 50,
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 16,
-                                ),
-                                child: ListView.builder(
-                                  itemCount: MealEnum.values.length,
-                                  scrollDirection: Axis.horizontal,
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, index) {
-                                    return FilterButtonWidget(
-                                      myIndex: index,
-                                      blocIndex: state.index,
-                                      onPressed: MealEnum.values[index] ==
-                                              MealEnum.tudo
-                                          ? () {
-                                              BlocProvider.of<MenuBloc>(context)
-                                                  .add(GetAllMealsEvent());
-                                            }
-                                          : () {
-                                              BlocProvider.of<MenuBloc>(context)
-                                                  .add(FilterMealTypeEvent(
-                                                      mealType: MealEnum
-                                                          .values[index]));
-                                            },
-                                    );
-                                  },
-                                ),
-                              ),
-                            );
-                          } else {
-                            return const SizedBox.shrink();
-                          }
-                        }),
+                      const SizedBox(
+                        height: 24,
                       ),
+                      BlocBuilder<MenuBloc, MenuState>(
+                          builder: (context, state) {
+                        if (state is MenuLoadedSuccessState) {
+                          return ConstrainedBox(
+                            constraints: const BoxConstraints(
+                              minHeight: 35.0,
+                              maxHeight: 50,
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 16),
+                              child: ListView.builder(
+                                itemCount: MealEnum.values.length,
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                itemBuilder: (context, index) {
+                                  return FilterButtonWidget(
+                                    myIndex: index,
+                                    blocIndex: state.index,
+                                    onPressed: MealEnum.values[index] ==
+                                            MealEnum.tudo
+                                        ? () {
+                                            BlocProvider.of<MenuBloc>(context)
+                                                .add(GetAllMealsEvent());
+                                          }
+                                        : () {
+                                            BlocProvider.of<MenuBloc>(context)
+                                                .add(FilterMealTypeEvent(
+                                                    mealType: MealEnum
+                                                        .values[index]));
+                                          },
+                                  );
+                                },
+                              ),
+                            ),
+                          );
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      }),
                       BlocBuilder<MenuBloc, MenuState>(
                         builder: (context, state) {
                           if (state is MenuLoadingState) {
@@ -148,7 +131,7 @@ class MenuPage extends StatelessWidget {
                             return Expanded(
                                 child: RefreshIndicator(
                               backgroundColor: AppColors.white,
-                              color: AppColors.mainBlueColor,
+                              color: AppColors.letterHighlightColor,
                               strokeWidth: 3,
                               onRefresh: () async {
                                 BlocProvider.of<MenuBloc>(context)
@@ -157,7 +140,7 @@ class MenuPage extends StatelessWidget {
                               child: GridView.builder(
                                 itemCount: state.listMeal.length,
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 8),
+                                    horizontal: 24, vertical: 24),
                                 gridDelegate:
                                     const SliverGridDelegateWithMaxCrossAxisExtent(
                                   crossAxisSpacing: 16,
@@ -177,7 +160,7 @@ class MenuPage extends StatelessWidget {
                               errorMessage: state.failure.message,
                             );
                           } else {
-                            return Text(S.of(context).errorGeneric);
+                            return const Text('Something went wrong!');
                           }
                         },
                       ),

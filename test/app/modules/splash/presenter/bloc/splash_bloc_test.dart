@@ -15,7 +15,7 @@ void main() {
     act: (bloc) {
       bloc.add(const LoadingEvent());
     },
-    wait: const Duration(seconds: 3),
+    wait: const Duration(seconds: 2),
     expect: () => [SplashLoadingState(), SplashSuccessState()],
   );
 }

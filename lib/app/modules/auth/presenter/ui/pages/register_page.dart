@@ -3,7 +3,6 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/bloc/register_bloc.dart';
-import 'package:mauafood_front/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../shared/themes/app_colors.dart';
@@ -72,7 +71,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          S.of(context).registerTitle,
+                          'Cadastre-se',
                           style: AppTextStyles.h2HighlightBold.copyWith(
                             color: Colors.black,
                           ),
@@ -83,7 +82,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         TextFieldLoginWidget(
                           keyboardType: TextInputType.name,
                           textFieldBloc: registerFormBloc.fullName,
-                          hintText: S.of(context).fullNameTitle,
+                          hintText: 'Nome Completo',
                         ),
                         TextFieldLoginWidget(
                           keyboardType: TextInputType.number,
@@ -93,19 +92,19 @@ class _RegisterPageState extends State<RegisterPage> {
                                 mask: "###.###.###-##",
                                 filter: {"#": RegExp(r'[0-9]')})
                           ],
-                          hintText: S.of(context).cpfTitle,
+                          hintText: 'CPF',
                         ),
                         TextFieldLoginWidget(
                           keyboardType: TextInputType.emailAddress,
                           textFieldBloc: registerFormBloc.email,
-                          hintText: S.of(context).emailTitle,
+                          hintText: 'E-mail',
                           autoFillHints: const [
                             AutofillHints.email,
                           ],
                         ),
                         TextFieldLoginWidget(
                           textFieldBloc: registerFormBloc.password,
-                          hintText: S.of(context).passwordTitle,
+                          hintText: 'Senha',
                           keyboardType: TextInputType.emailAddress,
                           suffixButton: SuffixButton.obscureText,
                           autoFillHints: const [
@@ -114,7 +113,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         ),
                         TextFieldLoginWidget(
                           textFieldBloc: registerFormBloc.passwordConfirm,
-                          hintText: S.of(context).confirmPasswordTitle,
+                          hintText: 'Confirme sua senha',
                           keyboardType: TextInputType.emailAddress,
                           suffixButton: SuffixButton.obscureText,
                           autoFillHints: const [
@@ -124,22 +123,18 @@ class _RegisterPageState extends State<RegisterPage> {
                         CheckboxFieldLoginWidget(
                           title: RichText(
                             text: TextSpan(
-                                text: S
-                                    .of(context)
-                                    .notificationsOptionsSchema('normalPart'),
+                                text: 'Deseja receber ',
                                 style: AppTextStyles.h2.copyWith(
                                     fontSize: 14, color: Colors.black),
                                 children: <TextSpan>[
                                   TextSpan(
-                                    text: S
-                                        .of(context)
-                                        .notificationsOptionsSchema('email'),
+                                    text: 'notificações por e-mail',
                                     style: AppTextStyles.h2HighlightBold
                                         .copyWith(
                                             fontSize: 14, color: Colors.black),
                                   ),
                                   TextSpan(
-                                    text: S.of(context).questionMark,
+                                    text: '?',
                                     style: AppTextStyles.h2.copyWith(
                                         fontSize: 14, color: Colors.black),
                                   ),
@@ -150,22 +145,18 @@ class _RegisterPageState extends State<RegisterPage> {
                         CheckboxFieldLoginWidget(
                           title: RichText(
                             text: TextSpan(
-                                text: S
-                                    .of(context)
-                                    .notificationsOptionsSchema('normalPart'),
+                                text: 'Deseja receber ',
                                 style: AppTextStyles.h2.copyWith(
                                     fontSize: 14, color: Colors.black),
                                 children: <TextSpan>[
                                   TextSpan(
-                                    text: S
-                                        .of(context)
-                                        .notificationsOptionsSchema('app'),
+                                    text: 'notificações pelo app',
                                     style: AppTextStyles.h2HighlightBold
                                         .copyWith(
                                             fontSize: 14, color: Colors.black),
                                   ),
                                   TextSpan(
-                                    text: S.of(context).questionMark,
+                                    text: '?',
                                     style: AppTextStyles.h2.copyWith(
                                         fontSize: 14, color: Colors.black),
                                   ),
@@ -185,7 +176,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                 ),
                               },
                               child: Text(
-                                S.of(context).appAcceptTerms,
+                                'Li e aceito os Termos de Uso',
                                 style: AppTextStyles.h2HighlightBold.copyWith(
                                   fontSize: 14,
                                   color: Colors.black,
@@ -203,7 +194,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           onPressed: () {
                             registerFormBloc.submit();
                           },
-                          title: S.of(context).registerTitle,
+                          title: 'Cadastrar',
                         ),
                         const SizedBox(
                           height: 16,
@@ -212,8 +203,8 @@ class _RegisterPageState extends State<RegisterPage> {
                           onPressed: () {
                             Modular.to.popUntil(ModalRoute.withName('/login'));
                           },
-                          text: S.of(context).haveAccountTitle,
-                          highlightText: S.of(context).enterTitle,
+                          text: 'Já tem uma conta? ',
+                          highlightText: 'Entrar',
                         ),
                       ],
                     ),

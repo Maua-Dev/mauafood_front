@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
 import '../bloc/splash_bloc.dart';
 
@@ -11,7 +10,6 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.mainBlueColor,
       body: BlocProvider(
         create: (context) => SplashBloc()..add(const LoadingEvent()),
         child: BlocBuilder<SplashBloc, SplashState>(
@@ -19,10 +17,11 @@ class SplashPage extends StatelessWidget {
             if (state is SplashLoadingState) {
               return Center(
                 child: SizedBox(
+                    width: 250,
+                    height: 250,
                     child: Image.asset(
-                  'assets/images/logos/mauafood_logo_black.gif',
-                  fit: BoxFit.cover,
-                )),
+                      'assets/images/logos/brown_logo.png',
+                    )),
               );
             }
             if (state is SplashSuccessState) {

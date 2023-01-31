@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
-import '../../../../../../generated/l10n.dart';
 import '../auth/auth_bloc.dart';
 
 class ChangePasswordBloc extends FormBloc<String, String> {
@@ -26,9 +25,9 @@ class ChangePasswordBloc extends FormBloc<String, String> {
 
   Future<String?> _validateCode(String? code) async {
     if (code!.isEmpty) {
-      return S.current.requiredFieldAlert;
+      return 'Campo obrigatório.';
     } else if (code.length != 6) {
-      return S.current.invalidCodeAlert;
+      return 'Código inválido.';
     }
     return null;
   }
@@ -38,16 +37,16 @@ class ChangePasswordBloc extends FormBloc<String, String> {
         r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
     RegExp regExp = RegExp(pattern);
     if (passwordValue!.isEmpty) {
-      return S.current.requiredFieldAlert;
+      return 'Campo obrigatório.';
     } else if (!regExp.hasMatch(passwordValue)) {
-      return S.current.passwordInstructionsAlert;
+      return 'Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres';
     }
     return null;
   }
 
   Future<String?> _validatePasswordConfirm(String? passwordConfirmValue) async {
     if (password.value != passwordConfirmValue) {
-      return S.current.equalPasswordAlert;
+      return 'Senhas devem ser iguais.';
     }
     return null;
   }
@@ -57,7 +56,8 @@ class ChangePasswordBloc extends FormBloc<String, String> {
     if (password.value == '' ||
         passwordConfirm.value == '' ||
         code.value == '') {
-      emitFailure(failureResponse: S.current.correctFieldsInstructionsAlert);
+      emitFailure(
+          failureResponse: 'Certifique-se que os campos estão corretos.');
     } else if (await password.validate() &&
         await passwordConfirm.validate() &&
         await code.validate()) {
@@ -67,7 +67,7 @@ class ChangePasswordBloc extends FormBloc<String, String> {
           newPassword: password.value));
       emitSuccess();
     } else {
-      emitFailure(failureResponse: S.current.errorFields);
+      emitFailure(failureResponse: 'Erro com os campos inseridos.');
     }
   }
 

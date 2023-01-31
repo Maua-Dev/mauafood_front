@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart' as modular;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
@@ -14,7 +13,6 @@ import 'package:mauafood_front/app/modules/menu/presenter/ui/pages/menu_page.dar
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/appbar/drop_down_restaurant_widget.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/meal_card_widget.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
-import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
@@ -70,12 +68,6 @@ void main() {
           .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester.pumpWidget(MaterialApp(
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
         home: BlocProvider(
           create: (context) => bloc,
           child: const MenuPage(),
@@ -95,21 +87,15 @@ void main() {
       final mealCards = find.byType(MealCardWidget);
       expect(mealCards, findsNWidgets(0));
 
-      // Contact button test
-      final contactTextButton = find.text('Contato');
-      final contactButtonPopUp = find.byType(ElevatedButton);
-      expect(contactTextButton, findsOneWidget);
-      expect(contactButtonPopUp, findsOneWidget);
-
       await widgetTester.runAsync(() async => bloc.add(GetAllMealsEvent()));
       await widgetTester.pump();
 
-      expect(appbar, findsNothing);
-      expect(textField, findsNothing);
+      expect(appbar, findsOneWidget);
+      expect(textField, findsOneWidget);
       expect(loading, findsNothing);
-      expect(listViewVertical, findsNothing);
-      expect(gridView, findsNothing);
-      expect(mealCards, findsNothing);
+      expect(listViewVertical, findsOneWidget);
+      expect(gridView, findsOneWidget);
+      expect(mealCards, findsAtLeastNWidgets(2));
     });
   });
 }

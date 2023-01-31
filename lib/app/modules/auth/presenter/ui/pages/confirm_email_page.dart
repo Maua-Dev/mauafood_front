@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/bloc/register_bloc.dart';
-import 'package:mauafood_front/generated/l10n.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/confirm-email/confirm_email_bloc.dart';
 import '../widgets/register_button_widget.dart';
@@ -59,7 +58,7 @@ class ConfirmEmailPage extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              S.of(context).confirmEmailTitle,
+                              'Confirme seu e-mail',
                               style: AppTextStyles.h2HighlightBold.copyWith(
                                 color: Colors.black,
                               ),
@@ -68,7 +67,7 @@ class ConfirmEmailPage extends StatelessWidget {
                               height: 32,
                             ),
                             Text(
-                              S.of(context).registerEmailInstructionsTitle,
+                              'Para completar seu cadastro enviamos um e-mail com um código, insira-o no campo abaixo.',
                               style: AppTextStyles.h2
                                   .copyWith(color: Colors.black, fontSize: 14),
                             ),
@@ -78,7 +77,7 @@ class ConfirmEmailPage extends StatelessWidget {
                             TextFieldLoginWidget(
                               keyboardType: TextInputType.number,
                               textFieldBloc: confirmEmailFormBloc.code,
-                              title: S.of(context).codeTitle,
+                              title: 'Código',
                             ),
                             const SizedBox(
                               height: 48,
@@ -87,7 +86,7 @@ class ConfirmEmailPage extends StatelessWidget {
                               onPressed: () {
                                 confirmEmailFormBloc.submit();
                               },
-                              title: S.of(context).confirmTitle,
+                              title: 'Confirmar',
                             ),
                           ],
                         ),

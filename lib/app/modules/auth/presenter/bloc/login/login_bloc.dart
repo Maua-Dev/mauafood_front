@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 
-import '../../../../../../generated/l10n.dart';
 import '../auth/auth_bloc.dart';
 
 class LoginBloc extends FormBloc<String, String> {
@@ -27,9 +26,9 @@ class LoginBloc extends FormBloc<String, String> {
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
     RegExp regExp = RegExp(pattern);
     if (emailValue!.isEmpty) {
-      return S.current.requiredFieldAlert;
+      return 'Campo obrigatório.';
     } else if (!regExp.hasMatch(emailValue)) {
-      return S.current.invalidEmailAlert;
+      return 'E-mail inválido.';
     }
     return null;
   }
@@ -39,9 +38,9 @@ class LoginBloc extends FormBloc<String, String> {
         r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
     RegExp regExp = RegExp(pattern);
     if (passwordValue!.isEmpty) {
-      return S.current.requiredFieldAlert;
+      return 'Campo obrigatório.';
     } else if (!regExp.hasMatch(passwordValue)) {
-      return S.current.invalidPasswordAlert;
+      return 'Senha inválida.';
     }
     return null;
   }
@@ -49,13 +48,13 @@ class LoginBloc extends FormBloc<String, String> {
   @override
   Future<void> submit() async {
     if (email.value == '' || password.value == '') {
-      emitFailure(failureResponse: S.current.typeEmailPasswordAlert);
+      emitFailure(failureResponse: 'Certifique-se que digitou e-mail e senha.');
     } else if (await email.validate() && await password.validate()) {
       authBloc
           .add(LoginWithEmail(email: email.value, password: password.value));
       emitSuccess();
     } else {
-      emitFailure(failureResponse: S.current.errorEmailOrPassword);
+      emitFailure(failureResponse: 'Erro com e-mail ou senha.');
     }
   }
 

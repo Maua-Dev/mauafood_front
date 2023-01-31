@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/generated/l10n.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/register/bloc/register_bloc.dart';
 import '../../bloc/resend-code/resend_code_form_bloc.dart';
@@ -78,7 +77,7 @@ class _ResendConfirmationCodePageState
                           ),
                         ),
                         Text(
-                          S.of(context).resendConfirmationCodeTitle,
+                          'Reeviar código de confirmação',
                           style: AppTextStyles.h2HighlightBold.copyWith(
                             color: Colors.black,
                           ),
@@ -87,7 +86,7 @@ class _ResendConfirmationCodePageState
                           height: 32,
                         ),
                         Text(
-                          S.of(context).confirmationCodeInstructionsTitle,
+                          'Por favor, digite seu e-mail, vamos mandar um código de verificação.',
                           style: AppTextStyles.h2
                               .copyWith(color: Colors.black, fontSize: 14),
                         ),
@@ -96,7 +95,7 @@ class _ResendConfirmationCodePageState
                         ),
                         TextFieldLoginWidget(
                           textFieldBloc: resendCodeFormBloc.email,
-                          title: S.of(context).emailTitle,
+                          title: 'E-mail',
                         ),
                         const SizedBox(
                           height: 48,
@@ -105,7 +104,7 @@ class _ResendConfirmationCodePageState
                           onPressed: () {
                             resendCodeFormBloc.submit();
                           },
-                          title: S.of(context).sendTitle,
+                          title: 'Enviar',
                         ),
                         const SizedBox(
                           height: 16,
@@ -114,8 +113,8 @@ class _ResendConfirmationCodePageState
                           onPressed: () {
                             Modular.to.popUntil(ModalRoute.withName('/login'));
                           },
-                          text: S.of(context).havePasswordTitle,
-                          highlightText: S.of(context).doLoginTitle,
+                          text: 'Já tem uma senha? ',
+                          highlightText: 'Faça o login',
                         ),
                       ]),
                 ),

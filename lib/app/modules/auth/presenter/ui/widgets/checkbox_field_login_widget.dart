@@ -14,7 +14,7 @@ class CheckboxFieldLoginWidget extends StatelessWidget {
       padding: EdgeInsets.zero,
       booleanFieldBloc: booleanFieldBloc,
       checkColor: MaterialStateProperty.all(AppColors.white),
-      fillColor: MaterialStateProperty.all(AppColors.mainBlueColor),
+      fillColor: MaterialStateProperty.all(AppColors.buttonsColor),
       body: title,
     );
   }

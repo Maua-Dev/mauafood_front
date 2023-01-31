@@ -4,7 +4,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
-import '../../../../../../generated/l10n.dart';
 import '../../../domain/entities/meal_entity.dart';
 
 class MealCardWidget extends StatelessWidget {
@@ -73,7 +72,7 @@ class MealCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      S.of(context).mealPriceCurrency(meal.price),
+                      'R\$ ${meal.price.toStringAsFixed(2).replaceAll('.', ',')}',
                       style: AppTextStyles.h2Highlight
                           .copyWith(fontWeight: FontWeight.bold),
                     ),

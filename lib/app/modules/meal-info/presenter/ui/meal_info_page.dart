@@ -4,7 +4,6 @@ import 'package:mauafood_front/app/modules/meal-info/presenter/ui/widgets/meal_l
 import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
-import 'package:mauafood_front/generated/l10n.dart';
 
 class MealInfoPage extends StatelessWidget {
   final Meal mealInfo;
@@ -48,7 +47,7 @@ class MealInfoPage extends StatelessWidget {
                         Modular.to.pop('/menu');
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: AppColors.mainBlueColor,
+                          backgroundColor: AppColors.letterHighlightThinColor,
                           padding: EdgeInsets.zero,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
@@ -77,9 +76,21 @@ class MealInfoPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          S.of(context).mealPriceCurrency(mealInfo.price),
+                          'R\$ ${mealInfo.price.toStringAsFixed(2).replaceAll('.', ',')}',
                           style: AppTextStyles.h1,
                         ),
+                        // Row(
+                        //   children: [
+                        //     Icon(
+                        //       Icons.access_time,
+                        //       color: AppColors.letterHighlightColor,
+                        //     ),
+                        //     Text(
+                        //       '${mealInfo.prepareTime} min',
+                        //       style: AppTextStyles.h2Highlight,
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                     const SizedBox(
@@ -94,7 +105,7 @@ class MealInfoPage extends StatelessWidget {
                       height: 64,
                     ),
                     Text(
-                      S.of(context).recommendedTitle,
+                      'Recomendados',
                       style: AppTextStyles.h1,
                     ),
                     const SizedBox(

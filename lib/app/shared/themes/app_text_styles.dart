@@ -4,7 +4,7 @@ import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 class AppTextStyles {
   static TextStyle h1 = TextStyle(
     color: AppColors.letterColor,
-    fontSize: 28,
+    fontSize: 26,
     fontWeight: FontWeight.bold,
   );
   static TextStyle h2 = TextStyle(
@@ -18,17 +18,17 @@ class AppTextStyles {
     fontWeight: FontWeight.normal,
   );
   static TextStyle h2Highlight = TextStyle(
-    color: AppColors.mainBlueColor,
+    color: AppColors.letterHighlightColor,
     fontSize: 16,
     fontWeight: FontWeight.normal,
   );
   static TextStyle h2HighlightBold = TextStyle(
-    color: AppColors.mainBlueColor,
+    color: AppColors.letterHighlightColor,
     fontSize: 24,
     fontWeight: FontWeight.bold,
   );
   static TextStyle h2ThinHighlight = TextStyle(
-    color: AppColors.mainBlueColor,
+    color: AppColors.letterHighlightThinColor,
     fontSize: 16,
     fontWeight: FontWeight.normal,
   );

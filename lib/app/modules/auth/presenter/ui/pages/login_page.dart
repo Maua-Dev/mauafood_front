@@ -49,7 +49,11 @@ class _LoginPageState extends State<LoginPage> {
               }
 
               if (state is AuthLoadedState) {
-                Modular.to.pushNamed('/restaurants/');
+                if (state.userRole == 'EMPLOYEE') {
+                  Modular.to.pushNamed('/employee');
+                } else {
+                  Modular.to.pushNamed('/restaurants/');
+                }
               }
             },
             child: Builder(

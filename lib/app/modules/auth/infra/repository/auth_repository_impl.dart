@@ -63,4 +63,12 @@ class AuthRepositoryImpl extends AuthRepositoryInterface {
     return result.fold(
         (failureResult) => result, (successResult) => Right(successResult));
   }
+
+  @override
+  Future<Either<GetUserAttributesError, List<AuthUserAttribute>>>
+      getUserAttributes() async {
+    var result = await datasource.getUserAttributes();
+    return result.fold(
+        (failureResult) => result, (successResult) => Right(successResult));
+  }
 }

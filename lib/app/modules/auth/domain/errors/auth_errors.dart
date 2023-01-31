@@ -28,3 +28,7 @@ class ConfirmationEmailError extends AuthErrors {
   final String email;
   ConfirmationEmailError({required this.email, required super.message});
 }
+
+class GetUserAttributesError extends AuthErrors {
+  GetUserAttributesError({required super.message});
+}

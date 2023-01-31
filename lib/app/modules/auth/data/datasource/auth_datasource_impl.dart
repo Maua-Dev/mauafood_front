@@ -252,4 +252,34 @@ class AuthDatasourceImpl extends AuthDatasourceInterface {
       ));
     }
   }
+
+  @override
+  Future<Either<GetUserAttributesError, List<AuthUserAttribute>>>
+      getUserAttributes() async {
+    try {
+      late List<AuthUserAttribute> result;
+      result = await Amplify.Auth.fetchUserAttributes();
+      return right(result);
+    } on LimitExceededException {
+      return left(GetUserAttributesError(
+        message: S.current.getUserAtribbutesErrorsSchema('limitExceeded'),
+      ));
+    } on SignedOutException {
+      return left(GetUserAttributesError(
+          message: S.current.getUserAtribbutesErrorsSchema('signedOut')));
+    } on NotAuthorizedException {
+      return left(GetUserAttributesError(
+          message: S.current.getUserAtribbutesErrorsSchema('notAuthorized')));
+    } on UserNotConfirmedException {
+      return left(GetUserAttributesError(
+          message:
+              S.current.getUserAtribbutesErrorsSchema('userNotConfirmed')));
+    } on UserNotFoundException {
+      return left(GetUserAttributesError(
+          message: S.current.getUserAtribbutesErrorsSchema('userNotFound')));
+    } catch (e) {
+      return left(GetUserAttributesError(
+          message: S.current.getUserAtribbutesErrorsSchema('other')));
+    }
+  }
 }

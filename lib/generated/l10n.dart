@@ -821,6 +821,24 @@ class S {
     );
   }
 
+  /// `{schema, select, limitExceeded{Too many attempts in a row, try again later.} signedOut{Incorrect email or password.} notAuthorized{Unconfirmed email, confirm it.} userNotConfirmed{Unconfirmed email, confirm it.} userNotFound{Incorrect email or password or email not registered.} other{Error when trying to get user attributes.}}`
+  String getUserAtribbutesErrorsSchema(Object schema) {
+    return Intl.select(
+      schema,
+      {
+        'limitExceeded': 'Too many attempts in a row, try again later.',
+        'signedOut': 'Incorrect email or password.',
+        'notAuthorized': 'Unconfirmed email, confirm it.',
+        'userNotConfirmed': 'Unconfirmed email, confirm it.',
+        'userNotFound': 'Incorrect email or password or email not registered.',
+        'other': 'Error when trying to get user attributes.',
+      },
+      name: 'getUserAtribbutesErrorsSchema',
+      desc: '',
+      args: [schema],
+    );
+  }
+
   // skipped getter for the '' key
 }
 

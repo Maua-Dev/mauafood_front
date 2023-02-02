@@ -8,7 +8,7 @@ import 'auth/auth_module.dart';
 class UserAuthGuard extends RouteGuard {
   UserAuthGuard()
       : super(
-          redirectTo: '/employee/',
+          redirectTo: '/login/',
         );
 
   @override

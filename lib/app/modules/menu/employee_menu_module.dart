@@ -3,6 +3,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/pages/employee_menu_page.dart';
 
 import '../employee_auth_guard.dart';
+import '../restaurants/domain/infra/restaurant_enum.dart';
 import 'data/datasource/menu_datasource_impl.dart';
 import 'domain/infra/menu_repository_interface.dart';
 import 'domain/usecases/get_restaurant_meal.dart';
@@ -25,7 +26,7 @@ class EmployeeMenuModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(Modular.initialRoute,
             child: (context, args) =>
-                const EmployeeMenuPage(restaurantName: 'Souza de Abreu'),
+                EmployeeMenuPage(restaurant: args.data as RestaurantEnum),
             guards: [EmployeeAuthGuard()]),
       ];
 }

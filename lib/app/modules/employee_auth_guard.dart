@@ -20,7 +20,8 @@ class EmployeeAuthGuard extends RouteGuard {
       await authController.verifyIfHaveTokens();
     }
     if (authController.isLoggedIn &&
-        authController.userRole == UserRolesEnum.employee) {
+        (authController.userRole == UserRolesEnum.employee_h ||
+            authController.userRole == UserRolesEnum.employee_biba)) {
       return true;
     }
     return false;

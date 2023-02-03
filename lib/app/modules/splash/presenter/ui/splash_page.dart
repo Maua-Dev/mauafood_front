@@ -28,6 +28,7 @@ class SplashPage extends StatelessWidget {
               );
             }
             if (state is SplashSuccessState) {
+              Modular.to.navigate('/user/');
               return const CircularProgressIndicator();
             } else {
               return const CircularProgressIndicator();

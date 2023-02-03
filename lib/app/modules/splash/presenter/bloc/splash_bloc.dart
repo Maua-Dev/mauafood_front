@@ -19,14 +19,5 @@ class SplashBloc extends Bloc<LoadingEvent, SplashState> {
     emit(SplashLoadingState());
     await Future.delayed(const Duration(seconds: 3));
     emit(SplashSuccessState());
-    await Modular.isModuleReady<AuthModule>();
-    var controller = Modular.get<AuthBloc>();
-    if (controller.userRole == UserRolesEnum.employee_h ||
-        controller.userRole == UserRolesEnum.employee_biba) {
-      Modular.to.pushNamed('/employee/',
-          arguments: controller.userRole!.restaurantEnum);
-    } else {
-      Modular.to.pushNamed('/user/');
-    }
   }
 }

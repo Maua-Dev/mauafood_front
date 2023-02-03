@@ -83,6 +83,14 @@
             }
         }
     },
+    "mealPrepareTimeMinutes": "{prepareTime} min",
+    "@mealPrepareTimeMinutes" : {
+        "placeholders": {
+            "placeholders": {
+                "prepareTime": {}
+            }
+        }
+    },
 
 
 

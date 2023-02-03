@@ -9,7 +9,7 @@ import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_int
 import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasource_interface.dart';
 import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
 import 'package:mauafood_front/app/modules/menu/infra/repository/menu_repository_impl.dart';
-import 'package:mauafood_front/app/modules/menu/menu_module.dart';
+import 'package:mauafood_front/app/modules/menu/user_menu_module.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -19,7 +19,7 @@ import 'menu_repository_impl_test.mocks.dart';
 
 @GenerateMocks([MenuDatasourceInterface])
 void main() {
-  initModules([AppModule(), MenuModule()]);
+  initModules([AppModule(), UserMenuModule()]);
 
   MenuDatasourceInterface datasource = MockMenuDatasourceInterface();
   late MenuRepositoryInterface repository;

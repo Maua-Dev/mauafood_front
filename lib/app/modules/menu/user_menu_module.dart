@@ -3,14 +3,16 @@ import 'package:mauafood_front/app/modules/menu/data/datasource/menu_datasource_
 import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_meal.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/contact/contact_form_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/pages/menu_page.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_menu_page.dart';
 
 import '../meal-info/meal_info_module.dart';
+import '../restaurants/restaurant_module.dart';
+import '../user_auth_guard.dart';
 import 'domain/infra/menu_repository_interface.dart';
 import 'infra/datasources/menu_datasource_interface.dart';
 import 'infra/repository/menu_repository_impl.dart';
 
-class MenuModule extends Module {
+class UserMenuModule extends Module {
   @override
   List<Bind> get binds => [
         Bind<GetRestaurantMealInterface>(
@@ -27,10 +29,17 @@ class MenuModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
+        ModuleRoute(Modular.initialRoute,
+            module: RestaurantModule(), guards: [UserAuthGuard()]),
         ChildRoute(
-          Modular.initialRoute,
-          child: (context, args) => const MenuPage(),
+          '/menu',
+          child: (context, args) => const UserMenuPage(),
+          guards: [UserAuthGuard()],
         ),
-        ModuleRoute('/meal-info/', module: MealInfoModule()),
+        ModuleRoute(
+          '/meal-info/',
+          module: MealInfoModule(),
+          guards: [UserAuthGuard()],
+        ),
       ];
 }

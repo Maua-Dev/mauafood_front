@@ -4,8 +4,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
-import '../../../../../../generated/l10n.dart';
-import '../../../domain/entities/meal_entity.dart';
+import '../../../../../../../generated/l10n.dart';
+import '../../../../domain/entities/meal_entity.dart';
 
 class MealCardWidget extends StatelessWidget {
   final Meal meal;
@@ -24,7 +24,7 @@ class MealCardWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             )),
         onPressed: () {
-          Modular.to.pushNamed('/restaurants/menu/meal-info/', arguments: meal);
+          Modular.to.pushNamed('/user/menu/meal-info/', arguments: meal);
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

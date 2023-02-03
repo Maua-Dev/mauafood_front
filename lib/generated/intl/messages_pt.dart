@@ -99,16 +99,18 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': '',
           })}";
 
-  static String m7(amount) => "${amount} ";
+  static String m7(placeholders, prepareTime) => "${prepareTime} min";
 
-  static String m8(notifications) => "${Intl.select(notifications, {
+  static String m8(amount) => "${amount} ";
+
+  static String m9(notifications) => "${Intl.select(notifications, {
             'normalPart': 'Deseja receber ',
             'email': 'notificações por e-mail',
             'app': 'notificações pelo app',
             'other': '',
           })}";
 
-  static String m9(schema) => "${Intl.select(schema, {
+  static String m10(schema) => "${Intl.select(schema, {
             'limitExceeded':
                 'Muitas tentativas em sequência, tente novamente mais tarde.',
             'usernameExists': 'Já existe um cadastro com este e-mail.',
@@ -119,7 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
                 'Ocorreu algum erro ao tentar cadastrar, tente novamente mais tarde.',
           })}";
 
-  static String m10(schema) => "${Intl.select(schema, {
+  static String m11(schema) => "${Intl.select(schema, {
             'invalidParameter': 'E-mail, provavelmente, já confirmado.',
             'userNotFound':
                 'E-mail não encontrado, certifique-se de que fez cadastro.',
@@ -132,7 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Erro ao tentar enviar código, tente mais tarde.',
           })}";
 
-  static String m11(restaurant) => "${Intl.select(restaurant, {
+  static String m12(restaurant) => "${Intl.select(restaurant, {
             'biba':
                 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
             'h':
@@ -140,7 +142,7 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': '',
           })}";
 
-  static String m12(restaurant) => "${Intl.select(restaurant, {
+  static String m13(restaurant) => "${Intl.select(restaurant, {
             'biba': 'Souza de Abreu',
             'h': 'Restaurante do H',
             'other': '',
@@ -213,9 +215,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "logoutErrorsSchema": m5,
         "mealNameSchema": m6,
-        "mealPriceCurrency": m7,
+        "mealPrepareTimeMinutes": m7,
+        "mealPriceCurrency": m8,
         "newPasswordTitle": MessageLookupByLibrary.simpleMessage("Nova senha"),
-        "notificationsOptionsSchema": m8,
+        "notificationsOptionsSchema": m9,
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \\\$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Senha"),
@@ -224,15 +227,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Recomendados"),
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "Para completar seu cadastro enviamos um e-mail com um código, insira-o no campo abaixo."),
-        "registerErrorsSchema": m9,
+        "registerErrorsSchema": m10,
         "registerTitle": MessageLookupByLibrary.simpleMessage("Cadastrar"),
         "requiredFieldAlert":
             MessageLookupByLibrary.simpleMessage("Campo obrigatório."),
-        "resendCodeErrorsSchema": m10,
+        "resendCodeErrorsSchema": m11,
         "resendConfirmationCodeTitle": MessageLookupByLibrary.simpleMessage(
             "Reeviar código de confirmação"),
-        "restaurantsImageSchema": m11,
-        "restaurantsNameSchema": m12,
+        "restaurantsImageSchema": m12,
+        "restaurantsNameSchema": m13,
         "restaurantsTitle":
             MessageLookupByLibrary.simpleMessage("Restaurantes"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Pesquisa"),

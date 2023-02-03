@@ -50,10 +50,12 @@ class _LoginPageState extends State<LoginPage> {
               }
 
               if (state is AuthLoadedState) {
-                if (state.userRole == UserRolesEnum.employee) {
-                  Modular.to.pushNamed('/employee');
+                if (state.userRole == UserRolesEnum.employee_h ||
+                    state.userRole == UserRolesEnum.employee_biba) {
+                  Modular.to.pushNamed('/employee/',
+                      arguments: state.userRole.restaurantEnum);
                 } else {
-                  Modular.to.pushNamed('/restaurants/');
+                  Modular.to.pushNamed('/user/');
                 }
               }
             },

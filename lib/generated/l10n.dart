@@ -618,6 +618,16 @@ class S {
     );
   }
 
+  /// `{prepareTime} min`
+  String mealPrepareTimeMinutes(Object placeholders, Object prepareTime) {
+    return Intl.message(
+      '$prepareTime min',
+      name: 'mealPrepareTimeMinutes',
+      desc: '',
+      args: [placeholders, prepareTime],
+    );
+  }
+
   /// `Password changed successfully!`
   String get successChangePassword {
     return Intl.message(

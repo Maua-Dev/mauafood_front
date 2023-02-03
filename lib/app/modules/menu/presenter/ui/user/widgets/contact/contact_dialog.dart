@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/contact/text_field_contact_widget.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contact/text_field_contact_widget.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
-import '../../../../../../shared/themes/app_colors.dart';
-import '../../../../../../shared/themes/app_text_styles.dart';
-import '../../../bloc/contact/contact_form_bloc.dart';
+import '../../../../../../../shared/themes/app_colors.dart';
+import '../../../../../../../shared/themes/app_text_styles.dart';
+import '../../../../bloc/contact/contact_form_bloc.dart';
 
 class ContactDialog extends StatelessWidget {
   const ContactDialog({super.key});

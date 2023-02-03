@@ -1,7 +1,11 @@
+// ignore_for_file: constant_identifier_names
+
 import 'package:enum_to_string/enum_to_string.dart';
+import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 
 enum UserRolesEnum {
-  employee,
+  employee_h,
+  employee_biba,
   user,
   student,
 }
@@ -9,7 +13,9 @@ enum UserRolesEnum {
 extension UserRolesEnumExtension on UserRolesEnum {
   String get name {
     switch (this) {
-      case UserRolesEnum.employee:
+      case UserRolesEnum.employee_h:
+        return 'Employee H';
+      case UserRolesEnum.employee_biba:
         return 'Employee';
       case UserRolesEnum.user:
         return 'User';
@@ -18,14 +24,27 @@ extension UserRolesEnumExtension on UserRolesEnum {
     }
   }
 
-  static UserRolesEnum stringToEnumMap(String toMap) {
-    UserRolesEnum modality = UserRolesEnum.values.firstWhere((modality) =>
-        EnumToString.convertToString(modality).toUpperCase() ==
-        toMap.toUpperCase());
-    return modality;
+  RestaurantEnum get restaurantEnum {
+    switch (this) {
+      case UserRolesEnum.employee_h:
+        return RestaurantEnum.restaurantH;
+      case UserRolesEnum.employee_biba:
+        return RestaurantEnum.restaurantBiba;
+      case UserRolesEnum.user:
+        return RestaurantEnum.none;
+      case UserRolesEnum.student:
+        return RestaurantEnum.none;
+    }
   }
 
-  static String enumToStringMap(UserRolesEnum modality) {
-    return EnumToString.convertToString(modality);
+  static UserRolesEnum stringToEnumMap(String toMap) {
+    UserRolesEnum role = UserRolesEnum.values.firstWhere((role) =>
+        EnumToString.convertToString(role).toUpperCase() ==
+        toMap.toUpperCase());
+    return role;
+  }
+
+  static String enumToStringMap(UserRolesEnum role) {
+    return EnumToString.convertToString(role);
   }
 }

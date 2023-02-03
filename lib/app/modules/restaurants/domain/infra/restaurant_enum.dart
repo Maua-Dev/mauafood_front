@@ -1,6 +1,6 @@
 import 'package:mauafood_front/generated/l10n.dart';
 
-enum RestaurantEnum { restaurantBiba, restaurantH }
+enum RestaurantEnum { none, restaurantBiba, restaurantH }
 
 extension RestaurantEnumExtension on RestaurantEnum {
   String get name {
@@ -9,6 +9,8 @@ extension RestaurantEnumExtension on RestaurantEnum {
         return S.current.restaurantsNameSchema('biba');
       case RestaurantEnum.restaurantH:
         return S.current.restaurantsNameSchema('h');
+      case RestaurantEnum.none:
+        return '';
     }
   }
 
@@ -16,9 +18,10 @@ extension RestaurantEnumExtension on RestaurantEnum {
     switch (this) {
       case RestaurantEnum.restaurantBiba:
         return S.current.restaurantsImageSchema('biba');
-
       case RestaurantEnum.restaurantH:
         return S.current.restaurantsImageSchema('h');
+      case RestaurantEnum.none:
+        return '';
     }
   }
 }

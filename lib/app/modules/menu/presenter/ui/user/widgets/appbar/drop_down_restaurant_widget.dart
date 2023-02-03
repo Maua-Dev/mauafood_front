@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 
-import '../../../../../../shared/themes/app_text_styles.dart';
-import '../../../bloc/menu_bloc.dart';
+import '../../../../../../../shared/themes/app_text_styles.dart';
+import '../../../../bloc/menu_bloc.dart';
 
 class DropDownRestaurantWidget extends StatelessWidget {
   final RestaurantEnum restaurant;

@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/appbar/drop_down_restaurant_widget.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/contact/contact_dialog.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/filter_button_widget.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/widgets/meal_card_widget.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
-import '../../../domain/enum/meal_enum.dart';
+import '../../../../domain/enum/meal_enum.dart';
+import '../../../bloc/menu_bloc.dart';
+import '../widgets/appbar/drop_down_restaurant_widget.dart';
+import '../widgets/contact/contact_dialog.dart';
 import '../widgets/error_loading_menu_widget.dart';
+import '../widgets/filter_button_widget.dart';
+import '../widgets/meal_card_widget.dart';
 
-class MenuPage extends StatelessWidget {
-  const MenuPage({super.key});
+class UserMenuPage extends StatelessWidget {
+  const UserMenuPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,6 @@ class MenuPage extends StatelessWidget {
                   );
                 },
               ),
-              // button pop up contact to the restaurant
               ElevatedButton(
                   onPressed: () {
                     showDialog(

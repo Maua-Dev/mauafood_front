@@ -207,11 +207,13 @@ void main() {
     test('return loggedIn false', () async {
       when(storage.getRefreshToken()).thenAnswer((realInvocation) async => '');
       when(storage.getAccessToken()).thenAnswer((realInvocation) async => '');
+      when(storage.getRole()).thenAnswer((realInvocation) async => '');
       await bloc.verifyIfHaveTokens();
       expect(bloc.isLoggedIn, false);
     });
 
     test('return loggedIn true', () async {
+      when(storage.getRole()).thenAnswer((realInvocation) async => 'student');
       when(storage.getRefreshToken())
           .thenAnswer((realInvocation) async => '123');
       when(storage.getAccessToken())

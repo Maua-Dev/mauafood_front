@@ -4,7 +4,7 @@
         "name" : "Lanche Mortadela",
         "description": "Mortadela",
         "price" : 14.00,
-        "prepareTime" : 20,
+        "prepareTime" : null,
         "type" : "LANCHE",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },

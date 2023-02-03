@@ -4,7 +4,7 @@
         "name" : "Água Mineral",
         "description": "Garrafa de água mineral com 500ml",
         "price" : 5.00,
-        "prepareTime" : 20,
+        "prepareTime" : null,
         "type" : "BEBIDA",
         "photo" : "https://avatars.githubusercontent.com/u/30812461?v=4"
     },	

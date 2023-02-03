@@ -215,6 +215,15 @@ class MockAuthStorageInterface extends _i1.Mock
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
   @override
+  _i5.Future<void> saveRole(String? role) => (super.noSuchMethod(
+        Invocation.method(
+          #saveRole,
+          [role],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
   _i5.Future<String?> getRefreshToken() => (super.noSuchMethod(
         Invocation.method(
           #getRefreshToken,
@@ -226,6 +235,14 @@ class MockAuthStorageInterface extends _i1.Mock
   _i5.Future<String?> getAccessToken() => (super.noSuchMethod(
         Invocation.method(
           #getAccessToken,
+          [],
+        ),
+        returnValue: _i5.Future<String?>.value(),
+      ) as _i5.Future<String?>);
+  @override
+  _i5.Future<String?> getRole() => (super.noSuchMethod(
+        Invocation.method(
+          #getRole,
           [],
         ),
         returnValue: _i5.Future<String?>.value(),

@@ -134,7 +134,9 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Erro ao tentar enviar código, tente mais tarde.',
           })}";
 
-  static String m12(restaurant) => "${Intl.select(restaurant, {
+  static String m12(placeholders, restaurantName) => "Menu - ${restaurantName}";
+
+  static String m13(restaurant) => "${Intl.select(restaurant, {
             'biba':
                 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
             'h':
@@ -142,7 +144,7 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': '',
           })}";
 
-  static String m13(restaurant) => "${Intl.select(restaurant, {
+  static String m14(restaurant) => "${Intl.select(restaurant, {
             'biba': 'Souza de Abreu',
             'h': 'Restaurante do H',
             'other': '',
@@ -234,8 +236,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "resendCodeErrorsSchema": m11,
         "resendConfirmationCodeTitle": MessageLookupByLibrary.simpleMessage(
             "Reeviar código de confirmação"),
-        "restaurantsImageSchema": m12,
-        "restaurantsNameSchema": m13,
+        "restaurantTitle": m12,
+        "restaurantsImageSchema": m13,
+        "restaurantsNameSchema": m14,
         "restaurantsTitle":
             MessageLookupByLibrary.simpleMessage("Restaurantes"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Pesquisa"),

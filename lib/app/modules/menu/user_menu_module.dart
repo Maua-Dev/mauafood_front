@@ -6,6 +6,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_menu_page.dart';
 
 import '../meal-info/meal_info_module.dart';
+import '../restaurants/domain/infra/restaurant_enum.dart';
 import '../restaurants/restaurant_module.dart';
 import 'domain/infra/menu_repository_interface.dart';
 import 'infra/datasources/menu_datasource_interface.dart';
@@ -35,7 +36,9 @@ class UserMenuModule extends Module {
         ),
         ChildRoute(
           '/menu',
-          child: (context, args) => const UserMenuPage(),
+          child: (context, args) => UserMenuPage(
+            restaurantInfo: args.data as RestaurantEnum,
+          ),
           // guards: [UserAuthGuard()],
         ),
         ModuleRoute(

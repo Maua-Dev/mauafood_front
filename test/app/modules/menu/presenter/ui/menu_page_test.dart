@@ -95,12 +95,6 @@ void main() {
       final mealCards = find.byType(MealCardWidget);
       expect(mealCards, findsNWidgets(0));
 
-      // Contact button test
-      final contactTextButton = find.text('Contato');
-      final contactButtonPopUp = find.byType(ElevatedButton);
-      expect(contactTextButton, findsOneWidget);
-      expect(contactButtonPopUp, findsOneWidget);
-
       await widgetTester.runAsync(() async => bloc.add(GetAllMealsEvent()));
       await widgetTester.pump();
 

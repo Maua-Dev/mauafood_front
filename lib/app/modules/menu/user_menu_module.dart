@@ -7,7 +7,6 @@ import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_men
 
 import '../meal-info/meal_info_module.dart';
 import '../restaurants/restaurant_module.dart';
-import '../user_auth_guard.dart';
 import 'domain/infra/menu_repository_interface.dart';
 import 'infra/datasources/menu_datasource_interface.dart';
 import 'infra/repository/menu_repository_impl.dart';
@@ -29,17 +28,20 @@ class UserMenuModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ModuleRoute(Modular.initialRoute,
-            module: RestaurantModule(), guards: [UserAuthGuard()]),
+        ModuleRoute(
+          Modular.initialRoute,
+          module: RestaurantModule(),
+          // guards: [UserAuthGuard()],
+        ),
         ChildRoute(
           '/menu',
           child: (context, args) => const UserMenuPage(),
-          guards: [UserAuthGuard()],
+          // guards: [UserAuthGuard()],
         ),
         ModuleRoute(
-          '/meal-info/',
+          '/meal-info',
           module: MealInfoModule(),
-          guards: [UserAuthGuard()],
+          // guards: [UserAuthGuard()],
         ),
       ];
 }

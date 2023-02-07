@@ -7,7 +7,6 @@ import 'package:mauafood_front/generated/l10n.dart';
 import '../../../../domain/enum/meal_enum.dart';
 import '../../../bloc/menu_bloc.dart';
 import '../widgets/appbar/drop_down_restaurant_widget.dart';
-import '../widgets/contact/contact_dialog.dart';
 import '../widgets/error_loading_menu_widget.dart';
 import '../widgets/filter_button_widget.dart';
 import '../widgets/meal_card_widget.dart';
@@ -34,13 +33,6 @@ class UserMenuPage extends StatelessWidget {
                   );
                 },
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => const ContactDialog());
-                  },
-                  child: const Text('Contato')),
               ConstrainedBox(
                 constraints: const BoxConstraints(
                   minHeight: 35.0,

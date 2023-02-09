@@ -20,15 +20,17 @@ void main() {
   MenuRepositoryInterface repository = MockMenuRepositoryInterface();
   var h = RestaurantEnum.restaurantH;
   var biba = RestaurantEnum.restaurantBiba;
-  var listMock = const [
+  var listMock = [
     Meal(
       id: 0,
       name: 'name',
       description: 'description',
       price: 10,
-      type: MealEnum.bebida,
+      type: MealEnum.CANDIES,
       photo: '',
-    ),
+      available: true,
+      lastUpdate: DateTime.now(),
+    )
   ];
 
   setUp(() async {

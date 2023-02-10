@@ -24,27 +24,23 @@ void main() {
   late MenuBloc bloc;
   var failure = Failure(message: '');
   var restaurantEnumMock = RestaurantEnum.restaurantBiba;
-  MealModel testMock = MealModel(
+  MealModel testMock = const MealModel(
     id: 0,
     name: 'name',
     description: 'description',
     price: 10,
-    type: MealEnum.CANDIES,
+    type: MealEnum.bebida,
     photo: '',
-    available: true,
-    lastUpdate: DateTime.now(),
   );
   var listMock = [
     testMock,
-    MealModel(
+    const MealModel(
       id: 0,
-      name: 'name',
+      name: 'any',
       description: 'description',
       price: 10,
-      type: MealEnum.CANDIES,
+      type: MealEnum.lanche,
       photo: '',
-      available: true,
-      lastUpdate: DateTime.now(),
     ),
   ];
 
@@ -124,12 +120,12 @@ void main() {
         when(getRestaurantMeal(bloc.restaurantInfo))
             .thenAnswer((realInvocation) async => Right(listMock));
         bloc.eitherListMeal = Right(listMock);
-        bloc.add(const FilterMealTypeEvent(mealType: MealEnum.DRINKS));
+        bloc.add(const FilterMealTypeEvent(mealType: MealEnum.bebida));
       },
       expect: () => [
         MenuLoadingState(),
         MenuLoadedSuccessState(
-            listMeal: [testMock], index: MealEnum.DRINKS.index)
+            listMeal: [testMock], index: MealEnum.bebida.index)
       ],
     );
 
@@ -140,7 +136,7 @@ void main() {
         when(getRestaurantMeal(bloc.restaurantInfo))
             .thenAnswer((realInvocation) async => Left(failure));
         bloc.eitherListMeal = Left(failure);
-        bloc.add(const FilterMealTypeEvent(mealType: MealEnum.DRINKS));
+        bloc.add(const FilterMealTypeEvent(mealType: MealEnum.bebida));
       },
       expect: () => [
         MenuLoadingState(),

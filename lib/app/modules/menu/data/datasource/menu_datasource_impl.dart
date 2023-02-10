@@ -1,27 +1,31 @@
-import 'package:dio/dio.dart';
-import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasource_interface.dart';
+import 'dart:convert';
 
-import '../../../../shared/services/dio/mauafood_product_options.dart';
+import 'package:flutter/services.dart';
+import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasource_interface.dart';
+import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
 
 class MenuDatasourceImpl implements MenuDatasourceInterface {
-  Dio dio = Dio();
-
-  MenuDatasourceImpl() {
-    dio = Dio(mauafoodProductBaseOptions);
+  @override
+  Future<List<MealModel>> readJsonBiba() async {
+    try {
+      const String path = 'assets/data/restaurant_biba.json';
+      final jsonString = await rootBundle.loadString(path);
+      final listOfJsonElements = json.decode(jsonString) as List;
+      return MealModel.fromMaps(listOfJsonElements);
+    } catch (e) {
+      throw Exception();
+    }
   }
 
   @override
-  Future<Map<String, dynamic>> getAllProducts() async {
+  Future<List<MealModel>> readJsonH() async {
     try {
-      var response = await dio.get('/get-all-products-group-by-restaurant');
-      if (response.statusCode == 200) {
-        return response.data;
-      }
+      const String path = 'assets/data/restaurant_h.json';
+      final jsonString = await rootBundle.loadString(path);
+      final listOfJsonElements = json.decode(jsonString) as List;
+      return MealModel.fromMaps(listOfJsonElements);
+    } catch (e) {
       throw Exception();
-    } on DioError catch (e) {
-      // ignore: avoid_print
-      print(e);
-      rethrow;
     }
   }
 }

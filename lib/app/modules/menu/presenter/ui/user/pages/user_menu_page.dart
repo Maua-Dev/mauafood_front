@@ -128,7 +128,7 @@ class UserMenuPage extends StatelessWidget {
                                         myIndex: index,
                                         blocIndex: state.index,
                                         onPressed: MealEnum.values[index] ==
-                                                MealEnum.TUDO
+                                                MealEnum.tudo
                                             ? () {
                                                 BlocProvider.of<MenuBloc>(
                                                         context)

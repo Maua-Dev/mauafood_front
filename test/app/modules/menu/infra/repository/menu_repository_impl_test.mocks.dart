@@ -7,6 +7,8 @@ import 'dart:async' as _i3;
 
 import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasource_interface.dart'
     as _i2;
+import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart'
+    as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -30,12 +32,19 @@ class MockMenuDatasourceInterface extends _i1.Mock
   }
 
   @override
-  _i3.Future<Map<String, dynamic>> getAllProducts() => (super.noSuchMethod(
+  _i3.Future<List<_i4.MealModel>> readJsonBiba() => (super.noSuchMethod(
         Invocation.method(
-          #getAllProducts,
+          #readJsonBiba,
           [],
         ),
-        returnValue:
-            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i3.Future<Map<String, dynamic>>);
+        returnValue: _i3.Future<List<_i4.MealModel>>.value(<_i4.MealModel>[]),
+      ) as _i3.Future<List<_i4.MealModel>>);
+  @override
+  _i3.Future<List<_i4.MealModel>> readJsonH() => (super.noSuchMethod(
+        Invocation.method(
+          #readJsonH,
+          [],
+        ),
+        returnValue: _i3.Future<List<_i4.MealModel>>.value(<_i4.MealModel>[]),
+      ) as _i3.Future<List<_i4.MealModel>>);
 }

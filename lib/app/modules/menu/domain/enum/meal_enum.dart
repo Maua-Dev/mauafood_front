@@ -1,18 +1,16 @@
-// ignore_for_file: constant_identifier_names
-
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
 enum MealEnum {
-  TUDO,
-  SANDWICHES,
-  DRINKS,
-  CANDIES,
-  PLATES,
-  PORTIONS,
-  SNACKS,
-  PASTAS,
-  SALADS,
+  tudo,
+  lanche,
+  bebida,
+  doces,
+  pratos,
+  porcoes,
+  massas,
+  salgados,
+  saladas
 }
 
 extension MealEnumExtension on MealEnum {

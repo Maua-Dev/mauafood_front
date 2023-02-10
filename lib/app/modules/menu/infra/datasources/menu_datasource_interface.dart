@@ -1,3 +1,6 @@
+import '../models/meal_model.dart';
+
 abstract class MenuDatasourceInterface {
-  Future<Map<String, dynamic>> getAllProducts();
+  Future<List<MealModel>> readJsonBiba();
+  Future<List<MealModel>> readJsonH();
 }

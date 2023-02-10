@@ -28,6 +28,7 @@ class UserMenuPage extends StatelessWidget {
                 side: BorderSide(color: AppColors.mainBlueColor, width: 3),
               ),
               onPressed: () {
+                Modular.dispose<MenuBloc>();
                 Modular.to.pop();
               },
               child: Text(

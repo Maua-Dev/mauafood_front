@@ -17,8 +17,9 @@ class UserMenuModule extends Module {
   List<Bind> get binds => [
         Bind<GetRestaurantMealInterface>(
             (i) => GetRestaurantMealImpl(repository: i())),
-        Bind<MenuBloc>((i) =>
-            MenuBloc(getRestaurantMeal: i(), restaurantInfo: i.args.data)),
+        Bind<MenuBloc>(
+          (i) => MenuBloc(getRestaurantMeal: i(), restaurantInfo: i.args.data),
+        ),
         Bind<ContactFormBloc>(
           (i) => ContactFormBloc(),
         ),

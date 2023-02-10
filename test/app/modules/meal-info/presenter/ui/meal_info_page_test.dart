@@ -10,13 +10,15 @@ import 'package:mauafood_front/generated/l10n.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
-  Meal testMock = const Meal(
+  Meal testMock = Meal(
     id: 0,
     name: 'name',
     description: 'description',
     price: 10,
-    type: MealEnum.bebida,
+    type: MealEnum.CANDIES,
     photo: '',
+    available: true,
+    lastUpdate: DateTime.now(),
   );
 
   setUpAll(() {

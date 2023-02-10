@@ -10,8 +10,12 @@ class Meal extends Equatable {
   final String photo;
   final int? prepareTime;
   final MealEnum type;
+  final bool available;
+  final DateTime lastUpdate;
 
   const Meal({
+    required this.lastUpdate,
+    required this.available,
     required this.photo,
     required this.id,
     required this.name,
@@ -30,6 +34,8 @@ class Meal extends Equatable {
       price,
       prepareTime ?? '',
       type,
+      available,
+      lastUpdate,
     ];
   }
 }

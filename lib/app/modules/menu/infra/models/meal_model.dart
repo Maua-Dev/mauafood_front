@@ -9,17 +9,21 @@ class MealModel extends Meal {
       required super.price,
       super.prepareTime,
       required super.type,
-      required super.photo});
+      required super.photo,
+      required super.available,
+      required super.lastUpdate});
 
   factory MealModel.fromMap(Map<String, dynamic> json) {
     return MealModel(
-      id: json['id'],
+      id: json['product_id'],
       name: json['name'],
       description: json['description'],
       price: json['price'],
       prepareTime: json['prepareTime'],
-      type: MealEnumExtension.stringToEnumMap(json['type']),
+      type: MealEnumExtension.stringToEnumMap(json['meal_type']),
       photo: json['photo'],
+      available: json['available'],
+      lastUpdate: DateTime.fromMillisecondsSinceEpoch(json['last_update']),
     );
   }
 

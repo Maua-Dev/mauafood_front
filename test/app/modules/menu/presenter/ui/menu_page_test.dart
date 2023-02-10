@@ -28,23 +28,27 @@ void main() {
   late MenuBloc bloc;
   var restaurantEnum = RestaurantEnum.restaurantBiba;
 
-  MealModel testMock = const MealModel(
+  MealModel testMock = MealModel(
     id: 0,
     name: 'name',
     description: 'description',
     price: 10,
-    type: MealEnum.bebida,
+    type: MealEnum.CANDIES,
     photo: '',
+    available: true,
+    lastUpdate: DateTime.now(),
   );
   var listMock = [
     testMock,
-    const MealModel(
+    MealModel(
       id: 0,
-      name: 'any',
+      name: 'name',
       description: 'description',
       price: 10,
-      type: MealEnum.lanche,
+      type: MealEnum.CANDIES,
       photo: '',
+      available: true,
+      lastUpdate: DateTime.now(),
     ),
   ];
   setUpAll(() {

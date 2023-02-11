@@ -30,7 +30,7 @@ void main() {
   var restaurantEnum = RestaurantEnum.restaurantBiba;
 
   MealModel testMock = MealModel(
-    id: 0,
+    id: '0',
     name: 'name',
     description: 'description',
     price: 10,
@@ -42,7 +42,7 @@ void main() {
   var listMock = [
     testMock,
     MealModel(
-      id: 0,
+      id: '0',
       name: 'name',
       description: 'description',
       price: 10,

@@ -11,7 +11,7 @@ import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
   Meal testMock = Meal(
-    id: 0,
+    id: '0',
     name: 'name',
     description: 'description',
     price: 10,

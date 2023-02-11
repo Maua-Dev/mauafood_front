@@ -65,7 +65,7 @@
     "labelSend": "Send now",
 
 
-    "mealNameSchema": "{meal, select, tudo{All} lanche{Sandwich} bebida{Drinks} doces{Candies} pratos{Dishes} porcoes{Portions} massas{Pastas} salgados{Snacks} saladas{Salads} other{}}",
+    "mealNameSchema": "{meal, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} other{Other}}",
     "mealPriceCurrency": "{amount} ",
     "@mealPriceCurrency" : {
         "placeholders": {

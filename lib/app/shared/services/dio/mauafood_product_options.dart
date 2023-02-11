@@ -3,6 +3,6 @@ import 'package:mauafood_front/app/shared/services/environments/environment_conf
 
 final mauafoodProductBaseOptions = BaseOptions(
   baseUrl: EnvironmentConfig.MSS_PRODUCT,
-  connectTimeout: 5000,
-  receiveTimeout: 3000,
+  connectTimeout: 30000,
+  receiveTimeout: 30000,
 );

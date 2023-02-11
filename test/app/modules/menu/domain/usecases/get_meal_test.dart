@@ -22,7 +22,7 @@ void main() {
   var biba = RestaurantEnum.restaurantBiba;
   var listMock = [
     Meal(
-      id: 0,
+      id: '0',
       name: 'name',
       description: 'description',
       price: 10,

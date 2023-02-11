@@ -4,7 +4,7 @@ import 'package:enum_to_string/enum_to_string.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
 enum MealEnum {
-  TUDO,
+  ALL,
   SANDWICHES,
   DRINKS,
   CANDIES,

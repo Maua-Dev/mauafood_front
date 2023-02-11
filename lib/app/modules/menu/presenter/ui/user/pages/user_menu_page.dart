@@ -85,12 +85,12 @@ class UserMenuPage extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 24, bottom: 16),
-                        child: BlocBuilder<MenuBloc, MenuState>(
-                            builder: (context, state) {
-                          if (state is MenuLoadedSuccessState) {
-                            return ConstrainedBox(
+                      BlocBuilder<MenuBloc, MenuState>(
+                          builder: (context, state) {
+                        if (state is MenuLoadedSuccessState) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 24, bottom: 16),
+                            child: ConstrainedBox(
                               constraints: const BoxConstraints(
                                 minHeight: 35.0,
                                 maxHeight: 50,
@@ -108,7 +108,7 @@ class UserMenuPage extends StatelessWidget {
                                       myIndex: index,
                                       blocIndex: state.index,
                                       onPressed: MealEnum.values[index] ==
-                                              MealEnum.TUDO
+                                              MealEnum.ALL
                                           ? () {
                                               BlocProvider.of<MenuBloc>(context)
                                                   .add(GetAllMealsEvent());
@@ -123,12 +123,12 @@ class UserMenuPage extends StatelessWidget {
                                   },
                                 ),
                               ),
-                            );
-                          } else {
-                            return const SizedBox.shrink();
-                          }
-                        }),
-                      ),
+                            ),
+                          );
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      }),
                       BlocBuilder<MenuBloc, MenuState>(
                         builder: (context, state) {
                           if (state is MenuLoadingState) {

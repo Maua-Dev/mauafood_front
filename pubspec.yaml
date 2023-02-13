@@ -34,6 +34,7 @@ dependencies:
   hive_flutter: ^1.1.0
   url_launcher: ^6.1.6
   dio: ^4.0.4
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -51,8 +52,6 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/data/restaurant_biba.json
-    - assets/data/restaurant_h.json
     - assets/images/logos/brown_logo.png
     - assets/images/logos/grey_logo.png
     - assets/images/logos/transparent_logo.png

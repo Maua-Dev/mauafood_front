@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contact/text_field_contact_widget.dart';
 import 'package:mauafood_front/generated/l10n.dart';
+import 'package:http/http.dart';
 
 import '../../../../../../../shared/themes/app_colors.dart';
 import '../../../../../../../shared/themes/app_text_styles.dart';
@@ -10,6 +13,28 @@ import '../../../../bloc/contact/contact_form_bloc.dart';
 
 class ContactDialog extends StatelessWidget {
   const ContactDialog({super.key});
+
+  Future sendEmail({required String message}) async {
+    const serviceId = 'service_vrsig67';
+    const templateId = 'template_ng6wcpg';
+    const userId = '3mu9l5O7WuZdcDbef';
+
+    final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
+    final response = await post(
+      url,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode({
+        'service_id': serviceId,
+        'template_id': templateId,
+        'user_id': userId,
+        'template_params': {
+          'message': message,
+        },
+      }),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +77,7 @@ class ContactDialog extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
+                  sendEmail(message: contactFormBloc.message.value);
                   Navigator.of(context).pop();
                 },
               ),

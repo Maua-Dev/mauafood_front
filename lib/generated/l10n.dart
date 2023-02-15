@@ -588,21 +588,21 @@ class S {
     );
   }
 
-  /// `{meal, select, tudo{All} lanche{Sandwich} bebida{Drinks} doces{Candies} pratos{Dishes} porcoes{Portions} massas{Pastas} salgados{Snacks} saladas{Salads} other{}}`
+  /// `{meal, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} other{Other}}`
   String mealNameSchema(Object meal) {
     return Intl.select(
       meal,
       {
-        'tudo': 'All',
-        'lanche': 'Sandwich',
-        'bebida': 'Drinks',
-        'doces': 'Candies',
-        'pratos': 'Dishes',
-        'porcoes': 'Portions',
-        'massas': 'Pastas',
-        'salgados': 'Snacks',
-        'saladas': 'Salads',
-        'other': '',
+        'ALL': 'All',
+        'SANDWICHES': 'Sandwich',
+        'DRINKS': 'Drinks',
+        'CANDIES': 'Candies',
+        'PLATES': 'Dishes',
+        'PORTIONS': 'Portions',
+        'PASTAS': 'Pastas',
+        'SNACKS': 'Snacks',
+        'SALADS': 'Salads',
+        'other': 'Other',
       },
       name: 'mealNameSchema',
       desc: '',

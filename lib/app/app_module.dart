@@ -7,9 +7,6 @@ class AppModule extends Module {
   // List<Module> get imports => [AuthModule()];
 
   @override
-  List<Bind> get binds => [];
-
-  @override
   List<ModularRoute> get routes => [
         ModuleRoute(
           Modular.initialRoute,

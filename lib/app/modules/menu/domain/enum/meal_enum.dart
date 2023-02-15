@@ -2,15 +2,15 @@ import 'package:enum_to_string/enum_to_string.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
 enum MealEnum {
-  tudo,
-  lanche,
-  bebida,
-  doces,
-  pratos,
-  porcoes,
-  massas,
-  salgados,
-  saladas
+  ALL,
+  SANDWICHES,
+  DRINKS,
+  CANDIES,
+  PLATES,
+  PORTIONS,
+  SNACKS,
+  PASTAS,
+  SALADS,
 }
 
 extension MealEnumExtension on MealEnum {

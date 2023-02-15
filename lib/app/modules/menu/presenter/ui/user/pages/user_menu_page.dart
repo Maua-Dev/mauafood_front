@@ -91,29 +91,34 @@ class UserMenuPage extends StatelessWidget {
                           ),
                         ),
                       ),
-                    );
-                  }),
-                ),
-                Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: AppColors.backgroundColor2,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                        )),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 24, bottom: 16),
-                          child: BlocBuilder<MenuBloc, MenuState>(
-                              builder: (context, state) {
-                            if (state is MenuLoadedSuccessState) {
-                              return ConstrainedBox(
-                                constraints: const BoxConstraints(
-                                  minHeight: 35.0,
-                                  maxHeight: 50,
+                    ),
+                  );
+                }),
+              ),
+              Expanded(
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: AppColors.backgroundColor2,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                      )),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      BlocBuilder<MenuBloc, MenuState>(
+                          builder: (context, state) {
+                        if (state is MenuLoadedSuccessState) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 24, bottom: 16),
+                            child: ConstrainedBox(
+                              constraints: const BoxConstraints(
+                                minHeight: 35.0,
+                                maxHeight: 50,
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
@@ -178,24 +183,75 @@ class UserMenuPage extends StatelessWidget {
                                     maxCrossAxisExtent: 210,
                                   ),
                                   itemBuilder: (context, index) {
-                                    return MealCardWidget(
-                                      meal: state.listMeal[index],
+                                    return FilterButtonWidget(
+                                      myIndex: index,
+                                      blocIndex: state.index,
+                                      onPressed: MealEnum.values[index] ==
+                                              MealEnum.ALL
+                                          ? () {
+                                              BlocProvider.of<MenuBloc>(context)
+                                                  .add(GetAllMealsEvent());
+                                            }
+                                          : () {
+                                              BlocProvider.of<MenuBloc>(context)
+                                                  .add(FilterMealTypeEvent(
+                                                      mealType: MealEnum
+                                                          .values[index]));
+                                            },
                                     );
                                   },
                                 ),
-                              ));
-                            }
-                            if (state is MenuErrorState) {
-                              return ErrorLoadingMenuWidget(
-                                errorMessage: state.failure.message,
-                              );
-                            } else {
-                              return Text(S.of(context).errorGeneric);
-                            }
-                          },
-                        ),
-                      ],
-                    ),
+                              ),
+                            ),
+                          );
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      }),
+                      BlocBuilder<MenuBloc, MenuState>(
+                        builder: (context, state) {
+                          if (state is MenuLoadingState) {
+                            return const Center(
+                                child: CircularProgressIndicator());
+                          }
+                          if (state is MenuLoadedSuccessState) {
+                            return Expanded(
+                                child: RefreshIndicator(
+                              backgroundColor: AppColors.white,
+                              color: AppColors.mainBlueColor,
+                              strokeWidth: 3,
+                              onRefresh: () async {
+                                BlocProvider.of<MenuBloc>(context)
+                                    .add(GetAllMealsEvent());
+                              },
+                              child: GridView.builder(
+                                itemCount: state.listMeal.length,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 24, vertical: 8),
+                                gridDelegate:
+                                    const SliverGridDelegateWithMaxCrossAxisExtent(
+                                  crossAxisSpacing: 16,
+                                  mainAxisSpacing: 16,
+                                  maxCrossAxisExtent: 210,
+                                ),
+                                itemBuilder: (context, index) {
+                                  return MealCardWidget(
+                                    meal: state.listMeal[index],
+                                  );
+                                },
+                              ),
+                            ));
+                          }
+                          if (state is MenuErrorState) {
+                            return ErrorLoadingMenuWidget(
+                              errorMessage: state.failure.message,
+                            );
+                          } else {
+                            return Text(S.of(context).errorGeneric);
+                          }
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ],

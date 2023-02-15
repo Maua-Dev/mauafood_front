@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/modules/meal-info/presenter/ui/meal_info_page.dart';
+import 'package:mauafood_front/app/modules/meal-info/presenter/ui/pages/meal_info_page.dart';
 import 'package:mauafood_front/app/modules/meal-info/presenter/ui/widgets/meal_list_view_widget.dart';
 import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
 import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';

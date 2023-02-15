@@ -27,6 +27,6 @@ class AppModule extends Module {
           module: UserMenuModule(),
           // guards: [UserAuthGuard()],
         ),
-        WildcardRoute(child: (context,args) => const ErrorPage())
+        WildcardRoute(child: (context, args) => const ErrorPage())
       ];
 }

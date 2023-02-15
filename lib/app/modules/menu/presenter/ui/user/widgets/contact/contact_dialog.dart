@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contact/text_field_contact_widget.dart';
@@ -14,7 +15,10 @@ import '../../../../bloc/contact/contact_form_bloc.dart';
 class ContactDialog extends StatelessWidget {
   const ContactDialog({super.key});
 
-  Future sendEmail({required String message}) async {
+  Future sendEmail(
+      {required String message,
+      required String name,
+      required String email}) async {
     const serviceId = 'service_vrsig67';
     const templateId = 'template_ng6wcpg';
     const userId = '3mu9l5O7WuZdcDbef';
@@ -30,6 +34,8 @@ class ContactDialog extends StatelessWidget {
         'template_id': templateId,
         'user_id': userId,
         'template_params': {
+          'user_name': name,
+          'user_email': email,
           'message': message,
         },
       }),
@@ -47,9 +53,37 @@ class ContactDialog extends StatelessWidget {
           actionsPadding: const EdgeInsets.only(bottom: 16),
           title: Text(S.of(context).typeContact,
               style: AppTextStyles.h2.copyWith(fontWeight: FontWeight.bold)),
-          content: TextFieldContactWidget(
-            textFieldBloc: contactFormBloc.message,
-            title: S.of(context).labelMessage,
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFieldContactWidget(
+                textFieldBloc: contactFormBloc.name,
+                title: S.of(context).labelName,
+                hintText: S.of(context).labelName,
+                keyboardType: TextInputType.multiline,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(500),
+                ],
+              ),
+              TextFieldContactWidget(
+                textFieldBloc: contactFormBloc.email,
+                title: S.of(context).labelEmail,
+                hintText: S.of(context).labelEmail,
+                keyboardType: TextInputType.multiline,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(500),
+                ],
+              ),
+              TextFieldContactWidget(
+                textFieldBloc: contactFormBloc.message,
+                title: S.of(context).labelMessage,
+                hintText: S.of(context).labelMessage,
+                keyboardType: TextInputType.multiline,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(500),
+                ],
+              ),
+            ],
           ),
           scrollable: false,
           shape: RoundedRectangleBorder(
@@ -77,7 +111,10 @@ class ContactDialog extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  sendEmail(message: contactFormBloc.message.value);
+                  sendEmail(
+                      message: contactFormBloc.message.value,
+                      name: contactFormBloc.name.value,
+                      email: contactFormBloc.email.value);
                   Navigator.of(context).pop();
                 },
               ),

@@ -61,6 +61,8 @@
 
 
     "typeContact": "Contact us",
+    "labelName": "Name",
+    "labelEmail": "E-mail",
     "labelMessage": "Message",
     "labelSend": "Send now",
 

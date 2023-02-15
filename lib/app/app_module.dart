@@ -1,5 +1,3 @@
-
-
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/widgets/error_page.dart';
 import 'modules/menu/user_menu_module.dart';

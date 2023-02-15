@@ -14,10 +14,9 @@ class ErrorPage extends StatelessWidget{
             height: Utils.height(context) / 4,
           ),
           SizedBox(
-            height: Utils.height(context) /3,
+                 height: Utils.height(context) /3,
             width: Utils.height(context)/2,
             child: Image.asset('assets/images/logos/grey_logo.png'),
-
           ),
           SizedBox(
             height: Utils.height(context) /20,
@@ -26,7 +25,6 @@ class ErrorPage extends StatelessWidget{
           SizedBox(
             height: Utils.height(context) /20,
           ),
-
           ElevatedButton(onPressed: () => Modular.to.navigate('/'), child: const Padding(
             padding: EdgeInsets.all(8.0),
             child: Text("Recarregar", style: TextStyle(fontSize: 24) ,),

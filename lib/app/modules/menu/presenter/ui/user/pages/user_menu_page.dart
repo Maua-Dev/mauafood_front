@@ -19,23 +19,6 @@ class UserMenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        persistentFooterButtons: [
-          ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 48, vertical: 8),
-                backgroundColor: AppColors.white,
-                side: BorderSide(color: AppColors.mainBlueColor, width: 3),
-              ),
-              onPressed: () {
-                Modular.dispose<MenuBloc>();
-                Modular.to.pop();
-              },
-              child: Text(
-                'Ver restaurantes',
-                style: AppTextStyles.h2HighlightBold.copyWith(fontSize: 18),
-              ))
-        ],
         persistentFooterAlignment: AlignmentDirectional.center,
         body: BlocProvider(
           create: (context) => Modular.get<MenuBloc>()..add(GetAllMealsEvent()),
@@ -45,11 +28,29 @@ class UserMenuPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24),
-                  child: Text(
-                    S.of(context).restaurantTitle('', restaurantInfo.name),
-                    style: AppTextStyles.h1
-                        .copyWith(color: AppColors.mainBlueColor),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Row(
+                    children: [
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          Modular.dispose<MenuBloc>();
+                          Modular.to.pop();
+                        },
+                        icon: Icon(
+                          Icons.arrow_back_ios,
+                          color: AppColors.mainBlueColor,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 16,
+                      ),
+                      Text(
+                        S.of(context).restaurantTitle('', restaurantInfo.name),
+                        style: AppTextStyles.h1
+                            .copyWith(color: AppColors.mainBlueColor),
+                      ),
+                    ],
                   ),
                 ),
                 ConstrainedBox(

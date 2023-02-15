@@ -80,6 +80,16 @@ class S {
     );
   }
 
+  /// `Menu - {restaurantName}`
+  String restaurantTitle(Object placeholders, Object restaurantName) {
+    return Intl.message(
+      'Menu - $restaurantName',
+      name: 'restaurantTitle',
+      desc: '',
+      args: [placeholders, restaurantName],
+    );
+  }
+
   /// `E-mail`
   String get emailTitle {
     return Intl.message(

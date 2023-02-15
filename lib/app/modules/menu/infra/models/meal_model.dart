@@ -17,8 +17,8 @@ class MealModel extends Meal {
       name: json['name'],
       description: json['description'],
       price: json['price'],
-      prepareTime: json['prepare_time'],
-      type: MealEnumExtension.stringToEnumMap(json['meal_type']),
+      prepareTime: json['prepareTime'],
+      type: MealEnumExtension.stringToEnumMap(json['type']),
       photo: json['photo'],
     );
   }

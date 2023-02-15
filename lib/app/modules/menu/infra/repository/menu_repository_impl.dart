@@ -19,7 +19,8 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
     } catch (e) {
       return left(DatasourceResultNull(message: S.current.errorItemNotFound));
     }
-    return right(restaurantProducts);
+
+    return right(list);
   }
 
   @override

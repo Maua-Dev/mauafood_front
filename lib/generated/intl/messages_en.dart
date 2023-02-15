@@ -81,16 +81,16 @@ class MessageLookup extends MessageLookupByLibrary {
           })}";
 
   static String m6(meal) => "${Intl.select(meal, {
-            'ALL': 'All',
-            'SANDWICHES': 'Sandwich',
-            'DRINKS': 'Drinks',
-            'CANDIES': 'Candies',
-            'PLATES': 'Dishes',
-            'PORTIONS': 'Portions',
-            'PASTAS': 'Pastas',
-            'SNACKS': 'Snacks',
-            'SALADS': 'Salads',
-            'other': 'Other',
+            'tudo': 'All',
+            'lanche': 'Sandwich',
+            'bebida': 'Drinks',
+            'doces': 'Candies',
+            'pratos': 'Dishes',
+            'porcoes': 'Portions',
+            'massas': 'Pastas',
+            'salgados': 'Snacks',
+            'saladas': 'Salads',
+            'other': '',
           })}";
 
   static String m7(placeholders, prepareTime) => "${prepareTime} min";

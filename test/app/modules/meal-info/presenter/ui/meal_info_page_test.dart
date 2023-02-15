@@ -10,8 +10,8 @@ import 'package:mauafood_front/generated/l10n.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
-  Meal testMock = Meal(
-    id: '0',
+  Meal testMock = const Meal(
+    id: 0,
     name: 'name',
     description: 'description',
     price: 10,

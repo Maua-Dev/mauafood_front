@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import '../enum/meal_enum.dart';
 
 class Meal extends Equatable {
-  final String id;
+  final int id;
   final String name;
   final String description;
   final double price;
@@ -28,7 +28,6 @@ class Meal extends Equatable {
       name,
       description,
       price,
-      photo,
       prepareTime ?? '',
       type,
     ];

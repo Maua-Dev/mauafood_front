@@ -5,6 +5,7 @@ import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/rest
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
+import '../../../../../shared/services/s3/assets_s3.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 
 class RestaurantsPage extends StatelessWidget {
@@ -20,8 +21,8 @@ class RestaurantsPage extends StatelessWidget {
           toolbarHeight: 150,
           centerTitle: true,
           title: SizedBox(
-            child: Image.asset(
-              'assets/images/logos/white_logo.png',
+            child: Image.network(
+              whiteLogo,
               fit: BoxFit.cover,
             ),
           ),

@@ -50,14 +50,6 @@ flutter_icons:
 flutter:
   uses-material-design: true
 
-  assets:
-    - assets/images/logos/brown_logo.png
-    - assets/images/logos/grey_logo.png
-    - assets/images/logos/transparent_logo.png
-    - assets/images/logos/white_logo.png
-    - assets/images/logos/mauafood_logo_correct.gif
-    - assets/images/logos/mauafood_logo_black.gif
-
 scripts:
   build: flutter pub run build_runner build
   watch: flutter pub run build_runner watch --delete-conflicting-outputs

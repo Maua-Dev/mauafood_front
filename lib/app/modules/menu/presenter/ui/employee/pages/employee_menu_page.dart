@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../../../../generated/l10n.dart';
+import '../../../../../../shared/services/s3/assets_s3.dart';
 import '../../../../../../shared/themes/app_colors.dart';
 import '../../../../../../shared/themes/app_text_styles.dart';
 import '../../../../../restaurants/domain/infra/restaurant_enum.dart';
@@ -24,8 +25,8 @@ class EmployeeMenuPage extends StatelessWidget {
         toolbarHeight: 150,
         centerTitle: true,
         title: SizedBox(
-          child: Image.asset(
-            'assets/images/logos/white_logo.png',
+          child: Image.network(
+            whiteLogo,
             fit: BoxFit.cover,
           ),
         ),

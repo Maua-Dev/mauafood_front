@@ -7,6 +7,7 @@ import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/infra/user_roles_enum.dart';
+import '../../../../../shared/services/s3/assets_s3.dart';
 import '../../bloc/auth/auth_bloc.dart';
 import '../widgets/auth_button_widget.dart';
 import '../widgets/text_button_login_widget.dart';
@@ -76,8 +77,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: SizedBox(
                             width: double.infinity,
                             height: MediaQuery.of(context).size.height / 3,
-                            child: Image.asset(
-                              'assets/images/logos/transparent_logo.png',
+                            child: Image.network(
+                              transparentLogo,
                               fit: BoxFit.contain,
                             ),
                           ),

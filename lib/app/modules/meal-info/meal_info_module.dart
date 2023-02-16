@@ -13,7 +13,8 @@ class MealInfoModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
-          child: (context, args) => MealInfoPage(mealInfo: args.data),
+          child: (context, args) => MealInfoPage(
+              mealInfo: args.data[0], recommendedMealList: args.data[1]),
         ),
       ];
 }

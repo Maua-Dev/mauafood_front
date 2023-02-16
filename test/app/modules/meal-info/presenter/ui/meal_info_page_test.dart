@@ -10,6 +10,38 @@ import 'package:mauafood_front/generated/l10n.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
+  var recommendedMealList = [
+    Meal(
+      id: '0',
+      name: 'name',
+      description: 'description',
+      price: 10,
+      type: MealEnum.CANDIES,
+      photo: '',
+      available: true,
+      lastUpdate: DateTime.now(),
+    ),
+    Meal(
+      id: '0',
+      name: 'name',
+      description: 'description',
+      price: 10,
+      type: MealEnum.CANDIES,
+      photo: '',
+      available: true,
+      lastUpdate: DateTime.now(),
+    ),
+    Meal(
+      id: '0',
+      name: 'name',
+      description: 'description',
+      price: 10,
+      type: MealEnum.CANDIES,
+      photo: '',
+      available: true,
+      lastUpdate: DateTime.now(),
+    )
+  ];
   Meal testMock = Meal(
     id: '0',
     name: 'name',
@@ -36,6 +68,7 @@ void main() {
         supportedLocales: S.delegate.supportedLocales,
         home: MealInfoPage(
           mealInfo: testMock,
+          recommendedMealList: recommendedMealList,
         ),
       ));
 

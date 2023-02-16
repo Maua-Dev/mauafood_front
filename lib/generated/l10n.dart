@@ -638,6 +638,16 @@ class S {
     );
   }
 
+  /// `Recommendations`
+  String get recommendationsTitle {
+    return Intl.message(
+      'Recommendations',
+      name: 'recommendationsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Password changed successfully!`
   String get successChangePassword {
     return Intl.message(

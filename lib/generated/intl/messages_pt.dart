@@ -225,6 +225,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \\\$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Senha"),
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
+        "recommendationsTitle":
+            MessageLookupByLibrary.simpleMessage("Recomendações"),
         "recommendedTitle":
             MessageLookupByLibrary.simpleMessage("Recomendados"),
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(

@@ -179,8 +179,20 @@ class UserMenuPage extends StatelessWidget {
                                     maxCrossAxisExtent: 210,
                                   ),
                                   itemBuilder: (context, index) {
+                                    var recommendedMealList = [
+                                      state.listMeal[1],
+                                      state.listMeal[2],
+                                      state.listMeal[3],
+                                    ];
                                     return MealCardWidget(
                                       meal: state.listMeal[index],
+                                      onPressed: () {
+                                        Modular.to.pushNamed('/user/meal-info',
+                                            arguments: [
+                                              state.listMeal[index],
+                                              recommendedMealList
+                                            ]);
+                                      },
                                     );
                                   },
                                 ),

@@ -216,6 +216,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your password must contain: \n - One or more uppercase letters \n - One or more lowercase letters \n - One or more numbers \n - One or more special characters\n(#, ?, !, @, \\\$, %, ^, &, *, -) \n - Minimum 8 characters"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Password"),
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
+        "recommendationsTitle":
+            MessageLookupByLibrary.simpleMessage("Recommendations"),
         "recommendedTitle": MessageLookupByLibrary.simpleMessage("Recommended"),
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "To complete your registration, we will send you an email with a code, enter it in the field below."),

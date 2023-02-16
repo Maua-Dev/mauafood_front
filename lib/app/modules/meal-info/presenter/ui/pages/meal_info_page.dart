@@ -4,10 +4,13 @@ import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
+import '../widgets/recommended_meal_widget.dart';
 
 class MealInfoPage extends StatelessWidget {
   final Meal mealInfo;
-  const MealInfoPage({super.key, required this.mealInfo});
+  final List<Meal> recommendedMealList;
+  const MealInfoPage(
+      {super.key, required this.mealInfo, required this.recommendedMealList});
 
   @override
   Widget build(BuildContext context) {
@@ -17,24 +20,25 @@ class MealInfoPage extends StatelessWidget {
           children: [
             Stack(
               children: [
-                SizedBox(
+                Container(
                   width: double.infinity,
-                  child: Image.network(
-                    mealInfo.photo,
-                    fit: BoxFit.contain,
-                    loadingBuilder: (BuildContext context, Widget child,
-                        ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      );
-                    },
-                  ),
+                  color: Colors.red,
+                  // child: Image.network(
+                  //   mealInfo.photo,
+                  //   fit: BoxFit.contain,
+                  //   loadingBuilder: (BuildContext context, Widget child,
+                  //       ImageChunkEvent? loadingProgress) {
+                  //     if (loadingProgress == null) return child;
+                  //     return Center(
+                  //       child: CircularProgressIndicator(
+                  //         value: loadingProgress.expectedTotalBytes != null
+                  //             ? loadingProgress.cumulativeBytesLoaded /
+                  //                 loadingProgress.expectedTotalBytes!
+                  //             : null,
+                  //       ),
+                  //     );
+                  //   },
+                  // ),
                 ),
                 Positioned(
                   left: 16,
@@ -60,7 +64,7 @@ class MealInfoPage extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: AppColors.white,
                       borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(15),
+                        topLeft: Radius.circular(40),
                       )),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,17 +73,12 @@ class MealInfoPage extends StatelessWidget {
                         mealInfo.name,
                         style: AppTextStyles.h1,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            S.of(context).mealPriceCurrency(mealInfo.price),
-                            style: AppTextStyles.h1.copyWith(fontSize: 22),
-                          ),
-                        ],
+                      Text(
+                        S.of(context).mealPriceCurrency(mealInfo.price),
+                        style: AppTextStyles.h1.copyWith(fontSize: 22),
                       ),
                       const SizedBox(
-                        height: 32,
+                        height: 16,
                       ),
                       Text(
                         mealInfo.description,
@@ -87,9 +86,70 @@ class MealInfoPage extends StatelessWidget {
                             .copyWith(fontWeight: FontWeight.bold),
                         textAlign: TextAlign.left,
                       ),
-                      SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.3,
+                      const SizedBox(
+                        height: 16,
                       ),
+                      Text(
+                        S.of(context).recommendationsTitle,
+                        style: AppTextStyles.h1.copyWith(fontSize: 22),
+                        textAlign: TextAlign.left,
+                      ),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(
+                            height: 150,
+                            width: 100,
+                            child: RecommendedMealWidget(
+                              meal: recommendedMealList[0],
+                              onPressed: () {
+                                Modular.to.pushNamed('/user/meal-info',
+                                    arguments: [
+                                      recommendedMealList[0],
+                                      recommendedMealList
+                                    ]);
+                              },
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 12,
+                          ),
+                          SizedBox(
+                            height: 150,
+                            width: 100,
+                            child: RecommendedMealWidget(
+                              meal: recommendedMealList[1],
+                              onPressed: () {
+                                Modular.to.pushNamed('/user/meal-info',
+                                    arguments: [
+                                      recommendedMealList[1],
+                                      recommendedMealList
+                                    ]);
+                              },
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 12,
+                          ),
+                          SizedBox(
+                            height: 150,
+                            width: 100,
+                            child: RecommendedMealWidget(
+                              meal: recommendedMealList[2],
+                              onPressed: () {
+                                Modular.to.pushNamed('/user/meal-info',
+                                    arguments: [
+                                      recommendedMealList[2],
+                                      recommendedMealList
+                                    ]);
+                              },
+                            ),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),

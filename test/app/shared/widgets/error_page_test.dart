@@ -8,7 +8,6 @@ import 'package:mauafood_front/generated/l10n.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
-
   setUpAll(() {
     HttpOverrides.global = null;
   });
@@ -22,9 +21,7 @@ void main() {
           GlobalWidgetsLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        home: const ErrorPage(
-          
-        ),
+        home: const ErrorPage(),
       ));
 
       final elevatedButton = find.byType(ElevatedButton);
@@ -33,7 +30,6 @@ void main() {
       expect(column, findsWidgets);
       final sizedBox = find.byType(SizedBox);
       expect(sizedBox, findsNWidgets(4));
-
     });
   });
 }

@@ -19,6 +19,14 @@ class UserMenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (context) => const ContactDialog());
+            },
+            child: Icon(Icons.mail),
+            backgroundColor: AppColors.mainBlueColor),
         body: BlocProvider(
           create: (context) => Modular.get<MenuBloc>()..add(GetAllMealsEvent()),
           child: Column(
@@ -75,13 +83,6 @@ class UserMenuPage extends StatelessWidget {
                   );
                 }),
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    showDialog(
-                        context: context,
-                        builder: (context) => const ContactDialog());
-                  },
-                  child: const Text('Contato')),
               Expanded(
                 child: Container(
                   width: double.infinity,

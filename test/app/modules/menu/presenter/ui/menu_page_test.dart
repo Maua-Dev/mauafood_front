@@ -98,11 +98,10 @@ void main() {
       expect(gridView, findsNothing);
       final mealCards = find.byType(MealCardWidget);
       expect(mealCards, findsNWidgets(0));
-      final button = find.byType(ElevatedButton);
-      expect(button, findsOneWidget);
-      final contactText = find
-          .text(const Text('Contato', style: TextStyle(fontSize: 20)).data!);
-      expect(contactText, findsOneWidget);
+      final floatingButton = find.byType(FloatingActionButton);
+      expect(floatingButton, findsOneWidget);
+      final iconFloatingButton = find.byIcon(Icons.mail);
+      expect(iconFloatingButton, findsOneWidget);
 
       await widgetTester.runAsync(() async => bloc.add(GetAllMealsEvent()));
       await widgetTester.pump();

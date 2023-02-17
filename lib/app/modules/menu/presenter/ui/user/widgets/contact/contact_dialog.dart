@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -53,37 +54,40 @@ class ContactDialog extends StatelessWidget {
           actionsPadding: const EdgeInsets.only(bottom: 16),
           title: Text(S.of(context).typeContact,
               style: AppTextStyles.h2.copyWith(fontWeight: FontWeight.bold)),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextFieldContactWidget(
-                textFieldBloc: contactFormBloc.name,
-                title: S.of(context).labelName,
-                hintText: S.of(context).labelName,
-                keyboardType: TextInputType.multiline,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(500),
-                ],
-              ),
-              TextFieldContactWidget(
-                textFieldBloc: contactFormBloc.email,
-                title: S.of(context).labelEmail,
-                hintText: S.of(context).labelEmail,
-                keyboardType: TextInputType.multiline,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(500),
-                ],
-              ),
-              TextFieldContactWidget(
-                textFieldBloc: contactFormBloc.message,
-                title: S.of(context).labelMessage,
-                hintText: S.of(context).labelMessage,
-                keyboardType: TextInputType.multiline,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(500),
-                ],
-              ),
-            ],
+          content: Scrollable(
+            viewportBuilder: (BuildContext context, ViewportOffset position) =>
+                Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextFieldContactWidget(
+                  textFieldBloc: contactFormBloc.name,
+                  title: S.of(context).labelName,
+                  hintText: S.of(context).labelName,
+                  keyboardType: TextInputType.multiline,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(500),
+                  ],
+                ),
+                TextFieldContactWidget(
+                  textFieldBloc: contactFormBloc.email,
+                  title: S.of(context).labelEmail,
+                  hintText: S.of(context).labelEmail,
+                  keyboardType: TextInputType.multiline,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(500),
+                  ],
+                ),
+                TextFieldContactWidget(
+                  textFieldBloc: contactFormBloc.message,
+                  title: S.of(context).labelMessage,
+                  hintText: S.of(context).labelMessage,
+                  keyboardType: TextInputType.multiline,
+                  inputFormatters: [
+                    LengthLimitingTextInputFormatter(500),
+                  ],
+                ),
+              ],
+            ),
           ),
           scrollable: false,
           shape: RoundedRectangleBorder(

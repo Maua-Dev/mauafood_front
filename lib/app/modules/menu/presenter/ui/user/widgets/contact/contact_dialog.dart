@@ -43,6 +43,17 @@ class ContactDialog extends StatelessWidget {
     );
   }
 
+  void showSnackBar(BuildContext context, String message) {
+    final snackbar = SnackBar(
+      behavior: SnackBarBehavior.floating,
+      elevation: 150.0,
+      content: Text(message),
+      backgroundColor: AppColors.mainBlueColor,
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -119,6 +130,8 @@ class ContactDialog extends StatelessWidget {
                       message: contactFormBloc.message.value,
                       name: contactFormBloc.name.value,
                       email: contactFormBloc.email.value);
+
+                  showSnackBar(context, 'Email enviado com sucesso!');
                   Navigator.of(context).pop();
                 },
               ),

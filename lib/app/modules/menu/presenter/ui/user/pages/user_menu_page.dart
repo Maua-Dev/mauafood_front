@@ -20,13 +20,13 @@ class UserMenuPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         floatingActionButton: FloatingActionButton(
-            onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (context) => const ContactDialog());
-            },
-            child: Icon(Icons.mail),
-            backgroundColor: AppColors.mainBlueColor),
+          backgroundColor: AppColors.mainBlueColor,
+          onPressed: () {
+            showDialog(
+                context: context, builder: (context) => const ContactDialog());
+          },
+          child: const Icon(Icons.mail),
+        ),
         body: BlocProvider(
           create: (context) => Modular.get<MenuBloc>()..add(GetAllMealsEvent()),
           child: Column(

@@ -41,6 +41,8 @@ class ContactDialog extends StatelessWidget {
         },
       }),
     );
+    // ignore: avoid_print
+    print(response.body);
   }
 
   void showSnackBar(BuildContext context, String message) {

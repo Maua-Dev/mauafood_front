@@ -2,6 +2,14 @@
     "appTitle": "Mauá Food",
     "questionMark": "?",
     "appAcceptTerms": "Li e aceito os Termos de Uso",
+    "restaurantTitle": "Menu - {restaurantName}",
+    "@restaurantTitle" : {
+        "placeholders": {
+            "placeholders": {
+                "restaurantName": {}
+            }
+        }
+    },
 
 
 
@@ -91,6 +99,10 @@
             }
         }
     },
+
+
+
+    "recommendationsTitle": "Recomendações",
 
 
 

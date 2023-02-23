@@ -3,6 +3,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/bloc/register_bloc.dart';
 import 'package:mauafood_front/generated/l10n.dart';
+import '../../../../../shared/services/s3/assets_s3.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/confirm-email/confirm_email_bloc.dart';
 import '../widgets/register_button_widget.dart';
@@ -52,8 +53,8 @@ class ConfirmEmailPage extends StatelessWidget {
                               child: SizedBox(
                                 width: double.infinity,
                                 height: MediaQuery.of(context).size.height / 3,
-                                child: Image.asset(
-                                  'assets/images/logos/transparent_logo.png',
+                                child: Image.network(
+                                  transparentLogo,
                                   fit: BoxFit.contain,
                                 ),
                               ),

@@ -6,5 +6,5 @@ class AppColors {
   static Color white = const Color(0xFFFFFFFF);
   static Color backgroundColor2 = const Color(0xFFF6F6F8);
   static Color letterColor = const Color(0xFF000000);
-  static Color letterThinColor = const Color(0xFF494950);
+  static Color letterThinColor = const Color(0xFF9C9C9C);
 }

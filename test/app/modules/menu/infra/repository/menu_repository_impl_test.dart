@@ -21,33 +21,34 @@ void main() {
 
   MenuDatasourceInterface datasource = MockMenuDatasourceInterface();
   late MenuRepositoryInterface repository;
-  var listMock = {
+  Map<String, dynamic> listMock = {
     "SOUZA_DE_ABREU": [
       {
         "available": true,
-        "price": 14.0,
-        "name": "Lanche Mortadela",
-        "description": "Mortadela",
-        "meal_type": "SANDWICHES",
+        "price": 28.0,
+        "name": "Lasanha",
+        "description": "Massa - Mussarela/Presunto/Molho ao sugo",
+        "meal_type": "SALADS",
         "photo": "https://avatars.githubusercontent.com/u/30812461?v=4",
-        "product_id": 0,
+        "product_id": "5a39d0ee-06da-4abf-9fc1-40d25bea19e0",
         "last_update": 1674835337393,
-        "prepareTime": 20
-      }
+        "prepare_time": 20
+      },
     ],
     "RESTAURANTE_DO_H": [
       {
         "available": true,
-        "price": 14.0,
-        "name": "Lanche Mortadela",
-        "description": "Mortadela",
-        "meal_type": "SANDWICHES",
+        "price": 36.0,
+        "name": "Strogonoff Carne",
+        "description": "",
+        "meal_type": "PLATES",
         "photo": "https://avatars.githubusercontent.com/u/30812461?v=4",
-        "product_id": 0,
+        "product_id": "44daaa83-d8a3-4507-b807-644be457955c",
         "last_update": 1674835337393,
-        "prepareTime": 20
+        "prepare_time": 20
       }
-    ]
+    ],
+    "message": "the products were retrieved"
   };
 
   setUp(() async {

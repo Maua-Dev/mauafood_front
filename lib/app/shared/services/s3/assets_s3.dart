@@ -16,4 +16,4 @@ var baseResturantsLogo = '$baseUrlS3/restaurants/restaurant_logo';
 
 var baseResturantsFront = '$baseUrlS3/restaurants/restaurant_front';
 
-var frontMoleza = '$baseResturantsFront/front_moleza';
+var frontMoleza = '$baseResturantsFront/front_moleza.jpg';

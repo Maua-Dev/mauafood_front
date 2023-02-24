@@ -146,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "appAcceptTerms": MessageLookupByLibrary.simpleMessage(
             "I read and accept the Terms of Use"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Mauá Food"),
+        "attentionTitle": MessageLookupByLibrary.simpleMessage("Attention"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "codeErrorAlert":
@@ -164,6 +165,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "correctFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure the fields are correct."),
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
+        "disclaimerText": MessageLookupByLibrary.simpleMessage(
+            "MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!"),
         "doLoginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "emailConfirmationErrorsSchema": m1,
         "emailConfirmationTitle":
@@ -247,6 +250,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure you typed email correctly."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(
-            "Make sure you enter email and password.")
+            "Make sure you enter email and password."),
+        "understoodTitle": MessageLookupByLibrary.simpleMessage("Understood!")
       };
 }

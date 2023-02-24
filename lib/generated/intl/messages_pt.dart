@@ -155,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "appAcceptTerms": MessageLookupByLibrary.simpleMessage(
             "Li e aceito os Termos de Uso"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Mauá Food"),
+        "attentionTitle": MessageLookupByLibrary.simpleMessage("Atenção"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Alterar senha"),
         "codeErrorAlert":
@@ -173,6 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "correctFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se que os campos estão corretos."),
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
+        "disclaimerText": MessageLookupByLibrary.simpleMessage(
+            "O MauáFood trabalha em conjunto com os restaurantes para estarmos sempre atualizados, porém não nos responsabilizamos por qualquer diferença entre os preços, disponibilidade e informações dos produtos dos menus exibidos.\nQualquer erro encontrado nos informe clicando no ícone de e-mail no canto inferior direito da tela!"),
         "doLoginTitle": MessageLookupByLibrary.simpleMessage("Faça o login"),
         "emailConfirmationErrorsSchema": m1,
         "emailConfirmationTitle":
@@ -259,6 +262,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se que digitou e-mail corretamente."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(
-            "Certifique-se que digitou e-mail e senha.")
+            "Certifique-se que digitou e-mail e senha."),
+        "understoodTitle": MessageLookupByLibrary.simpleMessage("Entendido!")
       };
 }

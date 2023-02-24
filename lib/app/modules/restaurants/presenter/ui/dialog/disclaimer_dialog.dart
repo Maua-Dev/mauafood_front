@@ -21,7 +21,8 @@ class DisclaimerDialog extends StatelessWidget {
         width: double.infinity,
         decoration: BoxDecoration(
             color: AppColors.mainBlueColor,
-            borderRadius: BorderRadius.vertical(top: Radius.circular(10))),
+            borderRadius:
+                const BorderRadius.vertical(top: Radius.circular(10))),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -31,7 +32,7 @@ class DisclaimerDialog extends StatelessWidget {
               size: 80,
             ),
             Text(
-              S.of(context).attentionTitle,
+              S.of(context).attentionTitle.toUpperCase(),
               style: AppTextStyles.h1
                   .copyWith(color: AppColors.white, fontSize: 22),
             )
@@ -65,8 +66,7 @@ class DisclaimerDialog extends StatelessWidget {
             style: AppTextStyles.h2.copyWith(
               fontSize: 14,
             ),
-            strutStyle: StrutStyle.disabled,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.start,
           ),
           const SizedBox(
             height: 16,

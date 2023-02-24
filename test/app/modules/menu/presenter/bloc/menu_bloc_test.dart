@@ -29,7 +29,7 @@ void main() {
     name: 'name',
     description: 'description',
     price: 10,
-    type: MealEnum.CANDIES,
+    type: MealEnum.DRINKS,
     photo: '',
     available: true,
     lastUpdate: DateTime.now(),
@@ -38,7 +38,7 @@ void main() {
     testMock,
     MealModel(
       id: '0',
-      name: 'name',
+      name: '123',
       description: 'description',
       price: 10,
       type: MealEnum.CANDIES,

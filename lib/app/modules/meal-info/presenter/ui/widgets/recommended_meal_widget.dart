@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:mauafood_front/app/shared/themes/app_colors.dart';
-import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
-import '../../../../../../../generated/l10n.dart';
-import '../../../../domain/entities/meal_entity.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
-class MealCardWidget extends StatelessWidget {
+import '../../../../../../generated/l10n.dart';
+import '../../../../../shared/themes/app_colors.dart';
+import '../../../../../shared/themes/app_text_styles.dart';
+import '../../../../menu/domain/entities/meal_entity.dart';
+
+class RecommendedMealWidget extends StatelessWidget {
   final Meal meal;
   final Function()? onPressed;
-
-  const MealCardWidget({
-    Key? key,
-    required this.meal,
-    required this.onPressed,
-  }) : super(key: key);
+  const RecommendedMealWidget({super.key, required this.meal, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +19,12 @@ class MealCardWidget extends StatelessWidget {
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
             )),
-        onPressed: () {
-          Modular.to.pushNamed('/user/meal-info/', arguments: meal);
-        },
+        onPressed: onPressed,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Flexible(
               child: Container(
-                width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
@@ -56,29 +47,29 @@ class MealCardWidget extends StatelessWidget {
               ),
             ),
             Flexible(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    FittedBox(
-                      fit: BoxFit.fitWidth,
-                      child: Text(
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 4),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
                         meal.name,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.h2
-                            .copyWith(fontWeight: FontWeight.bold),
+                        style: AppTextStyles.h2.copyWith(
+                            fontWeight: FontWeight.bold, fontSize: 12),
                       ),
-                    ),
-                    Text(
-                      S.of(context).mealPriceCurrency(meal.price),
-                      style: AppTextStyles.h2Highlight
-                          .copyWith(fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                      Text(
+                        S.of(context).mealPriceCurrency(meal.price),
+                        style: AppTextStyles.h2Highlight.copyWith(
+                            fontWeight: FontWeight.bold, fontSize: 12),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             )

@@ -3,6 +3,7 @@ import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../../../../generated/l10n.dart';
+import '../../../../../shared/services/s3/assets_s3.dart';
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/auth/auth_bloc.dart';
@@ -56,8 +57,8 @@ class ChangePasswordPage extends StatelessWidget {
                             child: SizedBox(
                               width: double.infinity,
                               height: MediaQuery.of(context).size.height / 3,
-                              child: Image.asset(
-                                'assets/images/logos/transparent_logo.png',
+                              child: Image.network(
+                                transparentLogo,
                                 fit: BoxFit.contain,
                               ),
                             ),

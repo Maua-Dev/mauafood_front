@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
+import '../../../../../../shared/services/s3/assets_s3.dart';
+
 class ErrorLoadingMenuWidget extends StatelessWidget {
   final String errorMessage;
   const ErrorLoadingMenuWidget({super.key, required this.errorMessage});
@@ -13,8 +15,8 @@ class ErrorLoadingMenuWidget extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           height: 300,
-          child: Image.asset(
-            'assets/images/logos/grey_logo.png',
+          child: Image.network(
+            greyLogo,
             fit: BoxFit.contain,
           ),
         ),

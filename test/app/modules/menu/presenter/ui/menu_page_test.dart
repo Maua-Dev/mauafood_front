@@ -12,7 +12,6 @@ import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/meal_c
 import 'package:mauafood_front/app/modules/menu/user_menu_module.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_menu_page.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/appbar/drop_down_restaurant_widget.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
@@ -82,12 +81,12 @@ void main() {
         supportedLocales: S.delegate.supportedLocales,
         home: BlocProvider(
           create: (context) => bloc,
-          child: const UserMenuPage(),
+          child: const UserMenuPage(
+            restaurantInfo: RestaurantEnum.restaurantBiba,
+          ),
         ),
       ));
 
-      final appbar = find.byType(DropDownRestaurantWidget);
-      expect(appbar, findsOneWidget);
       final textField = find.byType(TextField);
       expect(textField, findsOneWidget);
       final loading = find.byType(CircularProgressIndicator);
@@ -102,7 +101,6 @@ void main() {
       await widgetTester.runAsync(() async => bloc.add(GetAllMealsEvent()));
       await widgetTester.pump();
 
-      expect(appbar, findsNothing);
       expect(textField, findsNothing);
       expect(loading, findsNothing);
       expect(listViewVertical, findsNothing);

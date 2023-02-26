@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contact/text_field_contact_widget.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:http/http.dart';
@@ -12,6 +13,7 @@ import 'package:http/http.dart';
 import '../../../../../../../shared/themes/app_colors.dart';
 import '../../../../../../../shared/themes/app_text_styles.dart';
 import '../../../../bloc/contact/contact_form_bloc.dart';
+import '../information-icon/information_dialog.dart';
 
 class ContactDialog extends StatelessWidget {
   const ContactDialog({super.key});
@@ -65,8 +67,21 @@ class ContactDialog extends StatelessWidget {
         return AlertDialog(
           backgroundColor: AppColors.backgroundColor2,
           actionsPadding: const EdgeInsets.only(bottom: 16),
-          title: Text(S.of(context).typeContact,
-              style: AppTextStyles.h2.copyWith(fontWeight: FontWeight.bold)),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(S.of(context).typeContact,
+                  style:
+                      AppTextStyles.h2.copyWith(fontWeight: FontWeight.bold)),
+              IconButton(
+                icon: FaIcon(FontAwesomeIcons.circleExclamation,
+                    color: AppColors.mainBlueColor),
+                onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) => const InformationDialog()),
+              ),
+            ],
+          ),
           content: Scrollable(
             viewportBuilder: (BuildContext context, ViewportOffset position) =>
                 Column(
@@ -74,7 +89,7 @@ class ContactDialog extends StatelessWidget {
               children: [
                 TextFieldContactWidget(
                   textFieldBloc: contactFormBloc.name,
-                  title: S.of(context).labelName,
+                  title: '${S.of(context).labelName} *',
                   hintText: S.of(context).labelName,
                   keyboardType: TextInputType.multiline,
                   inputFormatters: [
@@ -83,7 +98,7 @@ class ContactDialog extends StatelessWidget {
                 ),
                 TextFieldContactWidget(
                   textFieldBloc: contactFormBloc.email,
-                  title: S.of(context).labelEmail,
+                  title: '${S.of(context).labelEmail} *',
                   hintText: S.of(context).labelEmail,
                   keyboardType: TextInputType.multiline,
                   inputFormatters: [

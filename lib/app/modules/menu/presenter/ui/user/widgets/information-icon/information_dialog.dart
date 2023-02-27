@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
 import '../../../../../../../shared/themes/app_text_styles.dart';
 

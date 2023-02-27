@@ -134,7 +134,9 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Erro ao tentar enviar código, tente mais tarde.',
           })}";
 
-  static String m12(restaurant) => "${Intl.select(restaurant, {
+  static String m12(placeholders, restaurantName) => "Menu - ${restaurantName}";
+
+  static String m13(restaurant) => "${Intl.select(restaurant, {
             'biba':
                 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
             'h':
@@ -142,7 +144,7 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': '',
           })}";
 
-  static String m13(restaurant) => "${Intl.select(restaurant, {
+  static String m14(restaurant) => "${Intl.select(restaurant, {
             'biba': 'Souza de Abreu',
             'h': 'Restaurante do H',
             'other': '',
@@ -153,6 +155,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "appAcceptTerms": MessageLookupByLibrary.simpleMessage(
             "Li e aceito os Termos de Uso"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Mauá Food"),
+        "attentionTitle": MessageLookupByLibrary.simpleMessage("Atenção"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Alterar senha"),
         "codeErrorAlert":
@@ -171,6 +174,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "correctFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se que os campos estão corretos."),
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
+        "disclaimerText": MessageLookupByLibrary.simpleMessage(
+            "O MauáFood trabalha em conjunto com os restaurantes para estarmos sempre atualizados, porém não nos responsabilizamos por qualquer diferença entre os preços, disponibilidade e informações dos produtos dos menus exibidos.\nQualquer erro encontrado nos informe clicando no ícone de e-mail no canto inferior direito da tela!"),
         "doLoginTitle": MessageLookupByLibrary.simpleMessage("Faça o login"),
         "emailConfirmationErrorsSchema": m1,
         "emailConfirmationTitle":
@@ -225,6 +230,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \\\$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Senha"),
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
+        "recommendationsTitle":
+            MessageLookupByLibrary.simpleMessage("Recomendações"),
         "recommendedTitle":
             MessageLookupByLibrary.simpleMessage("Recomendados"),
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
@@ -236,8 +243,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "resendCodeErrorsSchema": m11,
         "resendConfirmationCodeTitle": MessageLookupByLibrary.simpleMessage(
             "Reeviar código de confirmação"),
-        "restaurantsImageSchema": m12,
-        "restaurantsNameSchema": m13,
+        "restaurantTitle": m12,
+        "restaurantsImageSchema": m13,
+        "restaurantsNameSchema": m14,
         "restaurantsTitle":
             MessageLookupByLibrary.simpleMessage("Restaurantes"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Pesquisa"),
@@ -256,6 +264,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se que digitou e-mail corretamente."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(
-            "Certifique-se que digitou e-mail e senha.")
+            "Certifique-se que digitou e-mail e senha."),
+        "understoodTitle": MessageLookupByLibrary.simpleMessage("Entendido!")
       };
 }

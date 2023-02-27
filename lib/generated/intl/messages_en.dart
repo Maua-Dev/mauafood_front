@@ -125,7 +125,9 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Error trying to send code, please try again later.',
           })}";
 
-  static String m12(restaurant) => "${Intl.select(restaurant, {
+  static String m12(placeholders, restaurantName) => "Menu - ${restaurantName}";
+
+  static String m13(restaurant) => "${Intl.select(restaurant, {
             'biba':
                 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
             'h':
@@ -133,7 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': '',
           })}";
 
-  static String m13(restaurant) => "${Intl.select(restaurant, {
+  static String m14(restaurant) => "${Intl.select(restaurant, {
             'biba': 'Souza de Abreu',
             'h': 'H Restaurant',
             'other': '',
@@ -144,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "appAcceptTerms": MessageLookupByLibrary.simpleMessage(
             "I read and accept the Terms of Use"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Mauá Food"),
+        "attentionTitle": MessageLookupByLibrary.simpleMessage("Attention"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "codeErrorAlert":
@@ -162,6 +165,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "correctFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure the fields are correct."),
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
+        "disclaimerText": MessageLookupByLibrary.simpleMessage(
+            "MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!"),
         "doLoginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "emailConfirmationErrorsSchema": m1,
         "emailConfirmationTitle":
@@ -216,6 +221,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Your password must contain: \n - One or more uppercase letters \n - One or more lowercase letters \n - One or more numbers \n - One or more special characters\n(#, ?, !, @, \\\$, %, ^, &, *, -) \n - Minimum 8 characters"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Password"),
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
+        "recommendationsTitle":
+            MessageLookupByLibrary.simpleMessage("Recommendations"),
         "recommendedTitle": MessageLookupByLibrary.simpleMessage("Recommended"),
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "To complete your registration, we will send you an email with a code, enter it in the field below."),
@@ -226,8 +233,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "resendCodeErrorsSchema": m11,
         "resendConfirmationCodeTitle":
             MessageLookupByLibrary.simpleMessage("Resend confirmation code"),
-        "restaurantsImageSchema": m12,
-        "restaurantsNameSchema": m13,
+        "restaurantTitle": m12,
+        "restaurantsImageSchema": m13,
+        "restaurantsNameSchema": m14,
         "restaurantsTitle": MessageLookupByLibrary.simpleMessage("Restaurants"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Search"),
         "seeMenuTitle": MessageLookupByLibrary.simpleMessage("See menu"),
@@ -244,6 +252,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure you typed email correctly."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(
-            "Make sure you enter email and password.")
+            "Make sure you enter email and password."),
+        "understoodTitle": MessageLookupByLibrary.simpleMessage("Understood!")
       };
 }

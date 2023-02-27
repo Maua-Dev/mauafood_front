@@ -2,6 +2,17 @@
     "appTitle": "Mauá Food",
     "questionMark": "?",
     "appAcceptTerms": "I read and accept the Terms of Use",
+    "restaurantTitle": "Menu - {restaurantName}",
+    "@restaurantTitle" : {
+        "placeholders": {
+            "placeholders": {
+                "restaurantName": {}
+            }
+        }
+    },
+    "attentionTitle": "Attention",
+    "understoodTitle": "Understood!",
+    "disclaimerText":"MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!",
 
 
 
@@ -93,6 +104,10 @@
             }
         }
     },
+
+
+
+    "recommendationsTitle": "Recommendations",
 
 
 

@@ -80,6 +80,46 @@ class S {
     );
   }
 
+  /// `Menu - {restaurantName}`
+  String restaurantTitle(Object placeholders, Object restaurantName) {
+    return Intl.message(
+      'Menu - $restaurantName',
+      name: 'restaurantTitle',
+      desc: '',
+      args: [placeholders, restaurantName],
+    );
+  }
+
+  /// `Attention`
+  String get attentionTitle {
+    return Intl.message(
+      'Attention',
+      name: 'attentionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Understood!`
+  String get understoodTitle {
+    return Intl.message(
+      'Understood!',
+      name: 'understoodTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!`
+  String get disclaimerText {
+    return Intl.message(
+      'MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!',
+      name: 'disclaimerText',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `E-mail`
   String get emailTitle {
     return Intl.message(
@@ -645,6 +685,16 @@ class S {
       name: 'mealPrepareTimeMinutes',
       desc: '',
       args: [placeholders, prepareTime],
+    );
+  }
+
+  /// `Recommendations`
+  String get recommendationsTitle {
+    return Intl.message(
+      'Recommendations',
+      name: 'recommendationsTitle',
+      desc: '',
+      args: [],
     );
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
+import '../../../../shared/services/s3/assets_s3.dart';
 import '../bloc/splash_bloc.dart';
 
 class SplashPage extends StatelessWidget {
@@ -18,8 +19,8 @@ class SplashPage extends StatelessWidget {
             if (state is SplashLoadingState) {
               return Center(
                 child: SizedBox(
-                    child: Image.asset(
-                  'assets/images/logos/mauafood_logo_black.gif',
+                    child: Image.network(
+                  splashGif,
                   fit: BoxFit.cover,
                 )),
               );

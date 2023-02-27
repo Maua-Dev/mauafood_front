@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart' as modular;
 import 'package:flutter_test/flutter_test.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
 import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_meal.dart';
 import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';

@@ -82,40 +82,39 @@ class ContactDialog extends StatelessWidget {
               ),
             ],
           ),
-          content: Scrollable(
-            viewportBuilder: (BuildContext context, ViewportOffset position) =>
-                Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextFieldContactWidget(
-                  textFieldBloc: contactFormBloc.name,
-                  title: '${S.of(context).fullNameTitle} *',
-                  hintText: S.of(context).fullNameTitle,
-                  keyboardType: TextInputType.multiline,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(500),
-                  ],
-                ),
-                TextFieldContactWidget(
-                  textFieldBloc: contactFormBloc.email,
-                  title: '${S.of(context).emailTitle} *',
-                  hintText: S.of(context).emailTitle,
-                  keyboardType: TextInputType.multiline,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(500),
-                  ],
-                ),
-                TextFieldContactWidget(
-                  textFieldBloc: contactFormBloc.message,
-                  title: S.of(context).labelMessage,
-                  hintText: S.of(context).labelMessage,
-                  keyboardType: TextInputType.multiline,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(500),
-                  ],
-                ),
-              ],
-            ),
+          buttonPadding: EdgeInsets.zero,
+          iconPadding: EdgeInsets.zero,
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextFieldContactWidget(
+                textFieldBloc: contactFormBloc.name,
+                title: '${S.of(context).fullNameTitle} *',
+                hintText: S.of(context).fullNameTitle,
+                keyboardType: TextInputType.multiline,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(500),
+                ],
+              ),
+              TextFieldContactWidget(
+                textFieldBloc: contactFormBloc.email,
+                title: '${S.of(context).emailTitle} *',
+                hintText: S.of(context).emailTitle,
+                keyboardType: TextInputType.multiline,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(500),
+                ],
+              ),
+              TextFieldContactWidget(
+                textFieldBloc: contactFormBloc.message,
+                title: S.of(context).labelMessage,
+                hintText: S.of(context).labelMessage,
+                keyboardType: TextInputType.multiline,
+                inputFormatters: [
+                  LengthLimitingTextInputFormatter(500),
+                ],
+              ),
+            ],
           ),
           scrollable: false,
           shape: RoundedRectangleBorder(

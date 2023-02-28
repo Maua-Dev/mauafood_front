@@ -89,8 +89,8 @@ class ContactDialog extends StatelessWidget {
               children: [
                 TextFieldContactWidget(
                   textFieldBloc: contactFormBloc.name,
-                  title: '${S.of(context).labelName} *',
-                  hintText: S.of(context).labelName,
+                  title: '${S.of(context).fullNameTitle} *',
+                  hintText: S.of(context).fullNameTitle,
                   keyboardType: TextInputType.multiline,
                   inputFormatters: [
                     LengthLimitingTextInputFormatter(500),
@@ -98,8 +98,8 @@ class ContactDialog extends StatelessWidget {
                 ),
                 TextFieldContactWidget(
                   textFieldBloc: contactFormBloc.email,
-                  title: '${S.of(context).labelEmail} *',
-                  hintText: S.of(context).labelEmail,
+                  title: '${S.of(context).emailTitle} *',
+                  hintText: S.of(context).emailTitle,
                   keyboardType: TextInputType.multiline,
                   inputFormatters: [
                     LengthLimitingTextInputFormatter(500),

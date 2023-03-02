@@ -12,11 +12,13 @@ import 'package:http/http.dart';
 
 import '../../../../../../../shared/themes/app_colors.dart';
 import '../../../../../../../shared/themes/app_text_styles.dart';
-import '../../../../bloc/contact/contact_form_bloc.dart';
+import '../../../../bloc/contact/contact_bloc.dart';
 import '../information-icon/information_dialog.dart';
 
 class ContactDialog extends StatelessWidget {
-  const ContactDialog({super.key});
+  ContactDialog({super.key});
+
+  final _formKey = GlobalKey<FormState>();
 
   Future sendEmail(
       {required String message,
@@ -61,9 +63,9 @@ class ContactDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => Modular.get<ContactFormBloc>(),
+      create: (context) => Modular.get<ContactBloc>(),
       child: Builder(builder: (context) {
-        final contactFormBloc = BlocProvider.of<ContactFormBloc>(context);
+        final contactFormBloc = BlocProvider.of<ContactBloc>(context);
         return AlertDialog(
           backgroundColor: AppColors.backgroundColor2,
           actionsPadding: const EdgeInsets.only(bottom: 16),
@@ -83,39 +85,77 @@ class ContactDialog extends StatelessWidget {
             ],
           ),
           content: Scrollable(
-            viewportBuilder: (BuildContext context, ViewportOffset position) =>
-                Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                TextFieldContactWidget(
-                  textFieldBloc: contactFormBloc.name,
-                  title: '${S.of(context).labelName} *',
-                  hintText: S.of(context).labelName,
-                  keyboardType: TextInputType.multiline,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(500),
-                  ],
+            viewportBuilder: (BuildContext context, ViewportOffset position) {
+              final contactFormBloc = BlocProvider.of<ContactBloc>(context);
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    minHeight: 100,
+                    maxHeight: 500,
+                  ),
+                  child: FormBlocListener<ContactBloc, String, String>(
+                    onFailure: (context, state) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(state.failureResponse!)));
+                    },
+                    key: _formKey,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextFieldContactWidget(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Campo obrigatório';
+                            }
+                            return null;
+                          },
+                          textFieldBloc: contactFormBloc.name,
+                          title: '${S.of(context).labelName} *',
+                          hintText: S.of(context).labelName,
+                          keyboardType: TextInputType.multiline,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(500),
+                          ],
+                        ),
+                        TextFieldContactWidget(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Campo obrigatório';
+                            }
+                            if (!value.contains('@')) {
+                              return 'Email inválido';
+                            }
+                            return null;
+                          },
+                          textFieldBloc: contactFormBloc.email,
+                          title: '${S.of(context).labelEmail} *',
+                          hintText: S.of(context).labelEmail,
+                          keyboardType: TextInputType.multiline,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(500),
+                          ],
+                        ),
+                        TextFieldContactWidget(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Campo obrigatório';
+                            }
+                            return null;
+                          },
+                          textFieldBloc: contactFormBloc.message,
+                          title: '${S.of(context).labelMessage} *',
+                          hintText: S.of(context).labelMessage,
+                          keyboardType: TextInputType.multiline,
+                          inputFormatters: [
+                            LengthLimitingTextInputFormatter(500),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-                TextFieldContactWidget(
-                  textFieldBloc: contactFormBloc.email,
-                  title: '${S.of(context).labelEmail} *',
-                  hintText: S.of(context).labelEmail,
-                  keyboardType: TextInputType.multiline,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(500),
-                  ],
-                ),
-                TextFieldContactWidget(
-                  textFieldBloc: contactFormBloc.message,
-                  title: S.of(context).labelMessage,
-                  hintText: S.of(context).labelMessage,
-                  keyboardType: TextInputType.multiline,
-                  inputFormatters: [
-                    LengthLimitingTextInputFormatter(500),
-                  ],
-                ),
-              ],
-            ),
+              );
+            },
           ),
           scrollable: false,
           shape: RoundedRectangleBorder(
@@ -143,13 +183,14 @@ class ContactDialog extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  sendEmail(
-                      message: contactFormBloc.message.value,
-                      name: contactFormBloc.name.value,
-                      email: contactFormBloc.email.value);
-
-                  showSnackBar(context, 'Email enviado com sucesso!');
-                  Navigator.of(context).pop();
+                  if (_formKey.currentState!.validate()) {
+                    sendEmail(
+                        message: contactFormBloc.message.value,
+                        name: contactFormBloc.name.value,
+                        email: contactFormBloc.email.value);
+                    showSnackBar(context, 'Email enviado com sucesso!');
+                    Navigator.of(context).pop();
+                  }
                 },
               ),
             ),

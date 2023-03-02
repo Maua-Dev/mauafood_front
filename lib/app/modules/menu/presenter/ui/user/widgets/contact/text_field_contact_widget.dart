@@ -14,16 +14,16 @@ class TextFieldContactWidget extends StatelessWidget {
   final String? hintText;
   final List<TextInputFormatter>? inputFormatters;
 
-  const TextFieldContactWidget({
-    super.key,
-    required this.textFieldBloc,
-    required this.title,
-    this.keyboardType,
-    this.autoFillHints,
-    this.suffixButton,
-    this.hintText,
-    this.inputFormatters,
-  });
+  const TextFieldContactWidget(
+      {super.key,
+      required this.textFieldBloc,
+      required this.title,
+      this.keyboardType,
+      this.autoFillHints,
+      this.suffixButton,
+      this.hintText,
+      this.inputFormatters,
+      required String? Function(String? value) validator});
 
   @override
   Widget build(BuildContext context) {

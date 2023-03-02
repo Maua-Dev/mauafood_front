@@ -25,6 +25,7 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
 
   _showDialog() async {
     await Future.delayed(const Duration(milliseconds: 50));
+    // ignore: use_build_context_synchronously
     showDialog(
         context: context,
         builder: (BuildContext context) {

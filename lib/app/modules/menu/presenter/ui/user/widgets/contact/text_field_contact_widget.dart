@@ -27,31 +27,36 @@ class TextFieldContactWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          title,
-          style: AppTextStyles.h2,
-        ),
-        TextFieldBlocBuilder(
-          textAlign: TextAlign.start,
-          textFieldBloc: textFieldBloc,
-          expands: false,
-          keyboardType: TextInputType.text,
-          cursorColor: AppColors.mainBlueColor,
-          textStyle: AppTextStyles.h2,
-          decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-              hintText: hintText,
-              suffixIconColor: AppColors.mainBlueColor,
-              border: const OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: AppColors.mainBlueColor, width: 2))),
-        ),
-      ],
+    return SizedBox(
+      width: 10000,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            title,
+            style: AppTextStyles.h2,
+          ),
+          TextFieldBlocBuilder(
+            autofocus: false,
+            maxLines: null,
+            textAlign: TextAlign.start,
+            textFieldBloc: textFieldBloc,
+            expands: false,
+            keyboardType: TextInputType.text,
+            cursorColor: AppColors.mainBlueColor,
+            textStyle: AppTextStyles.h2,
+            decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+                hintText: hintText,
+                suffixIconColor: AppColors.mainBlueColor,
+                border: const OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: AppColors.mainBlueColor, width: 2))),
+          ),
+        ],
+      ),
     );
   }
 }

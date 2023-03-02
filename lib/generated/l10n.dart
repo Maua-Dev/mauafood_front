@@ -598,26 +598,6 @@ class S {
     );
   }
 
-  /// `Name`
-  String get labelName {
-    return Intl.message(
-      'Name',
-      name: 'labelName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `E-mail`
-  String get labelEmail {
-    return Intl.message(
-      'E-mail',
-      name: 'labelEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Message`
   String get labelMessage {
     return Intl.message(

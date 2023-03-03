@@ -95,7 +95,8 @@ class ContactDialog extends StatelessWidget {
                       showSnackBar(context, state.failureResponse);
                     },
                     onSuccess: (context, state) {
-                      showSnackBar(context, S.of(context).messageSent);
+                      showSnackBar(
+                          context, S.of(context).messageSentSuccessfully);
                       Modular.to.pop();
                     },
                     child: Column(
@@ -104,7 +105,7 @@ class ContactDialog extends StatelessWidget {
                         TextFieldContactWidget(
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Campo obrigatório';
+                              return S.of(context).requiredFieldAlert;
                             }
                             return null;
                           },
@@ -119,10 +120,10 @@ class ContactDialog extends StatelessWidget {
                         TextFieldContactWidget(
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Campo obrigatório';
+                              return S.of(context).requiredFieldAlert;
                             }
                             if (!value.contains('@')) {
-                              return 'Email inválido';
+                              return S.of(context).typeEmailCorrectlyAlert;
                             }
                             return null;
                           },
@@ -137,7 +138,7 @@ class ContactDialog extends StatelessWidget {
                         TextFieldContactWidget(
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return 'Campo obrigatório';
+                              return S.of(context).requiredFieldAlert;
                             }
                             return null;
                           },

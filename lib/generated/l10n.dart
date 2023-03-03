@@ -598,21 +598,31 @@ class S {
     );
   }
 
-  /// 'Message Sent'
-  String get messageSent {
-    return Intl.message(
-      'Message Sent',
-      name: 'messageSent',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Message`
   String get labelMessage {
     return Intl.message(
       'Message',
       name: 'labelMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// 'Email'
+  String get labelEmail {
+    return Intl.message(
+      'Email',
+      name: 'labelEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get labelName {
+    return Intl.message(
+      'Name',
+      name: 'labelName',
       desc: '',
       args: [],
     );
@@ -628,21 +638,11 @@ class S {
     );
   }
 
-  /// 'Name'
-  String get labelName {
+  /// 'message sent successfully'
+  String get messageSentSuccessfully {
     return Intl.message(
-      'Name',
-      name: 'labelName',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// 'Email'
-  String get labelEmail {
-    return Intl.message(
-      'Email',
-      name: 'labelEmail',
+      'Message sent successfully',
+      name: 'messageSentSuccessfully',
       desc: '',
       args: [],
     );

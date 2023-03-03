@@ -47,11 +47,10 @@ class ContactDialog extends StatelessWidget {
     print(response.body);
   }
 
-  void showSnackBar(BuildContext context, String message) {
+  void showSnackBar(BuildContext context, String? message) {
     final snackbar = SnackBar(
-      behavior: SnackBarBehavior.floating,
       elevation: 150.0,
-      content: Text(message),
+      content: Text(message!),
       backgroundColor: AppColors.mainBlueColor,
     );
 
@@ -93,11 +92,10 @@ class ContactDialog extends StatelessWidget {
                   ),
                   child: FormBlocListener<ContactBloc, String, String>(
                     onFailure: (context, state) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text(state.failureResponse!)));
+                      showSnackBar(context, state.failureResponse);
                     },
                     onSuccess: (context, state) {
-                      showSnackBar(context, S.of(context).MessageSent);
+                      showSnackBar(context, S.of(context).messageSent);
                       Modular.to.pop();
                     },
                     child: Column(

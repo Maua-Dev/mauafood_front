@@ -16,9 +16,7 @@ import '../../../../bloc/contact/contact_bloc.dart';
 import '../information-icon/information_dialog.dart';
 
 class ContactDialog extends StatelessWidget {
-  ContactDialog({super.key});
-
-  final _formKey = GlobalKey<FormState>();
+  const ContactDialog({super.key});
 
   Future sendEmail(
       {required String message,
@@ -84,7 +82,6 @@ class ContactDialog extends StatelessWidget {
               ),
             ],
           ),
-<<<<<<< HEAD
           content: Scrollable(
             viewportBuilder: (BuildContext context, ViewportOffset position) {
               final contactFormBloc = BlocProvider.of<ContactBloc>(context);
@@ -99,7 +96,10 @@ class ContactDialog extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text(state.failureResponse!)));
                     },
-                    key: _formKey,
+                    onSuccess: (context, state) {
+                      showSnackBar(context, S.of(context).MessageSent);
+                      Modular.to.pop();
+                    },
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -157,41 +157,6 @@ class ContactDialog extends StatelessWidget {
                 ),
               );
             },
-=======
-          buttonPadding: EdgeInsets.zero,
-          iconPadding: EdgeInsets.zero,
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextFieldContactWidget(
-                textFieldBloc: contactFormBloc.name,
-                title: '${S.of(context).fullNameTitle} *',
-                hintText: S.of(context).fullNameTitle,
-                keyboardType: TextInputType.multiline,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(500),
-                ],
-              ),
-              TextFieldContactWidget(
-                textFieldBloc: contactFormBloc.email,
-                title: '${S.of(context).emailTitle} *',
-                hintText: S.of(context).emailTitle,
-                keyboardType: TextInputType.multiline,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(500),
-                ],
-              ),
-              TextFieldContactWidget(
-                textFieldBloc: contactFormBloc.message,
-                title: S.of(context).labelMessage,
-                hintText: S.of(context).labelMessage,
-                keyboardType: TextInputType.multiline,
-                inputFormatters: [
-                  LengthLimitingTextInputFormatter(500),
-                ],
-              ),
-            ],
->>>>>>> ab984bf8dbc6dc4bfb5bb72e053feb2d29cb69fa
           ),
           scrollable: false,
           shape: RoundedRectangleBorder(
@@ -219,14 +184,8 @@ class ContactDialog extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    sendEmail(
-                        message: contactFormBloc.message.value,
-                        name: contactFormBloc.name.value,
-                        email: contactFormBloc.email.value);
-                    showSnackBar(context, 'Email enviado com sucesso!');
-                    Navigator.of(context).pop();
-                  }
+                  contactFormBloc.submit();
+                  Modular.to.pop();
                 },
               ),
             ),

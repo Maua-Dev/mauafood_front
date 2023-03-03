@@ -608,11 +608,41 @@ class S {
     );
   }
 
+  /// 'Email'
+  String get labelEmail {
+    return Intl.message(
+      'Email',
+      name: 'labelEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get labelName {
+    return Intl.message(
+      'Name',
+      name: 'labelName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Send now`
   String get labelSend {
     return Intl.message(
       'Send now',
       name: 'labelSend',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// 'Message Sent'
+  String get MessageSent {
+    return Intl.message(
+      'Message sent with success!',
+      name: 'labelMessageSent',
       desc: '',
       args: [],
     );

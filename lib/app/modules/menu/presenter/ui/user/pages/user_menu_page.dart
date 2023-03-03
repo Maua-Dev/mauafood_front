@@ -23,7 +23,8 @@ class UserMenuPage extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.mainBlueColor,
           onPressed: () {
-            showDialog(context: context, builder: (context) => ContactDialog());
+            showDialog(
+                context: context, builder: (context) => const ContactDialog());
           },
           child: const Icon(Icons.mail),
         ),

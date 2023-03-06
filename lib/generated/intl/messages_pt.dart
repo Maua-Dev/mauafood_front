@@ -139,14 +139,17 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m13(restaurant) => "${Intl.select(restaurant, {
             'biba':
                 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
-            'h':
+            'hora_h':
+                'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
+            'moleza':
                 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
             'other': '',
           })}";
 
   static String m14(restaurant) => "${Intl.select(restaurant, {
             'biba': 'Souza de Abreu',
-            'h': 'Restaurante do H',
+            'hora_h': 'Restaurante do H',
+            'moleza': 'Cantina do Moleza',
             'other': '',
           })}";
 
@@ -215,6 +218,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidPasswordAlert":
             MessageLookupByLibrary.simpleMessage("Senha inválida."),
         "labelMessage": MessageLookupByLibrary.simpleMessage("Mensagem"),
+        "labelName": MessageLookupByLibrary.simpleMessage("Nome Completo"),
         "labelSend": MessageLookupByLibrary.simpleMessage("Enviar agora"),
         "loginErrorsSchema": m4,
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
@@ -222,6 +226,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mealNameSchema": m6,
         "mealPrepareTimeMinutes": m7,
         "mealPriceCurrency": m8,
+        "messageSentSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Email enviado com sucesso!"),
         "newPasswordTitle": MessageLookupByLibrary.simpleMessage("Nova senha"),
         "notificationsOptionsSchema": m9,
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
@@ -259,8 +265,6 @@ class MessageLookup extends MessageLookupByLibrary {
             "É necessário aceitar os Termos de Uso."),
         "typeContact":
             MessageLookupByLibrary.simpleMessage("Entre em contato conosco"),
-        "messageSent": MessageLookupByLibrary.simpleMessage(
-            "Sua mensagem foi enviada com sucesso!"),
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se que digitou e-mail corretamente."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(

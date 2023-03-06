@@ -266,6 +266,16 @@ class S {
     );
   }
 
+  /// `Full Name`
+  String get labelName {
+    return Intl.message(
+      'Full Name',
+      name: 'labelName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Required field.`
   String get requiredFieldAlert {
     return Intl.message(
@@ -556,13 +566,14 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{Souza de Abreu} h{H Restaurant} other{}}`
+  /// `{restaurant, select, biba{Souza de Abreu} hora_h{H Hour} moleza{Cantina do Moleza} other{}}`
   String restaurantsNameSchema(Object restaurant) {
     return Intl.select(
       restaurant,
       {
         'biba': 'Souza de Abreu',
-        'h': 'H Restaurant',
+        'hora_h': 'H Hour',
+        'moleza': 'Cantina do Moleza',
         'other': '',
       },
       name: 'restaurantsNameSchema',
@@ -571,14 +582,16 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} other{}}`
+  /// `{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} hora_h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} moleza{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} other{}}`
   String restaurantsImageSchema(Object restaurant) {
     return Intl.select(
       restaurant,
       {
         'biba':
             'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
-        'h':
+        'hora_h':
+            'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
+        'moleza':
             'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
         'other': '',
       },
@@ -608,41 +621,11 @@ class S {
     );
   }
 
-  /// 'Email'
-  String get labelEmail {
-    return Intl.message(
-      'Email',
-      name: 'labelEmail',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Name`
-  String get labelName {
-    return Intl.message(
-      'Name',
-      name: 'labelName',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Send now`
   String get labelSend {
     return Intl.message(
       'Send now',
       name: 'labelSend',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// 'message sent successfully'
-  String get messageSentSuccessfully {
-    return Intl.message(
-      'Message sent successfully',
-      name: 'messageSentSuccessfully',
       desc: '',
       args: [],
     );
@@ -723,6 +706,16 @@ class S {
     return Intl.message(
       'Email confirmed!',
       name: 'successConfirmEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email successfully sent!`
+  String get messageSentSuccessfully {
+    return Intl.message(
+      'Email successfully sent!',
+      name: 'messageSentSuccessfully',
       desc: '',
       args: [],
     );

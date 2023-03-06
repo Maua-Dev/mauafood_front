@@ -17,10 +17,12 @@ class GetRestaurantMealImpl implements GetRestaurantMealInterface {
 
   @override
   Future<Either<Failure, List<Meal>>> call(RestaurantEnum restaurantInfo) {
-    if (restaurantInfo == RestaurantEnum.restaurantBiba) {
+    if (restaurantInfo == RestaurantEnum.biba) {
       return getBibaMeals();
-    } else {
+    } else if (restaurantInfo == RestaurantEnum.hora_h) {
       return getHMeals();
+    } else {
+      return getMolezaMeals();
     }
   }
 
@@ -36,6 +38,16 @@ class GetRestaurantMealImpl implements GetRestaurantMealInterface {
 
   Future<Either<Failure, List<Meal>>> getHMeals() async {
     var result = await repository.getHMeals();
+    return result.fold((failureResult) => result, (listResult) async {
+      return result.where(
+        (r) => r.isNotEmpty,
+        () => EmptyList(message: S.current.errorEmptyList),
+      );
+    });
+  }
+
+  Future<Either<Failure, List<Meal>>> getMolezaMeals() async {
+    var result = await repository.getMolezaMeals();
     return result.fold((failureResult) => result, (listResult) async {
       return result.where(
         (r) => r.isNotEmpty,

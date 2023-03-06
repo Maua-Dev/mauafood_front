@@ -26,7 +26,7 @@ void main() {
   GetRestaurantMealInterface getRestaurantMeal =
       MockGetRestaurantMealInterface();
   late MenuBloc bloc;
-  var restaurantEnum = RestaurantEnum.restaurantBiba;
+  var restaurantEnum = RestaurantEnum.biba;
 
   MealModel testMock = MealModel(
     id: '0',
@@ -82,7 +82,7 @@ void main() {
         home: BlocProvider(
           create: (context) => bloc,
           child: const UserMenuPage(
-            restaurantInfo: RestaurantEnum.restaurantBiba,
+            restaurantInfo: RestaurantEnum.biba,
           ),
         ),
       ));

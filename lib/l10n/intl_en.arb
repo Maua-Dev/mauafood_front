@@ -30,6 +30,7 @@
     "codeTitle": "Code",
     "confirmTitle": "Confirm",
     "notificationsOptionsSchema": "{notifications, select, normalPart{Want to receive } email{email notifications} app{app notifications} other{}}",
+    "labelName": "Full Name",
 
     "requiredFieldAlert": "Required field.",
     "invalidEmailAlert": "Invalid email.",
@@ -67,8 +68,8 @@
 
 
 
-    "restaurantsNameSchema": "{restaurant, select, biba{Souza de Abreu} h{H Restaurant} other{}}",
-    "restaurantsImageSchema": "{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} other{}}",
+    "restaurantsNameSchema": "{restaurant, select, biba{Souza de Abreu} hora_h{H Hour} moleza{Cantina do Moleza} other{}}",
+    "restaurantsImageSchema": "{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} hora_h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} moleza{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} other{}}",
 
 
     "typeContact": "Contact us",
@@ -111,6 +112,9 @@
 
     "successChangePassword": "Password changed successfully!",
     "successConfirmEmail": "Email confirmed!",
+
+
+    "messageSentSuccessfully": "Email successfully sent!",
 
 
     

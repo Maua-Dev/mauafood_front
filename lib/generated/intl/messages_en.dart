@@ -130,14 +130,17 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m13(restaurant) => "${Intl.select(restaurant, {
             'biba':
                 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
-            'h':
+            'hora_h':
+                'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
+            'moleza':
                 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
             'other': '',
           })}";
 
   static String m14(restaurant) => "${Intl.select(restaurant, {
             'biba': 'Souza de Abreu',
-            'h': 'H Restaurant',
+            'hora_h': 'H Hour',
+            'moleza': 'Cantina do Moleza',
             'other': '',
           })}";
 
@@ -205,6 +208,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidPasswordAlert":
             MessageLookupByLibrary.simpleMessage("Invalid password."),
         "labelMessage": MessageLookupByLibrary.simpleMessage("Message"),
+        "labelName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "labelSend": MessageLookupByLibrary.simpleMessage("Send now"),
         "loginErrorsSchema": m4,
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
@@ -212,6 +216,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mealNameSchema": m6,
         "mealPrepareTimeMinutes": m7,
         "mealPriceCurrency": m8,
+        "messageSentSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Email successfully sent!"),
         "newPasswordTitle":
             MessageLookupByLibrary.simpleMessage("New password"),
         "notificationsOptionsSchema": m9,
@@ -247,8 +253,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "termsAcceptAlert": MessageLookupByLibrary.simpleMessage(
             "It is necessary to accept the Terms of Use."),
         "typeContact": MessageLookupByLibrary.simpleMessage("Contact us"),
-        "messageSent": MessageLookupByLibrary.simpleMessage(
-            "Your message has been sent successfully!"),
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure you typed email correctly."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(

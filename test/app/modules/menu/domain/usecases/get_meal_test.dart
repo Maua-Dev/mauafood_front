@@ -18,8 +18,8 @@ import 'get_meal_test.mocks.dart';
 void main() {
   late GetRestaurantMealInterface useCase;
   MenuRepositoryInterface repository = MockMenuRepositoryInterface();
-  var h = RestaurantEnum.restaurantH;
-  var biba = RestaurantEnum.restaurantBiba;
+  var h = RestaurantEnum.hora_h;
+  var biba = RestaurantEnum.biba;
   var listMock = [
     Meal(
       id: '0',

@@ -25,8 +25,8 @@ void main() {
   GetRestaurantInterface getRestaurant = MockGetRestaurantInterface();
 
   List<Restaurant> mockRestaurants = [
-    const Restaurant(restaurantInfo: RestaurantEnum.restaurantBiba),
-    const Restaurant(restaurantInfo: RestaurantEnum.restaurantH)
+    const Restaurant(restaurantInfo: RestaurantEnum.biba),
+    const Restaurant(restaurantInfo: RestaurantEnum.hora_h)
   ];
 
   setUpAll(() {

@@ -128,8 +128,8 @@ class ContactDialog extends StatelessWidget {
                             return null;
                           },
                           textFieldBloc: contactFormBloc.email,
-                          title: '${S.of(context).labelEmail} *',
-                          hintText: S.of(context).labelEmail,
+                          title: '${S.of(context).emailTitle} *',
+                          hintText: S.of(context).emailTitle,
                           keyboardType: TextInputType.multiline,
                           inputFormatters: [
                             LengthLimitingTextInputFormatter(500),

@@ -247,6 +247,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "termsAcceptAlert": MessageLookupByLibrary.simpleMessage(
             "It is necessary to accept the Terms of Use."),
         "typeContact": MessageLookupByLibrary.simpleMessage("Contact us"),
+        "messageSent": MessageLookupByLibrary.simpleMessage(
+            "Your message has been sent successfully!"),
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure you typed email correctly."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(

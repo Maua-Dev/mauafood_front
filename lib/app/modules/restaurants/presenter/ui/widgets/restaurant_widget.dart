@@ -72,13 +72,13 @@ class RestaurantWidget extends StatelessWidget {
                       child: Text(
                         restaurantInfo.name,
                         style: AppTextStyles.h1.copyWith(
-                            fontSize: 20, color: AppColors.mainBlueColor),
+                            fontSize: 19, color: AppColors.mainBlueColor),
                       ),
                     ),
                     Text(
                       S.of(context).seeMenuTitle,
                       style: AppTextStyles.h2.copyWith(
-                          fontSize: 18, color: AppColors.mainBlueColor),
+                          fontSize: 16, color: AppColors.mainBlueColor),
                     ),
                   ],
                 )

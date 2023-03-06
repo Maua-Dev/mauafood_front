@@ -2,7 +2,7 @@
     "appTitle": "Mauá Food",
     "questionMark": "?",
     "appAcceptTerms": "I read and accept the Terms of Use",
-    "restaurantTitle": "Menu - {restaurantName}",
+    "restaurantTitle": "{restaurantName}",
     "@restaurantTitle" : {
         "placeholders": {
             "placeholders": {

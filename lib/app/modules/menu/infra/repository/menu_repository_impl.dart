@@ -23,6 +23,8 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
   @override
   Future<Either<Failure, List<Meal>>> getBibaMeals() async {
     List<Meal>? restaurantProducts;
+    await getAllMeals();
+
     try {
       restaurantProducts =
           MealModel.fromMaps(jsonAllRestaurants['SOUZA_DE_ABREU']);
@@ -35,6 +37,7 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
   @override
   Future<Either<Failure, List<Meal>>> getHMeals() async {
     List<Meal>? restaurantProducts;
+    await getAllMeals();
     try {
       restaurantProducts = MealModel.fromMaps(jsonAllRestaurants['HORA_H']);
     } catch (e) {
@@ -47,6 +50,7 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
   @override
   Future<Either<Failure, List<Meal>>> getMolezaMeals() async {
     List<Meal>? restaurantProducts;
+    await getAllMeals();
     try {
       restaurantProducts =
           MealModel.fromMaps(jsonAllRestaurants['CANTINA_DO_MOLEZA']);

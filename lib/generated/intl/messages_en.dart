@@ -125,7 +125,7 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Error trying to send code, please try again later.',
           })}";
 
-  static String m12(placeholders, restaurantName) => "Menu - ${restaurantName}";
+  static String m12(placeholders, restaurantName) => "${restaurantName}";
 
   static String m13(restaurant) => "${Intl.select(restaurant, {
             'biba':

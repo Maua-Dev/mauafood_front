@@ -80,10 +80,10 @@ class S {
     );
   }
 
-  /// `Menu - {restaurantName}`
+  /// `{restaurantName}`
   String restaurantTitle(Object placeholders, Object restaurantName) {
     return Intl.message(
-      'Menu - $restaurantName',
+      '$restaurantName',
       name: 'restaurantTitle',
       desc: '',
       args: [placeholders, restaurantName],

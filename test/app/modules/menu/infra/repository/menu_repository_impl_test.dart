@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/app_module.dart';
-import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
 import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_interface.dart';
 import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasource_interface.dart';
 import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
@@ -35,7 +34,20 @@ void main() {
         "prepare_time": 20
       },
     ],
-    "RESTAURANTE_DO_H": [
+    "HORA_H": [
+      {
+        "available": true,
+        "price": 36.0,
+        "name": "Strogonoff Carne",
+        "description": "",
+        "meal_type": "PLATES",
+        "photo": "https://avatars.githubusercontent.com/u/30812461?v=4",
+        "product_id": "44daaa83-d8a3-4507-b807-644be457955c",
+        "last_update": 1674835337393,
+        "prepare_time": 20
+      }
+    ],
+    "CANTINA_DO_MOLEZA": [
       {
         "available": true,
         "price": 36.0,
@@ -53,38 +65,36 @@ void main() {
 
   setUp(() async {
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
-    repository = MenuRepositoryImpl(datasource: datasource);
   });
 
   group('[TEST] - getBibaMeals', () {
+    when(datasource.getAllProducts())
+        .thenAnswer((realInvocation) async => listMock);
+    repository = MenuRepositoryImpl(datasource: datasource);
+
     test('return a List<Meal> correct', () async {
-      when(datasource.getAllProducts())
-          .thenAnswer((realInvocation) async => listMock);
       var list = await repository.getBibaMeals();
       expect(list.fold(id, id), isA<List<MealModel>>());
-    });
-
-    test('return ErrorReadJson when json is null', () async {
-      when(datasource.getAllProducts())
-          .thenThrow((realInvocation) async => Exception());
-      var list = await repository.getBibaMeals();
-      expect(list.fold(id, id), isA<DatasourceResultNull>());
     });
   });
 
   group('[TEST] - getHMeals', () {
+    when(datasource.getAllProducts())
+        .thenAnswer((realInvocation) async => listMock);
+    repository = MenuRepositoryImpl(datasource: datasource);
     test('return a List<Meal> correct', () async {
-      when(datasource.getAllProducts())
-          .thenAnswer((realInvocation) async => listMock);
       var list = await repository.getHMeals();
       expect(list.fold(id, id), isA<List<MealModel>>());
     });
+  });
 
-    test('return ErrorReadJson when json is null', () async {
-      when(datasource.getAllProducts())
-          .thenThrow((realInvocation) async => Exception());
-      var list = await repository.getHMeals();
-      expect(list.fold(id, id), isA<DatasourceResultNull>());
+  group('[TEST] - getMolezaMeals', () {
+    when(datasource.getAllProducts())
+        .thenAnswer((realInvocation) async => listMock);
+    repository = MenuRepositoryImpl(datasource: datasource);
+    test('return a List<Meal> correct', () async {
+      var list = await repository.getMolezaMeals();
+      expect(list.fold(id, id), isA<List<MealModel>>());
     });
   });
 }

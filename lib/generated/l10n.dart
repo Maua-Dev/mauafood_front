@@ -631,7 +631,7 @@ class S {
     );
   }
 
-  /// `{meal, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} other{Other}}`
+  /// `{meal, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}`
   String mealNameSchema(Object meal) {
     return Intl.select(
       meal,
@@ -645,6 +645,8 @@ class S {
         'PASTAS': 'Pastas',
         'SNACKS': 'Snacks',
         'SALADS': 'Salads',
+        'DESSERT': 'Dessert',
+        'SAVOURY': 'Savoury',
         'other': 'Other',
       },
       name: 'mealNameSchema',

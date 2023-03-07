@@ -96,6 +96,8 @@ class MessageLookup extends MessageLookupByLibrary {
             'PASTAS': 'Massas',
             'SNACKS': 'Salgados',
             'SALADS': 'Saladas',
+            'DESSERT': 'Sobremesa',
+            'SAVOURY': 'Salgado',
             'other': 'Outros',
           })}";
 

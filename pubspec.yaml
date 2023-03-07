@@ -2,7 +2,7 @@ name: mauafood_front
 description: Mauá Food.
 
 publish_to: 'none'
-version: 1.1.7+20
+version: 1.1.7+21
 
 environment:
   sdk: '>=2.18.0 <3.0.0'

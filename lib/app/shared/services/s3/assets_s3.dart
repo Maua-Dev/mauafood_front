@@ -11,9 +11,3 @@ var greyLogo = '$baseLogosImages/grey_logo.png';
 var transparentLogo = '$baseLogosImages/transparent_logo.png';
 
 var whiteLogo = '$baseLogosImages/white_logo.png';
-
-var baseResturantsLogo = '$baseUrlS3/restaurants/restaurant_logo';
-
-var baseResturantsFront = '$baseUrlS3/restaurants/restaurant_front';
-
-var frontMoleza = '$baseResturantsFront/front_moleza.jpg';

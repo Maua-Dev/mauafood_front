@@ -30,6 +30,8 @@ void main() {
       expect(column, findsWidgets);
       final sizedBox = find.byType(SizedBox);
       expect(sizedBox, findsNWidgets(4));
+      final image = find.byType(Image);
+      expect(image, findsOneWidget);
     });
   });
 }

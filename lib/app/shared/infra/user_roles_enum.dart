@@ -27,9 +27,9 @@ extension UserRolesEnumExtension on UserRolesEnum {
   RestaurantEnum get restaurantEnum {
     switch (this) {
       case UserRolesEnum.employee_h:
-        return RestaurantEnum.restaurantH;
+        return RestaurantEnum.hora_h;
       case UserRolesEnum.employee_biba:
-        return RestaurantEnum.restaurantBiba;
+        return RestaurantEnum.biba;
       case UserRolesEnum.user:
         return RestaurantEnum.none;
       case UserRolesEnum.student:

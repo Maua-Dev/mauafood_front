@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/utils/utils.dart';
 
+import '../services/s3/assets_s3.dart';
+
 class ErrorPage extends StatelessWidget {
   const ErrorPage({super.key});
 
@@ -16,7 +18,7 @@ class ErrorPage extends StatelessWidget {
           SizedBox(
             height: Utils.height(context) / 3,
             width: Utils.height(context) / 2,
-            child: Image.asset('assets/images/logos/grey_logo.png'),
+            child: Image.network(greyLogo),
           ),
           SizedBox(
             height: Utils.height(context) / 20,

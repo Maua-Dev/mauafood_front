@@ -18,8 +18,8 @@ void main() {
   GetRestaurantInterface getRestaurants = MockGetRestaurantInterface();
   late RestaurantController controller;
   var listMock = const [
-    Restaurant(restaurantInfo: RestaurantEnum.restaurantBiba),
-    Restaurant(restaurantInfo: RestaurantEnum.restaurantH)
+    Restaurant(restaurantInfo: RestaurantEnum.biba),
+    Restaurant(restaurantInfo: RestaurantEnum.hora_h)
   ];
 
   setUp(() {

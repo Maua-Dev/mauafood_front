@@ -11,6 +11,6 @@ void main() {
 
   test('[TEST] - GetRestaurantImpl', () {
     expect(useCase(), isA<List<Restaurant>>());
-    expect(useCase().length, 2);
+    expect(useCase().length, 3);
   });
 }

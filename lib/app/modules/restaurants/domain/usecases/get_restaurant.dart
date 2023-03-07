@@ -7,8 +7,9 @@ abstract class GetRestaurantInterface {
 
 class GetRestaurantImpl implements GetRestaurantInterface {
   final List<Restaurant> listRestaurant = [
-    const Restaurant(restaurantInfo: RestaurantEnum.restaurantBiba),
-    const Restaurant(restaurantInfo: RestaurantEnum.restaurantH)
+    const Restaurant(restaurantInfo: RestaurantEnum.biba),
+    const Restaurant(restaurantInfo: RestaurantEnum.hora_h),
+    const Restaurant(restaurantInfo: RestaurantEnum.moleza),
   ];
 
   @override

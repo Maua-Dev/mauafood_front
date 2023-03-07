@@ -90,6 +90,8 @@ class MessageLookup extends MessageLookupByLibrary {
             'PASTAS': 'Pastas',
             'SNACKS': 'Snacks',
             'SALADS': 'Salads',
+            'DESSERT': 'Dessert',
+            'SAVOURY': 'Savoury',
             'other': 'Other',
           })}";
 

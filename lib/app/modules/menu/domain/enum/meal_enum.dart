@@ -13,6 +13,8 @@ enum MealEnum {
   SNACKS,
   PASTAS,
   SALADS,
+  DESSERT,
+  SAVOURY,
 }
 
 extension MealEnumExtension on MealEnum {

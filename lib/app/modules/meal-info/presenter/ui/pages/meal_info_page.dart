@@ -20,25 +20,24 @@ class MealInfoPage extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Container(
+                SizedBox(
                   width: double.infinity,
-                  color: Colors.red,
-                  // child: Image.network(
-                  //   mealInfo.photo,
-                  //   fit: BoxFit.contain,
-                  //   loadingBuilder: (BuildContext context, Widget child,
-                  //       ImageChunkEvent? loadingProgress) {
-                  //     if (loadingProgress == null) return child;
-                  //     return Center(
-                  //       child: CircularProgressIndicator(
-                  //         value: loadingProgress.expectedTotalBytes != null
-                  //             ? loadingProgress.cumulativeBytesLoaded /
-                  //                 loadingProgress.expectedTotalBytes!
-                  //             : null,
-                  //       ),
-                  //     );
-                  //   },
-                  // ),
+                  child: Image.network(
+                    mealInfo.photo,
+                    fit: BoxFit.contain,
+                    loadingBuilder: (BuildContext context, Widget child,
+                        ImageChunkEvent? loadingProgress) {
+                      if (loadingProgress == null) return child;
+                      return Center(
+                        child: CircularProgressIndicator(
+                          value: loadingProgress.expectedTotalBytes != null
+                              ? loadingProgress.cumulativeBytesLoaded /
+                                  loadingProgress.expectedTotalBytes!
+                              : null,
+                        ),
+                      );
+                    },
+                  ),
                 ),
                 Positioned(
                   left: 16,
@@ -102,7 +101,7 @@ class MealInfoPage extends StatelessWidget {
                         children: [
                           SizedBox(
                             height: 150,
-                            width: 100,
+                            width: MediaQuery.of(context).size.width / 4,
                             child: RecommendedMealWidget(
                               meal: recommendedMealList[0],
                               onPressed: () {
@@ -119,7 +118,7 @@ class MealInfoPage extends StatelessWidget {
                           ),
                           SizedBox(
                             height: 150,
-                            width: 100,
+                            width: MediaQuery.of(context).size.width / 4,
                             child: RecommendedMealWidget(
                               meal: recommendedMealList[1],
                               onPressed: () {
@@ -136,7 +135,7 @@ class MealInfoPage extends StatelessWidget {
                           ),
                           SizedBox(
                             height: 150,
-                            width: 100,
+                            width: MediaQuery.of(context).size.width / 4,
                             child: RecommendedMealWidget(
                               meal: recommendedMealList[2],
                               onPressed: () {

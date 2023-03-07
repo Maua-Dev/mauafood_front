@@ -14,44 +14,49 @@ class TextFieldContactWidget extends StatelessWidget {
   final String? hintText;
   final List<TextInputFormatter>? inputFormatters;
 
-  const TextFieldContactWidget({
-    super.key,
-    required this.textFieldBloc,
-    required this.title,
-    this.keyboardType,
-    this.autoFillHints,
-    this.suffixButton,
-    this.hintText,
-    this.inputFormatters,
-  });
+  const TextFieldContactWidget(
+      {super.key,
+      required this.textFieldBloc,
+      required this.title,
+      this.keyboardType,
+      this.autoFillHints,
+      this.suffixButton,
+      this.hintText,
+      this.inputFormatters,
+      required String? Function(String? value) validator});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(
-          title,
-          style: AppTextStyles.h2,
-        ),
-        TextFieldBlocBuilder(
-          textAlign: TextAlign.start,
-          textFieldBloc: textFieldBloc,
-          expands: false,
-          keyboardType: TextInputType.text,
-          cursorColor: AppColors.mainBlueColor,
-          textStyle: AppTextStyles.h2,
-          decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 12),
-              hintText: hintText,
-              suffixIconColor: AppColors.mainBlueColor,
-              border: const OutlineInputBorder(),
-              focusedBorder: OutlineInputBorder(
-                  borderSide:
-                      BorderSide(color: AppColors.mainBlueColor, width: 2))),
-        ),
-      ],
+    return SizedBox(
+      width: 10000,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            title,
+            style: AppTextStyles.h2,
+          ),
+          TextFieldBlocBuilder(
+            autofocus: false,
+            maxLines: null,
+            textAlign: TextAlign.start,
+            textFieldBloc: textFieldBloc,
+            expands: false,
+            keyboardType: TextInputType.text,
+            cursorColor: AppColors.mainBlueColor,
+            textStyle: AppTextStyles.h2,
+            decoration: InputDecoration(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 12),
+                hintText: hintText,
+                suffixIconColor: AppColors.mainBlueColor,
+                border: const OutlineInputBorder(),
+                focusedBorder: OutlineInputBorder(
+                    borderSide:
+                        BorderSide(color: AppColors.mainBlueColor, width: 2))),
+          ),
+        ],
+      ),
     );
   }
 }

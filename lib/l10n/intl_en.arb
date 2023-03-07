@@ -2,7 +2,7 @@
     "appTitle": "Mauá Food",
     "questionMark": "?",
     "appAcceptTerms": "I read and accept the Terms of Use",
-    "restaurantTitle": "Menu - {restaurantName}",
+    "restaurantTitle": "{restaurantName}",
     "@restaurantTitle" : {
         "placeholders": {
             "placeholders": {
@@ -10,6 +10,9 @@
             }
         }
     },
+    "attentionTitle": "Attention",
+    "understoodTitle": "Understood!",
+    "disclaimerText":"MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!",
 
 
 
@@ -27,6 +30,7 @@
     "codeTitle": "Code",
     "confirmTitle": "Confirm",
     "notificationsOptionsSchema": "{notifications, select, normalPart{Want to receive } email{email notifications} app{app notifications} other{}}",
+    "labelName": "Full Name",
 
     "requiredFieldAlert": "Required field.",
     "invalidEmailAlert": "Invalid email.",
@@ -64,8 +68,8 @@
 
 
 
-    "restaurantsNameSchema": "{restaurant, select, biba{Souza de Abreu} h{H Restaurant} other{}}",
-    "restaurantsImageSchema": "{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} other{}}",
+    "restaurantsNameSchema": "{restaurant, select, biba{Souza de Abreu} hora_h{H Hour} moleza{Cantina do Moleza} other{}}",
+    "restaurantsImageSchema": "{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} hora_h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} moleza{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} other{}}",
 
 
     "typeContact": "Contact us",
@@ -108,6 +112,9 @@
 
     "successChangePassword": "Password changed successfully!",
     "successConfirmEmail": "Email confirmed!",
+
+
+    "messageSentSuccessfully": "Email successfully sent!",
 
 
     

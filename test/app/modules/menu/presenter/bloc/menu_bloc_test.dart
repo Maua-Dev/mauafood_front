@@ -23,7 +23,7 @@ void main() {
       MockGetRestaurantMealInterface();
   late MenuBloc bloc;
   var failure = Failure(message: '');
-  var restaurantEnumMock = RestaurantEnum.restaurantBiba;
+  var restaurantEnumMock = RestaurantEnum.biba;
   MealModel testMock = MealModel(
     id: '0',
     name: 'name',
@@ -157,8 +157,8 @@ void main() {
         when(getRestaurantMeal(bloc.restaurantInfo))
             .thenAnswer((realInvocation) async => Right(listMock));
         bloc.eitherListMeal = Right(listMock);
-        bloc.add(const ChangeRestaurantEvent(
-            restaurantEnum: RestaurantEnum.restaurantBiba));
+        bloc.add(
+            const ChangeRestaurantEvent(restaurantEnum: RestaurantEnum.biba));
       },
       expect: () => [
         MenuLoadingState(),
@@ -173,8 +173,8 @@ void main() {
         when(getRestaurantMeal(bloc.restaurantInfo))
             .thenAnswer((realInvocation) async => Left(failure));
         bloc.eitherListMeal = Left(failure);
-        bloc.add(const ChangeRestaurantEvent(
-            restaurantEnum: RestaurantEnum.restaurantBiba));
+        bloc.add(
+            const ChangeRestaurantEvent(restaurantEnum: RestaurantEnum.biba));
       },
       expect: () => [
         MenuLoadingState(),

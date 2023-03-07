@@ -25,8 +25,8 @@ void main() {
   GetRestaurantInterface getRestaurant = MockGetRestaurantInterface();
 
   List<Restaurant> mockRestaurants = [
-    const Restaurant(restaurantInfo: RestaurantEnum.restaurantBiba),
-    const Restaurant(restaurantInfo: RestaurantEnum.restaurantH)
+    const Restaurant(restaurantInfo: RestaurantEnum.biba),
+    const Restaurant(restaurantInfo: RestaurantEnum.hora_h)
   ];
 
   setUpAll(() {
@@ -35,24 +35,26 @@ void main() {
   });
 
   testWidgets('[WIDGETS TEST] - Restaurants Page', (widgetTester) async {
-    mockNetworkImagesFor(() async {
-      await widgetTester.pumpWidget(MaterialApp(
-        localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-        ],
-        supportedLocales: S.delegate.supportedLocales,
-        home: const RestaurantsPage(),
-      ));
-      final appbar = find.byType(AppBar);
-      expect(appbar, findsOneWidget);
-      final image = find.byType(Image);
-      expect(image, findsNWidgets(mockRestaurants.length + 1));
-      final restaurantCard = find.byType(RestaurantWidget);
-      expect(restaurantCard, findsNWidgets(mockRestaurants.length));
-      final texts = find.byType(Text);
-      expect(texts, findsNWidgets((mockRestaurants.length * 2) + 1));
+    await mockNetworkImagesFor(() async {
+      await widgetTester.runAsync(() async {
+        await widgetTester.pumpWidget(MaterialApp(
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+          ],
+          supportedLocales: S.delegate.supportedLocales,
+          home: const RestaurantsPage(),
+        ));
+        final appbar = find.byType(AppBar);
+        expect(appbar, findsOneWidget);
+        final image = find.byType(Image);
+        expect(image, findsNWidgets(mockRestaurants.length + 1));
+        final restaurantCard = find.byType(RestaurantWidget);
+        expect(restaurantCard, findsNWidgets(mockRestaurants.length));
+        final texts = find.byType(Text);
+        expect(texts, findsNWidgets((mockRestaurants.length * 2) + 1));
+      });
     });
   });
 }

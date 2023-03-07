@@ -9,16 +9,25 @@ import '../datasources/menu_datasource_interface.dart';
 
 class MenuRepositoryImpl implements MenuRepositoryInterface {
   final MenuDatasourceInterface datasource;
+  Map<String, dynamic> jsonAllRestaurants = {};
 
-  MenuRepositoryImpl({required this.datasource});
+  MenuRepositoryImpl({required this.datasource}) {
+    getAllMeals();
+  }
+
+  @override
+  Future<void> getAllMeals() async {
+    jsonAllRestaurants = await datasource.getAllProducts();
+  }
 
   @override
   Future<Either<Failure, List<Meal>>> getBibaMeals() async {
     List<Meal>? restaurantProducts;
+    await getAllMeals();
+
     try {
-      var fullJsonResponse = await datasource.getAllProducts();
       restaurantProducts =
-          MealModel.fromMaps(fullJsonResponse['SOUZA_DE_ABREU']);
+          MealModel.fromMaps(jsonAllRestaurants['SOUZA_DE_ABREU']);
     } catch (e) {
       return left(DatasourceResultNull(message: S.current.errorItemNotFound));
     }
@@ -28,10 +37,23 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
   @override
   Future<Either<Failure, List<Meal>>> getHMeals() async {
     List<Meal>? restaurantProducts;
+    await getAllMeals();
     try {
-      var fullJsonResponse = await datasource.getAllProducts();
+      restaurantProducts = MealModel.fromMaps(jsonAllRestaurants['HORA_H']);
+    } catch (e) {
+      return left(DatasourceResultNull(message: S.current.errorItemNotFound));
+    }
+
+    return right(restaurantProducts);
+  }
+
+  @override
+  Future<Either<Failure, List<Meal>>> getMolezaMeals() async {
+    List<Meal>? restaurantProducts;
+    await getAllMeals();
+    try {
       restaurantProducts =
-          MealModel.fromMaps(fullJsonResponse['RESTAURANTE_DO_H']);
+          MealModel.fromMaps(jsonAllRestaurants['CANTINA_DO_MOLEZA']);
     } catch (e) {
       return left(DatasourceResultNull(message: S.current.errorItemNotFound));
     }

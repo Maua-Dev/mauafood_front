@@ -80,13 +80,43 @@ class S {
     );
   }
 
-  /// `Menu - {restaurantName}`
+  /// `{restaurantName}`
   String restaurantTitle(Object placeholders, Object restaurantName) {
     return Intl.message(
-      'Menu - $restaurantName',
+      '$restaurantName',
       name: 'restaurantTitle',
       desc: '',
       args: [placeholders, restaurantName],
+    );
+  }
+
+  /// `Attention`
+  String get attentionTitle {
+    return Intl.message(
+      'Attention',
+      name: 'attentionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Understood!`
+  String get understoodTitle {
+    return Intl.message(
+      'Understood!',
+      name: 'understoodTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!`
+  String get disclaimerText {
+    return Intl.message(
+      'MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!',
+      name: 'disclaimerText',
+      desc: '',
+      args: [],
     );
   }
 
@@ -233,6 +263,16 @@ class S {
       name: 'notificationsOptionsSchema',
       desc: '',
       args: [notifications],
+    );
+  }
+
+  /// `Full Name`
+  String get labelName {
+    return Intl.message(
+      'Full Name',
+      name: 'labelName',
+      desc: '',
+      args: [],
     );
   }
 
@@ -526,13 +566,14 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{Souza de Abreu} h{H Restaurant} other{}}`
+  /// `{restaurant, select, biba{Souza de Abreu} hora_h{H Hour} moleza{Cantina do Moleza} other{}}`
   String restaurantsNameSchema(Object restaurant) {
     return Intl.select(
       restaurant,
       {
         'biba': 'Souza de Abreu',
-        'h': 'H Restaurant',
+        'hora_h': 'H Hour',
+        'moleza': 'Cantina do Moleza',
         'other': '',
       },
       name: 'restaurantsNameSchema',
@@ -541,14 +582,16 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} other{}}`
+  /// `{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} hora_h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} moleza{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} other{}}`
   String restaurantsImageSchema(Object restaurant) {
     return Intl.select(
       restaurant,
       {
         'biba':
             'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
-        'h':
+        'hora_h':
+            'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
+        'moleza':
             'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
         'other': '',
       },
@@ -663,6 +706,16 @@ class S {
     return Intl.message(
       'Email confirmed!',
       name: 'successConfirmEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email successfully sent!`
+  String get messageSentSuccessfully {
+    return Intl.message(
+      'Email successfully sent!',
+      name: 'messageSentSuccessfully',
       desc: '',
       args: [],
     );

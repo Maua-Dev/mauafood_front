@@ -26,7 +26,7 @@ void main() {
   GetRestaurantMealInterface getRestaurantMeal =
       MockGetRestaurantMealInterface();
   late MenuBloc bloc;
-  var restaurantEnum = RestaurantEnum.restaurantBiba;
+  var restaurantEnum = RestaurantEnum.biba;
 
   MealModel testMock = MealModel(
     id: '0',
@@ -82,7 +82,7 @@ void main() {
         home: BlocProvider(
           create: (context) => bloc,
           child: const UserMenuPage(
-            restaurantInfo: RestaurantEnum.restaurantBiba,
+            restaurantInfo: RestaurantEnum.biba,
           ),
         ),
       ));
@@ -97,6 +97,10 @@ void main() {
       expect(gridView, findsNothing);
       final mealCards = find.byType(MealCardWidget);
       expect(mealCards, findsNWidgets(0));
+      final floatingButton = find.byType(FloatingActionButton);
+      expect(floatingButton, findsOneWidget);
+      final iconFloatingButton = find.byIcon(Icons.mail);
+      expect(iconFloatingButton, findsOneWidget);
 
       await widgetTester.runAsync(() async => bloc.add(GetAllMealsEvent()));
       await widgetTester.pump();

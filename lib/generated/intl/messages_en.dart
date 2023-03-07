@@ -125,19 +125,22 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Error trying to send code, please try again later.',
           })}";
 
-  static String m12(placeholders, restaurantName) => "Menu - ${restaurantName}";
+  static String m12(placeholders, restaurantName) => "${restaurantName}";
 
   static String m13(restaurant) => "${Intl.select(restaurant, {
             'biba':
                 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
-            'h':
+            'hora_h':
+                'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
+            'moleza':
                 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
             'other': '',
           })}";
 
   static String m14(restaurant) => "${Intl.select(restaurant, {
             'biba': 'Souza de Abreu',
-            'h': 'H Restaurant',
+            'hora_h': 'H Hour',
+            'moleza': 'Cantina do Moleza',
             'other': '',
           })}";
 
@@ -146,6 +149,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "appAcceptTerms": MessageLookupByLibrary.simpleMessage(
             "I read and accept the Terms of Use"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Mauá Food"),
+        "attentionTitle": MessageLookupByLibrary.simpleMessage("Attention"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "codeErrorAlert":
@@ -164,6 +168,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "correctFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure the fields are correct."),
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
+        "disclaimerText": MessageLookupByLibrary.simpleMessage(
+            "MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!"),
         "doLoginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "emailConfirmationErrorsSchema": m1,
         "emailConfirmationTitle":
@@ -202,6 +208,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "invalidPasswordAlert":
             MessageLookupByLibrary.simpleMessage("Invalid password."),
         "labelMessage": MessageLookupByLibrary.simpleMessage("Message"),
+        "labelName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "labelSend": MessageLookupByLibrary.simpleMessage("Send now"),
         "loginErrorsSchema": m4,
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
@@ -209,6 +216,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mealNameSchema": m6,
         "mealPrepareTimeMinutes": m7,
         "mealPriceCurrency": m8,
+        "messageSentSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Email successfully sent!"),
         "newPasswordTitle":
             MessageLookupByLibrary.simpleMessage("New password"),
         "notificationsOptionsSchema": m9,
@@ -247,6 +256,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure you typed email correctly."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(
-            "Make sure you enter email and password.")
+            "Make sure you enter email and password."),
+        "understoodTitle": MessageLookupByLibrary.simpleMessage("Understood!")
       };
 }

@@ -133,7 +133,7 @@ class MessageLookup extends MessageLookupByLibrary {
             'hora_h':
                 'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
             'moleza':
-                'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
+                'https://mauafood-assets-2023.s3.sa-east-1.amazonaws.com/restaurants/restaurant_front/front_moleza.jpg',
             'other': '',
           })}";
 

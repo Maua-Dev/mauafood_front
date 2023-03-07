@@ -77,7 +77,7 @@
     "labelSend": "Enviar agora",
 
 
-    "mealNameSchema": "{meal, select, ALL{Tudo} SANDWICHES{Lanche} DRINKS{Bebidas} CANDIES{Doces} PLATES{Pratos} PORTIONS{Porções} PASTAS{Massas} SNACKS{Salgados} SALADS{Saladas} DESSERT{Sobremesa} SAVOURY{Salgado} other{Outros}}",
+    "mealNameSchema": "{meal, select, ALL{Tudo} SANDWICHES{Lanches} DRINKS{Bebidas} CANDIES{Doces} PLATES{Pratos} PORTIONS{Porções} PASTAS{Massas} SNACKS{Snacks} SALADS{Saladas} DESSERT{Sobremesa} SAVOURY{Salgado} other{Outros}}",
     "mealPriceCurrency": "{amount} ",
     "@mealPriceCurrency" : {
         "placeholders": {

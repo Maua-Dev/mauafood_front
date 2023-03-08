@@ -73,6 +73,11 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                ElevatedButton(
+                    onPressed: () {
+                      Modular.to.pushNamed('/user/profile');
+                    },
+                    child: const Text('Perfil')),
                 Text(
                   S.of(context).restaurantsTitle,
                   style:

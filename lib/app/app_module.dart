@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/shared/widgets/error_page.dart';
 import 'modules/menu/user_menu_module.dart';
 import 'modules/splash/splash_module.dart';
 
@@ -26,5 +27,7 @@ class AppModule extends Module {
           module: UserMenuModule(),
           // guards: [UserAuthGuard()],
         ),
+        // ignore: prefer_const_constructors
+        WildcardRoute(child: (context, args) => ErrorPage()),
       ];
 }

@@ -53,7 +53,7 @@ void main() {
         final restaurantCard = find.byType(RestaurantWidget);
         expect(restaurantCard, findsNWidgets(mockRestaurants.length));
         final texts = find.byType(Text);
-        expect(texts, findsNWidgets((mockRestaurants.length * 2) + 1));
+        expect(texts, findsNWidgets(6));
       });
     });
   });

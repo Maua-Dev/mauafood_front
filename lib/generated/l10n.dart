@@ -582,7 +582,7 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} hora_h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} moleza{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} other{}}`
+  /// `{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} hora_h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} moleza{https://mauafood-assets-2023.s3.sa-east-1.amazonaws.com/restaurants/restaurant_front/front_moleza.jpg} other{}}`
   String restaurantsImageSchema(Object restaurant) {
     return Intl.select(
       restaurant,
@@ -592,7 +592,7 @@ class S {
         'hora_h':
             'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
         'moleza':
-            'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
+            'https://mauafood-assets-2023.s3.sa-east-1.amazonaws.com/restaurants/restaurant_front/front_moleza.jpg',
         'other': '',
       },
       name: 'restaurantsImageSchema',

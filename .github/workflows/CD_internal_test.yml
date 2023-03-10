@@ -39,7 +39,7 @@ jobs:
             echo "keyPassword=${{ secrets.KEYSTORE_KEY_PASS }}" >> android/key.properties
             echo "keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}" >> android/key.properties
         - name: Build Android App Bundle
-          run: flutter build appbundle --release --dart-define=MSS_PRODUCT=${{vars.MSS_PRODUCT}}
+          run: flutter build appbundle --release --dart-define=MSS_PRODUCT=https://eyqnti1c4b.execute-api.sa-east-1.amazonaws.com/prod/mss-product
 
         - name: Deploy to Play Store
           uses: r0adkll/upload-google-play@v1

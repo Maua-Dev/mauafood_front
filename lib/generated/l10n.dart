@@ -582,17 +582,14 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{https://mauafood-assets-2023.s3.sa-east-1.amazonaws.com/restaurants/restaurant_front/front_souza_de_abreu.jpg} hora_h{https://mauafood-assets-2023.s3.sa-east-1.amazonaws.com/restaurants/restaurant_front/front_restaurante_h.jpg} moleza{https://mauafood-assets-2023.s3.sa-east-1.amazonaws.com/restaurants/restaurant_front/front_moleza.jpg} other{}}`
+  /// `{restaurant, select, biba{bibaImage} hora_h{hora_hImage} moleza{molezaImage} other{}}`
   String restaurantsImageSchema(Object restaurant) {
     return Intl.select(
       restaurant,
       {
-        'biba':
-            'https://mauafood-assets-2023.s3.sa-east-1.amazonaws.com/restaurants/restaurant_front/front_souza_de_abreu.jpg',
-        'hora_h':
-            'https://mauafood-assets-2023.s3.sa-east-1.amazonaws.com/restaurants/restaurant_front/front_restaurante_h.jpg',
-        'moleza':
-            'https://mauafood-assets-2023.s3.sa-east-1.amazonaws.com/restaurants/restaurant_front/front_moleza.jpg',
+        'biba': 'bibaImage',
+        'hora_h': 'hora_hImage',
+        'moleza': 'molezaImage',
         'other': '',
       },
       name: 'restaurantsImageSchema',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contact/contact_dialog.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
@@ -176,34 +177,58 @@ class UserMenuPage extends StatelessWidget {
                                   BlocProvider.of<MenuBloc>(context)
                                       .add(GetAllMealsEvent());
                                 },
-                                child: GridView.builder(
-                                  itemCount: state.listMeal.length,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 24, vertical: 8),
-                                  gridDelegate:
-                                      const SliverGridDelegateWithMaxCrossAxisExtent(
-                                    crossAxisSpacing: 16,
-                                    mainAxisSpacing: 16,
-                                    maxCrossAxisExtent: 210,
-                                  ),
-                                  itemBuilder: (context, index) {
-                                    var recommendedMealList = [
-                                      state.listMeal[1],
-                                      state.listMeal[2],
-                                      state.listMeal[3],
-                                    ];
-                                    return MealCardWidget(
-                                      meal: state.listMeal[index],
-                                      onPressed: () {
-                                        Modular.to.pushNamed('/user/meal-info',
-                                            arguments: [
-                                              state.listMeal[index],
-                                              recommendedMealList
-                                            ]);
-                                      },
-                                    );
-                                  },
-                                ),
+                                child: state.listMeal.isEmpty
+                                    ? Center(
+                                        child: Text(
+                                            S.of(context).errorItemNotFound,
+                                            style: AppTextStyles.h2))
+                                    : GridView.builder(
+                                        itemCount: state.listMeal.length,
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 24, vertical: 8),
+                                        gridDelegate:
+                                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                                          crossAxisSpacing: 16,
+                                          mainAxisSpacing: 16,
+                                          maxCrossAxisExtent: 210,
+                                        ),
+                                        itemBuilder: (context, index) {
+                                          var recommendedMealList = <Meal>[];
+                                          switch (state.listMeal.length) {
+                                            case 0:
+                                              recommendedMealList = [];
+                                              break;
+                                            case 1:
+                                              recommendedMealList = [
+                                                state.listMeal[0]
+                                              ];
+                                              break;
+                                            case 2:
+                                              recommendedMealList = [
+                                                state.listMeal[0],
+                                                state.listMeal[1]
+                                              ];
+                                              break;
+                                            default:
+                                              recommendedMealList = [
+                                                state.listMeal[0],
+                                                state.listMeal[1],
+                                                state.listMeal[2]
+                                              ];
+                                          }
+                                          return MealCardWidget(
+                                            meal: state.listMeal[index],
+                                            onPressed: () {
+                                              Modular.to.pushNamed(
+                                                  '/user/meal-info',
+                                                  arguments: [
+                                                    state.listMeal[index],
+                                                    recommendedMealList
+                                                  ]);
+                                            },
+                                          );
+                                        },
+                                      ),
                               ));
                             }
                             if (state is MenuErrorState) {

@@ -1,0 +1,13 @@
+name: Check Approve Owner
+
+on:
+  pull_request_review:
+    types: [submitted]
+    branches: [homolog, prod]
+
+jobs: 
+  check_owner:
+    uses: maua-dev/ci_workflows_reusable/.github/workflows/pr_owner.yml@main
+    with:
+      repository: ${{ github.repository }}
+    

@@ -1,0 +1,45 @@
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new build to the Google Play internal track"
+  lane :dev do
+    upload_to_play_store(
+      track: 'internal',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
+      )
+  end
+  
+  desc "Submit a new Beta Build to Google Play beta"
+  lane :homolog do
+    upload_to_play_store(
+      track: 'alpha',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
+      )
+  end
+
+  desc "Deploy a new version to the Google Play production track"
+  lane :prod do
+    upload_to_play_store(
+      track: 'beta',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
+      )
+  end
+
+  desc "Promote Release to Production"
+  lane :release do
+    upload_to_play_store(
+      track: 'beta',
+      track_promote_to: 'production',
+      skip_upload_changelogs: true,
+      json_key_data: ENV['PLAY_STORE_CONFIG_JSON'],
+      )
+  end
+end

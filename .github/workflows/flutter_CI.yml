@@ -1,14 +1,8 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Flutter CI TEST
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the develop branch
-  push:
-    branches: [develop, master]
   pull_request:
-    branches: [develop, master]
+    branches: [dev, master]
 jobs:
   flutter_test:
     name: Run flutter test

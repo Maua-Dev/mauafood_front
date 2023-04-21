@@ -88,65 +88,69 @@ class MealInfoPage extends StatelessWidget {
                       const SizedBox(
                         height: 16,
                       ),
-                      Text(
-                        S.of(context).recommendationsTitle,
-                        style: AppTextStyles.h1.copyWith(fontSize: 22),
-                        textAlign: TextAlign.left,
-                      ),
+                      if (recommendedMealList.length > 1)
+                        Text(
+                          S.of(context).recommendationsTitle,
+                          style: AppTextStyles.h1.copyWith(fontSize: 22),
+                          textAlign: TextAlign.left,
+                        ),
                       const SizedBox(
                         height: 8,
                       ),
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          SizedBox(
-                            height: 150,
-                            width: MediaQuery.of(context).size.width / 4,
-                            child: RecommendedMealWidget(
-                              meal: recommendedMealList[0],
-                              onPressed: () {
-                                Modular.to.pushNamed('/user/meal-info',
-                                    arguments: [
-                                      recommendedMealList[0],
-                                      recommendedMealList
-                                    ]);
-                              },
+                          if (recommendedMealList.length > 1)
+                            SizedBox(
+                              height: 150,
+                              width: MediaQuery.of(context).size.width / 4,
+                              child: RecommendedMealWidget(
+                                meal: recommendedMealList[0],
+                                onPressed: () {
+                                  Modular.to.pushNamed('/user/meal-info',
+                                      arguments: [
+                                        recommendedMealList[0],
+                                        recommendedMealList
+                                      ]);
+                                },
+                              ),
                             ),
-                          ),
                           const SizedBox(
                             width: 12,
                           ),
-                          SizedBox(
-                            height: 150,
-                            width: MediaQuery.of(context).size.width / 4,
-                            child: RecommendedMealWidget(
-                              meal: recommendedMealList[1],
-                              onPressed: () {
-                                Modular.to.pushNamed('/user/meal-info',
-                                    arguments: [
-                                      recommendedMealList[1],
-                                      recommendedMealList
-                                    ]);
-                              },
+                          if (recommendedMealList.length > 1)
+                            SizedBox(
+                              height: 150,
+                              width: MediaQuery.of(context).size.width / 4,
+                              child: RecommendedMealWidget(
+                                meal: recommendedMealList[1],
+                                onPressed: () {
+                                  Modular.to.pushNamed('/user/meal-info',
+                                      arguments: [
+                                        recommendedMealList[1],
+                                        recommendedMealList
+                                      ]);
+                                },
+                              ),
                             ),
-                          ),
                           const SizedBox(
                             width: 12,
                           ),
-                          SizedBox(
-                            height: 150,
-                            width: MediaQuery.of(context).size.width / 4,
-                            child: RecommendedMealWidget(
-                              meal: recommendedMealList[2],
-                              onPressed: () {
-                                Modular.to.pushNamed('/user/meal-info',
-                                    arguments: [
-                                      recommendedMealList[2],
-                                      recommendedMealList
-                                    ]);
-                              },
+                          if (recommendedMealList.length > 2)
+                            SizedBox(
+                              height: 150,
+                              width: MediaQuery.of(context).size.width / 4,
+                              child: RecommendedMealWidget(
+                                meal: recommendedMealList[2],
+                                onPressed: () {
+                                  Modular.to.pushNamed('/user/meal-info',
+                                      arguments: [
+                                        recommendedMealList[2],
+                                        recommendedMealList
+                                      ]);
+                                },
+                              ),
                             ),
-                          ),
                         ],
                       )
                     ],

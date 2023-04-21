@@ -1,0 +1,68 @@
+name: Build & Deploy to Play Store
+on:
+  push:
+    paths:
+      - 'pubspec.yaml'
+    branches:
+      - dev
+      - homolog
+      - prod
+
+jobs:
+  fastlane-deploy_play_store:
+    if: contains(github.event.head_commit.message, 'bump version')
+    name: Build & Deploy to Play Store
+    runs-on: ubuntu-latest
+    environment: ${{ github.ref_name }}
+    permissions:
+        id-token: write
+        contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java Version
+        uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+
+      - name: Setup Flutter Version
+        uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+
+      - name: Get flutter dependencies
+        run: flutter pub get
+
+      - name: Setup Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "2.6"
+          bundler-cache: true
+          working-directory: android
+
+      - name: Configure Keystore
+        run: |
+          echo "$PLAY_STORE_UPLOAD_KEY" | base64 --decode > app/upload-keystore.jks
+          echo "storeFile=upload-keystore.jks" >> key.properties
+          echo "keyAlias=$KEYSTORE_KEY_ALIAS" >> key.properties
+          echo "storePassword=$KEYSTORE_STORE_PASSWORD" >> key.properties
+          echo "keyPassword=$KEYSTORE_KEY_PASSWORD" >> key.properties
+        env:
+          PLAY_STORE_UPLOAD_KEY: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEYSTORE_KEY_PASSWORD: ${{ secrets.KEYSTORE_KEY_PASS }}
+          KEYSTORE_STORE_PASSWORD: ${{ secrets.KEYSTORE_PASS }}
+        working-directory: android
+
+      - name: Build Version
+        run: cat pubspec.yaml | grep -o 'version:[^:]*' | cut -f2 -d":" | xargs
+
+      - name: Build appbundle
+        run: flutter build appbundle --release --dart-define=S3_ASSETS_BASE_URL=${{ vars.AWS_BUCKET_ASSETS }}
+
+      - name: Exec fastlane
+        run: bundle exec fastlane ${{ github.ref_name }}
+        env:
+          PLAY_STORE_CONFIG_JSON: ${{ secrets.PLAY_STORE_CONFIG_JSON }}
+        working-directory: android

@@ -130,12 +130,9 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m12(placeholders, restaurantName) => "${restaurantName}";
 
   static String m13(restaurant) => "${Intl.select(restaurant, {
-            'biba':
-                'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
-            'hora_h':
-                'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
-            'moleza':
-                'https://mauafood-assets-2023.s3.sa-east-1.amazonaws.com/restaurants/restaurant_front/front_moleza.jpg',
+            'biba': 'bibaImage',
+            'hora_h': 'hora_hImage',
+            'moleza': 'molezaImage',
             'other': '',
           })}";
 

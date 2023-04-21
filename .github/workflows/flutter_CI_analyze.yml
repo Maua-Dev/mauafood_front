@@ -1,12 +1,8 @@
 name: Flutter CI Linter
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the develop branch
-  push:
-    branches: [develop, master]
   pull_request:
-    branches: [develop, master]
+    branches: [dev, master]
 jobs:
   flutter_analyze:
     name: Run flutter analyze
@@ -36,3 +32,6 @@ jobs:
 
       - name: Run Code format test/
         run: flutter format --dry-run --set-exit-if-changed test/
+
+      - name: Build Android
+        run: flutter build appbundle --debug

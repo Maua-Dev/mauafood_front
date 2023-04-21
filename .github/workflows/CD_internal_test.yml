@@ -1,9 +1,8 @@
 name: Deploy Play Store Intern Test
 
 on:
-  push:
-    branches:
-      - develop
+  workflow_dispatch:
+    
 jobs:
     release:
       name: Release

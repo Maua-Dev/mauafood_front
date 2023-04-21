@@ -66,7 +66,7 @@ class DisclaimerDialog extends StatelessWidget {
             style: AppTextStyles.h2.copyWith(
               fontSize: 14,
             ),
-            textAlign: TextAlign.start,
+            textAlign: TextAlign.center,
           ),
           const SizedBox(
             height: 16,

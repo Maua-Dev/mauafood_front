@@ -582,17 +582,14 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} hora_h{https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg} moleza{https://mauafood-assets-2023.s3.sa-east-1.amazonaws.com/restaurants/restaurant_front/front_moleza.jpg} other{}}`
+  /// `{restaurant, select, biba{bibaImage} hora_h{hora_hImage} moleza{molezaImage} other{}}`
   String restaurantsImageSchema(Object restaurant) {
     return Intl.select(
       restaurant,
       {
-        'biba':
-            'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
-        'hora_h':
-            'https://upload.wikimedia.org/wikipedia/commons/6/62/Barbieri_-_ViaSophia25668.jpg',
-        'moleza':
-            'https://mauafood-assets-2023.s3.sa-east-1.amazonaws.com/restaurants/restaurant_front/front_moleza.jpg',
+        'biba': 'bibaImage',
+        'hora_h': 'hora_hImage',
+        'moleza': 'molezaImage',
         'other': '',
       },
       name: 'restaurantsImageSchema',

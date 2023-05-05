@@ -1,0 +1,91 @@
+name: Build & Deploy to App Store and Testflight
+on:
+  push:
+    paths:
+      - 'pubspec.yaml'
+    branches:
+      - homolog
+      - prod
+
+jobs:
+  build_IOS_App:
+    if: ${{contains(github.event.head_commit.message, 'bump version') || contains(github.event.head_commit.message, 'hotfix')  }}
+    name: Build IOS App
+    runs-on: macos-latest
+    environment: ${{ github.ref_name }}
+    permissions:
+      id-token: write
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java Version
+        uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
+
+      - name: Setup Flutter Version
+        uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+
+      - name: Get flutter dependencies
+        run: flutter pub get
+
+      - name: Setup Fastlane
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "2.6"
+          bundler-cache: true
+          working-directory: ios
+
+      - name: Build appbundle
+        run: flutter build ios --no-codesign --dart-define=MSS_USER_BASE_URL=${{vars.MSS_USERS_ENDPOINT}} --dart-define=MSS_ACTIVITIES_BASE_URL=${{vars.MSS_ACTIVITIES_ENDPOINT}} --dart-define=S3_BASE_URL=${{vars.AWS_BUCKET_ASSETS}} --dart-define=SPONSOR_FORM_REQUEST_URL=${{vars.SPONSOR_FORM_REQUEST_URL}} --dart-define=ENV=${{vars.ENV}}
+
+      - name: Pods install
+        run: pod install
+        working-directory: ios
+
+      - name: iOS Build Action
+        uses: yukiarrr/ios-build-action@v1.8.0
+        with:
+          project-path: ios/Runner.xcodeproj
+          workspace-path: ios/Runner.xcworkspace
+          team-id: ${{ secrets.TEAM_ID }}
+          mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
+          p12-base64: ${{ secrets.P12_KEY }}
+          certificate-password: ${{ secrets.PW_CERT }}
+          code-signing-identity: ${{ vars.CODE_SIGNING_IDENTITY }}
+      
+      - name: Create Metadata
+        if: github.ref_name == 'prod'
+        env: 
+          GH_TOKEN: ${{ github.token }}
+          repository: ${{ github.repository  }}
+          run_id: ${{ github.run_id }}
+        run: |
+          mkdir -p fastlane/metadata/default
+          mkdir -p fastlane/metadata/pt-BR
+          mkdir -p fastlane/metadata/en-US
+          release_notes=$(gh api "/repos/$repository/actions/runs/$run_id/approvals" --jq '.[0] | .comment' | xargs)
+          echo "$release_notes"
+          if [[ -n '$release_notes' ]]; then
+            echo "$release_notes" > fastlane/metadata/default/release_notes.txt
+            echo "$release_notes" > fastlane/metadata/pt-BR/release_notes.txt
+            echo "$release_notes" > fastlane/metadata/en-US/release_notes.txt
+          else
+            echo "Ajustes de bugs e performance" > fastlane/metadata/default/release_notes.txt
+            echo "Ajustes de bugs e performance" > fastlane/metadata/pt-BR/release_notes.txt
+            echo "Fix bugs and improve performance" > fastlane/metadata/en-US/release_notes.txt
+          fi
+        working-directory: ios
+
+      - name: Exec fastlane
+        run: bundle exec fastlane ${{ github.ref_name }}
+        env:
+          APP_PATH: /Users/runner/work/mauafood_front/mauafood_front/output.ipa
+          ISSUER_ID: ${{ secrets.APPSTORE_ISSUER_ID }}
+          API_KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
+          API_PRIVATE_KEY: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+        working-directory: ios

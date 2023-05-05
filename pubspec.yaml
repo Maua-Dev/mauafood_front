@@ -2,7 +2,7 @@ name: mauafood_front
 description: Mauá Food.
 
 publish_to: 'none'
-version: 1.1.11+28
+version: 1.1.13+30
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
@@ -11,7 +11,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_localizations:
-        sdk: flutter
+    sdk: flutter
   cupertino_icons: ^1.0.2
   flutter_modular: ^5.0.3
   flutter_bloc: ^8.1.1
@@ -19,10 +19,7 @@ dependencies:
   equatable: ^2.0.5
   dartz: ^0.10.1
   enum_to_string: ^2.0.1
-  mockito: ^5.3.2
-  build_runner: ^2.3.0
   google_fonts: ^2.0.1
-  bloc_test: ^9.1.0
   network_image_mock: ^2.1.1
   amplify_auth_cognito: ^0.6.9
   amplify_flutter: ^0.6.9
@@ -43,6 +40,9 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   modular_test: ^2.0.0
   flutter_launcher_icons: ^0.10.0
+  build_runner: ^2.3.0
+  mockito: ^5.3.2
+  bloc_test: ^9.1.0
 
 flutter_icons:
   android: true

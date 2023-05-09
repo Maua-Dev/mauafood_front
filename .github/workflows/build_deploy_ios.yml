@@ -70,7 +70,7 @@ jobs:
           mkdir -p fastlane/metadata/en-US
           release_notes=$(gh api "/repos/$repository/actions/runs/$run_id/approvals" --jq '.[0] | .comment' | xargs)
           echo "$release_notes"
-          if [[ -n '$release_notes' ]]; then
+          if [[ -n "$release_notes" ]]; then
             echo "$release_notes" > fastlane/metadata/default/release_notes.txt
             echo "$release_notes" > fastlane/metadata/pt-BR/release_notes.txt
             echo "$release_notes" > fastlane/metadata/en-US/release_notes.txt

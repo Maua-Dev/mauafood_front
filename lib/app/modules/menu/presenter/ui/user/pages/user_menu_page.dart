@@ -212,7 +212,7 @@ class UserMenuPage extends StatelessWidget {
                                 ? buildSuccess(state.listMeal)
                                 : state is MenuErrorState
                                     ? buildError(state.failure)
-                                    : Text(S.of(context).errorGeneric),
+                                    : const SizedBox.shrink(),
                       ],
                     ),
                   ),

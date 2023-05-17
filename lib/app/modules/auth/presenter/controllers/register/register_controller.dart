@@ -1,7 +1,6 @@
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mobx/mobx.dart';
-import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/register_user.dart';
 import '../../ui/states/register_state.dart';
 
@@ -10,10 +9,9 @@ part 'register_controller.g.dart';
 class RegisterController = RegisterControllerBase with _$RegisterController;
 
 abstract class RegisterControllerBase with Store {
-  final AuthStorageInterface storage;
   final RegisterUserInterface _register;
 
-  RegisterControllerBase(this.storage, this._register);
+  RegisterControllerBase(this._register);
 
   @observable
   RegisterState state = RegisterInitialState();

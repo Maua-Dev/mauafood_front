@@ -2,7 +2,7 @@ import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';
 import '../../../domain/usecases/resend_confirmation_code.dart';
-import '../../ui/states/resend_confirmation_state.dart';
+import '../../states/resend_confirmation_state.dart';
 
 part 'resend_confirmation_controller.g.dart';
 

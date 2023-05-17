@@ -1,8 +1,9 @@
 import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';
+import '../../../../../shared/utils/validation_utils.dart';
 import '../../../domain/usecases/confirm_reset_password.dart';
-import '../../ui/states/change_password_state.dart';
+import '../../states/change_password_state.dart';
 
 part 'change_password_controller.g.dart';
 
@@ -39,26 +40,14 @@ abstract class ChangePasswordControllerBase with Store {
   void setConfirmNewPassword(String value) => confirmNewPassword = value;
 
   @action
-  String? validatePassword(String? value) {
-    String pattern =
-        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
-    RegExp regExp = RegExp(pattern);
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (!regExp.hasMatch(value)) {
-      return S.current.passwordInstructionsAlert;
-    }
-    return null;
+  String? validatePassword(String? password) {
+    return ValidationUtils.validatePassword(password);
   }
 
   @action
-  String? validateConfirmPassword(String? value) {
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (value != newPassword) {
-      return S.current.equalPasswordAlert;
-    }
-    return null;
+  String? validateConfirmPassword(String? confirmPassword) {
+    return ValidationUtils.validateConfirmPassword(
+        newPassword, confirmPassword);
   }
 
   @action
@@ -73,12 +62,7 @@ abstract class ChangePasswordControllerBase with Store {
   }
 
   @action
-  String? validateCode(String? value) {
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (value.length < 6) {
-      return S.current.codeErrorAlert;
-    }
-    return null;
+  String? validateCode(String? code) {
+    return ValidationUtils.validateCode(code);
   }
 }

@@ -1,5 +1,5 @@
-import '../../../../../shared/infra/user_roles_enum.dart';
-import '../../../domain/errors/auth_errors.dart';
+import '../../../../shared/infra/user_roles_enum.dart';
+import '../../domain/errors/auth_errors.dart';
 
 abstract class LoginState {
   const LoginState();

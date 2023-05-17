@@ -2,7 +2,7 @@ import 'package:mobx/mobx.dart';
 
 import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/logout_user.dart';
-import '../../ui/states/logout_state.dart';
+import '../../states/logout_state.dart';
 
 part 'logout_controller.g.dart';
 

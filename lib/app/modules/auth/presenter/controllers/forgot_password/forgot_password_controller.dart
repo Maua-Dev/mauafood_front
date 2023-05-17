@@ -3,7 +3,7 @@ import 'package:mobx/mobx.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/forgot_password.dart';
-import '../../ui/states/forgot_password_state.dart';
+import '../../states/forgot_password_state.dart';
 
 part 'forgot_password_controller.g.dart';
 

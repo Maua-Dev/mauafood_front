@@ -4,7 +4,7 @@ import '../../../../../shared/infra/user_roles_enum.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/get_user_attributes.dart';
 import '../../../domain/usecases/login_user.dart';
-import '../../ui/states/login_state.dart';
+import '../../states/login_state.dart';
 
 part 'login_controller.g.dart';
 

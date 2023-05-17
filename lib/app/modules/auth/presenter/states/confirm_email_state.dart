@@ -1,4 +1,4 @@
-import '../../../domain/errors/auth_errors.dart';
+import '../../domain/errors/auth_errors.dart';
 
 abstract class ConfirmEmailState {
   const ConfirmEmailState();

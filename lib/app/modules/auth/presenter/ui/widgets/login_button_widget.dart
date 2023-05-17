@@ -4,7 +4,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../controllers/login/login_controller.dart';
-import '../states/login_state.dart';
+import '../../states/login_state.dart';
 
 class LoginButtonWidget extends StatelessWidget {
   final Function()? onPressed;

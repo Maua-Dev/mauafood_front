@@ -1,4 +1,4 @@
-import '../../../../domain/errors/errors.dart';
+import '../../../domain/errors/errors.dart';
 
 abstract class ContactState {
   const ContactState();

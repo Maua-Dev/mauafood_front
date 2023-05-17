@@ -33,7 +33,15 @@ void main() {
     when(repository.registerUser(user)).thenAnswer(
       (realInvocation) async => const Right(true),
     );
-    var result = await useCase(user);
+    var result = await useCase(
+        user.fullName,
+        user.cpf,
+        user.isStudent,
+        user.email,
+        user.password,
+        user.emailNotifications,
+        user.appNotifications,
+        user.acceptTerms);
     expect(result.fold(id, id), isA<bool>());
   });
 
@@ -41,7 +49,15 @@ void main() {
     when(repository.registerUser(user)).thenAnswer(
       (realInvocation) async => Left(RegisterError(message: '')),
     );
-    var result = await useCase(user);
+    var result = await useCase(
+        user.fullName,
+        user.cpf,
+        user.isStudent,
+        user.email,
+        user.password,
+        user.emailNotifications,
+        user.appNotifications,
+        user.acceptTerms);
     expect(result.fold(id, id), isA<RegisterError>());
   });
 }

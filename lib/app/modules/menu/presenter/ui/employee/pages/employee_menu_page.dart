@@ -8,7 +8,7 @@ import '../../../../../../shared/themes/app_text_styles.dart';
 import '../../../../../restaurants/domain/infra/restaurant_enum.dart';
 import '../../../../domain/enum/meal_enum.dart';
 import '../../../controllers/menu/menu_controller.dart';
-import '../../states/menu_state.dart';
+import '../../../states/menu_state.dart';
 import '../../user/widgets/error_loading_menu_widget.dart';
 import '../../user/widgets/filter_button_widget.dart';
 import '../widgets/meal_card_employee_widget.dart';

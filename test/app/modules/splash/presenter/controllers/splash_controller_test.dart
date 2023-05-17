@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/splash/presenter/controllers/splash_controller.dart';
-import 'package:mauafood_front/app/modules/splash/presenter/ui/states/splash_state.dart';
+import 'package:mauafood_front/app/modules/splash/presenter/states/splash_state.dart';
 
 void main() {
   group('[TEST] - SplashControllerTest', () {

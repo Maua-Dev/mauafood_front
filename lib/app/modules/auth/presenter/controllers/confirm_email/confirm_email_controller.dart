@@ -1,8 +1,9 @@
 import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';
+import '../../../../../shared/utils/validation_utils.dart';
 import '../../../domain/usecases/confirm_email.dart';
-import '../../ui/states/confirm_email_state.dart';
+import '../../states/confirm_email_state.dart';
 
 part 'confirm_email_controller.g.dart';
 
@@ -31,12 +32,12 @@ abstract class ConfirmEmailControllerBase with Store {
 
   @action
   String? validateCode(String? value) {
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (value.length < 6) {
-      return S.current.codeErrorAlert;
-    }
-    return null;
+    return ValidationUtils.validateCode(value);
+  }
+
+  @action
+  String? validateEmail(String? value) {
+    return ValidationUtils.validateEmail(value);
   }
 
   @action

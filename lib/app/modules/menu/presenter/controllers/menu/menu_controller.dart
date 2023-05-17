@@ -1,4 +1,4 @@
-import 'package:mauafood_front/app/modules/menu/presenter/ui/states/menu_state.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/states/menu_state.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../restaurants/domain/infra/restaurant_enum.dart';

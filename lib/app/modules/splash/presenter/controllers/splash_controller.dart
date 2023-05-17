@@ -1,4 +1,4 @@
-import 'package:mauafood_front/app/modules/splash/presenter/ui/states/splash_state.dart';
+import 'package:mauafood_front/app/modules/splash/presenter/states/splash_state.dart';
 import 'package:mobx/mobx.dart';
 
 part 'splash_controller.g.dart';

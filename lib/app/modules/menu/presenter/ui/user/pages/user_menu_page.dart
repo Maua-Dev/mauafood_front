@@ -9,7 +9,7 @@ import '../../../../../restaurants/domain/infra/restaurant_enum.dart';
 import '../../../../domain/enum/meal_enum.dart';
 import '../../../../domain/errors/errors.dart';
 import '../../../controllers/menu/menu_controller.dart';
-import '../../states/menu_state.dart';
+import '../../../states/menu_state.dart';
 import '../widgets/error_loading_menu_widget.dart';
 import '../widgets/filter_button_widget.dart';
 import '../widgets/meal_card_widget.dart';

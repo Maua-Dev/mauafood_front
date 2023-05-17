@@ -2,7 +2,7 @@ import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mobx/mobx.dart';
 import '../../../domain/usecases/register_user.dart';
-import '../../ui/states/register_state.dart';
+import '../../states/register_state.dart';
 
 part 'register_controller.g.dart';
 

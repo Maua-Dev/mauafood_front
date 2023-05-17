@@ -1,4 +1,4 @@
-import 'package:mauafood_front/app/modules/menu/presenter/ui/states/contact/contact_state.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/states/contact/contact_state.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';

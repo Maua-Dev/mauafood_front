@@ -132,34 +132,34 @@ mixin _$ChangePasswordController on ChangePasswordControllerBase, Store {
   }
 
   @override
-  String? validatePassword(String? value) {
+  String? validatePassword(String? password) {
     final _$actionInfo = _$ChangePasswordControllerBaseActionController
         .startAction(name: 'ChangePasswordControllerBase.validatePassword');
     try {
-      return super.validatePassword(value);
+      return super.validatePassword(password);
     } finally {
       _$ChangePasswordControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  String? validateConfirmPassword(String? value) {
+  String? validateConfirmPassword(String? confirmPassword) {
     final _$actionInfo =
         _$ChangePasswordControllerBaseActionController.startAction(
             name: 'ChangePasswordControllerBase.validateConfirmPassword');
     try {
-      return super.validateConfirmPassword(value);
+      return super.validateConfirmPassword(confirmPassword);
     } finally {
       _$ChangePasswordControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  String? validateCode(String? value) {
+  String? validateCode(String? code) {
     final _$actionInfo = _$ChangePasswordControllerBaseActionController
         .startAction(name: 'ChangePasswordControllerBase.validateCode');
     try {
-      return super.validateCode(value);
+      return super.validateCode(code);
     } finally {
       _$ChangePasswordControllerBaseActionController.endAction(_$actionInfo);
     }

@@ -11,9 +11,9 @@ class ForgotPasswordController = ForgotPasswordControllerBase
 
 abstract class ForgotPasswordControllerBase with Store {
   final AuthStorageInterface storage;
-  final ForgotPasswordInterface forgotPassword;
+  final ForgotPasswordInterface _forgotPassword;
 
-  ForgotPasswordControllerBase(this.storage, this.forgotPassword);
+  ForgotPasswordControllerBase(this.storage, this._forgotPassword);
 
   @observable
   ForgotPasswordState state = ForgotPasswordInitialState();
@@ -24,7 +24,7 @@ abstract class ForgotPasswordControllerBase with Store {
   @action
   Future<void> forgotPasswordUser(String email) async {
     changeState(ForgotPasswordLoadingState());
-    var result = await forgotPassword(email);
+    var result = await _forgotPassword(email);
     changeState(result.fold((failure) {
       return ForgotPasswordErrorState(failure);
     }, (isLogged) {

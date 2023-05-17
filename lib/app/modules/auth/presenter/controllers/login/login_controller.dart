@@ -10,16 +10,16 @@ part 'login_controller.g.dart';
 class LoginController = LoginControllerBase with _$LoginController;
 
 abstract class LoginControllerBase with Store {
-  final LoginUserInterface login;
+  final LoginUserInterface _login;
   final AuthStorageInterface storage;
-  final GetUserAttributesInterface getUserAttributes;
+  final GetUserAttributesInterface _getUserAttributes;
   bool _loggedIn = false;
   UserRolesEnum? _userRole;
 
   bool get isLoggedIn => _loggedIn;
   UserRolesEnum? get userRole => _userRole;
 
-  LoginControllerBase(this.login, this.storage, this.getUserAttributes);
+  LoginControllerBase(this._login, this.storage, this._getUserAttributes);
 
   @observable
   LoginState state = LoginInitialState();
@@ -30,8 +30,8 @@ abstract class LoginControllerBase with Store {
   @action
   Future<void> loginWithEmail(String email, String password) async {
     changeState(LoginLoadingState());
-    var eitherIsLogged = await login(email, password);
-    var userAttributes = await getUserAttributes();
+    var eitherIsLogged = await _login(email, password);
+    var userAttributes = await _getUserAttributes();
     userAttributes.fold((failure) => changeState(LoginErrorState(failure)),
         (attributes) async {
       var role = attributes

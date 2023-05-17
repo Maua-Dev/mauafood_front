@@ -486,16 +486,6 @@ class S {
     );
   }
 
-  /// `Field is required`
-  String get fieldRequired {
-    return Intl.message(
-      'Field is required',
-      name: 'fieldRequired',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `Search`
   String get searchTitle {
     return Intl.message(

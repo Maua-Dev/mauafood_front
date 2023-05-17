@@ -186,8 +186,6 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Something went wrong!"),
         "errorItemNotFound":
             MessageLookupByLibrary.simpleMessage("No items found."),
-        "fieldRequired":
-            MessageLookupByLibrary.simpleMessage("Field is required"),
         "fillFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure you fill in all the fields."),
         "forgotPasswordErrorsSchema": m2,

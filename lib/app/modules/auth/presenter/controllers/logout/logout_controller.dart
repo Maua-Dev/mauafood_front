@@ -10,9 +10,9 @@ class LogoutController = LogoutControllerBase with _$LogoutController;
 
 abstract class LogoutControllerBase with Store {
   final AuthStorageInterface storage;
-  final LogoutUserInterface logout;
+  final LogoutUserInterface _logout;
 
-  LogoutControllerBase(this.logout, this.storage);
+  LogoutControllerBase(this._logout, this.storage);
 
   @observable
   LogoutState state = LogoutInitialState();
@@ -23,7 +23,7 @@ abstract class LogoutControllerBase with Store {
   @action
   Future<void> logoutUser() async {
     changeState(LogoutLoadingState());
-    var result = await logout();
+    var result = await _logout();
     changeState(result.fold((failure) {
       return LogoutErrorState(failure);
     }, (isLogged) {

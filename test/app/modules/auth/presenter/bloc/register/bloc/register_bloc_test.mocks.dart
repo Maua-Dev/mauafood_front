@@ -9,13 +9,11 @@ import 'package:dartz/dartz.dart' as _i2;
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart'
     as _i5;
 import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_email.dart'
-    as _i7;
+    as _i6;
 import 'package:mauafood_front/app/modules/auth/domain/usecases/register_user.dart'
     as _i3;
 import 'package:mauafood_front/app/modules/auth/domain/usecases/resend_confirmation_code.dart'
-    as _i8;
-import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart'
-    as _i6;
+    as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -49,18 +47,45 @@ class MockRegisterUserInterface extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.RegisterError, bool>> call(_i6.UserModel? user) =>
+  _i4.Future<_i2.Either<_i5.RegisterError, bool>> call(
+    String? fullName,
+    String? cpf,
+    bool? isStudent,
+    String? email,
+    String? password,
+    bool? emailNotifications,
+    bool? appNotifications,
+    bool? acceptTerms,
+  ) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
-          [user],
+          [
+            fullName,
+            cpf,
+            isStudent,
+            email,
+            password,
+            emailNotifications,
+            appNotifications,
+            acceptTerms,
+          ],
         ),
         returnValue: _i4.Future<_i2.Either<_i5.RegisterError, bool>>.value(
             _FakeEither_0<_i5.RegisterError, bool>(
           this,
           Invocation.method(
             #call,
-            [user],
+            [
+              fullName,
+              cpf,
+              isStudent,
+              email,
+              password,
+              emailNotifications,
+              appNotifications,
+              acceptTerms,
+            ],
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.RegisterError, bool>>);
@@ -70,7 +95,7 @@ class MockRegisterUserInterface extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockConfirmEmailInterface extends _i1.Mock
-    implements _i7.ConfirmEmailInterface {
+    implements _i6.ConfirmEmailInterface {
   MockConfirmEmailInterface() {
     _i1.throwOnMissingStub(this);
   }
@@ -107,7 +132,7 @@ class MockConfirmEmailInterface extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockResendConfirmationCodeInterface extends _i1.Mock
-    implements _i8.ResendConfirmationCodeInterface {
+    implements _i7.ResendConfirmationCodeInterface {
   MockResendConfirmationCodeInterface() {
     _i1.throwOnMissingStub(this);
   }

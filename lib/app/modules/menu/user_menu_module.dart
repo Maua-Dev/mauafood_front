@@ -1,10 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/menu/data/datasource/menu_datasource_impl.dart';
 import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_meal.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/bloc/contact/contact_bloc.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/controllers/contact/contact_controller.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_menu_page.dart';
-
 import '../meal-info/meal_info_module.dart';
 import '../restaurants/domain/infra/restaurant_enum.dart';
 import '../restaurants/restaurant_module.dart';
@@ -17,11 +16,12 @@ class UserMenuModule extends Module {
   List<Bind> get binds => [
         Bind<GetRestaurantMealInterface>(
             (i) => GetRestaurantMealImpl(repository: i())),
-        Bind<MenuBloc>(
-          (i) => MenuBloc(getRestaurantMeal: i(), restaurantInfo: i.args.data),
+        Bind<MenuController>(
+          (i) => MenuController(
+              getRestaurantMeal: i(), restaurantInfo: i.args.data),
         ),
-        Bind<ContactBloc>(
-          (i) => ContactBloc(),
+        Bind<ContactController>(
+          (i) => ContactController(),
         ),
         Bind<MenuRepositoryInterface>(
             (i) => MenuRepositoryImpl(datasource: i())),

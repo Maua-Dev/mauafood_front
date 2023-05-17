@@ -55,7 +55,7 @@
     "sendCodeEmailInstructionsTitle": "We sent a confirmation code to your email, enter it in the field below.",
     "registerEmailInstructionsTitle": "To complete your registration, we will send you an email with a code, enter it in the field below.",
 
-
+    "fieldRequired": "Field is required",
 
     "searchTitle": "Search",
     "restaurantsTitle": "Restaurants",

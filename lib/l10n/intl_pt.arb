@@ -55,7 +55,7 @@
     "sendCodeEmailInstructionsTitle": "Enviamos um código de confirmação em seu e-mail, digite-o no campo abaixo.",
     "registerEmailInstructionsTitle": "Para completar seu cadastro enviamos um e-mail com um código, insira-o no campo abaixo.",
 
-
+    "fieldRequired": "Campo é obrigatório",
 
     "searchTitle": "Pesquisa",
     "restaurantsTitle": "Restaurantes",

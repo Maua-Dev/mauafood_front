@@ -1,8 +1,6 @@
-import 'package:equatable/equatable.dart';
-
 import '../enum/meal_enum.dart';
 
-class Meal extends Equatable {
+class Meal {
   final String id;
   final String name;
   final String description;
@@ -24,19 +22,4 @@ class Meal extends Equatable {
     this.prepareTime,
     required this.type,
   });
-
-  @override
-  List<Object> get props {
-    return [
-      id,
-      name,
-      description,
-      price,
-      photo,
-      prepareTime ?? '',
-      type,
-      available,
-      lastUpdate,
-    ];
-  }
 }

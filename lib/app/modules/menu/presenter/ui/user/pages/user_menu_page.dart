@@ -211,9 +211,7 @@ class UserMenuPage extends StatelessWidget {
                             : state is MenuLoadedSuccessState
                                 ? buildSuccess(state.listMeal)
                                 : state is MenuErrorState
-                                    ? ErrorLoadingMenuWidget(
-                                        errorMessage: state.failure.message,
-                                      )
+                                    ? buildError(state.failure)
                                     : Text(S.of(context).errorGeneric),
                       ],
                     ),

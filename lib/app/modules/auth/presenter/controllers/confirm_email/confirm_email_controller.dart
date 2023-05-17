@@ -1,5 +1,6 @@
 import 'package:mobx/mobx.dart';
 
+import '../../../../../../generated/l10n.dart';
 import '../../../domain/usecases/confirm_email.dart';
 import '../../ui/states/confirm_email_state.dart';
 
@@ -27,6 +28,16 @@ abstract class ConfirmEmailControllerBase with Store {
 
   @action
   void setCode(String value) => code = value;
+
+  @action
+  String? validateCode(String? value) {
+    if (value!.isEmpty) {
+      return S.current.requiredFieldAlert;
+    } else if (value.length < 6) {
+      return S.current.codeErrorAlert;
+    }
+    return null;
+  }
 
   @action
   Future<void> confirmEmail() async {

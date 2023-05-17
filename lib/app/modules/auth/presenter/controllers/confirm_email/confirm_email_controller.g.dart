@@ -91,6 +91,17 @@ mixin _$ConfirmEmailController on ConfirmEmailControllerBase, Store {
   }
 
   @override
+  String? validateCode(String? value) {
+    final _$actionInfo = _$ConfirmEmailControllerBaseActionController
+        .startAction(name: 'ConfirmEmailControllerBase.validateCode');
+    try {
+      return super.validateCode(value);
+    } finally {
+      _$ConfirmEmailControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 state: ${state},

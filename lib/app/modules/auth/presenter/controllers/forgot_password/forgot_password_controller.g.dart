@@ -25,14 +25,30 @@ mixin _$ForgotPasswordController on ForgotPasswordControllerBase, Store {
     });
   }
 
+  late final _$emailAtom =
+      Atom(name: 'ForgotPasswordControllerBase.email', context: context);
+
+  @override
+  String get email {
+    _$emailAtom.reportRead();
+    return super.email;
+  }
+
+  @override
+  set email(String value) {
+    _$emailAtom.reportWrite(value, super.email, () {
+      super.email = value;
+    });
+  }
+
   late final _$forgotPasswordUserAsyncAction = AsyncAction(
       'ForgotPasswordControllerBase.forgotPasswordUser',
       context: context);
 
   @override
-  Future<void> forgotPasswordUser(String email) {
+  Future<void> forgotPasswordUser() {
     return _$forgotPasswordUserAsyncAction
-        .run(() => super.forgotPasswordUser(email));
+        .run(() => super.forgotPasswordUser());
   }
 
   late final _$ForgotPasswordControllerBaseActionController =
@@ -50,9 +66,32 @@ mixin _$ForgotPasswordController on ForgotPasswordControllerBase, Store {
   }
 
   @override
+  void setEmail(String value) {
+    final _$actionInfo = _$ForgotPasswordControllerBaseActionController
+        .startAction(name: 'ForgotPasswordControllerBase.setEmail');
+    try {
+      return super.setEmail(value);
+    } finally {
+      _$ForgotPasswordControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validateEmail(String? value) {
+    final _$actionInfo = _$ForgotPasswordControllerBaseActionController
+        .startAction(name: 'ForgotPasswordControllerBase.validateEmail');
+    try {
+      return super.validateEmail(value);
+    } finally {
+      _$ForgotPasswordControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-state: ${state}
+state: ${state},
+email: ${email}
     ''';
   }
 }

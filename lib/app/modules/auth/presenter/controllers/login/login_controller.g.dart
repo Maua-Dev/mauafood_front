@@ -25,13 +25,44 @@ mixin _$LoginController on LoginControllerBase, Store {
     });
   }
 
+  late final _$emailAtom =
+      Atom(name: 'LoginControllerBase.email', context: context);
+
+  @override
+  String get email {
+    _$emailAtom.reportRead();
+    return super.email;
+  }
+
+  @override
+  set email(String value) {
+    _$emailAtom.reportWrite(value, super.email, () {
+      super.email = value;
+    });
+  }
+
+  late final _$passwordAtom =
+      Atom(name: 'LoginControllerBase.password', context: context);
+
+  @override
+  String get password {
+    _$passwordAtom.reportRead();
+    return super.password;
+  }
+
+  @override
+  set password(String value) {
+    _$passwordAtom.reportWrite(value, super.password, () {
+      super.password = value;
+    });
+  }
+
   late final _$loginWithEmailAsyncAction =
       AsyncAction('LoginControllerBase.loginWithEmail', context: context);
 
   @override
-  Future<void> loginWithEmail(String email, String password) {
-    return _$loginWithEmailAsyncAction
-        .run(() => super.loginWithEmail(email, password));
+  Future<void> loginWithEmail() {
+    return _$loginWithEmailAsyncAction.run(() => super.loginWithEmail());
   }
 
   late final _$LoginControllerBaseActionController =
@@ -49,9 +80,55 @@ mixin _$LoginController on LoginControllerBase, Store {
   }
 
   @override
+  void setEmail(String value) {
+    final _$actionInfo = _$LoginControllerBaseActionController.startAction(
+        name: 'LoginControllerBase.setEmail');
+    try {
+      return super.setEmail(value);
+    } finally {
+      _$LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validateEmail(String? value) {
+    final _$actionInfo = _$LoginControllerBaseActionController.startAction(
+        name: 'LoginControllerBase.validateEmail');
+    try {
+      return super.validateEmail(value);
+    } finally {
+      _$LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setPassword(String value) {
+    final _$actionInfo = _$LoginControllerBaseActionController.startAction(
+        name: 'LoginControllerBase.setPassword');
+    try {
+      return super.setPassword(value);
+    } finally {
+      _$LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validatePassword(String? value) {
+    final _$actionInfo = _$LoginControllerBaseActionController.startAction(
+        name: 'LoginControllerBase.validatePassword');
+    try {
+      return super.validatePassword(value);
+    } finally {
+      _$LoginControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-state: ${state}
+state: ${state},
+email: ${email},
+password: ${password}
     ''';
   }
 }

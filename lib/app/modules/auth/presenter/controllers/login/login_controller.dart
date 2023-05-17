@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/infra/user_roles_enum.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/get_user_attributes.dart';
@@ -27,8 +28,47 @@ abstract class LoginControllerBase with Store {
   @action
   void changeState(LoginState value) => state = value;
 
+  @observable
+  String email = '';
+
   @action
-  Future<void> loginWithEmail(String email, String password) async {
+  void setEmail(String value) => email = value;
+
+  @action
+  String? validateEmail(String? value) {
+    String pattern =
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\."
+        r"[a-zA-Z]+";
+    RegExp regExp = RegExp(pattern);
+    if (value!.isEmpty) {
+      return S.current.requiredFieldAlert;
+    } else if (!regExp.hasMatch(value)) {
+      return S.current.invalidEmailAlert;
+    }
+    return null;
+  }
+
+  @observable
+  String password = '';
+
+  @action
+  void setPassword(String value) => password = value;
+
+  @action
+  String? validatePassword(String? value) {
+    String pattern =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+    RegExp regExp = RegExp(pattern);
+    if (value!.isEmpty) {
+      return S.current.requiredFieldAlert;
+    } else if (!regExp.hasMatch(value)) {
+      return S.current.passwordInstructionsAlert;
+    }
+    return null;
+  }
+
+  @action
+  Future<void> loginWithEmail() async {
     changeState(LoginLoadingState());
     var eitherIsLogged = await _login(email, password);
     var userAttributes = await _getUserAttributes();

@@ -1,6 +1,7 @@
 import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';
+import '../../../../../shared/utils/validation_utils.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/forgot_password.dart';
 import '../../states/forgot_password_state.dart';
@@ -30,16 +31,7 @@ abstract class ForgotPasswordControllerBase with Store {
 
   @action
   String? validateEmail(String? value) {
-    String pattern =
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\."
-        r"[a-zA-Z]+";
-    RegExp regExp = RegExp(pattern);
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (!regExp.hasMatch(value)) {
-      return S.current.invalidEmailAlert;
-    }
-    return null;
+    return ValidationUtils.validateEmail(value);
   }
 
   @action

@@ -1,4 +1,4 @@
-import '../../../../shared/infra/user_roles_enum.dart';
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import '../../domain/errors/auth_errors.dart';
 
 abstract class LoginState {
@@ -10,10 +10,9 @@ class LoginInitialState extends LoginState {}
 class LoginLoadingState extends LoginState {}
 
 class LoginSuccessState extends LoginState {
-  final bool isLogged;
-  final UserRolesEnum userRole;
+  final CognitoAuthSession authSession;
 
-  const LoginSuccessState({required this.userRole, required this.isLogged});
+  const LoginSuccessState({required this.authSession});
 }
 
 class LoginErrorState extends LoginState {

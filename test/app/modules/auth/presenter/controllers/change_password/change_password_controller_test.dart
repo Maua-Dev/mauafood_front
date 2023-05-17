@@ -36,7 +36,12 @@ void main() {
     });
   });
 
-  group('[TEST] -', () {
+  group('[TEST] - setter', () {
+    test('changeState', () {
+      controller.changeState(const ChangePasswordSuccessState());
+      expect(controller.state, isA<ChangePasswordSuccessState>());
+    });
+
     test('setCode', () {
       controller.setCode('code');
       expect(controller.code, 'code');

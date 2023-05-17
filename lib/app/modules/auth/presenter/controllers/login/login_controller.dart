@@ -1,6 +1,7 @@
 import 'package:mobx/mobx.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/infra/user_roles_enum.dart';
+import '../../../../../shared/utils/validation_utils.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/get_user_attributes.dart';
 import '../../../domain/usecases/login_user.dart';
@@ -14,11 +15,6 @@ abstract class LoginControllerBase with Store {
   final LoginUserInterface _login;
   final AuthStorageInterface storage;
   final GetUserAttributesInterface _getUserAttributes;
-  bool _loggedIn = false;
-  UserRolesEnum? _userRole;
-
-  bool get isLoggedIn => _loggedIn;
-  UserRolesEnum? get userRole => _userRole;
 
   LoginControllerBase(this._login, this.storage, this._getUserAttributes);
 
@@ -36,16 +32,7 @@ abstract class LoginControllerBase with Store {
 
   @action
   String? validateEmail(String? value) {
-    String pattern =
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\."
-        r"[a-zA-Z]+";
-    RegExp regExp = RegExp(pattern);
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (!regExp.hasMatch(value)) {
-      return S.current.invalidEmailAlert;
-    }
-    return null;
+    return ValidationUtils.validateEmail(value);
   }
 
   @observable
@@ -56,15 +43,7 @@ abstract class LoginControllerBase with Store {
 
   @action
   String? validatePassword(String? value) {
-    String pattern =
-        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
-    RegExp regExp = RegExp(pattern);
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (!regExp.hasMatch(value)) {
-      return S.current.passwordInstructionsAlert;
-    }
-    return null;
+    return ValidationUtils.validatePassword(value);
   }
 
   @action
@@ -78,18 +57,21 @@ abstract class LoginControllerBase with Store {
           .firstWhere(
               (element) => element.userAttributeKey.toString() == 'custom:role')
           .value;
-      _userRole = UserRolesEnumExtension.stringToEnumMap(role);
       await storage.saveRole(role);
     });
     loginResult.fold((failure) {
       return changeState(LoginErrorState(failure));
     }, (authSession) async {
-      _loggedIn = true;
-      await storage.saveAccessToken(authSession.userPoolTokens!.accessToken);
-      await storage.saveRefreshToken(authSession.userPoolTokens!.refreshToken);
-      await storage.saveIdToken(authSession.userPoolTokens!.idToken);
-      return changeState(LoginSuccessState(
-          isLogged: _loggedIn, userRole: userRole ?? UserRolesEnum.USER));
+      return changeState(LoginSuccessState(authSession: authSession));
     });
+    if (state is LoginSuccessState) {
+      var successState = state as LoginSuccessState;
+      await storage.saveAccessToken(
+          successState.authSession.userPoolTokens!.accessToken);
+      await storage.saveRefreshToken(
+          successState.authSession.userPoolTokens!.refreshToken);
+      await storage
+          .saveIdToken(successState.authSession.userPoolTokens!.idToken);
+    }
   }
 }

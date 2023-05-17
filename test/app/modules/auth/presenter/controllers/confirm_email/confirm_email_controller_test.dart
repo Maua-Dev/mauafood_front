@@ -36,7 +36,11 @@ void main() {
     });
   });
 
-  group('[TEST] -', () {
+  group('[TEST] - setter', () {
+    test('changeState', () {
+      controller.changeState(const ConfirmEmailSuccessState());
+      expect(controller.state, isA<ConfirmEmailSuccessState>());
+    });
     test('setEmail', () {
       controller.setEmail('email');
       expect(controller.email, 'email');

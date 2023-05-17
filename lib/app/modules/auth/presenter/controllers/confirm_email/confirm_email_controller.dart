@@ -1,6 +1,4 @@
 import 'package:mobx/mobx.dart';
-
-import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/utils/validation_utils.dart';
 import '../../../domain/usecases/confirm_email.dart';
 import '../../states/confirm_email_state.dart';
@@ -17,6 +15,9 @@ abstract class ConfirmEmailControllerBase with Store {
 
   @observable
   ConfirmEmailState state = ConfirmEmailInitialState();
+
+  @action
+  void changeState(ConfirmEmailState value) => state = value;
 
   @observable
   String email = '';
@@ -42,7 +43,7 @@ abstract class ConfirmEmailControllerBase with Store {
 
   @action
   Future<void> confirmEmail() async {
-    state = ConfirmEmailLoadingState();
+    changeState(ConfirmEmailLoadingState());
     var result = await _confirmEmail(email, code);
     state = result.fold((failure) {
       return ConfirmEmailErrorState(error: failure);

@@ -69,6 +69,17 @@ mixin _$ConfirmEmailController on ConfirmEmailControllerBase, Store {
       ActionController(name: 'ConfirmEmailControllerBase', context: context);
 
   @override
+  void changeState(ConfirmEmailState value) {
+    final _$actionInfo = _$ConfirmEmailControllerBaseActionController
+        .startAction(name: 'ConfirmEmailControllerBase.changeState');
+    try {
+      return super.changeState(value);
+    } finally {
+      _$ConfirmEmailControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setEmail(String value) {
     final _$actionInfo = _$ConfirmEmailControllerBaseActionController
         .startAction(name: 'ConfirmEmailControllerBase.setEmail');

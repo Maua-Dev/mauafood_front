@@ -1,31 +1,32 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/modules/splash/presenter/bloc/splash_bloc.dart';
-import 'package:mauafood_front/app/modules/splash/presenter/ui/splash_page.dart';
+import 'package:mauafood_front/app/modules/splash/presenter/controllers/splash_controller.dart';
+import 'package:mauafood_front/app/modules/splash/presenter/ui/pages/splash_page.dart';
+import 'package:mauafood_front/app/modules/splash/splash_module.dart';
+import 'package:modular_test/modular_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
+import 'package:flutter_modular/flutter_modular.dart' as modular;
 
 void main() {
-  late SplashBloc bloc;
-
-  setUp(() {
-    bloc = SplashBloc();
-  });
+  late SplashController controller;
 
   setUpAll(() {
     HttpOverrides.global = null;
+    initModules([
+      SplashModule()
+    ], replaceBinds: [
+      modular.Bind<SplashController>((i) => controller),
+    ]);
+    controller = Modular.get<SplashController>();
   });
-  testWidgets('[WIDGETS TEST] - SplashPage must show widgets in bloc states',
+  testWidgets('[WIDGETS TEST] - SplashPage must show widgets in states',
       (widgetTester) async {
     await mockNetworkImagesFor(() async {
       await widgetTester
-          .runAsync(() async => await widgetTester.pumpWidget(MaterialApp(
-                home: BlocProvider(
-                  create: (context) => bloc,
-                  child: const SplashPage(),
-                ),
+          .runAsync(() async => await widgetTester.pumpWidget(const MaterialApp(
+                home: SplashPage(),
               )));
 
       final sizedbox = find.byType(SizedBox);
@@ -35,7 +36,7 @@ void main() {
       final circularProgressIndicator = find.byType(CircularProgressIndicator);
       expect(circularProgressIndicator, findsOneWidget);
 
-      await widgetTester.runAsync(() async => bloc.add(const LoadingEvent()));
+      await widgetTester.runAsync(() async => await controller.loadSplash());
       await widgetTester.pump();
 
       expect(sizedbox, findsOneWidget);

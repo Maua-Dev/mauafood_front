@@ -45,6 +45,15 @@ class MockMenuRepositoryInterface extends _i1.Mock
   }
 
   @override
+  _i4.Future<void> getAllMeals() => (super.noSuchMethod(
+        Invocation.method(
+          #getAllMeals,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+  @override
   _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>> getBibaMeals() =>
       (super.noSuchMethod(
         Invocation.method(
@@ -72,6 +81,22 @@ class MockMenuRepositoryInterface extends _i1.Mock
           this,
           Invocation.method(
             #getHMeals,
+            [],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>>);
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>> getMolezaMeals() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getMolezaMeals,
+          [],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>>.value(
+            _FakeEither_0<_i5.Failure, List<_i6.Meal>>(
+          this,
+          Invocation.method(
+            #getMolezaMeals,
             [],
           ),
         )),

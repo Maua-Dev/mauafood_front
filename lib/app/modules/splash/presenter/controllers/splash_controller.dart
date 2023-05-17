@@ -6,6 +6,10 @@ part 'splash_controller.g.dart';
 class SplashController = SplashControllerBase with _$SplashController;
 
 abstract class SplashControllerBase with Store {
+  SplashControllerBase() {
+    loadSplash();
+  }
+
   @observable
   SplashState state = SplashInitialState();
 
@@ -15,8 +19,7 @@ abstract class SplashControllerBase with Store {
   @action
   Future<void> loadSplash() async {
     changeState(SplashLoadingState());
-    await Future.delayed(const Duration(seconds: 3)).then((value) {
-      changeState(SplashSuccessState());
-    });
+    await Future.delayed(const Duration(seconds: 3));
+    changeState(SplashSuccessState());
   }
 }

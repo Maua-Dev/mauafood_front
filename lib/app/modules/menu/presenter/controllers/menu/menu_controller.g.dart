@@ -25,6 +25,22 @@ mixin _$MenuController on MenuControllerBase, Store {
     });
   }
 
+  late final _$listAllMealAtom =
+      Atom(name: 'MenuControllerBase.listAllMeal', context: context);
+
+  @override
+  List<Meal> get listAllMeal {
+    _$listAllMealAtom.reportRead();
+    return super.listAllMeal;
+  }
+
+  @override
+  set listAllMeal(List<Meal> value) {
+    _$listAllMealAtom.reportWrite(value, super.listAllMeal, () {
+      super.listAllMeal = value;
+    });
+  }
+
   late final _$loadRestaurantMenuAsyncAction =
       AsyncAction('MenuControllerBase.loadRestaurantMenu', context: context);
 
@@ -67,7 +83,8 @@ mixin _$MenuController on MenuControllerBase, Store {
   @override
   String toString() {
     return '''
-state: ${state}
+state: ${state},
+listAllMeal: ${listAllMeal}
     ''';
   }
 }

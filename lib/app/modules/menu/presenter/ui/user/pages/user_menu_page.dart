@@ -129,7 +129,7 @@ class UserMenuPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: 16, horizontal: 24),
-                    child: TextField(
+                    child: TextFormField(
                       onChanged: (value) {
                         menuController.searchMeal(value);
                       },
@@ -189,17 +189,11 @@ class UserMenuPage extends StatelessWidget {
                                         itemBuilder: (context, index) {
                                           return FilterButtonWidget(
                                             myIndex: index,
-                                            blocIndex: state.index,
-                                            onPressed: MealEnum.values[index] ==
-                                                    MealEnum.ALL
-                                                ? () {
-                                                    menuController
-                                                        .loadRestaurantMenu();
-                                                  }
-                                                : () {
-                                                    menuController.filterMeal(
-                                                        MealEnum.values[index]);
-                                                  },
+                                            actualIndex: state.index,
+                                            onPressed: () {
+                                              menuController.filterMeal(
+                                                  MealEnum.values[index]);
+                                            },
                                           );
                                         },
                                       ),

@@ -96,15 +96,11 @@ class EmployeeMenuPage extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return FilterButtonWidget(
                               myIndex: index,
-                              blocIndex: state.index,
-                              onPressed: MealEnum.values[index] == MealEnum.ALL
-                                  ? () {
-                                      menuController.loadRestaurantMenu();
-                                    }
-                                  : () {
-                                      menuController
-                                          .filterMeal(MealEnum.values[index]);
-                                    },
+                              actualIndex: state.index,
+                              onPressed: () {
+                                menuController
+                                    .filterMeal(MealEnum.values[index]);
+                              },
                             );
                           },
                         ),

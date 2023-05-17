@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/splash/presenter/controllers/splash_controller.dart';
+import 'package:mauafood_front/app/modules/splash/presenter/states/splash_state.dart';
 import 'package:mauafood_front/app/modules/splash/presenter/ui/pages/splash_page.dart';
 import 'package:mauafood_front/app/modules/splash/splash_module.dart';
 import 'package:modular_test/modular_test.dart';
@@ -29,18 +30,17 @@ void main() {
                 home: SplashPage(),
               )));
 
-      final sizedbox = find.byType(SizedBox);
-      expect(sizedbox, findsNothing);
-      final image = find.byType(Image);
-      expect(image, findsNothing);
-      final circularProgressIndicator = find.byType(CircularProgressIndicator);
-      expect(circularProgressIndicator, findsOneWidget);
+      expect(find.byType(SizedBox), findsNothing);
+      expect(find.byType(Image), findsNothing);
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
 
-      await widgetTester.runAsync(() async => await controller.loadSplash());
+      await widgetTester
+          .runAsync(() async => controller.changeState(SplashLoadingState()));
       await widgetTester.pump();
 
-      expect(sizedbox, findsOneWidget);
-      expect(image, findsOneWidget);
+      expect(find.byType(SizedBox), findsOneWidget);
+      expect(find.byType(Image), findsOneWidget);
+      expect(find.byType(CircularProgressIndicator), findsNothing);
     });
   });
 }

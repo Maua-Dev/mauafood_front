@@ -8,7 +8,7 @@ import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../bloc/auth/auth_bloc.dart';
 import '../../bloc/change-password/change_password_bloc.dart';
-import '../widgets/auth_button_widget.dart';
+import '../widgets/login_button_widget.dart';
 import '../widgets/text_button_login_widget.dart';
 import '../widgets/text_field_login_widget.dart';
 
@@ -107,7 +107,7 @@ class ChangePasswordPage extends StatelessWidget {
                           const SizedBox(
                             height: 36,
                           ),
-                          AuthButtonWidget(
+                          LoginButtonWidget(
                             onPressed: () async {
                               changePasswordFormBloc.submit();
                             },

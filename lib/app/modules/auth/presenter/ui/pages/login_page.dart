@@ -9,7 +9,7 @@ import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/infra/user_roles_enum.dart';
 import '../../../../../shared/services/s3/assets_s3.dart';
 import '../../bloc/auth/auth_bloc.dart';
-import '../widgets/auth_button_widget.dart';
+import '../widgets/login_button_widget.dart';
 import '../widgets/text_button_login_widget.dart';
 import '../widgets/text_field_login_widget.dart';
 
@@ -121,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                                 const SizedBox(
                                   height: 8,
                                 ),
-                                AuthButtonWidget(
+                                LoginButtonWidget(
                                   onPressed: () async {
                                     confirmEmailFormBloc.submit();
                                   },

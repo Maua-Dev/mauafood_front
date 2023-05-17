@@ -4,14 +4,6 @@ import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_pa
 import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes.dart';
 import 'package:mauafood_front/app/modules/auth/domain/usecases/resend_confirmation_code.dart';
 import 'package:mauafood_front/app/modules/auth/infra/repository/auth_storage_impl.dart';
-import 'package:mauafood_front/app/modules/auth/presenter/bloc/auth/auth_bloc.dart';
-import 'package:mauafood_front/app/modules/auth/presenter/bloc/change-password/change_password_bloc.dart';
-import 'package:mauafood_front/app/modules/auth/presenter/bloc/confirm-email/confirm_email_bloc.dart';
-import 'package:mauafood_front/app/modules/auth/presenter/bloc/forgot-password/forgot_password_bloc.dart';
-import 'package:mauafood_front/app/modules/auth/presenter/bloc/login/login_bloc.dart';
-import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/bloc/register_bloc.dart';
-import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/register_form_bloc.dart';
-import 'package:mauafood_front/app/modules/auth/presenter/bloc/resend-code/resend_code_form_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/change_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/confirm_email_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/forgot_password_page.dart';
@@ -54,37 +46,6 @@ class AuthModule extends Module {
             (i) => GetUserAttributesImpl(repository: i()),
             export: true),
         AsyncBind<AuthStorageInterface>((i) => AuthStorageImpl.instance()),
-        Bind<AuthBloc>(
-            (i) => AuthBloc(
-                  logout: i(),
-                  login: i(),
-                  storage: i(),
-                  confirmResetPassword: i(),
-                  forgotPassword: i(),
-                  getUserAttributes: i(),
-                ),
-            export: true),
-        Bind<RegisterBloc>(
-            (i) => RegisterBloc(
-                confirmEmail: i(), register: i(), resendConfirmationCode: i()),
-            export: true),
-        Bind<ResendCodeFormBloc>((i) => ResendCodeFormBloc(registerBloc: i()),
-            export: true),
-        AsyncBind<AuthStorageInterface>((i) => AuthStorageImpl.instance(),
-            export: true),
-        Bind<RegisterFormBloc>((i) => RegisterFormBloc(registerBloc: i()),
-            export: true),
-        Bind<ConfirmEmailBloc>(
-            (i) => ConfirmEmailBloc(
-                registerBloc: i.args.data[0], email: i.args.data[1]),
-            export: true),
-        Bind<ForgotPasswordBloc>((i) => ForgotPasswordBloc(authBloc: i()),
-            export: true),
-        Bind<ChangePasswordBloc>(
-            (i) => ChangePasswordBloc(
-                authBloc: i.args.data[0], email: i.args.data[1]),
-            export: true),
-        Bind<LoginBloc>((i) => LoginBloc(authBloc: i()), export: true),
         Bind<AuthRepositoryInterface>(
             (i) => AuthRepositoryImpl(datasource: i()),
             export: true),

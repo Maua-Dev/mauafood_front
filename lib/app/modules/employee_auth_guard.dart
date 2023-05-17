@@ -1,9 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/auth/presenter/controllers/login/login_controller.dart';
 
 import '../app_module.dart';
 import '../shared/infra/user_roles_enum.dart';
 import 'auth/auth_module.dart';
-import 'auth/presenter/bloc/auth/auth_bloc.dart';
 
 class EmployeeAuthGuard extends RouteGuard {
   EmployeeAuthGuard()
@@ -15,7 +15,7 @@ class EmployeeAuthGuard extends RouteGuard {
   Future<bool> canActivate(String path, ModularRoute route) async {
     await Modular.isModuleReady<AppModule>();
     await Modular.isModuleReady<AuthModule>();
-    var authController = Modular.get<AuthBloc>();
+    var authController = Modular.get<LoginController>();
     if (!authController.isLoggedIn) {
       await authController.verifyIfHaveTokens();
     }

@@ -35,7 +35,7 @@ abstract class ContactControllerBase with Store {
   @action
   String? validateName(String? value) {
     if (value!.isEmpty) {
-      return S.current.fieldRequired;
+      return S.current.requiredFieldAlert;
     } else if (value.length < 3 || !value.contains(' ')) {
       return S.current.invalidFullNameAlert;
     }
@@ -48,7 +48,7 @@ abstract class ContactControllerBase with Store {
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
     RegExp regExp = RegExp(pattern);
     if (value!.isEmpty) {
-      return S.current.fieldRequired;
+      return S.current.requiredFieldAlert;
     } else if (!regExp.hasMatch(value)) {
       return S.current.invalidEmailAlert;
     }
@@ -58,7 +58,7 @@ abstract class ContactControllerBase with Store {
   @action
   String? validateMessage(String? value) {
     if (value!.isEmpty) {
-      return S.current.fieldRequired;
+      return S.current.requiredFieldAlert;
     }
     return null;
   }

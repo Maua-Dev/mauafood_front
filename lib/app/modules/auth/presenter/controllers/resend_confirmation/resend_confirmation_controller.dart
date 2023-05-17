@@ -1,6 +1,5 @@
 import 'package:mobx/mobx.dart';
-
-import '../../../../../../generated/l10n.dart';
+import '../../../../../shared/utils/validation_utils.dart';
 import '../../../domain/usecases/resend_confirmation_code.dart';
 import '../../states/resend_confirmation_state.dart';
 
@@ -28,15 +27,7 @@ abstract class ResendConfirmationControllerBase with Store {
 
   @action
   String? validateEmail(String? value) {
-    String pattern =
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-    RegExp regExp = RegExp(pattern);
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (!regExp.hasMatch(value)) {
-      return S.current.invalidEmailAlert;
-    }
-    return null;
+    return ValidationUtils.validateEmail(value);
   }
 
   @action

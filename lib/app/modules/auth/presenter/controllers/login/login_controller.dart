@@ -1,6 +1,4 @@
 import 'package:mobx/mobx.dart';
-import '../../../../../../generated/l10n.dart';
-import '../../../../../shared/infra/user_roles_enum.dart';
 import '../../../../../shared/utils/validation_utils.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/get_user_attributes.dart';

@@ -1,6 +1,4 @@
 import 'package:mobx/mobx.dart';
-
-import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/utils/validation_utils.dart';
 import '../../../domain/usecases/confirm_reset_password.dart';
 import '../../states/change_password_state.dart';

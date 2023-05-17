@@ -10,11 +10,10 @@ part 'menu_controller.g.dart';
 class MenuController = MenuControllerBase with _$MenuController;
 
 abstract class MenuControllerBase with Store {
-  final GetRestaurantMealInterface getRestaurantMeal;
+  final GetRestaurantMealInterface _getRestaurantMeal;
   RestaurantEnum restaurantInfo;
 
-  MenuControllerBase(
-      {required this.getRestaurantMeal, required this.restaurantInfo});
+  MenuControllerBase(this._getRestaurantMeal, this.restaurantInfo);
 
   @observable
   MenuState state = MenuInitialState();
@@ -25,7 +24,7 @@ abstract class MenuControllerBase with Store {
   @action
   Future<void> loadRestaurantMenu() async {
     changeState(MenuLoadingState());
-    var result = await getRestaurantMeal(restaurantInfo);
+    var result = await _getRestaurantMeal(restaurantInfo);
     changeState(result.fold((l) => MenuErrorState(failure: l),
         (list) => MenuLoadedSuccessState(listMeal: list, index: 0)));
   }

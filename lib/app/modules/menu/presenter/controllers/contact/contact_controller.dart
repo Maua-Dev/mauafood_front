@@ -2,6 +2,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/states/contact/contact
 import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';
+import '../../../../../shared/utils/validation_utils.dart';
 
 part 'contact_controller.g.dart';
 
@@ -24,35 +25,22 @@ abstract class ContactControllerBase with Store {
   String name = '';
 
   @action
-  void changeMessage(String value) => message = value;
+  void setMessage(String value) => message = value;
 
   @action
-  void changeEmail(String value) => email = value;
+  void setEmail(String value) => email = value;
 
   @action
-  void changeName(String value) => name = value;
+  void setName(String value) => name = value;
 
   @action
   String? validateName(String? value) {
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (value.length < 3 || !value.contains(' ')) {
-      return S.current.invalidFullNameAlert;
-    }
-    return null;
+    return ValidationUtils.validateName(value);
   }
 
   @action
   String? validateEmail(String? value) {
-    String pattern =
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+";
-    RegExp regExp = RegExp(pattern);
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (!regExp.hasMatch(value)) {
-      return S.current.invalidEmailAlert;
-    }
-    return null;
+    return ValidationUtils.validateEmail(value);
   }
 
   @action

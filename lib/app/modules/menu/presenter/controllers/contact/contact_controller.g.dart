@@ -96,33 +96,33 @@ mixin _$ContactController on ContactControllerBase, Store {
   }
 
   @override
-  void changeMessage(String value) {
+  void setMessage(String value) {
     final _$actionInfo = _$ContactControllerBaseActionController.startAction(
-        name: 'ContactControllerBase.changeMessage');
+        name: 'ContactControllerBase.setMessage');
     try {
-      return super.changeMessage(value);
+      return super.setMessage(value);
     } finally {
       _$ContactControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void changeEmail(String value) {
+  void setEmail(String value) {
     final _$actionInfo = _$ContactControllerBaseActionController.startAction(
-        name: 'ContactControllerBase.changeEmail');
+        name: 'ContactControllerBase.setEmail');
     try {
-      return super.changeEmail(value);
+      return super.setEmail(value);
     } finally {
       _$ContactControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void changeName(String value) {
+  void setName(String value) {
     final _$actionInfo = _$ContactControllerBaseActionController.startAction(
-        name: 'ContactControllerBase.changeName');
+        name: 'ContactControllerBase.setName');
     try {
-      return super.changeName(value);
+      return super.setName(value);
     } finally {
       _$ContactControllerBaseActionController.endAction(_$actionInfo);
     }

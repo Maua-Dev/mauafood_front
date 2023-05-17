@@ -17,8 +17,7 @@ class UserMenuModule extends Module {
         Bind<GetRestaurantMealInterface>(
             (i) => GetRestaurantMealImpl(repository: i())),
         Bind<MenuController>(
-          (i) => MenuController(
-              getRestaurantMeal: i(), restaurantInfo: i.args.data),
+          (i) => MenuController(i(), i.args.data),
         ),
         Bind<ContactController>(
           (i) => ContactController(),

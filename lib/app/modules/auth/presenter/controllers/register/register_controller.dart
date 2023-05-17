@@ -1,6 +1,7 @@
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mobx/mobx.dart';
+import '../../../../../shared/utils/validation_utils.dart';
 import '../../../domain/usecases/register_user.dart';
 import '../../states/register_state.dart';
 
@@ -86,61 +87,28 @@ abstract class RegisterControllerBase with Store {
   void setAcceptTerms(bool value) => acceptTerms = value;
 
   @action
-  String? validateName(String? value) {
-    if (value == null || value.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (value.length < 3 || !value.contains(' ')) {
-      return S.current.invalidFullNameAlert;
-    }
-    return null;
+  String? validateName(String? name) {
+    return ValidationUtils.validateName(name);
   }
 
   @action
-  String? validateCpf(String? value) {
-    value = value!.replaceAll('.', '');
-    value = value.replaceAll('-', '');
-    if (value.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (!CPFValidator.isValid(value)) {
-      return S.current.invalidCpfAlert;
-    }
-    return null;
+  String? validateCpf(String? cpf) {
+    return ValidationUtils.validateCpf(cpf);
   }
 
   @action
-  String? validateEmail(String? value) {
-    String pattern =
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\."
-        r"[a-zA-Z]+";
-    RegExp regExp = RegExp(pattern);
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (!regExp.hasMatch(value)) {
-      return S.current.invalidEmailAlert;
-    }
-    return null;
+  String? validateEmail(String? email) {
+    return ValidationUtils.validateEmail(email);
   }
 
   @action
-  String? validatePassword(String? value) {
-    String pattern =
-        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
-    RegExp regExp = RegExp(pattern);
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (!regExp.hasMatch(value)) {
-      return S.current.passwordInstructionsAlert;
-    }
-    return null;
+  String? validatePassword(String? password) {
+    return ValidationUtils.validatePassword(password);
   }
 
   @action
-  String? validateConfirmPassword(String? value) {
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    } else if (value != password) {
-      return S.current.equalPasswordAlert;
-    }
-    return null;
+  String? validateConfirmPassword(String? passwordConfirmation) {
+    return ValidationUtils.validateConfirmPassword(
+        password, passwordConfirmation);
   }
 }

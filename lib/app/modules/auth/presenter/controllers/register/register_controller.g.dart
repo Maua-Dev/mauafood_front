@@ -291,55 +291,55 @@ mixin _$RegisterController on RegisterControllerBase, Store {
   }
 
   @override
-  String? validateName(String? value) {
+  String? validateName(String? name) {
     final _$actionInfo = _$RegisterControllerBaseActionController.startAction(
         name: 'RegisterControllerBase.validateName');
     try {
-      return super.validateName(value);
+      return super.validateName(name);
     } finally {
       _$RegisterControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  String? validateCpf(String? value) {
+  String? validateCpf(String? cpf) {
     final _$actionInfo = _$RegisterControllerBaseActionController.startAction(
         name: 'RegisterControllerBase.validateCpf');
     try {
-      return super.validateCpf(value);
+      return super.validateCpf(cpf);
     } finally {
       _$RegisterControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  String? validateEmail(String? value) {
+  String? validateEmail(String? email) {
     final _$actionInfo = _$RegisterControllerBaseActionController.startAction(
         name: 'RegisterControllerBase.validateEmail');
     try {
-      return super.validateEmail(value);
+      return super.validateEmail(email);
     } finally {
       _$RegisterControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  String? validatePassword(String? value) {
+  String? validatePassword(String? password) {
     final _$actionInfo = _$RegisterControllerBaseActionController.startAction(
         name: 'RegisterControllerBase.validatePassword');
     try {
-      return super.validatePassword(value);
+      return super.validatePassword(password);
     } finally {
       _$RegisterControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  String? validateConfirmPassword(String? value) {
+  String? validateConfirmPassword(String? passwordConfirmation) {
     final _$actionInfo = _$RegisterControllerBaseActionController.startAction(
         name: 'RegisterControllerBase.validateConfirmPassword');
     try {
-      return super.validateConfirmPassword(value);
+      return super.validateConfirmPassword(passwordConfirmation);
     } finally {
       _$RegisterControllerBaseActionController.endAction(_$actionInfo);
     }

@@ -10,7 +10,6 @@ import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attribu
 import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/login/login_controller.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/states/login_state.dart';
-import 'package:mauafood_front/app/shared/infra/user_roles_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -21,7 +20,6 @@ import 'login_controller_test.mocks.dart';
   LoginUserInterface,
   AuthStorageInterface,
   GetUserAttributesInterface,
-  AuthUserAttribute
 ])
 void main() {
   late LoginController controller;
@@ -29,7 +27,6 @@ void main() {
   AuthStorageInterface storage = MockAuthStorageInterface();
   GetUserAttributesInterface getUserAttributes =
       MockGetUserAttributesInterface();
-  AuthUserAttribute authUser = MockAuthUserAttribute();
 
   setUp(() async {
     controller = LoginController(usecase, storage, getUserAttributes);

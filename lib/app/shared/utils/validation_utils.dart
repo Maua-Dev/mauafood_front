@@ -1,3 +1,5 @@
+import 'package:cpf_cnpj_validator/cpf_validator.dart';
+
 import '../../../../../../generated/l10n.dart';
 
 class ValidationUtils {
@@ -41,6 +43,26 @@ class ValidationUtils {
       return S.current.requiredFieldAlert;
     } else if (confirmPassword != password) {
       return S.current.equalPasswordAlert;
+    }
+    return null;
+  }
+
+  static String? validateName(String? value) {
+    if (value == null || value.isEmpty) {
+      return S.current.requiredFieldAlert;
+    } else if (value.length < 3 || !value.contains(' ')) {
+      return S.current.invalidFullNameAlert;
+    }
+    return null;
+  }
+
+  static String? validateCpf(String? value) {
+    value = value!.replaceAll('.', '');
+    value = value.replaceAll('-', '');
+    if (value.isEmpty) {
+      return S.current.requiredFieldAlert;
+    } else if (!CPFValidator.isValid(value)) {
+      return S.current.invalidCpfAlert;
     }
     return null;
   }

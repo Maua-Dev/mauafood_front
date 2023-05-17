@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
 import '../../../../../shared/utils/validation_utils.dart';
-import '../../../domain/usecases/register_user.dart';
+import '../../../domain/usecases/register_user_usecase.dart';
 import '../../states/register_state.dart';
 
 part 'register_controller.g.dart';
@@ -8,7 +8,7 @@ part 'register_controller.g.dart';
 class RegisterController = RegisterControllerBase with _$RegisterController;
 
 abstract class RegisterControllerBase with Store {
-  final RegisterUserInterface _register;
+  final IRegisterUserUsecase _register;
 
   RegisterControllerBase(this._register);
 

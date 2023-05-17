@@ -3,14 +3,14 @@ import 'package:dartz/dartz.dart';
 import '../errors/auth_errors.dart';
 import '../infra/auth_repository_interface.dart';
 
-abstract class ResendConfirmationCodeInterface {
+abstract class IResendConfirmationCodeUsecase {
   Future<Either<ResendCodeError, void>> call(String email);
 }
 
-class ResendConfirmationCodeImpl extends ResendConfirmationCodeInterface {
+class ResendConfirmationCodeUsecase extends IResendConfirmationCodeUsecase {
   final AuthRepositoryInterface repository;
 
-  ResendConfirmationCodeImpl({required this.repository});
+  ResendConfirmationCodeUsecase({required this.repository});
 
   @override
   Future<Either<ResendCodeError, void>> call(String email) async {

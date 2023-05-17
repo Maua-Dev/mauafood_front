@@ -3,21 +3,21 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_repository_interface.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user_usecase.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'login_user_test.mocks.dart';
+import 'login_user_usecase_test.mocks.dart';
 
 @GenerateMocks([AuthRepositoryInterface])
 void main() {
-  late LoginUserInterface useCase;
+  late ILoginUserUsecase useCase;
   AuthRepositoryInterface repository = MockAuthRepositoryInterface();
   String email = '';
   String password = '';
 
   setUp(() {
-    useCase = LoginUserImpl(repository: repository);
+    useCase = LoginUserUsecase(repository: repository);
   });
 
   test('[TEST] - login returns success CognitoAuthSession', () async {

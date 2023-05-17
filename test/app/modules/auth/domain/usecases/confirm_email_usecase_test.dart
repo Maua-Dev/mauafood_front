@@ -2,21 +2,21 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_repository_interface.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_email.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_email_usecase.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'confirm_email_test.mocks.dart';
+import 'confirm_email_usecase_test.mocks.dart';
 
 @GenerateMocks([AuthRepositoryInterface])
 void main() {
-  late ConfirmEmailInterface useCase;
+  late IConfirmEmailUsecase useCase;
   AuthRepositoryInterface repository = MockAuthRepositoryInterface();
   String email = '';
   String confirmationCode = '';
 
   setUp(() {
-    useCase = ConfirmEmailImpl(repository: repository);
+    useCase = ConfirmEmailUsecase(repository: repository);
   });
 
   test('[TEST] - confirm email returns success bool', () async {

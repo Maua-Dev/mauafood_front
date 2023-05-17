@@ -1,8 +1,8 @@
 import 'package:mobx/mobx.dart';
 import '../../../../../shared/utils/validation_utils.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
-import '../../../domain/usecases/get_user_attributes.dart';
-import '../../../domain/usecases/login_user.dart';
+import '../../../domain/usecases/get_user_attributes_usecase.dart';
+import '../../../domain/usecases/login_user_usecase.dart';
 import '../../states/login_state.dart';
 
 part 'login_controller.g.dart';
@@ -10,9 +10,9 @@ part 'login_controller.g.dart';
 class LoginController = LoginControllerBase with _$LoginController;
 
 abstract class LoginControllerBase with Store {
-  final LoginUserInterface _login;
+  final ILoginUserUsecase _login;
   final AuthStorageInterface storage;
-  final GetUserAttributesInterface _getUserAttributes;
+  final IGetUserAttributesUsecase _getUserAttributes;
 
   LoginControllerBase(this._login, this.storage, this._getUserAttributes);
 

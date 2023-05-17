@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
 import '../../../../../shared/utils/validation_utils.dart';
-import '../../../domain/usecases/resend_confirmation_code.dart';
+import '../../../domain/usecases/resend_confirmation_code_usecase.dart';
 import '../../states/resend_confirmation_state.dart';
 
 part 'resend_confirmation_controller.g.dart';
@@ -9,7 +9,7 @@ class ResendConfirmationController = ResendConfirmationControllerBase
     with _$ResendConfirmationController;
 
 abstract class ResendConfirmationControllerBase with Store {
-  final ResendConfirmationCodeInterface _resendConfirmationCode;
+  final IResendConfirmationCodeUsecase _resendConfirmationCode;
 
   ResendConfirmationControllerBase(this._resendConfirmationCode);
 

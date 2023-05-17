@@ -10,7 +10,7 @@ import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart'
     as _i5;
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart'
     as _i6;
-import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user.dart'
+import 'package:mauafood_front/app/modules/auth/domain/usecases/logout_user_usecase.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -35,12 +35,12 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-/// A class which mocks [LogoutUserInterface].
+/// A class which mocks [ILogoutUserUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLogoutUserInterface extends _i1.Mock
-    implements _i3.LogoutUserInterface {
-  MockLogoutUserInterface() {
+class MockILogoutUserUsecase extends _i1.Mock
+    implements _i3.ILogoutUserUsecase {
+  MockILogoutUserUsecase() {
     _i1.throwOnMissingStub(this);
   }
 

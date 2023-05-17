@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 import '../../../../../shared/utils/validation_utils.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
-import '../../../domain/usecases/forgot_password.dart';
+import '../../../domain/usecases/forgot_password_usecase.dart';
 import '../../states/forgot_password_state.dart';
 
 part 'forgot_password_controller.g.dart';
@@ -11,7 +11,7 @@ class ForgotPasswordController = ForgotPasswordControllerBase
 
 abstract class ForgotPasswordControllerBase with Store {
   final AuthStorageInterface storage;
-  final ForgotPasswordInterface _forgotPassword;
+  final IForgotPasswordUsecase _forgotPassword;
 
   ForgotPasswordControllerBase(this.storage, this._forgotPassword);
 

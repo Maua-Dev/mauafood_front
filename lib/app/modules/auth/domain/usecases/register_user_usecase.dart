@@ -3,7 +3,7 @@ import '../../infra/models/user_model.dart';
 import '../errors/auth_errors.dart';
 import '../infra/auth_repository_interface.dart';
 
-abstract class RegisterUserInterface {
+abstract class IRegisterUserUsecase {
   Future<Either<RegisterError, bool>> call(
     String fullName,
     String cpf,
@@ -16,10 +16,10 @@ abstract class RegisterUserInterface {
   );
 }
 
-class RegisterUserImpl extends RegisterUserInterface {
+class RegisterUserUsecase extends IRegisterUserUsecase {
   final AuthRepositoryInterface repository;
 
-  RegisterUserImpl({required this.repository});
+  RegisterUserUsecase({required this.repository});
 
   @override
   Future<Either<RegisterError, bool>> call(

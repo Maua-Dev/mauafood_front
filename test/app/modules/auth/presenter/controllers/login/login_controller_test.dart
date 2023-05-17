@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes_usecase.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/login/login_controller.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/states/login_state.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -17,16 +17,15 @@ import 'package:mockito/mockito.dart';
 import 'login_controller_test.mocks.dart';
 
 @GenerateMocks([
-  LoginUserInterface,
+  ILoginUserUsecase,
   AuthStorageInterface,
-  GetUserAttributesInterface,
+  IGetUserAttributesUsecase,
 ])
 void main() {
   late LoginController controller;
-  LoginUserInterface usecase = MockLoginUserInterface();
+  ILoginUserUsecase usecase = MockILoginUserUsecase();
   AuthStorageInterface storage = MockAuthStorageInterface();
-  GetUserAttributesInterface getUserAttributes =
-      MockGetUserAttributesInterface();
+  IGetUserAttributesUsecase getUserAttributes = MockIGetUserAttributesUsecase();
 
   setUp(() async {
     controller = LoginController(usecase, storage, getUserAttributes);

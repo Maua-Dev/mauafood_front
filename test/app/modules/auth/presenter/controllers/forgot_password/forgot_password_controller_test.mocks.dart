@@ -10,7 +10,7 @@ import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart'
     as _i5;
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart'
     as _i6;
-import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password.dart'
+import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password_usecase.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -35,12 +35,12 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-/// A class which mocks [ForgotPasswordInterface].
+/// A class which mocks [IForgotPasswordUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockForgotPasswordInterface extends _i1.Mock
-    implements _i3.ForgotPasswordInterface {
-  MockForgotPasswordInterface() {
+class MockIForgotPasswordUsecase extends _i1.Mock
+    implements _i3.IForgotPasswordUsecase {
+  MockIForgotPasswordUsecase() {
     _i1.throwOnMissingStub(this);
   }
 

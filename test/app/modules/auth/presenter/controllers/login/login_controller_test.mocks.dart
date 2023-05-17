@@ -11,9 +11,9 @@ import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart'
     as _i5;
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart'
     as _i7;
-import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes.dart'
+import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes_usecase.dart'
     as _i8;
-import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user.dart'
+import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user_usecase.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -38,12 +38,11 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-/// A class which mocks [LoginUserInterface].
+/// A class which mocks [ILoginUserUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginUserInterface extends _i1.Mock
-    implements _i3.LoginUserInterface {
-  MockLoginUserInterface() {
+class MockILoginUserUsecase extends _i1.Mock implements _i3.ILoginUserUsecase {
+  MockILoginUserUsecase() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -164,12 +163,12 @@ class MockAuthStorageInterface extends _i1.Mock
       ) as _i4.Future<void>);
 }
 
-/// A class which mocks [GetUserAttributesInterface].
+/// A class which mocks [IGetUserAttributesUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetUserAttributesInterface extends _i1.Mock
-    implements _i8.GetUserAttributesInterface {
-  MockGetUserAttributesInterface() {
+class MockIGetUserAttributesUsecase extends _i1.Mock
+    implements _i8.IGetUserAttributesUsecase {
+  MockIGetUserAttributesUsecase() {
     _i1.throwOnMissingStub(this);
   }
 

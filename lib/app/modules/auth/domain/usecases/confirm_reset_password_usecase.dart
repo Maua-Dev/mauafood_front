@@ -3,15 +3,15 @@ import 'package:dartz/dartz.dart';
 import '../errors/auth_errors.dart';
 import '../infra/auth_repository_interface.dart';
 
-abstract class ConfirmResetPasswordInterface {
+abstract class IConfirmResetPasswordUsecase {
   Future<Either<ForgotPasswordError, void>> call(
       String email, String newPassword, String confirmationCode);
 }
 
-class ConfirmResetPasswordImpl extends ConfirmResetPasswordInterface {
+class ConfirmResetPasswordUsecase extends IConfirmResetPasswordUsecase {
   final AuthRepositoryInterface repository;
 
-  ConfirmResetPasswordImpl({required this.repository});
+  ConfirmResetPasswordUsecase({required this.repository});
 
   @override
   Future<Either<ForgotPasswordError, void>> call(

@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 
 import '../../../domain/infra/auth_storage_interface.dart';
-import '../../../domain/usecases/logout_user.dart';
+import '../../../domain/usecases/logout_user_usecase.dart';
 import '../../states/logout_state.dart';
 
 part 'logout_controller.g.dart';
@@ -10,7 +10,7 @@ class LogoutController = LogoutControllerBase with _$LogoutController;
 
 abstract class LogoutControllerBase with Store {
   final AuthStorageInterface storage;
-  final LogoutUserInterface _logout;
+  final ILogoutUserUsecase _logout;
 
   LogoutControllerBase(this._logout, this.storage);
 

@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_email.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_email_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/confirm_email/confirm_email_controller.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/states/confirm_email_state.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -11,10 +11,10 @@ import 'package:mockito/mockito.dart';
 
 import 'confirm_email_controller_test.mocks.dart';
 
-@GenerateMocks([ConfirmEmailInterface])
+@GenerateMocks([IConfirmEmailUsecase])
 void main() {
   late ConfirmEmailController controller;
-  ConfirmEmailInterface usecase = MockConfirmEmailInterface();
+  IConfirmEmailUsecase usecase = MockIConfirmEmailUsecase();
 
   setUp(() async {
     controller = ConfirmEmailController(usecase);

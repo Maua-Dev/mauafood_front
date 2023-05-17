@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
 import '../../../../../shared/utils/validation_utils.dart';
-import '../../../domain/usecases/confirm_reset_password.dart';
+import '../../../domain/usecases/confirm_reset_password_usecase.dart';
 import '../../states/change_password_state.dart';
 
 part 'change_password_controller.g.dart';
@@ -9,7 +9,7 @@ class ChangePasswordController = ChangePasswordControllerBase
     with _$ChangePasswordController;
 
 abstract class ChangePasswordControllerBase with Store {
-  final ConfirmResetPasswordInterface _confirmResetPassword;
+  final IConfirmResetPasswordUsecase _confirmResetPassword;
 
   ChangePasswordControllerBase(this._confirmResetPassword);
 

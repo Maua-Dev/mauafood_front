@@ -8,7 +8,7 @@ import 'dart:async' as _i4;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart'
     as _i5;
-import 'package:mauafood_front/app/modules/auth/domain/usecases/resend_confirmation_code.dart'
+import 'package:mauafood_front/app/modules/auth/domain/usecases/resend_confirmation_code_usecase.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -33,12 +33,12 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-/// A class which mocks [ResendConfirmationCodeInterface].
+/// A class which mocks [IResendConfirmationCodeUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockResendConfirmationCodeInterface extends _i1.Mock
-    implements _i3.ResendConfirmationCodeInterface {
-  MockResendConfirmationCodeInterface() {
+class MockIResendConfirmationCodeUsecase extends _i1.Mock
+    implements _i3.IResendConfirmationCodeUsecase {
+  MockIResendConfirmationCodeUsecase() {
     _i1.throwOnMissingStub(this);
   }
 

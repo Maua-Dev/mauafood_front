@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/forgot_password/forgot_password_controller.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/states/forgot_password_state.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -12,10 +12,10 @@ import 'package:mockito/mockito.dart';
 
 import 'forgot_password_controller_test.mocks.dart';
 
-@GenerateMocks([ForgotPasswordInterface, AuthStorageInterface])
+@GenerateMocks([IForgotPasswordUsecase, AuthStorageInterface])
 void main() {
   late ForgotPasswordController controller;
-  ForgotPasswordInterface usecase = MockForgotPasswordInterface();
+  IForgotPasswordUsecase usecase = MockIForgotPasswordUsecase();
   AuthStorageInterface storage = MockAuthStorageInterface();
 
   setUp(() async {

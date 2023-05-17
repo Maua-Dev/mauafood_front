@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_password.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_password_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/change_password/change_password_controller.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/states/change_password_state.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -11,10 +11,10 @@ import 'package:mockito/mockito.dart';
 
 import 'change_password_controller_test.mocks.dart';
 
-@GenerateMocks([ConfirmResetPasswordInterface])
+@GenerateMocks([IConfirmResetPasswordUsecase])
 void main() {
   late ChangePasswordController controller;
-  ConfirmResetPasswordInterface usecase = MockConfirmResetPasswordInterface();
+  IConfirmResetPasswordUsecase usecase = MockIConfirmResetPasswordUsecase();
 
   setUp(() async {
     controller = ChangePasswordController(usecase);

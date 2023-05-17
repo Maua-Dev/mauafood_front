@@ -2,16 +2,16 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/modules/auth/domain/infra/auth_repository_interface.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/register_user.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/register_user_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'register_user_test.mocks.dart';
+import 'register_user_usecase_test.mocks.dart';
 
 @GenerateMocks([AuthRepositoryInterface])
 void main() {
-  late RegisterUserInterface useCase;
+  late IRegisterUserUsecase useCase;
   AuthRepositoryInterface repository = MockAuthRepositoryInterface();
   UserModel user = const UserModel(
     id: '',
@@ -26,7 +26,7 @@ void main() {
   );
 
   setUp(() {
-    useCase = RegisterUserImpl(repository: repository);
+    useCase = RegisterUserUsecase(repository: repository);
   });
 
   test('[TEST] - register returns success bool', () async {

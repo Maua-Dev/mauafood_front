@@ -4,14 +4,14 @@ import 'package:dartz/dartz.dart';
 import '../errors/auth_errors.dart';
 import '../infra/auth_repository_interface.dart';
 
-abstract class GetUserAttributesInterface {
+abstract class IGetUserAttributesUsecase {
   Future<Either<GetUserAttributesError, List<AuthUserAttribute>>> call();
 }
 
-class GetUserAttributesImpl extends GetUserAttributesInterface {
+class GetUserAttributesUsecase extends IGetUserAttributesUsecase {
   final AuthRepositoryInterface repository;
 
-  GetUserAttributesImpl({required this.repository});
+  GetUserAttributesUsecase({required this.repository});
 
   @override
   Future<Either<GetUserAttributesError, List<AuthUserAttribute>>> call() async {

@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/register_user.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/register_user_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/register/register_controller.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/states/register_state.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -12,10 +12,10 @@ import 'package:mockito/mockito.dart';
 
 import 'register_controller_test.mocks.dart';
 
-@GenerateMocks([RegisterUserInterface])
+@GenerateMocks([IRegisterUserUsecase])
 void main() {
   late RegisterController controller;
-  RegisterUserInterface usecase = MockRegisterUserInterface();
+  IRegisterUserUsecase usecase = MockIRegisterUserUsecase();
 
   setUp(() async {
     controller = RegisterController(usecase);

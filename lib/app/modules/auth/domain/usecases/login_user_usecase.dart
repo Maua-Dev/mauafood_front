@@ -3,15 +3,15 @@ import 'package:dartz/dartz.dart';
 import '../errors/auth_errors.dart';
 import '../infra/auth_repository_interface.dart';
 
-abstract class LoginUserInterface {
+abstract class ILoginUserUsecase {
   Future<Either<SignUpError, CognitoAuthSession>> call(
       String email, String password);
 }
 
-class LoginUserImpl extends LoginUserInterface {
+class LoginUserUsecase extends ILoginUserUsecase {
   final AuthRepositoryInterface repository;
 
-  LoginUserImpl({required this.repository});
+  LoginUserUsecase({required this.repository});
 
   @override
   Future<Either<SignUpError, CognitoAuthSession>> call(

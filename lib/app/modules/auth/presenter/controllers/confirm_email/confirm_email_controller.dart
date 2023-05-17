@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
 import '../../../../../shared/utils/validation_utils.dart';
-import '../../../domain/usecases/confirm_email.dart';
+import '../../../domain/usecases/confirm_email_usecase.dart';
 import '../../states/confirm_email_state.dart';
 
 part 'confirm_email_controller.g.dart';
@@ -9,7 +9,7 @@ class ConfirmEmailController = ConfirmEmailControllerBase
     with _$ConfirmEmailController;
 
 abstract class ConfirmEmailControllerBase with Store {
-  final ConfirmEmailInterface _confirmEmail;
+  final IConfirmEmailUsecase _confirmEmail;
 
   ConfirmEmailControllerBase(this._confirmEmail);
 

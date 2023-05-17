@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/resend_confirmation_code.dart';
+import 'package:mauafood_front/app/modules/auth/domain/usecases/resend_confirmation_code_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/resend_confirmation/resend_confirmation_controller.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/states/resend_confirmation_state.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -12,11 +12,10 @@ import 'package:mockito/mockito.dart';
 
 import 'resend_confirmation_controller_test.mocks.dart';
 
-@GenerateMocks([ResendConfirmationCodeInterface])
+@GenerateMocks([IResendConfirmationCodeUsecase])
 void main() {
   late ResendConfirmationController controller;
-  ResendConfirmationCodeInterface usecase =
-      MockResendConfirmationCodeInterface();
+  IResendConfirmationCodeUsecase usecase = MockIResendConfirmationCodeUsecase();
 
   setUp(() async {
     controller = ResendConfirmationController(usecase);

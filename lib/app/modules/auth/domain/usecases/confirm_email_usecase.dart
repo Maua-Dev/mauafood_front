@@ -3,15 +3,15 @@ import 'package:dartz/dartz.dart';
 import '../errors/auth_errors.dart';
 import '../infra/auth_repository_interface.dart';
 
-abstract class ConfirmEmailInterface {
+abstract class IConfirmEmailUsecase {
   Future<Either<ConfirmationEmailError, bool>> call(
       String email, String confirmationCode);
 }
 
-class ConfirmEmailImpl extends ConfirmEmailInterface {
+class ConfirmEmailUsecase extends IConfirmEmailUsecase {
   final AuthRepositoryInterface repository;
 
-  ConfirmEmailImpl({required this.repository});
+  ConfirmEmailUsecase({required this.repository});
 
   @override
   Future<Either<ConfirmationEmailError, bool>> call(

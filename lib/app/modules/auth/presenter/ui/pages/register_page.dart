@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:mauafood_front/app/modules/auth/presenter/bloc/register/bloc/register_bloc.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/register/register_controller.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -22,8 +21,6 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  late RegisterBloc registerBloc;
-
   @override
   Widget build(BuildContext context) {
     var registerController = Modular.get<RegisterController>();

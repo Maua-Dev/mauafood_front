@@ -70,7 +70,7 @@ abstract class LoginControllerBase with Store {
   @action
   Future<void> loginWithEmail() async {
     changeState(LoginLoadingState());
-    var eitherIsLogged = await _login(email, password);
+    var loginResult = await _login(email, password);
     var userAttributes = await _getUserAttributes();
     userAttributes.fold((failure) => changeState(LoginErrorState(failure)),
         (attributes) async {
@@ -81,14 +81,15 @@ abstract class LoginControllerBase with Store {
       _userRole = UserRolesEnumExtension.stringToEnumMap(role);
       await storage.saveRole(role);
     });
-    changeState(eitherIsLogged.fold((failure) {
-      return LoginErrorState(failure);
-    }, (authSession) {
+    loginResult.fold((failure) {
+      return changeState(LoginErrorState(failure));
+    }, (authSession) async {
       _loggedIn = true;
-      storage.saveAccessToken(authSession.userPoolTokens!.accessToken);
-      storage.saveRefreshToken(authSession.userPoolTokens!.refreshToken);
-      return LoginSuccessState(
-          isLogged: _loggedIn, userRole: userRole ?? UserRolesEnum.user);
-    }));
+      await storage.saveAccessToken(authSession.userPoolTokens!.accessToken);
+      await storage.saveRefreshToken(authSession.userPoolTokens!.refreshToken);
+      await storage.saveIdToken(authSession.userPoolTokens!.idToken);
+      return changeState(LoginSuccessState(
+          isLogged: _loggedIn, userRole: userRole ?? UserRolesEnum.USER));
+    });
   }
 }

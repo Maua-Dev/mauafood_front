@@ -63,16 +63,15 @@ class AuthModule extends Module {
         ),
         ChildRoute(
           '/confirm-email',
-          child: (context, args) =>
-              ConfirmEmailPage(registerBloc: args.data[0]),
+          child: (context, args) => const ConfirmEmailPage(),
         ),
         ChildRoute(
           '/forgot-password',
-          child: (context, args) => ForgotPasswordPage(authBloc: args.data),
+          child: (context, args) => const ForgotPasswordPage(),
         ),
         ChildRoute(
           '/change-password',
-          child: (context, args) => ChangePasswordPage(authBloc: args.data[0]),
+          child: (context, args) => const ChangePasswordPage(),
         ),
         ChildRoute(
           '/success-confirm',

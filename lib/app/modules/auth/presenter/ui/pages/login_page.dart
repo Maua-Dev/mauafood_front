@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/login/login_controller.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -62,29 +63,35 @@ class _LoginPageState extends State<LoginPage> {
                           const SizedBox(
                             height: 24,
                           ),
-                          TextFieldLoginWidget(
-                            onChanged: loginController.setEmail,
-                            validator: loginController.validateEmail,
-                            title: S.of(context).emailTitle,
-                          ),
-                          TextFieldLoginWidget(
-                            onChanged: loginController.setPassword,
-                            validator: loginController.validatePassword,
-                            title: S.of(context).passwordTitle,
-                            keyboardType: TextInputType.visiblePassword,
-                            autoFillHints: const [
-                              AutofillHints.password,
-                            ],
-                          ),
+                          Observer(builder: (_) {
+                            return TextFieldLoginWidget(
+                              onChanged: loginController.setEmail,
+                              validator: loginController.validateEmail,
+                              title: S.of(context).emailTitle,
+                            );
+                          }),
+                          Observer(builder: (_) {
+                            return TextFieldLoginWidget(
+                              onChanged: loginController.setPassword,
+                              validator: loginController.validatePassword,
+                              title: S.of(context).passwordTitle,
+                              keyboardType: TextInputType.visiblePassword,
+                              autoFillHints: const [
+                                AutofillHints.password,
+                              ],
+                            );
+                          }),
                           const SizedBox(
                             height: 8,
                           ),
-                          LoginButtonWidget(
-                            onPressed: () async {
-                              loginController.loginWithEmail();
-                            },
-                            title: S.of(context).enterTitle,
-                          ),
+                          Observer(builder: (_) {
+                            return LoginButtonWidget(
+                              onPressed: () async {
+                                await loginController.loginWithEmail();
+                              },
+                              title: S.of(context).enterTitle,
+                            );
+                          }),
                         ],
                       ),
                     ),

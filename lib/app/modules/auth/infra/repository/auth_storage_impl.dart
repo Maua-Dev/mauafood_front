@@ -23,13 +23,13 @@ class AuthStorageImpl implements AuthStorageInterface {
   }
 
   @override
-  Future<String?> getRefreshToken() async {
-    return await storage.get('refreshToken') as String?;
+  Future<String> getRefreshToken() async {
+    return await storage.get('refreshToken');
   }
 
   @override
-  Future<String?> getAccessToken() async {
-    return await storage.get('accessToken') as String?;
+  Future<String> getAccessToken() async {
+    return await storage.get('accessToken');
   }
 
   @override
@@ -38,12 +38,22 @@ class AuthStorageImpl implements AuthStorageInterface {
   }
 
   @override
-  Future<String?> getRole() async {
-    return await storage.get('role') as String?;
+  Future<String> getRole() async {
+    return await storage.get('role');
   }
 
   @override
   Future<void> saveRole(String role) async {
     await storage.put('role', role);
+  }
+
+  @override
+  Future<String> getIdToken() async {
+    return await storage.get('idToken');
+  }
+
+  @override
+  Future<void> saveIdToken(String idToken) async {
+    await storage.put('idToken', idToken);
   }
 }

@@ -2,21 +2,21 @@ import 'dart:ui';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/product_entity.dart';
-import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
+import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
 import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
 import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_interface.dart';
-import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_meal.dart';
+import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
+import 'package:mauafood_front/app/shared/helpers/enums/product_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'get_meal_test.mocks.dart';
+import 'get_product_test.mocks.dart';
 
 @GenerateMocks([MenuRepositoryInterface])
 void main() {
-  late GetRestaurantMealInterface useCase;
+  late IGetRestaurantProductUsecase useCase;
   MenuRepositoryInterface repository = MockMenuRepositoryInterface();
   var h = RestaurantEnum.hora_h;
   var biba = RestaurantEnum.biba;
@@ -26,7 +26,7 @@ void main() {
       name: 'name',
       description: 'description',
       price: 10,
-      type: MealEnum.CANDIES,
+      type: ProductEnum.CANDIES,
       photo: '',
       available: true,
       lastUpdate: DateTime.now(),
@@ -35,15 +35,15 @@ void main() {
 
   setUp(() async {
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
-    useCase = GetRestaurantMealImpl(repository: repository);
+    useCase = GetRestaurantProductUsecase(repository: repository);
   });
 
-  group('[TEST] - GetRestaurantMealImpl from Biba', () {
-    test('return List<Meal> if everything is correct', () async {
-      when(repository.getBibaMeals()).thenAnswer(
+  group('[TEST] - GetRestaurantProductUsecase from Biba', () {
+    test('return List<Product> if everything is correct', () async {
+      when(repository.getBibaProducts()).thenAnswer(
         (realInvocation) async => Right(listMock),
       );
-      when(repository.getHMeals()).thenAnswer(
+      when(repository.getHoraHProducts()).thenAnswer(
         (realInvocation) async => Right(listMock),
       );
       var result = await useCase(biba);
@@ -51,7 +51,7 @@ void main() {
     });
 
     test('return EmptyList if json is empty', () async {
-      when(repository.getBibaMeals()).thenAnswer(
+      when(repository.getBibaProducts()).thenAnswer(
         (realInvocation) async => const Right(<Product>[]),
       );
       var result = await useCase(biba);
@@ -59,7 +59,7 @@ void main() {
     });
 
     test('return DatasourceResultNull if json is null', () async {
-      when(repository.getBibaMeals()).thenAnswer(
+      when(repository.getBibaProducts()).thenAnswer(
         (realInvocation) async => Left(DatasourceResultNull(message: '')),
       );
       var result = await useCase(biba);
@@ -67,12 +67,12 @@ void main() {
     });
   });
 
-  group('[TEST] - GetRestaurantMealHImpl from H', () {
-    test('return List<Meal> if everything is correct', () async {
-      when(repository.getHMeals()).thenAnswer(
+  group('[TEST] - GetRestaurantProductUsecase from H', () {
+    test('return List<Product> if everything is correct', () async {
+      when(repository.getHoraHProducts()).thenAnswer(
         (realInvocation) async => Right(listMock),
       );
-      when(repository.getHMeals()).thenAnswer(
+      when(repository.getHoraHProducts()).thenAnswer(
         (realInvocation) async => Right(listMock),
       );
       var result = await useCase(h);
@@ -80,7 +80,7 @@ void main() {
     });
 
     test('return EmptyList if json is empty', () async {
-      when(repository.getHMeals()).thenAnswer(
+      when(repository.getHoraHProducts()).thenAnswer(
         (realInvocation) async => const Right(<Product>[]),
       );
       var result = await useCase(h);
@@ -88,7 +88,7 @@ void main() {
     });
 
     test('return DatasourceResultNull if json is null', () async {
-      when(repository.getHMeals()).thenAnswer(
+      when(repository.getHoraHProducts()).thenAnswer(
         (realInvocation) async => Left(DatasourceResultNull(message: '')),
       );
       var result = await useCase(h);

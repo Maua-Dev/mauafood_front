@@ -6,9 +6,9 @@ import '../../../../../../shared/utils/utils.dart';
 import '../../../../../../shared/widgets/circular_progress_indicator_custom_widget.dart';
 import '../../../../domain/entities/product.dart';
 
-class MealCardEmployeeWidget extends StatelessWidget {
-  final Product meal;
-  const MealCardEmployeeWidget({super.key, required this.meal});
+class ProductCardEmployeeWidget extends StatelessWidget {
+  final Product product;
+  const ProductCardEmployeeWidget({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class MealCardEmployeeWidget extends StatelessWidget {
                         child: FittedBox(
                           fit: BoxFit.fill,
                           child: Image.network(
-                            meal.photo,
+                            product.photo,
                             loadingBuilder: (BuildContext context, Widget child,
                                 ImageChunkEvent? loadingProgress) {
                               if (loadingProgress == null) return child;
@@ -66,11 +66,11 @@ class MealCardEmployeeWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            meal.name,
+                            product.name,
                             style: AppTextStyles.h1.copyWith(
                                 fontSize: 20, color: AppColors.mainBlueColor),
                           ),
-                          meal.description == ''
+                          product.description == ''
                               ? const SizedBox(
                                   height: 16,
                                 )
@@ -78,7 +78,7 @@ class MealCardEmployeeWidget extends StatelessWidget {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 8),
                                   child: Text(
-                                    meal.description,
+                                    product.description,
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                     style: AppTextStyles.h2.copyWith(
@@ -89,12 +89,14 @@ class MealCardEmployeeWidget extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                S.of(context).mealPriceCurrency(meal.price),
+                                S
+                                    .of(context)
+                                    .productPriceCurrency(product.price),
                                 style: AppTextStyles.h2.copyWith(
                                     fontSize: 18,
                                     color: AppColors.mainBlueColor),
                               ),
-                              meal.prepareTime == null
+                              product.prepareTime == null
                                   ? const SizedBox.shrink()
                                   : Row(
                                       children: [
@@ -107,8 +109,12 @@ class MealCardEmployeeWidget extends StatelessWidget {
                                           width: 2,
                                         ),
                                         Text(
-                                          S.of(context).mealPrepareTimeMinutes(
-                                              '', meal.prepareTime.toString()),
+                                          S
+                                              .of(context)
+                                              .productPrepareTimeMinutes(
+                                                  '',
+                                                  product.prepareTime
+                                                      .toString()),
                                           style: AppTextStyles.h2.copyWith(
                                               fontSize: 18,
                                               color: AppColors.mainBlueColor),

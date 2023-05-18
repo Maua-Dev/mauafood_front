@@ -1,4 +1,4 @@
-import 'package:mauafood_front/app/modules/restaurants/domain/entities/restaurant_entity.dart';
+import 'package:mauafood_front/app/modules/restaurants/domain/entities/restaurant.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 
 abstract class GetRestaurantInterface {

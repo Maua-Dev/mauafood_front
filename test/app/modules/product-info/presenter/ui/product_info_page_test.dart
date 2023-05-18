@@ -2,20 +2,20 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/modules/meal-info/presenter/ui/pages/product_info_page.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/product_entity.dart';
-import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
+import 'package:mauafood_front/app/modules/product-info/presenter/ui/pages/product_info_page.dart';
+import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/helpers/enums/product_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
-  var recommendedMealList = [
+  var recommendedProductList = [
     Product(
       id: '0',
       name: 'name',
       description: 'description',
       price: 10,
-      type: MealEnum.CANDIES,
+      type: ProductEnum.CANDIES,
       photo: '',
       available: true,
       lastUpdate: DateTime.now(),
@@ -25,7 +25,7 @@ void main() {
       name: 'name',
       description: 'description',
       price: 10,
-      type: MealEnum.CANDIES,
+      type: ProductEnum.CANDIES,
       photo: '',
       available: true,
       lastUpdate: DateTime.now(),
@@ -35,7 +35,7 @@ void main() {
       name: 'name',
       description: 'description',
       price: 10,
-      type: MealEnum.CANDIES,
+      type: ProductEnum.CANDIES,
       photo: '',
       available: true,
       lastUpdate: DateTime.now(),
@@ -46,7 +46,7 @@ void main() {
     name: 'name',
     description: 'description',
     price: 10,
-    type: MealEnum.CANDIES,
+    type: ProductEnum.CANDIES,
     photo: '',
     available: true,
     lastUpdate: DateTime.now(),
@@ -56,7 +56,7 @@ void main() {
     HttpOverrides.global = null;
   });
 
-  testWidgets('[WIDGETS TEST] - MealInfoPage', (widgetTester) async {
+  testWidgets('[WIDGETS TEST] - ProductInfoPage', (widgetTester) async {
     mockNetworkImagesFor(() async {
       await widgetTester.pumpWidget(MaterialApp(
         localizationsDelegates: const [
@@ -66,8 +66,8 @@ void main() {
         ],
         supportedLocales: S.delegate.supportedLocales,
         home: ProductInfoPage(
-          mealInfo: testMock,
-          recommendedMealList: recommendedMealList,
+          productInfo: testMock,
+          recommendedProductList: recommendedProductList,
         ),
       ));
 

@@ -628,10 +628,10 @@ class S {
     );
   }
 
-  /// `{meal, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}`
-  String mealNameSchema(Object meal) {
+  /// `{product, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}`
+  String productNameSchema(Object product) {
     return Intl.select(
-      meal,
+      product,
       {
         'ALL': 'All',
         'SANDWICHES': 'Sandwich',
@@ -646,14 +646,14 @@ class S {
         'SAVOURY': 'Savoury',
         'other': 'Other',
       },
-      name: 'mealNameSchema',
+      name: 'productNameSchema',
       desc: '',
-      args: [meal],
+      args: [product],
     );
   }
 
   /// `{amount} `
-  String mealPriceCurrency(double amount) {
+  String productPriceCurrency(double amount) {
     final NumberFormat amountNumberFormat = NumberFormat.currency(
         locale: Intl.getCurrentLocale(),
         decimalDigits: 2,
@@ -664,17 +664,17 @@ class S {
 
     return Intl.message(
       '$amountString ',
-      name: 'mealPriceCurrency',
+      name: 'productPriceCurrency',
       desc: '',
       args: [amountString],
     );
   }
 
   /// `{prepareTime} min`
-  String mealPrepareTimeMinutes(Object placeholders, Object prepareTime) {
+  String productPrepareTimeMinutes(Object placeholders, Object prepareTime) {
     return Intl.message(
       '$prepareTime min',
-      name: 'mealPrepareTimeMinutes',
+      name: 'productPrepareTimeMinutes',
       desc: '',
       args: [placeholders, prepareTime],
     );

@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/app_module.dart';
 import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_interface.dart';
 import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasource_interface.dart';
-import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
+import 'package:mauafood_front/app/modules/menu/infra/models/product_model.dart';
 import 'package:mauafood_front/app/modules/menu/infra/repository/menu_repository_impl.dart';
 import 'package:mauafood_front/app/modules/menu/user_menu_module.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -67,34 +67,34 @@ void main() {
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
   });
 
-  group('[TEST] - getBibaMeals', () {
+  group('[TEST] - getBibaProducts', () {
     when(datasource.getAllProducts())
         .thenAnswer((realInvocation) async => listMock);
     repository = MenuRepositoryImpl(datasource: datasource);
 
-    test('return a List<Meal> correct', () async {
-      var list = await repository.getBibaMeals();
-      expect(list.fold(id, id), isA<List<MealModel>>());
+    test('return a List<Product> correct', () async {
+      var list = await repository.getBibaProducts();
+      expect(list.fold(id, id), isA<List<ProductModel>>());
     });
   });
 
-  group('[TEST] - getHMeals', () {
+  group('[TEST] - getHProducts', () {
     when(datasource.getAllProducts())
         .thenAnswer((realInvocation) async => listMock);
     repository = MenuRepositoryImpl(datasource: datasource);
-    test('return a List<Meal> correct', () async {
-      var list = await repository.getHMeals();
-      expect(list.fold(id, id), isA<List<MealModel>>());
+    test('return a List<Product> correct', () async {
+      var list = await repository.getHoraHProducts();
+      expect(list.fold(id, id), isA<List<ProductModel>>());
     });
   });
 
-  group('[TEST] - getMolezaMeals', () {
+  group('[TEST] - getMolezaProducts', () {
     when(datasource.getAllProducts())
         .thenAnswer((realInvocation) async => listMock);
     repository = MenuRepositoryImpl(datasource: datasource);
-    test('return a List<Meal> correct', () async {
-      var list = await repository.getMolezaMeals();
-      expect(list.fold(id, id), isA<List<MealModel>>());
+    test('return a List<Product> correct', () async {
+      var list = await repository.getMolezaProducts();
+      expect(list.fold(id, id), isA<List<ProductModel>>());
     });
   });
 }

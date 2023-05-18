@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
-
+import '../../../../../../shared/helpers/enums/product_enum.dart';
 import '../../../../../../shared/themes/app_text_styles.dart';
-import '../../../../domain/enum/meal_enum.dart';
 
 class FilterButtonWidget extends StatelessWidget {
   final int myIndex;
@@ -29,7 +28,7 @@ class FilterButtonWidget extends StatelessWidget {
               actualIndex == myIndex ? AppColors.mainBlueColor : Colors.white,
         ),
         onPressed: onPressed,
-        child: Text(MealEnum.values[myIndex].name,
+        child: Text(ProductEnum.values[myIndex].name,
             style: actualIndex == myIndex
                 ? AppTextStyles.h2.copyWith(
                     color: AppColors.white, fontWeight: FontWeight.bold)

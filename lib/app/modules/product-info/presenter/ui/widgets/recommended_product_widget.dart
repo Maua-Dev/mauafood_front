@@ -65,7 +65,7 @@ class RecommendedProductWidget extends StatelessWidget {
                             fontWeight: FontWeight.bold, fontSize: 12),
                       ),
                       Text(
-                        S.of(context).mealPriceCurrency(product.price),
+                        S.of(context).productPriceCurrency(product.price),
                         style: AppTextStyles.h2Highlight.copyWith(
                             fontWeight: FontWeight.bold, fontSize: 12),
                       ),

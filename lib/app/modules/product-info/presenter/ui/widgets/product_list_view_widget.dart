@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../../menu/domain/entities/product.dart';
 
 class RecommendationCardWidget extends StatelessWidget {
-  final Product mealInfo;
-  const RecommendationCardWidget({super.key, required this.mealInfo});
+  final Product productInfo;
+  const RecommendationCardWidget({super.key, required this.productInfo});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class RecommendationCardWidget extends StatelessWidget {
       child: SizedBox(
         width: 175,
         child: Image.network(
-          mealInfo.photo,
+          productInfo.photo,
           fit: BoxFit.contain,
           loadingBuilder: (BuildContext context, Widget child,
               ImageChunkEvent? loadingProgress) {

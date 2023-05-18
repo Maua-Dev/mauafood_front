@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/product_entity.dart';
+import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contact/contact_dialog.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
+import '../../../../../../shared/helpers/enums/product_enum.dart';
 import '../../../../../restaurants/domain/infra/restaurant_enum.dart';
-import '../../../../domain/enum/meal_enum.dart';
 import '../../../../domain/errors/errors.dart';
 import '../../../controllers/menu/menu_controller.dart';
 import '../../../states/menu_state.dart';
 import '../widgets/error_loading_menu_widget.dart';
 import '../widgets/filter_button_widget.dart';
-import '../widgets/meal_card_widget.dart';
+import '../widgets/product_card_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class UserMenuPage extends StatelessWidget {
@@ -28,7 +28,7 @@ class UserMenuPage extends StatelessWidget {
       );
     }
 
-    Widget buildSuccess(List<Product> listMeal) {
+    Widget buildSuccess(List<Product> listProduct) {
       return Expanded(
           child: RefreshIndicator(
         backgroundColor: AppColors.white,
@@ -37,12 +37,12 @@ class UserMenuPage extends StatelessWidget {
         onRefresh: () async {
           menuController.loadRestaurantMenu();
         },
-        child: listMeal.isEmpty
+        child: listProduct.isEmpty
             ? Center(
                 child: Text(S.of(context).errorItemNotFound,
                     style: AppTextStyles.h2))
             : GridView.builder(
-                itemCount: listMeal.length,
+                itemCount: listProduct.length,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                 gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
@@ -51,29 +51,31 @@ class UserMenuPage extends StatelessWidget {
                   maxCrossAxisExtent: 210,
                 ),
                 itemBuilder: (context, index) {
-                  var recommendedMealList = <Product>[];
-                  switch (listMeal.length) {
+                  var recommendedProductList = <Product>[];
+                  switch (listProduct.length) {
                     case 0:
-                      recommendedMealList = [];
+                      recommendedProductList = [];
                       break;
                     case 1:
-                      recommendedMealList = [listMeal[0]];
+                      recommendedProductList = [listProduct[0]];
                       break;
                     case 2:
-                      recommendedMealList = [listMeal[0], listMeal[1]];
+                      recommendedProductList = [listProduct[0], listProduct[1]];
                       break;
                     default:
-                      recommendedMealList = [
-                        listMeal[0],
-                        listMeal[1],
-                        listMeal[2]
+                      recommendedProductList = [
+                        listProduct[0],
+                        listProduct[1],
+                        listProduct[2]
                       ];
                   }
-                  return MealCardWidget(
-                    meal: listMeal[index],
+                  return ProductCardWidget(
+                    product: listProduct[index],
                     onPressed: () {
-                      Modular.to.pushNamed('/user/meal-info',
-                          arguments: [listMeal[index], recommendedMealList]);
+                      Modular.to.pushNamed('/user/meal-info', arguments: [
+                        listProduct[index],
+                        recommendedProductList
+                      ]);
                     },
                   );
                 },
@@ -131,7 +133,7 @@ class UserMenuPage extends StatelessWidget {
                         vertical: 16, horizontal: 24),
                     child: TextFormField(
                       onChanged: (value) {
-                        menuController.searchMeal(value);
+                        menuController.searchProduct(value);
                       },
                       keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
@@ -183,7 +185,7 @@ class UserMenuPage extends StatelessWidget {
                                         horizontal: 16,
                                       ),
                                       child: ListView.builder(
-                                        itemCount: MealEnum.values.length,
+                                        itemCount: ProductEnum.values.length,
                                         scrollDirection: Axis.horizontal,
                                         shrinkWrap: true,
                                         itemBuilder: (context, index) {
@@ -191,8 +193,8 @@ class UserMenuPage extends StatelessWidget {
                                             myIndex: index,
                                             actualIndex: state.index,
                                             onPressed: () {
-                                              menuController.filterMeal(
-                                                  MealEnum.values[index]);
+                                              menuController.filterProduct(
+                                                  ProductEnum.values[index]);
                                             },
                                           );
                                         },
@@ -203,7 +205,7 @@ class UserMenuPage extends StatelessWidget {
                         state is MenuLoadingState
                             ? const Center(child: CircularProgressIndicator())
                             : state is MenuLoadedSuccessState
-                                ? buildSuccess(state.listMeal)
+                                ? buildSuccess(state.listProduct)
                                 : state is MenuErrorState
                                     ? buildError(state.failure)
                                     : const SizedBox.shrink(),

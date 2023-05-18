@@ -80,7 +80,14 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Error trying to log out, please try again later.',
           })}";
 
-  static String m6(meal) => "${Intl.select(meal, {
+  static String m6(notifications) => "${Intl.select(notifications, {
+            'normalPart': 'Want to receive ',
+            'email': 'email notifications',
+            'app': 'app notifications',
+            'other': '',
+          })}";
+
+  static String m7(product) => "${Intl.select(product, {
             'ALL': 'All',
             'SANDWICHES': 'Sandwich',
             'DRINKS': 'Drinks',
@@ -95,16 +102,9 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Other',
           })}";
 
-  static String m7(placeholders, prepareTime) => "${prepareTime} min";
+  static String m8(placeholders, prepareTime) => "${prepareTime} min";
 
-  static String m8(amount) => "${amount} ";
-
-  static String m9(notifications) => "${Intl.select(notifications, {
-            'normalPart': 'Want to receive ',
-            'email': 'email notifications',
-            'app': 'app notifications',
-            'other': '',
-          })}";
+  static String m9(amount) => "${amount} ";
 
   static String m10(schema) => "${Intl.select(schema, {
             'limitExceeded': 'Too many attempts in a row, try again later.',
@@ -212,17 +212,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginErrorsSchema": m4,
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "logoutErrorsSchema": m5,
-        "mealNameSchema": m6,
-        "mealPrepareTimeMinutes": m7,
-        "mealPriceCurrency": m8,
         "messageSentSuccessfully":
             MessageLookupByLibrary.simpleMessage("Email successfully sent!"),
         "newPasswordTitle":
             MessageLookupByLibrary.simpleMessage("New password"),
-        "notificationsOptionsSchema": m9,
+        "notificationsOptionsSchema": m6,
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Your password must contain: \n - One or more uppercase letters \n - One or more lowercase letters \n - One or more numbers \n - One or more special characters\n(#, ?, !, @, \\\$, %, ^, &, *, -) \n - Minimum 8 characters"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Password"),
+        "productNameSchema": m7,
+        "productPrepareTimeMinutes": m8,
+        "productPriceCurrency": m9,
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recommendations"),

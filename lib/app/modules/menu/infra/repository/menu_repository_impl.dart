@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/product_entity.dart';
+import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
 import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
 import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_interface.dart';
-import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
+import 'package:mauafood_front/app/modules/menu/infra/models/product_model.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
 import '../datasources/menu_datasource_interface.dart';
@@ -12,22 +12,22 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
   Map<String, dynamic> jsonAllRestaurants = {};
 
   MenuRepositoryImpl({required this.datasource}) {
-    getAllMeals();
+    getAllProducts();
   }
 
   @override
-  Future<void> getAllMeals() async {
+  Future<void> getAllProducts() async {
     jsonAllRestaurants = await datasource.getAllProducts();
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getBibaMeals() async {
+  Future<Either<Failure, List<Product>>> getBibaProducts() async {
     List<Product>? restaurantProducts;
-    await getAllMeals();
+    await getAllProducts();
 
     try {
       restaurantProducts =
-          MealModel.fromMaps(jsonAllRestaurants['SOUZA_DE_ABREU']);
+          ProductModel.fromMaps(jsonAllRestaurants['SOUZA_DE_ABREU']);
     } catch (e) {
       return left(DatasourceResultNull(message: S.current.errorItemNotFound));
     }
@@ -35,11 +35,11 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getHMeals() async {
+  Future<Either<Failure, List<Product>>> getHoraHProducts() async {
     List<Product>? restaurantProducts;
-    await getAllMeals();
+    await getAllProducts();
     try {
-      restaurantProducts = MealModel.fromMaps(jsonAllRestaurants['HORA_H']);
+      restaurantProducts = ProductModel.fromMaps(jsonAllRestaurants['HORA_H']);
     } catch (e) {
       return left(DatasourceResultNull(message: S.current.errorItemNotFound));
     }
@@ -48,12 +48,12 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getMolezaMeals() async {
+  Future<Either<Failure, List<Product>>> getMolezaProducts() async {
     List<Product>? restaurantProducts;
-    await getAllMeals();
+    await getAllProducts();
     try {
       restaurantProducts =
-          MealModel.fromMaps(jsonAllRestaurants['CANTINA_DO_MOLEZA']);
+          ProductModel.fromMaps(jsonAllRestaurants['CANTINA_DO_MOLEZA']);
     } catch (e) {
       return left(DatasourceResultNull(message: S.current.errorItemNotFound));
     }

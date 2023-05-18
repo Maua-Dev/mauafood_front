@@ -1,8 +1,8 @@
+import '../../../../shared/helpers/enums/product_enum.dart';
 import '../../domain/entities/product.dart';
-import '../../domain/enum/meal_enum.dart';
 
-class MealModel extends Product {
-  const MealModel(
+class ProductModel extends Product {
+  const ProductModel(
       {required super.id,
       required super.name,
       required super.description,
@@ -13,21 +13,21 @@ class MealModel extends Product {
       required super.available,
       required super.lastUpdate});
 
-  factory MealModel.fromMap(Map<String, dynamic> json) {
-    return MealModel(
+  factory ProductModel.fromMap(Map<String, dynamic> json) {
+    return ProductModel(
       id: json['product_id'],
       name: json['name'],
       description: json['description'],
       price: json['price'],
       prepareTime: json['prepare_time'],
-      type: MealEnumExtension.stringToEnumMap(json['meal_type']),
+      type: ProductEnumExtension.stringToEnumMap(json['meal_type']),
       photo: json['photo'],
       available: json['available'],
       lastUpdate: DateTime.fromMillisecondsSinceEpoch(json['last_update']),
     );
   }
 
-  static List<MealModel> fromMaps(List array) {
-    return array.map((e) => MealModel.fromMap(e)).toList();
+  static List<ProductModel> fromMaps(List array) {
+    return array.map((e) => ProductModel.fromMap(e)).toList();
   }
 }

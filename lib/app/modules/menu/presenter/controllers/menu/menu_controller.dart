@@ -1,20 +1,20 @@
 import 'package:mauafood_front/app/modules/menu/presenter/states/menu_state.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../../../shared/helpers/enums/product_enum.dart';
 import '../../../../restaurants/domain/infra/restaurant_enum.dart';
-import '../../../domain/entities/product_entity.dart';
-import '../../../domain/enum/meal_enum.dart';
-import '../../../domain/usecases/get_restaurant_meal.dart';
+import '../../../domain/entities/product.dart';
+import '../../../domain/usecases/get_restaurant_product_usecase.dart';
 
 part 'menu_controller.g.dart';
 
 class MenuController = MenuControllerBase with _$MenuController;
 
 abstract class MenuControllerBase with Store {
-  final GetRestaurantMealInterface _getRestaurantMeal;
+  final IGetRestaurantProductUsecase _getRestaurantProduct;
   RestaurantEnum restaurantInfo;
 
-  MenuControllerBase(this._getRestaurantMeal, this.restaurantInfo) {
+  MenuControllerBase(this._getRestaurantProduct, this.restaurantInfo) {
     loadRestaurantMenu();
   }
 
@@ -22,7 +22,7 @@ abstract class MenuControllerBase with Store {
   MenuState state = MenuInitialState();
 
   @observable
-  List<Product> listAllMeal = [];
+  List<Product> listAllProduct = [];
 
   @action
   void changeState(MenuState value) => state = value;
@@ -30,44 +30,46 @@ abstract class MenuControllerBase with Store {
   @action
   Future<void> loadRestaurantMenu() async {
     changeState(MenuLoadingState());
-    var result = await _getRestaurantMeal(restaurantInfo);
+    var result = await _getRestaurantProduct(restaurantInfo);
     changeState(result.fold((l) => MenuErrorState(failure: l), (list) {
-      listAllMeal = list;
-      return MenuLoadedSuccessState(listMeal: list, index: 0);
+      listAllProduct = list;
+      return MenuLoadedSuccessState(listProduct: list, index: 0);
     }));
   }
 
   @action
-  Future<void> searchMeal(String search) async {
+  Future<void> searchProduct(String search) async {
     if (state is MenuLoadedSuccessState) {
       if (search == '') {
-        changeState(MenuLoadedSuccessState(listMeal: listAllMeal, index: 0));
+        changeState(
+            MenuLoadedSuccessState(listProduct: listAllProduct, index: 0));
       } else {
-        var list = (state as MenuLoadedSuccessState).listMeal;
+        var list = (state as MenuLoadedSuccessState).listProduct;
         var filterList = list
             .where(
               (e) => e.name.toLowerCase().startsWith(search.toLowerCase()),
             )
             .toList();
-        changeState(MenuLoadedSuccessState(listMeal: filterList, index: 0));
+        changeState(MenuLoadedSuccessState(listProduct: filterList, index: 0));
       }
     }
   }
 
   @action
-  Future<void> filterMeal(MealEnum mealType) async {
+  Future<void> filterProduct(ProductEnum productType) async {
     if (state is MenuLoadedSuccessState) {
-      if (mealType == MealEnum.ALL) {
-        changeState(MenuLoadedSuccessState(listMeal: listAllMeal, index: 0));
+      if (productType == ProductEnum.ALL) {
+        changeState(
+            MenuLoadedSuccessState(listProduct: listAllProduct, index: 0));
       } else {
-        var list = (state as MenuLoadedSuccessState).listMeal;
+        var list = (state as MenuLoadedSuccessState).listProduct;
         var filterList = list
             .where(
-              (e) => e.type == mealType,
+              (e) => e.type == productType,
             )
             .toList();
         changeState(MenuLoadedSuccessState(
-            listMeal: filterList, index: mealType.index));
+            listProduct: filterList, index: productType.index));
       }
     }
   }

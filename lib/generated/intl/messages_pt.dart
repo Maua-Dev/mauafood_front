@@ -86,7 +86,14 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Erro ao tentar fazer logout, tente mais tarde.',
           })}";
 
-  static String m6(meal) => "${Intl.select(meal, {
+  static String m6(notifications) => "${Intl.select(notifications, {
+            'normalPart': 'Deseja receber ',
+            'email': 'notificações por e-mail',
+            'app': 'notificações pelo app',
+            'other': '',
+          })}";
+
+  static String m7(product) => "${Intl.select(product, {
             'ALL': 'Tudo',
             'SANDWICHES': 'Lanches',
             'DRINKS': 'Bebidas',
@@ -101,16 +108,9 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Outros',
           })}";
 
-  static String m7(placeholders, prepareTime) => "${prepareTime} min";
+  static String m8(placeholders, prepareTime) => "${prepareTime} min";
 
-  static String m8(amount) => "${amount} ";
-
-  static String m9(notifications) => "${Intl.select(notifications, {
-            'normalPart': 'Deseja receber ',
-            'email': 'notificações por e-mail',
-            'app': 'notificações pelo app',
-            'other': '',
-          })}";
+  static String m9(amount) => "${amount} ";
 
   static String m10(schema) => "${Intl.select(schema, {
             'limitExceeded':
@@ -222,16 +222,16 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginErrorsSchema": m4,
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "logoutErrorsSchema": m5,
-        "mealNameSchema": m6,
-        "mealPrepareTimeMinutes": m7,
-        "mealPriceCurrency": m8,
         "messageSentSuccessfully":
             MessageLookupByLibrary.simpleMessage("Email enviado com sucesso!"),
         "newPasswordTitle": MessageLookupByLibrary.simpleMessage("Nova senha"),
-        "notificationsOptionsSchema": m9,
+        "notificationsOptionsSchema": m6,
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \\\$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Senha"),
+        "productNameSchema": m7,
+        "productPrepareTimeMinutes": m8,
+        "productPriceCurrency": m9,
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recomendações"),

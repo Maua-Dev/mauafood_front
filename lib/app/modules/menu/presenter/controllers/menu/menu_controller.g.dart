@@ -25,19 +25,19 @@ mixin _$MenuController on MenuControllerBase, Store {
     });
   }
 
-  late final _$listAllMealAtom =
-      Atom(name: 'MenuControllerBase.listAllMeal', context: context);
+  late final _$listAllProductAtom =
+      Atom(name: 'MenuControllerBase.listAllProduct', context: context);
 
   @override
-  List<Product> get listAllMeal {
-    _$listAllMealAtom.reportRead();
-    return super.listAllMeal;
+  List<Product> get listAllProduct {
+    _$listAllProductAtom.reportRead();
+    return super.listAllProduct;
   }
 
   @override
-  set listAllMeal(List<Product> value) {
-    _$listAllMealAtom.reportWrite(value, super.listAllMeal, () {
-      super.listAllMeal = value;
+  set listAllProduct(List<Product> value) {
+    _$listAllProductAtom.reportWrite(value, super.listAllProduct, () {
+      super.listAllProduct = value;
     });
   }
 
@@ -50,20 +50,21 @@ mixin _$MenuController on MenuControllerBase, Store {
         .run(() => super.loadRestaurantMenu());
   }
 
-  late final _$searchMealAsyncAction =
-      AsyncAction('MenuControllerBase.searchMeal', context: context);
+  late final _$searchProductAsyncAction =
+      AsyncAction('MenuControllerBase.searchProduct', context: context);
 
   @override
-  Future<void> searchMeal(String search) {
-    return _$searchMealAsyncAction.run(() => super.searchMeal(search));
+  Future<void> searchProduct(String search) {
+    return _$searchProductAsyncAction.run(() => super.searchProduct(search));
   }
 
-  late final _$filterMealAsyncAction =
-      AsyncAction('MenuControllerBase.filterMeal', context: context);
+  late final _$filterProductAsyncAction =
+      AsyncAction('MenuControllerBase.filterProduct', context: context);
 
   @override
-  Future<void> filterMeal(MealEnum mealType) {
-    return _$filterMealAsyncAction.run(() => super.filterMeal(mealType));
+  Future<void> filterProduct(ProductEnum productType) {
+    return _$filterProductAsyncAction
+        .run(() => super.filterProduct(productType));
   }
 
   late final _$MenuControllerBaseActionController =
@@ -84,7 +85,7 @@ mixin _$MenuController on MenuControllerBase, Store {
   String toString() {
     return '''
 state: ${state},
-listAllMeal: ${listAllMeal}
+listAllProduct: ${listAllProduct}
     ''';
   }
 }

@@ -5,15 +5,15 @@ import '../employee_auth_guard.dart';
 import '../restaurants/domain/infra/restaurant_enum.dart';
 import 'data/datasource/menu_datasource_impl.dart';
 import 'domain/infra/menu_repository_interface.dart';
-import 'domain/usecases/get_restaurant_meal.dart';
+import 'domain/usecases/get_restaurant_product_usecase.dart';
 import 'infra/datasources/menu_datasource_interface.dart';
 import 'infra/repository/menu_repository_impl.dart';
 
 class EmployeeMenuModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind<GetRestaurantMealInterface>(
-            (i) => GetRestaurantMealImpl(repository: i())),
+        Bind<IGetRestaurantProductUsecase>(
+            (i) => GetRestaurantProductUsecase(repository: i())),
         Bind<MenuController>(
           (i) => MenuController(i(), i.args.data),
         ),

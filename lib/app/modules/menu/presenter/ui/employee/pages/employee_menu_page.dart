@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../../../../generated/l10n.dart';
+import '../../../../../../shared/helpers/enums/product_enum.dart';
 import '../../../../../../shared/services/s3/assets_s3.dart';
 import '../../../../../../shared/themes/app_colors.dart';
 import '../../../../../../shared/themes/app_text_styles.dart';
 import '../../../../../restaurants/domain/infra/restaurant_enum.dart';
-import '../../../../domain/enum/meal_enum.dart';
 import '../../../controllers/menu/menu_controller.dart';
 import '../../../states/menu_state.dart';
 import '../../user/widgets/error_loading_menu_widget.dart';
 import '../../user/widgets/filter_button_widget.dart';
-import '../widgets/meal_card_employee_widget.dart';
+import '../widgets/product_card_employee_widget.dart';
 
 class EmployeeMenuPage extends StatelessWidget {
   final RestaurantEnum restaurant;
@@ -57,7 +57,7 @@ class EmployeeMenuPage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: TextField(
                     onChanged: (value) {
-                      menuController.searchMeal(value);
+                      menuController.searchProduct(value);
                     },
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
@@ -90,7 +90,7 @@ class EmployeeMenuPage extends StatelessWidget {
                           maxHeight: 50,
                         ),
                         child: ListView.builder(
-                          itemCount: MealEnum.values.length,
+                          itemCount: ProductEnum.values.length,
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
@@ -99,7 +99,7 @@ class EmployeeMenuPage extends StatelessWidget {
                               actualIndex: state.index,
                               onPressed: () {
                                 menuController
-                                    .filterMeal(MealEnum.values[index]);
+                                    .filterProduct(ProductEnum.values[index]);
                               },
                             );
                           },
@@ -121,10 +121,10 @@ class EmployeeMenuPage extends StatelessWidget {
                               menuController.loadRestaurantMenu();
                             },
                             child: ListView.builder(
-                              itemCount: state.listMeal.length,
+                              itemCount: state.listProduct.length,
                               itemBuilder: (context, index) {
-                                return MealCardEmployeeWidget(
-                                  meal: state.listMeal[index],
+                                return ProductCardEmployeeWidget(
+                                  product: state.listProduct[index],
                                 );
                               },
                             ),

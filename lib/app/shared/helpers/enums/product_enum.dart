@@ -1,9 +1,10 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:enum_to_string/enum_to_string.dart';
-import 'package:mauafood_front/generated/l10n.dart';
 
-enum MealEnum {
+import '../../../../generated/l10n.dart';
+
+enum ProductEnum {
   ALL,
   SANDWICHES,
   DRINKS,
@@ -17,15 +18,15 @@ enum MealEnum {
   SAVOURY,
 }
 
-extension MealEnumExtension on MealEnum {
-  static MealEnum stringToEnumMap(String toMap) {
-    MealEnum type = MealEnum.values.firstWhere((type) =>
+extension ProductEnumExtension on ProductEnum {
+  static ProductEnum stringToEnumMap(String toMap) {
+    ProductEnum type = ProductEnum.values.firstWhere((type) =>
         EnumToString.convertToString(type).toUpperCase() ==
         toMap.toUpperCase());
     return type;
   }
 
   String get name {
-    return S.current.mealNameSchema(toString());
+    return S.current.productNameSchema(toString());
   }
 }

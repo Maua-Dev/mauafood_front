@@ -3,11 +3,10 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
 import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
-import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_meal.dart';
+import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/modules/menu/employee_menu_module.dart';
-import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
+import 'package:mauafood_front/app/modules/menu/infra/models/product_model.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/states/menu_state.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/pages/employee_menu_page.dart';
@@ -15,6 +14,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_men
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/error_loading_menu_widget.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/filter_button_widget.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
+import 'package:mauafood_front/app/shared/helpers/enums/product_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -24,29 +24,29 @@ import 'package:flutter_modular/flutter_modular.dart' as modular;
 
 import 'employee_menu_page_test.mocks.dart';
 
-@GenerateMocks([GetRestaurantMealInterface])
+@GenerateMocks([IGetRestaurantProductUsecase])
 void main() {
   late MenuController controller;
-  GetRestaurantMealInterface usecase = MockGetRestaurantMealInterface();
+  IGetRestaurantProductUsecase usecase = MockIGetRestaurantProductUsecase();
 
-  MealModel testMock = MealModel(
+  ProductModel testMock = ProductModel(
     id: '0',
     name: 'name',
     description: 'description',
     price: 10,
-    type: MealEnum.CANDIES,
+    type: ProductEnum.CANDIES,
     photo: '',
     available: true,
     lastUpdate: DateTime.now(),
   );
   var listMock = [
     testMock,
-    MealModel(
+    ProductModel(
       id: '0',
       name: 'name',
       description: 'description',
       price: 10,
-      type: MealEnum.CANDIES,
+      type: ProductEnum.CANDIES,
       photo: '',
       available: true,
       lastUpdate: DateTime.now(),
@@ -60,7 +60,7 @@ void main() {
     initModules([
       EmployeeMenuModule()
     ], replaceBinds: [
-      modular.Bind<GetRestaurantMealInterface>((i) => usecase),
+      modular.Bind<IGetRestaurantProductUsecase>((i) => usecase),
       modular.Bind<MenuController>((i) => controller),
     ]);
   });
@@ -104,8 +104,8 @@ void main() {
       when(usecase(RestaurantEnum.biba))
           .thenAnswer((realInvocation) async => Right(listMock));
 
-      await widgetTester.runAsync(() async => controller
-          .changeState(MenuLoadedSuccessState(listMeal: listMock, index: 0)));
+      await widgetTester.runAsync(() async => controller.changeState(
+          MenuLoadedSuccessState(listProduct: listMock, index: 0)));
       await widgetTester.pump();
 
       expect(find.byType(FilterButtonWidget), findsNWidgets(9));

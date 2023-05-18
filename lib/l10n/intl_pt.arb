@@ -76,9 +76,9 @@
     "labelSend": "Enviar agora",
 
 
-    "mealNameSchema": "{meal, select, ALL{Tudo} SANDWICHES{Lanches} DRINKS{Bebidas} CANDIES{Doces} PLATES{Pratos} PORTIONS{Porções} PASTAS{Massas} SNACKS{Snacks} SALADS{Saladas} DESSERT{Sobremesa} SAVOURY{Salgado} other{Outros}}",
-    "mealPriceCurrency": "{amount} ",
-    "@mealPriceCurrency" : {
+    "productNameSchema": "{product, select, ALL{Tudo} SANDWICHES{Lanches} DRINKS{Bebidas} CANDIES{Doces} PLATES{Pratos} PORTIONS{Porções} PASTAS{Massas} SNACKS{Snacks} SALADS{Saladas} DESSERT{Sobremesa} SAVOURY{Salgado} other{Outros}}",
+    "productPriceCurrency": "{amount} ",
+    "@productPriceCurrency" : {
         "placeholders": {
             "amount": {
                 "type": "double",
@@ -94,8 +94,8 @@
             }
         }
     },
-    "mealPrepareTimeMinutes": "{prepareTime} min",
-    "@mealPrepareTimeMinutes" : {
+    "productPrepareTimeMinutes": "{prepareTime} min",
+    "@productPrepareTimeMinutes" : {
         "placeholders": {
             "placeholders": {
                 "prepareTime": {}

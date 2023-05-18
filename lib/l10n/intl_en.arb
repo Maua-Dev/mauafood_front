@@ -76,9 +76,9 @@
     "labelSend": "Send now",
 
 
-    "mealNameSchema": "{meal, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}",
-    "mealPriceCurrency": "{amount} ",
-    "@mealPriceCurrency" : {
+    "productNameSchema": "{product, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}",
+    "productPriceCurrency": "{amount} ",
+    "@productPriceCurrency" : {
         "placeholders": {
             "amount": {
                 "type": "double",
@@ -94,8 +94,8 @@
             }
         }
     },
-    "mealPrepareTimeMinutes": "{prepareTime} min",
-    "@mealPrepareTimeMinutes" : {
+    "productPrepareTimeMinutes": "{prepareTime} min",
+    "@productPrepareTimeMinutes" : {
         "placeholders": {
             "placeholders": {
                 "prepareTime": {}

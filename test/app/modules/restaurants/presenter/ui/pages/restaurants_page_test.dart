@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/app_module.dart';
-import 'package:mauafood_front/app/modules/restaurants/domain/entities/restaurant_entity.dart';
+import 'package:mauafood_front/app/modules/restaurants/domain/entities/restaurant.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/usecases/get_restaurant.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/pages/restaurants_page.dart';

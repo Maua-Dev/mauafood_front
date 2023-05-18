@@ -1,12 +1,12 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/meal-info/presenter/ui/pages/product_info_page.dart';
+import 'package:mauafood_front/app/modules/product-info/presenter/ui/pages/product_info_page.dart';
 import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
 
 class ProductInfoModule extends Module {
-  late Product mealinfo;
+  late Product productInfo;
   @override
   List<Bind> get binds => [
-        Bind<Product>((i) => mealinfo),
+        Bind<Product>((i) => productInfo),
       ];
 
   @override
@@ -14,7 +14,7 @@ class ProductInfoModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => ProductInfoPage(
-              mealInfo: args.data[0], recommendedMealList: args.data[1]),
+              productInfo: args.data[0], recommendedProductList: args.data[1]),
         ),
       ];
 }

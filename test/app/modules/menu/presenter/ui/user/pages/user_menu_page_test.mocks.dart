@@ -6,11 +6,11 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:mauafood_front/app/modules/menu/domain/entities/product_entity.dart'
+import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart'
     as _i6;
 import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart'
     as _i5;
-import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_meal.dart'
+import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_product_usecase.dart'
     as _i3;
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart'
     as _i7;
@@ -37,12 +37,12 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-/// A class which mocks [GetRestaurantMealInterface].
+/// A class which mocks [IGetRestaurantProductUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetRestaurantMealInterface extends _i1.Mock
-    implements _i3.GetRestaurantMealInterface {
-  MockGetRestaurantMealInterface() {
+class MockIGetRestaurantProductUsecase extends _i1.Mock
+    implements _i3.IGetRestaurantProductUsecase {
+  MockIGetRestaurantProductUsecase() {
     _i1.throwOnMissingStub(this);
   }
 

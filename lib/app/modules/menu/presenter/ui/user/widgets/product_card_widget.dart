@@ -4,13 +4,13 @@ import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import '../../../../../../../generated/l10n.dart';
 import '../../../../domain/entities/product.dart';
 
-class MealCardWidget extends StatelessWidget {
-  final Product meal;
+class ProductCardWidget extends StatelessWidget {
+  final Product product;
   final Function()? onPressed;
 
-  const MealCardWidget({
+  const ProductCardWidget({
     Key? key,
-    required this.meal,
+    required this.product,
     required this.onPressed,
   }) : super(key: key);
 
@@ -35,7 +35,7 @@ class MealCardWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Image.network(
-                  meal.photo,
+                  product.photo,
                   fit: BoxFit.contain,
                   loadingBuilder: (BuildContext context, Widget child,
                       ImageChunkEvent? loadingProgress) {
@@ -63,7 +63,7 @@ class MealCardWidget extends StatelessWidget {
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Text(
-                        meal.name,
+                        product.name,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyles.h2
@@ -71,7 +71,7 @@ class MealCardWidget extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      S.of(context).mealPriceCurrency(meal.price),
+                      S.of(context).productPriceCurrency(product.price),
                       style: AppTextStyles.h2Highlight
                           .copyWith(fontWeight: FontWeight.bold),
                     ),

@@ -4,13 +4,15 @@ import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
-import '../widgets/recommended_meal_widget.dart';
+import '../widgets/recommended_product_widget.dart';
 
 class ProductInfoPage extends StatelessWidget {
-  final Product mealInfo;
-  final List<Product> recommendedMealList;
+  final Product productInfo;
+  final List<Product> recommendedProductList;
   const ProductInfoPage(
-      {super.key, required this.mealInfo, required this.recommendedMealList});
+      {super.key,
+      required this.productInfo,
+      required this.recommendedProductList});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class ProductInfoPage extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: Image.network(
-                    mealInfo.photo,
+                    productInfo.photo,
                     fit: BoxFit.contain,
                     loadingBuilder: (BuildContext context, Widget child,
                         ImageChunkEvent? loadingProgress) {
@@ -69,18 +71,18 @@ class ProductInfoPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        mealInfo.name,
+                        productInfo.name,
                         style: AppTextStyles.h1,
                       ),
                       Text(
-                        S.of(context).mealPriceCurrency(mealInfo.price),
+                        S.of(context).productPriceCurrency(productInfo.price),
                         style: AppTextStyles.h1.copyWith(fontSize: 22),
                       ),
                       const SizedBox(
                         height: 16,
                       ),
                       Text(
-                        mealInfo.description,
+                        productInfo.description,
                         style: AppTextStyles.h3
                             .copyWith(fontWeight: FontWeight.bold),
                         textAlign: TextAlign.left,
@@ -88,7 +90,7 @@ class ProductInfoPage extends StatelessWidget {
                       const SizedBox(
                         height: 16,
                       ),
-                      if (recommendedMealList.length > 1)
+                      if (recommendedProductList.length > 1)
                         Text(
                           S.of(context).recommendationsTitle,
                           style: AppTextStyles.h1.copyWith(fontSize: 22),
@@ -100,17 +102,17 @@ class ProductInfoPage extends StatelessWidget {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          if (recommendedMealList.length > 1)
+                          if (recommendedProductList.length > 1)
                             SizedBox(
                               height: 150,
                               width: MediaQuery.of(context).size.width / 4,
                               child: RecommendedProductWidget(
-                                product: recommendedMealList[0],
+                                product: recommendedProductList[0],
                                 onPressed: () {
                                   Modular.to.pushNamed('/user/meal-info',
                                       arguments: [
-                                        recommendedMealList[0],
-                                        recommendedMealList
+                                        recommendedProductList[0],
+                                        recommendedProductList
                                       ]);
                                 },
                               ),
@@ -118,17 +120,17 @@ class ProductInfoPage extends StatelessWidget {
                           const SizedBox(
                             width: 12,
                           ),
-                          if (recommendedMealList.length > 1)
+                          if (recommendedProductList.length > 1)
                             SizedBox(
                               height: 150,
                               width: MediaQuery.of(context).size.width / 4,
                               child: RecommendedProductWidget(
-                                product: recommendedMealList[1],
+                                product: recommendedProductList[1],
                                 onPressed: () {
                                   Modular.to.pushNamed('/user/meal-info',
                                       arguments: [
-                                        recommendedMealList[1],
-                                        recommendedMealList
+                                        recommendedProductList[1],
+                                        recommendedProductList
                                       ]);
                                 },
                               ),
@@ -136,17 +138,17 @@ class ProductInfoPage extends StatelessWidget {
                           const SizedBox(
                             width: 12,
                           ),
-                          if (recommendedMealList.length > 2)
+                          if (recommendedProductList.length > 2)
                             SizedBox(
                               height: 150,
                               width: MediaQuery.of(context).size.width / 4,
                               child: RecommendedProductWidget(
-                                product: recommendedMealList[2],
+                                product: recommendedProductList[2],
                                 onPressed: () {
                                   Modular.to.pushNamed('/user/meal-info',
                                       arguments: [
-                                        recommendedMealList[2],
-                                        recommendedMealList
+                                        recommendedProductList[2],
+                                        recommendedProductList
                                       ]);
                                 },
                               ),

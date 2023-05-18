@@ -2,15 +2,15 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/modules/meal-info/presenter/ui/pages/meal_info_page.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
+import 'package:mauafood_front/app/modules/meal-info/presenter/ui/pages/product_info_page.dart';
+import 'package:mauafood_front/app/modules/menu/domain/entities/product_entity.dart';
 import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
   var recommendedMealList = [
-    Meal(
+    Product(
       id: '0',
       name: 'name',
       description: 'description',
@@ -20,7 +20,7 @@ void main() {
       available: true,
       lastUpdate: DateTime.now(),
     ),
-    Meal(
+    Product(
       id: '0',
       name: 'name',
       description: 'description',
@@ -30,7 +30,7 @@ void main() {
       available: true,
       lastUpdate: DateTime.now(),
     ),
-    Meal(
+    Product(
       id: '0',
       name: 'name',
       description: 'description',
@@ -41,7 +41,7 @@ void main() {
       lastUpdate: DateTime.now(),
     )
   ];
-  Meal testMock = Meal(
+  Product testMock = Product(
     id: '0',
     name: 'name',
     description: 'description',
@@ -65,7 +65,7 @@ void main() {
           GlobalWidgetsLocalizations.delegate,
         ],
         supportedLocales: S.delegate.supportedLocales,
-        home: MealInfoPage(
+        home: ProductInfoPage(
           mealInfo: testMock,
           recommendedMealList: recommendedMealList,
         ),

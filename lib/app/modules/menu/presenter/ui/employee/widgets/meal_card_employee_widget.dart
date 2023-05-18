@@ -4,10 +4,10 @@ import '../../../../../../shared/themes/app_colors.dart';
 import '../../../../../../shared/themes/app_text_styles.dart';
 import '../../../../../../shared/utils/utils.dart';
 import '../../../../../../shared/widgets/circular_progress_indicator_custom_widget.dart';
-import '../../../../domain/entities/meal_entity.dart';
+import '../../../../domain/entities/product.dart';
 
 class MealCardEmployeeWidget extends StatelessWidget {
-  final Meal meal;
+  final Product meal;
   const MealCardEmployeeWidget({super.key, required this.meal});
 
   @override

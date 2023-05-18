@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../menu/domain/entities/meal_entity.dart';
+import '../../../../menu/domain/entities/product.dart';
 
 class RecommendationCardWidget extends StatelessWidget {
-  final Meal mealInfo;
+  final Product mealInfo;
   const RecommendationCardWidget({super.key, required this.mealInfo});
 
   @override

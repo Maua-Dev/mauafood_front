@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
+import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import '../widgets/recommended_meal_widget.dart';
 
-class MealInfoPage extends StatelessWidget {
-  final Meal mealInfo;
-  final List<Meal> recommendedMealList;
-  const MealInfoPage(
+class ProductInfoPage extends StatelessWidget {
+  final Product mealInfo;
+  final List<Product> recommendedMealList;
+  const ProductInfoPage(
       {super.key, required this.mealInfo, required this.recommendedMealList});
 
   @override
@@ -104,8 +104,8 @@ class MealInfoPage extends StatelessWidget {
                             SizedBox(
                               height: 150,
                               width: MediaQuery.of(context).size.width / 4,
-                              child: RecommendedMealWidget(
-                                meal: recommendedMealList[0],
+                              child: RecommendedProductWidget(
+                                product: recommendedMealList[0],
                                 onPressed: () {
                                   Modular.to.pushNamed('/user/meal-info',
                                       arguments: [
@@ -122,8 +122,8 @@ class MealInfoPage extends StatelessWidget {
                             SizedBox(
                               height: 150,
                               width: MediaQuery.of(context).size.width / 4,
-                              child: RecommendedMealWidget(
-                                meal: recommendedMealList[1],
+                              child: RecommendedProductWidget(
+                                product: recommendedMealList[1],
                                 onPressed: () {
                                   Modular.to.pushNamed('/user/meal-info',
                                       arguments: [
@@ -140,8 +140,8 @@ class MealInfoPage extends StatelessWidget {
                             SizedBox(
                               height: 150,
                               width: MediaQuery.of(context).size.width / 4,
-                              child: RecommendedMealWidget(
-                                meal: recommendedMealList[2],
+                              child: RecommendedProductWidget(
+                                product: recommendedMealList[2],
                                 onPressed: () {
                                   Modular.to.pushNamed('/user/meal-info',
                                       arguments: [

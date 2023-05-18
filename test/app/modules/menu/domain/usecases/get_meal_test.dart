@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
+import 'package:mauafood_front/app/modules/menu/domain/entities/product_entity.dart';
 import 'package:mauafood_front/app/modules/menu/domain/enum/meal_enum.dart';
 import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
 import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_interface.dart';
@@ -21,7 +21,7 @@ void main() {
   var h = RestaurantEnum.hora_h;
   var biba = RestaurantEnum.biba;
   var listMock = [
-    Meal(
+    Product(
       id: '0',
       name: 'name',
       description: 'description',
@@ -47,12 +47,12 @@ void main() {
         (realInvocation) async => Right(listMock),
       );
       var result = await useCase(biba);
-      expect(result.fold(id, id), isA<List<Meal>>());
+      expect(result.fold(id, id), isA<List<Product>>());
     });
 
     test('return EmptyList if json is empty', () async {
       when(repository.getBibaMeals()).thenAnswer(
-        (realInvocation) async => const Right(<Meal>[]),
+        (realInvocation) async => const Right(<Product>[]),
       );
       var result = await useCase(biba);
       expect(result.fold(id, id), isA<EmptyList>());
@@ -76,12 +76,12 @@ void main() {
         (realInvocation) async => Right(listMock),
       );
       var result = await useCase(h);
-      expect(result.fold(id, id), isA<List<Meal>>());
+      expect(result.fold(id, id), isA<List<Product>>());
     });
 
     test('return EmptyList if json is empty', () async {
       when(repository.getHMeals()).thenAnswer(
-        (realInvocation) async => const Right(<Meal>[]),
+        (realInvocation) async => const Right(<Product>[]),
       );
       var result = await useCase(h);
       expect(result.fold(id, id), isA<EmptyList>());

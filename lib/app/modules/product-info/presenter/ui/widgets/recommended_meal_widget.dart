@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
-import '../../../../menu/domain/entities/meal_entity.dart';
+import '../../../../menu/domain/entities/product.dart';
 
-class RecommendedMealWidget extends StatelessWidget {
-  final Meal meal;
+class RecommendedProductWidget extends StatelessWidget {
+  final Product product;
   final Function()? onPressed;
-  const RecommendedMealWidget({super.key, required this.meal, this.onPressed});
+  const RecommendedProductWidget(
+      {super.key, required this.product, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class RecommendedMealWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Image.network(
-                  meal.photo,
+                  product.photo,
                   fit: BoxFit.contain,
                   loadingBuilder: (BuildContext context, Widget child,
                       ImageChunkEvent? loadingProgress) {
@@ -57,14 +58,14 @@ class RecommendedMealWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        meal.name,
+                        product.name,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: AppTextStyles.h2.copyWith(
                             fontWeight: FontWeight.bold, fontSize: 12),
                       ),
                       Text(
-                        S.of(context).mealPriceCurrency(meal.price),
+                        S.of(context).mealPriceCurrency(product.price),
                         style: AppTextStyles.h2Highlight.copyWith(
                             fontWeight: FontWeight.bold, fontSize: 12),
                       ),

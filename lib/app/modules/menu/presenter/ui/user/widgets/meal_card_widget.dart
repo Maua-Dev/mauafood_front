@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import '../../../../../../../generated/l10n.dart';
-import '../../../../domain/entities/meal_entity.dart';
+import '../../../../domain/entities/product.dart';
 
 class MealCardWidget extends StatelessWidget {
-  final Meal meal;
+  final Product meal;
   final Function()? onPressed;
 
   const MealCardWidget({

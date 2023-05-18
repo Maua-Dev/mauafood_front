@@ -29,13 +29,13 @@ mixin _$MenuController on MenuControllerBase, Store {
       Atom(name: 'MenuControllerBase.listAllMeal', context: context);
 
   @override
-  List<Meal> get listAllMeal {
+  List<Product> get listAllMeal {
     _$listAllMealAtom.reportRead();
     return super.listAllMeal;
   }
 
   @override
-  set listAllMeal(List<Meal> value) {
+  set listAllMeal(List<Product> value) {
     _$listAllMealAtom.reportWrite(value, super.listAllMeal, () {
       super.listAllMeal = value;
     });

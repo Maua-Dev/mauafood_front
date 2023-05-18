@@ -1,6 +1,6 @@
 import '../enum/meal_enum.dart';
 
-class Meal {
+class Product {
   final String id;
   final String name;
   final String description;
@@ -11,7 +11,7 @@ class Meal {
   final bool available;
   final DateTime lastUpdate;
 
-  const Meal({
+  const Product({
     required this.lastUpdate,
     required this.available,
     required this.photo,

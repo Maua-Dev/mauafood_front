@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
+import 'package:mauafood_front/app/modules/menu/domain/entities/product_entity.dart';
 import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
 import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_interface.dart';
 import 'package:mauafood_front/app/modules/menu/infra/models/meal_model.dart';
@@ -21,8 +21,8 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
   }
 
   @override
-  Future<Either<Failure, List<Meal>>> getBibaMeals() async {
-    List<Meal>? restaurantProducts;
+  Future<Either<Failure, List<Product>>> getBibaMeals() async {
+    List<Product>? restaurantProducts;
     await getAllMeals();
 
     try {
@@ -35,8 +35,8 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
   }
 
   @override
-  Future<Either<Failure, List<Meal>>> getHMeals() async {
-    List<Meal>? restaurantProducts;
+  Future<Either<Failure, List<Product>>> getHMeals() async {
+    List<Product>? restaurantProducts;
     await getAllMeals();
     try {
       restaurantProducts = MealModel.fromMaps(jsonAllRestaurants['HORA_H']);
@@ -48,8 +48,8 @@ class MenuRepositoryImpl implements MenuRepositoryInterface {
   }
 
   @override
-  Future<Either<Failure, List<Meal>>> getMolezaMeals() async {
-    List<Meal>? restaurantProducts;
+  Future<Either<Failure, List<Product>>> getMolezaMeals() async {
+    List<Product>? restaurantProducts;
     await getAllMeals();
     try {
       restaurantProducts =

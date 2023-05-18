@@ -6,7 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart'
+import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart'
     as _i6;
 import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart'
     as _i5;
@@ -54,51 +54,54 @@ class MockMenuRepositoryInterface extends _i1.Mock
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>> getBibaMeals() =>
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>> getBibaMeals() =>
       (super.noSuchMethod(
         Invocation.method(
           #getBibaMeals,
           [],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>>.value(
-            _FakeEither_0<_i5.Failure, List<_i6.Meal>>(
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>.value(
+                _FakeEither_0<_i5.Failure, List<_i6.Product>>(
           this,
           Invocation.method(
             #getBibaMeals,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>> getHMeals() =>
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>> getHMeals() =>
       (super.noSuchMethod(
         Invocation.method(
           #getHMeals,
           [],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>>.value(
-            _FakeEither_0<_i5.Failure, List<_i6.Meal>>(
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>.value(
+                _FakeEither_0<_i5.Failure, List<_i6.Product>>(
           this,
           Invocation.method(
             #getHMeals,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>> getMolezaMeals() =>
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>> getMolezaMeals() =>
       (super.noSuchMethod(
         Invocation.method(
           #getMolezaMeals,
           [],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>>.value(
-            _FakeEither_0<_i5.Failure, List<_i6.Meal>>(
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>.value(
+                _FakeEither_0<_i5.Failure, List<_i6.Product>>(
           this,
           Invocation.method(
             #getMolezaMeals,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>);
 }

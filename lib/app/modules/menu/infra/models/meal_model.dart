@@ -1,7 +1,7 @@
-import '../../domain/entities/meal_entity.dart';
+import '../../domain/entities/product.dart';
 import '../../domain/enum/meal_enum.dart';
 
-class MealModel extends Meal {
+class MealModel extends Product {
   const MealModel(
       {required super.id,
       required super.name,

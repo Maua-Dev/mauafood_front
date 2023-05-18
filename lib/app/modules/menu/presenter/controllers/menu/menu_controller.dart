@@ -2,7 +2,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/states/menu_state.dart
 import 'package:mobx/mobx.dart';
 
 import '../../../../restaurants/domain/infra/restaurant_enum.dart';
-import '../../../domain/entities/meal_entity.dart';
+import '../../../domain/entities/product_entity.dart';
 import '../../../domain/enum/meal_enum.dart';
 import '../../../domain/usecases/get_restaurant_meal.dart';
 
@@ -22,7 +22,7 @@ abstract class MenuControllerBase with Store {
   MenuState state = MenuInitialState();
 
   @observable
-  List<Meal> listAllMeal = [];
+  List<Product> listAllMeal = [];
 
   @action
   void changeState(MenuState value) => state = value;

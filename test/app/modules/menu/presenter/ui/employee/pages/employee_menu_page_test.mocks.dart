@@ -6,7 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart'
+import 'package:mauafood_front/app/modules/menu/domain/entities/product_entity.dart'
     as _i6;
 import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart'
     as _i5;
@@ -47,20 +47,21 @@ class MockGetRestaurantMealInterface extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>> call(
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>> call(
           _i7.RestaurantEnum? restaurantInfo) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [restaurantInfo],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>>.value(
-            _FakeEither_0<_i5.Failure, List<_i6.Meal>>(
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>.value(
+                _FakeEither_0<_i5.Failure, List<_i6.Product>>(
           this,
           Invocation.method(
             #call,
             [restaurantInfo],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Meal>>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>);
 }

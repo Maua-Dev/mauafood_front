@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
+import 'package:mauafood_front/app/modules/menu/domain/entities/product_entity.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contact/contact_dialog.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
@@ -28,7 +28,7 @@ class UserMenuPage extends StatelessWidget {
       );
     }
 
-    Widget buildSuccess(List<Meal> listMeal) {
+    Widget buildSuccess(List<Product> listMeal) {
       return Expanded(
           child: RefreshIndicator(
         backgroundColor: AppColors.white,
@@ -51,7 +51,7 @@ class UserMenuPage extends StatelessWidget {
                   maxCrossAxisExtent: 210,
                 ),
                 itemBuilder: (context, index) {
-                  var recommendedMealList = <Meal>[];
+                  var recommendedMealList = <Product>[];
                   switch (listMeal.length) {
                     case 0:
                       recommendedMealList = [];

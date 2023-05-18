@@ -5,7 +5,7 @@ import 'package:mauafood_front/app/modules/auth/presenter/controllers/login/logi
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import '../../../../../../generated/l10n.dart';
-import '../../../../../shared/services/s3/assets_s3.dart';
+import '../../../../../shared/helpers/services/s3/assets_s3.dart';
 import '../widgets/login_button_widget.dart';
 import '../widgets/text_button_login_widget.dart';
 import '../widgets/text_field_login_widget.dart';

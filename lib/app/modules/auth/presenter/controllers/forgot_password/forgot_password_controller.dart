@@ -1,5 +1,5 @@
 import 'package:mobx/mobx.dart';
-import '../../../../../shared/utils/validation_utils.dart';
+import '../../../../../shared/helpers/utils/validation_utils.dart';
 import '../../../domain/infra/auth_storage_interface.dart';
 import '../../../domain/usecases/forgot_password_usecase.dart';
 import '../../states/forgot_password_state.dart';

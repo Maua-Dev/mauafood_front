@@ -72,7 +72,7 @@ class UserMenuPage extends StatelessWidget {
                   return ProductCardWidget(
                     product: listProduct[index],
                     onPressed: () {
-                      Modular.to.pushNamed('/user/meal-info', arguments: [
+                      Modular.to.pushNamed('/user/product-info', arguments: [
                         listProduct[index],
                         recommendedProductList
                       ]);

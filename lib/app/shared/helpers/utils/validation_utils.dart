@@ -1,6 +1,6 @@
 import 'package:cpf_cnpj_validator/cpf_validator.dart';
 
-import '../../../../../../generated/l10n.dart';
+import '../../../../../../../generated/l10n.dart';
 
 class ValidationUtils {
   static String? validateCode(String? code) {

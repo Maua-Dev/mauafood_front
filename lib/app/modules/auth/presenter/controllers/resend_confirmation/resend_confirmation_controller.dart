@@ -1,5 +1,5 @@
 import 'package:mobx/mobx.dart';
-import '../../../../../shared/utils/validation_utils.dart';
+import '../../../../../shared/helpers/utils/validation_utils.dart';
 import '../../../domain/usecases/resend_confirmation_code_usecase.dart';
 import '../../states/resend_confirmation_state.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../../generated/l10n.dart';
 import '../../../../../../shared/themes/app_colors.dart';
 import '../../../../../../shared/themes/app_text_styles.dart';
-import '../../../../../../shared/utils/utils.dart';
+import '../../../../../../shared/helpers/utils/utils.dart';
 import '../../../../../../shared/widgets/circular_progress_indicator_custom_widget.dart';
 import '../../../../domain/entities/product.dart';
 

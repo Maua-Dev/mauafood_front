@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../../../../generated/l10n.dart';
-import '../../../../../shared/services/s3/assets_s3.dart';
+import '../../../../../shared/helpers/services/s3/assets_s3.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../widgets/button_widget.dart';
 

@@ -4,7 +4,8 @@ import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
-import '../widgets/recommended_product_widget.dart';
+
+import '../widgets/recommended_meal_widget.dart';
 
 class ProductInfoPage extends StatelessWidget {
   final Product productInfo;
@@ -109,7 +110,7 @@ class ProductInfoPage extends StatelessWidget {
                               child: RecommendedProductWidget(
                                 product: recommendedProductList[0],
                                 onPressed: () {
-                                  Modular.to.pushNamed('/user/meal-info',
+                                  Modular.to.pushNamed('/user/product-info',
                                       arguments: [
                                         recommendedProductList[0],
                                         recommendedProductList
@@ -127,7 +128,7 @@ class ProductInfoPage extends StatelessWidget {
                               child: RecommendedProductWidget(
                                 product: recommendedProductList[1],
                                 onPressed: () {
-                                  Modular.to.pushNamed('/user/meal-info',
+                                  Modular.to.pushNamed('/user/product-info',
                                       arguments: [
                                         recommendedProductList[1],
                                         recommendedProductList
@@ -145,7 +146,7 @@ class ProductInfoPage extends StatelessWidget {
                               child: RecommendedProductWidget(
                                 product: recommendedProductList[2],
                                 onPressed: () {
-                                  Modular.to.pushNamed('/user/meal-info',
+                                  Modular.to.pushNamed('/user/product-info',
                                       arguments: [
                                         recommendedProductList[2],
                                         recommendedProductList

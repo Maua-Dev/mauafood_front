@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/generated/l10n.dart';
-import '../../../../../shared/services/s3/assets_s3.dart';
+import '../../../../../shared/helpers/services/s3/assets_s3.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../controllers/confirm_email/confirm_email_controller.dart';
 import '../widgets/register_button_widget.dart';

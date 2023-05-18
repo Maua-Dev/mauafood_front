@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasource_interface.dart';
 
-import '../../../../shared/services/dio/mauafood_product_options.dart';
+import '../../../../shared/helpers/services/dio/mauafood_product_options.dart';
 
 class MenuDatasourceImpl implements MenuDatasourceInterface {
   Dio dio = Dio();

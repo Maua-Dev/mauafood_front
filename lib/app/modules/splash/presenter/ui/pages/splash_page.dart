@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
-import '../../../../../shared/services/s3/assets_s3.dart';
+import '../../../../../shared/helpers/services/s3/assets_s3.dart';
 import '../../controllers/splash_controller.dart';
 import '../../states/splash_state.dart';
 

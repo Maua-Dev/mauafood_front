@@ -42,7 +42,7 @@ class UserMenuModule extends Module {
           // guards: [UserAuthGuard()],
         ),
         ModuleRoute(
-          '/meal-info',
+          '/product-info',
           module: ProductInfoModule(),
           // guards: [UserAuthGuard()],
         ),

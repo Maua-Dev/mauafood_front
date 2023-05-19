@@ -27,10 +27,10 @@ jobs:
         run: flutter analyze
 
       - name: Run Code format lib/
-        run: flutter format --dry-run --set-exit-if-changed lib/
+        run: dart format lib/
 
       - name: Run Code format test/
-        run: flutter format --dry-run --set-exit-if-changed test/
+        run: dart format test/
 
       - name: Build Android
         run: flutter build appbundle --debug

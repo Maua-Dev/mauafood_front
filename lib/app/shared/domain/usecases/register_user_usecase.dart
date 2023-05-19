@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import '../../infra/models/user_model.dart';
+import '../../../modules/auth/infra/models/user_model.dart';
 import '../errors/auth_errors.dart';
-import '../infra/auth_repository_interface.dart';
+import '../repositories/auth_repository_interface.dart';
 
 abstract class IRegisterUserUsecase {
   Future<Either<RegisterError, bool>> call(

@@ -7,13 +7,13 @@ import 'dart:async' as _i4;
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart' as _i6;
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart'
+import 'package:mauafood_front/app/shared/domain/errors/auth_errors.dart'
     as _i5;
-import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart'
+import 'package:mauafood_front/app/shared/domain/storage/auth_storage_interface.dart'
     as _i7;
-import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes_usecase.dart'
+import 'package:mauafood_front/app/shared/domain/usecases/get_user_attributes_usecase.dart'
     as _i8;
-import 'package:mauafood_front/app/modules/auth/domain/usecases/login_user_usecase.dart'
+import 'package:mauafood_front/app/shared/domain/usecases/login_user_usecase.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 

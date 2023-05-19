@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
-import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/forgot_password_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/errors/auth_errors.dart';
+import 'package:mauafood_front/app/shared/domain/storage/auth_storage_interface.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/forgot_password_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/forgot_password/forgot_password_controller.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/states/forgot_password_state.dart';
 import 'package:mauafood_front/generated/l10n.dart';

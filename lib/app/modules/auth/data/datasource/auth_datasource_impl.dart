@@ -5,7 +5,7 @@ import 'package:mauafood_front/app/modules/auth/infra/datasources/auth_datasouce
 import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
-import '../../domain/errors/auth_errors.dart';
+import '../../../../shared/domain/errors/auth_errors.dart';
 
 class AuthDatasourceImpl extends AuthDatasourceInterface {
   @override

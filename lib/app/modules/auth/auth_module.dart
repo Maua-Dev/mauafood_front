@@ -1,8 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/auth/domain/infra/auth_storage_interface.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_reset_password_usecase.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/get_user_attributes_usecase.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/resend_confirmation_code_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/storage/auth_storage_interface.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/confirm_reset_password_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/get_user_attributes_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/resend_confirmation_code_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/infra/repository/auth_storage_impl.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/change_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/confirm_email_page.dart';
@@ -13,12 +13,12 @@ import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/resend_confir
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/success_change_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/success_confirm_page.dart';
 import 'data/datasource/auth_datasource_impl.dart';
-import 'domain/infra/auth_repository_interface.dart';
-import 'domain/usecases/confirm_email_usecase.dart';
-import 'domain/usecases/login_user_usecase.dart';
-import 'domain/usecases/logout_user_usecase.dart';
-import 'domain/usecases/register_user_usecase.dart';
-import 'domain/usecases/forgot_password_usecase.dart';
+import '../../shared/domain/repositories/auth_repository_interface.dart';
+import '../../shared/domain/usecases/confirm_email_usecase.dart';
+import '../../shared/domain/usecases/login_user_usecase.dart';
+import '../../shared/domain/usecases/logout_user_usecase.dart';
+import '../../shared/domain/usecases/register_user_usecase.dart';
+import '../../shared/domain/usecases/forgot_password_usecase.dart';
 import 'infra/datasources/auth_datasouce_interface.dart';
 import 'infra/repository/auth_repository_impl.dart';
 

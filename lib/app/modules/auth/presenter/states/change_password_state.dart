@@ -1,4 +1,4 @@
-import '../../domain/errors/auth_errors.dart';
+import '../../../../shared/domain/errors/auth_errors.dart';
 
 abstract class ChangePasswordState {
   const ChangePasswordState();

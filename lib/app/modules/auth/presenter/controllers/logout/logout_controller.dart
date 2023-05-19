@@ -1,7 +1,7 @@
 import 'package:mobx/mobx.dart';
 
-import '../../../domain/infra/auth_storage_interface.dart';
-import '../../../domain/usecases/logout_user_usecase.dart';
+import '../../../../../shared/domain/storage/auth_storage_interface.dart';
+import '../../../../../shared/domain/usecases/logout_user_usecase.dart';
 import '../../states/logout_state.dart';
 
 part 'logout_controller.g.dart';

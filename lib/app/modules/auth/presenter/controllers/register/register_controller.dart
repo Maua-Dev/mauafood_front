@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
 import '../../../../../shared/helpers/utils/validation_utils.dart';
-import '../../../domain/usecases/register_user_usecase.dart';
+import '../../../../../shared/domain/usecases/register_user_usecase.dart';
 import '../../states/register_state.dart';
 
 part 'register_controller.g.dart';

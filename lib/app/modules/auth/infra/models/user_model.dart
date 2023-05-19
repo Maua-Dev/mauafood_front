@@ -1,4 +1,4 @@
-import 'package:mauafood_front/app/modules/auth/domain/entities/user_entity.dart';
+import 'package:mauafood_front/app/shared/domain/entities/user_entity.dart';
 
 class UserModel extends User {
   const UserModel({

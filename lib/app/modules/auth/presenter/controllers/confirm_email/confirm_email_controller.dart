@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
 import '../../../../../shared/helpers/utils/validation_utils.dart';
-import '../../../domain/usecases/confirm_email_usecase.dart';
+import '../../../../../shared/domain/usecases/confirm_email_usecase.dart';
 import '../../states/confirm_email_state.dart';
 
 part 'confirm_email_controller.g.dart';

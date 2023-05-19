@@ -2,7 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import '../app_module.dart';
 import '../shared/helpers/enums/user_roles_enum.dart';
 import 'auth/auth_module.dart';
-import 'auth/domain/infra/auth_storage_interface.dart';
+import '../shared/domain/storage/auth_storage_interface.dart';
 
 class EmployeeAuthGuard extends RouteGuard {
   EmployeeAuthGuard()

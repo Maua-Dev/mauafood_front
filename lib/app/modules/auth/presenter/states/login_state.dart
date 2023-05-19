@@ -1,5 +1,5 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import '../../domain/errors/auth_errors.dart';
+import '../../../../shared/domain/errors/auth_errors.dart';
 
 abstract class LoginState {
   const LoginState();

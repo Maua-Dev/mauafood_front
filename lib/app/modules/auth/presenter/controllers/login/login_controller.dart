@@ -1,8 +1,8 @@
 import 'package:mobx/mobx.dart';
 import '../../../../../shared/helpers/utils/validation_utils.dart';
-import '../../../domain/infra/auth_storage_interface.dart';
-import '../../../domain/usecases/get_user_attributes_usecase.dart';
-import '../../../domain/usecases/login_user_usecase.dart';
+import '../../../../../shared/domain/storage/auth_storage_interface.dart';
+import '../../../../../shared/domain/usecases/get_user_attributes_usecase.dart';
+import '../../../../../shared/domain/usecases/login_user_usecase.dart';
 import '../../states/login_state.dart';
 
 part 'login_controller.g.dart';

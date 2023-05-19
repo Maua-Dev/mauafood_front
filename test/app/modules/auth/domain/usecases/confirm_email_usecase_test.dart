@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/modules/auth/domain/errors/auth_errors.dart';
-import 'package:mauafood_front/app/modules/auth/domain/infra/auth_repository_interface.dart';
-import 'package:mauafood_front/app/modules/auth/domain/usecases/confirm_email_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/errors/auth_errors.dart';
+import 'package:mauafood_front/app/shared/domain/repositories/auth_repository_interface.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/confirm_email_usecase.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 

@@ -17,54 +17,70 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
-  Future<void> getAllProducts() async {
-    jsonAllRestaurants = await datasource.getAllProducts();
+  Future<Either<Failure, void>> getAllProducts() async {
+    if (jsonAllRestaurants.isNotEmpty) return right(null);
+    try {
+      jsonAllRestaurants = await datasource.getAllProducts();
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType =
+          getHttpStatusFunction(e.response!.statusCode);
+      return left(ErrorRequest(message: errorType.errorMessage));
+      //caso erro venha do back
+      //return left(ErrorRequest(message: e.response?.data));
+    }
+    return right(null);
   }
 
   @override
   Future<Either<Failure, List<Product>>> getBibaProducts() async {
     List<Product>? restaurantProducts;
-    await getAllProducts();
+    var result = await getAllProducts();
 
-    try {
+    return result.fold((l) {
+      return left(l);
+    }, (r) {
       restaurantProducts =
           ProductModel.fromMaps(jsonAllRestaurants['SOUZA_DE_ABREU']);
-    } on DioError catch (e) {
-      HttpStatusCodeEnum errorType =
-          getHttpStatusFunction(e.response!.statusCode);
-      return left(ErrorRequest(message: errorType.errorMessage));
-    }
-    return right(restaurantProducts);
+      return restaurantProducts == null
+          ? left(NoItemsFound(message: 'SOUZA_DE_ABREU'))
+          : restaurantProducts!.isEmpty
+              ? left(EmptyList())
+              : right(restaurantProducts!);
+    });
   }
 
   @override
   Future<Either<Failure, List<Product>>> getHoraHProducts() async {
     List<Product>? restaurantProducts;
-    await getAllProducts();
-    try {
-      restaurantProducts = ProductModel.fromMaps(jsonAllRestaurants['HORA_H']);
-    } on DioError catch (e) {
-      HttpStatusCodeEnum errorType =
-          getHttpStatusFunction(e.response!.statusCode);
-      return left(ErrorRequest(message: errorType.errorMessage));
-    }
+    var result = await getAllProducts();
 
-    return right(restaurantProducts);
+    return result.fold((l) {
+      return left(l);
+    }, (r) {
+      restaurantProducts = ProductModel.fromMaps(jsonAllRestaurants['HORA_H']);
+      return restaurantProducts == null
+          ? left(NoItemsFound(message: 'HORA_H'))
+          : restaurantProducts!.isEmpty
+              ? left(EmptyList())
+              : right(restaurantProducts!);
+    });
   }
 
   @override
   Future<Either<Failure, List<Product>>> getMolezaProducts() async {
     List<Product>? restaurantProducts;
-    await getAllProducts();
-    try {
+    var result = await getAllProducts();
+
+    return result.fold((l) {
+      return left(l);
+    }, (r) {
       restaurantProducts =
           ProductModel.fromMaps(jsonAllRestaurants['CANTINA_DO_MOLEZA']);
-    } on DioError catch (e) {
-      HttpStatusCodeEnum errorType =
-          getHttpStatusFunction(e.response!.statusCode);
-      return left(ErrorRequest(message: errorType.errorMessage));
-    }
-
-    return right(restaurantProducts);
+      return restaurantProducts == null
+          ? left(NoItemsFound(message: 'CANTINA_DO_MOLEZA'))
+          : restaurantProducts!.isEmpty
+              ? left(EmptyList())
+              : right(restaurantProducts!);
+    });
   }
 }

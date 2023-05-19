@@ -43,7 +43,7 @@ class MockIConfirmResetPasswordUsecase extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.ForgotPasswordError, void>> call(
+  _i4.Future<_i2.Either<_i5.AuthErrors, void>> call(
     String? email,
     String? newPassword,
     String? confirmationCode,
@@ -57,9 +57,8 @@ class MockIConfirmResetPasswordUsecase extends _i1.Mock
             confirmationCode,
           ],
         ),
-        returnValue:
-            _i4.Future<_i2.Either<_i5.ForgotPasswordError, void>>.value(
-                _FakeEither_0<_i5.ForgotPasswordError, void>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, void>>.value(
+            _FakeEither_0<_i5.AuthErrors, void>(
           this,
           Invocation.method(
             #call,
@@ -70,5 +69,5 @@ class MockIConfirmResetPasswordUsecase extends _i1.Mock
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.ForgotPasswordError, void>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, void>>);
 }

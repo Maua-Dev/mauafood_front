@@ -4,8 +4,7 @@ import '../../helpers/errors/auth_errors.dart';
 import '../repositories/auth_repository_interface.dart';
 
 abstract class IConfirmEmailUsecase {
-  Future<Either<ConfirmationEmailError, bool>> call(
-      String email, String confirmationCode);
+  Future<Either<AuthErrors, bool>> call(String email, String confirmationCode);
 }
 
 class ConfirmEmailUsecase extends IConfirmEmailUsecase {
@@ -14,7 +13,7 @@ class ConfirmEmailUsecase extends IConfirmEmailUsecase {
   ConfirmEmailUsecase({required this.repository});
 
   @override
-  Future<Either<ConfirmationEmailError, bool>> call(
+  Future<Either<AuthErrors, bool>> call(
       String email, String confirmationCode) async {
     var result = await repository.confirmEmail(email, confirmationCode);
     return result.fold(

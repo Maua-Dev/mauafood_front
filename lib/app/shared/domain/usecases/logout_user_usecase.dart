@@ -4,7 +4,7 @@ import '../../helpers/errors/auth_errors.dart';
 import '../repositories/auth_repository_interface.dart';
 
 abstract class ILogoutUserUsecase {
-  Future<Either<LogoutError, void>> call();
+  Future<Either<AuthErrors, void>> call();
 }
 
 class LogoutUserUsecase extends ILogoutUserUsecase {
@@ -13,7 +13,7 @@ class LogoutUserUsecase extends ILogoutUserUsecase {
   LogoutUserUsecase({required this.repository});
 
   @override
-  Future<Either<LogoutError, void>> call() async {
+  Future<Either<AuthErrors, void>> call() async {
     var result = await repository.logoutUser();
     return result.fold(
         (failureResult) => result, (successResult) => const Right(null));

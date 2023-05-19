@@ -33,7 +33,7 @@ void main() {
 
     test('must return LogoutErrorState', () async {
       when(usecase.call())
-          .thenAnswer((_) async => Left(LogoutError(message: '')));
+          .thenAnswer((_) async => Left(AuthErrors(message: '')));
       await controller.logoutUser();
       expect(controller.state, isA<LogoutErrorState>());
     });

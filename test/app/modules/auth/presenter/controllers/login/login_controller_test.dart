@@ -60,7 +60,7 @@ void main() {
 
     test('must return LoginErrorState', () async {
       when(usecase.call('', ''))
-          .thenAnswer((_) async => Left(SignUpError(message: '')));
+          .thenAnswer((_) async => Left(AuthErrors(message: '')));
       when(getUserAttributes.call()).thenAnswer((_) async => Right([user]));
       await controller.loginWithEmail();
       expect(controller.state, isA<LoginErrorState>());

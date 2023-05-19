@@ -43,7 +43,7 @@ class MockIRegisterUserUsecase extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.RegisterError, bool>> call(
+  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> call(
     String? fullName,
     String? cpf,
     bool? isStudent,
@@ -67,8 +67,8 @@ class MockIRegisterUserUsecase extends _i1.Mock
             acceptTerms,
           ],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.RegisterError, bool>>.value(
-            _FakeEither_0<_i5.RegisterError, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
+            _FakeEither_0<_i5.AuthErrors, bool>(
           this,
           Invocation.method(
             #call,
@@ -84,5 +84,5 @@ class MockIRegisterUserUsecase extends _i1.Mock
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.RegisterError, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
 }

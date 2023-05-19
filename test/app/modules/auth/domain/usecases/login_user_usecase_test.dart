@@ -30,9 +30,9 @@ void main() {
 
   test('[TEST] - login returns error', () async {
     when(repository.loginUser(email, password)).thenAnswer(
-      (realInvocation) async => Left(SignUpError(message: '')),
+      (realInvocation) async => Left(AuthErrors(message: '')),
     );
     var result = await useCase(email, password);
-    expect(result.fold(id, id), isA<SignUpError>());
+    expect(result.fold(id, id), isA<AuthErrors>());
   });
 }

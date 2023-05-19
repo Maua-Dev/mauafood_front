@@ -770,152 +770,28 @@ class S {
     );
   }
 
-  /// `{schema, select, limitExceeded{Too many attempts in a row, try again later.} signedOut{Incorrect email or password.} notAuthorized{Unconfirmed email, confirm it.} userNotConfirmed{Unconfirmed email, confirm it.} userNotFound{Incorrect email or password or email not registered.} other{Something went wrong while logging in, please try again later.}}`
-  String loginErrorsSchema(Object schema) {
+  /// `{schema, select, codeDeliveryFailure{Failed to send code to email, please try again.} codeMismatch{Code provided is wrong, please try again.} invalidParameter{Some field filled in incorrectly.} usernameExists{There is already an account with this email.} notAuthorized{Unconfirmed email, confirm it.} userNotConfirmed{Unconfirmed email, confirm it.} signedOut{Incorrect email or password.} limitExceeded{Too many attempts in a row, try again later.} invalidParameter{Email probably already confirmed.} tooManyFailedAttempts{Looks like you tried the code wrong too many times, get in touch.} userNotFound{We couldn't find this registered email.} internalError{We are experiencing internal issues, please try again later.} codeMismatch{Code provided is wrong, please try again.} other{An error occurred while confirming email.}}`
+  String authErrorsSchema(Object schema) {
     return Intl.select(
       schema,
       {
-        'limitExceeded': 'Too many attempts in a row, try again later.',
-        'signedOut': 'Incorrect email or password.',
+        'codeDeliveryFailure':
+            'Failed to send code to email, please try again.',
+        'codeMismatch': 'Code provided is wrong, please try again.',
+        'invalidParameter': 'Some field filled in incorrectly.',
+        'usernameExists': 'There is already an account with this email.',
         'notAuthorized': 'Unconfirmed email, confirm it.',
         'userNotConfirmed': 'Unconfirmed email, confirm it.',
-        'userNotFound': 'Incorrect email or password or email not registered.',
-        'other':
-            'Something went wrong while logging in, please try again later.',
-      },
-      name: 'loginErrorsSchema',
-      desc: '',
-      args: [schema],
-    );
-  }
-
-  /// `{schema, select, limitExceeded{Too many attempts in a row, try again later.} usernameExists{There is already an account with this email.} invalidParameter{Some field filled in incorrectly.} internalError{We are experiencing internal issues, please try again later.} other{There was an error trying to register, please try again later.}}`
-  String registerErrorsSchema(Object schema) {
-    return Intl.select(
-      schema,
-      {
+        'signedOut': 'Incorrect email or password.',
         'limitExceeded': 'Too many attempts in a row, try again later.',
-        'usernameExists': 'There is already an account with this email.',
-        'invalidParameter': 'Some field filled in incorrectly.',
-        'internalError':
-            'We are experiencing internal issues, please try again later.',
-        'other':
-            'There was an error trying to register, please try again later.',
-      },
-      name: 'registerErrorsSchema',
-      desc: '',
-      args: [schema],
-    );
-  }
-
-  /// `{schema, select, limitExceeded{Too many attempts in a row, try again later.} invalidParameter{Email probably already confirmed.} tooManyFailedAttempts{Looks like you tried the code wrong too many times, get in touch.} userNotFound{We couldn't find this registered email.} internalError{We are experiencing internal issues, please try again later.} codeMismatch{Code provided is wrong, please try again.} other{An error occurred while confirming email.}}`
-  String emailConfirmationErrorsSchema(Object schema) {
-    return Intl.select(
-      schema,
-      {
-        'limitExceeded': 'Too many attempts in a row, try again later.',
-        'invalidParameter': 'Email probably already confirmed.',
         'tooManyFailedAttempts':
             'Looks like you tried the code wrong too many times, get in touch.',
         'userNotFound': 'We couldn\'t find this registered email.',
         'internalError':
             'We are experiencing internal issues, please try again later.',
-        'codeMismatch': 'Code provided is wrong, please try again.',
         'other': 'An error occurred while confirming email.',
       },
-      name: 'emailConfirmationErrorsSchema',
-      desc: '',
-      args: [schema],
-    );
-  }
-
-  /// `{schema, select, limitExceeded{Too many attempts in a row, try again later.} internalError{We are experiencing internal issues, please try again later.} other{Error trying to log out, please try again later.}}`
-  String logoutErrorsSchema(Object schema) {
-    return Intl.select(
-      schema,
-      {
-        'limitExceeded': 'Too many attempts in a row, try again later.',
-        'internalError':
-            'We are experiencing internal issues, please try again later.',
-        'other': 'Error trying to log out, please try again later.',
-      },
-      name: 'logoutErrorsSchema',
-      desc: '',
-      args: [schema],
-    );
-  }
-
-  /// `{schema, select, limitExceeded{Too many attempts in a row, try again later.} userNotConfirmed{Unconfirmed email, confirm it.} userNotFound{Email not found, make sure you have registered.} invalidParameter{Unconfirmed email, confirm it before changing password.} internalError{We are experiencing internal issues, please try again later.} other{Error trying to reset password, try again later. }}`
-  String forgotPasswordErrorsSchema(Object schema) {
-    return Intl.select(
-      schema,
-      {
-        'limitExceeded': 'Too many attempts in a row, try again later.',
-        'userNotConfirmed': 'Unconfirmed email, confirm it.',
-        'userNotFound': 'Email not found, make sure you have registered.',
-        'invalidParameter':
-            'Unconfirmed email, confirm it before changing password.',
-        'internalError':
-            'We are experiencing internal issues, please try again later.',
-        'other': 'Error trying to reset password, try again later. ',
-      },
-      name: 'forgotPasswordErrorsSchema',
-      desc: '',
-      args: [schema],
-    );
-  }
-
-  /// `{schema, select, limitExceeded{Too many attempts in a row, try again later.} codeMismatch{Code provided is wrong, please try again.} userNotConfirmed{Unconfirmed email, confirm it.} internalError{We are experiencing internal issues, please try again later.} other{Error when trying to change password, try again later.}}`
-  String confirmResetPasswordErrorsSchema(Object schema) {
-    return Intl.select(
-      schema,
-      {
-        'limitExceeded': 'Too many attempts in a row, try again later.',
-        'codeMismatch': 'Code provided is wrong, please try again.',
-        'userNotConfirmed': 'Unconfirmed email, confirm it.',
-        'internalError':
-            'We are experiencing internal issues, please try again later.',
-        'other': 'Error when trying to change password, try again later.',
-      },
-      name: 'confirmResetPasswordErrorsSchema',
-      desc: '',
-      args: [schema],
-    );
-  }
-
-  /// `{schema, select, invalidParameter{Email probably already confirmed.} userNotFound{Email not found, make sure you have registered.} limitExceeded{Too many attempts in a row, try again later.} internalError{We are experiencing internal issues, please try again later.} codeDeliveryFailure{Failed to send code to email, please try again.} other{Error trying to send code, please try again later.}}`
-  String resendCodeErrorsSchema(Object schema) {
-    return Intl.select(
-      schema,
-      {
-        'invalidParameter': 'Email probably already confirmed.',
-        'userNotFound': 'Email not found, make sure you have registered.',
-        'limitExceeded': 'Too many attempts in a row, try again later.',
-        'internalError':
-            'We are experiencing internal issues, please try again later.',
-        'codeDeliveryFailure':
-            'Failed to send code to email, please try again.',
-        'other': 'Error trying to send code, please try again later.',
-      },
-      name: 'resendCodeErrorsSchema',
-      desc: '',
-      args: [schema],
-    );
-  }
-
-  /// `{schema, select, limitExceeded{Too many attempts in a row, try again later.} signedOut{Incorrect email or password.} notAuthorized{Unconfirmed email, confirm it.} userNotConfirmed{Unconfirmed email, confirm it.} userNotFound{Incorrect email or password or email not registered.} other{Error when trying to get user attributes.}}`
-  String getUserAtribbutesErrorsSchema(Object schema) {
-    return Intl.select(
-      schema,
-      {
-        'limitExceeded': 'Too many attempts in a row, try again later.',
-        'signedOut': 'Incorrect email or password.',
-        'notAuthorized': 'Unconfirmed email, confirm it.',
-        'userNotConfirmed': 'Unconfirmed email, confirm it.',
-        'userNotFound': 'Incorrect email or password or email not registered.',
-        'other': 'Error when trying to get user attributes.',
-      },
-      name: 'getUserAtribbutesErrorsSchema',
+      name: 'authErrorsSchema',
       desc: '',
       args: [schema],
     );

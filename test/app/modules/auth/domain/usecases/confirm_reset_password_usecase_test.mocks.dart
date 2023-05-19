@@ -5,12 +5,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart' as _i6;
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart' as _i7;
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mauafood_front/app/shared/domain/repositories/auth_repository_interface.dart'
     as _i3;
 import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart'
     as _i5;
+import 'package:mauafood_front/app/shared/infra/models/user_model.dart' as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -43,23 +44,24 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.RegisterError, bool>> registerUser(dynamic user) =>
+  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> registerUser(
+          _i6.UserModel? user) =>
       (super.noSuchMethod(
         Invocation.method(
           #registerUser,
           [user],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.RegisterError, bool>>.value(
-            _FakeEither_0<_i5.RegisterError, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
+            _FakeEither_0<_i5.AuthErrors, bool>(
           this,
           Invocation.method(
             #registerUser,
             [user],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.RegisterError, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
   @override
-  _i4.Future<_i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>> loginUser(
+  _i4.Future<_i2.Either<_i5.AuthErrors, _i7.CognitoAuthSession>> loginUser(
     String? email,
     String? password,
   ) =>
@@ -72,8 +74,8 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
           ],
         ),
         returnValue: _i4.Future<
-                _i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>>.value(
-            _FakeEither_0<_i5.SignUpError, _i6.CognitoAuthSession>(
+                _i2.Either<_i5.AuthErrors, _i7.CognitoAuthSession>>.value(
+            _FakeEither_0<_i5.AuthErrors, _i7.CognitoAuthSession>(
           this,
           Invocation.method(
             #loginUser,
@@ -83,9 +85,9 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, _i7.CognitoAuthSession>>);
   @override
-  _i4.Future<_i2.Either<_i5.ConfirmationEmailError, bool>> confirmEmail(
+  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> confirmEmail(
     String? email,
     String? confirmationCode,
   ) =>
@@ -97,9 +99,8 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
             confirmationCode,
           ],
         ),
-        returnValue:
-            _i4.Future<_i2.Either<_i5.ConfirmationEmailError, bool>>.value(
-                _FakeEither_0<_i5.ConfirmationEmailError, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
+            _FakeEither_0<_i5.AuthErrors, bool>(
           this,
           Invocation.method(
             #confirmEmail,
@@ -109,43 +110,41 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.ConfirmationEmailError, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
   @override
-  _i4.Future<_i2.Either<_i5.LogoutError, void>> logoutUser() =>
+  _i4.Future<_i2.Either<_i5.AuthErrors, void>> logoutUser() =>
       (super.noSuchMethod(
         Invocation.method(
           #logoutUser,
           [],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.LogoutError, void>>.value(
-            _FakeEither_0<_i5.LogoutError, void>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, void>>.value(
+            _FakeEither_0<_i5.AuthErrors, void>(
           this,
           Invocation.method(
             #logoutUser,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.LogoutError, void>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, void>>);
   @override
-  _i4.Future<_i2.Either<_i5.ForgotPasswordError, bool>> forgotPassword(
-          String? email) =>
+  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> forgotPassword(String? email) =>
       (super.noSuchMethod(
         Invocation.method(
           #forgotPassword,
           [email],
         ),
-        returnValue:
-            _i4.Future<_i2.Either<_i5.ForgotPasswordError, bool>>.value(
-                _FakeEither_0<_i5.ForgotPasswordError, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
+            _FakeEither_0<_i5.AuthErrors, bool>(
           this,
           Invocation.method(
             #forgotPassword,
             [email],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.ForgotPasswordError, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
   @override
-  _i4.Future<_i2.Either<_i5.ForgotPasswordError, void>> confirmResetPassword(
+  _i4.Future<_i2.Either<_i5.AuthErrors, void>> confirmResetPassword(
     String? email,
     String? newPassword,
     String? confirmationCode,
@@ -159,9 +158,8 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
             confirmationCode,
           ],
         ),
-        returnValue:
-            _i4.Future<_i2.Either<_i5.ForgotPasswordError, void>>.value(
-                _FakeEither_0<_i5.ForgotPasswordError, void>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, void>>.value(
+            _FakeEither_0<_i5.AuthErrors, void>(
           this,
           Invocation.method(
             #confirmResetPassword,
@@ -172,43 +170,40 @@ class MockIAuthRepository extends _i1.Mock implements _i3.IAuthRepository {
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.ForgotPasswordError, void>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, void>>);
   @override
-  _i4.Future<_i2.Either<_i5.ResendCodeError, void>> postResendCode(
-          String? email) =>
+  _i4.Future<_i2.Either<_i5.AuthErrors, void>> postResendCode(String? email) =>
       (super.noSuchMethod(
         Invocation.method(
           #postResendCode,
           [email],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.ResendCodeError, void>>.value(
-            _FakeEither_0<_i5.ResendCodeError, void>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, void>>.value(
+            _FakeEither_0<_i5.AuthErrors, void>(
           this,
           Invocation.method(
             #postResendCode,
             [email],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.ResendCodeError, void>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, void>>);
   @override
-  _i4.Future<
-      _i2.Either<_i5.GetUserAttributesError,
-          List<_i6.AuthUserAttribute>>> getUserAttributes() =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getUserAttributes,
-          [],
-        ),
-        returnValue: _i4.Future<
-            _i2.Either<_i5.GetUserAttributesError,
-                List<_i6.AuthUserAttribute>>>.value(_FakeEither_0<
-            _i5.GetUserAttributesError, List<_i6.AuthUserAttribute>>(
-          this,
-          Invocation.method(
-            #getUserAttributes,
-            [],
-          ),
-        )),
-      ) as _i4.Future<
-          _i2.Either<_i5.GetUserAttributesError, List<_i6.AuthUserAttribute>>>);
+  _i4.Future<_i2.Either<_i5.AuthErrors, List<_i7.AuthUserAttribute>>>
+      getUserAttributes() => (super.noSuchMethod(
+            Invocation.method(
+              #getUserAttributes,
+              [],
+            ),
+            returnValue: _i4.Future<
+                    _i2.Either<_i5.AuthErrors,
+                        List<_i7.AuthUserAttribute>>>.value(
+                _FakeEither_0<_i5.AuthErrors, List<_i7.AuthUserAttribute>>(
+              this,
+              Invocation.method(
+                #getUserAttributes,
+                [],
+              ),
+            )),
+          ) as _i4
+              .Future<_i2.Either<_i5.AuthErrors, List<_i7.AuthUserAttribute>>>);
 }

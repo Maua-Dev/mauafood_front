@@ -11,6 +11,7 @@ import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart'
     as _i5;
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/auth_datasouce_interface.dart'
     as _i3;
+import 'package:mauafood_front/app/shared/infra/models/user_model.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -43,7 +44,7 @@ class MockIAuthDatasource extends _i1.Mock implements _i3.IAuthDatasource {
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>> postLoginUser(
+  _i4.Future<_i2.Either<_i5.AuthErrors, _i6.CognitoAuthSession>> postLoginUser(
     String? email,
     String? password,
   ) =>
@@ -56,8 +57,8 @@ class MockIAuthDatasource extends _i1.Mock implements _i3.IAuthDatasource {
           ],
         ),
         returnValue: _i4.Future<
-                _i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>>.value(
-            _FakeEither_0<_i5.SignUpError, _i6.CognitoAuthSession>(
+                _i2.Either<_i5.AuthErrors, _i6.CognitoAuthSession>>.value(
+            _FakeEither_0<_i5.AuthErrors, _i6.CognitoAuthSession>(
           this,
           Invocation.method(
             #postLoginUser,
@@ -67,151 +68,143 @@ class MockIAuthDatasource extends _i1.Mock implements _i3.IAuthDatasource {
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, _i6.CognitoAuthSession>>);
   @override
-  _i4.Future<_i2.Either<_i5.RegisterError, bool>> postRegisterUser(
-          dynamic user) =>
+  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> postRegisterUser(
+          _i7.UserModel? user) =>
       (super.noSuchMethod(
         Invocation.method(
           #postRegisterUser,
           [user],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.RegisterError, bool>>.value(
-            _FakeEither_0<_i5.RegisterError, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
+            _FakeEither_0<_i5.AuthErrors, bool>(
           this,
           Invocation.method(
             #postRegisterUser,
             [user],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.RegisterError, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
   @override
-  _i4.Future<_i2.Either<_i5.ConfirmationEmailError, bool>>
-      postEmailConfirmation(
+  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> postEmailConfirmation(
     String? email,
     String? confirmationCode,
   ) =>
-          (super.noSuchMethod(
-            Invocation.method(
-              #postEmailConfirmation,
-              [
-                email,
-                confirmationCode,
-              ],
-            ),
-            returnValue:
-                _i4.Future<_i2.Either<_i5.ConfirmationEmailError, bool>>.value(
-                    _FakeEither_0<_i5.ConfirmationEmailError, bool>(
-              this,
-              Invocation.method(
-                #postEmailConfirmation,
-                [
-                  email,
-                  confirmationCode,
-                ],
-              ),
-            )),
-          ) as _i4.Future<_i2.Either<_i5.ConfirmationEmailError, bool>>);
+      (super.noSuchMethod(
+        Invocation.method(
+          #postEmailConfirmation,
+          [
+            email,
+            confirmationCode,
+          ],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
+            _FakeEither_0<_i5.AuthErrors, bool>(
+          this,
+          Invocation.method(
+            #postEmailConfirmation,
+            [
+              email,
+              confirmationCode,
+            ],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
   @override
-  _i4.Future<_i2.Either<_i5.LogoutError, void>> postLogout() =>
+  _i4.Future<_i2.Either<_i5.AuthErrors, void>> postLogout() =>
       (super.noSuchMethod(
         Invocation.method(
           #postLogout,
           [],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.LogoutError, void>>.value(
-            _FakeEither_0<_i5.LogoutError, void>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, void>>.value(
+            _FakeEither_0<_i5.AuthErrors, void>(
           this,
           Invocation.method(
             #postLogout,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.LogoutError, void>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, void>>);
   @override
-  _i4.Future<_i2.Either<_i5.ForgotPasswordError, bool>> postForgotPassword(
+  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> postForgotPassword(
           String? email) =>
       (super.noSuchMethod(
         Invocation.method(
           #postForgotPassword,
           [email],
         ),
-        returnValue:
-            _i4.Future<_i2.Either<_i5.ForgotPasswordError, bool>>.value(
-                _FakeEither_0<_i5.ForgotPasswordError, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
+            _FakeEither_0<_i5.AuthErrors, bool>(
           this,
           Invocation.method(
             #postForgotPassword,
             [email],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.ForgotPasswordError, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
   @override
-  _i4.Future<_i2.Either<_i5.ForgotPasswordError, void>>
-      postConfirmResetPassword(
+  _i4.Future<_i2.Either<_i5.AuthErrors, void>> postConfirmResetPassword(
     String? email,
     String? newPassword,
     String? confirmationCode,
   ) =>
-          (super.noSuchMethod(
-            Invocation.method(
-              #postConfirmResetPassword,
-              [
-                email,
-                newPassword,
-                confirmationCode,
-              ],
-            ),
-            returnValue:
-                _i4.Future<_i2.Either<_i5.ForgotPasswordError, void>>.value(
-                    _FakeEither_0<_i5.ForgotPasswordError, void>(
-              this,
-              Invocation.method(
-                #postConfirmResetPassword,
-                [
-                  email,
-                  newPassword,
-                  confirmationCode,
-                ],
-              ),
-            )),
-          ) as _i4.Future<_i2.Either<_i5.ForgotPasswordError, void>>);
+      (super.noSuchMethod(
+        Invocation.method(
+          #postConfirmResetPassword,
+          [
+            email,
+            newPassword,
+            confirmationCode,
+          ],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, void>>.value(
+            _FakeEither_0<_i5.AuthErrors, void>(
+          this,
+          Invocation.method(
+            #postConfirmResetPassword,
+            [
+              email,
+              newPassword,
+              confirmationCode,
+            ],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, void>>);
   @override
-  _i4.Future<_i2.Either<_i5.ResendCodeError, void>> postResendCode(
-          String? email) =>
+  _i4.Future<_i2.Either<_i5.AuthErrors, void>> postResendCode(String? email) =>
       (super.noSuchMethod(
         Invocation.method(
           #postResendCode,
           [email],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.ResendCodeError, void>>.value(
-            _FakeEither_0<_i5.ResendCodeError, void>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, void>>.value(
+            _FakeEither_0<_i5.AuthErrors, void>(
           this,
           Invocation.method(
             #postResendCode,
             [email],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.ResendCodeError, void>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, void>>);
   @override
-  _i4.Future<
-      _i2.Either<_i5.GetUserAttributesError,
-          List<_i6.AuthUserAttribute>>> getUserAttributes() =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getUserAttributes,
-          [],
-        ),
-        returnValue: _i4.Future<
-            _i2.Either<_i5.GetUserAttributesError,
-                List<_i6.AuthUserAttribute>>>.value(_FakeEither_0<
-            _i5.GetUserAttributesError, List<_i6.AuthUserAttribute>>(
-          this,
-          Invocation.method(
-            #getUserAttributes,
-            [],
-          ),
-        )),
-      ) as _i4.Future<
-          _i2.Either<_i5.GetUserAttributesError, List<_i6.AuthUserAttribute>>>);
+  _i4.Future<_i2.Either<_i5.AuthErrors, List<_i6.AuthUserAttribute>>>
+      getUserAttributes() => (super.noSuchMethod(
+            Invocation.method(
+              #getUserAttributes,
+              [],
+            ),
+            returnValue: _i4.Future<
+                    _i2.Either<_i5.AuthErrors,
+                        List<_i6.AuthUserAttribute>>>.value(
+                _FakeEither_0<_i5.AuthErrors, List<_i6.AuthUserAttribute>>(
+              this,
+              Invocation.method(
+                #getUserAttributes,
+                [],
+              ),
+            )),
+          ) as _i4
+              .Future<_i2.Either<_i5.AuthErrors, List<_i6.AuthUserAttribute>>>);
 }

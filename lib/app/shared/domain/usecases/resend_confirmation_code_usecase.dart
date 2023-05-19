@@ -4,7 +4,7 @@ import '../../helpers/errors/auth_errors.dart';
 import '../repositories/auth_repository_interface.dart';
 
 abstract class IResendConfirmationCodeUsecase {
-  Future<Either<ResendCodeError, void>> call(String email);
+  Future<Either<AuthErrors, void>> call(String email);
 }
 
 class ResendConfirmationCodeUsecase extends IResendConfirmationCodeUsecase {
@@ -13,7 +13,7 @@ class ResendConfirmationCodeUsecase extends IResendConfirmationCodeUsecase {
   ResendConfirmationCodeUsecase({required this.repository});
 
   @override
-  Future<Either<ResendCodeError, void>> call(String email) async {
+  Future<Either<AuthErrors, void>> call(String email) async {
     var result = await repository.postResendCode(email);
     return result.fold(
         (failureResult) => result, (successResult) => Right(successResult));

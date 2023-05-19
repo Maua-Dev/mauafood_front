@@ -28,9 +28,9 @@ void main() {
 
   test('[TEST] - forgot password returns error', () async {
     when(repository.forgotPassword(email)).thenAnswer(
-      (realInvocation) async => Left(ForgotPasswordError(message: '')),
+      (realInvocation) async => Left(AuthErrors(message: '')),
     );
     var result = await useCase(email);
-    expect(result.fold(id, id), isA<ForgotPasswordError>());
+    expect(result.fold(id, id), isA<AuthErrors>());
   });
 }

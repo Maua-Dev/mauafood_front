@@ -43,7 +43,7 @@ class MockIConfirmEmailUsecase extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.ConfirmationEmailError, bool>> call(
+  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> call(
     String? email,
     String? confirmationCode,
   ) =>
@@ -55,9 +55,8 @@ class MockIConfirmEmailUsecase extends _i1.Mock
             confirmationCode,
           ],
         ),
-        returnValue:
-            _i4.Future<_i2.Either<_i5.ConfirmationEmailError, bool>>.value(
-                _FakeEither_0<_i5.ConfirmationEmailError, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
+            _FakeEither_0<_i5.AuthErrors, bool>(
           this,
           Invocation.method(
             #call,
@@ -67,5 +66,5 @@ class MockIConfirmEmailUsecase extends _i1.Mock
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.ConfirmationEmailError, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
 }

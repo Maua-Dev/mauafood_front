@@ -29,10 +29,9 @@ void main() {
 
   test('[TEST] - confirm email returns error', () async {
     when(repository.confirmEmail(email, confirmationCode)).thenAnswer(
-      (realInvocation) async =>
-          Left(ConfirmationEmailError(email: email, message: '')),
+      (realInvocation) async => Left(AuthErrors(message: '')),
     );
     var result = await useCase(email, confirmationCode);
-    expect(result.fold(id, id), isA<ConfirmationEmailError>());
+    expect(result.fold(id, id), isA<AuthErrors>());
   });
 }

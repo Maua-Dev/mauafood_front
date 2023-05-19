@@ -32,7 +32,7 @@ void main() {
 
     test('must return ForgotPasswordErrorState', () async {
       when(usecase.call(''))
-          .thenAnswer((_) async => Left(ForgotPasswordError(message: '')));
+          .thenAnswer((_) async => Left(AuthErrors(message: '')));
       await controller.forgotPasswordUser();
       expect(controller.state, isA<ForgotPasswordErrorState>());
     });

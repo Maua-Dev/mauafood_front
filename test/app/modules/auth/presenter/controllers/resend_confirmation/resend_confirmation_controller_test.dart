@@ -31,7 +31,7 @@ void main() {
 
     test('must return ResendConfirmationErrorState', () async {
       when(usecase.call(''))
-          .thenAnswer((_) async => Left(ResendCodeError(message: '')));
+          .thenAnswer((_) async => Left(AuthErrors(message: '')));
       await controller.resendConfirmationCode();
       expect(controller.state, isA<ResendConfirmationErrorState>());
     });

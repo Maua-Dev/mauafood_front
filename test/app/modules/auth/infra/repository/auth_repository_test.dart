@@ -50,9 +50,9 @@ void main() {
 
     test('returns error', () async {
       when(datasource.postLoginUser(email, password))
-          .thenAnswer((realInvocation) async => Left(SignUpError(message: '')));
+          .thenAnswer((realInvocation) async => Left(AuthErrors(message: '')));
       var result = await repository.loginUser(email, password);
-      expect(result.fold(id, id), isA<SignUpError>());
+      expect(result.fold(id, id), isA<AuthErrors>());
     });
   });
 
@@ -65,10 +65,10 @@ void main() {
     });
 
     test('returns error', () async {
-      when(datasource.postRegisterUser(user)).thenAnswer(
-          (realInvocation) async => Left(RegisterError(message: '')));
+      when(datasource.postRegisterUser(user))
+          .thenAnswer((realInvocation) async => Left(AuthErrors(message: '')));
       var result = await repository.registerUser(user);
-      expect(result.fold(id, id), isA<RegisterError>());
+      expect(result.fold(id, id), isA<AuthErrors>());
     });
   });
 
@@ -82,10 +82,9 @@ void main() {
 
     test('returns error', () async {
       when(datasource.postEmailConfirmation(email, confirmationCode))
-          .thenAnswer((realInvocation) async =>
-              Left(ConfirmationEmailError(message: '', email: email)));
+          .thenAnswer((realInvocation) async => Left(AuthErrors(message: '')));
       var result = await repository.confirmEmail(email, confirmationCode);
-      expect(result.fold(id, id), isA<ConfirmationEmailError>());
+      expect(result.fold(id, id), isA<AuthErrors>());
     });
   });
 
@@ -99,9 +98,9 @@ void main() {
 
     test('returns error', () async {
       when(datasource.postLogout())
-          .thenAnswer((realInvocation) async => Left(LogoutError(message: '')));
+          .thenAnswer((realInvocation) async => Left(AuthErrors(message: '')));
       var result = await repository.logoutUser();
-      expect(result.fold((l) => l, (r) => null), isA<LogoutError>());
+      expect(result.fold((l) => l, (r) => null), isA<AuthErrors>());
     });
   });
 
@@ -114,10 +113,10 @@ void main() {
     });
 
     test('returns error', () async {
-      when(datasource.postForgotPassword(email)).thenAnswer(
-          (realInvocation) async => Left(ForgotPasswordError(message: '')));
+      when(datasource.postForgotPassword(email))
+          .thenAnswer((realInvocation) async => Left(AuthErrors(message: '')));
       var result = await repository.forgotPassword(email);
-      expect(result.fold(id, id), isA<ForgotPasswordError>());
+      expect(result.fold(id, id), isA<AuthErrors>());
     });
   });
 
@@ -134,11 +133,10 @@ void main() {
     test('returns error', () async {
       when(datasource.postConfirmResetPassword(
               email, newPassword, confirmationCode))
-          .thenAnswer(
-              (realInvocation) async => Left(ForgotPasswordError(message: '')));
+          .thenAnswer((realInvocation) async => Left(AuthErrors(message: '')));
       var result = await repository.confirmResetPassword(
           email, newPassword, confirmationCode);
-      expect(result.fold((l) => l, (r) => null), isA<ForgotPasswordError>());
+      expect(result.fold((l) => l, (r) => null), isA<AuthErrors>());
     });
   });
 
@@ -151,10 +149,10 @@ void main() {
     });
 
     test('returns error', () async {
-      when(datasource.postResendCode(email)).thenAnswer(
-          (realInvocation) async => Left(ResendCodeError(message: '')));
+      when(datasource.postResendCode(email))
+          .thenAnswer((realInvocation) async => Left(AuthErrors(message: '')));
       var result = await repository.postResendCode(email);
-      expect(result.fold((l) => l, (r) => null), isA<ResendCodeError>());
+      expect(result.fold((l) => l, (r) => null), isA<AuthErrors>());
     });
   });
 }

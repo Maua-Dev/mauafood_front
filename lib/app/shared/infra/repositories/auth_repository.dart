@@ -11,7 +11,7 @@ class AuthRepository extends IAuthRepository {
   AuthRepository({required this.datasource});
 
   @override
-  Future<Either<SignUpError, CognitoAuthSession>> loginUser(
+  Future<Either<AuthErrors, CognitoAuthSession>> loginUser(
       String email, String password) async {
     var result = await datasource.postLoginUser(email, password);
     return result.fold(
@@ -19,14 +19,14 @@ class AuthRepository extends IAuthRepository {
   }
 
   @override
-  Future<Either<RegisterError, bool>> registerUser(UserModel user) async {
+  Future<Either<AuthErrors, bool>> registerUser(UserModel user) async {
     var result = await datasource.postRegisterUser(user);
     return result.fold(
         (failureResult) => result, (successResult) => Right(successResult));
   }
 
   @override
-  Future<Either<ConfirmationEmailError, bool>> confirmEmail(
+  Future<Either<AuthErrors, bool>> confirmEmail(
       String email, String confirmationCode) async {
     var result =
         await datasource.postEmailConfirmation(email, confirmationCode);
@@ -35,21 +35,21 @@ class AuthRepository extends IAuthRepository {
   }
 
   @override
-  Future<Either<LogoutError, void>> logoutUser() async {
+  Future<Either<AuthErrors, void>> logoutUser() async {
     var result = await datasource.postLogout();
     return result.fold(
         (failureResult) => result, (successResult) => Right(successResult));
   }
 
   @override
-  Future<Either<ForgotPasswordError, bool>> forgotPassword(String email) async {
+  Future<Either<AuthErrors, bool>> forgotPassword(String email) async {
     var result = await datasource.postForgotPassword(email);
     return result.fold(
         (failureResult) => result, (successResult) => Right(successResult));
   }
 
   @override
-  Future<Either<ForgotPasswordError, void>> confirmResetPassword(
+  Future<Either<AuthErrors, void>> confirmResetPassword(
       String email, String newPassword, String confirmationCode) async {
     var result = await datasource.postConfirmResetPassword(
         email, newPassword, confirmationCode);
@@ -58,14 +58,14 @@ class AuthRepository extends IAuthRepository {
   }
 
   @override
-  Future<Either<ResendCodeError, void>> postResendCode(String email) async {
+  Future<Either<AuthErrors, void>> postResendCode(String email) async {
     var result = await datasource.postResendCode(email);
     return result.fold(
         (failureResult) => result, (successResult) => Right(successResult));
   }
 
   @override
-  Future<Either<GetUserAttributesError, List<AuthUserAttribute>>>
+  Future<Either<AuthErrors, List<AuthUserAttribute>>>
       getUserAttributes() async {
     var result = await datasource.getUserAttributes();
     return result.fold(

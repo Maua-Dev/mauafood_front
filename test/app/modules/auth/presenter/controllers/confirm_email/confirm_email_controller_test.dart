@@ -29,8 +29,8 @@ void main() {
     });
 
     test('must return ConfirmEmailErrorState', () async {
-      when(usecase.call('', '')).thenAnswer(
-          (_) async => Left(ConfirmationEmailError(message: '', email: '')));
+      when(usecase.call('', ''))
+          .thenAnswer((_) async => Left(AuthErrors(message: '')));
       await controller.confirmEmail();
       expect(controller.state, isA<ConfirmEmailErrorState>());
     });

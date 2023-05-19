@@ -32,7 +32,7 @@ void main() {
 
     test('must return RegisterErrorState', () async {
       when(usecase.call('', '', false, '', '', false, false, false))
-          .thenAnswer((_) async => Left(RegisterError(message: '')));
+          .thenAnswer((_) async => Left(AuthErrors(message: '')));
       await controller.registerUser();
       expect(controller.state, isA<RegisterErrorState>());
     });

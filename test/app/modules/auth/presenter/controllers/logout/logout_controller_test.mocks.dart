@@ -45,20 +45,20 @@ class MockILogoutUserUsecase extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.LogoutError, void>> call() => (super.noSuchMethod(
+  _i4.Future<_i2.Either<_i5.AuthErrors, void>> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.LogoutError, void>>.value(
-            _FakeEither_0<_i5.LogoutError, void>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, void>>.value(
+            _FakeEither_0<_i5.AuthErrors, void>(
           this,
           Invocation.method(
             #call,
             [],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.LogoutError, void>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, void>>);
 }
 
 /// A class which mocks [IAuthStorage].

@@ -5,16 +5,15 @@ import 'package:mauafood_front/app/shared/infra/models/user_model.dart';
 import '../../../../helpers/errors/auth_errors.dart';
 
 abstract class IAuthDatasource {
-  Future<Either<SignUpError, CognitoAuthSession>> postLoginUser(
+  Future<Either<AuthErrors, CognitoAuthSession>> postLoginUser(
       String email, String password);
-  Future<Either<RegisterError, bool>> postRegisterUser(UserModel user);
-  Future<Either<ConfirmationEmailError, bool>> postEmailConfirmation(
+  Future<Either<AuthErrors, bool>> postRegisterUser(UserModel user);
+  Future<Either<AuthErrors, bool>> postEmailConfirmation(
       String email, String confirmationCode);
-  Future<Either<LogoutError, void>> postLogout();
-  Future<Either<ForgotPasswordError, bool>> postForgotPassword(String email);
-  Future<Either<ForgotPasswordError, void>> postConfirmResetPassword(
+  Future<Either<AuthErrors, void>> postLogout();
+  Future<Either<AuthErrors, bool>> postForgotPassword(String email);
+  Future<Either<AuthErrors, void>> postConfirmResetPassword(
       String email, String newPassword, String confirmationCode);
-  Future<Either<ResendCodeError, void>> postResendCode(String email);
-  Future<Either<GetUserAttributesError, List<AuthUserAttribute>>>
-      getUserAttributes();
+  Future<Either<AuthErrors, void>> postResendCode(String email);
+  Future<Either<AuthErrors, List<AuthUserAttribute>>> getUserAttributes();
 }

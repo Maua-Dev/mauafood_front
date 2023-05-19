@@ -4,16 +4,15 @@ import '../../infra/models/user_model.dart';
 import '../../helpers/errors/auth_errors.dart';
 
 abstract class IAuthRepository {
-  Future<Either<RegisterError, bool>> registerUser(UserModel user);
-  Future<Either<SignUpError, CognitoAuthSession>> loginUser(
+  Future<Either<AuthErrors, bool>> registerUser(UserModel user);
+  Future<Either<AuthErrors, CognitoAuthSession>> loginUser(
       String email, String password);
-  Future<Either<ConfirmationEmailError, bool>> confirmEmail(
+  Future<Either<AuthErrors, bool>> confirmEmail(
       String email, String confirmationCode);
-  Future<Either<LogoutError, void>> logoutUser();
-  Future<Either<ForgotPasswordError, bool>> forgotPassword(String email);
-  Future<Either<ForgotPasswordError, void>> confirmResetPassword(
+  Future<Either<AuthErrors, void>> logoutUser();
+  Future<Either<AuthErrors, bool>> forgotPassword(String email);
+  Future<Either<AuthErrors, void>> confirmResetPassword(
       String email, String newPassword, String confirmationCode);
-  Future<Either<ResendCodeError, void>> postResendCode(String email);
-  Future<Either<GetUserAttributesError, List<AuthUserAttribute>>>
-      getUserAttributes();
+  Future<Either<AuthErrors, void>> postResendCode(String email);
+  Future<Either<AuthErrors, List<AuthUserAttribute>>> getUserAttributes();
 }

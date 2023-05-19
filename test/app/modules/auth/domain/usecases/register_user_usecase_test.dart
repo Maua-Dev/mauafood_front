@@ -47,7 +47,7 @@ void main() {
 
   test('[TEST] - register returns error', () async {
     when(repository.registerUser(user)).thenAnswer(
-      (realInvocation) async => Left(RegisterError(message: '')),
+      (realInvocation) async => Left(AuthErrors(message: '')),
     );
     var result = await useCase(
         user.fullName,
@@ -58,6 +58,6 @@ void main() {
         user.emailNotifications,
         user.appNotifications,
         user.acceptTerms);
-    expect(result.fold(id, id), isA<RegisterError>());
+    expect(result.fold(id, id), isA<AuthErrors>());
   });
 }

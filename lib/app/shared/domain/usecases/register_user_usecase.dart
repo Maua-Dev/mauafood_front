@@ -4,7 +4,7 @@ import '../../helpers/errors/auth_errors.dart';
 import '../repositories/auth_repository_interface.dart';
 
 abstract class IRegisterUserUsecase {
-  Future<Either<RegisterError, bool>> call(
+  Future<Either<AuthErrors, bool>> call(
     String fullName,
     String cpf,
     bool isStudent,
@@ -22,7 +22,7 @@ class RegisterUserUsecase extends IRegisterUserUsecase {
   RegisterUserUsecase({required this.repository});
 
   @override
-  Future<Either<RegisterError, bool>> call(
+  Future<Either<AuthErrors, bool>> call(
     String fullName,
     String cpf,
     bool isStudent,

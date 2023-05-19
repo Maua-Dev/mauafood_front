@@ -28,9 +28,9 @@ void main() {
 
   test('[TEST] - resend confirmation code returns error', () async {
     when(repository.postResendCode(email)).thenAnswer(
-      (realInvocation) async => Left(ResendCodeError(message: '')),
+      (realInvocation) async => Left(AuthErrors(message: '')),
     );
     var result = await useCase(email);
-    expect(result.fold((l) => l, (r) => null), isA<ResendCodeError>());
+    expect(result.fold((l) => l, (r) => null), isA<AuthErrors>());
   });
 }

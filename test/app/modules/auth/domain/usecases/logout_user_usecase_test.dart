@@ -27,9 +27,9 @@ void main() {
 
   test('[TEST] - logout user returns error', () async {
     when(repository.logoutUser()).thenAnswer(
-      (realInvocation) async => Left(LogoutError(message: '')),
+      (realInvocation) async => Left(AuthErrors(message: '')),
     );
     var result = await useCase();
-    expect(result.fold((l) => l, (r) => null), isA<LogoutError>());
+    expect(result.fold((l) => l, (r) => null), isA<AuthErrors>());
   });
 }

@@ -47,7 +47,7 @@ class MockILoginUserUsecase extends _i1.Mock implements _i3.ILoginUserUsecase {
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>> call(
+  _i4.Future<_i2.Either<_i5.AuthErrors, _i6.CognitoAuthSession>> call(
     String? email,
     String? password,
   ) =>
@@ -60,8 +60,8 @@ class MockILoginUserUsecase extends _i1.Mock implements _i3.ILoginUserUsecase {
           ],
         ),
         returnValue: _i4.Future<
-                _i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>>.value(
-            _FakeEither_0<_i5.SignUpError, _i6.CognitoAuthSession>(
+                _i2.Either<_i5.AuthErrors, _i6.CognitoAuthSession>>.value(
+            _FakeEither_0<_i5.AuthErrors, _i6.CognitoAuthSession>(
           this,
           Invocation.method(
             #call,
@@ -71,7 +71,7 @@ class MockILoginUserUsecase extends _i1.Mock implements _i3.ILoginUserUsecase {
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, _i6.CognitoAuthSession>>);
 }
 
 /// A class which mocks [IAuthStorage].
@@ -172,23 +172,20 @@ class MockIGetUserAttributesUsecase extends _i1.Mock
   }
 
   @override
-  _i4.Future<
-      _i2.Either<_i5.GetUserAttributesError,
-          List<_i6.AuthUserAttribute>>> call() => (super.noSuchMethod(
+  _i4.Future<_i2.Either<_i5.AuthErrors, List<_i6.AuthUserAttribute>>> call() =>
+      (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
         returnValue: _i4.Future<
-            _i2.Either<_i5.GetUserAttributesError,
-                List<_i6.AuthUserAttribute>>>.value(_FakeEither_0<
-            _i5.GetUserAttributesError, List<_i6.AuthUserAttribute>>(
+                _i2.Either<_i5.AuthErrors, List<_i6.AuthUserAttribute>>>.value(
+            _FakeEither_0<_i5.AuthErrors, List<_i6.AuthUserAttribute>>(
           this,
           Invocation.method(
             #call,
             [],
           ),
         )),
-      ) as _i4.Future<
-          _i2.Either<_i5.GetUserAttributesError, List<_i6.AuthUserAttribute>>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, List<_i6.AuthUserAttribute>>>);
 }

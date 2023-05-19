@@ -32,9 +32,9 @@ void main() {
   test('[TEST] - confirm reset password returns error', () async {
     when(repository.confirmResetPassword(email, newPassword, confirmationCode))
         .thenAnswer(
-      (realInvocation) async => Left(ForgotPasswordError(message: '')),
+      (realInvocation) async => Left(AuthErrors(message: '')),
     );
     var result = await useCase(email, newPassword, confirmationCode);
-    expect(result.fold((l) => l, (r) => null), isA<ForgotPasswordError>());
+    expect(result.fold((l) => l, (r) => null), isA<AuthErrors>());
   });
 }

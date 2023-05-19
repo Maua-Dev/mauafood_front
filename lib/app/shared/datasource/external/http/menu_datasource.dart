@@ -1,19 +1,17 @@
 import 'package:dio/dio.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart';
-
-import '../../../helpers/services/dio/options/product_base_options.dart';
+import '../../../helpers/services/http_service.dart';
 
 class MenuDatasource implements IMenuDatasource {
-  Dio dio = Dio();
+  final HttpService _httpService;
 
-  MenuDatasource() {
-    dio = Dio(productBaseOptions);
-  }
+  MenuDatasource(this._httpService);
 
   @override
   Future<Map<String, dynamic>> getAllProducts() async {
     try {
-      var response = await dio.get('/get-all-products-group-by-restaurant');
+      var response =
+          await _httpService.get('/get-all-products-group-by-restaurant');
       if (response.statusCode == 200) {
         return response.data;
       }

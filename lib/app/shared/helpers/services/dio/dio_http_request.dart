@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 
-import 'http_request_interface.dart';
+import '../http/http_request_interface.dart';
 
 class DioHttpRequest implements IHttpRequest {
   final Dio _dio;

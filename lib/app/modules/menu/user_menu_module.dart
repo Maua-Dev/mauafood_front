@@ -1,9 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/datasource/external/http/menu_datasource.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/controllers/contact/contact_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_menu_page.dart';
+import '../../shared/helpers/services/dio/dio_http_request.dart';
+import '../../shared/helpers/services/dio/options/product_base_options.dart';
+import '../../shared/helpers/services/http/http_request_interface.dart';
+import '../../shared/helpers/services/http_service.dart';
 import '../product-info/product_info_module.dart';
 import '../../shared/domain/enums/restaurant_enum.dart';
 import '../restaurants/restaurant_module.dart';
@@ -19,11 +24,14 @@ class UserMenuModule extends Module {
         Bind<MenuController>(
           (i) => MenuController(i(), i.args.data),
         ),
+        Bind((i) => Dio(productBaseOptions)),
+        Bind<IHttpRequest>((i) => DioHttpRequest(dio: i<Dio>())),
+        Bind<HttpService>((i) => HttpService(httpRequest: i(), storage: i())),
         Bind<ContactController>(
           (i) => ContactController(),
         ),
         Bind<IMenuRepository>((i) => MenuRepository(datasource: i())),
-        Bind<IMenuDatasource>((i) => MenuDatasource()),
+        Bind<IMenuDatasource>((i) => MenuDatasource(i())),
       ];
 
   @override

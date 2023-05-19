@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import '../../domain/storage/auth_storage_interface.dart';
 import '../enums/token_enum.dart';
-import 'http_request_interface.dart';
+import 'http/http_request_interface.dart';
 
 class HttpService {
   final IAuthStorage storage;
@@ -12,18 +12,18 @@ class HttpService {
     required this.httpRequest,
   });
 
-  Future<Response> get(String url, dynamic data,
-      {TokenEnum tokenType = TokenEnum.NOTOKEN}) async {
+  Future<Response> get(String url,
+      {dynamic data, TokenEnum tokenType = TokenEnum.NOTOKEN}) async {
     return await _handleRequest(() => httpRequest.get(url), tokenType);
   }
 
-  Future<Response> post(String url, dynamic data,
-      {TokenEnum tokenType = TokenEnum.NOTOKEN}) async {
+  Future<Response> post(String url,
+      {dynamic data, TokenEnum tokenType = TokenEnum.NOTOKEN}) async {
     return await _handleRequest(() => httpRequest.post(url, data), tokenType);
   }
 
-  Future<Response> put(String url, dynamic data,
-      {TokenEnum tokenType = TokenEnum.NOTOKEN}) async {
+  Future<Response> put(String url,
+      {dynamic data, TokenEnum tokenType = TokenEnum.NOTOKEN}) async {
     return await _handleRequest(() => httpRequest.put(url, data), tokenType);
   }
 

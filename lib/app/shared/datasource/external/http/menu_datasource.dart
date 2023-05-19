@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart';
 
-import '../../../helpers/services/dio/mauafood_product_options.dart';
+import '../../../helpers/services/dio/options/product_base_options.dart';
 
 class MenuDatasource implements IMenuDatasource {
   Dio dio = Dio();
 
   MenuDatasource() {
-    dio = Dio(mauafoodProductBaseOptions);
+    dio = Dio(productBaseOptions);
   }
 
   @override

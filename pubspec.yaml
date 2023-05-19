@@ -17,7 +17,7 @@ dependencies:
   intl: ^0.18.0
   dartz: ^0.10.1
   enum_to_string: ^2.0.1
-  google_fonts: ^2.0.1
+  google_fonts: ^4.0.4
   network_image_mock: ^2.1.1
   amplify_auth_cognito: ^0.6.9
   amplify_flutter: ^0.6.9

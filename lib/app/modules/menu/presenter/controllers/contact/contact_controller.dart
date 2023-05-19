@@ -2,7 +2,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/states/contact/contact
 import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';
-import '../../../../../shared/helpers/utils/validation_utils.dart';
+import '../../../../../shared/helpers/utils/validation_helper.dart';
 
 part 'contact_controller.g.dart';
 

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../../generated/l10n.dart';
 import '../../../../../../shared/themes/app_colors.dart';
 import '../../../../../../shared/themes/app_text_styles.dart';
-import '../../../../../../shared/helpers/utils/utils.dart';
+import '../../../../../../shared/helpers/utils/screen_helper.dart';
 import '../../../../../../shared/widgets/circular_progress_indicator_custom_widget.dart';
 import '../../../../../../shared/domain/entities/product.dart';
 
@@ -28,8 +28,8 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     SizedBox(
-                      width: Utils.width(context) / 3.5,
-                      height: Utils.width(context) / 3.5,
+                      width: ScreenHelper.width(context) / 3.5,
+                      height: ScreenHelper.width(context) / 3.5,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: FittedBox(

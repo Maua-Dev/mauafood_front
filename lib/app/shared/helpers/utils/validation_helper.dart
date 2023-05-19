@@ -2,7 +2,7 @@ import 'package:cpf_cnpj_validator/cpf_validator.dart';
 
 import '../../../../../../../generated/l10n.dart';
 
-class ValidationUtils {
+class ValidationHelper {
   static String? validateCode(String? code) {
     if (code!.isEmpty) {
       return S.current.requiredFieldAlert;

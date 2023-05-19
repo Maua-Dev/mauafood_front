@@ -30,7 +30,7 @@ abstract class LoginControllerBase with Store {
 
   @action
   String? validateEmail(String? value) {
-    return ValidationUtils.validateEmail(value);
+    return ValidationHelper.validateEmail(value);
   }
 
   @observable
@@ -41,7 +41,7 @@ abstract class LoginControllerBase with Store {
 
   @action
   String? validatePassword(String? value) {
-    return ValidationUtils.validatePassword(value);
+    return ValidationHelper.validatePassword(value);
   }
 
   @action

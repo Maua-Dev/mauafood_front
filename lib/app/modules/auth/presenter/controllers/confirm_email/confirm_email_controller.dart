@@ -33,12 +33,12 @@ abstract class ConfirmEmailControllerBase with Store {
 
   @action
   String? validateCode(String? value) {
-    return ValidationUtils.validateCode(value);
+    return ValidationHelper.validateCode(value);
   }
 
   @action
   String? validateEmail(String? value) {
-    return ValidationUtils.validateEmail(value);
+    return ValidationHelper.validateEmail(value);
   }
 
   @action

@@ -39,12 +39,12 @@ abstract class ChangePasswordControllerBase with Store {
 
   @action
   String? validatePassword(String? password) {
-    return ValidationUtils.validatePassword(password);
+    return ValidationHelper.validatePassword(password);
   }
 
   @action
   String? validateConfirmPassword(String? confirmPassword) {
-    return ValidationUtils.validateConfirmPassword(
+    return ValidationHelper.validateConfirmPassword(
         newPassword, confirmPassword);
   }
 
@@ -61,6 +61,6 @@ abstract class ChangePasswordControllerBase with Store {
 
   @action
   String? validateCode(String? code) {
-    return ValidationUtils.validateCode(code);
+    return ValidationHelper.validateCode(code);
   }
 }

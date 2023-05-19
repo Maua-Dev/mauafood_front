@@ -86,27 +86,27 @@ abstract class RegisterControllerBase with Store {
 
   @action
   String? validateName(String? name) {
-    return ValidationUtils.validateName(name);
+    return ValidationHelper.validateName(name);
   }
 
   @action
   String? validateCpf(String? cpf) {
-    return ValidationUtils.validateCpf(cpf);
+    return ValidationHelper.validateCpf(cpf);
   }
 
   @action
   String? validateEmail(String? email) {
-    return ValidationUtils.validateEmail(email);
+    return ValidationHelper.validateEmail(email);
   }
 
   @action
   String? validatePassword(String? password) {
-    return ValidationUtils.validatePassword(password);
+    return ValidationHelper.validatePassword(password);
   }
 
   @action
   String? validateConfirmPassword(String? passwordConfirmation) {
-    return ValidationUtils.validateConfirmPassword(
+    return ValidationHelper.validateConfirmPassword(
         password, passwordConfirmation);
   }
 }

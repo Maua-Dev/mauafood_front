@@ -29,7 +29,7 @@ abstract class ForgotPasswordControllerBase with Store {
 
   @action
   String? validateEmail(String? value) {
-    return ValidationUtils.validateEmail(value);
+    return ValidationHelper.validateEmail(value);
   }
 
   @action

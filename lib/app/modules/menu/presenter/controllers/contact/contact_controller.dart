@@ -35,12 +35,12 @@ abstract class ContactControllerBase with Store {
 
   @action
   String? validateName(String? value) {
-    return ValidationUtils.validateName(value);
+    return ValidationHelper.validateName(value);
   }
 
   @action
   String? validateEmail(String? value) {
-    return ValidationUtils.validateEmail(value);
+    return ValidationHelper.validateEmail(value);
   }
 
   @action

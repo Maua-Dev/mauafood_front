@@ -2,7 +2,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/states/menu_state.dart
 import 'package:mobx/mobx.dart';
 
 import '../../../../../shared/domain/enums/product_enum.dart';
-import '../../../../restaurants/domain/infra/restaurant_enum.dart';
+import '../../../../../shared/domain/enums/restaurant_enum.dart';
 import '../../../../../shared/domain/entities/product.dart';
 import '../../../../../shared/domain/usecases/get_restaurant_product_usecase.dart';
 

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
-import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
 import '../../helpers/errors/errors.dart';

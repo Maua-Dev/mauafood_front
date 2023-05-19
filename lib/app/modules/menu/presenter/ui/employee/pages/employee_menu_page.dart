@@ -6,7 +6,7 @@ import '../../../../../../shared/domain/enums/product_enum.dart';
 import '../../../../../../shared/helpers/services/s3/assets_s3.dart';
 import '../../../../../../shared/themes/app_colors.dart';
 import '../../../../../../shared/themes/app_text_styles.dart';
-import '../../../../../restaurants/domain/infra/restaurant_enum.dart';
+import '../../../../../../shared/domain/enums/restaurant_enum.dart';
 import '../../../controllers/menu/menu_controller.dart';
 import '../../../states/menu_state.dart';
 import '../../user/widgets/error_loading_menu_widget.dart';

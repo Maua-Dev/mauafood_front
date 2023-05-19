@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:enum_to_string/enum_to_string.dart';
-import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 
 enum UserRolesEnum {
   EMPLOYEE_H,

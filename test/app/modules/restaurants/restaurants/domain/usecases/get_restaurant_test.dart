@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/modules/restaurants/domain/entities/restaurant.dart';
-import 'package:mauafood_front/app/modules/restaurants/domain/usecases/get_restaurant.dart';
+import 'package:mauafood_front/app/shared/domain/entities/restaurant.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant.dart';
 
 void main() {
   late IGetRestaurant useCase;

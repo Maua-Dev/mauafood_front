@@ -13,7 +13,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/pages/empl
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_menu_page.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/error_loading_menu_widget.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/filter_button_widget.dart';
-import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';

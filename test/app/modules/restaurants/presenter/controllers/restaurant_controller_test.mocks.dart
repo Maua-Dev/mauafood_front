@@ -3,9 +3,9 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:mauafood_front/app/modules/restaurants/domain/entities/restaurant.dart'
+import 'package:mauafood_front/app/shared/domain/entities/restaurant.dart'
     as _i3;
-import 'package:mauafood_front/app/modules/restaurants/domain/usecases/get_restaurant.dart'
+import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 

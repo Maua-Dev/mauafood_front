@@ -1,5 +1,5 @@
-import 'package:mauafood_front/app/modules/restaurants/domain/usecases/get_restaurant.dart';
-import '../../domain/entities/restaurant.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant.dart';
+import '../../../../shared/domain/entities/restaurant.dart';
 
 class RestaurantController {
   final IGetRestaurant getRestaurant;

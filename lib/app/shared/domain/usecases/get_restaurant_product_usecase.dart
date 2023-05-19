@@ -1,8 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
-import 'package:mauafood_front/generated/l10n.dart';
-
 import '../../helpers/errors/errors.dart';
 import '../repositories/menu_repository_interface.dart';
 
@@ -31,7 +29,7 @@ class GetRestaurantProductUsecase implements IGetRestaurantProductUsecase {
     return result.fold((failureResult) => result, (listResult) async {
       return result.where(
         (r) => r.isNotEmpty,
-        () => EmptyList(message: S.current.errorEmptyList),
+        () => EmptyList(),
       );
     });
   }
@@ -41,7 +39,7 @@ class GetRestaurantProductUsecase implements IGetRestaurantProductUsecase {
     return result.fold((failureResult) => result, (listResult) async {
       return result.where(
         (r) => r.isNotEmpty,
-        () => EmptyList(message: S.current.errorEmptyList),
+        () => EmptyList(),
       );
     });
   }
@@ -51,7 +49,7 @@ class GetRestaurantProductUsecase implements IGetRestaurantProductUsecase {
     return result.fold((failureResult) => result, (listResult) async {
       return result.where(
         (r) => r.isNotEmpty,
-        () => EmptyList(message: S.current.errorEmptyList),
+        () => EmptyList(),
       );
     });
   }

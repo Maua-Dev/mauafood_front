@@ -1,8 +1,8 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import '../app_module.dart';
-import '../shared/domain/enums/user_roles_enum.dart';
-import 'auth/auth_module.dart';
-import '../shared/domain/storage/auth_storage_interface.dart';
+import '../../../app_module.dart';
+import '../../../shared/domain/enums/user_roles_enum.dart';
+import '../../auth/auth_module.dart';
+import '../../../shared/domain/storage/auth_storage_interface.dart';
 
 class UserAuthGuard extends RouteGuard {
   UserAuthGuard()

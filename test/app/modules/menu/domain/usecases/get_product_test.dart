@@ -60,10 +60,10 @@ void main() {
 
     test('return DatasourceResultNull if json is null', () async {
       when(repository.getBibaProducts()).thenAnswer(
-        (realInvocation) async => Left(DatasourceResultNull(message: '')),
+        (realInvocation) async => Left(ErrorRequest(message: '')),
       );
       var result = await useCase(biba);
-      expect(result.fold(id, id), isA<DatasourceResultNull>());
+      expect(result.fold(id, id), isA<ErrorRequest>());
     });
   });
 
@@ -89,10 +89,10 @@ void main() {
 
     test('return DatasourceResultNull if json is null', () async {
       when(repository.getHoraHProducts()).thenAnswer(
-        (realInvocation) async => Left(DatasourceResultNull(message: '')),
+        (realInvocation) async => Left(ErrorRequest(message: '')),
       );
       var result = await useCase(h);
-      expect(result.fold(id, id), isA<DatasourceResultNull>());
+      expect(result.fold(id, id), isA<ErrorRequest>());
     });
   });
 }

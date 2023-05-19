@@ -41,7 +41,10 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'An error occurred while confirming email.',
           })}";
 
-  static String m2(schema) => "${Intl.select(schema, {
+  static String m2(placeholders, entityErrorMessage) =>
+      "Field ${entityErrorMessage} is not valid";
+
+  static String m3(schema) => "${Intl.select(schema, {
             'limitExceeded': 'Too many attempts in a row, try again later.',
             'userNotConfirmed': 'Unconfirmed email, confirm it.',
             'userNotFound': 'Email not found, make sure you have registered.',
@@ -52,7 +55,7 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Error trying to reset password, try again later. ',
           })}";
 
-  static String m3(schema) => "${Intl.select(schema, {
+  static String m4(schema) => "${Intl.select(schema, {
             'limitExceeded': 'Too many attempts in a row, try again later.',
             'signedOut': 'Incorrect email or password.',
             'notAuthorized': 'Unconfirmed email, confirm it.',
@@ -62,7 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Error when trying to get user attributes.',
           })}";
 
-  static String m4(schema) => "${Intl.select(schema, {
+  static String m5(schema) => "${Intl.select(schema, {
             'limitExceeded': 'Too many attempts in a row, try again later.',
             'signedOut': 'Incorrect email or password.',
             'notAuthorized': 'Unconfirmed email, confirm it.',
@@ -73,21 +76,23 @@ class MessageLookup extends MessageLookupByLibrary {
                 'Something went wrong while logging in, please try again later.',
           })}";
 
-  static String m5(schema) => "${Intl.select(schema, {
+  static String m6(schema) => "${Intl.select(schema, {
             'limitExceeded': 'Too many attempts in a row, try again later.',
             'internalError':
                 'We are experiencing internal issues, please try again later.',
             'other': 'Error trying to log out, please try again later.',
           })}";
 
-  static String m6(notifications) => "${Intl.select(notifications, {
+  static String m7(placeholders, message) => "No items found for ${message}";
+
+  static String m8(notifications) => "${Intl.select(notifications, {
             'normalPart': 'Want to receive ',
             'email': 'email notifications',
             'app': 'app notifications',
             'other': '',
           })}";
 
-  static String m7(product) => "${Intl.select(product, {
+  static String m9(product) => "${Intl.select(product, {
             'ALL': 'All',
             'SANDWICHES': 'Sandwich',
             'DRINKS': 'Drinks',
@@ -102,11 +107,11 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Other',
           })}";
 
-  static String m8(placeholders, prepareTime) => "${prepareTime} min";
+  static String m10(placeholders, prepareTime) => "${prepareTime} min";
 
-  static String m9(amount) => "${amount} ";
+  static String m11(amount) => "${amount} ";
 
-  static String m10(schema) => "${Intl.select(schema, {
+  static String m12(schema) => "${Intl.select(schema, {
             'limitExceeded': 'Too many attempts in a row, try again later.',
             'usernameExists': 'There is already an account with this email.',
             'invalidParameter': 'Some field filled in incorrectly.',
@@ -116,7 +121,9 @@ class MessageLookup extends MessageLookupByLibrary {
                 'There was an error trying to register, please try again later.',
           })}";
 
-  static String m11(schema) => "${Intl.select(schema, {
+  static String m13(placeholders, message) => "${message}";
+
+  static String m14(schema) => "${Intl.select(schema, {
             'invalidParameter': 'Email probably already confirmed.',
             'userNotFound': 'Email not found, make sure you have registered.',
             'limitExceeded': 'Too many attempts in a row, try again later.',
@@ -127,16 +134,16 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Error trying to send code, please try again later.',
           })}";
 
-  static String m12(placeholders, restaurantName) => "${restaurantName}";
+  static String m15(placeholders, restaurantName) => "${restaurantName}";
 
-  static String m13(restaurant) => "${Intl.select(restaurant, {
+  static String m16(restaurant) => "${Intl.select(restaurant, {
             'biba': 'bibaImage',
             'hora_h': 'hora_hImage',
             'moleza': 'molezaImage',
             'other': '',
           })}";
 
-  static String m14(restaurant) => "${Intl.select(restaurant, {
+  static String m17(restaurant) => "${Intl.select(restaurant, {
             'biba': 'Souza de Abreu',
             'hora_h': 'H Hour',
             'moleza': 'Cantina do Moleza',
@@ -174,7 +181,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailConfirmationTitle":
             MessageLookupByLibrary.simpleMessage("Email confirmation"),
         "emailTitle": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "emptyListErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "List is empty, no items found for this request"),
         "enterTitle": MessageLookupByLibrary.simpleMessage("Enter"),
+        "entityErrorMessage": m2,
         "equalPasswordAlert":
             MessageLookupByLibrary.simpleMessage("Passwords must be the same."),
         "errorEmailOrPassword": MessageLookupByLibrary.simpleMessage(
@@ -188,11 +198,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No items found."),
         "fillFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure you fill in all the fields."),
-        "forgotPasswordErrorsSchema": m2,
+        "forgotPasswordErrorsSchema": m3,
         "forgotPasswordTitle":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "fullNameTitle": MessageLookupByLibrary.simpleMessage("Full Name"),
-        "getUserAtribbutesErrorsSchema": m3,
+        "getUserAtribbutesErrorsSchema": m4,
         "haveAccountTitle":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "havePasswordTitle":
@@ -209,36 +219,38 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelMessage": MessageLookupByLibrary.simpleMessage("Message"),
         "labelName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "labelSend": MessageLookupByLibrary.simpleMessage("Send now"),
-        "loginErrorsSchema": m4,
+        "loginErrorsSchema": m5,
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
-        "logoutErrorsSchema": m5,
+        "logoutErrorsSchema": m6,
         "messageSentSuccessfully":
             MessageLookupByLibrary.simpleMessage("Email successfully sent!"),
         "newPasswordTitle":
             MessageLookupByLibrary.simpleMessage("New password"),
-        "notificationsOptionsSchema": m6,
+        "noItemsFoundErrorMessage": m7,
+        "notificationsOptionsSchema": m8,
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Your password must contain: \n - One or more uppercase letters \n - One or more lowercase letters \n - One or more numbers \n - One or more special characters\n(#, ?, !, @, \\\$, %, ^, &, *, -) \n - Minimum 8 characters"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Password"),
-        "productNameSchema": m7,
-        "productPrepareTimeMinutes": m8,
-        "productPriceCurrency": m9,
+        "productNameSchema": m9,
+        "productPrepareTimeMinutes": m10,
+        "productPriceCurrency": m11,
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recommendations"),
         "recommendedTitle": MessageLookupByLibrary.simpleMessage("Recommended"),
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "To complete your registration, we will send you an email with a code, enter it in the field below."),
-        "registerErrorsSchema": m10,
+        "registerErrorsSchema": m12,
         "registerTitle": MessageLookupByLibrary.simpleMessage("Register"),
+        "requestErrorMessage": m13,
         "requiredFieldAlert":
             MessageLookupByLibrary.simpleMessage("Required field."),
-        "resendCodeErrorsSchema": m11,
+        "resendCodeErrorsSchema": m14,
         "resendConfirmationCodeTitle":
             MessageLookupByLibrary.simpleMessage("Resend confirmation code"),
-        "restaurantTitle": m12,
-        "restaurantsImageSchema": m13,
-        "restaurantsNameSchema": m14,
+        "restaurantTitle": m15,
+        "restaurantsImageSchema": m16,
+        "restaurantsNameSchema": m17,
         "restaurantsTitle": MessageLookupByLibrary.simpleMessage("Restaurants"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Search"),
         "seeMenuTitle": MessageLookupByLibrary.simpleMessage("See menu"),

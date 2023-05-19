@@ -131,5 +131,35 @@
     "confirmResetPasswordErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} codeMismatch{Código fornecido está errado, tente novamente.} userNotConfirmed{E-mail não confirmado, confirme-o.} internalError{Estamos com problemas internos, tente mais tarde.} other{Erro ao tentar mudar senha, tente mais tarde.}}",
     "resendCodeErrorsSchema": "{schema, select, invalidParameter{E-mail, provavelmente, já confirmado.} userNotFound{E-mail não encontrado, certifique-se de que fez cadastro.} limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} internalError{Estamos com problemas internos, tente mais tarde.} codeDeliveryFailure{Falha ao enviar código para o e-mail, tente novamente.} other{Erro ao tentar enviar código, tente mais tarde.}}",
     "getUserAtribbutesErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} signedOut{E-mail ou senha incorretos.} notAuthorized{E-mail não confirmado, confirme-o.} userNotConfirmed{E-mail não confirmado, confirme-o.} userNotFound{E-mail ou senha incorretos ou e-mail não cadastrado.} other{Erro ao tentar pegar atributos de usuário.}}",
+    
+    "entityErrorMessage": "Campo {entityErrorMessage} não é válido",
+    "@entityErrorMessage" : {
+        "placeholders": {
+            "placeholders": {
+                "restaurantName": {}
+            }
+        }
+    },
+
+    "emptyListErrorMessage": "Lista vazia, itens não encontrados para essa requisição",
+
+    "requestErrorMessage": "{message}",
+    "@requestErrorMessage" : {
+        "placeholders": {
+            "placeholders": {
+                "restaurantName": {}
+            }
+        }
+    },
+
+    "noItemsFoundErrorMessage": "Itens não encontrados para: {message}",
+    "@noItemsFoundErrorMessage" : {
+        "placeholders": {
+            "placeholders": {
+                "restaurantName": {}
+            }
+        }
+    },
+
     "": ""
 }

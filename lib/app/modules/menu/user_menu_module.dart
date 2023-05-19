@@ -15,7 +15,6 @@ import '../../shared/helpers/services/http_service.dart';
 import '../../shared/infra/datasource/external/http/contact_datasource_interface.dart';
 import '../../shared/infra/repositories/contact_repository.dart';
 import '../product-info/product_info_module.dart';
-import '../../shared/domain/enums/restaurant_enum.dart';
 import '../restaurants/restaurant_module.dart';
 import '../../shared/domain/repositories/menu_repository_interface.dart';
 import '../../shared/infra/datasource/external/http/menu_datasource_interface.dart';
@@ -31,7 +30,6 @@ class UserMenuModule extends Module {
         ),
         Bind((i) => Dio(productBaseOptions)),
         Bind<IHttpRequest>((i) => DioHttpRequest(dio: i<Dio>())),
-        Bind<HttpService>((i) => HttpService(httpRequest: i(), storage: i())),
         Bind<IContactUsecase>((i) => ContactUsecase(i())),
         Bind<IContactRepository>((i) => ContactRepository(datasource: i())),
         Bind<IContactDatasource>((i) => ContactDatasource()),
@@ -40,6 +38,7 @@ class UserMenuModule extends Module {
         ),
         Bind<IMenuRepository>((i) => MenuRepository(datasource: i())),
         Bind<IMenuDatasource>((i) => MenuDatasource(i())),
+        Bind<HttpService>((i) => HttpService(httpRequest: i())),
       ];
 
   @override
@@ -51,9 +50,7 @@ class UserMenuModule extends Module {
         ),
         ChildRoute(
           '/menu',
-          child: (context, args) => UserMenuPage(
-            restaurantInfo: args.data as RestaurantEnum,
-          ),
+          child: (context, args) => const UserMenuPage(),
           // guards: [UserAuthGuard()],
         ),
         ModuleRoute(

@@ -24,8 +24,7 @@ class EmployeeMenuModule extends Module {
         ),
         Bind((i) => Dio(productBaseOptions)),
         Bind<IHttpRequest>((i) => DioHttpRequest(dio: i<Dio>()), export: true),
-        Bind<HttpService>((i) => HttpService(httpRequest: i(), storage: i()),
-            export: true),
+        Bind<HttpService>((i) => HttpService(httpRequest: i()), export: true),
         Bind<IMenuRepository>((i) => MenuRepository(datasource: i())),
         Bind<IMenuDatasource>((i) => MenuDatasource(i())),
       ];

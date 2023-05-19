@@ -16,8 +16,7 @@ import '../widgets/product_card_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class UserMenuPage extends StatelessWidget {
-  final RestaurantEnum restaurantInfo;
-  const UserMenuPage({super.key, required this.restaurantInfo});
+  const UserMenuPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +115,8 @@ class UserMenuPage extends StatelessWidget {
                       width: 16,
                     ),
                     Text(
-                      S.of(context).restaurantTitle('', restaurantInfo.name),
+                      S.of(context).restaurantTitle(
+                          '', menuController.restaurantInfo.name),
                       style: AppTextStyles.h1
                           .copyWith(color: AppColors.mainBlueColor),
                     ),

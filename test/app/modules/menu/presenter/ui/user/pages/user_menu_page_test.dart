@@ -74,7 +74,7 @@ void main() {
                   GlobalWidgetsLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                home: const UserMenuPage(restaurantInfo: RestaurantEnum.biba),
+                home: const UserMenuPage(),
               )));
 
       final textField = find.byType(TextField);
@@ -105,7 +105,7 @@ void main() {
                   GlobalWidgetsLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                home: const UserMenuPage(restaurantInfo: RestaurantEnum.biba),
+                home: const UserMenuPage(),
               )));
 
       when(usecase(RestaurantEnum.biba))
@@ -130,7 +130,7 @@ void main() {
                   GlobalWidgetsLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                home: const UserMenuPage(restaurantInfo: RestaurantEnum.biba),
+                home: const UserMenuPage(),
               )));
 
       when(usecase(RestaurantEnum.biba))
@@ -155,7 +155,7 @@ void main() {
                   GlobalWidgetsLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                home: const UserMenuPage(restaurantInfo: RestaurantEnum.biba),
+                home: const UserMenuPage(),
               )));
 
       when(usecase(RestaurantEnum.biba))

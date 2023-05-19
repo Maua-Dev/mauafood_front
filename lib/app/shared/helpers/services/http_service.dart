@@ -1,14 +1,13 @@
 import 'package:dio/dio.dart';
-import '../../domain/storage/auth_storage_interface.dart';
 import '../enums/token_enum.dart';
 import 'http/http_request_interface.dart';
 
 class HttpService {
-  final IAuthStorage storage;
+  // final IAuthStorage storage;
   final IHttpRequest httpRequest;
 
   HttpService({
-    required this.storage,
+    // required this.storage,
     required this.httpRequest,
   });
 
@@ -39,9 +38,9 @@ class HttpService {
 
   Future<void> _refreshTokens() async {
     // lógica para dar refresh em todos os tokens do storage
-    await storage.saveRefreshToken('validToken');
-    await storage.saveAccessToken('validToken');
-    await storage.saveIdToken('validToken');
+    // await storage.saveRefreshToken('validToken');
+    // await storage.saveAccessToken('validToken');
+    // await storage.saveIdToken('validToken');
     return Future.value();
   }
 
@@ -49,13 +48,13 @@ class HttpService {
     var token = '';
     switch (tokenType) {
       case TokenEnum.ACCESSTOKEN:
-        token = await storage.getAccessToken();
+        // token = await storage.getAccessToken();
         break;
       case TokenEnum.IDTOKEN:
-        token = await storage.getIdToken();
+        // token = await storage.getIdToken();
         break;
       case TokenEnum.REFRESHTOKEN:
-        token = await storage.getRefreshToken();
+        // token = await storage.getRefreshToken();
         break;
       case TokenEnum.NOTOKEN:
         break;

@@ -1,9 +1,9 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
-import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
+import 'package:mauafood_front/app/shared/infra/models/user_model.dart';
 import 'package:dartz/dartz.dart';
-import '../../../../shared/domain/errors/auth_errors.dart';
-import '../../../../shared/domain/repositories/auth_repository_interface.dart';
-import '../datasources/auth_datasouce_interface.dart';
+import '../../domain/errors/auth_errors.dart';
+import '../../domain/repositories/auth_repository_interface.dart';
+import '../external/http/auth_datasouce_interface.dart';
 
 class AuthRepositoryImpl extends AuthRepositoryInterface {
   final AuthDatasourceInterface datasource;

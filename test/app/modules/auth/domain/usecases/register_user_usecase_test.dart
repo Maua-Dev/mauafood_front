@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/shared/domain/errors/auth_errors.dart';
 import 'package:mauafood_front/app/shared/domain/repositories/auth_repository_interface.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/register_user_usecase.dart';
-import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart';
+import 'package:mauafood_front/app/shared/infra/models/user_model.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 

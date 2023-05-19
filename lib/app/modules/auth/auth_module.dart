@@ -3,7 +3,7 @@ import 'package:mauafood_front/app/shared/domain/storage/auth_storage_interface.
 import 'package:mauafood_front/app/shared/domain/usecases/confirm_reset_password_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_user_attributes_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/resend_confirmation_code_usecase.dart';
-import 'package:mauafood_front/app/modules/auth/infra/repository/auth_storage_impl.dart';
+import 'package:mauafood_front/app/shared/infra/storage/auth_storage_impl.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/change_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/confirm_email_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/forgot_password_page.dart';
@@ -19,8 +19,8 @@ import '../../shared/domain/usecases/login_user_usecase.dart';
 import '../../shared/domain/usecases/logout_user_usecase.dart';
 import '../../shared/domain/usecases/register_user_usecase.dart';
 import '../../shared/domain/usecases/forgot_password_usecase.dart';
-import 'infra/datasources/auth_datasouce_interface.dart';
-import 'infra/repository/auth_repository_impl.dart';
+import '../../shared/infra/external/http/auth_datasouce_interface.dart';
+import '../../shared/infra/repositories/auth_repository_impl.dart';
 
 class AuthModule extends Module {
   @override

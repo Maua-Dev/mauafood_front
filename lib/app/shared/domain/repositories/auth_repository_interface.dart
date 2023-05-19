@@ -1,6 +1,6 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:dartz/dartz.dart';
-import '../../../modules/auth/infra/models/user_model.dart';
+import '../../infra/models/user_model.dart';
 import '../errors/auth_errors.dart';
 
 abstract class AuthRepositoryInterface {

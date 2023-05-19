@@ -5,10 +5,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:amplify_auth_cognito/amplify_auth_cognito.dart' as _i7;
+import 'package:amplify_auth_cognito/amplify_auth_cognito.dart' as _i6;
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:mauafood_front/app/modules/auth/infra/models/user_model.dart'
-    as _i6;
 import 'package:mauafood_front/app/shared/domain/errors/auth_errors.dart'
     as _i5;
 import 'package:mauafood_front/app/shared/domain/repositories/auth_repository_interface.dart'
@@ -46,8 +44,7 @@ class MockAuthRepositoryInterface extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.RegisterError, bool>> registerUser(
-          _i6.UserModel? user) =>
+  _i4.Future<_i2.Either<_i5.RegisterError, bool>> registerUser(dynamic user) =>
       (super.noSuchMethod(
         Invocation.method(
           #registerUser,
@@ -63,7 +60,7 @@ class MockAuthRepositoryInterface extends _i1.Mock
         )),
       ) as _i4.Future<_i2.Either<_i5.RegisterError, bool>>);
   @override
-  _i4.Future<_i2.Either<_i5.SignUpError, _i7.CognitoAuthSession>> loginUser(
+  _i4.Future<_i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>> loginUser(
     String? email,
     String? password,
   ) =>
@@ -76,8 +73,8 @@ class MockAuthRepositoryInterface extends _i1.Mock
           ],
         ),
         returnValue: _i4.Future<
-                _i2.Either<_i5.SignUpError, _i7.CognitoAuthSession>>.value(
-            _FakeEither_0<_i5.SignUpError, _i7.CognitoAuthSession>(
+                _i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>>.value(
+            _FakeEither_0<_i5.SignUpError, _i6.CognitoAuthSession>(
           this,
           Invocation.method(
             #loginUser,
@@ -87,7 +84,7 @@ class MockAuthRepositoryInterface extends _i1.Mock
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.SignUpError, _i7.CognitoAuthSession>>);
+      ) as _i4.Future<_i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>>);
   @override
   _i4.Future<_i2.Either<_i5.ConfirmationEmailError, bool>> confirmEmail(
     String? email,
@@ -197,7 +194,7 @@ class MockAuthRepositoryInterface extends _i1.Mock
   @override
   _i4.Future<
       _i2.Either<_i5.GetUserAttributesError,
-          List<_i7.AuthUserAttribute>>> getUserAttributes() =>
+          List<_i6.AuthUserAttribute>>> getUserAttributes() =>
       (super.noSuchMethod(
         Invocation.method(
           #getUserAttributes,
@@ -205,8 +202,8 @@ class MockAuthRepositoryInterface extends _i1.Mock
         ),
         returnValue: _i4.Future<
             _i2.Either<_i5.GetUserAttributesError,
-                List<_i7.AuthUserAttribute>>>.value(_FakeEither_0<
-            _i5.GetUserAttributesError, List<_i7.AuthUserAttribute>>(
+                List<_i6.AuthUserAttribute>>>.value(_FakeEither_0<
+            _i5.GetUserAttributesError, List<_i6.AuthUserAttribute>>(
           this,
           Invocation.method(
             #getUserAttributes,
@@ -214,5 +211,5 @@ class MockAuthRepositoryInterface extends _i1.Mock
           ),
         )),
       ) as _i4.Future<
-          _i2.Either<_i5.GetUserAttributesError, List<_i7.AuthUserAttribute>>>);
+          _i2.Either<_i5.GetUserAttributesError, List<_i6.AuthUserAttribute>>>);
 }

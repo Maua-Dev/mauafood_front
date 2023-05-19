@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../../../shared/domain/storage/auth_storage_interface.dart';
+import '../../domain/storage/auth_storage_interface.dart';
 
 class AuthStorageImpl implements AuthStorageInterface {
   final Box storage;

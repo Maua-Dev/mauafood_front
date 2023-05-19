@@ -8,8 +8,8 @@ import '../product-info/product_info_module.dart';
 import '../restaurants/domain/infra/restaurant_enum.dart';
 import '../restaurants/restaurant_module.dart';
 import '../../shared/domain/repositories/menu_repository_interface.dart';
-import 'infra/datasources/menu_datasource_interface.dart';
-import 'infra/repository/menu_repository.dart';
+import '../../shared/infra/datasource/external/http/menu_datasource_interface.dart';
+import '../../shared/infra/repositories/menu_repository.dart';
 
 class UserMenuModule extends Module {
   @override

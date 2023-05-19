@@ -6,8 +6,8 @@ import '../restaurants/domain/infra/restaurant_enum.dart';
 import '../../shared/datasource/external/http/menu_datasource.dart';
 import '../../shared/domain/repositories/menu_repository_interface.dart';
 import '../../shared/domain/usecases/get_restaurant_product_usecase.dart';
-import 'infra/datasources/menu_datasource_interface.dart';
-import 'infra/repository/menu_repository.dart';
+import '../../shared/infra/datasource/external/http/menu_datasource_interface.dart';
+import '../../shared/infra/repositories/menu_repository.dart';
 
 class EmployeeMenuModule extends Module {
   @override

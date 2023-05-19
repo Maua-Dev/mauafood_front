@@ -5,7 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
-import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasource_interface.dart'
+import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 

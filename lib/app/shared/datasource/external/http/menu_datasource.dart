@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasource_interface.dart';
+import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart';
 
 import '../../../helpers/services/dio/mauafood_product_options.dart';
 

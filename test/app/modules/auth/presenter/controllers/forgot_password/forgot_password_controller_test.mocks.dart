@@ -6,12 +6,12 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:mauafood_front/app/shared/domain/errors/auth_errors.dart'
-    as _i5;
 import 'package:mauafood_front/app/shared/domain/storage/auth_storage_interface.dart'
     as _i6;
 import 'package:mauafood_front/app/shared/domain/usecases/forgot_password_usecase.dart'
     as _i3;
+import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart'
+    as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint

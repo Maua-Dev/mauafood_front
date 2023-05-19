@@ -1,7 +1,7 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/shared/domain/errors/auth_errors.dart';
+import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart';
 import 'package:mauafood_front/app/shared/domain/repositories/auth_repository_interface.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/login_user_usecase.dart';
 import 'package:mockito/annotations.dart';

@@ -7,9 +7,9 @@ import 'dart:async' as _i4;
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart' as _i6;
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:mauafood_front/app/shared/domain/errors/auth_errors.dart'
+import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart'
     as _i5;
-import 'package:mauafood_front/app/shared/infra/external/http/auth_datasouce_interface.dart'
+import 'package:mauafood_front/app/shared/infra/datasource/external/http/auth_datasouce_interface.dart'
     as _i3;
 import 'package:mockito/mockito.dart' as _i1;
 

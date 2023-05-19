@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/shared/domain/errors/auth_errors.dart';
+import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart';
 import 'package:mauafood_front/app/shared/domain/storage/auth_storage_interface.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/logout_user_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/logout/logout_controller.dart';

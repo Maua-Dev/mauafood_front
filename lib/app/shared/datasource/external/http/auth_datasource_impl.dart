@@ -1,11 +1,11 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:dartz/dartz.dart';
-import 'package:mauafood_front/app/shared/infra/external/http/auth_datasouce_interface.dart';
+import 'package:mauafood_front/app/shared/infra/datasource/external/http/auth_datasouce_interface.dart';
 import 'package:mauafood_front/app/shared/infra/models/user_model.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
-import '../../../../shared/domain/errors/auth_errors.dart';
+import '../../../helpers/errors/auth_errors.dart';
 
 class AuthDatasourceImpl extends AuthDatasourceInterface {
   @override

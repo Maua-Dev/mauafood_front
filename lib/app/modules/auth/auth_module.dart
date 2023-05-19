@@ -12,14 +12,14 @@ import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/register_page
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/resend_confirmation_code_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/success_change_password_page.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/ui/pages/success_confirm_page.dart';
-import 'data/datasource/auth_datasource_impl.dart';
+import '../../shared/datasource/external/http/auth_datasource_impl.dart';
 import '../../shared/domain/repositories/auth_repository_interface.dart';
 import '../../shared/domain/usecases/confirm_email_usecase.dart';
 import '../../shared/domain/usecases/login_user_usecase.dart';
 import '../../shared/domain/usecases/logout_user_usecase.dart';
 import '../../shared/domain/usecases/register_user_usecase.dart';
 import '../../shared/domain/usecases/forgot_password_usecase.dart';
-import '../../shared/infra/external/http/auth_datasouce_interface.dart';
+import '../../shared/infra/datasource/external/http/auth_datasouce_interface.dart';
 import '../../shared/infra/repositories/auth_repository_impl.dart';
 
 class AuthModule extends Module {

@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/shared/domain/errors/auth_errors.dart';
+import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/resend_confirmation_code_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/resend_confirmation/resend_confirmation_controller.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/states/resend_confirmation_state.dart';

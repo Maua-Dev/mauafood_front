@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../errors/auth_errors.dart';
+import '../../helpers/errors/auth_errors.dart';
 import '../repositories/auth_repository_interface.dart';
 
 abstract class IResendConfirmationCodeUsecase {

@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/shared/domain/errors/auth_errors.dart';
+import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/confirm_reset_password_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/change_password/change_password_controller.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/states/change_password_state.dart';

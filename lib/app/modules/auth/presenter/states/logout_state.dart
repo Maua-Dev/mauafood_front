@@ -1,4 +1,4 @@
-import '../../../../shared/domain/errors/auth_errors.dart';
+import '../../../../shared/helpers/errors/auth_errors.dart';
 
 abstract class LogoutState {
   const LogoutState();

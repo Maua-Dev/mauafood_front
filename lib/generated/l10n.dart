@@ -817,6 +817,16 @@ class S {
     );
   }
 
+  /// `Error sending message, please try again later.`
+  String get contactError {
+    return Intl.message(
+      'Error sending message, please try again later.',
+      name: 'contactError',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{message}`
   String requestErrorMessage(Object placeholders, Object message) {
     return Intl.message(

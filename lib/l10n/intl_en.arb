@@ -136,6 +136,8 @@
     
     "emptyListErrorMessage": "List is empty, no items found for this request",
 
+    "contactError": "Error sending message, please try again later.",
+
     "requestErrorMessage": "{message}",
     "@requestErrorMessage" : {
         "placeholders": {

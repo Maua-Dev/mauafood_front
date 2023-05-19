@@ -1,4 +1,5 @@
 import 'package:mauafood_front/app/modules/menu/presenter/states/contact/contact_state.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/contact_usecase.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';
@@ -9,6 +10,10 @@ part 'contact_controller.g.dart';
 class ContactController = ContactControllerBase with _$ContactController;
 
 abstract class ContactControllerBase with Store {
+  final IContactUsecase _contactUsecase;
+
+  ContactControllerBase(this._contactUsecase);
+
   @observable
   ContactState state = ContactInitialState();
 
@@ -54,27 +59,9 @@ abstract class ContactControllerBase with Store {
   @action
   Future<void> sendEmail() async {
     changeState(ContactLoadingState());
-    const serviceId = 'service_vrsig67';
-    const templateId = 'template_ng6wcpg';
-    const userId = '3mu9l5O7WuZdcDbef';
-
-    final url = Uri.parse('https://api.emailjs.com/api/v1.0/email/send');
-    // CRIAR USE CASE
-    // final response = await post(
-    //   url,
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: jsonEncode({
-    //     'service_id': serviceId,
-    //     'template_id': templateId,
-    //     'user_id': userId,
-    //     'template_params': {
-    //       'user_name': name,
-    //       'user_email': email,
-    //       'message': message,
-    //     },
-    //   }),
-    // );
+    var result = await _contactUsecase(name, email, message);
+    changeState(result.fold((l) => ContactErrorState(failure: l), (list) {
+      return ContactLoadedSuccessState();
+    }));
   }
 }

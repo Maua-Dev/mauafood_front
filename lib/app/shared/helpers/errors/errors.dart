@@ -28,3 +28,8 @@ class NoItemsFound extends Failure {
   NoItemsFound({required String message})
       : super(message: S.current.noItemsFoundErrorMessage('', message));
 }
+
+class ContactError extends Failure {
+  final int? statusCode;
+  ContactError(this.statusCode) : super(message: S.current.contactError);
+}

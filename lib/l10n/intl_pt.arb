@@ -136,6 +136,8 @@
 
     "emptyListErrorMessage": "Lista vazia, itens não encontrados para essa requisição",
 
+    "contactError": "Erro ao enviar mensagem, tente novamente mais tarde.",
+
     "requestErrorMessage": "{message}",
     "@requestErrorMessage" : {
         "placeholders": {

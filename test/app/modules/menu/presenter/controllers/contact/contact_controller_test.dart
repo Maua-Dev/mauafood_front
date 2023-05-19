@@ -2,12 +2,19 @@ import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/controllers/contact/contact_controller.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/contact_usecase.dart';
 import 'package:mauafood_front/generated/l10n.dart';
+import 'package:mockito/annotations.dart';
 
+import 'contact_controller_test.mocks.dart';
+
+@GenerateMocks([IContactUsecase])
 void main() {
-  ContactController controller = ContactController();
+  late ContactController controller;
+  IContactUsecase usecase = MockIContactUsecase();
 
   setUp(() async {
+    controller = ContactController(usecase);
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
   });
 

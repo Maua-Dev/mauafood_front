@@ -108,6 +108,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirmTitle": MessageLookupByLibrary.simpleMessage("Confirm"),
         "confirmationCodeInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "Please enter your email, we will send you a verification code."),
+        "contactError": MessageLookupByLibrary.simpleMessage(
+            "Error sending message, please try again later."),
         "correctFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure the fields are correct."),
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),

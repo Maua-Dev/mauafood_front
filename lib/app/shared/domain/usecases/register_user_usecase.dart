@@ -17,7 +17,7 @@ abstract class IRegisterUserUsecase {
 }
 
 class RegisterUserUsecase extends IRegisterUserUsecase {
-  final AuthRepositoryInterface repository;
+  final IAuthRepository repository;
 
   RegisterUserUsecase({required this.repository});
 

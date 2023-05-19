@@ -11,7 +11,7 @@ abstract class IGetRestaurantProductUsecase {
 }
 
 class GetRestaurantProductUsecase implements IGetRestaurantProductUsecase {
-  final MenuRepositoryInterface repository;
+  final IMenuRepository repository;
 
   GetRestaurantProductUsecase({required this.repository});
 

@@ -3,11 +3,11 @@ import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_
 import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/pages/employee_menu_page.dart';
 import '../employee_auth_guard.dart';
 import '../restaurants/domain/infra/restaurant_enum.dart';
-import 'data/datasource/menu_datasource_impl.dart';
+import 'data/datasource/menu_datasource.dart';
 import 'domain/infra/menu_repository_interface.dart';
 import 'domain/usecases/get_restaurant_product_usecase.dart';
 import 'infra/datasources/menu_datasource_interface.dart';
-import 'infra/repository/menu_repository_impl.dart';
+import 'infra/repository/menu_repository.dart';
 
 class EmployeeMenuModule extends Module {
   @override
@@ -17,9 +17,8 @@ class EmployeeMenuModule extends Module {
         Bind<MenuController>(
           (i) => MenuController(i(), i.args.data),
         ),
-        Bind<MenuRepositoryInterface>(
-            (i) => MenuRepositoryImpl(datasource: i())),
-        Bind<MenuDatasourceInterface>((i) => MenuDatasourceImpl()),
+        Bind<IMenuRepository>((i) => MenuRepository(datasource: i())),
+        Bind<IMenuDatasource>((i) => MenuDatasource()),
       ];
 
   @override

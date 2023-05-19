@@ -7,18 +7,18 @@ import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart';
 import 'package:mauafood_front/app/shared/domain/repositories/auth_repository_interface.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/auth_datasouce_interface.dart';
 import 'package:mauafood_front/app/shared/infra/models/user_model.dart';
-import 'package:mauafood_front/app/shared/infra/repositories/auth_repository_impl.dart';
+import 'package:mauafood_front/app/shared/infra/repositories/auth_repository.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
 
-import 'auth_repository_impl_test.mocks.dart';
+import 'auth_repository_test.mocks.dart';
 
-@GenerateMocks([AuthDatasourceInterface])
+@GenerateMocks([IAuthDatasource])
 void main() {
   initModules([AppModule(), AuthModule()]);
-  AuthDatasourceInterface datasource = MockAuthDatasourceInterface();
-  late AuthRepositoryInterface repository;
+  IAuthDatasource datasource = MockIAuthDatasource();
+  late IAuthRepository repository;
   String email = '';
   String password = '';
   String confirmationCode = '';
@@ -36,7 +36,7 @@ void main() {
   );
 
   setUp(() {
-    repository = AuthRepositoryImpl(datasource: datasource);
+    repository = AuthRepository(datasource: datasource);
   });
 
   group('[TEST] - loginUser', () {

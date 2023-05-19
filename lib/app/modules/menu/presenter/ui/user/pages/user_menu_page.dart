@@ -5,7 +5,7 @@ import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contac
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
-import '../../../../../../shared/helpers/enums/product_enum.dart';
+import '../../../../../../shared/domain/enums/product_enum.dart';
 import '../../../../../restaurants/domain/infra/restaurant_enum.dart';
 import '../../../../domain/errors/errors.dart';
 import '../../../controllers/menu/menu_controller.dart';

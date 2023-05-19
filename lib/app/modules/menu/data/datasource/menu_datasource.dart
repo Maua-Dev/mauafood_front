@@ -3,10 +3,10 @@ import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasourc
 
 import '../../../../shared/helpers/services/dio/mauafood_product_options.dart';
 
-class MenuDatasourceImpl implements MenuDatasourceInterface {
+class MenuDatasource implements IMenuDatasource {
   Dio dio = Dio();
 
-  MenuDatasourceImpl() {
+  MenuDatasource() {
     dio = Dio(mauafoodProductBaseOptions);
   }
 

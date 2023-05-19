@@ -6,17 +6,17 @@ import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
 import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_interface.dart';
 import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
-import 'package:mauafood_front/app/shared/helpers/enums/product_enum.dart';
+import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import 'get_product_test.mocks.dart';
 
-@GenerateMocks([MenuRepositoryInterface])
+@GenerateMocks([IMenuRepository])
 void main() {
   late IGetRestaurantProductUsecase useCase;
-  MenuRepositoryInterface repository = MockMenuRepositoryInterface();
+  IMenuRepository repository = MockIMenuRepository();
   var h = RestaurantEnum.hora_h;
   var biba = RestaurantEnum.biba;
   var listMock = [

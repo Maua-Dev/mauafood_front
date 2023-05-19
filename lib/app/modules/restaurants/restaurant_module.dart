@@ -9,7 +9,7 @@ class RestaurantModule extends Module {
   List<Module> get imports => [AuthModule()];
   @override
   List<Bind> get binds => [
-        Bind<GetRestaurantInterface>((i) => GetRestaurantImpl()),
+        Bind<IGetRestaurant>((i) => GetRestaurant()),
         Bind<RestaurantController>((i) => RestaurantController(
               getRestaurant: i(),
             ))

@@ -11,11 +11,11 @@ import 'package:modular_test/modular_test.dart';
 
 import 'restaurant_controller_test.mocks.dart';
 
-@GenerateMocks([GetRestaurantInterface])
+@GenerateMocks([IGetRestaurant])
 void main() {
   initModules([AppModule(), RestaurantModule()]);
 
-  GetRestaurantInterface getRestaurants = MockGetRestaurantInterface();
+  IGetRestaurant getRestaurants = MockIGetRestaurant();
   late RestaurantController controller;
   var listMock = const [
     Restaurant(restaurantInfo: RestaurantEnum.biba),

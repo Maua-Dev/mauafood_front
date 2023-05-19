@@ -1,4 +1,4 @@
-import '../../../../shared/helpers/enums/product_enum.dart';
+import '../../../../shared/domain/enums/product_enum.dart';
 import '../../domain/entities/product.dart';
 
 class ProductModel extends Product {

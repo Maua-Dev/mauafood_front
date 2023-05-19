@@ -18,13 +18,13 @@ import 'login_controller_test.mocks.dart';
 
 @GenerateMocks([
   ILoginUserUsecase,
-  AuthStorageInterface,
+  IAuthStorage,
   IGetUserAttributesUsecase,
 ])
 void main() {
   late LoginController controller;
   ILoginUserUsecase usecase = MockILoginUserUsecase();
-  AuthStorageInterface storage = MockAuthStorageInterface();
+  IAuthStorage storage = MockIAuthStorage();
   IGetUserAttributesUsecase getUserAttributes = MockIGetUserAttributesUsecase();
 
   setUp(() async {

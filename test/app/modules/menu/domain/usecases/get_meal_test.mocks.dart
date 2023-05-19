@@ -35,12 +35,11 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-/// A class which mocks [MenuRepositoryInterface].
+/// A class which mocks [IMenuRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockMenuRepositoryInterface extends _i1.Mock
-    implements _i3.MenuRepositoryInterface {
-  MockMenuRepositoryInterface() {
+class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
+  MockIMenuRepository() {
     _i1.throwOnMissingStub(this);
   }
 

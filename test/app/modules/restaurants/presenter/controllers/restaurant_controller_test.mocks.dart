@@ -20,12 +20,11 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-/// A class which mocks [GetRestaurantInterface].
+/// A class which mocks [IGetRestaurant].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetRestaurantInterface extends _i1.Mock
-    implements _i2.GetRestaurantInterface {
-  MockGetRestaurantInterface() {
+class MockIGetRestaurant extends _i1.Mock implements _i2.IGetRestaurant {
+  MockIGetRestaurant() {
     _i1.throwOnMissingStub(this);
   }
 

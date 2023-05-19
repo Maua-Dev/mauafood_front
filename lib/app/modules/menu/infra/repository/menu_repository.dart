@@ -7,11 +7,11 @@ import 'package:mauafood_front/generated/l10n.dart';
 
 import '../datasources/menu_datasource_interface.dart';
 
-class MenuRepositoryImpl implements MenuRepositoryInterface {
-  final MenuDatasourceInterface datasource;
+class MenuRepository implements IMenuRepository {
+  final IMenuDatasource datasource;
   Map<String, dynamic> jsonAllRestaurants = {};
 
-  MenuRepositoryImpl({required this.datasource}) {
+  MenuRepository({required this.datasource}) {
     getAllProducts();
   }
 

@@ -8,10 +8,10 @@ import 'package:mockito/mockito.dart';
 
 import 'forgot_password_usecase_test.mocks.dart';
 
-@GenerateMocks([AuthRepositoryInterface])
+@GenerateMocks([IAuthRepository])
 void main() {
   late IForgotPasswordUsecase useCase;
-  AuthRepositoryInterface repository = MockAuthRepositoryInterface();
+  IAuthRepository repository = MockIAuthRepository();
   String email = '';
 
   setUp(() {

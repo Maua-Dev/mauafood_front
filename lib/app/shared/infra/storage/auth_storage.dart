@@ -2,14 +2,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../../domain/storage/auth_storage_interface.dart';
 
-class AuthStorageImpl implements AuthStorageInterface {
+class AuthStorage implements IAuthStorage {
   final Box storage;
 
-  AuthStorageImpl._(this.storage);
+  AuthStorage._(this.storage);
 
-  static Future<AuthStorageImpl> instance() async {
+  static Future<AuthStorage> instance() async {
     await Hive.initFlutter();
-    return AuthStorageImpl._(await Hive.openBox('box'));
+    return AuthStorage._(await Hive.openBox('box'));
   }
 
   @override

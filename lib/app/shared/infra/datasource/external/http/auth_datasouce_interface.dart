@@ -4,7 +4,7 @@ import 'package:mauafood_front/app/shared/infra/models/user_model.dart';
 
 import '../../../../helpers/errors/auth_errors.dart';
 
-abstract class AuthDatasourceInterface {
+abstract class IAuthDatasource {
   Future<Either<SignUpError, CognitoAuthSession>> postLoginUser(
       String email, String password);
   Future<Either<RegisterError, bool>> postRegisterUser(UserModel user);

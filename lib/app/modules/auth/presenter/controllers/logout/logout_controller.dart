@@ -9,7 +9,7 @@ part 'logout_controller.g.dart';
 class LogoutController = LogoutControllerBase with _$LogoutController;
 
 abstract class LogoutControllerBase with Store {
-  final AuthStorageInterface storage;
+  final IAuthStorage storage;
   final ILogoutUserUsecase _logout;
 
   LogoutControllerBase(this._logout, this.storage);

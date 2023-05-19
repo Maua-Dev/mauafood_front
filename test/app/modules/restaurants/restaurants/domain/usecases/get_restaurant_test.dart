@@ -3,10 +3,10 @@ import 'package:mauafood_front/app/modules/restaurants/domain/entities/restauran
 import 'package:mauafood_front/app/modules/restaurants/domain/usecases/get_restaurant.dart';
 
 void main() {
-  late GetRestaurantInterface useCase;
+  late IGetRestaurant useCase;
 
   setUp(() async {
-    useCase = GetRestaurantImpl();
+    useCase = GetRestaurant();
   });
 
   test('[TEST] - GetRestaurantImpl', () {

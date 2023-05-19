@@ -9,10 +9,10 @@ import 'package:mockito/mockito.dart';
 
 import 'register_user_usecase_test.mocks.dart';
 
-@GenerateMocks([AuthRepositoryInterface])
+@GenerateMocks([IAuthRepository])
 void main() {
   late IRegisterUserUsecase useCase;
-  AuthRepositoryInterface repository = MockAuthRepositoryInterface();
+  IAuthRepository repository = MockIAuthRepository();
   UserModel user = const UserModel(
     id: '',
     fullName: 'fullName',

@@ -1,4 +1,4 @@
-abstract class AuthStorageInterface {
+abstract class IAuthStorage {
   Future<void> saveRefreshToken(String refreshToken);
   Future<void> saveAccessToken(String accessToken);
   Future<void> saveRole(String role);

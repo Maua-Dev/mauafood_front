@@ -5,21 +5,21 @@ import 'package:mauafood_front/app/app_module.dart';
 import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_interface.dart';
 import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasource_interface.dart';
 import 'package:mauafood_front/app/modules/menu/infra/models/product_model.dart';
-import 'package:mauafood_front/app/modules/menu/infra/repository/menu_repository_impl.dart';
+import 'package:mauafood_front/app/modules/menu/infra/repository/menu_repository.dart';
 import 'package:mauafood_front/app/modules/menu/user_menu_module.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
 
-import 'menu_repository_impl_test.mocks.dart';
+import 'menu_repository_test.mocks.dart';
 
-@GenerateMocks([MenuDatasourceInterface])
+@GenerateMocks([IMenuDatasource])
 void main() {
   initModules([AppModule(), UserMenuModule()]);
 
-  MenuDatasourceInterface datasource = MockMenuDatasourceInterface();
-  late MenuRepositoryInterface repository;
+  IMenuDatasource datasource = MockIMenuDatasource();
+  late IMenuRepository repository;
   Map<String, dynamic> listMock = {
     "SOUZA_DE_ABREU": [
       {
@@ -70,7 +70,7 @@ void main() {
   group('[TEST] - getBibaProducts', () {
     when(datasource.getAllProducts())
         .thenAnswer((realInvocation) async => listMock);
-    repository = MenuRepositoryImpl(datasource: datasource);
+    repository = MenuRepository(datasource: datasource);
 
     test('return a List<Product> correct', () async {
       var list = await repository.getBibaProducts();
@@ -81,7 +81,7 @@ void main() {
   group('[TEST] - getHProducts', () {
     when(datasource.getAllProducts())
         .thenAnswer((realInvocation) async => listMock);
-    repository = MenuRepositoryImpl(datasource: datasource);
+    repository = MenuRepository(datasource: datasource);
     test('return a List<Product> correct', () async {
       var list = await repository.getHoraHProducts();
       expect(list.fold(id, id), isA<List<ProductModel>>());
@@ -91,7 +91,7 @@ void main() {
   group('[TEST] - getMolezaProducts', () {
     when(datasource.getAllProducts())
         .thenAnswer((realInvocation) async => listMock);
-    repository = MenuRepositoryImpl(datasource: datasource);
+    repository = MenuRepository(datasource: datasource);
     test('return a List<Product> correct', () async {
       var list = await repository.getMolezaProducts();
       expect(list.fold(id, id), isA<List<ProductModel>>());

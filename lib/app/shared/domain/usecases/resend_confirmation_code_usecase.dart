@@ -8,7 +8,7 @@ abstract class IResendConfirmationCodeUsecase {
 }
 
 class ResendConfirmationCodeUsecase extends IResendConfirmationCodeUsecase {
-  final AuthRepositoryInterface repository;
+  final IAuthRepository repository;
 
   ResendConfirmationCodeUsecase({required this.repository});
 

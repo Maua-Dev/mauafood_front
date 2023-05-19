@@ -7,7 +7,7 @@ import 'package:mauafood_front/generated/l10n.dart';
 
 import '../../../helpers/errors/auth_errors.dart';
 
-class AuthDatasourceImpl extends AuthDatasourceInterface {
+class AuthDatasource extends IAuthDatasource {
   @override
   Future<Either<SignUpError, CognitoAuthSession>> postLoginUser(
       String email, String password) async {

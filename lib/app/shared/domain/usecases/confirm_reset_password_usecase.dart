@@ -9,7 +9,7 @@ abstract class IConfirmResetPasswordUsecase {
 }
 
 class ConfirmResetPasswordUsecase extends IConfirmResetPasswordUsecase {
-  final AuthRepositoryInterface repository;
+  final IAuthRepository repository;
 
   ConfirmResetPasswordUsecase({required this.repository});
 

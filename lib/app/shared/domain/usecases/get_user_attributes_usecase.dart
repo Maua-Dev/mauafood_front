@@ -9,7 +9,7 @@ abstract class IGetUserAttributesUsecase {
 }
 
 class GetUserAttributesUsecase extends IGetUserAttributesUsecase {
-  final AuthRepositoryInterface repository;
+  final IAuthRepository repository;
 
   GetUserAttributesUsecase({required this.repository});
 

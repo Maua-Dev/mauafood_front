@@ -3,7 +3,7 @@ import 'package:dartz/dartz.dart';
 import '../../infra/models/user_model.dart';
 import '../../helpers/errors/auth_errors.dart';
 
-abstract class AuthRepositoryInterface {
+abstract class IAuthRepository {
   Future<Either<RegisterError, bool>> registerUser(UserModel user);
   Future<Either<SignUpError, CognitoAuthSession>> loginUser(
       String email, String password);

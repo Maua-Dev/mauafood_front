@@ -8,7 +8,7 @@ abstract class IForgotPasswordUsecase {
 }
 
 class ForgotPasswordUsecase extends IForgotPasswordUsecase {
-  final AuthRepositoryInterface repository;
+  final IAuthRepository repository;
 
   ForgotPasswordUsecase({required this.repository});
 

@@ -74,12 +74,11 @@ class MockILoginUserUsecase extends _i1.Mock implements _i3.ILoginUserUsecase {
       ) as _i4.Future<_i2.Either<_i5.SignUpError, _i6.CognitoAuthSession>>);
 }
 
-/// A class which mocks [AuthStorageInterface].
+/// A class which mocks [IAuthStorage].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockAuthStorageInterface extends _i1.Mock
-    implements _i7.AuthStorageInterface {
-  MockAuthStorageInterface() {
+class MockIAuthStorage extends _i1.Mock implements _i7.IAuthStorage {
+  MockIAuthStorage() {
     _i1.throwOnMissingStub(this);
   }
 

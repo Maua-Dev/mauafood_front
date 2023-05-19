@@ -8,10 +8,10 @@ import 'package:mockito/mockito.dart';
 
 import 'resend_confirmation_code_usecase_test.mocks.dart';
 
-@GenerateMocks([AuthRepositoryInterface])
+@GenerateMocks([IAuthRepository])
 void main() {
   late IResendConfirmationCodeUsecase useCase;
-  AuthRepositoryInterface repository = MockAuthRepositoryInterface();
+  IAuthRepository repository = MockIAuthRepository();
   String email = '';
 
   setUp(() {

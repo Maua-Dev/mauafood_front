@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/data/datasource/menu_datasource_impl.dart';
+import 'package:mauafood_front/app/modules/menu/data/datasource/menu_datasource.dart';
 import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/controllers/contact/contact_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_controller.dart';
@@ -9,7 +9,7 @@ import '../restaurants/domain/infra/restaurant_enum.dart';
 import '../restaurants/restaurant_module.dart';
 import 'domain/infra/menu_repository_interface.dart';
 import 'infra/datasources/menu_datasource_interface.dart';
-import 'infra/repository/menu_repository_impl.dart';
+import 'infra/repository/menu_repository.dart';
 
 class UserMenuModule extends Module {
   @override
@@ -22,9 +22,8 @@ class UserMenuModule extends Module {
         Bind<ContactController>(
           (i) => ContactController(),
         ),
-        Bind<MenuRepositoryInterface>(
-            (i) => MenuRepositoryImpl(datasource: i())),
-        Bind<MenuDatasourceInterface>((i) => MenuDatasourceImpl()),
+        Bind<IMenuRepository>((i) => MenuRepository(datasource: i())),
+        Bind<IMenuDatasource>((i) => MenuDatasource()),
       ];
 
   @override

@@ -8,10 +8,10 @@ import 'package:mockito/mockito.dart';
 
 import 'logout_user_usecase_test.mocks.dart';
 
-@GenerateMocks([AuthRepositoryInterface])
+@GenerateMocks([IAuthRepository])
 void main() {
   late ILogoutUserUsecase useCase;
-  AuthRepositoryInterface repository = MockAuthRepositoryInterface();
+  IAuthRepository repository = MockIAuthRepository();
 
   setUp(() {
     useCase = LogoutUserUsecase(repository: repository);

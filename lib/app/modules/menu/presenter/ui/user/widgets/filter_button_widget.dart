@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
-import '../../../../../../shared/helpers/enums/product_enum.dart';
+import '../../../../../../shared/domain/enums/product_enum.dart';
 import '../../../../../../shared/themes/app_text_styles.dart';
 
 class FilterButtonWidget extends StatelessWidget {

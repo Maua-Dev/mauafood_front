@@ -7,7 +7,7 @@ import 'package:mauafood_front/app/modules/menu/infra/models/product_model.dart'
 import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/states/menu_state.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
-import 'package:mauafood_front/app/shared/helpers/enums/product_enum.dart';
+import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';

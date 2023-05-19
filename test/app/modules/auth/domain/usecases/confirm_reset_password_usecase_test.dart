@@ -8,10 +8,10 @@ import 'package:mockito/mockito.dart';
 
 import 'confirm_reset_password_usecase_test.mocks.dart';
 
-@GenerateMocks([AuthRepositoryInterface])
+@GenerateMocks([IAuthRepository])
 void main() {
   late IConfirmResetPasswordUsecase useCase;
-  AuthRepositoryInterface repository = MockAuthRepositoryInterface();
+  IAuthRepository repository = MockIAuthRepository();
   String email = '';
   String confirmationCode = '';
   String newPassword = '';

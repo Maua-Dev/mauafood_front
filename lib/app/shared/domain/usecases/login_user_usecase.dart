@@ -9,7 +9,7 @@ abstract class ILoginUserUsecase {
 }
 
 class LoginUserUsecase extends ILoginUserUsecase {
-  final AuthRepositoryInterface repository;
+  final IAuthRepository repository;
 
   LoginUserUsecase({required this.repository});
 

@@ -1,3 +1,3 @@
-abstract class MenuDatasourceInterface {
+abstract class IMenuDatasource {
   Future<Map<String, dynamic>> getAllProducts();
 }

@@ -9,7 +9,7 @@ abstract class IConfirmEmailUsecase {
 }
 
 class ConfirmEmailUsecase extends IConfirmEmailUsecase {
-  final AuthRepositoryInterface repository;
+  final IAuthRepository repository;
 
   ConfirmEmailUsecase({required this.repository});
 

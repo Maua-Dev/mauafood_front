@@ -11,7 +11,7 @@ class LoginController = LoginControllerBase with _$LoginController;
 
 abstract class LoginControllerBase with Store {
   final ILoginUserUsecase _login;
-  final AuthStorageInterface storage;
+  final IAuthStorage storage;
   final IGetUserAttributesUsecase _getUserAttributes;
 
   LoginControllerBase(this._login, this.storage, this._getUserAttributes);

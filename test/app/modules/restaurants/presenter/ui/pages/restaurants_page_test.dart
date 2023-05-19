@@ -17,12 +17,12 @@ import 'package:modular_test/modular_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'restaurants_page_test.mocks.dart';
 
-@GenerateMocks([GetRestaurantInterface])
+@GenerateMocks([IGetRestaurant])
 void main() {
   initModules(
     [AppModule(), RestaurantModule()],
   );
-  GetRestaurantInterface getRestaurant = MockGetRestaurantInterface();
+  IGetRestaurant getRestaurant = MockIGetRestaurant();
 
   List<Restaurant> mockRestaurants = [
     const Restaurant(restaurantInfo: RestaurantEnum.biba),

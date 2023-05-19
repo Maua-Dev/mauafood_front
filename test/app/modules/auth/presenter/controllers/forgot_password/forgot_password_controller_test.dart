@@ -12,11 +12,11 @@ import 'package:mockito/mockito.dart';
 
 import 'forgot_password_controller_test.mocks.dart';
 
-@GenerateMocks([IForgotPasswordUsecase, AuthStorageInterface])
+@GenerateMocks([IForgotPasswordUsecase, IAuthStorage])
 void main() {
   late ForgotPasswordController controller;
   IForgotPasswordUsecase usecase = MockIForgotPasswordUsecase();
-  AuthStorageInterface storage = MockAuthStorageInterface();
+  IAuthStorage storage = MockIAuthStorage();
 
   setUp(() async {
     controller = ForgotPasswordController(storage, usecase);

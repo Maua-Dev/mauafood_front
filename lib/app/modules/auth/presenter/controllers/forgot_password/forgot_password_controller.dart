@@ -10,7 +10,7 @@ class ForgotPasswordController = ForgotPasswordControllerBase
     with _$ForgotPasswordController;
 
 abstract class ForgotPasswordControllerBase with Store {
-  final AuthStorageInterface storage;
+  final IAuthStorage storage;
   final IForgotPasswordUsecase _forgotPassword;
 
   ForgotPasswordControllerBase(this.storage, this._forgotPassword);

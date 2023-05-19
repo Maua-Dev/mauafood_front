@@ -13,11 +13,11 @@ import 'package:mockito/mockito.dart';
 
 import 'logout_controller_test.mocks.dart';
 
-@GenerateMocks([ILogoutUserUsecase, AuthStorageInterface])
+@GenerateMocks([ILogoutUserUsecase, IAuthStorage])
 void main() {
   late LogoutController controller;
   ILogoutUserUsecase usecase = MockILogoutUserUsecase();
-  AuthStorageInterface storage = MockAuthStorageInterface();
+  IAuthStorage storage = MockIAuthStorage();
 
   setUp(() async {
     controller = LogoutController(usecase, storage);

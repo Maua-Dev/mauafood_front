@@ -5,10 +5,10 @@ import '../../helpers/errors/auth_errors.dart';
 import '../../domain/repositories/auth_repository_interface.dart';
 import '../datasource/external/http/auth_datasouce_interface.dart';
 
-class AuthRepositoryImpl extends AuthRepositoryInterface {
-  final AuthDatasourceInterface datasource;
+class AuthRepository extends IAuthRepository {
+  final IAuthDatasource datasource;
 
-  AuthRepositoryImpl({required this.datasource});
+  AuthRepository({required this.datasource});
 
   @override
   Future<Either<SignUpError, CognitoAuthSession>> loginUser(

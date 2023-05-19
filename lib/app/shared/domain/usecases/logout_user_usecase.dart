@@ -8,7 +8,7 @@ abstract class ILogoutUserUsecase {
 }
 
 class LogoutUserUsecase extends ILogoutUserUsecase {
-  final AuthRepositoryInterface repository;
+  final IAuthRepository repository;
 
   LogoutUserUsecase({required this.repository});
 

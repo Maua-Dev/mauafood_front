@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import '../../../../../../../generated/l10n.dart';
-import '../../../../domain/entities/product.dart';
+import '../../../../../../shared/domain/entities/product.dart';
 
 class ProductCardWidget extends StatelessWidget {
   final Product product;

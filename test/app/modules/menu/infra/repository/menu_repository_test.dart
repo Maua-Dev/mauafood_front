@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/app_module.dart';
-import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_interface.dart';
+import 'package:mauafood_front/app/shared/domain/repositories/menu_repository_interface.dart';
 import 'package:mauafood_front/app/modules/menu/infra/datasources/menu_datasource_interface.dart';
 import 'package:mauafood_front/app/modules/menu/infra/models/product_model.dart';
 import 'package:mauafood_front/app/modules/menu/infra/repository/menu_repository.dart';

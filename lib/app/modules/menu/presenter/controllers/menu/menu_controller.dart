@@ -3,8 +3,8 @@ import 'package:mobx/mobx.dart';
 
 import '../../../../../shared/domain/enums/product_enum.dart';
 import '../../../../restaurants/domain/infra/restaurant_enum.dart';
-import '../../../domain/entities/product.dart';
-import '../../../domain/usecases/get_restaurant_product_usecase.dart';
+import '../../../../../shared/domain/entities/product.dart';
+import '../../../../../shared/domain/usecases/get_restaurant_product_usecase.dart';
 
 part 'menu_controller.g.dart';
 

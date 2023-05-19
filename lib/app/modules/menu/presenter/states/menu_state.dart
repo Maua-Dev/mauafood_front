@@ -1,5 +1,5 @@
-import '../../domain/entities/product.dart';
-import '../../domain/errors/errors.dart';
+import '../../../../shared/domain/entities/product.dart';
+import '../../../../shared/helpers/errors/errors.dart';
 
 abstract class MenuState {
   const MenuState();

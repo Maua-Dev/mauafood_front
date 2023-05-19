@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
-import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
-import 'package:mauafood_front/app/modules/menu/domain/infra/menu_repository_interface.dart';
+import 'package:mauafood_front/app/shared/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
+import 'package:mauafood_front/app/shared/domain/repositories/menu_repository_interface.dart';
 import 'package:mauafood_front/app/modules/menu/infra/models/product_model.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 

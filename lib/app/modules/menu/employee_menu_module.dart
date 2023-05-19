@@ -3,9 +3,9 @@ import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_
 import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/pages/employee_menu_page.dart';
 import '../employee_auth_guard.dart';
 import '../restaurants/domain/infra/restaurant_enum.dart';
-import 'data/datasource/menu_datasource.dart';
-import 'domain/infra/menu_repository_interface.dart';
-import 'domain/usecases/get_restaurant_product_usecase.dart';
+import '../../shared/datasource/external/http/menu_datasource.dart';
+import '../../shared/domain/repositories/menu_repository_interface.dart';
+import '../../shared/domain/usecases/get_restaurant_product_usecase.dart';
 import 'infra/datasources/menu_datasource_interface.dart';
 import 'infra/repository/menu_repository.dart';
 

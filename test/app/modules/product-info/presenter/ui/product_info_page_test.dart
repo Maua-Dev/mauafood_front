@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/product-info/presenter/ui/pages/product_info_page.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:network_image_mock/network_image_mock.dart';

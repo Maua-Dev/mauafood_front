@@ -1,10 +1,10 @@
 import 'package:dartz/dartz.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
-import '../errors/errors.dart';
-import '../infra/menu_repository_interface.dart';
+import '../../helpers/errors/errors.dart';
+import '../repositories/menu_repository_interface.dart';
 
 abstract class IGetRestaurantProductUsecase {
   Future<Either<Failure, List<Product>>> call(RestaurantEnum restaurantInfo);

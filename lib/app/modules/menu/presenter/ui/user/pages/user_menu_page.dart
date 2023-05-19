@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contact/contact_dialog.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import '../../../../../../shared/domain/enums/product_enum.dart';
 import '../../../../../restaurants/domain/infra/restaurant_enum.dart';
-import '../../../../domain/errors/errors.dart';
+import '../../../../../../shared/helpers/errors/errors.dart';
 import '../../../controllers/menu/menu_controller.dart';
 import '../../../states/menu_state.dart';
 import '../widgets/error_loading_menu_widget.dart';

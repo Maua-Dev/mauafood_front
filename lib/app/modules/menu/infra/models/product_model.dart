@@ -1,5 +1,5 @@
 import '../../../../shared/domain/enums/product_enum.dart';
-import '../../domain/entities/product.dart';
+import '../../../../shared/domain/entities/product.dart';
 
 class ProductModel extends Product {
   const ProductModel(

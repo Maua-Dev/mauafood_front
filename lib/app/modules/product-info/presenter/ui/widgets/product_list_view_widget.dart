@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../menu/domain/entities/product.dart';
+import '../../../../../shared/domain/entities/product.dart';
 
 class RecommendationCardWidget extends StatelessWidget {
   final Product productInfo;

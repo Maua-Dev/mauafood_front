@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart';
-import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart';
+import 'package:mauafood_front/app/shared/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 
 abstract class IMenuRepository {
   Future<void> getAllProducts();

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
-import '../../../../menu/domain/entities/product.dart';
+import '../../../../../shared/domain/entities/product.dart';
 
 class RecommendedProductWidget extends StatelessWidget {
   final Product product;

@@ -6,14 +6,12 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:mauafood_front/app/modules/menu/domain/entities/product.dart'
-    as _i6;
-import 'package:mauafood_front/app/modules/menu/domain/errors/errors.dart'
-    as _i5;
-import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_product_usecase.dart'
-    as _i3;
 import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart'
     as _i7;
+import 'package:mauafood_front/app/shared/domain/entities/product.dart' as _i6;
+import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart'
+    as _i3;
+import 'package:mauafood_front/app/shared/helpers/errors/errors.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint

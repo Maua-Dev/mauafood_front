@@ -6,9 +6,8 @@ import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import '../../../../../../shared/domain/enums/product_enum.dart';
-import '../../../../../../shared/domain/enums/restaurant_enum.dart';
 import '../../../../../../shared/helpers/errors/errors.dart';
-import '../../../controllers/menu/menu_controller.dart';
+import '../../../controllers/menu/menu_restaurant_controller.dart';
 import '../../../states/menu_state.dart';
 import '../widgets/error_loading_menu_widget.dart';
 import '../widgets/filter_button_widget.dart';
@@ -20,7 +19,7 @@ class UserMenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var menuController = Modular.get<MenuController>();
+    var menuController = Modular.get<MenuRestaurantController>();
     Widget buildError(Failure failure) {
       return ErrorLoadingMenuWidget(
         errorMessage: failure.message,

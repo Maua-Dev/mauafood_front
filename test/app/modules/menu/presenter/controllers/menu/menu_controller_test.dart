@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_controller.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/states/menu_state.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
@@ -15,7 +15,7 @@ import 'menu_controller_test.mocks.dart';
 
 @GenerateMocks([IGetRestaurantProductUsecase])
 void main() {
-  late MenuController controller;
+  late MenuRestaurantController controller;
   IGetRestaurantProductUsecase usecase = MockIGetRestaurantProductUsecase();
   RestaurantEnum restaurantInfo = RestaurantEnum.biba;
   var failure = Failure(message: '');
@@ -43,7 +43,7 @@ void main() {
     ),
   ];
   setUp(() async {
-    controller = MenuController(usecase, restaurantInfo);
+    controller = MenuRestaurantController(usecase, restaurantInfo);
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
   });
 

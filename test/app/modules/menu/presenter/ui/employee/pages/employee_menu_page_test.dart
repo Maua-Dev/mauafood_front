@@ -7,7 +7,7 @@ import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/modules/menu/employee_menu_module.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_controller.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/states/menu_state.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/pages/employee_menu_page.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_menu_page.dart';
@@ -26,7 +26,7 @@ import 'employee_menu_page_test.mocks.dart';
 
 @GenerateMocks([IGetRestaurantProductUsecase])
 void main() {
-  late MenuController controller;
+  late MenuRestaurantController controller;
   IGetRestaurantProductUsecase usecase = MockIGetRestaurantProductUsecase();
 
   ProductModel testMock = ProductModel(
@@ -56,12 +56,12 @@ void main() {
   setUpAll(() async {
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
     HttpOverrides.global = null;
-    controller = MenuController(usecase, RestaurantEnum.biba);
+    controller = MenuRestaurantController(usecase, RestaurantEnum.biba);
     initModules([
       EmployeeMenuModule()
     ], replaceBinds: [
       modular.Bind<IGetRestaurantProductUsecase>((i) => usecase),
-      modular.Bind<MenuController>((i) => controller),
+      modular.Bind<MenuRestaurantController>((i) => controller),
     ]);
   });
 

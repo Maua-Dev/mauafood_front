@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'menu_controller.dart';
+part of 'menu_restaurant_controller.dart';
 
 // **************************************************************************
 // StoreGenerator

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_controller.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/pages/employee_menu_page.dart';
 import 'package:mauafood_front/app/shared/helpers/services/dio/options/product_base_options.dart';
 import '../../shared/helpers/services/dio/dio_http_request.dart';
@@ -19,8 +19,8 @@ class EmployeeMenuModule extends Module {
   List<Bind> get binds => [
         Bind<IGetRestaurantProductUsecase>(
             (i) => GetRestaurantProductUsecase(repository: i())),
-        Bind<MenuController>(
-          (i) => MenuController(i(), i.args.data),
+        Bind<MenuRestaurantController>(
+          (i) => MenuRestaurantController(i(), i.args.data),
         ),
         Bind((i) => Dio(productBaseOptions)),
         Bind<IHttpRequest>((i) => DioHttpRequest(dio: i<Dio>()), export: true),

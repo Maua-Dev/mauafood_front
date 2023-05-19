@@ -8,7 +8,7 @@ import '../../../../../shared/domain/usecases/get_restaurant_product_usecase.dar
 
 part 'menu_controller.g.dart';
 
-class MenuController = MenuControllerBase with _$MenuController;
+class MenuRestaurantController = MenuControllerBase with _$MenuController;
 
 abstract class MenuControllerBase with Store {
   final IGetRestaurantProductUsecase _getRestaurantProduct;

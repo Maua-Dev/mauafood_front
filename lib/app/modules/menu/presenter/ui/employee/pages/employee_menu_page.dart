@@ -7,7 +7,7 @@ import '../../../../../../shared/helpers/services/s3/assets_s3.dart';
 import '../../../../../../shared/themes/app_colors.dart';
 import '../../../../../../shared/themes/app_text_styles.dart';
 import '../../../../../../shared/domain/enums/restaurant_enum.dart';
-import '../../../controllers/menu/menu_controller.dart';
+import '../../../controllers/menu/menu_restaurant_controller.dart';
 import '../../../states/menu_state.dart';
 import '../../user/widgets/error_loading_menu_widget.dart';
 import '../../user/widgets/filter_button_widget.dart';
@@ -19,7 +19,7 @@ class EmployeeMenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var menuController = Modular.get<MenuController>();
+    var menuController = Modular.get<MenuRestaurantController>();
     return Scaffold(
       backgroundColor: AppColors.mainBlueColor,
       appBar: AppBar(

@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/datasource/external/http/menu_datasource.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/controllers/contact/contact_controller.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_controller.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_menu_page.dart';
 import '../../shared/datasource/external/http/contact_datasource.dart';
 import '../../shared/domain/repositories/contact_repository_interface.dart';
@@ -25,8 +25,8 @@ class UserMenuModule extends Module {
   List<Bind> get binds => [
         Bind<IGetRestaurantProductUsecase>(
             (i) => GetRestaurantProductUsecase(repository: i())),
-        Bind<MenuController>(
-          (i) => MenuController(i(), i.args.data),
+        Bind<MenuRestaurantController>(
+          (i) => MenuRestaurantController(i(), i.args.data),
         ),
         Bind((i) => Dio(productBaseOptions)),
         Bind<IHttpRequest>((i) => DioHttpRequest(dio: i<Dio>())),

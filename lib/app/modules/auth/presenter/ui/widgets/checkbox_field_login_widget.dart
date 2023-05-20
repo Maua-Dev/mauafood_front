@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_form_bloc/flutter_form_bloc.dart';
-import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
 class CheckboxFieldLoginWidget extends StatelessWidget {
   final Widget title;
-  final BooleanFieldBloc booleanFieldBloc;
-  const CheckboxFieldLoginWidget(
-      {super.key, required this.booleanFieldBloc, required this.title});
+  final bool value;
+  final Function(bool)? onChanged;
+  const CheckboxFieldLoginWidget({
+    super.key,
+    required this.title,
+    this.onChanged,
+    required this.value,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return CheckboxFieldBlocBuilder(
-      padding: EdgeInsets.zero,
-      booleanFieldBloc: booleanFieldBloc,
-      checkColor: MaterialStateProperty.all(AppColors.white),
-      fillColor: MaterialStateProperty.all(AppColors.mainBlueColor),
-      body: title,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        title,
+        Switch(
+          value: value,
+          onChanged: onChanged,
+        ),
+      ],
     );
   }
 }

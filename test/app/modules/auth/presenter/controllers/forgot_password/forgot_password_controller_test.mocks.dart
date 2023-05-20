@@ -45,21 +45,21 @@ class MockIForgotPasswordUsecase extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> call(String? email) =>
+  _i4.Future<_i2.Either<_i5.AuthErrors, void>> call(String? email) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [email],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
-            _FakeEither_0<_i5.AuthErrors, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, void>>.value(
+            _FakeEither_0<_i5.AuthErrors, void>(
           this,
           Invocation.method(
             #call,
             [email],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, void>>);
 }
 
 /// A class which mocks [IAuthStorage].

@@ -6,6 +6,7 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
+import 'package:mauafood_front/app/shared/domain/entities/user.dart' as _i6;
 import 'package:mauafood_front/app/shared/domain/usecases/register_user_usecase.dart'
     as _i3;
 import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart'
@@ -43,7 +44,7 @@ class MockIRegisterUserUsecase extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> call(
+  _i4.Future<_i2.Either<_i5.AuthErrors, _i6.User>> call(
     String? fullName,
     String? cpf,
     bool? isStudent,
@@ -67,8 +68,8 @@ class MockIRegisterUserUsecase extends _i1.Mock
             acceptTerms,
           ],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
-            _FakeEither_0<_i5.AuthErrors, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, _i6.User>>.value(
+            _FakeEither_0<_i5.AuthErrors, _i6.User>(
           this,
           Invocation.method(
             #call,
@@ -84,5 +85,5 @@ class MockIRegisterUserUsecase extends _i1.Mock
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, _i6.User>>);
 }

@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/app_module.dart';
 import 'package:mauafood_front/app/modules/auth/auth_module.dart';
+import 'package:mauafood_front/app/shared/domain/entities/user.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart';
 import 'package:mauafood_front/app/shared/domain/repositories/auth_repository_interface.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/auth_datasouce_interface.dart';
@@ -57,11 +58,11 @@ void main() {
   });
 
   group('[TEST] - registerUser', () {
-    test('returns success bool', () async {
+    test('returns success user', () async {
       when(datasource.postRegisterUser(user))
-          .thenAnswer((realInvocation) async => const Right(true));
+          .thenAnswer((realInvocation) async => Right(user));
       var result = await repository.registerUser(user);
-      expect(result.fold(id, id), isA<bool>());
+      expect(result.fold(id, id), isA<User>());
     });
 
     test('returns error', () async {
@@ -73,18 +74,18 @@ void main() {
   });
 
   group('[TEST] - confirmEmail', () {
-    test('returns success bool', () async {
+    test('returns success void', () async {
       when(datasource.postEmailConfirmation(email, confirmationCode))
-          .thenAnswer((realInvocation) async => const Right(true));
+          .thenAnswer((realInvocation) async => const Right(null));
       var result = await repository.confirmEmail(email, confirmationCode);
-      expect(result.fold(id, id), isA<bool>());
+      expect(result.fold((l) => l, (r) => null), isA<void>());
     });
 
     test('returns error', () async {
       when(datasource.postEmailConfirmation(email, confirmationCode))
           .thenAnswer((realInvocation) async => Left(AuthErrors(message: '')));
       var result = await repository.confirmEmail(email, confirmationCode);
-      expect(result.fold(id, id), isA<AuthErrors>());
+      expect(result.fold((l) => l, (r) => null), isA<AuthErrors>());
     });
   });
 
@@ -105,18 +106,18 @@ void main() {
   });
 
   group('[TEST] - forgotPassword', () {
-    test('returns success bool', () async {
+    test('returns success void', () async {
       when(datasource.postForgotPassword(email))
-          .thenAnswer((realInvocation) async => const Right(true));
+          .thenAnswer((realInvocation) async => const Right(null));
       var result = await repository.forgotPassword(email);
-      expect(result.fold(id, id), isA<bool>());
+      expect(result.fold((l) => l, (r) => null), isA<void>());
     });
 
     test('returns error', () async {
       when(datasource.postForgotPassword(email))
           .thenAnswer((realInvocation) async => Left(AuthErrors(message: '')));
       var result = await repository.forgotPassword(email);
-      expect(result.fold(id, id), isA<AuthErrors>());
+      expect(result.fold((l) => l, (r) => null), isA<AuthErrors>());
     });
   });
 

@@ -23,7 +23,7 @@ void main() {
 
   group('[TEST] - confirmEmail', () {
     test('must return ConfirmEmailSuccessState', () async {
-      when(usecase.call('', '')).thenAnswer((_) async => const Right(true));
+      when(usecase.call('', '')).thenAnswer((_) async => const Right(null));
       await controller.confirmEmail();
       expect(controller.state, isA<ConfirmEmailSuccessState>());
     });

@@ -1,6 +1,7 @@
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart';
 import 'package:amplify_flutter/amplify_flutter.dart';
 import 'package:dartz/dartz.dart';
+import 'package:mauafood_front/app/shared/domain/entities/user.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/auth_datasouce_interface.dart';
 import 'package:mauafood_front/app/shared/infra/models/user_model.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -29,7 +30,7 @@ class AuthDatasource extends IAuthDatasource {
   }
 
   @override
-  Future<Either<AuthErrors, bool>> postRegisterUser(UserModel user) async {
+  Future<Either<AuthErrors, User>> postRegisterUser(UserModel user) async {
     Map<CognitoUserAttributeKey, String> userAttributes = {
       CognitoUserAttributeKey.email: user.email,
       CognitoUserAttributeKey.name: user.fullName,
@@ -44,26 +45,26 @@ class AuthDatasource extends IAuthDatasource {
           user.acceptTerms.toString(),
     };
     try {
-      SignUpResult res = await Amplify.Auth.signUp(
+      await Amplify.Auth.signUp(
           username: user.email,
           password: user.password,
           options: CognitoSignUpOptions(userAttributes: userAttributes));
 
-      return right(res.isSignUpComplete);
+      return right(user);
     } catch (e) {
       return left(_handleError(e));
     }
   }
 
   @override
-  Future<Either<AuthErrors, bool>> postEmailConfirmation(
+  Future<Either<AuthErrors, void>> postEmailConfirmation(
       String email, String confirmationCode) async {
     try {
-      SignUpResult res = await Amplify.Auth.confirmSignUp(
+      await Amplify.Auth.confirmSignUp(
         username: email,
         confirmationCode: confirmationCode,
       );
-      return right(res.isSignUpComplete);
+      return right(null);
     } catch (e) {
       return left(_handleError(e));
     }

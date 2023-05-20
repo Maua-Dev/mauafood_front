@@ -55,6 +55,8 @@ void main() {
   setUpAll(() async {
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
     HttpOverrides.global = null;
+    when(usecase(RestaurantEnum.biba))
+        .thenAnswer((realInvocation) async => Right(listMock));
     controller = MenuRestaurantController(usecase, RestaurantEnum.biba);
     initModules([
       UserMenuModule()
@@ -76,6 +78,10 @@ void main() {
                 supportedLocales: S.delegate.supportedLocales,
                 home: const UserMenuPage(),
               )));
+
+      await widgetTester
+          .runAsync(() async => controller.changeState(MenuInitialState()));
+      await widgetTester.pump();
 
       final textField = find.byType(TextField);
       expect(textField, findsOneWidget);

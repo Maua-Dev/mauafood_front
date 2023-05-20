@@ -30,17 +30,15 @@ void main() {
                 home: SplashPage(),
               )));
 
-      expect(find.byType(SizedBox), findsNothing);
-      expect(find.byType(Image), findsNothing);
-      expect(find.byType(CircularProgressIndicator), findsOneWidget);
-
-      await widgetTester
-          .runAsync(() async => controller.changeState(SplashLoadingState()));
-      await widgetTester.pump();
-
       expect(find.byType(SizedBox), findsOneWidget);
       expect(find.byType(Image), findsOneWidget);
       expect(find.byType(CircularProgressIndicator), findsNothing);
+
+      await widgetTester
+          .runAsync(() async => controller.changeState(SplashInitialState()));
+      await widgetTester.pump();
+
+      expect(find.byType(CircularProgressIndicator), findsOneWidget);
     });
   });
 }

@@ -7,11 +7,12 @@ import 'dart:async' as _i4;
 
 import 'package:amplify_auth_cognito/amplify_auth_cognito.dart' as _i6;
 import 'package:dartz/dartz.dart' as _i2;
+import 'package:mauafood_front/app/shared/domain/entities/user.dart' as _i7;
 import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart'
     as _i5;
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/auth_datasouce_interface.dart'
     as _i3;
-import 'package:mauafood_front/app/shared/infra/models/user_model.dart' as _i7;
+import 'package:mauafood_front/app/shared/infra/models/user_model.dart' as _i8;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -70,24 +71,24 @@ class MockIAuthDatasource extends _i1.Mock implements _i3.IAuthDatasource {
         )),
       ) as _i4.Future<_i2.Either<_i5.AuthErrors, _i6.CognitoAuthSession>>);
   @override
-  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> postRegisterUser(
-          _i7.UserModel? user) =>
+  _i4.Future<_i2.Either<_i5.AuthErrors, _i7.User>> postRegisterUser(
+          _i8.UserModel? user) =>
       (super.noSuchMethod(
         Invocation.method(
           #postRegisterUser,
           [user],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
-            _FakeEither_0<_i5.AuthErrors, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, _i7.User>>.value(
+            _FakeEither_0<_i5.AuthErrors, _i7.User>(
           this,
           Invocation.method(
             #postRegisterUser,
             [user],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, _i7.User>>);
   @override
-  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> postEmailConfirmation(
+  _i4.Future<_i2.Either<_i5.AuthErrors, void>> postEmailConfirmation(
     String? email,
     String? confirmationCode,
   ) =>
@@ -99,8 +100,8 @@ class MockIAuthDatasource extends _i1.Mock implements _i3.IAuthDatasource {
             confirmationCode,
           ],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
-            _FakeEither_0<_i5.AuthErrors, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, void>>.value(
+            _FakeEither_0<_i5.AuthErrors, void>(
           this,
           Invocation.method(
             #postEmailConfirmation,
@@ -110,7 +111,7 @@ class MockIAuthDatasource extends _i1.Mock implements _i3.IAuthDatasource {
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, void>>);
   @override
   _i4.Future<_i2.Either<_i5.AuthErrors, void>> postLogout() =>
       (super.noSuchMethod(
@@ -128,22 +129,22 @@ class MockIAuthDatasource extends _i1.Mock implements _i3.IAuthDatasource {
         )),
       ) as _i4.Future<_i2.Either<_i5.AuthErrors, void>>);
   @override
-  _i4.Future<_i2.Either<_i5.AuthErrors, bool>> postForgotPassword(
+  _i4.Future<_i2.Either<_i5.AuthErrors, void>> postForgotPassword(
           String? email) =>
       (super.noSuchMethod(
         Invocation.method(
           #postForgotPassword,
           [email],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, bool>>.value(
-            _FakeEither_0<_i5.AuthErrors, bool>(
+        returnValue: _i4.Future<_i2.Either<_i5.AuthErrors, void>>.value(
+            _FakeEither_0<_i5.AuthErrors, void>(
           this,
           Invocation.method(
             #postForgotPassword,
             [email],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.AuthErrors, bool>>);
+      ) as _i4.Future<_i2.Either<_i5.AuthErrors, void>>);
   @override
   _i4.Future<_i2.Either<_i5.AuthErrors, void>> postConfirmResetPassword(
     String? email,

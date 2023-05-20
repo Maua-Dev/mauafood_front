@@ -6,6 +6,7 @@ import 'package:mauafood_front/app/shared/helpers/errors/auth_errors.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/register_user_usecase.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/register/register_controller.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/states/register_state.dart';
+import 'package:mauafood_front/app/shared/infra/models/user_model.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -17,6 +18,18 @@ void main() {
   late RegisterController controller;
   IRegisterUserUsecase usecase = MockIRegisterUserUsecase();
 
+  UserModel user = const UserModel(
+    id: null,
+    fullName: '',
+    cpf: '',
+    isStudent: false,
+    email: '',
+    password: '',
+    appNotifications: false,
+    emailNotifications: false,
+    acceptTerms: false,
+  );
+
   setUp(() async {
     controller = RegisterController(usecase);
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
@@ -25,7 +38,7 @@ void main() {
   group('[TEST] - registerUser', () {
     test('must return RegisterSuccessState', () async {
       when(usecase.call('', '', false, '', '', false, false, false))
-          .thenAnswer((_) async => const Right(true));
+          .thenAnswer((_) async => Right(user));
       await controller.registerUser();
       expect(controller.state, isA<RegisterSuccessState>());
     });

@@ -25,7 +25,7 @@ void main() {
 
   group('[TEST] - forgotPasswordUser', () {
     test('must return ForgotPasswordSuccessState', () async {
-      when(usecase.call('')).thenAnswer((_) async => const Right(true));
+      when(usecase.call('')).thenAnswer((_) async => const Right(null));
       await controller.forgotPasswordUser();
       expect(controller.state, isA<ForgotPasswordSuccessState>());
     });

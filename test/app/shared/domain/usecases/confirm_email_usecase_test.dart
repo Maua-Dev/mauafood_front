@@ -21,10 +21,10 @@ void main() {
 
   test('[TEST] - confirm email returns success bool', () async {
     when(repository.confirmEmail(email, confirmationCode)).thenAnswer(
-      (realInvocation) async => const Right(true),
+      (realInvocation) async => const Right(null),
     );
     var result = await useCase(email, confirmationCode);
-    expect(result.fold(id, id), isA<bool>());
+    expect(result.fold((l) => l, (r) => null), isA<void>());
   });
 
   test('[TEST] - confirm email returns error', () async {
@@ -32,6 +32,6 @@ void main() {
       (realInvocation) async => Left(AuthErrors(message: '')),
     );
     var result = await useCase(email, confirmationCode);
-    expect(result.fold(id, id), isA<AuthErrors>());
+    expect(result.fold((l) => l, (r) => null), isA<AuthErrors>());
   });
 }

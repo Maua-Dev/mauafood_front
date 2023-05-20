@@ -20,10 +20,10 @@ void main() {
 
   test('[TEST] - forgot password returns success bool', () async {
     when(repository.forgotPassword(email)).thenAnswer(
-      (realInvocation) async => const Right(true),
+      (realInvocation) async => const Right(null),
     );
     var result = await useCase(email);
-    expect(result.fold(id, id), isA<void>());
+    expect(result.fold((l) => l, (r) => null), isA<void>());
   });
 
   test('[TEST] - forgot password returns error', () async {
@@ -31,6 +31,6 @@ void main() {
       (realInvocation) async => Left(AuthErrors(message: '')),
     );
     var result = await useCase(email);
-    expect(result.fold(id, id), isA<AuthErrors>());
+    expect(result.fold((l) => l, (r) => null), isA<AuthErrors>());
   });
 }

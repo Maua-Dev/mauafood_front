@@ -6,15 +6,17 @@ import '../../../../../shared/domain/enums/restaurant_enum.dart';
 import '../../../../../shared/domain/entities/product.dart';
 import '../../../../../shared/domain/usecases/get_restaurant_product_usecase.dart';
 
-part 'menu_controller.g.dart';
+part 'menu_restaurant_controller.g.dart';
 
-class MenuRestaurantController = MenuControllerBase with _$MenuController;
+class MenuRestaurantController = MenuRestaurantControllerBase
+    with _$MenuRestaurantController;
 
-abstract class MenuControllerBase with Store {
+abstract class MenuRestaurantControllerBase with Store {
   final IGetRestaurantProductUsecase _getRestaurantProduct;
   RestaurantEnum restaurantInfo;
 
-  MenuControllerBase(this._getRestaurantProduct, this.restaurantInfo) {
+  MenuRestaurantControllerBase(
+      this._getRestaurantProduct, this.restaurantInfo) {
     loadRestaurantMenu();
   }
 
@@ -44,8 +46,7 @@ abstract class MenuControllerBase with Store {
         changeState(
             MenuLoadedSuccessState(listProduct: listAllProduct, index: 0));
       } else {
-        var list = (state as MenuLoadedSuccessState).listProduct;
-        var filterList = list
+        var filterList = listAllProduct
             .where(
               (e) => e.name.toLowerCase().startsWith(search.toLowerCase()),
             )
@@ -62,8 +63,7 @@ abstract class MenuControllerBase with Store {
         changeState(
             MenuLoadedSuccessState(listProduct: listAllProduct, index: 0));
       } else {
-        var list = (state as MenuLoadedSuccessState).listProduct;
-        var filterList = list
+        var filterList = listAllProduct
             .where(
               (e) => e.type == productType,
             )

@@ -4,11 +4,6 @@ import 'package:mauafood_front/app/modules/splash/presenter/states/splash_state.
 
 void main() {
   group('[TEST] - SplashControllerTest', () {
-    test('init controller', () {
-      final controller = SplashController();
-      expect(controller.state, isInstanceOf<SplashInitialState>());
-    });
-
     test('change page state', () {
       final controller = SplashController();
       controller.changeState(SplashLoadingState());

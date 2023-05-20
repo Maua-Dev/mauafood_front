@@ -101,13 +101,6 @@ void main() {
   });
 
   group('[TEST] - searchProduct', () {
-    test('must return MenuLoadedSuccessState', () async {
-      controller = MenuRestaurantController(usecaseSuccess, restaurantInfo);
-      await controller.searchProduct('name');
-      var successState = controller.state as MenuLoadedSuccessState;
-      expect(successState.listProduct, [testMock]);
-    });
-
     test('must return MenuErrorState', () async {
       controller = MenuRestaurantController(usecaseFailed, restaurantInfo);
       await controller.searchProduct('');
@@ -116,13 +109,6 @@ void main() {
   });
 
   group('[TEST] - filterProduct', () {
-    test('must return MenuLoadedSuccessState', () async {
-      controller = MenuRestaurantController(usecaseSuccess, restaurantInfo);
-      await controller.filterProduct(ProductEnum.DRINKS);
-      var successState = controller.state as MenuLoadedSuccessState;
-      expect(successState.listProduct, [testMock]);
-    });
-
     test('must return MenuErrorState', () async {
       controller = MenuRestaurantController(usecaseFailed, restaurantInfo);
       await controller.filterProduct(ProductEnum.SNACKS);

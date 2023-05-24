@@ -59,7 +59,7 @@ jobs:
         run: cat pubspec.yaml | grep -o 'version:[^:]*' | cut -f2 -d":" | xargs
 
       - name: Build appbundle
-        run: flutter build appbundle --release --dart-define=S3_ASSETS_BASE_URL=${{ vars.AWS_BUCKET_ASSETS }}
+        run: flutter build appbundle --release --dart-define=S3_ASSETS_BASE_URL=${{ vars.AWS_BUCKET_ASSETS }} --dart-define=MSS_PRODUCT=${{ vars.MSS_PRODUCT }}
 
       - name: Exec fastlane
         run: bundle exec fastlane ${{ github.ref_name }}

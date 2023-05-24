@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
-import 'package:mauafood_front/app/shared/services/s3/assets_s3.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
+import 'package:mauafood_front/app/shared/helpers/services/s3/assets_s3.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
-import 'package:mauafood_front/app/shared/utils/utils.dart';
+import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
 import '../../../../../shared/widgets/circular_progress_indicator_custom_widget.dart';
@@ -34,8 +34,8 @@ class RestaurantWidget extends StatelessWidget {
             child: Row(
               children: [
                 SizedBox(
-                  width: Utils.width(context) / 3.5,
-                  height: Utils.width(context) / 3.5,
+                  width: ScreenHelper.width(context) / 3.5,
+                  height: ScreenHelper.width(context) / 3.5,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: FittedBox(

@@ -1,8 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/app_module.dart';
-import 'package:mauafood_front/app/modules/restaurants/domain/entities/restaurant_entity.dart';
-import 'package:mauafood_front/app/modules/restaurants/domain/infra/restaurant_enum.dart';
-import 'package:mauafood_front/app/modules/restaurants/domain/usecases/get_restaurant.dart';
+import 'package:mauafood_front/app/shared/domain/entities/restaurant.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/restaurants/restaurant_module.dart';
 import 'package:mockito/annotations.dart';
@@ -11,11 +11,11 @@ import 'package:modular_test/modular_test.dart';
 
 import 'restaurant_controller_test.mocks.dart';
 
-@GenerateMocks([GetRestaurantInterface])
+@GenerateMocks([IGetRestaurant])
 void main() {
   initModules([AppModule(), RestaurantModule()]);
 
-  GetRestaurantInterface getRestaurants = MockGetRestaurantInterface();
+  IGetRestaurant getRestaurants = MockIGetRestaurant();
   late RestaurantController controller;
   var listMock = const [
     Restaurant(restaurantInfo: RestaurantEnum.biba),

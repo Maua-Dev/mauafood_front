@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_form_bloc/flutter_form_bloc.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
 class TextFieldLoginWidget extends StatelessWidget {
-  final TextFieldBloc textFieldBloc;
   final String? title;
   final TextInputType? keyboardType;
   final Iterable<String>? autoFillHints;
-  final SuffixButton? suffixButton;
   final String? hintText;
+  final void Function(String)? onChanged;
+  final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatters;
 
   const TextFieldLoginWidget({
     super.key,
-    required this.textFieldBloc,
     this.title,
     this.keyboardType,
     this.autoFillHints,
-    this.suffixButton,
     this.hintText,
     this.inputFormatters,
+    this.onChanged,
+    this.validator,
   });
 
   @override
@@ -35,18 +34,18 @@ class TextFieldLoginWidget extends StatelessWidget {
                 style: AppTextStyles.h2,
               )
             : const SizedBox.shrink(),
-        TextFieldBlocBuilder(
+        TextFormField(
           inputFormatters: inputFormatters,
           textAlign: TextAlign.start,
-          textFieldBloc: textFieldBloc,
+          onChanged: onChanged,
+          validator: validator,
           keyboardType: keyboardType ?? TextInputType.emailAddress,
-          suffixButton: suffixButton,
           autofillHints: autoFillHints ??
               const [
                 AutofillHints.email,
               ],
           cursorColor: AppColors.mainBlueColor,
-          textStyle: AppTextStyles.h2,
+          style: AppTextStyles.h2,
           decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               hintText: hintText,
@@ -56,9 +55,6 @@ class TextFieldLoginWidget extends StatelessWidget {
                   borderSide:
                       BorderSide(color: AppColors.mainBlueColor, width: 2))),
         ),
-        // const SizedBox(
-        //   height: 8,
-        // ),
       ],
     );
   }

@@ -41,7 +41,7 @@ jobs:
           working-directory: ios
 
       - name: Build appbundle
-        run: flutter build ios --no-codesign --dart-define=MSS_USER_BASE_URL=${{vars.MSS_USERS_ENDPOINT}} --dart-define=MSS_ACTIVITIES_BASE_URL=${{vars.MSS_ACTIVITIES_ENDPOINT}} --dart-define=S3_BASE_URL=${{vars.AWS_BUCKET_ASSETS}} --dart-define=SPONSOR_FORM_REQUEST_URL=${{vars.SPONSOR_FORM_REQUEST_URL}} --dart-define=ENV=${{vars.ENV}}
+        run: flutter build ios --no-codesign --dart-define=S3_ASSETS_BASE_URL=${{ vars.AWS_BUCKET_ASSETS }} --dart-define=MSS_PRODUCT=${{ vars.MSS_PRODUCT }}
 
       - name: Pods install
         run: pod install
@@ -70,7 +70,7 @@ jobs:
           mkdir -p fastlane/metadata/en-US
           release_notes=$(gh api "/repos/$repository/actions/runs/$run_id/approvals" --jq '.[0] | .comment' | xargs)
           echo "$release_notes"
-          if [[ -n '$release_notes' ]]; then
+          if [[ -n "$release_notes" ]]; then
             echo "$release_notes" > fastlane/metadata/default/release_notes.txt
             echo "$release_notes" > fastlane/metadata/pt-BR/release_notes.txt
             echo "$release_notes" > fastlane/metadata/en-US/release_notes.txt

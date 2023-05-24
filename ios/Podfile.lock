@@ -44,8 +44,6 @@ PODS:
     - Amplify (= 1.29.1)
     - AWSCore (~> 2.30.1)
   - Flutter (1.0.0)
-  - flutter_keyboard_visibility (0.0.1):
-    - Flutter
   - ObjectMapper (4.2.0)
   - path_provider_foundation (0.0.1):
     - Flutter
@@ -60,8 +58,7 @@ DEPENDENCIES:
   - amplify_core (from `.symlinks/plugins/amplify_core/ios`)
   - amplify_flutter_ios (from `.symlinks/plugins/amplify_flutter_ios/ios`)
   - Flutter (from `Flutter`)
-  - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
-  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
 
 SPEC REPOS:
@@ -87,10 +84,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/amplify_flutter_ios/ios"
   Flutter:
     :path: Flutter
-  flutter_keyboard_visibility:
-    :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
   path_provider_foundation:
-    :path: ".symlinks/plugins/path_provider_foundation/ios"
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
   url_launcher_ios:
     :path: ".symlinks/plugins/url_launcher_ios/ios"
 
@@ -107,9 +102,8 @@ SPEC CHECKSUMS:
   AWSMobileClient: 7d9c81e47ef27c6b5604858477006548eb1db342
   AWSPluginsCore: d2c3685072cf896a05f09b55686af476db7c0596
   Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
-  flutter_keyboard_visibility: 0339d06371254c3eb25eeb90ba8d17dca8f9c069
   ObjectMapper: 1eb41f610210777375fa806bf161dc39fb832b81
-  path_provider_foundation: c68054786f1b4f3343858c1e1d0caaded73f0be9
+  path_provider_foundation: eaf5b3e458fc0e5fbb9940fb09980e853fe058b8
   SwiftFormat: b2062ab08a5c83c075e32355175c58b99e52187f
   SwiftLint: 284cea64b6187c5d6bd83e9a548a64104d546447
   url_launcher_ios: 08a3dfac5fb39e8759aeb0abbd5d9480f30fc8b4

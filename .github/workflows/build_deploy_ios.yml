@@ -41,7 +41,7 @@ jobs:
           working-directory: ios
 
       - name: Build appbundle
-        run: flutter build ios --no-codesign --dart-define=S3_ASSETS_BASE_URL=${{ vars.AWS_BUCKET_ASSETS }} --dart-define=MSS_PRODUCT={{ vars.MSS_PRODUCT }}
+        run: flutter build ios --no-codesign --dart-define=S3_ASSETS_BASE_URL=${{ vars.AWS_BUCKET_ASSETS }} --dart-define=MSS_PRODUCT=${{ vars.MSS_PRODUCT }}
 
       - name: Pods install
         run: pod install

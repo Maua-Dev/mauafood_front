@@ -1,0 +1,26 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+div {
+    display: flex;
+    flex-direction: column ;
+}
+
+img {
+    align-self: center;
+}
+
+h1 {
+    cursor: pointer;
+    font-weight: 700;
+    color: #72310e;
+}
+
+h2 {
+    font-weight: 400;
+    color: #f3b986;
+}

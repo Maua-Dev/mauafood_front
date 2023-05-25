@@ -5,22 +5,51 @@
 	border: 0;
 }
 
-div {
+.faq{
     display: flex;
-    flex-direction: column ;
+    flex-direction: column;
+    padding: 16px 24px;
 }
 
-img {
+.logo {
     align-self: center;
+    width: 140px;
 }
 
-h1 {
+.title{
+    text-align: center;
+    align-self: center;
+    color: #000;
+    padding: 32px;
+}
+
+.card {
+    border-bottom: 1px solid #e2e2e2;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     cursor: pointer;
-    font-weight: 700;
-    color: #72310e;
+    transition: ease-in-out 0.4s;
 }
 
-h2 {
+.card:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.question {
+    font-weight: 700;
+    padding-bottom: 8px;
+    color: #000;
+}
+
+.answer {
     font-weight: 400;
-    color: #f3b986;
+    color: #000;
+}
+
+.ph {
+    color: #72310e;
+    font-size: 24px;
 }

@@ -9,17 +9,31 @@
     display: flex;
     flex-direction: column;
     padding: 16px 24px;
+    align-items: center;
+    justify-content: center;
+}
+
+.logos{
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .logo {
-    align-self: center;
+    width: 120px;
+}
+
+.dev{
     width: 140px;
 }
 
 .title{
+    font-size: 48px;
     text-align: center;
-    align-self: center;
-    color: #000;
+    color: #72310e;
     padding: 32px;
 }
 
@@ -32,6 +46,7 @@
     align-items: center;
     cursor: pointer;
     transition: ease-in-out 0.4s;
+    width: 60%;
 }
 
 .card:hover {
@@ -41,15 +56,33 @@
 .question {
     font-weight: 700;
     padding-bottom: 8px;
-    color: #000;
+    color: #72310e;
 }
 
 .answer {
     font-weight: 400;
-    color: #000;
+    color: #f2b986;
+    padding-right: 8px;
 }
 
 .ph {
     color: #72310e;
     font-size: 24px;
+}
+
+@media(max-width: 500px) {
+    .card {
+        width: 100%;
+    }
+    .logos{
+        width: 100%;
+    }
+
+    .logo{
+        width: 80px;
+    }
+
+    .dev{
+        width: 100px;
+    }
 }

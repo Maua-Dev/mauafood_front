@@ -73,7 +73,7 @@ class RestaurantWidget extends StatelessWidget {
                       child: SizedBox(
                         width: ScreenHelper.width(context) * 0.4,
                         child: Text(
-                          restaurantInfo.name,
+                          restaurantInfo.restaurantName,
                           style: AppTextStyles.h1.copyWith(
                               fontSize:
                                   ScreenHelper.width(context) < 550 ? 19 : 28,

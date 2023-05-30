@@ -41,6 +41,24 @@ mixin _$MenuRestaurantController on MenuRestaurantControllerBase, Store {
     });
   }
 
+  late final _$listAllProductWithoutAccentAtom = Atom(
+      name: 'MenuRestaurantControllerBase.listAllProductWithoutAccent',
+      context: context);
+
+  @override
+  List<Product> get listAllProductWithoutAccent {
+    _$listAllProductWithoutAccentAtom.reportRead();
+    return super.listAllProductWithoutAccent;
+  }
+
+  @override
+  set listAllProductWithoutAccent(List<Product> value) {
+    _$listAllProductWithoutAccentAtom
+        .reportWrite(value, super.listAllProductWithoutAccent, () {
+      super.listAllProductWithoutAccent = value;
+    });
+  }
+
   late final _$loadRestaurantMenuAsyncAction = AsyncAction(
       'MenuRestaurantControllerBase.loadRestaurantMenu',
       context: context);
@@ -88,7 +106,8 @@ mixin _$MenuRestaurantController on MenuRestaurantControllerBase, Store {
   String toString() {
     return '''
 state: ${state},
-listAllProduct: ${listAllProduct}
+listAllProduct: ${listAllProduct},
+listAllProductWithoutAccent: ${listAllProductWithoutAccent}
     ''';
   }
 }

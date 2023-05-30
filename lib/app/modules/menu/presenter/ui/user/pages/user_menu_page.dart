@@ -40,15 +40,10 @@ class UserMenuPage extends StatelessWidget {
             ? Center(
                 child: Text(S.of(context).errorItemNotFound,
                     style: AppTextStyles.h2))
-            : GridView.builder(
+            : ListView.builder(
                 itemCount: listProduct.length,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  maxCrossAxisExtent: 210,
-                ),
                 itemBuilder: (context, index) {
                   var recommendedProductList = <Product>[];
                   switch (listProduct.length) {
@@ -68,14 +63,17 @@ class UserMenuPage extends StatelessWidget {
                         listProduct[2]
                       ];
                   }
-                  return ProductCardWidget(
-                    product: listProduct[index],
-                    onPressed: () {
-                      Modular.to.pushNamed('/user/product-info', arguments: [
-                        listProduct[index],
-                        recommendedProductList
-                      ]);
-                    },
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: ProductCardWidget(
+                      product: listProduct[index],
+                      onPressed: () {
+                        Modular.to.pushNamed('/user/product-info', arguments: [
+                          listProduct[index],
+                          recommendedProductList
+                        ]);
+                      },
+                    ),
                   );
                 },
               ),

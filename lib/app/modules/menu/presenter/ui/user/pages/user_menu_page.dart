@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contact/contact_dialog.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -39,15 +40,10 @@ class UserMenuPage extends StatelessWidget {
             ? Center(
                 child: Text(S.of(context).errorItemNotFound,
                     style: AppTextStyles.h2))
-            : GridView.builder(
+            : ListView.builder(
                 itemCount: listProduct.length,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-                gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                  crossAxisSpacing: 16,
-                  mainAxisSpacing: 16,
-                  maxCrossAxisExtent: 210,
-                ),
                 itemBuilder: (context, index) {
                   var recommendedProductList = <Product>[];
                   switch (listProduct.length) {
@@ -67,14 +63,17 @@ class UserMenuPage extends StatelessWidget {
                         listProduct[2]
                       ];
                   }
-                  return ProductCardWidget(
-                    product: listProduct[index],
-                    onPressed: () {
-                      Modular.to.pushNamed('/user/product-info', arguments: [
-                        listProduct[index],
-                        recommendedProductList
-                      ]);
-                    },
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: ProductCardWidget(
+                      product: listProduct[index],
+                      onPressed: () {
+                        Modular.to.pushNamed('/user/product-info', arguments: [
+                          listProduct[index],
+                          recommendedProductList
+                        ]);
+                      },
+                    ),
                   );
                 },
               ),
@@ -104,6 +103,7 @@ class UserMenuPage extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       onPressed: () {
                         Modular.to.pop();
+                        Modular.dispose<MenuRestaurantController>();
                       },
                       icon: Icon(
                         Icons.arrow_back_ios,
@@ -115,7 +115,7 @@ class UserMenuPage extends StatelessWidget {
                     ),
                     Text(
                       S.of(context).restaurantTitle(
-                          '', menuController.restaurantInfo.name),
+                          '', menuController.restaurantInfo.restaurantName),
                       style: AppTextStyles.h1
                           .copyWith(color: AppColors.mainBlueColor),
                     ),

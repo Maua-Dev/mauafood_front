@@ -113,7 +113,7 @@ void main() {
       await widgetTester.pump();
 
       expect(find.byType(FilterButtonWidget), findsNWidgets(9));
-      expect(find.byType(ListView), findsOneWidget);
+      expect(find.byType(ListView), findsNWidgets(2));
     });
   });
 

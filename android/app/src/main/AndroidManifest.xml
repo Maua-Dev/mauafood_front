@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.com.dev.mauafood_front">
    <application
-        android:label="Mauá Food"
+        android:label="MauáFood"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

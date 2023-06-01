@@ -121,7 +121,7 @@ void main() {
       await widgetTester.pump();
 
       expect(find.byType(ProductCardWidget), findsNWidgets(2));
-      expect(find.byType(GridView), findsOneWidget);
+      expect(find.byType(ListView), findsNWidgets(2));
     });
   });
 

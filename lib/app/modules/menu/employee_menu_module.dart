@@ -31,9 +31,11 @@ class EmployeeMenuModule extends Module {
 
   @override
   List<ModularRoute> get routes => [
-        ChildRoute(Modular.initialRoute,
-            child: (context, args) =>
-                EmployeeMenuPage(restaurant: args.data as RestaurantEnum),
-            guards: [EmployeeAuthGuard()]),
+        ChildRoute(
+          Modular.initialRoute,
+          child: (context, args) =>
+              EmployeeMenuPage(restaurant: args.data as RestaurantEnum),
+          //guards: [EmployeeAuthGuard()]),
+        )
       ];
 }

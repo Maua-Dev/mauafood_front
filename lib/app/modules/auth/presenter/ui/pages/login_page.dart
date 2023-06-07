@@ -4,11 +4,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/login/login_controller.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
+import 'package:mauafood_front/app/shared/widgets/text_field_widget.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/helpers/services/s3/assets_s3.dart';
 import '../widgets/login_button_widget.dart';
 import '../widgets/text_button_login_widget.dart';
-import '../widgets/text_field_login_widget.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -63,14 +63,14 @@ class _LoginPageState extends State<LoginPage> {
                             height: 24,
                           ),
                           Observer(builder: (_) {
-                            return TextFieldLoginWidget(
+                            return TextFieldWidget(
                               onChanged: loginController.setEmail,
                               validator: loginController.validateEmail,
                               title: S.of(context).emailTitle,
                             );
                           }),
                           Observer(builder: (_) {
-                            return TextFieldLoginWidget(
+                            return TextFieldWidget(
                               onChanged: loginController.setPassword,
                               validator: loginController.validatePassword,
                               title: S.of(context).passwordTitle,

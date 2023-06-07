@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/shared/widgets/text_field_widget.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import '../../../../../shared/helpers/services/s3/assets_s3.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../controllers/confirm_email/confirm_email_controller.dart';
 import '../widgets/register_button_widget.dart';
-import '../widgets/text_field_login_widget.dart';
 
 class ConfirmEmailPage extends StatelessWidget {
   const ConfirmEmailPage({
@@ -56,7 +56,7 @@ class ConfirmEmailPage extends StatelessWidget {
                       height: 24,
                     ),
                     Observer(builder: (_) {
-                      return TextFieldLoginWidget(
+                      return TextFieldWidget(
                         keyboardType: TextInputType.number,
                         onChanged: controller.setCode,
                         validator: controller.validateCode,

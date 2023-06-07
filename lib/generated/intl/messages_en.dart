@@ -94,6 +94,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "appTitle": MessageLookupByLibrary.simpleMessage("Mauá Food"),
         "attentionTitle": MessageLookupByLibrary.simpleMessage("Attention"),
         "authErrorsSchema": m0,
+        "categoryTitle": MessageLookupByLibrary.simpleMessage("Category"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Change Password"),
         "codeErrorAlert":
@@ -113,9 +114,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "correctFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure the fields are correct."),
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
+        "descriptionTitle": MessageLookupByLibrary.simpleMessage("Description"),
         "disclaimerText": MessageLookupByLibrary.simpleMessage(
             "MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!"),
         "doLoginTitle": MessageLookupByLibrary.simpleMessage("Login"),
+        "editTitle": MessageLookupByLibrary.simpleMessage("Edit"),
         "emailConfirmationTitle":
             MessageLookupByLibrary.simpleMessage("Email confirmation"),
         "emailTitle": MessageLookupByLibrary.simpleMessage("E-mail"),
@@ -158,6 +161,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "messageSentSuccessfully":
             MessageLookupByLibrary.simpleMessage("Email successfully sent!"),
+        "minutesTitle": MessageLookupByLibrary.simpleMessage("minutes"),
+        "nameTitle": MessageLookupByLibrary.simpleMessage("Name"),
         "newPasswordTitle":
             MessageLookupByLibrary.simpleMessage("New password"),
         "noItemsFoundErrorMessage": m2,
@@ -165,6 +170,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Your password must contain: \n - One or more uppercase letters \n - One or more lowercase letters \n - One or more numbers \n - One or more special characters\n(#, ?, !, @, \\\$, %, ^, &, *, -) \n - Minimum 8 characters"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Password"),
+        "prepareTimeTitle":
+            MessageLookupByLibrary.simpleMessage("Prepare Time"),
+        "previewTitle": MessageLookupByLibrary.simpleMessage("Preview"),
+        "priceTitle": MessageLookupByLibrary.simpleMessage("Price"),
+        "productAvailabilityTitle":
+            MessageLookupByLibrary.simpleMessage("Product Availability"),
         "productNameSchema": m4,
         "productPrepareTimeMinutes": m5,
         "productPriceCurrency": m6,
@@ -184,6 +195,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "restaurantsImageSchema": m9,
         "restaurantsNameSchema": m10,
         "restaurantsTitle": MessageLookupByLibrary.simpleMessage("Restaurants"),
+        "saveTitle": MessageLookupByLibrary.simpleMessage("Save"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Search"),
         "seeMenuTitle": MessageLookupByLibrary.simpleMessage("See menu"),
         "sendCodeEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(

@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
-class TextFieldLoginWidget extends StatelessWidget {
+class TextFieldWidget extends StatelessWidget {
   final String? title;
   final TextInputType? keyboardType;
   final Iterable<String>? autoFillHints;
@@ -11,17 +11,18 @@ class TextFieldLoginWidget extends StatelessWidget {
   final void Function(String)? onChanged;
   final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatters;
+  final String? suffixText;
 
-  const TextFieldLoginWidget({
-    super.key,
-    this.title,
-    this.keyboardType,
-    this.autoFillHints,
-    this.hintText,
-    this.inputFormatters,
-    this.onChanged,
-    this.validator,
-  });
+  const TextFieldWidget(
+      {super.key,
+      this.title,
+      this.keyboardType,
+      this.autoFillHints,
+      this.hintText,
+      this.inputFormatters,
+      this.onChanged,
+      this.validator,
+      this.suffixText});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,8 @@ class TextFieldLoginWidget extends StatelessWidget {
         title != null
             ? Text(
                 title!,
-                style: AppTextStyles.h2,
+                style:
+                    AppTextStyles.h2.copyWith(color: AppColors.mainBlueColor),
               )
             : const SizedBox.shrink(),
         TextFormField(
@@ -47,6 +49,7 @@ class TextFieldLoginWidget extends StatelessWidget {
           cursorColor: AppColors.mainBlueColor,
           style: AppTextStyles.h2,
           decoration: InputDecoration(
+              suffixText: suffixText,
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               hintText: hintText,
               suffixIconColor: AppColors.mainBlueColor,

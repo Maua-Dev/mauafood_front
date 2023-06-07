@@ -250,6 +250,106 @@ class S {
     );
   }
 
+  /// `Name`
+  String get nameTitle {
+    return Intl.message(
+      'Name',
+      name: 'nameTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get editTitle {
+    return Intl.message(
+      'Edit',
+      name: 'editTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prepare Time`
+  String get prepareTimeTitle {
+    return Intl.message(
+      'Prepare Time',
+      name: 'prepareTimeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get priceTitle {
+    return Intl.message(
+      'Price',
+      name: 'priceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get categoryTitle {
+    return Intl.message(
+      'Category',
+      name: 'categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get descriptionTitle {
+    return Intl.message(
+      'Description',
+      name: 'descriptionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product Availability`
+  String get productAvailabilityTitle {
+    return Intl.message(
+      'Product Availability',
+      name: 'productAvailabilityTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preview`
+  String get previewTitle {
+    return Intl.message(
+      'Preview',
+      name: 'previewTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `minutes`
+  String get minutesTitle {
+    return Intl.message(
+      'minutes',
+      name: 'minutesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get saveTitle {
+    return Intl.message(
+      'Save',
+      name: 'saveTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{notifications, select, normalPart{Want to receive } email{email notifications} app{app notifications} other{}}`
   String notificationsOptionsSchema(Object notifications) {
     return Intl.select(

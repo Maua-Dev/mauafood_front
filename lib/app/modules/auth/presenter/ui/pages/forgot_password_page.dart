@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/shared/widgets/text_field_widget.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/helpers/services/s3/assets_s3.dart';
 import '../../../../../shared/themes/app_colors.dart';
@@ -8,7 +9,6 @@ import '../../../../../shared/themes/app_text_styles.dart';
 import '../../controllers/forgot_password/forgot_password_controller.dart';
 import '../widgets/login_button_widget.dart';
 import '../widgets/text_button_login_widget.dart';
-import '../widgets/text_field_login_widget.dart';
 
 class ForgotPasswordPage extends StatelessWidget {
   const ForgotPasswordPage({
@@ -57,7 +57,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 height: 24,
               ),
               Observer(builder: (_) {
-                return TextFieldLoginWidget(
+                return TextFieldWidget(
                   onChanged: controller.setEmail,
                   validator: controller.validateEmail,
                   title: S.of(context).emailTitle,

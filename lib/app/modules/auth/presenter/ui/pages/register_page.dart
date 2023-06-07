@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:mauafood_front/app/modules/auth/presenter/controllers/register/register_controller.dart';
+import 'package:mauafood_front/app/shared/widgets/text_field_widget.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../../../../shared/themes/app_colors.dart';
@@ -9,7 +10,6 @@ import '../../../../../shared/themes/app_text_styles.dart';
 import '../widgets/checkbox_field_login_widget.dart';
 import '../widgets/register_button_widget.dart';
 import '../widgets/text_button_login_widget.dart';
-import '../widgets/text_field_login_widget.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({
@@ -43,13 +43,13 @@ class _RegisterPageState extends State<RegisterPage> {
                   const SizedBox(
                     height: 16,
                   ),
-                  TextFieldLoginWidget(
+                  TextFieldWidget(
                     keyboardType: TextInputType.name,
                     validator: registerController.validateName,
                     onChanged: registerController.setFullName,
                     hintText: S.of(context).fullNameTitle,
                   ),
-                  TextFieldLoginWidget(
+                  TextFieldWidget(
                     keyboardType: TextInputType.number,
                     validator: registerController.validateCpf,
                     onChanged: registerController.setCpf,
@@ -60,7 +60,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ],
                     hintText: S.of(context).cpfTitle,
                   ),
-                  TextFieldLoginWidget(
+                  TextFieldWidget(
                     keyboardType: TextInputType.emailAddress,
                     hintText: S.of(context).emailTitle,
                     validator: registerController.validateEmail,
@@ -69,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       AutofillHints.email,
                     ],
                   ),
-                  TextFieldLoginWidget(
+                  TextFieldWidget(
                     hintText: S.of(context).passwordTitle,
                     validator: registerController.validatePassword,
                     onChanged: registerController.setPassword,
@@ -78,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       AutofillHints.password,
                     ],
                   ),
-                  TextFieldLoginWidget(
+                  TextFieldWidget(
                     hintText: S.of(context).confirmPasswordTitle,
                     validator: registerController.validateConfirmPassword,
                     onChanged: registerController.setConfirmPassword,

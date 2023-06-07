@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/widgets/new_product_dialog_widget.dart';
 import '../../../../../../../generated/l10n.dart';
 import '../../../../../../shared/domain/enums/product_enum.dart';
 import '../../../../../../shared/helpers/services/s3/assets_s3.dart';
@@ -47,11 +48,28 @@ class EmployeeMenuPage extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.only(top: 24, right: 12, left: 12),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  restaurant.name,
-                  style:
-                      AppTextStyles.h1.copyWith(color: AppColors.mainBlueColor),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      restaurant.name,
+                      style: AppTextStyles.h1
+                          .copyWith(color: AppColors.mainBlueColor),
+                    ),
+                    IconButton(
+                        onPressed: () => showDialog(
+                            context: context,
+                            builder: (BuildContext buildContext) {
+                              return const NewProductDialogWidget();
+                            }),
+                        icon: Icon(
+                          Icons.add_circle_sharp,
+                          color: AppColors.mainBlueColor,
+                        ))
+                  ],
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12),

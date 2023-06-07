@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_restaurant_controller.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/controllers/new-product/new_product_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/pages/employee_menu_page.dart';
 import 'package:mauafood_front/app/shared/helpers/services/dio/options/product_base_options.dart';
 import '../../shared/helpers/services/dio/dio_http_request.dart';
@@ -22,6 +23,9 @@ class EmployeeMenuModule extends Module {
         Bind<MenuRestaurantController>(
           (i) => MenuRestaurantController(i(), i.args.data),
         ),
+        Bind<NewProductController>(
+          (i) => NewProductController(),
+        ),
         Bind((i) => Dio(productBaseOptions)),
         Bind<IHttpRequest>((i) => DioHttpRequest(dio: i<Dio>()), export: true),
         Bind<HttpService>((i) => HttpService(httpRequest: i()), export: true),
@@ -34,7 +38,7 @@ class EmployeeMenuModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) =>
-              EmployeeMenuPage(restaurant: args.data as RestaurantEnum),
+              EmployeeMenuPage(restaurant: RestaurantEnum.biba),
           //guards: [EmployeeAuthGuard()]),
         )
       ];

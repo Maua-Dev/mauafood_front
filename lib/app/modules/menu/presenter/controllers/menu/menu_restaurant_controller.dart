@@ -13,7 +13,7 @@ class MenuRestaurantController = MenuRestaurantControllerBase
 
 abstract class MenuRestaurantControllerBase with Store {
   final IGetRestaurantProductUsecase _getRestaurantProduct;
-  RestaurantEnum restaurantInfo;
+  RestaurantEnum restaurantInfo = RestaurantEnum.biba;
 
   MenuRestaurantControllerBase(
       this._getRestaurantProduct, this.restaurantInfo) {

@@ -63,7 +63,7 @@ class EmployeeMenuPage extends StatelessWidget {
                         onPressed: () => showDialog(
                             context: context,
                             builder: (BuildContext buildContext) {
-                              return const NewProductDialogWidget();
+                              return NewProductDialogWidget();
                             }),
                         icon: Icon(
                           Icons.add_circle_sharp,

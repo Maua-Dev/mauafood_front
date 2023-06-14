@@ -120,7 +120,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disclaimerText": MessageLookupByLibrary.simpleMessage(
             "O MauáFood trabalha em conjunto com os restaurantes para estarmos sempre atualizados, porém não nos responsabilizamos por qualquer diferença entre os preços, disponibilidade e informações dos produtos dos menus exibidos.\nQualquer erro encontrado nos informe clicando no ícone de e-mail no canto inferior direito da tela!"),
         "doLoginTitle": MessageLookupByLibrary.simpleMessage("Faça o login"),
-        "editTitle": MessageLookupByLibrary.simpleMessage("Editar"),
         "emailConfirmationTitle":
             MessageLookupByLibrary.simpleMessage("Confirmação de e-mail"),
         "emailTitle": MessageLookupByLibrary.simpleMessage("E-mail"),
@@ -172,6 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \\\$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Senha"),
+        "photoTitle": MessageLookupByLibrary.simpleMessage("Foto"),
         "prepareTimeTitle":
             MessageLookupByLibrary.simpleMessage("Tempo de Preparo"),
         "previewTitle": MessageLookupByLibrary.simpleMessage("Pré-visualizar"),

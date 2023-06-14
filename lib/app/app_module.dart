@@ -23,10 +23,10 @@ class AppModule extends Module {
           module: EmployeeMenuModule(),
           //guards: [EmployeeAuthGuard()],
         ),
-        /* ModuleRoute(
+        ModuleRoute(
           '/user',
           module: UserMenuModule(),
           // guards: [UserAuthGuard()],
-        ), */
+        ),
       ];
 }

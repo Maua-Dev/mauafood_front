@@ -118,7 +118,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "disclaimerText": MessageLookupByLibrary.simpleMessage(
             "MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!"),
         "doLoginTitle": MessageLookupByLibrary.simpleMessage("Login"),
-        "editTitle": MessageLookupByLibrary.simpleMessage("Edit"),
         "emailConfirmationTitle":
             MessageLookupByLibrary.simpleMessage("Email confirmation"),
         "emailTitle": MessageLookupByLibrary.simpleMessage("E-mail"),
@@ -170,6 +169,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Your password must contain: \n - One or more uppercase letters \n - One or more lowercase letters \n - One or more numbers \n - One or more special characters\n(#, ?, !, @, \\\$, %, ^, &, *, -) \n - Minimum 8 characters"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Password"),
+        "photoTitle": MessageLookupByLibrary.simpleMessage("Photo"),
         "prepareTimeTitle":
             MessageLookupByLibrary.simpleMessage("Prepare Time"),
         "previewTitle": MessageLookupByLibrary.simpleMessage("Preview"),

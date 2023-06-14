@@ -260,11 +260,11 @@ class S {
     );
   }
 
-  /// `Edit`
-  String get editTitle {
+  /// `Photo`
+  String get photoTitle {
     return Intl.message(
-      'Edit',
-      name: 'editTitle',
+      'Photo',
+      name: 'photoTitle',
       desc: '',
       args: [],
     );

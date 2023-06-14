@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/domain/repositories/menu_repository_interface.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
@@ -82,5 +83,18 @@ class MenuRepository implements IMenuRepository {
               ? left(EmptyList())
               : right(restaurantProducts!);
     });
+  }
+
+  @override
+  Future<Either<Failure, void>> createProduct(
+      ProductModel product, RestaurantEnum restaurant) async {
+    try {
+      await datasource.createProduct(product, restaurant);
+      return right(null);
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType =
+          getHttpStatusFunction(e.response!.statusCode);
+      return left(ErrorRequest(message: errorType.errorMessage));
+    }
   }
 }

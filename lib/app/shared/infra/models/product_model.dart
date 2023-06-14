@@ -1,9 +1,11 @@
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
+
 import '../../domain/enums/product_enum.dart';
 import '../../domain/entities/product.dart';
 
 class ProductModel extends Product {
   const ProductModel(
-      {required super.id,
+      {super.id,
       required super.name,
       required super.description,
       required super.price,
@@ -11,7 +13,7 @@ class ProductModel extends Product {
       required super.type,
       required super.photo,
       required super.available,
-      required super.lastUpdate});
+      super.lastUpdate});
 
   factory ProductModel.fromMap(Map<String, dynamic> json) {
     return ProductModel(
@@ -29,5 +31,18 @@ class ProductModel extends Product {
 
   static List<ProductModel> fromMaps(List array) {
     return array.map((e) => ProductModel.fromMap(e)).toList();
+  }
+
+  Map<String, dynamic> toJson(RestaurantEnum restaurantEnum) {
+    return {
+      'available': available,
+      'price': price,
+      'name': name,
+      'description': description,
+      'meal_type': "SANDWICHES",
+      'photo': photo,
+      'restaurant': RestaurantEnumExtension.enumToStringMap(restaurantEnum),
+      'prepare_time': prepareTime
+    };
   }
 }

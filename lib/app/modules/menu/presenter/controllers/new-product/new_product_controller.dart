@@ -1,6 +1,10 @@
+import 'dart:js_interop';
+
+import 'package:mauafood_front/app/modules/menu/presenter/states/new_product/new_product_state.dart';
+import 'package:mauafood_front/app/shared/helpers/utils/validation_helper.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../../../shared/domain/enums/product_enum.dart';
+import '../../../../../../generated/l10n.dart';
 
 part 'new_product_controller.g.dart';
 
@@ -11,11 +15,25 @@ abstract class NewProductControllerBase with Store {
   NewProductControllerBase();
 
   @observable
+  NewProductState state = NewProductInitialState();
+
+  @action
+  void changeState(NewProductState value) => state = value;
+
+  @observable
   String? productName;
 
   @action
   void setProductName(String value) {
     productName = value;
+  }
+
+  @action
+  String? validateProductName(String? value) {
+    if (value!.isEmpty) {
+      return S.current.requiredFieldAlert;
+    }
+    return null;
   }
 
   @observable
@@ -24,6 +42,14 @@ abstract class NewProductControllerBase with Store {
   @action
   void setProductPrepareTime(String value) {
     productPrepareTime = int.parse(value);
+  }
+
+  @action
+  String? validateProductPrepareTime(String? value) {
+    if (value!.isEmpty) {
+      return S.current.requiredFieldAlert;
+    }
+    return null;
   }
 
   @observable
@@ -35,12 +61,28 @@ abstract class NewProductControllerBase with Store {
         value.replaceAll('R\$', "").replaceAll('.', "").replaceAll(',', '.'));
   }
 
+  @action
+  String? validateProductPrice(String? value) {
+    if (value!.isEmpty) {
+      return S.current.requiredFieldAlert;
+    }
+    return null;
+  }
+
   @observable
   String? productType;
 
   @action
   void setProductType(String value) {
     productType = value;
+  }
+
+  @action
+  String? validateProductType(String? value) {
+    if (value.isNull) {
+      return S.current.requiredFieldAlert;
+    }
+    return null;
   }
 
   @observable
@@ -51,8 +93,16 @@ abstract class NewProductControllerBase with Store {
     productDescription = value;
   }
 
+  @action
+  String? validateDescription(String? value) {
+    if (value!.isEmpty) {
+      return S.current.requiredFieldAlert;
+    }
+    return null;
+  }
+
   @observable
-  bool productAvailability = false;
+  bool productAvailability = true;
 
   @action
   void setProductAvailability(bool value) {

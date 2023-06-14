@@ -114,6 +114,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "correctFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure the fields are correct."),
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
+        "createProductTitle":
+            MessageLookupByLibrary.simpleMessage("Create product"),
         "descriptionTitle": MessageLookupByLibrary.simpleMessage("Description"),
         "disclaimerText": MessageLookupByLibrary.simpleMessage(
             "MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!"),

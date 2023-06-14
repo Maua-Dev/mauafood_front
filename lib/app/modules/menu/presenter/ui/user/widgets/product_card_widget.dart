@@ -74,8 +74,9 @@ class ProductCardWidget extends StatelessWidget {
                     ),
                     Text(
                       S.of(context).productPriceCurrency(product.price),
-                      style: AppTextStyles.h2Highlight
-                          .copyWith(fontWeight: FontWeight.bold),
+                      style: AppTextStyles.h2Highlight.copyWith(
+                          fontWeight: FontWeight.bold,
+                          overflow: TextOverflow.ellipsis),
                     ),
                   ],
                 ),

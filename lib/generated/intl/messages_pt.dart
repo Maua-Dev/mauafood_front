@@ -116,6 +116,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "correctFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se que os campos estão corretos."),
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
+        "createProductTitle":
+            MessageLookupByLibrary.simpleMessage("Criar produto"),
         "descriptionTitle": MessageLookupByLibrary.simpleMessage("Descrição"),
         "disclaimerText": MessageLookupByLibrary.simpleMessage(
             "O MauáFood trabalha em conjunto com os restaurantes para estarmos sempre atualizados, porém não nos responsabilizamos por qualquer diferença entre os preços, disponibilidade e informações dos produtos dos menus exibidos.\nQualquer erro encontrado nos informe clicando no ícone de e-mail no canto inferior direito da tela!"),
@@ -174,7 +176,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "photoTitle": MessageLookupByLibrary.simpleMessage("Foto"),
         "prepareTimeTitle":
             MessageLookupByLibrary.simpleMessage("Tempo de Preparo"),
-        "previewTitle": MessageLookupByLibrary.simpleMessage("Pré-visualizar"),
+        "previewTitle":
+            MessageLookupByLibrary.simpleMessage("Pré-visualização"),
         "priceTitle": MessageLookupByLibrary.simpleMessage("Preço"),
         "productAvailabilityTitle":
             MessageLookupByLibrary.simpleMessage("Disponibilidade do Produto"),

@@ -36,7 +36,7 @@
     "categoryTitle": "Categoria",
     "descriptionTitle": "Descrição",
     "productAvailabilityTitle": "Disponibilidade do Produto",
-    "previewTitle": "Pré-visualizar",
+    "previewTitle": "Pré-visualização",
     "minutesTitle": "minutos",
     "saveTitle": "Salvar",
     "notificationsOptionsSchema": "{notifications, select, normalPart{Deseja receber } email{notificações por e-mail} app{notificações pelo app} other{}}",
@@ -116,6 +116,7 @@
 
 
     "recommendationsTitle": "Recomendações",
+    "createProductTitle": "Criar produto",
 
 
 

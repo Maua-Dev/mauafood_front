@@ -1,7 +1,7 @@
 import 'dart:js_interop';
 
 import 'package:mauafood_front/app/modules/menu/presenter/states/new_product/new_product_state.dart';
-import 'package:mauafood_front/app/shared/helpers/utils/validation_helper.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';
@@ -12,7 +12,9 @@ class NewProductController = NewProductControllerBase
     with _$NewProductController;
 
 abstract class NewProductControllerBase with Store {
-  NewProductControllerBase();
+  final ICreateProductUsecase _createProduct;
+
+  NewProductControllerBase(this._createProduct);
 
   @observable
   NewProductState state = NewProductInitialState();

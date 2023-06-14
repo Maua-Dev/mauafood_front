@@ -790,6 +790,16 @@ class S {
     );
   }
 
+  /// `Create product`
+  String get createProductTitle {
+    return Intl.message(
+      'Create product',
+      name: 'createProductTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Password changed successfully!`
   String get successChangePassword {
     return Intl.message(

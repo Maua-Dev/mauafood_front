@@ -70,16 +70,24 @@ class RestaurantWidget extends StatelessWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8),
-                      child: Text(
-                        restaurantInfo.name,
-                        style: AppTextStyles.h1.copyWith(
-                            fontSize: 19, color: AppColors.mainBlueColor),
+                      child: SizedBox(
+                        width: ScreenHelper.width(context) * 0.4,
+                        child: Text(
+                          restaurantInfo.restaurantName,
+                          style: AppTextStyles.h1.copyWith(
+                              fontSize:
+                                  ScreenHelper.width(context) < 550 ? 19 : 28,
+                              color: AppColors.mainBlueColor),
+                        ),
                       ),
                     ),
-                    Text(
-                      S.of(context).seeMenuTitle,
-                      style: AppTextStyles.h2.copyWith(
-                          fontSize: 16, color: AppColors.mainBlueColor),
+                    SizedBox(
+                      width: ScreenHelper.width(context) * 0.4,
+                      child: Text(
+                        S.of(context).seeMenuTitle,
+                        style: AppTextStyles.h2.copyWith(
+                            fontSize: 16, color: AppColors.mainBlueColor),
+                      ),
                     ),
                   ],
                 )

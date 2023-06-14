@@ -1,4 +1,5 @@
 import 'package:mauafood_front/app/modules/menu/presenter/states/menu_state.dart';
+import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../../shared/domain/enums/product_enum.dart';
@@ -26,6 +27,9 @@ abstract class MenuRestaurantControllerBase with Store {
   @observable
   List<Product> listAllProduct = [];
 
+  @observable
+  List<Product> listAllProductWithoutAccent = [];
+
   @action
   void changeState(MenuState value) => state = value;
 
@@ -48,7 +52,9 @@ abstract class MenuRestaurantControllerBase with Store {
       } else {
         var filterList = listAllProduct
             .where(
-              (e) => e.name.toLowerCase().startsWith(search.toLowerCase()),
+              (e) => e.name.withoutDiacritics
+                  .toLowerCase()
+                  .startsWith(search.toLowerCase().withoutDiacritics),
             )
             .toList();
         changeState(MenuLoadedSuccessState(listProduct: filterList, index: 0));

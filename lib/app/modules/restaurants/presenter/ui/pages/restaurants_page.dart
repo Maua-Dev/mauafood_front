@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/restaurant_widget.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -39,6 +40,28 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
     var controller = Modular.get<RestaurantController>();
 
     return Scaffold(
+   
+      extendBody: true,
+        bottomNavigationBar: SafeArea(
+          child: Container(
+            padding: const EdgeInsets.all(12),
+            margin:  const EdgeInsets.only(left: 64, right: 24, bottom: 16),
+            decoration: BoxDecoration(
+              color: AppColors.mainBlueColor,
+              borderRadius: const BorderRadius.all(Radius.circular(6))
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Row( 
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                IconButton(onPressed: null, icon: Icon(FontAwesomeIcons.house, color: AppColors.backgroundColor2,)),
+                IconButton(onPressed: null, icon: Icon(FontAwesomeIcons.cartPlus, color: AppColors.backgroundColor2,)),
+                IconButton(onPressed: null, icon: Icon(Icons.person_outline_outlined,color: AppColors.backgroundColor2, size: 32,)),
+                IconButton(onPressed: null, icon: Icon(FontAwesomeIcons.circleQuestion, color: AppColors.backgroundColor2, size: 32))],),
+            ),
+          ),
+        ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.mainBlueColor,
           onPressed: () {
@@ -47,7 +70,7 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
           },
           child: const Icon(Icons.mail),
         ),
-        backgroundColor: AppColors.mainBlueColor,
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
           toolbarHeight: 150,
           centerTitle: true,
@@ -62,37 +85,40 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
           automaticallyImplyLeading: false,
         ),
         body: Container(
-          decoration: BoxDecoration(
-              color: AppColors.backgroundColor2,
-              borderRadius: const BorderRadius.only(
-                topLeft: Radius.circular(40),
-              )),
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  S.of(context).restaurantsTitle,
-                  style:
-                      AppTextStyles.h1.copyWith(color: AppColors.mainBlueColor),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: controller.restaurants.length,
-                    itemBuilder: (context, i) {
-                      return RestaurantWidget(
-                        restaurantInfo:
-                            controller.restaurants[i].restaurantInfo,
-                      );
-                    },
+          color: AppColors.mainBlueColor,
+          child: Container(
+            decoration: BoxDecoration(
+                color: AppColors.backgroundColor2,
+                borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(40),
+                )),
+            width: double.infinity,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 24, left: 24, right: 24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    S.of(context).restaurantsTitle,
+                    style:
+                        AppTextStyles.h1.copyWith(color: AppColors.mainBlueColor),
                   ),
-                )
-              ],
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: controller.restaurants.length,
+                      itemBuilder: (context, i) {
+                        return RestaurantWidget(
+                          restaurantInfo:
+                              controller.restaurants[i].restaurantInfo,
+                        );
+                      },
+                    ),
+                  )
+                ],
+              ),
             ),
           ),
         ));

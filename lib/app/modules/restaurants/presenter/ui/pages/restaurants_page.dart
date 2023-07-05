@@ -56,10 +56,10 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
               child: Row( 
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                IconButton(onPressed: null, icon: Icon(FontAwesomeIcons.house, color: AppColors.backgroundColor2,)),
-                IconButton(onPressed: null, icon: Icon(FontAwesomeIcons.cartPlus, color: AppColors.backgroundColor2,)),
-                IconButton(onPressed: null, icon: Icon(Icons.person_outline_outlined,color: AppColors.backgroundColor2, size: 32,)),
-                IconButton(onPressed: null, icon: Icon(FontAwesomeIcons.circleQuestion, color: AppColors.backgroundColor2, size: 32))],),
+                IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(FontAwesomeIcons.house, color: AppColors.backgroundColor2, size: 26,)),
+                IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(FontAwesomeIcons.cartPlus, color: AppColors.backgroundColor2, size: 26)),
+                IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(Icons.person_outline_outlined,color: AppColors.backgroundColor2, size: 40,)),
+                IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(FontAwesomeIcons.circleQuestion, color: AppColors.backgroundColor2, size: 30))],),
             ),
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/restaurant_widget.dart';
+import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
@@ -45,7 +46,7 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
         bottomNavigationBar: SafeArea(
           child: Container(
             padding: const EdgeInsets.all(12),
-            margin:  const EdgeInsets.only(left: 64, right: 24, bottom: 16),
+            margin: EdgeInsets.only(left: ScreenHelper.width(context) * 0.05, right: ScreenHelper.width(context) * 0.05, bottom: 16),
             decoration: BoxDecoration(
               color: AppColors.mainBlueColor,
               borderRadius: const BorderRadius.all(Radius.circular(6))

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
+import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/navbar/navbar_widget.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/restaurant_widget.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -43,25 +44,8 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
     return Scaffold(
    
       extendBody: true,
-        bottomNavigationBar: SafeArea(
-          child: Container(
-            padding: const EdgeInsets.all(12),
-            margin: EdgeInsets.only(left: ScreenHelper.width(context) * 0.05, right: ScreenHelper.width(context) * 0.05, bottom: 16),
-            decoration: BoxDecoration(
-              color: AppColors.mainBlueColor,
-              borderRadius: const BorderRadius.all(Radius.circular(6))
-            ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              child: Row( 
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(FontAwesomeIcons.house, color: AppColors.backgroundColor2, size: 26,)),
-                IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(FontAwesomeIcons.cartPlus, color: AppColors.backgroundColor2, size: 26)),
-                IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(Icons.person_outline_outlined,color: AppColors.backgroundColor2, size: 40,)),
-                IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(FontAwesomeIcons.circleQuestion, color: AppColors.backgroundColor2, size: 30))],),
-            ),
-          ),
+        bottomNavigationBar:  SafeArea(
+          child: NavBarWidget(),
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.mainBlueColor,

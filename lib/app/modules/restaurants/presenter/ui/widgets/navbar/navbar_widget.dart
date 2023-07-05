@@ -7,7 +7,7 @@ import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 class NavBarWidget extends StatelessWidget {
    NavBarWidget({super.key});
 
-  PageEnum page = PageEnum.home;
+  PageEnum page = PageEnum.profile;
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +23,22 @@ class NavBarWidget extends StatelessWidget {
               child: Row( 
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                page == PageEnum.home ? Container(height: 40, width: 125, decoration: BoxDecoration(color: AppColors.backgroundColor2, borderRadius: BorderRadius.circular(12)), child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children:[Icon(FontAwesomeIcons.house, color: AppColors.mainBlueColor, size: 26), Text("Home", style: TextStyle(color: AppColors.mainBlueColor, fontSize: 16, fontWeight: FontWeight.bold),)],)) : IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(FontAwesomeIcons.house, color: AppColors.backgroundColor2, size: 26,)),
-                page == PageEnum.cart ? Container(height: 40, width: 125, decoration: BoxDecoration(color: AppColors.backgroundColor2, borderRadius: BorderRadius.circular(12)), child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children:[Icon(FontAwesomeIcons.cartPlus, color: AppColors.mainBlueColor, size: 26), Text("Cesta", style: TextStyle(color: AppColors.mainBlueColor, fontSize: 16, fontWeight: FontWeight.bold),)],)) : IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(FontAwesomeIcons.cartPlus, color: AppColors.backgroundColor2, size: 26)),
-                page == PageEnum.profile ? Container(height: 40, width: 125, decoration: BoxDecoration(color: AppColors.backgroundColor2, borderRadius: BorderRadius.circular(12)), child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children:[Icon(Icons.person_outline_outlined, color: AppColors.mainBlueColor, size: 40), Text("Perfil", style: TextStyle(color: AppColors.mainBlueColor, fontSize: 16, fontWeight: FontWeight.bold),)],)) : IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(Icons.person_outline_outlined,color: AppColors.backgroundColor2, size: 40,)),
-                page == PageEnum.faq ? Container(height: 40, width: 100, decoration: BoxDecoration(color: AppColors.backgroundColor2, borderRadius: BorderRadius.circular(12)), child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children:[Icon(FontAwesomeIcons.circleQuestion, color: AppColors.mainBlueColor, size: 30), Text("Ajuda", style: TextStyle(color: AppColors.mainBlueColor, fontSize: 16, fontWeight: FontWeight.bold),)],)) : IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(FontAwesomeIcons.circleQuestion, color: AppColors.backgroundColor2, size: 30))],),
+                page == PageEnum.home ? Container(height: 50, width: 125, decoration: BoxDecoration(color: AppColors.backgroundColor2, borderRadius: BorderRadius.circular(12)), child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children:[Icon(FontAwesomeIcons.house, color: AppColors.mainBlueColor, size: 26), Text("Home", style: TextStyle(color: AppColors.mainBlueColor, fontSize: 16, fontWeight: FontWeight.bold),)],),
+                )) : IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(FontAwesomeIcons.house, color: AppColors.backgroundColor2, size: 26,)),
+                page == PageEnum.cart ? Container(height: 50, width: 125, decoration: BoxDecoration(color: AppColors.backgroundColor2, borderRadius: BorderRadius.circular(12)), child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children:[Icon(FontAwesomeIcons.cartPlus, color: AppColors.mainBlueColor, size: 26), Text("Cesta", style: TextStyle(color: AppColors.mainBlueColor, fontSize: 16, fontWeight: FontWeight.bold),)],),
+                )) : IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(FontAwesomeIcons.cartPlus, color: AppColors.backgroundColor2, size: 26)),
+                page == PageEnum.profile ? Container(height: 50, width: 125, decoration: BoxDecoration(color: AppColors.backgroundColor2, borderRadius: BorderRadius.circular(12)), child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children:[Icon(Icons.person_outline_outlined, color: AppColors.mainBlueColor, size: 40), Text("Perfil", style: TextStyle(color: AppColors.mainBlueColor, fontSize: 16, fontWeight: FontWeight.bold),)],),
+                )) : IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(Icons.person_outline_outlined,color: AppColors.backgroundColor2, size: 40,)),
+                page == PageEnum.faq ? Container(height: 50, width: 125, decoration: BoxDecoration(color: AppColors.backgroundColor2, borderRadius: BorderRadius.circular(12)), child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children:[Icon(FontAwesomeIcons.circleQuestion, color: AppColors.mainBlueColor, size: 30), Text("Ajuda", style: TextStyle(color: AppColors.mainBlueColor, fontSize: 16, fontWeight: FontWeight.bold),)],),
+                )) : IconButton(onPressed: null, padding: const EdgeInsets.all(0), icon: Icon(FontAwesomeIcons.circleQuestion, color: AppColors.backgroundColor2, size: 30))],),
             ),
           );
   }

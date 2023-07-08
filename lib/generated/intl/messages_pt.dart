@@ -96,9 +96,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "appTitle": MessageLookupByLibrary.simpleMessage("Mauá Food"),
         "attentionTitle": MessageLookupByLibrary.simpleMessage("Atenção"),
         "authErrorsSchema": m0,
+        "cancelationTitle": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "categoryTitle": MessageLookupByLibrary.simpleMessage("Categoria"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Alterar senha"),
+        "closeTitle": MessageLookupByLibrary.simpleMessage("Fechar"),
         "codeErrorAlert":
             MessageLookupByLibrary.simpleMessage("Erro com código."),
         "codeTitle": MessageLookupByLibrary.simpleMessage("Código"),
@@ -118,6 +120,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
         "createProductTitle":
             MessageLookupByLibrary.simpleMessage("Criar produto"),
+        "dataStorageAlertTitle": MessageLookupByLibrary.simpleMessage(
+            "Caso voce confirme o envio da mensagem, está concordando que armazenemos seu nome e e-mail para que possamos ter o seu feedback e caso necessário, responde-lo."),
+        "dataStorageTitle":
+            MessageLookupByLibrary.simpleMessage("Armazenamento de dados"),
+        "deleteProductConfirmationTitle": MessageLookupByLibrary.simpleMessage(
+            "Tem certeza que deseja excluir o produto?"),
+        "deleteTitle": MessageLookupByLibrary.simpleMessage("Excluir"),
         "descriptionTitle": MessageLookupByLibrary.simpleMessage("Descrição"),
         "disclaimerText": MessageLookupByLibrary.simpleMessage(
             "O MauáFood trabalha em conjunto com os restaurantes para estarmos sempre atualizados, porém não nos responsabilizamos por qualquer diferença entre os preços, disponibilidade e informações dos produtos dos menus exibidos.\nQualquer erro encontrado nos informe clicando no ícone de e-mail no canto inferior direito da tela!"),
@@ -184,6 +193,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "productNameSchema": m4,
         "productPrepareTimeMinutes": m5,
         "productPriceCurrency": m6,
+        "productSuccessfullyDeletedTitle": MessageLookupByLibrary.simpleMessage(
+            "Produto excluído com sucesso."),
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recomendações"),

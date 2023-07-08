@@ -376,6 +376,76 @@ class S {
     );
   }
 
+  /// `Cancel`
+  String get cancelationTitle {
+    return Intl.message(
+      'Cancel',
+      name: 'cancelationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get deleteTitle {
+    return Intl.message(
+      'Delete',
+      name: 'deleteTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete the product?`
+  String get deleteProductConfirmationTitle {
+    return Intl.message(
+      'Are you sure you want to delete the product?',
+      name: 'deleteProductConfirmationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product deleted successfully.`
+  String get productSuccessfullyDeletedTitle {
+    return Intl.message(
+      'Product deleted successfully.',
+      name: 'productSuccessfullyDeletedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data storage`
+  String get dataStorageTitle {
+    return Intl.message(
+      'Data storage',
+      name: 'dataStorageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it.`
+  String get dataStorageAlertTitle {
+    return Intl.message(
+      'If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it.',
+      name: 'dataStorageAlertTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get closeTitle {
+    return Intl.message(
+      'Close',
+      name: 'closeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Required field.`
   String get requiredFieldAlert {
     return Intl.message(

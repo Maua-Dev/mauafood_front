@@ -41,6 +41,13 @@
     "saveTitle": "Salvar",
     "notificationsOptionsSchema": "{notifications, select, normalPart{Deseja receber } email{notificações por e-mail} app{notificações pelo app} other{}}",
     "labelName": "Nome Completo",
+    "cancelationTitle": "Cancelar",
+    "deleteTitle": "Excluir",
+    "deleteProductConfirmationTitle": "Tem certeza que deseja excluir o produto?",
+    "productSuccessfullyDeletedTitle": "Produto excluído com sucesso.",
+    "dataStorageTitle": "Armazenamento de dados",
+    "dataStorageAlertTitle": "Caso voce confirme o envio da mensagem, está concordando que armazenemos seu nome e e-mail para que possamos ter o seu feedback e caso necessário, responde-lo.",
+    "closeTitle": "Fechar",
 
     "requiredFieldAlert": "Campo obrigatório.",
     "invalidEmailAlert": "E-mail inválido.",

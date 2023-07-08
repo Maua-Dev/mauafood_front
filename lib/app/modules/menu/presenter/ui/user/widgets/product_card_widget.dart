@@ -1,3 +1,7 @@
+import 'dart:io';
+import 'dart:typed_data';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -8,11 +12,15 @@ import '../../../../../../shared/domain/entities/product.dart';
 class ProductCardWidget extends StatelessWidget {
   final Product product;
   final Function()? onPressed;
+  final File? mobileImage;
+  final Uint8List? webImage;
 
   const ProductCardWidget({
     Key? key,
     required this.product,
     required this.onPressed,
+    this.mobileImage,
+    this.webImage,
   }) : super(key: key);
 
   @override
@@ -37,22 +45,33 @@ class ProductCardWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Image.network(
-                    product.photo,
-                    fit: BoxFit.contain,
-                    loadingBuilder: (BuildContext context, Widget child,
-                        ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
+                  child: product.photo == ""
+                      ? kIsWeb
+                          ? Image.memory(
+                              webImage!,
+                              fit: BoxFit.contain,
+                            )
+                          : Image.file(
+                              mobileImage!,
+                              fit: BoxFit.contain,
+                            )
+                      : Image.network(
+                          product.photo,
+                          fit: BoxFit.contain,
+                          loadingBuilder: (BuildContext context, Widget child,
+                              ImageChunkEvent? loadingProgress) {
+                            if (loadingProgress == null) return child;
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value: loadingProgress.expectedTotalBytes !=
+                                        null
+                                    ? loadingProgress.cumulativeBytesLoaded /
+                                        loadingProgress.expectedTotalBytes!
+                                    : null,
+                              ),
+                            );
+                          },
                         ),
-                      );
-                    },
-                  ),
                 ),
               ),
               Padding(

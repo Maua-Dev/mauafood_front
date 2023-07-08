@@ -1,5 +1,8 @@
+import 'dart:io';
 import 'dart:js_interop';
 
+import 'package:flutter/foundation.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/states/new_product/new_product_state.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
 import 'package:mobx/mobx.dart';
@@ -109,5 +112,26 @@ abstract class NewProductControllerBase with Store {
   @action
   void setProductAvailability(bool value) {
     productAvailability = value;
+  }
+
+  @observable
+  File? productMobileImage;
+
+  @observable
+  Uint8List? productWebImage = Uint8List(8);
+
+  @action
+  Future setProductImage() async {
+    if (!kIsWeb) {
+      XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        productMobileImage = File(image.path);
+      }
+    } else {
+      XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        productWebImage = await image.readAsBytes();
+      }
+    }
   }
 }

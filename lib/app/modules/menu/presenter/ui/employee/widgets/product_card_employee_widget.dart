@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/shared/widgets/confirm_dialog_widget.dart';
 import '../../../../../../../generated/l10n.dart';
 import '../../../../../../shared/themes/app_colors.dart';
 import '../../../../../../shared/themes/app_text_styles.dart';
@@ -132,10 +134,48 @@ class ProductCardEmployeeWidget extends StatelessWidget {
               Positioned(
                 right: 8,
                 top: 8,
-                child: Icon(
-                  Icons.edit,
-                  color: AppColors.mainBlueColor,
-                  size: 24,
+                child: Row(
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.edit,
+                          color: AppColors.mainBlueColor,
+                          size: 24,
+                        )),
+                    IconButton(
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (BuildContext buildContext) {
+                                return ConfirmationDialogWidget(
+                                  cancellationText:
+                                      S.of(context).cancelationTitle,
+                                  dialogContent: S
+                                      .of(context)
+                                      .deleteProductConfirmationTitle,
+                                  confirmationText: S.of(context).deleteTitle,
+                                  onConfirmation: () {
+                                    Modular.to.pop();
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text(
+                                          S
+                                              .of(context)
+                                              .productSuccessfullyDeletedTitle,
+                                          style: AppTextStyles.h2.copyWith(
+                                              color: AppColors.white)),
+                                    ));
+                                  },
+                                );
+                              });
+                        },
+                        icon: Icon(
+                          Icons.delete,
+                          color: AppColors.mainBlueColor,
+                          size: 24,
+                        ))
+                  ],
                 ),
               )
             ],

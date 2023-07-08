@@ -94,9 +94,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "appTitle": MessageLookupByLibrary.simpleMessage("Mauá Food"),
         "attentionTitle": MessageLookupByLibrary.simpleMessage("Attention"),
         "authErrorsSchema": m0,
+        "cancelationTitle": MessageLookupByLibrary.simpleMessage("Cancel"),
         "categoryTitle": MessageLookupByLibrary.simpleMessage("Category"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Change Password"),
+        "closeTitle": MessageLookupByLibrary.simpleMessage("Close"),
         "codeErrorAlert":
             MessageLookupByLibrary.simpleMessage("Error with code."),
         "codeTitle": MessageLookupByLibrary.simpleMessage("Code"),
@@ -116,6 +118,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
         "createProductTitle":
             MessageLookupByLibrary.simpleMessage("Create product"),
+        "dataStorageAlertTitle": MessageLookupByLibrary.simpleMessage(
+            "If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it."),
+        "dataStorageTitle":
+            MessageLookupByLibrary.simpleMessage("Data storage"),
+        "deleteProductConfirmationTitle": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete the product?"),
+        "deleteTitle": MessageLookupByLibrary.simpleMessage("Delete"),
         "descriptionTitle": MessageLookupByLibrary.simpleMessage("Description"),
         "disclaimerText": MessageLookupByLibrary.simpleMessage(
             "MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!"),
@@ -181,6 +190,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "productNameSchema": m4,
         "productPrepareTimeMinutes": m5,
         "productPriceCurrency": m6,
+        "productSuccessfullyDeletedTitle": MessageLookupByLibrary.simpleMessage(
+            "Product deleted successfully."),
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recommendations"),

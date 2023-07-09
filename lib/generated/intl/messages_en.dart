@@ -118,6 +118,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
         "createProductTitle":
             MessageLookupByLibrary.simpleMessage("Create product"),
+        "createTitle": MessageLookupByLibrary.simpleMessage("Create"),
         "dataStorageAlertTitle": MessageLookupByLibrary.simpleMessage(
             "If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it."),
         "dataStorageTitle":
@@ -190,6 +191,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "productNameSchema": m4,
         "productPrepareTimeMinutes": m5,
         "productPriceCurrency": m6,
+        "productSuccessfullyCreatedTitle": MessageLookupByLibrary.simpleMessage(
+            "Product created successfully."),
         "productSuccessfullyDeletedTitle": MessageLookupByLibrary.simpleMessage(
             "Product deleted successfully."),
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),

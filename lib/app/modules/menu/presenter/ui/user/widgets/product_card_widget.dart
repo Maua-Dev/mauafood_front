@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -93,6 +92,7 @@ class ProductCardWidget extends StatelessWidget {
                     ),
                     Text(
                       S.of(context).productPriceCurrency(product.price),
+                      overflow: TextOverflow.ellipsis,
                       style: AppTextStyles.h2Highlight.copyWith(
                           fontWeight: FontWeight.bold,
                           overflow: TextOverflow.ellipsis),

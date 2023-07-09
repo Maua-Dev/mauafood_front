@@ -118,7 +118,15 @@ abstract class NewProductControllerBase with Store {
   File? productMobileImage;
 
   @observable
-  Uint8List? productWebImage = Uint8List(8);
+  Uint8List? productWebImage;
+
+  @observable
+  bool? isPhotoUploaded;
+
+  @action
+  setIsPhotoUploaded(bool value) {
+    isPhotoUploaded = value;
+  }
 
   @action
   Future setProductImage() async {

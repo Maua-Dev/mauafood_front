@@ -350,6 +350,16 @@ class S {
     );
   }
 
+  /// `Create`
+  String get createTitle {
+    return Intl.message(
+      'Create',
+      name: 'createTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{notifications, select, normalPart{Want to receive } email{email notifications} app{app notifications} other{}}`
   String notificationsOptionsSchema(Object notifications) {
     return Intl.select(
@@ -411,6 +421,16 @@ class S {
     return Intl.message(
       'Product deleted successfully.',
       name: 'productSuccessfullyDeletedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product created successfully.`
+  String get productSuccessfullyCreatedTitle {
+    return Intl.message(
+      'Product created successfully.',
+      name: 'productSuccessfullyCreatedTitle',
       desc: '',
       args: [],
     );

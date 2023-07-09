@@ -67,7 +67,55 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              IconButton(
+                                  onPressed: () {},
+                                  icon: Icon(
+                                    Icons.edit,
+                                    color: AppColors.mainBlueColor,
+                                    size: 24,
+                                  )),
+                              IconButton(
+                                  onPressed: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext buildContext) {
+                                          return ConfirmationDialogWidget(
+                                            cancellationText:
+                                                S.of(context).cancelationTitle,
+                                            dialogContent: S
+                                                .of(context)
+                                                .deleteProductConfirmationTitle,
+                                            confirmationText:
+                                                S.of(context).deleteTitle,
+                                            onConfirmation: () {
+                                              Modular.to.pop();
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(SnackBar(
+                                                content: Text(
+                                                    S
+                                                        .of(context)
+                                                        .productSuccessfullyDeletedTitle,
+                                                    style: AppTextStyles.h2
+                                                        .copyWith(
+                                                            color: AppColors
+                                                                .white)),
+                                              ));
+                                            },
+                                          );
+                                        });
+                                  },
+                                  icon: Icon(
+                                    Icons.delete,
+                                    color: AppColors.mainBlueColor,
+                                    size: 24,
+                                  ))
+                            ],
+                          ),
                           Text(
+                            overflow: TextOverflow.clip,
                             product.name,
                             style: AppTextStyles.h1.copyWith(
                                 fontSize: 20, color: AppColors.mainBlueColor),
@@ -131,53 +179,6 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              Positioned(
-                right: 8,
-                top: 8,
-                child: Row(
-                  children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.edit,
-                          color: AppColors.mainBlueColor,
-                          size: 24,
-                        )),
-                    IconButton(
-                        onPressed: () {
-                          showDialog(
-                              context: context,
-                              builder: (BuildContext buildContext) {
-                                return ConfirmationDialogWidget(
-                                  cancellationText:
-                                      S.of(context).cancelationTitle,
-                                  dialogContent: S
-                                      .of(context)
-                                      .deleteProductConfirmationTitle,
-                                  confirmationText: S.of(context).deleteTitle,
-                                  onConfirmation: () {
-                                    Modular.to.pop();
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      content: Text(
-                                          S
-                                              .of(context)
-                                              .productSuccessfullyDeletedTitle,
-                                          style: AppTextStyles.h2.copyWith(
-                                              color: AppColors.white)),
-                                    ));
-                                  },
-                                );
-                              });
-                        },
-                        icon: Icon(
-                          Icons.delete,
-                          color: AppColors.mainBlueColor,
-                          size: 24,
-                        ))
-                  ],
-                ),
-              )
             ],
           ),
         ),

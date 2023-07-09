@@ -7,9 +7,13 @@ import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mauafood_front/app/shared/domain/entities/product.dart' as _i6;
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart'
+    as _i8;
 import 'package:mauafood_front/app/shared/domain/repositories/menu_repository_interface.dart'
     as _i3;
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart' as _i5;
+import 'package:mauafood_front/app/shared/infra/models/product_model.dart'
+    as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -101,4 +105,29 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>);
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, void>> createProduct(
+    _i7.ProductModel? product,
+    _i8.RestaurantEnum? restaurant,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createProduct,
+          [
+            product,
+            restaurant,
+          ],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.Failure, void>>.value(
+            _FakeEither_0<_i5.Failure, void>(
+          this,
+          Invocation.method(
+            #createProduct,
+            [
+              product,
+              restaurant,
+            ],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
 }

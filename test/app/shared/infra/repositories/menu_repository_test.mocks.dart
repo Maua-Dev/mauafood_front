@@ -5,8 +5,12 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i3;
 
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart'
+    as _i5;
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart'
     as _i2;
+import 'package:mauafood_front/app/shared/infra/models/product_model.dart'
+    as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -37,4 +41,20 @@ class MockIMenuDatasource extends _i1.Mock implements _i2.IMenuDatasource {
         returnValue:
             _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
       ) as _i3.Future<Map<String, dynamic>>);
+  @override
+  _i3.Future<void> createProduct(
+    _i4.ProductModel? product,
+    _i5.RestaurantEnum? restaurant,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createProduct,
+          [
+            product,
+            restaurant,
+          ],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

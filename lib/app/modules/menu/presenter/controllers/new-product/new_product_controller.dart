@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'dart:js_interop';
 
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
@@ -84,7 +83,7 @@ abstract class NewProductControllerBase with Store {
 
   @action
   String? validateProductType(String? value) {
-    if (value.isNull) {
+    if (value!.isEmpty) {
       return S.current.requiredFieldAlert;
     }
     return null;

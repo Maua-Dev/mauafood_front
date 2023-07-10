@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -71,20 +72,48 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                                                 .colorScheme
                                                 .error
                                             : AppColors.mainBlueColor)),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(children: [
-                                    Icon(
-                                      Icons.fastfood,
-                                      color: AppColors.mainBlueColor,
-                                    ),
-                                    Text(
-                                      S.of(context).photoTitle,
-                                      style: AppTextStyles.h2.copyWith(
-                                        color: AppColors.mainBlueColor,
-                                      ),
-                                    )
-                                  ]),
+                                child: SizedBox(
+                                  width: 80,
+                                  height: 88,
+                                  child: (newProductController
+                                                  .productWebImage ==
+                                              null &&
+                                          newProductController
+                                                  .productMobileImage ==
+                                              null)
+                                      ? Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                              Icon(
+                                                Icons.fastfood,
+                                                color: AppColors.mainBlueColor,
+                                              ),
+                                              Text(
+                                                S.of(context).photoTitle,
+                                                style:
+                                                    AppTextStyles.h2.copyWith(
+                                                  color:
+                                                      AppColors.mainBlueColor,
+                                                ),
+                                              )
+                                            ])
+                                      : Padding(
+                                          padding: const EdgeInsets.all(4),
+                                          child: Expanded(
+                                            child: kIsWeb
+                                                ? Image.memory(
+                                                    newProductController
+                                                        .productWebImage!,
+                                                    fit: BoxFit.contain,
+                                                  )
+                                                : Image.file(
+                                                    newProductController
+                                                        .productMobileImage!,
+                                                    fit: BoxFit.contain,
+                                                  ),
+                                          ),
+                                        ),
                                 ),
                               ),
                             ),
@@ -94,7 +123,7 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                           return newProductController.isPhotoUploaded == false
                               ? Padding(
                                   padding:
-                                      const EdgeInsets.fromLTRB(8, 8, 0, 0),
+                                      const EdgeInsets.fromLTRB(12, 8, 0, 0),
                                   child: Text(
                                     S.of(context).requiredFieldAlert,
                                     style: Theme.of(context)

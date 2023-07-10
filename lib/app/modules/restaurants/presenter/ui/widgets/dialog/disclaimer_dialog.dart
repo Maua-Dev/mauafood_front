@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
@@ -51,7 +52,7 @@ class DisclaimerDialog extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 64),
             child: SizedBox(
               width: double.infinity,
-              height: MediaQuery.of(context).size.height / 7,
+              height: ScreenHelper.height(context) / 7,
               child: Image.network(
                 transparentLogo,
                 fit: BoxFit.contain,

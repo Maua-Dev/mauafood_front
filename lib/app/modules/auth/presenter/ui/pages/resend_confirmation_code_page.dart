@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/widgets/text_field_widget.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import '../../../../../shared/helpers/services/s3/assets_s3.dart';
@@ -35,7 +36,7 @@ class _ResendConfirmationCodePageState
                 padding: const EdgeInsets.symmetric(horizontal: 64),
                 child: SizedBox(
                   width: double.infinity,
-                  height: MediaQuery.of(context).size.height / 3,
+                  height: ScreenHelper.height(context) / 3,
                   child: Image.network(
                     transparentLogo,
                     fit: BoxFit.contain,

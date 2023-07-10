@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -106,7 +107,7 @@ class ProductInfoPage extends StatelessWidget {
                           if (recommendedProductList.length > 1)
                             SizedBox(
                               height: 150,
-                              width: MediaQuery.of(context).size.width / 4,
+                              width: ScreenHelper.width(context) / 4,
                               child: RecommendedProductWidget(
                                 product: recommendedProductList[0],
                                 onPressed: () {
@@ -124,7 +125,7 @@ class ProductInfoPage extends StatelessWidget {
                           if (recommendedProductList.length > 1)
                             SizedBox(
                               height: 150,
-                              width: MediaQuery.of(context).size.width / 4,
+                              width: ScreenHelper.width(context) / 4,
                               child: RecommendedProductWidget(
                                 product: recommendedProductList[1],
                                 onPressed: () {
@@ -142,7 +143,7 @@ class ProductInfoPage extends StatelessWidget {
                           if (recommendedProductList.length > 2)
                             SizedBox(
                               height: 150,
-                              width: MediaQuery.of(context).size.width / 4,
+                              width: ScreenHelper.width(context) / 4,
                               child: RecommendedProductWidget(
                                 product: recommendedProductList[2],
                                 onPressed: () {

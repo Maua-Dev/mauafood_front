@@ -2,27 +2,27 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/states/new_product/new_product_state.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/states/product_form/product_form_state.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';
 
-part 'new_product_controller.g.dart';
+part 'product_form_controller.g.dart';
 
-class NewProductController = NewProductControllerBase
-    with _$NewProductController;
+class ProductFormController = ProductFormControllerBase
+    with _$ProductFormController;
 
-abstract class NewProductControllerBase with Store {
+abstract class ProductFormControllerBase with Store {
   final ICreateProductUsecase _createProduct;
 
-  NewProductControllerBase(this._createProduct);
+  ProductFormControllerBase(this._createProduct);
 
   @observable
-  NewProductState state = NewProductInitialState();
+  ProductFormState state = ProductFormInitialState();
 
   @action
-  void changeState(NewProductState value) => state = value;
+  void changeState(ProductFormState value) => state = value;
 
   @observable
   String? productName;
@@ -95,14 +95,6 @@ abstract class NewProductControllerBase with Store {
   @action
   void setProductDescription(String value) {
     productDescription = value;
-  }
-
-  @action
-  String? validateDescription(String? value) {
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    }
-    return null;
   }
 
   @observable

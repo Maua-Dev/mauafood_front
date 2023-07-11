@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/widgets/product_form_dialog_widget.dart';
 import 'package:mauafood_front/app/shared/widgets/confirm_dialog_widget.dart';
 import '../../../../../../../generated/l10n.dart';
 import '../../../../../../shared/themes/app_colors.dart';
@@ -71,7 +72,14 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               IconButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: ((context) =>
+                                            ProductFormDialogWidget(
+                                              product: product,
+                                            )));
+                                  },
                                   icon: Icon(
                                     Icons.edit,
                                     color: AppColors.mainBlueColor,

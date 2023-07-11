@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/widgets/new_product_dialog_widget.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/widgets/product_form_dialog_widget.dart';
 import '../../../../../../../generated/l10n.dart';
 import '../../../../../../shared/domain/enums/product_enum.dart';
 import '../../../../../../shared/helpers/services/s3/assets_s3.dart';
@@ -63,7 +63,7 @@ class EmployeeMenuPage extends StatelessWidget {
                         onPressed: () => showDialog(
                             context: context,
                             builder: (BuildContext buildContext) {
-                              return const NewProductDialogWidget();
+                              return const ProductFormDialogWidget();
                             }),
                         icon: Icon(
                           Icons.add_circle_sharp,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/controllers/new-product/new_product_controller.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/controllers/product-form/product_form_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/product_card_widget.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
@@ -15,14 +15,16 @@ import 'package:currency_text_input_formatter/currency_text_input_formatter.dart
 
 import '../../../../../../../generated/l10n.dart';
 
-class NewProductDialogWidget extends StatefulWidget {
-  const NewProductDialogWidget({super.key});
+class ProductFormDialogWidget extends StatefulWidget {
+  final Product? product;
+  const ProductFormDialogWidget({super.key, this.product});
 
   @override
-  State<NewProductDialogWidget> createState() => _NewProductDialogWidgetState();
+  State<ProductFormDialogWidget> createState() =>
+      _ProductFormDialogWidgetState();
 }
 
-class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
+class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -32,7 +34,18 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var newProductController = Modular.get<NewProductController>();
+    var productFormController = Modular.get<ProductFormController>();
+    if (widget.product != null) {
+      productFormController.productAvailability = widget.product!.available;
+      productFormController.productType = widget.product!.type.name;
+      productFormController.productName = widget.product!.name;
+      productFormController.productPrice =
+          double.parse('R\$ ${widget.product!.price.toString()}.00');
+    } else {
+      productFormController.productAvailability = true;
+      productFormController.productType = null;
+      productFormController.productName = "";
+    }
     return AlertDialog(
         scrollable: true,
         title:
@@ -60,12 +73,12 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                             cursor: SystemMouseCursors.click,
                             child: InkWell(
                               onTap: () =>
-                                  newProductController.setProductImage(),
+                                  productFormController.setProductImage(),
                               child: Ink(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                     border: Border.all(
-                                        color: newProductController
+                                        color: productFormController
                                                     .isPhotoUploaded ==
                                                 false
                                             ? Theme.of(context)
@@ -75,12 +88,13 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                                 child: SizedBox(
                                   width: 80,
                                   height: 88,
-                                  child: (newProductController
+                                  child: (productFormController
                                                   .productWebImage ==
                                               null &&
-                                          newProductController
+                                          productFormController
                                                   .productMobileImage ==
-                                              null)
+                                              null &&
+                                          widget.product == null)
                                       ? Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -101,18 +115,23 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                                       : Padding(
                                           padding: const EdgeInsets.all(4),
                                           child: Expanded(
-                                            child: kIsWeb
-                                                ? Image.memory(
-                                                    newProductController
-                                                        .productWebImage!,
-                                                    fit: BoxFit.contain,
-                                                  )
-                                                : Image.file(
-                                                    newProductController
-                                                        .productMobileImage!,
-                                                    fit: BoxFit.contain,
-                                                  ),
-                                          ),
+                                              child: widget.product?.photo ==
+                                                      null
+                                                  ? kIsWeb
+                                                      ? Image.memory(
+                                                          productFormController
+                                                              .productWebImage!,
+                                                          fit: BoxFit.contain,
+                                                        )
+                                                      : Image.file(
+                                                          productFormController
+                                                              .productMobileImage!,
+                                                          fit: BoxFit.contain,
+                                                        )
+                                                  : Image.network(
+                                                      widget.product!.photo,
+                                                      fit: BoxFit.contain,
+                                                    )),
                                         ),
                                 ),
                               ),
@@ -120,7 +139,7 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                           );
                         }),
                         Observer(builder: (_) {
-                          return newProductController.isPhotoUploaded == false
+                          return productFormController.isPhotoUploaded == false
                               ? Padding(
                                   padding:
                                       const EdgeInsets.fromLTRB(12, 8, 0, 0),
@@ -145,7 +164,7 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                     Observer(builder: (_) {
                       return Flexible(
                         child: Text(
-                          newProductController.productName ?? "",
+                          productFormController.productName ?? "",
                           style: AppTextStyles.h1.copyWith(
                               color: AppColors.mainBlueColor,
                               fontSize: 16,
@@ -162,8 +181,9 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                 TextFieldWidget(
                   title: S.of(context).nameTitle,
                   onChanged: (value) =>
-                      newProductController.setProductName(value),
-                  validator: newProductController.validateProductName,
+                      productFormController.setProductName(value),
+                  validator: productFormController.validateProductName,
+                  initialValue: widget.product?.name ?? "",
                 ),
                 const SizedBox(
                   height: 8,
@@ -173,9 +193,10 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                   keyboardType: TextInputType.number,
                   suffixText: S.of(context).minutesTitle,
                   onChanged: (value) =>
-                      newProductController.setProductPrepareTime(value),
+                      productFormController.setProductPrepareTime(value),
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-                  validator: newProductController.validateProductPrepareTime,
+                  validator: productFormController.validateProductPrepareTime,
+                  initialValue: widget.product?.prepareTime.toString() ?? "",
                 ),
                 const SizedBox(
                   height: 8,
@@ -188,14 +209,15 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                         title: S.of(context).priceTitle,
                         keyboardType: TextInputType.number,
                         onChanged: (value) =>
-                            newProductController.setProductPrice(value),
+                            productFormController.setProductPrice(value),
+                        initialValue: widget.product?.price.toString() ?? "",
                         inputFormatters: [
                           CurrencyTextInputFormatter(
                               decimalDigits: 2,
                               symbol: 'R\$',
                               enableNegative: false),
                         ],
-                        validator: newProductController.validateProductPrice,
+                        validator: productFormController.validateProductPrice,
                       ),
                     ),
                     const SizedBox(
@@ -222,7 +244,7 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                                           color: AppColors.mainBlueColor,
                                           width: 2))),
                               validator:
-                                  newProductController.validateProductType,
+                                  productFormController.validateProductType,
                               icon: const Icon(Icons.keyboard_arrow_down),
                               borderRadius: BorderRadius.circular(10),
                               focusColor: AppColors.white,
@@ -237,8 +259,8 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                                     value: productEnum.name,
                                     child: Text(productEnum.name.toString()));
                               }).toList(),
-                              value: newProductController.productType,
-                              onChanged: (value) => newProductController
+                              value: productFormController.productType,
+                              onChanged: (value) => productFormController
                                   .setProductType(value.toString()),
                             );
                           }),
@@ -253,8 +275,8 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                 TextFieldWidget(
                   title: S.of(context).descriptionTitle,
                   onChanged: (value) =>
-                      newProductController.setProductDescription(value),
-                  validator: newProductController.validateDescription,
+                      productFormController.setProductDescription(value),
+                  initialValue: widget.product?.description ?? "",
                 ),
                 const SizedBox(
                   height: 8,
@@ -275,8 +297,8 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                         child: FittedBox(
                           fit: BoxFit.fill,
                           child: Switch(
-                            value: newProductController.productAvailability,
-                            onChanged: (value) => newProductController
+                            value: productFormController.productAvailability,
+                            onChanged: (value) => productFormController
                                 .setProductAvailability(value),
                             activeColor: AppColors.mainBlueColor,
                           ),
@@ -302,16 +324,19 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                           return BorderSide(color: AppColors.mainBlueColor);
                         })),
                         onPressed: () {
-                          newProductController.setIsPhotoUploaded(false);
-                          if (newProductController.productWebImage != null ||
-                              newProductController.productMobileImage != null) {
-                            newProductController.setIsPhotoUploaded(true);
+                          productFormController.setIsPhotoUploaded(false);
+                          if (productFormController.productWebImage != null ||
+                              productFormController.productMobileImage !=
+                                  null ||
+                              widget.product?.photo != null) {
+                            productFormController.setIsPhotoUploaded(true);
                           }
                           if (_formKey.currentState!.validate() &&
-                              (newProductController.productWebImage != null ||
-                                  newProductController.productMobileImage !=
-                                      null)) {
-                            newProductController.setIsPhotoUploaded(true);
+                              (productFormController.productWebImage != null ||
+                                  productFormController.productMobileImage !=
+                                      null ||
+                                  widget.product?.photo != null)) {
+                            productFormController.setIsPhotoUploaded(true);
                             showDialog(
                                 context: context,
                                 builder: (BuildContext buildContext) {
@@ -333,22 +358,22 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                                       ),
                                       content: ProductCardWidget(
                                         product: Product(
-                                            available: newProductController
+                                            available: productFormController
                                                 .productAvailability,
-                                            name: newProductController
+                                            name: productFormController
                                                 .productName!,
-                                            description: newProductController
+                                            description: productFormController
                                                 .productDescription!,
-                                            prepareTime: newProductController
+                                            prepareTime: productFormController
                                                 .productPrepareTime,
-                                            price: newProductController
+                                            price: productFormController
                                                 .productPrice!,
                                             type: ProductEnum.ALL,
                                             photo: ""),
                                         onPressed: () {},
-                                        webImage: newProductController
+                                        webImage: productFormController
                                             .productWebImage,
-                                        mobileImage: newProductController
+                                        mobileImage: productFormController
                                             .productMobileImage,
                                       ));
                                 });
@@ -366,15 +391,17 @@ class _NewProductDialogWidgetState extends State<NewProductDialogWidget> {
                           return BorderSide(color: AppColors.mainBlueColor);
                         })),
                         onPressed: () {
-                          newProductController.setIsPhotoUploaded(false);
-                          if (newProductController.productWebImage != null ||
-                              newProductController.productMobileImage != null) {
-                            newProductController.setIsPhotoUploaded(true);
+                          productFormController.setIsPhotoUploaded(false);
+                          if (productFormController.productWebImage != null ||
+                              productFormController.productMobileImage !=
+                                  null) {
+                            productFormController.setIsPhotoUploaded(true);
                           }
                           if (_formKey.currentState!.validate() &&
-                                  newProductController.productWebImage !=
+                                  productFormController.productWebImage !=
                                       null ||
-                              newProductController.productMobileImage != null) {
+                              productFormController.productMobileImage !=
+                                  null) {
                             Modular.to.pop();
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text(

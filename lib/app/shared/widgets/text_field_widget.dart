@@ -12,6 +12,7 @@ class TextFieldWidget extends StatelessWidget {
   final String? Function(String?)? validator;
   final List<TextInputFormatter>? inputFormatters;
   final String? suffixText;
+  final String? initialValue;
 
   const TextFieldWidget(
       {super.key,
@@ -22,7 +23,8 @@ class TextFieldWidget extends StatelessWidget {
       this.inputFormatters,
       this.onChanged,
       this.validator,
-      this.suffixText});
+      this.suffixText,
+      this.initialValue});
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,7 @@ class TextFieldWidget extends StatelessWidget {
             : const SizedBox.shrink(),
         TextFormField(
           inputFormatters: inputFormatters,
+          initialValue: initialValue,
           textAlign: TextAlign.start,
           onChanged: onChanged,
           validator: validator,

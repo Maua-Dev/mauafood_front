@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'new_product_controller.dart';
+part of 'product_form_controller.dart';
 
 // **************************************************************************
 // StoreGenerator
@@ -8,25 +8,25 @@ part of 'new_product_controller.dart';
 
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
-mixin _$NewProductController on NewProductControllerBase, Store {
+mixin _$ProductFormController on ProductFormControllerBase, Store {
   late final _$stateAtom =
-      Atom(name: 'NewProductControllerBase.state', context: context);
+      Atom(name: 'ProductFormControllerBase.state', context: context);
 
   @override
-  NewProductState get state {
+  ProductFormState get state {
     _$stateAtom.reportRead();
     return super.state;
   }
 
   @override
-  set state(NewProductState value) {
+  set state(ProductFormState value) {
     _$stateAtom.reportWrite(value, super.state, () {
       super.state = value;
     });
   }
 
   late final _$productNameAtom =
-      Atom(name: 'NewProductControllerBase.productName', context: context);
+      Atom(name: 'ProductFormControllerBase.productName', context: context);
 
   @override
   String? get productName {
@@ -42,7 +42,7 @@ mixin _$NewProductController on NewProductControllerBase, Store {
   }
 
   late final _$productPrepareTimeAtom = Atom(
-      name: 'NewProductControllerBase.productPrepareTime', context: context);
+      name: 'ProductFormControllerBase.productPrepareTime', context: context);
 
   @override
   int? get productPrepareTime {
@@ -58,7 +58,7 @@ mixin _$NewProductController on NewProductControllerBase, Store {
   }
 
   late final _$productPriceAtom =
-      Atom(name: 'NewProductControllerBase.productPrice', context: context);
+      Atom(name: 'ProductFormControllerBase.productPrice', context: context);
 
   @override
   double? get productPrice {
@@ -74,7 +74,7 @@ mixin _$NewProductController on NewProductControllerBase, Store {
   }
 
   late final _$productTypeAtom =
-      Atom(name: 'NewProductControllerBase.productType', context: context);
+      Atom(name: 'ProductFormControllerBase.productType', context: context);
 
   @override
   String? get productType {
@@ -90,7 +90,7 @@ mixin _$NewProductController on NewProductControllerBase, Store {
   }
 
   late final _$productDescriptionAtom = Atom(
-      name: 'NewProductControllerBase.productDescription', context: context);
+      name: 'ProductFormControllerBase.productDescription', context: context);
 
   @override
   String? get productDescription {
@@ -106,7 +106,7 @@ mixin _$NewProductController on NewProductControllerBase, Store {
   }
 
   late final _$productAvailabilityAtom = Atom(
-      name: 'NewProductControllerBase.productAvailability', context: context);
+      name: 'ProductFormControllerBase.productAvailability', context: context);
 
   @override
   bool get productAvailability {
@@ -122,7 +122,7 @@ mixin _$NewProductController on NewProductControllerBase, Store {
   }
 
   late final _$productMobileImageAtom = Atom(
-      name: 'NewProductControllerBase.productMobileImage', context: context);
+      name: 'ProductFormControllerBase.productMobileImage', context: context);
 
   @override
   File? get productMobileImage {
@@ -138,7 +138,7 @@ mixin _$NewProductController on NewProductControllerBase, Store {
   }
 
   late final _$productWebImageAtom =
-      Atom(name: 'NewProductControllerBase.productWebImage', context: context);
+      Atom(name: 'ProductFormControllerBase.productWebImage', context: context);
 
   @override
   Uint8List? get productWebImage {
@@ -154,7 +154,7 @@ mixin _$NewProductController on NewProductControllerBase, Store {
   }
 
   late final _$isPhotoUploadedAtom =
-      Atom(name: 'NewProductControllerBase.isPhotoUploaded', context: context);
+      Atom(name: 'ProductFormControllerBase.isPhotoUploaded', context: context);
 
   @override
   bool? get isPhotoUploaded {
@@ -169,157 +169,148 @@ mixin _$NewProductController on NewProductControllerBase, Store {
     });
   }
 
-  late final _$setProductImageAsyncAction =
-      AsyncAction('NewProductControllerBase.setProductImage', context: context);
+  late final _$setProductImageAsyncAction = AsyncAction(
+      'ProductFormControllerBase.setProductImage',
+      context: context);
 
   @override
   Future<dynamic> setProductImage() {
     return _$setProductImageAsyncAction.run(() => super.setProductImage());
   }
 
-  late final _$NewProductControllerBaseActionController =
-      ActionController(name: 'NewProductControllerBase', context: context);
+  late final _$ProductFormControllerBaseActionController =
+      ActionController(name: 'ProductFormControllerBase', context: context);
 
   @override
-  void changeState(NewProductState value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.changeState');
+  void changeState(ProductFormState value) {
+    final _$actionInfo = _$ProductFormControllerBaseActionController
+        .startAction(name: 'ProductFormControllerBase.changeState');
     try {
       return super.changeState(value);
     } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
+      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setProductName(String value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.setProductName');
+    final _$actionInfo = _$ProductFormControllerBaseActionController
+        .startAction(name: 'ProductFormControllerBase.setProductName');
     try {
       return super.setProductName(value);
     } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
+      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String? validateProductName(String? value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.validateProductName');
+    final _$actionInfo = _$ProductFormControllerBaseActionController
+        .startAction(name: 'ProductFormControllerBase.validateProductName');
     try {
       return super.validateProductName(value);
     } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
+      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setProductPrepareTime(String value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.setProductPrepareTime');
+    final _$actionInfo = _$ProductFormControllerBaseActionController
+        .startAction(name: 'ProductFormControllerBase.setProductPrepareTime');
     try {
       return super.setProductPrepareTime(value);
     } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
+      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String? validateProductPrepareTime(String? value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.validateProductPrepareTime');
+    final _$actionInfo =
+        _$ProductFormControllerBaseActionController.startAction(
+            name: 'ProductFormControllerBase.validateProductPrepareTime');
     try {
       return super.validateProductPrepareTime(value);
     } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
+      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setProductPrice(String value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.setProductPrice');
+    final _$actionInfo = _$ProductFormControllerBaseActionController
+        .startAction(name: 'ProductFormControllerBase.setProductPrice');
     try {
       return super.setProductPrice(value);
     } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
+      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String? validateProductPrice(String? value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.validateProductPrice');
+    final _$actionInfo = _$ProductFormControllerBaseActionController
+        .startAction(name: 'ProductFormControllerBase.validateProductPrice');
     try {
       return super.validateProductPrice(value);
     } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
+      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setProductType(String value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.setProductType');
+    final _$actionInfo = _$ProductFormControllerBaseActionController
+        .startAction(name: 'ProductFormControllerBase.setProductType');
     try {
       return super.setProductType(value);
     } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
+      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   String? validateProductType(String? value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.validateProductType');
+    final _$actionInfo = _$ProductFormControllerBaseActionController
+        .startAction(name: 'ProductFormControllerBase.validateProductType');
     try {
       return super.validateProductType(value);
     } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
+      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setProductDescription(String value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.setProductDescription');
+    final _$actionInfo = _$ProductFormControllerBaseActionController
+        .startAction(name: 'ProductFormControllerBase.setProductDescription');
     try {
       return super.setProductDescription(value);
     } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  String? validateDescription(String? value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.validateDescription');
-    try {
-      return super.validateDescription(value);
-    } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
+      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   void setProductAvailability(bool value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.setProductAvailability');
+    final _$actionInfo = _$ProductFormControllerBaseActionController
+        .startAction(name: 'ProductFormControllerBase.setProductAvailability');
     try {
       return super.setProductAvailability(value);
     } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
+      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
   dynamic setIsPhotoUploaded(bool value) {
-    final _$actionInfo = _$NewProductControllerBaseActionController.startAction(
-        name: 'NewProductControllerBase.setIsPhotoUploaded');
+    final _$actionInfo = _$ProductFormControllerBaseActionController
+        .startAction(name: 'ProductFormControllerBase.setIsPhotoUploaded');
     try {
       return super.setIsPhotoUploaded(value);
     } finally {
-      _$NewProductControllerBaseActionController.endAction(_$actionInfo);
+      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 

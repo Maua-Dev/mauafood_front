@@ -1,3 +1,4 @@
+import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mobx/mobx.dart';
 
@@ -18,11 +19,12 @@ abstract class MenuRestaurantControllerBase with Store {
 
   MenuRestaurantControllerBase(
       this._getRestaurantProduct, this.restaurantInfo) {
-    loadRestaurantMenu();
+    //loadRestaurantMenu();
   }
 
   @observable
-  EmployeeMenuState state = EmployeeMenuInitialState();
+  EmployeeMenuState state =
+      EmployeeMenuErrorState(failure: Failure(message: 'message'));
 
   @observable
   List<Product> listAllProduct = [];

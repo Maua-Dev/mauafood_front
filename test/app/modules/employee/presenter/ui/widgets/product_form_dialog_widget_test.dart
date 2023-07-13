@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_modular/flutter_modular.dart' as modular;
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mauafood_front/app/modules/employee/employee_menu_module.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/product-form/product_form_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product_form/product_form_state.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/ui/widgets/product_form_dialog_widget.dart';
 import 'package:mauafood_front/generated/l10n.dart';
+import 'package:modular_test/modular_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 void main() {
   late ProductFormController controller;
-  
+
   setUpAll(() async {
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
     controller = ProductFormController();
+    initModules([
+      EmployeeMenuModule()
+    ], replaceBinds: [
+      modular.Bind<ProductFormController>((i) => controller),
+    ]);
   });
 
   testWidgets(

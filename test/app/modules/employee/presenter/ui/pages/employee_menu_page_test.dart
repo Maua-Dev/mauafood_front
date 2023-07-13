@@ -85,7 +85,7 @@ void main() {
       await widgetTester.pump();
       expect(find.byType(AppBar), findsOneWidget);
       expect(find.byType(Image), findsOneWidget);
-      expect(find.text(RestaurantEnum.biba.name), findsOneWidget);
+      expect(find.text(RestaurantEnum.biba.restaurantName), findsOneWidget);
     });
   });
 
@@ -111,7 +111,7 @@ void main() {
           EmployeeMenuLoadedSuccessState(listProduct: listMock, index: 0)));
       await widgetTester.pump();
 
-      expect(find.byType(FilterButtonWidget), findsNWidgets(9));
+      expect(find.byType(FilterButtonWidget), findsNWidgets(10));
       expect(find.byType(ListView), findsNWidgets(2));
     });
   });

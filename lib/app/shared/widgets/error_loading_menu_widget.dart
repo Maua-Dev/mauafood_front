@@ -9,22 +9,26 @@ class ErrorLoadingMenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        SizedBox(
-          width: double.infinity,
-          height: 300,
-          child: Image.network(
-            greyLogo,
-            fit: BoxFit.contain,
-          ),
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            SizedBox(
+              width: double.infinity,
+              height: 300,
+              child: Image.network(
+                greyLogo,
+                fit: BoxFit.contain,
+              ),
+            ),
+            Text(
+              errorMessage,
+              style: AppTextStyles.h2,
+            ),
+          ],
         ),
-        Text(
-          errorMessage,
-          style: AppTextStyles.h2,
-        ),
-      ],
+      ),
     );
   }
 }

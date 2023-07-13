@@ -3,7 +3,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/infra/repositories/menu_repository.dart';
 
-import '../../../modules/menu/user_menu_module.dart';
+import '../../../modules/user/user_menu_module.dart';
 import '../../domain/repositories/menu_repository_interface.dart';
 import '../../infra/datasource/external/http/menu_datasource_interface.dart';
 

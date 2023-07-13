@@ -1,7 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:enum_to_string/enum_to_string.dart';
-import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 
 import '../../../../generated/l10n.dart';
 

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:intl/intl.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/controllers/product-form/product_form_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/product_card_widget.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
@@ -17,7 +18,15 @@ import '../../../../../../../generated/l10n.dart';
 
 class ProductFormDialogWidget extends StatefulWidget {
   final Product? product;
-  const ProductFormDialogWidget({super.key, this.product});
+  final String title;
+  final String buttonText;
+  final String snackBarText;
+  const ProductFormDialogWidget(
+      {super.key,
+      this.product,
+      required this.title,
+      required this.buttonText,
+      required this.snackBarText});
 
   @override
   State<ProductFormDialogWidget> createState() =>
@@ -36,21 +45,20 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
   Widget build(BuildContext context) {
     var productFormController = Modular.get<ProductFormController>();
     if (widget.product != null) {
-      productFormController.productAvailability = widget.product!.available;
-      productFormController.productType = widget.product!.type.name;
-      productFormController.productName = widget.product!.name;
-      productFormController.productPrice =
-          double.parse('R\$ ${widget.product!.price.toString()}.00');
-    } else {
-      productFormController.productAvailability = true;
-      productFormController.productType = null;
-      productFormController.productName = "";
+      productFormController.setProductAvailability(widget.product!.available);
+      productFormController.setProductType(widget.product!.type.name);
+      productFormController.setProductName(widget.product!.name);
+      productFormController.setProductDescription(widget.product!.description);
+      productFormController.setProductPrice(widget.product!.price.toString());
+      productFormController
+          .setProductPrepareTime(widget.product!.prepareTime.toString());
+      productFormController.setProductPhoto(widget.product!.photo);
     }
     return AlertDialog(
         scrollable: true,
         title:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text(S.of(context).createProductTitle,
+          Text(widget.title,
               style: AppTextStyles.h2HighlightBold.copyWith(fontSize: 16)),
           IconButton(
               onPressed: () => Modular.to.pop(),
@@ -73,7 +81,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                             cursor: SystemMouseCursors.click,
                             child: InkWell(
                               onTap: () =>
-                                  productFormController.setProductImage(),
+                                  productFormController.uploadProductPhoto(),
                               child: Ink(
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
@@ -89,10 +97,10 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                   width: 80,
                                   height: 88,
                                   child: (productFormController
-                                                  .productWebImage ==
+                                                  .uploadedWebPhoto ==
                                               null &&
                                           productFormController
-                                                  .productMobileImage ==
+                                                  .uploadedMobilePhoto ==
                                               null &&
                                           widget.product == null)
                                       ? Column(
@@ -114,24 +122,25 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                             ])
                                       : Padding(
                                           padding: const EdgeInsets.all(4),
-                                          child: Expanded(
-                                              child: widget.product?.photo ==
-                                                      null
-                                                  ? kIsWeb
-                                                      ? Image.memory(
-                                                          productFormController
-                                                              .productWebImage!,
-                                                          fit: BoxFit.contain,
-                                                        )
-                                                      : Image.file(
-                                                          productFormController
-                                                              .productMobileImage!,
-                                                          fit: BoxFit.contain,
-                                                        )
-                                                  : Image.network(
-                                                      widget.product!.photo,
+                                          child: productFormController
+                                                      .productPhoto ==
+                                                  null
+                                              ? kIsWeb
+                                                  ? Image.memory(
+                                                      productFormController
+                                                          .uploadedWebPhoto!,
                                                       fit: BoxFit.contain,
-                                                    )),
+                                                    )
+                                                  : Image.file(
+                                                      productFormController
+                                                          .uploadedMobilePhoto!,
+                                                      fit: BoxFit.contain,
+                                                    )
+                                              : Image.network(
+                                                  productFormController
+                                                      .productPhoto!,
+                                                  fit: BoxFit.contain,
+                                                ),
                                         ),
                                 ),
                               ),
@@ -183,7 +192,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                   onChanged: (value) =>
                       productFormController.setProductName(value),
                   validator: productFormController.validateProductName,
-                  initialValue: widget.product?.name ?? "",
+                  initialValue: productFormController.productName,
                 ),
                 const SizedBox(
                   height: 8,
@@ -196,7 +205,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                       productFormController.setProductPrepareTime(value),
                   inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                   validator: productFormController.validateProductPrepareTime,
-                  initialValue: widget.product?.prepareTime.toString() ?? "",
+                  initialValue:
+                      productFormController.productPrepareTime?.toString(),
                 ),
                 const SizedBox(
                   height: 8,
@@ -210,7 +220,11 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                         keyboardType: TextInputType.number,
                         onChanged: (value) =>
                             productFormController.setProductPrice(value),
-                        initialValue: widget.product?.price.toString() ?? "",
+                        initialValue: widget.product != null
+                            ? NumberFormat.currency(
+                                symbol: 'R\$',
+                              ).format(widget.product?.price)
+                            : "",
                         inputFormatters: [
                           CurrencyTextInputFormatter(
                               decimalDigits: 2,
@@ -259,9 +273,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                     value: productEnum.name,
                                     child: Text(productEnum.name.toString()));
                               }).toList(),
-                              value: productFormController.productType,
-                              onChanged: (value) => productFormController
-                                  .setProductType(value.toString()),
+                              value: productFormController.productType?.name,
+                              onChanged: (value) =>
+                                  productFormController.setProductType(value!),
                             );
                           }),
                         ],
@@ -276,7 +290,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                   title: S.of(context).descriptionTitle,
                   onChanged: (value) =>
                       productFormController.setProductDescription(value),
-                  initialValue: widget.product?.description ?? "",
+                  initialValue: productFormController.productDescription,
                 ),
                 const SizedBox(
                   height: 8,
@@ -324,19 +338,15 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                           return BorderSide(color: AppColors.mainBlueColor);
                         })),
                         onPressed: () {
-                          productFormController.setIsPhotoUploaded(false);
-                          if (productFormController.productWebImage != null ||
-                              productFormController.productMobileImage !=
+                          productFormController.isPhotoUploaded = false;
+                          if (productFormController.uploadedWebPhoto != null ||
+                              productFormController.uploadedMobilePhoto !=
                                   null ||
-                              widget.product?.photo != null) {
-                            productFormController.setIsPhotoUploaded(true);
+                              productFormController.productPhoto != null) {
+                            productFormController.isPhotoUploaded = true;
                           }
                           if (_formKey.currentState!.validate() &&
-                              (productFormController.productWebImage != null ||
-                                  productFormController.productMobileImage !=
-                                      null ||
-                                  widget.product?.photo != null)) {
-                            productFormController.setIsPhotoUploaded(true);
+                              productFormController.isPhotoUploaded == true) {
                             showDialog(
                                 context: context,
                                 builder: (BuildContext buildContext) {
@@ -358,23 +368,26 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                       ),
                                       content: ProductCardWidget(
                                         product: Product(
-                                            available: productFormController
-                                                .productAvailability,
-                                            name: productFormController
-                                                .productName!,
-                                            description: productFormController
-                                                .productDescription!,
-                                            prepareTime: productFormController
-                                                .productPrepareTime,
-                                            price: productFormController
-                                                .productPrice!,
-                                            type: ProductEnum.ALL,
-                                            photo: ""),
-                                        onPressed: () {},
-                                        webImage: productFormController
-                                            .productWebImage,
-                                        mobileImage: productFormController
-                                            .productMobileImage,
+                                          available: productFormController
+                                              .productAvailability,
+                                          name: productFormController
+                                              .productName!,
+                                          description: productFormController
+                                              .productDescription!,
+                                          prepareTime: productFormController
+                                              .productPrepareTime!,
+                                          price: productFormController
+                                              .productPrice!,
+                                          type: productFormController
+                                              .productType!,
+                                          photo: productFormController
+                                                  .productPhoto ??
+                                              '',
+                                        ),
+                                        webPhoto: productFormController
+                                            .uploadedWebPhoto,
+                                        mobilePhoto: productFormController
+                                            .uploadedMobilePhoto,
                                       ));
                                 });
                           }
@@ -391,28 +404,25 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                           return BorderSide(color: AppColors.mainBlueColor);
                         })),
                         onPressed: () {
-                          productFormController.setIsPhotoUploaded(false);
-                          if (productFormController.productWebImage != null ||
-                              productFormController.productMobileImage !=
-                                  null) {
-                            productFormController.setIsPhotoUploaded(true);
+                          productFormController.isPhotoUploaded = false;
+                          if (productFormController.uploadedWebPhoto != null ||
+                              productFormController.uploadedMobilePhoto !=
+                                  null ||
+                              widget.product?.photo != null) {
+                            productFormController.isPhotoUploaded = true;
                           }
                           if (_formKey.currentState!.validate() &&
-                                  productFormController.productWebImage !=
-                                      null ||
-                              productFormController.productMobileImage !=
-                                  null) {
+                              productFormController.isPhotoUploaded == true) {
                             Modular.to.pop();
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(
-                                  S.of(context).productSuccessfullyCreatedTitle,
+                              content: Text(widget.snackBarText,
                                   style: AppTextStyles.h2
                                       .copyWith(color: AppColors.white)),
                             ));
                           }
                         },
                         child: Text(
-                          S.of(context).createTitle,
+                          widget.buttonText,
                           style: AppTextStyles.h1.copyWith(
                               color: AppColors.mainBlueColor, fontSize: 16),
                         ))

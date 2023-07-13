@@ -360,6 +360,16 @@ class S {
     );
   }
 
+  /// `Edit`
+  String get editTitle {
+    return Intl.message(
+      'Edit',
+      name: 'editTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{notifications, select, normalPart{Want to receive } email{email notifications} app{app notifications} other{}}`
   String notificationsOptionsSchema(Object notifications) {
     return Intl.select(
@@ -416,21 +426,31 @@ class S {
     );
   }
 
-  /// `Product deleted successfully.`
+  /// `Product successfully deleted.`
   String get productSuccessfullyDeletedTitle {
     return Intl.message(
-      'Product deleted successfully.',
+      'Product successfully deleted.',
       name: 'productSuccessfullyDeletedTitle',
       desc: '',
       args: [],
     );
   }
 
-  /// `Product created successfully.`
+  /// `Poduct successfully created.`
   String get productSuccessfullyCreatedTitle {
     return Intl.message(
-      'Product created successfully.',
+      'Poduct successfully created.',
       name: 'productSuccessfullyCreatedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product successfully edited.`
+  String get productSuccessfullyEditedTitle {
+    return Intl.message(
+      'Product successfully edited.',
+      name: 'productSuccessfullyEditedTitle',
       desc: '',
       args: [],
     );
@@ -818,13 +838,13 @@ class S {
     );
   }
 
-  /// `{product, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}`
+  /// `{product, select, ALL{All} SANDWICHES{Sandwiches} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}`
   String productNameSchema(Object product) {
     return Intl.select(
       product,
       {
         'ALL': 'All',
-        'SANDWICHES': 'Sandwich',
+        'SANDWICHES': 'Sandwiches',
         'DRINKS': 'Drinks',
         'CANDIES': 'Candies',
         'PLATES': 'Dishes',
@@ -839,6 +859,30 @@ class S {
       name: 'productNameSchema',
       desc: '',
       args: [product],
+    );
+  }
+
+  /// `{name, select, All{ALL} Sandwiches{SANDWICHES} Drinks{DRINKS} Candies{CANDIES} Dishes{PLATES} Portions{PORTIONS} Pastas{PASTAS} Snacks{SNACKS} Salads{SALADS} Dessert{DESSERT} Savoury{SAVOURY} other{OUTROS}}`
+  String productToEnumSchema(Object name) {
+    return Intl.select(
+      name,
+      {
+        'All': 'ALL',
+        'Sandwiches': 'SANDWICHES',
+        'Drinks': 'DRINKS',
+        'Candies': 'CANDIES',
+        'Dishes': 'PLATES',
+        'Portions': 'PORTIONS',
+        'Pastas': 'PASTAS',
+        'Snacks': 'SNACKS',
+        'Salads': 'SALADS',
+        'Dessert': 'DESSERT',
+        'Savoury': 'SAVOURY',
+        'other': 'OUTROS',
+      },
+      name: 'productToEnumSchema',
+      desc: '',
+      args: [name],
     );
   }
 
@@ -885,6 +929,16 @@ class S {
     return Intl.message(
       'Create product',
       name: 'createProductTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit product`
+  String get editProductTitle {
+    return Intl.message(
+      'Edit product',
+      name: 'editProductTitle',
       desc: '',
       args: [],
     );

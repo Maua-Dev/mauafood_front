@@ -77,13 +77,13 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
       Atom(name: 'ProductFormControllerBase.productType', context: context);
 
   @override
-  String? get productType {
+  ProductEnum? get productType {
     _$productTypeAtom.reportRead();
     return super.productType;
   }
 
   @override
-  set productType(String? value) {
+  set productType(ProductEnum? value) {
     _$productTypeAtom.reportWrite(value, super.productType, () {
       super.productType = value;
     });
@@ -121,35 +121,51 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
     });
   }
 
-  late final _$productMobileImageAtom = Atom(
-      name: 'ProductFormControllerBase.productMobileImage', context: context);
+  late final _$productPhotoAtom =
+      Atom(name: 'ProductFormControllerBase.productPhoto', context: context);
 
   @override
-  File? get productMobileImage {
-    _$productMobileImageAtom.reportRead();
-    return super.productMobileImage;
+  String? get productPhoto {
+    _$productPhotoAtom.reportRead();
+    return super.productPhoto;
   }
 
   @override
-  set productMobileImage(File? value) {
-    _$productMobileImageAtom.reportWrite(value, super.productMobileImage, () {
-      super.productMobileImage = value;
+  set productPhoto(String? value) {
+    _$productPhotoAtom.reportWrite(value, super.productPhoto, () {
+      super.productPhoto = value;
     });
   }
 
-  late final _$productWebImageAtom =
-      Atom(name: 'ProductFormControllerBase.productWebImage', context: context);
+  late final _$uploadedMobilePhotoAtom = Atom(
+      name: 'ProductFormControllerBase.uploadedMobilePhoto', context: context);
 
   @override
-  Uint8List? get productWebImage {
-    _$productWebImageAtom.reportRead();
-    return super.productWebImage;
+  File? get uploadedMobilePhoto {
+    _$uploadedMobilePhotoAtom.reportRead();
+    return super.uploadedMobilePhoto;
   }
 
   @override
-  set productWebImage(Uint8List? value) {
-    _$productWebImageAtom.reportWrite(value, super.productWebImage, () {
-      super.productWebImage = value;
+  set uploadedMobilePhoto(File? value) {
+    _$uploadedMobilePhotoAtom.reportWrite(value, super.uploadedMobilePhoto, () {
+      super.uploadedMobilePhoto = value;
+    });
+  }
+
+  late final _$uploadedWebPhotoAtom = Atom(
+      name: 'ProductFormControllerBase.uploadedWebPhoto', context: context);
+
+  @override
+  Uint8List? get uploadedWebPhoto {
+    _$uploadedWebPhotoAtom.reportRead();
+    return super.uploadedWebPhoto;
+  }
+
+  @override
+  set uploadedWebPhoto(Uint8List? value) {
+    _$uploadedWebPhotoAtom.reportWrite(value, super.uploadedWebPhoto, () {
+      super.uploadedWebPhoto = value;
     });
   }
 
@@ -169,13 +185,14 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
     });
   }
 
-  late final _$setProductImageAsyncAction = AsyncAction(
-      'ProductFormControllerBase.setProductImage',
+  late final _$uploadProductPhotoAsyncAction = AsyncAction(
+      'ProductFormControllerBase.uploadProductPhoto',
       context: context);
 
   @override
-  Future<dynamic> setProductImage() {
-    return _$setProductImageAsyncAction.run(() => super.setProductImage());
+  Future<dynamic> uploadProductPhoto() {
+    return _$uploadProductPhotoAsyncAction
+        .run(() => super.uploadProductPhoto());
   }
 
   late final _$ProductFormControllerBaseActionController =
@@ -304,11 +321,11 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
   }
 
   @override
-  dynamic setIsPhotoUploaded(bool value) {
+  void setProductPhoto(String? value) {
     final _$actionInfo = _$ProductFormControllerBaseActionController
-        .startAction(name: 'ProductFormControllerBase.setIsPhotoUploaded');
+        .startAction(name: 'ProductFormControllerBase.setProductPhoto');
     try {
-      return super.setIsPhotoUploaded(value);
+      return super.setProductPhoto(value);
     } finally {
       _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -324,8 +341,9 @@ productPrice: ${productPrice},
 productType: ${productType},
 productDescription: ${productDescription},
 productAvailability: ${productAvailability},
-productMobileImage: ${productMobileImage},
-productWebImage: ${productWebImage},
+productPhoto: ${productPhoto},
+uploadedMobilePhoto: ${uploadedMobilePhoto},
+uploadedWebPhoto: ${uploadedWebPhoto},
 isPhotoUploaded: ${isPhotoUploaded}
     ''';
   }

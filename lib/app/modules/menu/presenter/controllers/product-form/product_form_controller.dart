@@ -4,9 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/states/product_form/product_form_state.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
+import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';
+import '../../../../../shared/domain/enums/product_enum.dart';
 
 part 'product_form_controller.g.dart';
 
@@ -74,16 +76,17 @@ abstract class ProductFormControllerBase with Store {
   }
 
   @observable
-  String? productType;
+  ProductEnum? productType;
 
   @action
   void setProductType(String value) {
-    productType = value;
+    productType = ProductEnumExtension.stringToEnumMap(
+        S.current.productToEnumSchema(value.withoutDiacritics));
   }
 
   @action
   String? validateProductType(String? value) {
-    if (value!.isEmpty) {
+    if (value == null) {
       return S.current.requiredFieldAlert;
     }
     return null;
@@ -106,31 +109,35 @@ abstract class ProductFormControllerBase with Store {
   }
 
   @observable
-  File? productMobileImage;
+  String? productPhoto;
+
+  @action
+  void setProductPhoto(String? value) {
+    productPhoto = value;
+  }
 
   @observable
-  Uint8List? productWebImage;
+  File? uploadedMobilePhoto;
+
+  @observable
+  Uint8List? uploadedWebPhoto;
 
   @observable
   bool? isPhotoUploaded;
 
   @action
-  setIsPhotoUploaded(bool value) {
-    isPhotoUploaded = value;
-  }
-
-  @action
-  Future setProductImage() async {
+  Future uploadProductPhoto() async {
     if (!kIsWeb) {
-      XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        productMobileImage = File(image.path);
+      XFile? photo = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (photo != null) {
+        uploadedMobilePhoto = File(photo.path);
       }
     } else {
-      XFile? image = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (image != null) {
-        productWebImage = await image.readAsBytes();
+      XFile? photo = await ImagePicker().pickImage(source: ImageSource.gallery);
+      if (photo != null) {
+        uploadedWebPhoto = await photo.readAsBytes();
       }
     }
+    setProductPhoto(null);
   }
 }

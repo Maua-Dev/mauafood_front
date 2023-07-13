@@ -78,6 +78,14 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                         builder: ((context) =>
                                             ProductFormDialogWidget(
                                               product: product,
+                                              title: S
+                                                  .of(context)
+                                                  .editProductTitle,
+                                              buttonText:
+                                                  S.of(context).editTitle,
+                                              snackBarText: S
+                                                  .of(context)
+                                                  .productSuccessfullyEditedTitle,
                                             )));
                                   },
                                   icon: Icon(

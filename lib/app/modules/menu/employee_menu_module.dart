@@ -24,7 +24,7 @@ class EmployeeMenuModule extends Module {
         Bind<MenuRestaurantController>(
           (i) => MenuRestaurantController(i(), i.args.data),
         ),
-        Bind<ProductFormController>(
+        Bind.factory<ProductFormController>(
           (i) => ProductFormController(i()),
         ),
         Bind<ICreateProductUsecase>(

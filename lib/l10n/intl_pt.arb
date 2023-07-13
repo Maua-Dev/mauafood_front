@@ -40,6 +40,7 @@
     "minutesTitle": "minutos",
     "saveTitle": "Salvar",
     "createTitle": "Criar",
+    "editTitle": "Editar",
     "notificationsOptionsSchema": "{notifications, select, normalPart{Deseja receber } email{notificações por e-mail} app{notificações pelo app} other{}}",
     "labelName": "Nome Completo",
     "cancelationTitle": "Cancelar",
@@ -47,6 +48,7 @@
     "deleteProductConfirmationTitle": "Tem certeza que deseja excluir o produto?",
     "productSuccessfullyDeletedTitle": "Produto excluído com sucesso.",
     "productSuccessfullyCreatedTitle": "Produto criado com sucesso.",
+    "productSuccessfullyEditedTitle": "Produto editado com sucesso.",
     "dataStorageTitle": "Armazenamento de dados",
     "dataStorageAlertTitle": "Caso voce confirme o envio da mensagem, está concordando que armazenemos seu nome e e-mail para que possamos ter o seu feedback e caso necessário, responde-lo.",
     "closeTitle": "Fechar",
@@ -96,6 +98,7 @@
 
 
     "productNameSchema": "{product, select, ALL{Tudo} SANDWICHES{Lanches} DRINKS{Bebidas} CANDIES{Doces} PLATES{Pratos} PORTIONS{Porções} PASTAS{Massas} SNACKS{Snacks} SALADS{Saladas} DESSERT{Sobremesa} SAVOURY{Salgado} other{Outros}}",
+    "productToEnumSchema": "{name, select, Tudo{ALL} Lanches{SANDWICHES} Bebidas{DRINKS} Doces{CANDIES} Pratos{PLATES} Porcoes{PORTIONS} Massas{PASTAS} Snacks{SNACKS} Saladas{SALADS} Sobremesa{DESSERT} Salgado{SAVOURY} other{OUTROS}}",
     "productPriceCurrency": "{amount} ",
     "@productPriceCurrency" : {
         "placeholders": {
@@ -126,6 +129,7 @@
 
     "recommendationsTitle": "Recomendações",
     "createProductTitle": "Criar produto",
+    "editProductTitle": "Editar produto",
 
 
 

@@ -40,13 +40,15 @@
     "minutesTitle": "minutes",
     "saveTitle": "Save",
     "createTitle": "Create",
+    "editTitle": "Edit",
     "notificationsOptionsSchema": "{notifications, select, normalPart{Want to receive } email{email notifications} app{app notifications} other{}}",
     "labelName": "Full Name",
     "cancelationTitle": "Cancel",
     "deleteTitle": "Delete",
     "deleteProductConfirmationTitle": "Are you sure you want to delete the product?",
-    "productSuccessfullyDeletedTitle": "Product deleted successfully.",
-    "productSuccessfullyCreatedTitle": "Product created successfully.",
+    "productSuccessfullyDeletedTitle": "Product successfully deleted.",
+    "productSuccessfullyCreatedTitle": "Poduct successfully created.",
+    "productSuccessfullyEditedTitle": "Product successfully edited.",
     "dataStorageTitle": "Data storage",
     "dataStorageAlertTitle": "If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it.",
     "closeTitle": "Close",
@@ -95,7 +97,8 @@
     "labelSend": "Send now",
 
 
-    "productNameSchema": "{product, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}",
+    "productNameSchema": "{product, select, ALL{All} SANDWICHES{Sandwiches} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}",
+    "productToEnumSchema": "{name, select, All{ALL} Sandwiches{SANDWICHES} Drinks{DRINKS} Candies{CANDIES} Dishes{PLATES} Portions{PORTIONS} Pastas{PASTAS} Snacks{SNACKS} Salads{SALADS} Dessert{DESSERT} Savoury{SAVOURY} other{OUTROS}}",
     "productPriceCurrency": "{amount} ",
     "@productPriceCurrency" : {
         "placeholders": {
@@ -126,6 +129,7 @@
 
     "recommendationsTitle": "Recommendations",
     "createProductTitle": "Create product",
+    "editProductTitle": "Edit product",
 
 
 

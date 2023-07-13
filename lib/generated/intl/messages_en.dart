@@ -52,7 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m4(product) => "${Intl.select(product, {
             'ALL': 'All',
-            'SANDWICHES': 'Sandwich',
+            'SANDWICHES': 'Sandwiches',
             'DRINKS': 'Drinks',
             'CANDIES': 'Candies',
             'PLATES': 'Dishes',
@@ -69,18 +69,33 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m6(amount) => "${amount} ";
 
-  static String m7(placeholders, message) => "${message}";
+  static String m7(name) => "${Intl.select(name, {
+            'All': 'ALL',
+            'Sandwiches': 'SANDWICHES',
+            'Drinks': 'DRINKS',
+            'Candies': 'CANDIES',
+            'Dishes': 'PLATES',
+            'Portions': 'PORTIONS',
+            'Pastas': 'PASTAS',
+            'Snacks': 'SNACKS',
+            'Salads': 'SALADS',
+            'Dessert': 'DESSERT',
+            'Savoury': 'SAVOURY',
+            'other': 'OUTROS',
+          })}";
 
-  static String m8(placeholders, restaurantName) => "${restaurantName}";
+  static String m8(placeholders, message) => "${message}";
 
-  static String m9(restaurant) => "${Intl.select(restaurant, {
+  static String m9(placeholders, restaurantName) => "${restaurantName}";
+
+  static String m10(restaurant) => "${Intl.select(restaurant, {
             'biba': 'bibaImage',
             'hora_h': 'hora_hImage',
             'moleza': 'molezaImage',
             'other': '',
           })}";
 
-  static String m10(restaurant) => "${Intl.select(restaurant, {
+  static String m11(restaurant) => "${Intl.select(restaurant, {
             'biba': 'Souza de Abreu',
             'hora_h': 'H Hour',
             'moleza': 'Cantina do Moleza',
@@ -130,6 +145,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "disclaimerText": MessageLookupByLibrary.simpleMessage(
             "MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!"),
         "doLoginTitle": MessageLookupByLibrary.simpleMessage("Login"),
+        "editProductTitle":
+            MessageLookupByLibrary.simpleMessage("Edit product"),
+        "editTitle": MessageLookupByLibrary.simpleMessage("Edit"),
         "emailConfirmationTitle":
             MessageLookupByLibrary.simpleMessage("Email confirmation"),
         "emailTitle": MessageLookupByLibrary.simpleMessage("E-mail"),
@@ -192,9 +210,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "productPrepareTimeMinutes": m5,
         "productPriceCurrency": m6,
         "productSuccessfullyCreatedTitle": MessageLookupByLibrary.simpleMessage(
-            "Product created successfully."),
+            "Poduct successfully created."),
         "productSuccessfullyDeletedTitle": MessageLookupByLibrary.simpleMessage(
-            "Product deleted successfully."),
+            "Product successfully deleted."),
+        "productSuccessfullyEditedTitle": MessageLookupByLibrary.simpleMessage(
+            "Product successfully edited."),
+        "productToEnumSchema": m7,
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recommendations"),
@@ -202,14 +223,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "To complete your registration, we will send you an email with a code, enter it in the field below."),
         "registerTitle": MessageLookupByLibrary.simpleMessage("Register"),
-        "requestErrorMessage": m7,
+        "requestErrorMessage": m8,
         "requiredFieldAlert":
             MessageLookupByLibrary.simpleMessage("Required field."),
         "resendConfirmationCodeTitle":
             MessageLookupByLibrary.simpleMessage("Resend confirmation code"),
-        "restaurantTitle": m8,
-        "restaurantsImageSchema": m9,
-        "restaurantsNameSchema": m10,
+        "restaurantTitle": m9,
+        "restaurantsImageSchema": m10,
+        "restaurantsNameSchema": m11,
         "restaurantsTitle": MessageLookupByLibrary.simpleMessage("Restaurants"),
         "saveTitle": MessageLookupByLibrary.simpleMessage("Save"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Search"),

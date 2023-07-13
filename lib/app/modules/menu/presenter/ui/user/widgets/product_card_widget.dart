@@ -11,15 +11,15 @@ import '../../../../../../shared/domain/entities/product.dart';
 class ProductCardWidget extends StatelessWidget {
   final Product product;
   final Function()? onPressed;
-  final File? mobileImage;
-  final Uint8List? webImage;
+  final File? mobilePhoto;
+  final Uint8List? webPhoto;
 
   const ProductCardWidget({
     Key? key,
     required this.product,
-    required this.onPressed,
-    this.mobileImage,
-    this.webImage,
+    this.onPressed,
+    this.mobilePhoto,
+    this.webPhoto,
   }) : super(key: key);
 
   @override
@@ -47,11 +47,11 @@ class ProductCardWidget extends StatelessWidget {
                   child: product.photo == ""
                       ? kIsWeb
                           ? Image.memory(
-                              webImage!,
+                              webPhoto!,
                               fit: BoxFit.contain,
                             )
                           : Image.file(
-                              mobileImage!,
+                              mobilePhoto!,
                               fit: BoxFit.contain,
                             )
                       : Image.network(

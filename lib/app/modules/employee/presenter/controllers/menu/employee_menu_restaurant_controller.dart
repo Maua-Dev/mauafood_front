@@ -19,12 +19,11 @@ abstract class MenuRestaurantControllerBase with Store {
 
   MenuRestaurantControllerBase(
       this._getRestaurantProduct, this.restaurantInfo) {
-    //loadRestaurantMenu();
+    loadRestaurantMenu();
   }
 
   @observable
-  EmployeeMenuState state =
-      EmployeeMenuErrorState(failure: Failure(message: 'message'));
+  EmployeeMenuState state = EmployeeMenuInitialState();
 
   @observable
   List<Product> listAllProduct = [];

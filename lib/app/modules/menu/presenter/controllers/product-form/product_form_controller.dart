@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/states/product_form/product_form_state.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mobx/mobx.dart';
 
@@ -16,9 +16,7 @@ class ProductFormController = ProductFormControllerBase
     with _$ProductFormController;
 
 abstract class ProductFormControllerBase with Store {
-  final ICreateProductUsecase _createProduct;
-
-  ProductFormControllerBase(this._createProduct);
+  ProductFormControllerBase();
 
   @observable
   ProductFormState state = ProductFormInitialState();
@@ -139,5 +137,16 @@ abstract class ProductFormControllerBase with Store {
       }
     }
     setProductPhoto(null);
+  }
+
+  @observable
+  bool wasProductFormChanged(Product? product) {
+    return productName != product?.name ||
+        productDescription != product?.description ||
+        productPrice != product?.price ||
+        productPrepareTime != product?.prepareTime ||
+        productType != product?.type ||
+        productAvailability != product?.available ||
+        productPhoto != product?.photo;
   }
 }

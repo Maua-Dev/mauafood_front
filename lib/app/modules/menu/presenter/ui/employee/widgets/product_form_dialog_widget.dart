@@ -80,6 +80,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                           return MouseRegion(
                             cursor: SystemMouseCursors.click,
                             child: InkWell(
+                              key: const Key('productPhoto'),
                               onTap: () =>
                                   productFormController.uploadProductPhoto(),
                               child: Ink(
@@ -397,35 +398,52 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                           style: AppTextStyles.h2
                               .copyWith(color: AppColors.mainBlueColor),
                         )),
-                    TextButton(
-                        style: ButtonStyle(side:
-                            MaterialStateBorderSide.resolveWith(
-                                (Set<MaterialState> states) {
-                          return BorderSide(color: AppColors.mainBlueColor);
-                        })),
-                        onPressed: () {
-                          productFormController.isPhotoUploaded = false;
-                          if (productFormController.uploadedWebPhoto != null ||
-                              productFormController.uploadedMobilePhoto !=
-                                  null ||
-                              widget.product?.photo != null) {
-                            productFormController.isPhotoUploaded = true;
-                          }
-                          if (_formKey.currentState!.validate() &&
-                              productFormController.isPhotoUploaded == true) {
-                            Modular.to.pop();
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: Text(widget.snackBarText,
-                                  style: AppTextStyles.h2
-                                      .copyWith(color: AppColors.white)),
-                            ));
-                          }
-                        },
-                        child: Text(
-                          widget.buttonText,
-                          style: AppTextStyles.h1.copyWith(
-                              color: AppColors.mainBlueColor, fontSize: 16),
-                        ))
+                    Observer(builder: ((context) {
+                      return TextButton(
+                          style: ButtonStyle(
+                              backgroundColor: productFormController
+                                      .wasProductFormChanged(widget.product)
+                                  ? MaterialStateProperty.all<Color>(
+                                      AppColors.backgroundColor)
+                                  : MaterialStateProperty.all<Color>(
+                                      AppColors.letterColor.withOpacity(0.2)),
+                              side: MaterialStateBorderSide.resolveWith(
+                                  (Set<MaterialState> states) {
+                                return BorderSide(
+                                    color: AppColors.mainBlueColor);
+                              })),
+                          onPressed: productFormController
+                                  .wasProductFormChanged(widget.product)
+                              ? () {
+                                  productFormController.isPhotoUploaded = false;
+                                  if (productFormController.uploadedWebPhoto !=
+                                          null ||
+                                      productFormController
+                                              .uploadedMobilePhoto !=
+                                          null ||
+                                      widget.product?.photo != null) {
+                                    productFormController.isPhotoUploaded =
+                                        true;
+                                  }
+                                  if (_formKey.currentState!.validate() &&
+                                      productFormController.isPhotoUploaded ==
+                                          true) {
+                                    Modular.to.pop();
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text(widget.snackBarText,
+                                          style: AppTextStyles.h2.copyWith(
+                                              color: AppColors.white)),
+                                    ));
+                                  }
+                                }
+                              : null,
+                          child: Text(
+                            widget.buttonText,
+                            style: AppTextStyles.h1.copyWith(
+                                color: AppColors.mainBlueColor, fontSize: 16),
+                          ));
+                    }))
                   ],
                 )
               ],

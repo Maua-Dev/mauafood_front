@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
@@ -6,8 +7,6 @@ import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/generated/l10n.dart';
-
-import '../../../../../shared/widgets/circular_progress_indicator_custom_widget.dart';
 
 class RestaurantWidget extends StatelessWidget {
   final RestaurantEnum restaurantInfo;
@@ -38,28 +37,10 @@ class RestaurantWidget extends StatelessWidget {
                   height: ScreenHelper.width(context) / 3.5,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
-                    child: FittedBox(
-                      fit: BoxFit.fill,
-                      child: Image.network(
-                        restaurantImages[restaurantInfo.restaurantImg]!,
-                        loadingBuilder: (BuildContext context, Widget child,
-                            ImageChunkEvent? loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Center(
-                            child: Padding(
-                              padding: const EdgeInsets.all(8),
-                              child: CircularProgressIndicatorCustomWidget(
-                                value: loadingProgress.expectedTotalBytes !=
-                                        null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                        loadingProgress.expectedTotalBytes!
-                                    : null,
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ),
+                    child: CachedNetworkImage(
+                        fit: BoxFit.fill,
+                        imageUrl:
+                            restaurantImages[restaurantInfo.restaurantImg]!),
                   ),
                 ),
                 const SizedBox(

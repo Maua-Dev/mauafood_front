@@ -15,12 +15,18 @@ import '../widgets/filter_button_widget.dart';
 import '../widgets/product_card_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-class UserMenuPage extends StatelessWidget {
+class UserMenuPage extends StatefulWidget {
   const UserMenuPage({super.key});
 
   @override
+  State<UserMenuPage> createState() => _UserMenuPageState();
+}
+
+class _UserMenuPageState extends State<UserMenuPage> {
+  final MenuRestaurantController menuController = Modular.get();
+
+  @override
   Widget build(BuildContext context) {
-    var menuController = Modular.get<MenuRestaurantController>();
     Widget buildError(Failure failure) {
       return ErrorLoadingMenuWidget(
         errorMessage: failure.message,
@@ -80,17 +86,18 @@ class UserMenuPage extends StatelessWidget {
       ));
     }
 
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColors.mainBlueColor,
-          onPressed: () {
-            showDialog(
-                context: context, builder: (context) => const ContactDialog());
-          },
-          child: const Icon(Icons.mail),
-        ),
-        body: Padding(
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.mainBlueColor,
+        onPressed: () {
+          showDialog(
+              context: context, builder: (context) => const ContactDialog());
+        },
+        child: const Icon(Icons.mail),
+      ),
+      body: SafeArea(
+        bottom: false,
+        child: Padding(
           padding: const EdgeInsets.only(top: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -103,7 +110,6 @@ class UserMenuPage extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       onPressed: () {
                         Modular.to.pop();
-                        Modular.dispose<MenuRestaurantController>();
                       },
                       icon: Icon(
                         Icons.arrow_back_ios,

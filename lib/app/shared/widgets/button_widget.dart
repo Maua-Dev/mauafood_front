@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../shared/themes/app_colors.dart';
-import '../../../../../shared/themes/app_text_styles.dart';
+import '../themes/app_colors.dart';
+import '../themes/app_text_styles.dart';
 
 class ButtonWidget extends StatelessWidget {
   final Function()? onPressed;

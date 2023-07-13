@@ -103,7 +103,6 @@ class UserMenuPage extends StatelessWidget {
                       padding: EdgeInsets.zero,
                       onPressed: () {
                         Modular.to.pop();
-                        Modular.dispose<UserMenuRestaurantController>();
                       },
                       icon: Icon(
                         Icons.arrow_back_ios,

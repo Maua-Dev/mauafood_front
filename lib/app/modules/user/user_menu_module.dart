@@ -25,7 +25,7 @@ class UserMenuModule extends Module {
   List<Bind> get binds => [
         Bind<IGetRestaurantProductUsecase>(
             (i) => GetRestaurantProductUsecase(repository: i())),
-        Bind<UserMenuRestaurantController>(
+        Bind.factory<UserMenuRestaurantController>(
           (i) => UserMenuRestaurantController(i(), i.args.data),
         ),
         Bind((i) => Dio(productBaseOptions)),

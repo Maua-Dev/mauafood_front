@@ -1,26 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/user_menu_state.dart';
+import 'package:mauafood_front/app/modules/user/presenter/controllers/menu/user_menu_restaurant_controller.dart';
+import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/contact/contact_dialog.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
+import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
+import 'package:mauafood_front/app/shared/widgets/error_loading_menu_widget.dart';
+import 'package:mauafood_front/app/shared/widgets/filter_button_widget.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import '../../../../../shared/domain/enums/product_enum.dart';
-import '../../../../../shared/helpers/errors/errors.dart';
-import '../../controllers/menu/user_menu_restaurant_controller.dart';
-import '../../../../../shared/widgets/error_loading_menu_widget.dart';
-import '../../../../../shared/widgets/filter_button_widget.dart';
-import '../widgets/contact/contact_dialog.dart';
 import '../widgets/product_card_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
-class UserMenuPage extends StatelessWidget {
+class UserMenuPage extends StatefulWidget {
   const UserMenuPage({super.key});
 
   @override
+  State<UserMenuPage> createState() => _UserMenuPageState();
+}
+
+class _UserMenuPageState extends State<UserMenuPage> {
+  @override
   Widget build(BuildContext context) {
-    var menuController = Modular.get<UserMenuRestaurantController>();
+    final UserMenuRestaurantController menuController =
+        Modular.get<UserMenuRestaurantController>();
     Widget buildError(Failure failure) {
       return ErrorLoadingMenuWidget(
         errorMessage: failure.message,
@@ -80,17 +86,18 @@ class UserMenuPage extends StatelessWidget {
       ));
     }
 
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColors.mainBlueColor,
-          onPressed: () {
-            showDialog(
-                context: context, builder: (context) => const ContactDialog());
-          },
-          child: const Icon(Icons.mail),
-        ),
-        body: Padding(
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.mainBlueColor,
+        onPressed: () {
+          showDialog(
+              context: context, builder: (context) => const ContactDialog());
+        },
+        child: const Icon(Icons.mail),
+      ),
+      body: SafeArea(
+        bottom: false,
+        child: Padding(
           padding: const EdgeInsets.only(top: 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

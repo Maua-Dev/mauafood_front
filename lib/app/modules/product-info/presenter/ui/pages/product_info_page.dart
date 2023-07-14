@@ -29,17 +29,21 @@ class ProductInfoPage extends StatelessWidget {
       ),
       body: Stack(
         children: [
-          SizedBox.fromSize(
-            size: Size.fromHeight(MediaQuery.of(context).size.height / 4),
-            child: CachedNetworkImage(
-              imageUrl: productInfo.photo,
-              placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(),
+          Padding(
+            padding: const EdgeInsets.only(top: 32.0),
+            child: SizedBox.fromSize(
+              size: Size.fromHeight(MediaQuery.of(context).size.height / 4),
+              child: CachedNetworkImage(
+                imageUrl: productInfo.photo,
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
           Column(
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(

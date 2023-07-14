@@ -1,0 +1,88 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.faq{
+    display: flex;
+    flex-direction: column;
+    padding: 16px 24px;
+    align-items: center;
+    justify-content: center;
+}
+
+.logos {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .dev {
+    width: 80px;
+}
+
+  
+  .logo {
+    width: 160px;
+  }
+
+.title{
+    font-size: 48px;
+    text-align: center;
+    color: #2b72df;
+    padding: 32px;
+}
+
+.card {
+    border-bottom: 1px solid #e2e2e2;
+    padding: 16px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    transition: ease-in-out 0.4s;
+    width: 60%;
+}
+
+.card:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.question {
+    font-weight: 700;
+    padding-bottom: 8px;
+    color: #2b72df;
+}
+
+.answer {
+    font-weight: 400;
+    color: #000;
+    padding-right: 8px;
+}
+
+.ph {
+    color: #72310e;
+    font-size: 24px;
+}
+
+@media(max-width: 500px) {
+    .card {
+        width: 100%;
+    }
+    .logos{
+        width: 100%;
+    }
+
+    .logo{
+        width: 80px;
+    }
+
+    .dev{
+        width: 100px;
+    }
+}

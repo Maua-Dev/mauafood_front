@@ -25,7 +25,7 @@ class UserMenuModule extends Module {
   List<Bind> get binds => [
         Bind<IGetRestaurantProductUsecase>(
             (i) => GetRestaurantProductUsecase(repository: i())),
-        Bind<MenuRestaurantController>(
+        Bind.factory<MenuRestaurantController>(
           (i) => MenuRestaurantController(i(), i.args.data),
         ),
         Bind((i) => Dio(productBaseOptions)),
@@ -46,17 +46,14 @@ class UserMenuModule extends Module {
         ModuleRoute(
           Modular.initialRoute,
           module: RestaurantModule(),
-          // guards: [UserAuthGuard()],
         ),
         ChildRoute(
           '/menu',
           child: (context, args) => const UserMenuPage(),
-          // guards: [UserAuthGuard()],
         ),
         ModuleRoute(
           '/product-info',
           module: ProductInfoModule(),
-          // guards: [UserAuthGuard()],
         ),
       ];
 }

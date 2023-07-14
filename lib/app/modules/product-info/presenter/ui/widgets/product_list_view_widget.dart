@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../shared/domain/entities/product.dart';
@@ -15,21 +16,12 @@ class RecommendationCardWidget extends StatelessWidget {
       ),
       child: SizedBox(
         width: 175,
-        child: Image.network(
-          productInfo.photo,
-          fit: BoxFit.contain,
-          loadingBuilder: (BuildContext context, Widget child,
-              ImageChunkEvent? loadingProgress) {
-            if (loadingProgress == null) return child;
-            return Center(
-              child: CircularProgressIndicator(
-                value: loadingProgress.expectedTotalBytes != null
-                    ? loadingProgress.cumulativeBytesLoaded /
-                        loadingProgress.expectedTotalBytes!
-                    : null,
-              ),
-            );
-          },
+        child: CachedNetworkImage(
+          imageUrl: productInfo.photo,
+          placeholder: (context, url) => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
       ),
     );

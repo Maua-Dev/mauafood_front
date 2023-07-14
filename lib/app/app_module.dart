@@ -12,19 +12,9 @@ class AppModule extends Module {
           Modular.initialRoute,
           module: SplashModule(),
         ),
-        // ModuleRoute(
-        //   '/login',
-        //   module: AuthModule(),
-        // ),
-        // ModuleRoute(
-        //   '/employee',
-        //   module: EmployeeMenuModule(),
-        //   guards: [EmployeeAuthGuard()],
-        // ),
         ModuleRoute(
           '/user',
           module: UserMenuModule(),
-          // guards: [UserAuthGuard()],
         ),
       ];
 }

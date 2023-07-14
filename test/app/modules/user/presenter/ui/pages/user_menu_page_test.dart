@@ -79,8 +79,8 @@ void main() {
                 home: const UserMenuPage(),
               )));
 
-      await widgetTester.runAsync(
-          () async => controller.changeState(UserMenuInitialState()));
+      await widgetTester
+          .runAsync(() async => controller.changeState(UserMenuInitialState()));
       await widgetTester.pump();
 
       final textField = find.byType(TextField);
@@ -118,6 +118,8 @@ void main() {
           .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester.runAsync(() async => controller.loadRestaurantMenu());
+      await widgetTester.runAsync(() async => controller.changeState(
+          UserMenuLoadedSuccessState(index: 2, listProduct: listMock)));
       await widgetTester.pump();
 
       expect(find.byType(ProductCardWidget), findsNWidgets(2));
@@ -138,9 +140,6 @@ void main() {
                 supportedLocales: S.delegate.supportedLocales,
                 home: const UserMenuPage(),
               )));
-
-      when(usecase(RestaurantEnum.biba))
-          .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester
           .runAsync(() async => controller.changeState(UserMenuLoadingState()));

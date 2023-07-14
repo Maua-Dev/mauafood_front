@@ -44,7 +44,7 @@ class ProductCardWidget extends StatelessWidget {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: product.photo == ""
+                  child: webPhoto != null || mobilePhoto != null
                       ? kIsWeb
                           ? Image.memory(
                               webPhoto!,

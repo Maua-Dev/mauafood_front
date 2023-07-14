@@ -139,7 +139,6 @@ abstract class ProductFormControllerBase with Store {
     setProductPhoto(null);
   }
 
-  @action
   bool wasProductFormChanged(Product? product) {
     return productName != product?.name ||
         productDescription != product?.description ||

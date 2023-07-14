@@ -368,6 +368,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                         ],
                                       ),
                                       content: ProductCardWidget(
+                                        onPressed: () {},
                                         product: Product(
                                           available: productFormController
                                               .productAvailability,
@@ -406,7 +407,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                   ? MaterialStateProperty.all<Color>(
                                       AppColors.backgroundColor)
                                   : MaterialStateProperty.all<Color>(
-                                      AppColors.letterColor.withOpacity(0.2)),
+                                      AppColors.letterColor.withOpacity(0.1)),
                               side: MaterialStateBorderSide.resolveWith(
                                   (Set<MaterialState> states) {
                                 return BorderSide(

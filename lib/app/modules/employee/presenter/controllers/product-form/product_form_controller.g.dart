@@ -332,17 +332,6 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
   }
 
   @override
-  bool wasProductFormChanged(Product? product) {
-    final _$actionInfo = _$ProductFormControllerBaseActionController
-        .startAction(name: 'ProductFormControllerBase.wasProductFormChanged');
-    try {
-      return super.wasProductFormChanged(product);
-    } finally {
-      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 state: ${state},

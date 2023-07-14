@@ -46,17 +46,14 @@ class UserMenuModule extends Module {
         ModuleRoute(
           Modular.initialRoute,
           module: RestaurantModule(),
-          // guards: [UserAuthGuard()],
         ),
         ChildRoute(
           '/menu',
           child: (context, args) => const UserMenuPage(),
-          // guards: [UserAuthGuard()],
         ),
         ModuleRoute(
           '/product-info',
           module: ProductInfoModule(),
-          // guards: [UserAuthGuard()],
         ),
       ];
 }

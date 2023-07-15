@@ -516,10 +516,10 @@ class S {
     );
   }
 
-  /// `Recommended`
+  /// `More Options`
   String get recommendedTitle {
     return Intl.message(
-      'Recommended',
+      'More Options',
       name: 'recommendedTitle',
       desc: '',
       args: [],

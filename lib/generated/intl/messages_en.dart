@@ -171,7 +171,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recommendations"),
-        "recommendedTitle": MessageLookupByLibrary.simpleMessage("Recommended"),
+        "recommendedTitle":
+            MessageLookupByLibrary.simpleMessage("More Options"),
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "To complete your registration, we will send you an email with a code, enter it in the field below."),
         "registerTitle": MessageLookupByLibrary.simpleMessage("Register"),

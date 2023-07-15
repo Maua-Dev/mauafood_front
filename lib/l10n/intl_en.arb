@@ -56,11 +56,10 @@
     "registerEmailInstructionsTitle": "To complete your registration, we will send you an email with a code, enter it in the field below.",
 
 
-
     "searchTitle": "Search",
     "restaurantsTitle": "Restaurants",
     "seeMenuTitle": "See menu",
-    "recommendedTitle": "Recommended",
+    "recommendedTitle": "More Options",
     "loginTitle": "Login",
     "doLoginTitle": "Login",
     "havePasswordTitle": "Already have a password?",
@@ -77,9 +76,9 @@
     "labelSend": "Send now",
 
 
-    "mealNameSchema": "{meal, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}",
-    "mealPriceCurrency": "{amount} ",
-    "@mealPriceCurrency" : {
+    "productNameSchema": "{product, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}",
+    "productPriceCurrency": "{amount} ",
+    "@productPriceCurrency" : {
         "placeholders": {
             "amount": {
                 "type": "double",
@@ -95,8 +94,8 @@
             }
         }
     },
-    "mealPrepareTimeMinutes": "{prepareTime} min",
-    "@mealPrepareTimeMinutes" : {
+    "productPrepareTimeMinutes": "{prepareTime} min",
+    "@productPrepareTimeMinutes" : {
         "placeholders": {
             "placeholders": {
                 "prepareTime": {}
@@ -124,13 +123,37 @@
     "errorEmailOrPassword": "Error with email or password.",
     "errorFields": "Error with the inserted fields.",
 
-    "loginErrorsSchema": "{schema, select, limitExceeded{Too many attempts in a row, try again later.} signedOut{Incorrect email or password.} notAuthorized{Unconfirmed email, confirm it.} userNotConfirmed{Unconfirmed email, confirm it.} userNotFound{Incorrect email or password or email not registered.} other{Something went wrong while logging in, please try again later.}}",
-    "registerErrorsSchema": "{schema, select, limitExceeded{Too many attempts in a row, try again later.} usernameExists{There is already an account with this email.} invalidParameter{Some field filled in incorrectly.} internalError{We are experiencing internal issues, please try again later.} other{There was an error trying to register, please try again later.}}",
-    "emailConfirmationErrorsSchema": "{schema, select, limitExceeded{Too many attempts in a row, try again later.} invalidParameter{Email probably already confirmed.} tooManyFailedAttempts{Looks like you tried the code wrong too many times, get in touch.} userNotFound{We couldn't find this registered email.} internalError{We are experiencing internal issues, please try again later.} codeMismatch{Code provided is wrong, please try again.} other{An error occurred while confirming email.}}",
-    "logoutErrorsSchema": "{schema, select, limitExceeded{Too many attempts in a row, try again later.} internalError{We are experiencing internal issues, please try again later.} other{Error trying to log out, please try again later.}}",
-    "forgotPasswordErrorsSchema": "{schema, select, limitExceeded{Too many attempts in a row, try again later.} userNotConfirmed{Unconfirmed email, confirm it.} userNotFound{Email not found, make sure you have registered.} invalidParameter{Unconfirmed email, confirm it before changing password.} internalError{We are experiencing internal issues, please try again later.} other{Error trying to reset password, try again later. }}",
-    "confirmResetPasswordErrorsSchema": "{schema, select, limitExceeded{Too many attempts in a row, try again later.} codeMismatch{Code provided is wrong, please try again.} userNotConfirmed{Unconfirmed email, confirm it.} internalError{We are experiencing internal issues, please try again later.} other{Error when trying to change password, try again later.}}",
-    "resendCodeErrorsSchema": "{schema, select, invalidParameter{Email probably already confirmed.} userNotFound{Email not found, make sure you have registered.} limitExceeded{Too many attempts in a row, try again later.} internalError{We are experiencing internal issues, please try again later.} codeDeliveryFailure{Failed to send code to email, please try again.} other{Error trying to send code, please try again later.}}",
-    "getUserAtribbutesErrorsSchema": "{schema, select, limitExceeded{Too many attempts in a row, try again later.} signedOut{Incorrect email or password.} notAuthorized{Unconfirmed email, confirm it.} userNotConfirmed{Unconfirmed email, confirm it.} userNotFound{Incorrect email or password or email not registered.} other{Error when trying to get user attributes.}}",
+    "authErrorsSchema": "{schema, select, codeDeliveryFailure{Failed to send code to email, please try again.} codeMismatch{Code provided is wrong, please try again.} invalidParameter{Some field filled in incorrectly.} usernameExists{There is already an account with this email.} notAuthorized{Unconfirmed email, confirm it.} userNotConfirmed{Unconfirmed email, confirm it.} signedOut{Incorrect email or password.} limitExceeded{Too many attempts in a row, try again later.} invalidParameter{Email probably already confirmed.} tooManyFailedAttempts{Looks like you tried the code wrong too many times, get in touch.} userNotFound{We couldn't find this registered email.} internalError{We are experiencing internal issues, please try again later.} codeMismatch{Code provided is wrong, please try again.} other{An error occurred while confirming email.}}",
+
+    "entityErrorMessage": "Field {entityErrorMessage} is not valid",
+    "@entityErrorMessage" : {
+        "placeholders": {
+            "placeholders": {
+                "entityErrorMessage": {}
+            }
+        }
+    },
+    
+    "emptyListErrorMessage": "List is empty, no items found for this request",
+
+    "contactError": "Error sending message, please try again later.",
+
+    "requestErrorMessage": "{message}",
+    "@requestErrorMessage" : {
+        "placeholders": {
+            "placeholders": {
+                "requestErrorMessage": {}
+            }
+        }
+    },
+
+    "noItemsFoundErrorMessage": "No items found for {message}",
+    "@noItemsFoundErrorMessage" : {
+        "placeholders": {
+            "placeholders": {
+                "noItemsFoundErrorMessage": {}
+            }
+        }
+    },
     "": ""
 }

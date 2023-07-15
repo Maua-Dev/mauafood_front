@@ -56,11 +56,10 @@
     "registerEmailInstructionsTitle": "Para completar seu cadastro enviamos um e-mail com um código, insira-o no campo abaixo.",
 
 
-
     "searchTitle": "Pesquisa",
     "restaurantsTitle": "Restaurantes",
     "seeMenuTitle": "Ver cardápio",
-    "recommendedTitle": "Recomendados",
+    "recommendedTitle": "Outras Opções",
     "loginTitle": "Login",
     "doLoginTitle": "Faça o login",
     "havePasswordTitle": "Já tem uma senha?",
@@ -77,9 +76,9 @@
     "labelSend": "Enviar agora",
 
 
-    "mealNameSchema": "{meal, select, ALL{Tudo} SANDWICHES{Lanches} DRINKS{Bebidas} CANDIES{Doces} PLATES{Pratos} PORTIONS{Porções} PASTAS{Massas} SNACKS{Snacks} SALADS{Saladas} DESSERT{Sobremesa} SAVOURY{Salgado} other{Outros}}",
-    "mealPriceCurrency": "{amount} ",
-    "@mealPriceCurrency" : {
+    "productNameSchema": "{product, select, ALL{Tudo} SANDWICHES{Lanches} DRINKS{Bebidas} CANDIES{Doces} PLATES{Pratos} PORTIONS{Porções} PASTAS{Massas} SNACKS{Snacks} SALADS{Saladas} DESSERT{Sobremesa} SAVOURY{Salgado} other{Outros}}",
+    "productPriceCurrency": "{amount} ",
+    "@productPriceCurrency" : {
         "placeholders": {
             "amount": {
                 "type": "double",
@@ -95,8 +94,8 @@
             }
         }
     },
-    "mealPrepareTimeMinutes": "{prepareTime} min",
-    "@mealPrepareTimeMinutes" : {
+    "productPrepareTimeMinutes": "{prepareTime} min",
+    "@productPrepareTimeMinutes" : {
         "placeholders": {
             "placeholders": {
                 "prepareTime": {}
@@ -124,13 +123,38 @@
     "errorEmailOrPassword": "Erro com e-mail ou senha.",
     "errorFields": "Erro com os campos inseridos.",
 
-    "loginErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} signedOut{E-mail ou senha incorretos.} notAuthorized{E-mail não confirmado, confirme-o.} userNotConfirmed{E-mail não confirmado, confirme-o.} userNotFound{E-mail ou senha incorretos ou e-mail não cadastrado.} other{Algo deu errado ao logar, tente novamente mais tarde.}}",
-    "registerErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} usernameExists{Já existe um cadastro com este e-mail.} invalidParameter{Algum campo preenchido de forma errada.} internalError{Estamos com problemas internos, tente mais tarde.} other{Ocorreu algum erro ao tentar cadastrar, tente novamente mais tarde.}}",
-    "emailConfirmationErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} invalidParameter{E-mail, provavelmente, já confirmado.} tooManyFailedAttempts{Parece que você tentou errou o código muitas vezes, entre em contato.} userNotFound{Não encontramos este e-mail cadastrado.} internalError{Estamos com problemas internos, tente mais tarde.} codeMismatch{Código fornecido está errado, tente novamente.} other{Ocorreu algum erro ao confirmar e-mail.}}",
-    "logoutErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} internalError{Estamos com problemas internos, tente mais tarde.} other{Erro ao tentar fazer logout, tente mais tarde.}}",
-    "forgotPasswordErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} userNotConfirmed{E-mail não confirmado, confirme-o.} userNotFound{E-mail não encontrado, certifique-se de que fez cadastro.} invalidParameter{E-mail não confirmado, confirme-o antes de mudar a senha.} internalError{Estamos com problemas internos, tente mais tarde.} other{Erro ao tentar resetar senha, tente mais tarde.}}",
-    "confirmResetPasswordErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} codeMismatch{Código fornecido está errado, tente novamente.} userNotConfirmed{E-mail não confirmado, confirme-o.} internalError{Estamos com problemas internos, tente mais tarde.} other{Erro ao tentar mudar senha, tente mais tarde.}}",
-    "resendCodeErrorsSchema": "{schema, select, invalidParameter{E-mail, provavelmente, já confirmado.} userNotFound{E-mail não encontrado, certifique-se de que fez cadastro.} limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} internalError{Estamos com problemas internos, tente mais tarde.} codeDeliveryFailure{Falha ao enviar código para o e-mail, tente novamente.} other{Erro ao tentar enviar código, tente mais tarde.}}",
-    "getUserAtribbutesErrorsSchema": "{schema, select, limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} signedOut{E-mail ou senha incorretos.} notAuthorized{E-mail não confirmado, confirme-o.} userNotConfirmed{E-mail não confirmado, confirme-o.} userNotFound{E-mail ou senha incorretos ou e-mail não cadastrado.} other{Erro ao tentar pegar atributos de usuário.}}",
+    "authErrorsSchema": "{schema, select, codeDeliveryFailure{Falha ao enviar código para o e-mail, tente novamente.} codeMismatch{Código fornecido está errado, tente novamente.} invalidParameter{Algum campo preenchido de forma errada.} usernameExists{Já existe um cadastro com este e-mail.} notAuthorized{E-mail não confirmado, confirme-o.} userNotConfirmed{E-mail não confirmado, confirme-o.} signedOut{E-mail ou senha incorretos.} limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} invalidParameter{E-mail, provavelmente, já confirmado.} tooManyFailedAttempts{Parece que você tentou errou o código muitas vezes, entre em contato.} userNotFound{Não encontramos este e-mail cadastrado.} internalError{Estamos com problemas internos, tente mais tarde.} codeMismatch{Código fornecido está errado, tente novamente.} other{Ocorreu algum erro ao confirmar e-mail.}}",
+
+    "entityErrorMessage": "Campo {entityErrorMessage} não é válido",
+    "@entityErrorMessage" : {
+        "placeholders": {
+            "placeholders": {
+                "restaurantName": {}
+            }
+        }
+    },
+
+    "emptyListErrorMessage": "Lista vazia, itens não encontrados para essa requisição",
+
+    "contactError": "Erro ao enviar mensagem, tente novamente mais tarde.",
+
+    "requestErrorMessage": "{message}",
+    "@requestErrorMessage" : {
+        "placeholders": {
+            "placeholders": {
+                "restaurantName": {}
+            }
+        }
+    },
+
+    "noItemsFoundErrorMessage": "Itens não encontrados para: {message}",
+    "@noItemsFoundErrorMessage" : {
+        "placeholders": {
+            "placeholders": {
+                "restaurantName": {}
+            }
+        }
+    },
+
     "": ""
 }

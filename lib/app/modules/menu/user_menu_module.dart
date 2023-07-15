@@ -1,31 +1,44 @@
+import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/data/datasource/menu_datasource_impl.dart';
-import 'package:mauafood_front/app/modules/menu/domain/usecases/get_restaurant_meal.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/bloc/contact/contact_bloc.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/bloc/menu_bloc.dart';
+import 'package:mauafood_front/app/shared/datasource/external/http/menu_datasource.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/controllers/contact/contact_controller.dart';
+import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/pages/user_menu_page.dart';
-
-import '../meal-info/meal_info_module.dart';
-import '../restaurants/domain/infra/restaurant_enum.dart';
+import '../../shared/datasource/external/http/contact_datasource.dart';
+import '../../shared/domain/repositories/contact_repository_interface.dart';
+import '../../shared/domain/usecases/contact_usecase.dart';
+import '../../shared/helpers/services/dio/dio_http_request.dart';
+import '../../shared/helpers/services/dio/options/product_base_options.dart';
+import '../../shared/helpers/services/http/http_request_interface.dart';
+import '../../shared/helpers/services/http_service.dart';
+import '../../shared/infra/datasource/external/http/contact_datasource_interface.dart';
+import '../../shared/infra/repositories/contact_repository.dart';
+import '../product-info/product_info_module.dart';
 import '../restaurants/restaurant_module.dart';
-import 'domain/infra/menu_repository_interface.dart';
-import 'infra/datasources/menu_datasource_interface.dart';
-import 'infra/repository/menu_repository_impl.dart';
+import '../../shared/domain/repositories/menu_repository_interface.dart';
+import '../../shared/infra/datasource/external/http/menu_datasource_interface.dart';
+import '../../shared/infra/repositories/menu_repository.dart';
 
 class UserMenuModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind<GetRestaurantMealInterface>(
-            (i) => GetRestaurantMealImpl(repository: i())),
-        Bind<MenuBloc>(
-          (i) => MenuBloc(getRestaurantMeal: i(), restaurantInfo: i.args.data),
+        Bind<IGetRestaurantProductUsecase>(
+            (i) => GetRestaurantProductUsecase(repository: i())),
+        Bind.factory<MenuRestaurantController>(
+          (i) => MenuRestaurantController(i(), i.args.data),
         ),
-        Bind<ContactBloc>(
-          (i) => ContactBloc(),
+        Bind((i) => Dio(productBaseOptions)),
+        Bind<IHttpRequest>((i) => DioHttpRequest(dio: i<Dio>())),
+        Bind<IContactUsecase>((i) => ContactUsecase(i())),
+        Bind<IContactRepository>((i) => ContactRepository(datasource: i())),
+        Bind<IContactDatasource>((i) => ContactDatasource()),
+        Bind<ContactController>(
+          (i) => ContactController(i()),
         ),
-        Bind<MenuRepositoryInterface>(
-            (i) => MenuRepositoryImpl(datasource: i())),
-        Bind<MenuDatasourceInterface>((i) => MenuDatasourceImpl()),
+        Bind<IMenuRepository>((i) => MenuRepository(datasource: i())),
+        Bind<IMenuDatasource>((i) => MenuDatasource(i())),
+        Bind<HttpService>((i) => HttpService(httpRequest: i())),
       ];
 
   @override
@@ -33,19 +46,14 @@ class UserMenuModule extends Module {
         ModuleRoute(
           Modular.initialRoute,
           module: RestaurantModule(),
-          // guards: [UserAuthGuard()],
         ),
         ChildRoute(
           '/menu',
-          child: (context, args) => UserMenuPage(
-            restaurantInfo: args.data as RestaurantEnum,
-          ),
-          // guards: [UserAuthGuard()],
+          child: (context, args) => const UserMenuPage(),
         ),
         ModuleRoute(
-          '/meal-info',
-          module: MealInfoModule(),
-          // guards: [UserAuthGuard()],
+          '/product-info',
+          module: ProductInfoModule(),
         ),
       ];
 }

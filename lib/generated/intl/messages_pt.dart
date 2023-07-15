@@ -21,72 +21,38 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'pt';
 
   static String m0(schema) => "${Intl.select(schema, {
-            'limitExceeded':
-                'Muitas tentativas em sequência, tente novamente mais tarde.',
+            'codeDeliveryFailure':
+                'Falha ao enviar código para o e-mail, tente novamente.',
             'codeMismatch': 'Código fornecido está errado, tente novamente.',
+            'invalidParameter': 'E-mail, provavelmente, já confirmado.',
+            'usernameExists': 'Já existe um cadastro com este e-mail.',
+            'notAuthorized': 'E-mail não confirmado, confirme-o.',
             'userNotConfirmed': 'E-mail não confirmado, confirme-o.',
-            'internalError':
-                'Estamos com problemas internos, tente mais tarde.',
-            'other': 'Erro ao tentar mudar senha, tente mais tarde.',
-          })}";
-
-  static String m1(schema) => "${Intl.select(schema, {
+            'signedOut': 'E-mail ou senha incorretos.',
             'limitExceeded':
                 'Muitas tentativas em sequência, tente novamente mais tarde.',
-            'invalidParameter': 'E-mail, provavelmente, já confirmado.',
             'tooManyFailedAttempts':
                 'Parece que você tentou errou o código muitas vezes, entre em contato.',
             'userNotFound': 'Não encontramos este e-mail cadastrado.',
             'internalError':
                 'Estamos com problemas internos, tente mais tarde.',
-            'codeMismatch': 'Código fornecido está errado, tente novamente.',
             'other': 'Ocorreu algum erro ao confirmar e-mail.',
           })}";
 
-  static String m2(schema) => "${Intl.select(schema, {
-            'limitExceeded':
-                'Muitas tentativas em sequência, tente novamente mais tarde.',
-            'userNotConfirmed': 'E-mail não confirmado, confirme-o.',
-            'userNotFound':
-                'E-mail não encontrado, certifique-se de que fez cadastro.',
-            'invalidParameter':
-                'E-mail não confirmado, confirme-o antes de mudar a senha.',
-            'internalError':
-                'Estamos com problemas internos, tente mais tarde.',
-            'other': 'Erro ao tentar resetar senha, tente mais tarde.',
+  static String m1(placeholders, entityErrorMessage) =>
+      "Campo ${entityErrorMessage} não é válido";
+
+  static String m2(placeholders, message) =>
+      "Itens não encontrados para: ${message}";
+
+  static String m3(notifications) => "${Intl.select(notifications, {
+            'normalPart': 'Deseja receber ',
+            'email': 'notificações por e-mail',
+            'app': 'notificações pelo app',
+            'other': '',
           })}";
 
-  static String m3(schema) => "${Intl.select(schema, {
-            'limitExceeded':
-                'Muitas tentativas em sequência, tente novamente mais tarde.',
-            'signedOut': 'E-mail ou senha incorretos.',
-            'notAuthorized': 'E-mail não confirmado, confirme-o.',
-            'userNotConfirmed': 'E-mail não confirmado, confirme-o.',
-            'userNotFound':
-                'E-mail ou senha incorretos ou e-mail não cadastrado.',
-            'other': 'Erro ao tentar pegar atributos de usuário.',
-          })}";
-
-  static String m4(schema) => "${Intl.select(schema, {
-            'limitExceeded':
-                'Muitas tentativas em sequência, tente novamente mais tarde.',
-            'signedOut': 'E-mail ou senha incorretos.',
-            'notAuthorized': 'E-mail não confirmado, confirme-o.',
-            'userNotConfirmed': 'E-mail não confirmado, confirme-o.',
-            'userNotFound':
-                'E-mail ou senha incorretos ou e-mail não cadastrado.',
-            'other': 'Algo deu errado ao logar, tente novamente mais tarde.',
-          })}";
-
-  static String m5(schema) => "${Intl.select(schema, {
-            'limitExceeded':
-                'Muitas tentativas em sequência, tente novamente mais tarde.',
-            'internalError':
-                'Estamos com problemas internos, tente mais tarde.',
-            'other': 'Erro ao tentar fazer logout, tente mais tarde.',
-          })}";
-
-  static String m6(meal) => "${Intl.select(meal, {
+  static String m4(product) => "${Intl.select(product, {
             'ALL': 'Tudo',
             'SANDWICHES': 'Lanches',
             'DRINKS': 'Bebidas',
@@ -101,51 +67,22 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': 'Outros',
           })}";
 
-  static String m7(placeholders, prepareTime) => "${prepareTime} min";
+  static String m5(placeholders, prepareTime) => "${prepareTime} min";
 
-  static String m8(amount) => "${amount} ";
+  static String m6(amount) => "${amount} ";
 
-  static String m9(notifications) => "${Intl.select(notifications, {
-            'normalPart': 'Deseja receber ',
-            'email': 'notificações por e-mail',
-            'app': 'notificações pelo app',
-            'other': '',
-          })}";
+  static String m7(placeholders, message) => "${message}";
 
-  static String m10(schema) => "${Intl.select(schema, {
-            'limitExceeded':
-                'Muitas tentativas em sequência, tente novamente mais tarde.',
-            'usernameExists': 'Já existe um cadastro com este e-mail.',
-            'invalidParameter': 'Algum campo preenchido de forma errada.',
-            'internalError':
-                'Estamos com problemas internos, tente mais tarde.',
-            'other':
-                'Ocorreu algum erro ao tentar cadastrar, tente novamente mais tarde.',
-          })}";
+  static String m8(placeholders, restaurantName) => "${restaurantName}";
 
-  static String m11(schema) => "${Intl.select(schema, {
-            'invalidParameter': 'E-mail, provavelmente, já confirmado.',
-            'userNotFound':
-                'E-mail não encontrado, certifique-se de que fez cadastro.',
-            'limitExceeded':
-                'Muitas tentativas em sequência, tente novamente mais tarde.',
-            'internalError':
-                'Estamos com problemas internos, tente mais tarde.',
-            'codeDeliveryFailure':
-                'Falha ao enviar código para o e-mail, tente novamente.',
-            'other': 'Erro ao tentar enviar código, tente mais tarde.',
-          })}";
-
-  static String m12(placeholders, restaurantName) => "${restaurantName}";
-
-  static String m13(restaurant) => "${Intl.select(restaurant, {
+  static String m9(restaurant) => "${Intl.select(restaurant, {
             'biba': 'bibaImage',
             'hora_h': 'hora_hImage',
             'moleza': 'molezaImage',
             'other': '',
           })}";
 
-  static String m14(restaurant) => "${Intl.select(restaurant, {
+  static String m10(restaurant) => "${Intl.select(restaurant, {
             'biba': 'Souza de Abreu',
             'hora_h': 'Hora H',
             'moleza': 'Cantina do Moleza',
@@ -158,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Li e aceito os Termos de Uso"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Mauá Food"),
         "attentionTitle": MessageLookupByLibrary.simpleMessage("Atenção"),
+        "authErrorsSchema": m0,
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Alterar senha"),
         "codeErrorAlert":
@@ -169,21 +107,24 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Confirme a nova senha"),
         "confirmPasswordTitle":
             MessageLookupByLibrary.simpleMessage("Confirme sua senha"),
-        "confirmResetPasswordErrorsSchema": m0,
         "confirmTitle": MessageLookupByLibrary.simpleMessage("Confirmar"),
         "confirmationCodeInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "Por favor, digite seu e-mail, vamos mandar um código de verificação."),
+        "contactError": MessageLookupByLibrary.simpleMessage(
+            "Erro ao enviar mensagem, tente novamente mais tarde."),
         "correctFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se que os campos estão corretos."),
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
         "disclaimerText": MessageLookupByLibrary.simpleMessage(
             "O MauáFood trabalha em conjunto com os restaurantes para estarmos sempre atualizados, porém não nos responsabilizamos por qualquer diferença entre os preços, disponibilidade e informações dos produtos dos menus exibidos.\nQualquer erro encontrado nos informe clicando no ícone de e-mail no canto inferior direito da tela!"),
         "doLoginTitle": MessageLookupByLibrary.simpleMessage("Faça o login"),
-        "emailConfirmationErrorsSchema": m1,
         "emailConfirmationTitle":
             MessageLookupByLibrary.simpleMessage("Confirmação de e-mail"),
         "emailTitle": MessageLookupByLibrary.simpleMessage("E-mail"),
+        "emptyListErrorMessage": MessageLookupByLibrary.simpleMessage(
+            "Lista vazia, itens não encontrados para essa requisição"),
         "enterTitle": MessageLookupByLibrary.simpleMessage("Entrar"),
+        "entityErrorMessage": m1,
         "equalPasswordAlert":
             MessageLookupByLibrary.simpleMessage("Senhas devem ser iguais."),
         "errorEmailOrPassword":
@@ -197,11 +138,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Nenhum item encontrado."),
         "fillFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se de que preencheu todos os campos."),
-        "forgotPasswordErrorsSchema": m2,
         "forgotPasswordTitle":
             MessageLookupByLibrary.simpleMessage("Esqueceu a senha?"),
         "fullNameTitle": MessageLookupByLibrary.simpleMessage("Nome Completo"),
-        "getUserAtribbutesErrorsSchema": m3,
         "haveAccountTitle":
             MessageLookupByLibrary.simpleMessage("Já tem uma conta?"),
         "havePasswordTitle":
@@ -219,36 +158,34 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelMessage": MessageLookupByLibrary.simpleMessage("Mensagem"),
         "labelName": MessageLookupByLibrary.simpleMessage("Nome Completo"),
         "labelSend": MessageLookupByLibrary.simpleMessage("Enviar agora"),
-        "loginErrorsSchema": m4,
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
-        "logoutErrorsSchema": m5,
-        "mealNameSchema": m6,
-        "mealPrepareTimeMinutes": m7,
-        "mealPriceCurrency": m8,
         "messageSentSuccessfully":
             MessageLookupByLibrary.simpleMessage("Email enviado com sucesso!"),
         "newPasswordTitle": MessageLookupByLibrary.simpleMessage("Nova senha"),
-        "notificationsOptionsSchema": m9,
+        "noItemsFoundErrorMessage": m2,
+        "notificationsOptionsSchema": m3,
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \\\$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Senha"),
+        "productNameSchema": m4,
+        "productPrepareTimeMinutes": m5,
+        "productPriceCurrency": m6,
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recomendações"),
         "recommendedTitle":
-            MessageLookupByLibrary.simpleMessage("Recomendados"),
+            MessageLookupByLibrary.simpleMessage("Outras Opções"),
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "Para completar seu cadastro enviamos um e-mail com um código, insira-o no campo abaixo."),
-        "registerErrorsSchema": m10,
         "registerTitle": MessageLookupByLibrary.simpleMessage("Cadastrar"),
+        "requestErrorMessage": m7,
         "requiredFieldAlert":
             MessageLookupByLibrary.simpleMessage("Campo obrigatório."),
-        "resendCodeErrorsSchema": m11,
         "resendConfirmationCodeTitle": MessageLookupByLibrary.simpleMessage(
             "Reeviar código de confirmação"),
-        "restaurantTitle": m12,
-        "restaurantsImageSchema": m13,
-        "restaurantsNameSchema": m14,
+        "restaurantTitle": m8,
+        "restaurantsImageSchema": m9,
+        "restaurantsNameSchema": m10,
         "restaurantsTitle":
             MessageLookupByLibrary.simpleMessage("Restaurantes"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Pesquisa"),

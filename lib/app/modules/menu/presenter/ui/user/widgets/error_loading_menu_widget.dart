@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
-import '../../../../../../shared/services/s3/assets_s3.dart';
+import '../../../../../../shared/helpers/services/s3/assets_s3.dart';
 
 class ErrorLoadingMenuWidget extends StatelessWidget {
   final String errorMessage;

@@ -1,110 +1,157 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/menu/domain/entities/meal_entity.dart';
+import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contact/contact_dialog.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
-import '../../../../../restaurants/domain/infra/restaurant_enum.dart';
-import '../../../../domain/enum/meal_enum.dart';
-import '../../../bloc/menu_bloc.dart';
+import '../../../../../../shared/domain/enums/product_enum.dart';
+import '../../../../../../shared/helpers/errors/errors.dart';
+import '../../../controllers/menu/menu_restaurant_controller.dart';
+import '../../../states/menu_state.dart';
 import '../widgets/error_loading_menu_widget.dart';
 import '../widgets/filter_button_widget.dart';
-import '../widgets/meal_card_widget.dart';
+import '../widgets/product_card_widget.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 
-class UserMenuPage extends StatelessWidget {
-  final RestaurantEnum restaurantInfo;
-  const UserMenuPage({super.key, required this.restaurantInfo});
+class UserMenuPage extends StatefulWidget {
+  const UserMenuPage({super.key});
+
+  @override
+  State<UserMenuPage> createState() => _UserMenuPageState();
+}
+
+class _UserMenuPageState extends State<UserMenuPage> {
+  final MenuRestaurantController menuController = Modular.get();
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColors.mainBlueColor,
-          onPressed: () {
-            showDialog(
-                context: context, builder: (context) => const ContactDialog());
-          },
-          child: const Icon(Icons.mail),
-        ),
-        body: BlocProvider(
-          create: (context) => Modular.get<MenuBloc>()..add(GetAllMealsEvent()),
-          child: Padding(
-            padding: const EdgeInsets.only(top: 24),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Row(
-                    children: [
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {
-                          Modular.dispose<MenuBloc>();
-                          Modular.to.pop();
-                        },
-                        icon: Icon(
-                          Icons.arrow_back_ios,
-                          color: AppColors.mainBlueColor,
-                        ),
+    Widget buildError(Failure failure) {
+      return ErrorLoadingMenuWidget(
+        errorMessage: failure.message,
+      );
+    }
+
+    Widget buildSuccess(List<Product> listProduct) {
+      return Expanded(
+          child: RefreshIndicator(
+        backgroundColor: AppColors.white,
+        color: AppColors.mainBlueColor,
+        strokeWidth: 3,
+        onRefresh: () async {
+          menuController.loadRestaurantMenu();
+        },
+        child: listProduct.isEmpty
+            ? Center(
+                child: Text(S.of(context).errorItemNotFound,
+                    style: AppTextStyles.h2))
+            : ListView.builder(
+                itemCount: listProduct.length,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16.0),
+                    child: ProductCardWidget(
+                      product: listProduct[index],
+                      onPressed: () {
+                        Modular.to.pushNamed('/user/product-info/', arguments: [
+                          listProduct[index],
+                          listProduct
+                              .where((element) =>
+                                  element.type == listProduct[index].type)
+                              .toList()
+                        ]);
+                      },
+                    ),
+                  );
+                },
+              ),
+      ));
+    }
+
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: AppColors.mainBlueColor,
+        onPressed: () {
+          showDialog(
+              context: context, builder: (context) => const ContactDialog());
+        },
+        child: const Icon(Icons.mail),
+      ),
+      body: SafeArea(
+        bottom: false,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 24),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Row(
+                  children: [
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {
+                        Modular.to.pop();
+                      },
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        color: AppColors.mainBlueColor,
                       ),
-                      const SizedBox(
-                        width: 16,
-                      ),
-                      Text(
-                        S.of(context).restaurantTitle('', restaurantInfo.name),
-                        style: AppTextStyles.h1
-                            .copyWith(color: AppColors.mainBlueColor),
-                      ),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(
+                      width: 16,
+                    ),
+                    Text(
+                      S.of(context).restaurantTitle(
+                          '', menuController.restaurantInfo.restaurantName),
+                      style: AppTextStyles.h1
+                          .copyWith(color: AppColors.mainBlueColor),
+                    ),
+                  ],
                 ),
-                ConstrainedBox(
+              ),
+              ConstrainedBox(
                   constraints: const BoxConstraints(
                     minHeight: 35.0,
                     maxHeight: 100,
                   ),
-                  child: BlocBuilder<MenuBloc, MenuState>(
-                      builder: (context, state) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 16, horizontal: 24),
-                      child: TextField(
-                        onChanged: (value) {
-                          BlocProvider.of<MenuBloc>(context)
-                              .add(SearchMealEvent(search: value));
-                        },
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1,
-                                color:
-                                    AppColors.backgroundColor2), //<-- SEE HERE
-                            borderRadius: BorderRadius.circular(50.0),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                width: 1,
-                                color: AppColors.mainBlueColor), //<-- SEE HERE
-                            borderRadius: BorderRadius.circular(50.0),
-                          ),
-                          labelStyle: AppTextStyles.h2Highlight
-                              .copyWith(fontWeight: FontWeight.bold),
-                          labelText: S.of(context).searchTitle,
-                          prefixIcon: Icon(
-                            Icons.search,
-                            color: AppColors.mainBlueColor,
-                          ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 16, horizontal: 24),
+                    child: TextFormField(
+                      onChanged: (value) {
+                        menuController.searchProduct(value);
+                      },
+                      keyboardType: TextInputType.emailAddress,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 1,
+                              color: AppColors.backgroundColor2), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                              width: 1,
+                              color: AppColors.mainBlueColor), //<-- SEE HERE
+                          borderRadius: BorderRadius.circular(50.0),
+                        ),
+                        labelStyle: AppTextStyles.h2Highlight
+                            .copyWith(fontWeight: FontWeight.bold),
+                        labelText: S.of(context).searchTitle,
+                        prefixIcon: Icon(
+                          Icons.search,
+                          color: AppColors.mainBlueColor,
                         ),
                       ),
-                    );
-                  }),
-                ),
-                Expanded(
+                    ),
+                  )),
+              Observer(builder: (_) {
+                var state = menuController.state;
+                return Expanded(
                   child: Container(
                     width: double.infinity,
                     decoration: BoxDecoration(
@@ -116,136 +163,48 @@ class UserMenuPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 24, bottom: 16),
-                          child: BlocBuilder<MenuBloc, MenuState>(
-                              builder: (context, state) {
-                            if (state is MenuLoadedSuccessState) {
-                              return ConstrainedBox(
-                                constraints: const BoxConstraints(
-                                  minHeight: 35.0,
-                                  maxHeight: 50,
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                  ),
-                                  child: ListView.builder(
-                                    itemCount: MealEnum.values.length,
-                                    scrollDirection: Axis.horizontal,
-                                    shrinkWrap: true,
-                                    itemBuilder: (context, index) {
-                                      return FilterButtonWidget(
-                                        myIndex: index,
-                                        blocIndex: state.index,
-                                        onPressed: MealEnum.values[index] ==
-                                                MealEnum.ALL
-                                            ? () {
-                                                BlocProvider.of<MenuBloc>(
-                                                        context)
-                                                    .add(GetAllMealsEvent());
-                                              }
-                                            : () {
-                                                BlocProvider.of<MenuBloc>(
-                                                        context)
-                                                    .add(FilterMealTypeEvent(
-                                                        mealType: MealEnum
-                                                            .values[index]));
-                                              },
-                                      );
-                                    },
-                                  ),
-                                ),
-                              );
-                            } else {
-                              return const SizedBox.shrink();
-                            }
-                          }),
-                        ),
-                        BlocBuilder<MenuBloc, MenuState>(
-                          builder: (context, state) {
-                            if (state is MenuLoadingState) {
-                              return const Center(
-                                  child: CircularProgressIndicator());
-                            }
-                            if (state is MenuLoadedSuccessState) {
-                              return Expanded(
-                                  child: RefreshIndicator(
-                                backgroundColor: AppColors.white,
-                                color: AppColors.mainBlueColor,
-                                strokeWidth: 3,
-                                onRefresh: () async {
-                                  BlocProvider.of<MenuBloc>(context)
-                                      .add(GetAllMealsEvent());
-                                },
-                                child: state.listMeal.isEmpty
-                                    ? Center(
-                                        child: Text(
-                                            S.of(context).errorItemNotFound,
-                                            style: AppTextStyles.h2))
-                                    : GridView.builder(
-                                        itemCount: state.listMeal.length,
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 24, vertical: 8),
-                                        gridDelegate:
-                                            const SliverGridDelegateWithMaxCrossAxisExtent(
-                                          crossAxisSpacing: 16,
-                                          mainAxisSpacing: 16,
-                                          maxCrossAxisExtent: 210,
-                                        ),
+                            padding: const EdgeInsets.only(top: 24, bottom: 16),
+                            child: state is MenuLoadedSuccessState
+                                ? ConstrainedBox(
+                                    constraints: const BoxConstraints(
+                                      minHeight: 35.0,
+                                      maxHeight: 50,
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        horizontal: 16,
+                                      ),
+                                      child: ListView.builder(
+                                        itemCount: ProductEnum.values.length,
+                                        scrollDirection: Axis.horizontal,
+                                        shrinkWrap: true,
                                         itemBuilder: (context, index) {
-                                          var recommendedMealList = <Meal>[];
-                                          switch (state.listMeal.length) {
-                                            case 0:
-                                              recommendedMealList = [];
-                                              break;
-                                            case 1:
-                                              recommendedMealList = [
-                                                state.listMeal[0]
-                                              ];
-                                              break;
-                                            case 2:
-                                              recommendedMealList = [
-                                                state.listMeal[0],
-                                                state.listMeal[1]
-                                              ];
-                                              break;
-                                            default:
-                                              recommendedMealList = [
-                                                state.listMeal[0],
-                                                state.listMeal[1],
-                                                state.listMeal[2]
-                                              ];
-                                          }
-                                          return MealCardWidget(
-                                            meal: state.listMeal[index],
+                                          return FilterButtonWidget(
+                                            myIndex: index,
+                                            actualIndex: state.index,
                                             onPressed: () {
-                                              Modular.to.pushNamed(
-                                                  '/user/meal-info',
-                                                  arguments: [
-                                                    state.listMeal[index],
-                                                    recommendedMealList
-                                                  ]);
+                                              menuController.filterProduct(
+                                                  ProductEnum.values[index]);
                                             },
                                           );
                                         },
                                       ),
-                              ));
-                            }
-                            if (state is MenuErrorState) {
-                              return ErrorLoadingMenuWidget(
-                                errorMessage: state.failure.message,
-                              );
-                            } else {
-                              return Text(S.of(context).errorGeneric);
-                            }
-                          },
-                        ),
+                                    ),
+                                  )
+                                : const SizedBox.shrink()),
+                        state is MenuLoadingState
+                            ? const Center(child: CircularProgressIndicator())
+                            : state is MenuLoadedSuccessState
+                                ? buildSuccess(state.listProduct)
+                                : state is MenuErrorState
+                                    ? buildError(state.failure)
+                                    : const SizedBox.shrink(),
                       ],
                     ),
                   ),
-                ),
-              ],
-            ),
+                );
+              })
+            ],
           ),
         ),
       ),

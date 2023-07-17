@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/landing/landing_module.dart';
 import 'modules/menu/user_menu_module.dart';
 import 'modules/splash/splash_module.dart';
 
@@ -21,6 +22,11 @@ class AppModule extends Module {
         //   module: EmployeeMenuModule(),
         //   guards: [EmployeeAuthGuard()],
         // ),
+         ModuleRoute(
+          '/landing',
+          module: LandingModule(),
+          // guards: [UserAuthGuard()],
+        ),
         ModuleRoute(
           '/user',
           module: UserMenuModule(),

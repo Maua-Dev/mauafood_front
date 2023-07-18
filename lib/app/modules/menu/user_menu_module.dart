@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/profile/profile_module.dart';
+import 'package:mauafood_front/app/modules/restaurants/restaurant_module.dart';
 import 'package:mauafood_front/app/shared/datasource/external/http/menu_datasource.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/controllers/contact/contact_controller.dart';
@@ -15,7 +17,6 @@ import '../../shared/helpers/services/http_service.dart';
 import '../../shared/infra/datasource/external/http/contact_datasource_interface.dart';
 import '../../shared/infra/repositories/contact_repository.dart';
 import '../product-info/product_info_module.dart';
-import '../restaurants/restaurant_module.dart';
 import '../../shared/domain/repositories/menu_repository_interface.dart';
 import '../../shared/infra/datasource/external/http/menu_datasource_interface.dart';
 import '../../shared/infra/repositories/menu_repository.dart';
@@ -56,6 +57,11 @@ class UserMenuModule extends Module {
         ModuleRoute(
           '/product-info',
           module: ProductInfoModule(),
+          // guards: [UserAuthGuard()],
+        ),
+        ModuleRoute(
+          '/profile',
+          module: ProfileModule(),
           // guards: [UserAuthGuard()],
         ),
       ];

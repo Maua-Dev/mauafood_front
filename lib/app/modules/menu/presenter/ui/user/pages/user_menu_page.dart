@@ -72,14 +72,7 @@ class _UserMenuPageState extends State<UserMenuPage> {
     }
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.mainBlueColor,
-        onPressed: () {
-          showDialog(
-              context: context, builder: (context) => const ContactDialog());
-        },
-        child: const Icon(Icons.mail),
-      ),
+     
       body: SafeArea(
         bottom: false,
         child: Padding(

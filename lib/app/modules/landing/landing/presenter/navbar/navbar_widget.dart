@@ -5,7 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
-import '../controllers/landing_controller.dart';
+import '../../../presenter/controllers/landing_controller.dart';
+
 
 class NavBarWidget extends StatelessWidget {
   const NavBarWidget({super.key, required this.controller});

@@ -25,11 +25,41 @@ class AppWidget extends StatelessWidget {
       routeInformationParser: Modular.routeInformationParser,
       routerDelegate: Modular.routerDelegate,
       theme: ThemeData(
-          fontFamily: GoogleFonts.lato().fontFamily,
-          scaffoldBackgroundColor: AppColors.backgroundColor,
-          appBarTheme: AppBarTheme(
-            backgroundColor: AppColors.backgroundColor,
-          )),
+        fontFamily: GoogleFonts.lato().fontFamily,
+        scaffoldBackgroundColor: AppColors.backgroundColor,
+        appBarTheme: AppBarTheme(
+          backgroundColor: AppColors.backgroundColor,
+        ),
+        outlinedButtonTheme: OutlinedButtonThemeData(
+          style: OutlinedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            minimumSize: const Size.fromHeight(50),
+            side: BorderSide(color: AppColors.mainBlueColor),
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+                side: BorderSide(color: AppColors.mainBlueColor)),
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.mainBlueColor,
+            foregroundColor: Colors.white,
+            minimumSize: const Size.fromHeight(50),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+        ),
+        inputDecorationTheme: const InputDecorationTheme(
+          hintStyle: TextStyle(color: Colors.grey),
+          fillColor: Colors.white,
+          filled: true,
+          focusColor: Colors.white,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(10)),
+          ),
+        ),
+      ),
     ); //added by extension
   }
 }

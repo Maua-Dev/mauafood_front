@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mauafood_front/app/modules/landing/landing/landing_controller.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
+
+import '../controllers/landing_controller.dart';
 
 class NavBarWidget extends StatelessWidget {
   const NavBarWidget({super.key, required this.controller});

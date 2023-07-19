@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/landing/landing/landing_controller.dart';
-import 'package:mauafood_front/app/modules/landing/landing/widgets/navbar/navbar_widget.dart';
-
-import '../../../shared/helpers/utils/screen_helper.dart';
-import '../../../shared/themes/app_colors.dart';
+import 'package:mauafood_front/app/modules/landing/landing/presenter/controllers/landing_controller.dart';
+import 'package:mauafood_front/app/modules/landing/landing/presenter/navbar/navbar_widget.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({super.key});

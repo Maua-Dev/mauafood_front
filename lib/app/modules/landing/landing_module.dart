@@ -5,7 +5,6 @@ import 'package:mauafood_front/app/modules/landing/presenter/controllers/landing
 import 'package:mauafood_front/app/modules/landing/presenter/ui/pages/landing_page.dart';
 import 'package:mauafood_front/app/modules/menu/user_menu_module.dart';
 import 'package:mauafood_front/app/modules/profile/profile_module.dart';
-import 'package:mauafood_front/app/modules/profile/profile_page.dart';
 import '../../shared/datasource/external/http/contact_datasource.dart';
 import '../../shared/domain/repositories/contact_repository_interface.dart';
 import '../../shared/domain/usecases/contact_usecase.dart';
@@ -32,7 +31,7 @@ class LandingModule extends Module {
         children: [
           ModuleRoute('/restaurants', module: UserMenuModule()),
           ChildRoute('/cart',
-              child: (_, args) => Center(
+              child: (_, args) => const Center(
                     child: Text('carrinho'),
                   )),
           ChildRoute('/faq',

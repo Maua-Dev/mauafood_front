@@ -36,7 +36,7 @@ class ProfilePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [IconButton(onPressed:() 
-              {  print('Funciona');
+              {
                  Modular.to.navigate('/favorites');}, icon: Icon(FontAwesomeIcons.solidHeart, size: 12, color: AppColors.mainBlueColor,))  , const Text("Favoritos"), SizedBox(width: ScreenHelper.width(context)*0.5,), Icon(Icons.arrow_right_sharp, color: AppColors.mainBlueColor,)],
             )
           ],),

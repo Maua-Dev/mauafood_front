@@ -9,6 +9,11 @@ environment:
   sdk: '>=2.18.0 <3.0.0'
 
 dependencies:
+  auth_package:
+    git:
+      url: https://github.com/Maua-Dev/dev_authentication.git
+      ref: dev
+      path: packages/auth_package
   flutter:
     sdk: flutter
   flutter_localizations:

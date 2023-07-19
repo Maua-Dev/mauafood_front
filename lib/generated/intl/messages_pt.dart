@@ -223,7 +223,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recomendações"),
         "recommendedTitle":
-            MessageLookupByLibrary.simpleMessage("Recomendados"),
+            MessageLookupByLibrary.simpleMessage("Outras Opções"),
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "Para completar seu cadastro enviamos um e-mail com um código, insira-o no campo abaixo."),
         "registerTitle": MessageLookupByLibrary.simpleMessage("Cadastrar"),

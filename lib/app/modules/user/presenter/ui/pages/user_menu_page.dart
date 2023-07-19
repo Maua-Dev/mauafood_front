@@ -51,32 +51,17 @@ class _UserMenuPageState extends State<UserMenuPage> {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                 itemBuilder: (context, index) {
-                  var recommendedProductList = <Product>[];
-                  switch (listProduct.length) {
-                    case 0:
-                      recommendedProductList = [];
-                      break;
-                    case 1:
-                      recommendedProductList = [listProduct[0]];
-                      break;
-                    case 2:
-                      recommendedProductList = [listProduct[0], listProduct[1]];
-                      break;
-                    default:
-                      recommendedProductList = [
-                        listProduct[0],
-                        listProduct[1],
-                        listProduct[2]
-                      ];
-                  }
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: ProductCardWidget(
                       product: listProduct[index],
                       onPressed: () {
-                        Modular.to.pushNamed('/user/product-info', arguments: [
+                        Modular.to.pushNamed('/user/product-info/', arguments: [
                           listProduct[index],
-                          recommendedProductList
+                          listProduct
+                              .where((element) =>
+                                  element.type == listProduct[index].type)
+                              .toList()
                         ]);
                       },
                     ),

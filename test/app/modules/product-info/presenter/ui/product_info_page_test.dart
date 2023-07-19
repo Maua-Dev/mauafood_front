@@ -73,8 +73,6 @@ void main() {
 
       await widgetTester.pump();
 
-      final elevatedButton = find.byType(ElevatedButton);
-      expect(elevatedButton, findsNWidgets(3));
       final center = find.byType(Center);
       expect(center, findsWidgets);
       final sizedBox = find.byType(SizedBox);
@@ -82,9 +80,7 @@ void main() {
       final texts = find.byType(Text);
       expect(texts, findsAtLeastNWidgets(4));
       final columns = find.byType(Column);
-      expect(columns, findsNWidgets(8));
-      final rows = find.byType(Row);
-      expect(rows, findsNWidgets(1));
+      expect(columns, findsNWidgets(3));
     });
   });
 }

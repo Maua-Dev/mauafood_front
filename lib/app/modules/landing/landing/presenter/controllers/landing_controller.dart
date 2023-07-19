@@ -15,6 +15,7 @@ Map bottomNavigationItemsRoutes = {
   3: 'question_mark_outlined'
 };
 
+// ignore: library_private_types_in_public_api
 class LandingController = _LandingControllerBase with _$LandingController;
 
 abstract class _LandingControllerBase with Store {

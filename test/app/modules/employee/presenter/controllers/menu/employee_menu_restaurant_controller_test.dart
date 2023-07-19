@@ -4,6 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/employee_menu_state.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
@@ -53,11 +54,31 @@ class GetRestaurantProductMockFailed extends Mock
   }
 }
 
+class DeleteProductMockSuccess extends Mock implements IDeleteProductUsecase {
+  @override
+  Future<Either<Failure, void>> call(
+      String id, RestaurantEnum restaurant) async {
+    return right(null);
+  }
+}
+
+class DeleteProductMockFailed extends Mock implements IDeleteProductUsecase {
+  @override
+  Future<Either<Failure, bool>> call(
+      String id, RestaurantEnum restaurant) async {
+    return left(Failure(message: ''));
+  }
+}
+
 void main() {
   late EmployeeMenuRestaurantController controller;
-  IGetRestaurantProductUsecase usecaseSuccess =
+  IGetRestaurantProductUsecase getRestaurantProductSuccessUsecase =
       GetRestaurantProductMockSuccess();
-  IGetRestaurantProductUsecase usecaseFailed = GetRestaurantProductMockFailed();
+  IDeleteProductUsecase deleteProductSuccessUsecase =
+      DeleteProductMockSuccess();
+  IGetRestaurantProductUsecase getRestaurantProductFailedUsecase =
+      GetRestaurantProductMockFailed();
+  IDeleteProductUsecase deleteProductFailedUsecase = DeleteProductMockFailed();
   RestaurantEnum restaurantInfo = RestaurantEnum.biba;
   ProductModel testMock = ProductModel(
     id: '0',
@@ -88,15 +109,19 @@ void main() {
 
   group('[TEST] - loadRestaurantMenu', () {
     test('must return MenuLoadedSuccessState', () async {
-      controller =
-          EmployeeMenuRestaurantController(usecaseSuccess, restaurantInfo);
+      controller = EmployeeMenuRestaurantController(
+          getRestaurantProductSuccessUsecase,
+          restaurantInfo,
+          deleteProductSuccessUsecase);
       await controller.loadRestaurantMenu();
       expect(controller.listAllProduct, isNotEmpty);
     });
 
     test('must return MenuErrorState', () async {
-      controller =
-          EmployeeMenuRestaurantController(usecaseFailed, restaurantInfo);
+      controller = EmployeeMenuRestaurantController(
+          getRestaurantProductFailedUsecase,
+          restaurantInfo,
+          deleteProductFailedUsecase);
       await controller.loadRestaurantMenu();
       expect(controller.state, isA<EmployeeMenuErrorState>());
     });
@@ -104,8 +129,10 @@ void main() {
 
   group('[TEST] - searchProduct', () {
     test('must return MenuErrorState', () async {
-      controller =
-          EmployeeMenuRestaurantController(usecaseFailed, restaurantInfo);
+      controller = EmployeeMenuRestaurantController(
+          getRestaurantProductFailedUsecase,
+          restaurantInfo,
+          deleteProductFailedUsecase);
       await controller.searchProduct('');
       expect(controller.state, isA<EmployeeMenuErrorState>());
     });
@@ -113,8 +140,10 @@ void main() {
 
   group('[TEST] - filterProduct', () {
     test('must return MenuErrorState', () async {
-      controller =
-          EmployeeMenuRestaurantController(usecaseFailed, restaurantInfo);
+      controller = EmployeeMenuRestaurantController(
+          getRestaurantProductFailedUsecase,
+          restaurantInfo,
+          deleteProductFailedUsecase);
       await controller.filterProduct(ProductEnum.SNACKS);
       expect(controller.state, isA<EmployeeMenuErrorState>());
     });

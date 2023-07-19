@@ -26,6 +26,22 @@ mixin _$EmployeeMenuRestaurantController
     });
   }
 
+  late final _$productCardStateAtom = Atom(
+      name: 'MenuRestaurantControllerBase.productCardState', context: context);
+
+  @override
+  ProductCardEmployeeState get productCardState {
+    _$productCardStateAtom.reportRead();
+    return super.productCardState;
+  }
+
+  @override
+  set productCardState(ProductCardEmployeeState value) {
+    _$productCardStateAtom.reportWrite(value, super.productCardState, () {
+      super.productCardState = value;
+    });
+  }
+
   late final _$listAllProductAtom = Atom(
       name: 'MenuRestaurantControllerBase.listAllProduct', context: context);
 
@@ -89,6 +105,16 @@ mixin _$EmployeeMenuRestaurantController
         .run(() => super.filterProduct(productType));
   }
 
+  late final _$deleteProductAsyncAction = AsyncAction(
+      'MenuRestaurantControllerBase.deleteProduct',
+      context: context);
+
+  @override
+  Future<void> deleteProduct(RestaurantEnum restaurant, String id, int index) {
+    return _$deleteProductAsyncAction
+        .run(() => super.deleteProduct(restaurant, id, index));
+  }
+
   late final _$MenuRestaurantControllerBaseActionController =
       ActionController(name: 'MenuRestaurantControllerBase', context: context);
 
@@ -104,9 +130,22 @@ mixin _$EmployeeMenuRestaurantController
   }
 
   @override
+  void changeProductCardState(ProductCardEmployeeState value) {
+    final _$actionInfo =
+        _$MenuRestaurantControllerBaseActionController.startAction(
+            name: 'MenuRestaurantControllerBase.changeProductCardState');
+    try {
+      return super.changeProductCardState(value);
+    } finally {
+      _$MenuRestaurantControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 state: ${state},
+productCardState: ${productCardState},
 listAllProduct: ${listAllProduct},
 listAllProductWithoutAccent: ${listAllProductWithoutAccent}
     ''';

@@ -2,9 +2,13 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:mauafood_front/app/modules/employee/presenter/states/product_form/product_form_state.dart';
+import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
+import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';
@@ -16,7 +20,9 @@ class ProductFormController = ProductFormControllerBase
     with _$ProductFormController;
 
 abstract class ProductFormControllerBase with Store {
-  ProductFormControllerBase();
+  final IUpdateProductUsecase _updateProduct;
+  final ICreateProductUsecase _createProduct;
+  ProductFormControllerBase(this._updateProduct, this._createProduct);
 
   @observable
   ProductFormState state = ProductFormInitialState();
@@ -137,6 +143,44 @@ abstract class ProductFormControllerBase with Store {
       }
     }
     setProductPhoto(null);
+  }
+
+  @action
+  Future createProduct(RestaurantEnum restaurant) async {
+    changeState(ProductFormLoadingState());
+    var result = await _createProduct(
+        ProductModel(
+          name: productName!,
+          description: productDescription!,
+          price: productPrice!,
+          prepareTime: productPrepareTime!,
+          type: productType!,
+          available: productAvailability,
+          photo: "https://avatars.githubusercontent.com/u/24724451?v=4",
+        ),
+        restaurant);
+    changeState(result.fold((l) => ProductFormFailureState(failure: l), (r) {
+      return ProductFormSuccessState();
+    }));
+  }
+
+  @action
+  Future updateProduct(RestaurantEnum restaurant) async {
+    changeState(ProductFormLoadingState());
+    var result = await _updateProduct(
+        ProductModel(
+          name: productName!,
+          description: productDescription!,
+          price: productPrice!,
+          prepareTime: productPrepareTime!,
+          type: productType!,
+          available: productAvailability,
+          photo: "https://avatars.githubusercontent.com/u/24724451?v=4",
+        ),
+        restaurant);
+    changeState(result.fold((l) => ProductFormFailureState(failure: l), (r) {
+      return ProductFormSuccessState();
+    }));
   }
 
   bool wasProductFormChanged(Product? product) {

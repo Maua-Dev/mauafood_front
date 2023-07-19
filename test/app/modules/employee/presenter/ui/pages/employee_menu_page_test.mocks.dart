@@ -9,6 +9,8 @@ import 'package:dartz/dartz.dart' as _i2;
 import 'package:mauafood_front/app/shared/domain/entities/product.dart' as _i6;
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart'
     as _i7;
+import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart'
+    as _i8;
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart'
     as _i3;
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart' as _i5;
@@ -62,4 +64,40 @@ class MockIGetRestaurantProductUsecase extends _i1.Mock
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>);
+}
+
+/// A class which mocks [IDeleteProductUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIDeleteProductUsecase extends _i1.Mock
+    implements _i8.IDeleteProductUsecase {
+  MockIDeleteProductUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, void>> call(
+    String? id,
+    _i7.RestaurantEnum? restaurant,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [
+            id,
+            restaurant,
+          ],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.Failure, void>>.value(
+            _FakeEither_0<_i5.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [
+              id,
+              restaurant,
+            ],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
 }

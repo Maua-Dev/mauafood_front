@@ -39,7 +39,7 @@ class ProductModel extends Product {
       'price': price,
       'name': name,
       'description': description,
-      'meal_type': "SANDWICHES",
+      'meal_type': type,
       'photo': photo,
       'restaurant': RestaurantEnumExtension.enumToStringMap(restaurantEnum),
       'prepare_time': prepareTime

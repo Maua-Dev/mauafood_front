@@ -1,29 +1,76 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/product-form/product_form_controller.dart';
-import 'package:mauafood_front/app/modules/employee/presenter/states/product_form/product_form_state.dart';
+import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
+import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 import 'package:mauafood_front/generated/l10n.dart';
+import 'package:mockito/mockito.dart';
+
+class CreateProductMockFailed extends Mock implements ICreateProductUsecase {
+  @override
+  Future<Either<Failure, void>> call(
+      ProductModel product, RestaurantEnum restaurant) async {
+    return left(Failure(message: ''));
+  }
+}
+
+class CreateProductMockSuccess extends Mock implements ICreateProductUsecase {
+  @override
+  Future<Either<Failure, void>> call(
+      ProductModel product, RestaurantEnum restaurant) async {
+    return right(null);
+  }
+}
+
+class UpdateProductMockFailed extends Mock implements IUpdateProductUsecase {
+  @override
+  Future<Either<Failure, void>> call(
+      ProductModel product, RestaurantEnum restaurant) async {
+    return left(Failure(message: ''));
+  }
+}
+
+class UpdateProductMockSuccess extends Mock implements IUpdateProductUsecase {
+  @override
+  Future<Either<Failure, void>> call(
+      ProductModel product, RestaurantEnum restaurant) async {
+    return right(null);
+  }
+}
 
 void main() {
   late ProductFormController controller;
+  IUpdateProductUsecase updateProductSuccessUsecase =
+      UpdateProductMockSuccess();
+  ICreateProductUsecase createProductSuccessUsecase =
+      CreateProductMockSuccess();
 
   setUp(() async {
-    controller = ProductFormController();
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
   });
 
   group('[TEST] - state', () {
     test('changeState', () {
+      controller = ProductFormController(
+          updateProductSuccessUsecase, createProductSuccessUsecase);
       controller.changeState(ProductFormLoadingState());
       expect(controller.state, isA<ProductFormLoadingState>());
     });
     test('changeState', () {
+      controller = ProductFormController(
+          updateProductSuccessUsecase, createProductSuccessUsecase);
       controller.changeState(ProductFormSuccessState());
       expect(controller.state, isA<ProductFormSuccessState>());
     });
 
     test('changeState', () {
+      controller = ProductFormController(
+          updateProductSuccessUsecase, createProductSuccessUsecase);
       controller.changeState(
           ProductFormFailureState(failure: Failure(message: 'fail')));
       expect(controller.state, isA<ProductFormFailureState>());
@@ -79,6 +126,4 @@ void main() {
       expect(controller.validateProductPrice('123445'), null);
     });
   });
-
-  
 }

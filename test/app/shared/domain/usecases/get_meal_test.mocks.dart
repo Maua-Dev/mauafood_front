@@ -130,4 +130,54 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, void>> updateProduct(
+    _i7.ProductModel? product,
+    _i8.RestaurantEnum? restaurant,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateProduct,
+          [
+            product,
+            restaurant,
+          ],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.Failure, void>>.value(
+            _FakeEither_0<_i5.Failure, void>(
+          this,
+          Invocation.method(
+            #updateProduct,
+            [
+              product,
+              restaurant,
+            ],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, void>> deleteProduct(
+    String? id,
+    _i8.RestaurantEnum? restaurant,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteProduct,
+          [
+            id,
+            restaurant,
+          ],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.Failure, void>>.value(
+            _FakeEither_0<_i5.Failure, void>(
+          this,
+          Invocation.method(
+            #deleteProduct,
+            [
+              id,
+              restaurant,
+            ],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
 }

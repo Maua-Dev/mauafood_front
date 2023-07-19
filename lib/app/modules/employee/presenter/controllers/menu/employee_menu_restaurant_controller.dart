@@ -1,3 +1,5 @@
+import 'package:mauafood_front/app/modules/employee/presenter/states/product-card/product_card_employee_state.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mobx/mobx.dart';
 
@@ -14,15 +16,19 @@ class EmployeeMenuRestaurantController = MenuRestaurantControllerBase
 
 abstract class MenuRestaurantControllerBase with Store {
   final IGetRestaurantProductUsecase _getRestaurantProduct;
-  RestaurantEnum restaurantInfo = RestaurantEnum.biba;
+  final IDeleteProductUsecase _deleteProduct;
+  RestaurantEnum restaurantInfo;
 
   MenuRestaurantControllerBase(
-      this._getRestaurantProduct, this.restaurantInfo) {
+      this._getRestaurantProduct, this.restaurantInfo, this._deleteProduct) {
     loadRestaurantMenu();
   }
 
   @observable
   EmployeeMenuState state = EmployeeMenuInitialState();
+
+  @observable
+  ProductCardEmployeeState productCardState = ProductCardEmployeeInitialState();
 
   @observable
   List<Product> listAllProduct = [];
@@ -32,6 +38,10 @@ abstract class MenuRestaurantControllerBase with Store {
 
   @action
   void changeState(EmployeeMenuState value) => state = value;
+
+  @action
+  void changeProductCardState(ProductCardEmployeeState value) =>
+      productCardState = value;
 
   @action
   Future<void> loadRestaurantMenu() async {
@@ -79,5 +89,18 @@ abstract class MenuRestaurantControllerBase with Store {
             listProduct: filterList, index: productType.index));
       }
     }
+  }
+
+  @action
+  Future<void> deleteProduct(
+      RestaurantEnum restaurant, String id, int index) async {
+    changeProductCardState(ProductCardEmployeeLoadingState(index: index));
+    var result = await _deleteProduct(id, restaurant);
+    changeProductCardState(
+        result.fold((l) => ProductCardEmployeeFailureState(failure: l), (r) {
+      listAllProductWithoutAccent.removeWhere((element) => element.id == id);
+      listAllProduct.removeWhere((element) => element.id == id);
+      return ProductCardEmployeeSuccessState();
+    }));
   }
 }

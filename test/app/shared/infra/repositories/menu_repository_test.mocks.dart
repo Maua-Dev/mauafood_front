@@ -57,4 +57,36 @@ class MockIMenuDatasource extends _i1.Mock implements _i2.IMenuDatasource {
         returnValue: _i3.Future<void>.value(),
         returnValueForMissingStub: _i3.Future<void>.value(),
       ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> updateProduct(
+    _i4.ProductModel? product,
+    _i5.RestaurantEnum? restaurant,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #updateProduct,
+          [
+            product,
+            restaurant,
+          ],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
+  @override
+  _i3.Future<void> deleteProduct(
+    String? id,
+    _i5.RestaurantEnum? restaurant,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteProduct,
+          [
+            id,
+            restaurant,
+          ],
+        ),
+        returnValue: _i3.Future<void>.value(),
+        returnValueForMissingStub: _i3.Future<void>.value(),
+      ) as _i3.Future<void>);
 }

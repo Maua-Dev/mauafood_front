@@ -97,4 +97,30 @@ class MenuRepository implements IMenuRepository {
       return left(ErrorRequest(message: errorType.errorMessage));
     }
   }
+
+  @override
+  Future<Either<Failure, void>> deleteProduct(
+      String id, RestaurantEnum restaurant) async {
+    try {
+      await datasource.deleteProduct(id, restaurant);
+      return right(null);
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType =
+          getHttpStatusFunction(e.response!.statusCode);
+      return left(ErrorRequest(message: errorType.errorMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> updateProduct(
+      ProductModel product, RestaurantEnum restaurant) async {
+    try {
+      await datasource.updateProduct(product, restaurant);
+      return right(null);
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType =
+          getHttpStatusFunction(e.response!.statusCode);
+      return left(ErrorRequest(message: errorType.errorMessage));
+    }
+  }
 }

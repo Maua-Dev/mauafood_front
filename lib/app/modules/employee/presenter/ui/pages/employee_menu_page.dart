@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/employee_menu_state.dart';
+import 'package:mauafood_front/app/modules/employee/presenter/states/product-card/product_card_employee_state.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/ui/widgets/product_form_dialog_widget.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/domain/enums/product_enum.dart';
@@ -44,6 +45,7 @@ class EmployeeMenuPage extends StatelessWidget {
             )),
         width: double.infinity,
         child: Observer(builder: (_) {
+          var productCardState = menuController.productCardState;
           var state = menuController.state;
           return Padding(
             padding: const EdgeInsets.only(top: 24, right: 12, left: 12),
@@ -64,6 +66,7 @@ class EmployeeMenuPage extends StatelessWidget {
                             context: context,
                             builder: (BuildContext buildContext) {
                               return ProductFormDialogWidget(
+                                restaurant: restaurant,
                                 title: S.of(context).createProductTitle,
                                 buttonText: S.of(context).createTitle,
                                 snackBarText: S
@@ -147,9 +150,35 @@ class EmployeeMenuPage extends StatelessWidget {
                             child: ListView.builder(
                               itemCount: state.listProduct.length,
                               itemBuilder: (context, index) {
-                                return ProductCardEmployeeWidget(
-                                  product: state.listProduct[index],
-                                );
+                                return Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      productCardState
+                                                  is ProductCardEmployeeLoadingState &&
+                                              productCardState.index == index
+                                          ? const Center(
+                                              child:
+                                                  CircularProgressIndicator())
+                                          : const SizedBox.shrink(),
+                                      AbsorbPointer(
+                                        absorbing: productCardState
+                                                is ProductCardEmployeeLoadingState &&
+                                            productCardState.index == index,
+                                        child: Opacity(
+                                          opacity: productCardState
+                                                      is ProductCardEmployeeLoadingState &&
+                                                  productCardState.index ==
+                                                      index
+                                              ? 0.5
+                                              : 1,
+                                          child: ProductCardEmployeeWidget(
+                                            index: index,
+                                            product: state.listProduct[index],
+                                            restaurant: restaurant,
+                                          ),
+                                        ),
+                                      ),
+                                    ]);
                               },
                             ),
                           ))

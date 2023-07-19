@@ -4,6 +4,8 @@ import 'package:mauafood_front/app/modules/employee/presenter/controllers/produc
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/ui/pages/employee_menu_page.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/services/dio/options/product_base_options.dart';
 import '../../shared/helpers/services/dio/dio_http_request.dart';
 import '../../shared/helpers/services/http/http_request_interface.dart';
@@ -21,13 +23,17 @@ class EmployeeMenuModule extends Module {
         Bind<IGetRestaurantProductUsecase>(
             (i) => GetRestaurantProductUsecase(repository: i())),
         Bind<EmployeeMenuRestaurantController>(
-          (i) => EmployeeMenuRestaurantController(i(), i.args.data),
+          (i) => EmployeeMenuRestaurantController(i(), i.args.data, i()),
         ),
         Bind.factory<ProductFormController>(
-          (i) => ProductFormController(),
+          (i) => ProductFormController(i(), i()),
         ),
         Bind<ICreateProductUsecase>(
             (i) => CreateProductUsecase(repository: i())),
+        Bind<IUpdateProductUsecase>(
+            (i) => UpdateProductUsecase(repository: i())),
+        Bind<IDeleteProductUsecase>(
+            (i) => DeleteProductUsecase(repository: i())),
         Bind((i) => Dio(productBaseOptions)),
         Bind<IHttpRequest>((i) => DioHttpRequest(dio: i<Dio>()), export: true),
         Bind<HttpService>((i) => HttpService(httpRequest: i()), export: true),

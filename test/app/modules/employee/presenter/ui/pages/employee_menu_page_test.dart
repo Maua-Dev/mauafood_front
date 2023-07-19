@@ -5,6 +5,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/employee_menu_state.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/modules/employee/employee_menu_module.dart';
@@ -23,10 +24,12 @@ import 'package:flutter_modular/flutter_modular.dart' as modular;
 
 import 'employee_menu_page_test.mocks.dart';
 
-@GenerateMocks([IGetRestaurantProductUsecase])
+@GenerateMocks([IGetRestaurantProductUsecase, IDeleteProductUsecase])
 void main() {
   late EmployeeMenuRestaurantController controller;
-  IGetRestaurantProductUsecase usecase = MockIGetRestaurantProductUsecase();
+  IGetRestaurantProductUsecase getRestaurantProductUsecase =
+      MockIGetRestaurantProductUsecase();
+  IDeleteProductUsecase deleteProductUsecase = MockIDeleteProductUsecase();
 
   ProductModel testMock = ProductModel(
     id: '0',
@@ -55,13 +58,15 @@ void main() {
   setUpAll(() async {
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
     HttpOverrides.global = null;
-    when(usecase(RestaurantEnum.biba))
+    when(getRestaurantProductUsecase(RestaurantEnum.biba))
         .thenAnswer((realInvocation) async => Right(listMock));
-    controller = EmployeeMenuRestaurantController(usecase, RestaurantEnum.biba);
+    controller = EmployeeMenuRestaurantController(
+        getRestaurantProductUsecase, RestaurantEnum.biba, deleteProductUsecase);
     initModules([
       EmployeeMenuModule()
     ], replaceBinds: [
-      modular.Bind<IGetRestaurantProductUsecase>((i) => usecase),
+      modular.Bind<IGetRestaurantProductUsecase>(
+          (i) => getRestaurantProductUsecase),
       modular.Bind<EmployeeMenuRestaurantController>((i) => controller),
     ]);
   });
@@ -104,7 +109,7 @@ void main() {
                 home: const EmployeeMenuPage(restaurant: RestaurantEnum.biba),
               )));
 
-      when(usecase(RestaurantEnum.biba))
+      when(getRestaurantProductUsecase(RestaurantEnum.biba))
           .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester.runAsync(() async => controller.changeState(
@@ -131,7 +136,7 @@ void main() {
                 home: const EmployeeMenuPage(restaurant: RestaurantEnum.biba),
               )));
 
-      when(usecase(RestaurantEnum.biba))
+      when(getRestaurantProductUsecase(RestaurantEnum.biba))
           .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester.runAsync(
@@ -156,7 +161,7 @@ void main() {
                 home: const EmployeeMenuPage(restaurant: RestaurantEnum.biba),
               )));
 
-      when(usecase(RestaurantEnum.biba))
+      when(getRestaurantProductUsecase(RestaurantEnum.biba))
           .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester.runAsync(() async => controller.changeState(

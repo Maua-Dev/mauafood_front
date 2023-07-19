@@ -1,8 +1,8 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import '../../../../../../generated/l10n.dart';
@@ -24,83 +24,52 @@ class ProductCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 100,
-      child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.zero,
-              backgroundColor: AppColors.backgroundColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              )),
-          onPressed: onPressed,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: SizedBox(
+          height: 100,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            mainAxisSize: MainAxisSize.max,
             children: [
-              Flexible(
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+              Expanded(
+                  child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CachedNetworkImage(
+                  imageUrl: product.photo,
+                  placeholder: (context, url) => const Center(
+                    child: CircularProgressIndicator(),
                   ),
-                  child: webPhoto != null || mobilePhoto != null
-                      ? kIsWeb
-                          ? Image.memory(
-                              webPhoto!,
-                              fit: BoxFit.contain,
-                            )
-                          : Image.file(
-                              mobilePhoto!,
-                              fit: BoxFit.contain,
-                            )
-                      : Image.network(
-                          product.photo,
-                          fit: BoxFit.contain,
-                          loadingBuilder: (BuildContext context, Widget child,
-                              ImageChunkEvent? loadingProgress) {
-                            if (loadingProgress == null) return child;
-                            return Center(
-                              child: CircularProgressIndicator(
-                                value: loadingProgress.expectedTotalBytes !=
-                                        null
-                                    ? loadingProgress.cumulativeBytesLoaded /
-                                        loadingProgress.expectedTotalBytes!
-                                    : null,
-                              ),
-                            );
-                          },
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
+              )),
+              Expanded(
+                  flex: 3,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          product.name,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyles.h2.copyWith(
+                              fontWeight: FontWeight.bold, fontSize: 16),
                         ),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    SizedBox(
-                      width: ScreenHelper.width(context) * 0.4,
-                      child: Text(
-                        product.name,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: AppTextStyles.h2.copyWith(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
+                        const Spacer(),
+                        Text(
+                          S.of(context).productPriceCurrency(product.price),
+                          overflow: TextOverflow.ellipsis,
+                          style: AppTextStyles.h2Highlight.copyWith(
+                              fontWeight: FontWeight.bold,
+                              overflow: TextOverflow.ellipsis),
+                        ),
+                      ],
                     ),
-                    Text(
-                      S.of(context).productPriceCurrency(product.price),
-                      overflow: TextOverflow.ellipsis,
-                      style: AppTextStyles.h2Highlight.copyWith(
-                          fontWeight: FontWeight.bold,
-                          overflow: TextOverflow.ellipsis),
-                    ),
-                  ],
-                ),
-              ),
-              const Spacer(),
+                  )),
               Container(
                 width: 20,
                 decoration: BoxDecoration(
@@ -110,7 +79,9 @@ class ProductCardWidget extends StatelessWidget {
                     color: AppColors.mainBlueColor),
               )
             ],
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

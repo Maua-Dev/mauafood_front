@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
+import 'package:mauafood_front/app/modules/employee/presenter/states/product-card/product_card_employee_state.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/ui/widgets/product_form_dialog_widget.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/widgets/confirm_dialog_widget.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/themes/app_colors.dart';
@@ -11,10 +15,17 @@ import '../../../../../shared/domain/entities/product.dart';
 
 class ProductCardEmployeeWidget extends StatelessWidget {
   final Product product;
-  const ProductCardEmployeeWidget({super.key, required this.product});
+  final RestaurantEnum restaurant;
+  final int index;
+  const ProductCardEmployeeWidget(
+      {super.key,
+      required this.product,
+      required this.restaurant,
+      required this.index});
 
   @override
   Widget build(BuildContext context) {
+    var menuController = Modular.get<EmployeeMenuRestaurantController>();
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: InkWell(
@@ -77,6 +88,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                         context: context,
                                         builder: ((context) =>
                                             ProductFormDialogWidget(
+                                              restaurant: restaurant,
                                               product: product,
                                               title: S
                                                   .of(context)
@@ -93,41 +105,68 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                     color: AppColors.mainBlueColor,
                                     size: 24,
                                   )),
-                              IconButton(
-                                  onPressed: () {
-                                    showDialog(
-                                        context: context,
-                                        builder: (BuildContext buildContext) {
-                                          return ConfirmationDialogWidget(
-                                            cancellationText:
-                                                S.of(context).cancelationTitle,
-                                            dialogContent: S
-                                                .of(context)
-                                                .deleteProductConfirmationTitle,
-                                            confirmationText:
-                                                S.of(context).deleteTitle,
-                                            onConfirmation: () {
-                                              Modular.to.pop();
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(SnackBar(
-                                                content: Text(
-                                                    S
-                                                        .of(context)
-                                                        .productSuccessfullyDeletedTitle,
-                                                    style: AppTextStyles.h2
-                                                        .copyWith(
-                                                            color: AppColors
-                                                                .white)),
-                                              ));
-                                            },
-                                          );
-                                        });
-                                  },
-                                  icon: Icon(
-                                    Icons.delete,
-                                    color: AppColors.mainBlueColor,
-                                    size: 24,
-                                  ))
+                              Observer(builder: (_) {
+                                var state = menuController.productCardState;
+                                return IconButton(
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext buildContext) {
+                                            return ConfirmationDialogWidget(
+                                              cancellationText: S
+                                                  .of(context)
+                                                  .cancelationTitle,
+                                              dialogContent: S
+                                                  .of(context)
+                                                  .deleteProductConfirmationTitle,
+                                              confirmationText:
+                                                  S.of(context).deleteTitle,
+                                              onConfirmation: () {
+                                                Modular.to.pop();
+                                                menuController.deleteProduct(
+                                                    restaurant,
+                                                    product.id!,
+                                                    index);
+                                                if (state
+                                                    is ProductCardEmployeeFailureState) {
+                                                  ScaffoldMessenger.of(context)
+                                                      .showSnackBar(SnackBar(
+                                                    backgroundColor:
+                                                        AppColors.errorColor,
+                                                    content: Text(
+                                                        state.failure.message,
+                                                        style: AppTextStyles.h2
+                                                            .copyWith(
+                                                                color: AppColors
+                                                                    .white)),
+                                                  ));
+                                                  if (state
+                                                      is ProductCardEmployeeSuccessState) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      content: Text(
+                                                          S
+                                                              .of(context)
+                                                              .productSuccessfullyDeletedTitle,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .white)),
+                                                    ));
+                                                  }
+                                                }
+                                              },
+                                            );
+                                          });
+                                    },
+                                    icon: Icon(
+                                      Icons.delete,
+                                      color: AppColors.mainBlueColor,
+                                      size: 24,
+                                    ));
+                              })
                             ],
                           ),
                           Text(

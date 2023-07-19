@@ -11,4 +11,8 @@ abstract class IMenuRepository {
   Future<Either<Failure, List<Product>>> getMolezaProducts();
   Future<Either<Failure, void>> createProduct(
       ProductModel product, RestaurantEnum restaurant);
+  Future<Either<Failure, void>> updateProduct(
+      ProductModel product, RestaurantEnum restaurant);
+  Future<Either<Failure, void>> deleteProduct(
+      String id, RestaurantEnum restaurant);
 }

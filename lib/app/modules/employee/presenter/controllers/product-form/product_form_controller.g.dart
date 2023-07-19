@@ -195,6 +195,24 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
         .run(() => super.uploadProductPhoto());
   }
 
+  late final _$createProductAsyncAction =
+      AsyncAction('ProductFormControllerBase.createProduct', context: context);
+
+  @override
+  Future<dynamic> createProduct(RestaurantEnum restaurant) {
+    return _$createProductAsyncAction
+        .run(() => super.createProduct(restaurant));
+  }
+
+  late final _$updateProductAsyncAction =
+      AsyncAction('ProductFormControllerBase.updateProduct', context: context);
+
+  @override
+  Future<dynamic> updateProduct(RestaurantEnum restaurant) {
+    return _$updateProductAsyncAction
+        .run(() => super.updateProduct(restaurant));
+  }
+
   late final _$ProductFormControllerBaseActionController =
       ActionController(name: 'ProductFormControllerBase', context: context);
 

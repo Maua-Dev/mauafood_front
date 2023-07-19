@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
@@ -18,90 +19,86 @@ class ProductInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          children: [
-            Stack(
-              children: [
-                SizedBox(
-                  width: double.infinity,
-                  child: Image.network(
-                    productInfo.photo,
-                    fit: BoxFit.contain,
-                    loadingBuilder: (BuildContext context, Widget child,
-                        ImageChunkEvent? loadingProgress) {
-                      if (loadingProgress == null) return child;
-                      return Center(
-                        child: CircularProgressIndicator(
-                          value: loadingProgress.expectedTotalBytes != null
-                              ? loadingProgress.cumulativeBytesLoaded /
-                                  loadingProgress.expectedTotalBytes!
-                              : null,
-                        ),
-                      );
-                    },
-                  ),
+    return Scaffold(
+      backgroundColor: const Color(0xffFAF9F6),
+      appBar: AppBar(
+        backgroundColor: const Color(0xffFAF9F6),
+        elevation: 0,
+        leading: BackButton(
+          color: AppColors.mainBlueColor,
+        ),
+      ),
+      body: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 32.0),
+            child: SizedBox.fromSize(
+              size: Size.fromHeight(MediaQuery.of(context).size.height / 4),
+              child: CachedNetworkImage(
+                imageUrl: productInfo.photo,
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(),
                 ),
-                Positioned(
-                  left: 16,
-                  top: 16,
-                  child: IconButton(
-                    padding: EdgeInsets.zero,
-                    onPressed: () {
-                      Modular.to.pop();
-                    },
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      color: AppColors.mainBlueColor,
-                    ),
-                  ),
-                ),
-              ],
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                      color: AppColors.white,
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                      )),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        productInfo.name,
-                        style: AppTextStyles.h1,
+          ),
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(24),
+                decoration: BoxDecoration(
+                    color: AppColors.white,
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 20,
+                        spreadRadius: 4,
+                        offset: Offset(0, -4), // Shadow position
                       ),
+                    ],
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(20),
+                      topRight: Radius.circular(20),
+                    )),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      productInfo.name,
+                      style: AppTextStyles.h1,
+                    ),
+                    Text(
+                      S.of(context).productPriceCurrency(productInfo.price),
+                      style: AppTextStyles.h1.copyWith(fontSize: 22),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Text(
+                      productInfo.description,
+                      style: AppTextStyles.h3
+                          .copyWith(fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left,
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    if (recommendedProductList.length > 1)
                       Text(
-                        S.of(context).productPriceCurrency(productInfo.price),
-                        style: AppTextStyles.h1.copyWith(fontSize: 22),
-                      ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      Text(
-                        productInfo.description,
-                        style: AppTextStyles.h3
-                            .copyWith(fontWeight: FontWeight.bold),
+                        S.of(context).recommendationsTitle,
+                        style: AppTextStyles.h2
+                            .copyWith(color: AppColors.mainBlueColor),
                         textAlign: TextAlign.left,
                       ),
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      if (recommendedProductList.length > 1)
-                        Text(
-                          S.of(context).recommendationsTitle,
-                          style: AppTextStyles.h1.copyWith(fontSize: 22),
-                          textAlign: TextAlign.left,
-                        ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      Row(
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    SafeArea(
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           if (recommendedProductList.length > 1)
@@ -156,14 +153,14 @@ class ProductInfoPage extends StatelessWidget {
                               ),
                             ),
                         ],
-                      )
-                    ],
-                  ),
+                      ),
+                    )
+                  ],
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

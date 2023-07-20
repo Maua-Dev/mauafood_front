@@ -15,7 +15,7 @@ class _LandingPageState extends State<LandingPage> {
   @override
   void initState() {
     super.initState();
-    Modular.to.navigate('/landing/restaurants');
+    Modular.to.navigate('/landing/restaurants/');
   }
 
   @override

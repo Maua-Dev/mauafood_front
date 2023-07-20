@@ -20,7 +20,7 @@ class FavoritesPage extends StatelessWidget {
             padding: const EdgeInsets.only(top: 12.0, left: 8),
             child: Container(width: 50, color: AppColors.mainBlueColor, child: IconButton(
               alignment: Alignment.topLeft,
-              onPressed:  () => Modular.to.navigate('/user/'), icon: Icon(FontAwesomeIcons.arrowLeft, color: AppColors.white,))),
+              onPressed:  () => Modular.to.navigate('/landing/profile/'), icon: Icon(FontAwesomeIcons.arrowLeft, color: AppColors.white,))),
           )),
       ),
       backgroundColor: AppColors.backgroundColor2,

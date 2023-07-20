@@ -1,5 +1,5 @@
+import 'package:auth_package/core/auth_store.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/app_module.dart';
 import 'package:mauafood_front/app/shared/domain/entities/restaurant.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant.dart';
@@ -11,11 +11,12 @@ import 'package:modular_test/modular_test.dart';
 
 import 'restaurant_controller_test.mocks.dart';
 
-@GenerateMocks([IGetRestaurant])
+@GenerateMocks([IGetRestaurant, AuthStore])
 void main() {
-  initModules([AppModule(), RestaurantModule()]);
+  initModules([RestaurantModule()]);
 
   IGetRestaurant getRestaurants = MockIGetRestaurant();
+  final authStore = MockAuthStore();
   late RestaurantController controller;
   var listMock = const [
     Restaurant(restaurantInfo: RestaurantEnum.biba),
@@ -24,7 +25,7 @@ void main() {
 
   setUp(() {
     when(getRestaurants()).thenAnswer((realInvocation) => listMock);
-    controller = RestaurantController(getRestaurant: getRestaurants);
+    controller = RestaurantController(authStore, getRestaurants);
   });
 
   test('return a List<Restaurant> correct', () async {

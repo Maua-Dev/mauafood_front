@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'modules/landing/landing/landing_module.dart';
+import 'modules/landing/landing_module.dart';
 import 'modules/menu/user_menu_module.dart';
 import 'modules/splash/splash_module.dart';
 

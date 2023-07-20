@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contact/contact_dialog.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
@@ -87,7 +86,7 @@ class _UserMenuPageState extends State<UserMenuPage> {
                     IconButton(
                       padding: EdgeInsets.zero,
                       onPressed: () {
-                       Modular.to.navigate('/landing/restaurants');
+                       Modular.to.navigate('/landing/restaurants/');
                       },
                       icon: Icon(
                         Icons.arrow_back_ios,

@@ -41,29 +41,29 @@ jobs:
       - name: Setup Amplify projects
         run: |
           AWSCLOUDFORMATIONCONFIG="{\
-            \"configLevel\":\"general\",\
-            \"useProfile\":false,\
-            \"profileName\":\"default\",\
-            \"accessKeyId\":\"${{ env.AWS_ACCESS_KEY_ID}}\",\
-            \"secretAccessKey\":\"${{ env.AWS_SECRET_ACCESS_KEY}}\",\
-            \"region\":\"sa-east-1\"\
-            }"
+          \"configLevel\":\"general\",\
+          \"useProfile\":true,\
+          \"profileName\":\"default\",\
+          \"accessKeyId\":\"${{ env.AWS_ACCESS_KEY_ID}}\",\
+          \"secretAccessKey\":\"${{ env.AWS_SECRET_ACCESS_KEY}}\",\
+          \"region\":\"sa-east-1\"\
+          }"
           CONFIG="{\
-            \"ResDir\":\"lib\",\
-            }"
+          \"ResDir\":\"lib\"\
+          }"
           FRONTEND="{\
-            \"frontend\":\"flutter\",\
-            \"config\":$CONFIG\
-            }"
+          \"frontend\":\"flutter\",\
+          \"config\":$CONFIG\
+          }"
           AMPLIFY="{\
-            \"projectName\":\"authentication\",\
-            \"appId\":\"d3naf2rz1nj7ky\",\
-            \"envName\":\"dev\",\
-            \"defaultEditor\":\"code\"\
-            }"
+          \"projectName\":\"authentication\",\
+          \"appId\":\"d3naf2rz1nj7ky\",\
+          \"envName\":\"dev\",\
+          \"defaultEditor\":\"code\"\
+          }"
           PROVIDERS="{\
-            \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
-            }"
+          \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
+          }"
         
           echo "$AMPLIFY"
           echo "$PROVIDERS"

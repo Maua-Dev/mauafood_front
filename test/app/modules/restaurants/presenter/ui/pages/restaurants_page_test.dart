@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:auth_package/core/auth_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -8,7 +7,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
 import 'package:mauafood_front/app/shared/domain/entities/restaurant.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/pages/restaurants_page.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/restaurant_widget.dart';
 import 'package:mauafood_front/app/modules/restaurants/restaurant_module.dart';

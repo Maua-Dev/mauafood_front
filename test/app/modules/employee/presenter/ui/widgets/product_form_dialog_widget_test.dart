@@ -49,7 +49,7 @@ void main() {
                   title: 'Criar produto',
                   buttonText: 'Criar',
                   snackBarText: 'Produto criado com sucesso!',
-                  restaurant: RestaurantEnum.biba,
+                  restaurant: RestaurantEnum.souza_de_abreu,
                 ),
               )));
       await widgetTester.runAsync(

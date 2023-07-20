@@ -1,5 +1,7 @@
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-card/product_card_employee_state.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mobx/mobx.dart';
 

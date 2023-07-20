@@ -35,16 +35,22 @@ class ProductCardWidget extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CachedNetworkImage(
-                  imageUrl: product.photo,
-                  placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: product.photo == ''
+                      ? kIsWeb && mobilePhoto != null || webPhoto == null
+                          ? Image.file(mobilePhoto!)
+                          : Image.memory(webPhoto!)
+                      : CachedNetworkImage(
+                          imageUrl: product.photo,
+                          placeholder: (context, url) => const Center(
+                            child: CircularProgressIndicator(),
+                          ),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
                 ),
-              )),
+              ),
               Expanded(
                   flex: 3,
                   child: Padding(

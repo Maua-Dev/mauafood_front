@@ -89,16 +89,16 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m9(placeholders, restaurantName) => "${restaurantName}";
 
   static String m10(restaurant) => "${Intl.select(restaurant, {
-            'biba': 'bibaImage',
+            'souza_de_abreu': 'bibaImage',
             'hora_h': 'hora_hImage',
-            'moleza': 'molezaImage',
+            'cantina_do_moleza': 'molezaImage',
             'other': '',
           })}";
 
   static String m11(restaurant) => "${Intl.select(restaurant, {
-            'biba': 'Souza de Abreu',
+            'souza_de_abreu': 'Souza de Abreu',
             'hora_h': 'H Hour',
-            'moleza': 'Cantina do Moleza',
+            'cantina_do_moleza': 'Cantina do Moleza',
             'other': '',
           })}";
 

@@ -55,9 +55,9 @@ void main() {
   setUpAll(() async {
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
     HttpOverrides.global = null;
-    when(usecase(RestaurantEnum.biba))
+    when(usecase(RestaurantEnum.souza_de_abreu))
         .thenAnswer((realInvocation) async => Right(listMock));
-    controller = UserMenuRestaurantController(usecase, RestaurantEnum.biba);
+    controller = UserMenuRestaurantController(usecase, RestaurantEnum.souza_de_abreu);
     initModules([
       UserMenuModule()
     ], replaceBinds: [
@@ -114,7 +114,7 @@ void main() {
                 home: const UserMenuPage(),
               )));
 
-      when(usecase(RestaurantEnum.biba))
+      when(usecase(RestaurantEnum.souza_de_abreu))
           .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester.runAsync(() async => controller.loadRestaurantMenu());
@@ -163,7 +163,7 @@ void main() {
                 home: const UserMenuPage(),
               )));
 
-      when(usecase(RestaurantEnum.biba))
+      when(usecase(RestaurantEnum.souza_de_abreu))
           .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester.runAsync(() async => controller.changeState(

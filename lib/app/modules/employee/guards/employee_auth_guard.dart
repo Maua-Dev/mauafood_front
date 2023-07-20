@@ -17,7 +17,7 @@ class EmployeeAuthGuard extends RouteGuard {
       var role =
           UserRolesEnumExtension.stringToEnumMap(await storage.getRole());
       if ((role == UserRolesEnum.EMPLOYEE_H ||
-          role == UserRolesEnum.EMPLOYEE_BIBA)) {
+          role == UserRolesEnum.EMPLOYEE_SOUZA_DE_ABREU)) {
         return true;
       }
     }

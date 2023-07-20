@@ -58,7 +58,7 @@ void main() {
   IGetRestaurantProductUsecase usecaseSuccess =
       GetRestaurantProductMockSuccess();
   IGetRestaurantProductUsecase usecaseFailed = GetRestaurantProductMockFailed();
-  RestaurantEnum restaurantInfo = RestaurantEnum.biba;
+  RestaurantEnum restaurantInfo = RestaurantEnum.souza_de_abreu;
   ProductModel testMock = ProductModel(
     id: '0',
     name: 'name',

@@ -58,10 +58,10 @@ void main() {
   setUpAll(() async {
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
     HttpOverrides.global = null;
-    when(getRestaurantProductUsecase(RestaurantEnum.biba))
+    when(getRestaurantProductUsecase(RestaurantEnum.souza_de_abreu))
         .thenAnswer((realInvocation) async => Right(listMock));
     controller = EmployeeMenuRestaurantController(
-        getRestaurantProductUsecase, RestaurantEnum.biba, deleteProductUsecase);
+        getRestaurantProductUsecase, RestaurantEnum.souza_de_abreu, deleteProductUsecase);
     initModules([
       EmployeeMenuModule()
     ], replaceBinds: [
@@ -83,14 +83,14 @@ void main() {
                   GlobalWidgetsLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                home: const EmployeeMenuPage(restaurant: RestaurantEnum.biba),
+                home: const EmployeeMenuPage(restaurant: RestaurantEnum.souza_de_abreu),
               )));
       await widgetTester.runAsync(
           () async => controller.changeState(EmployeeMenuInitialState()));
       await widgetTester.pump();
       expect(find.byType(AppBar), findsOneWidget);
       expect(find.byType(Image), findsOneWidget);
-      expect(find.text(RestaurantEnum.biba.restaurantName), findsOneWidget);
+      expect(find.text(RestaurantEnum.souza_de_abreu.restaurantName), findsOneWidget);
     });
   });
 
@@ -106,10 +106,10 @@ void main() {
                   GlobalWidgetsLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                home: const EmployeeMenuPage(restaurant: RestaurantEnum.biba),
+                home: const EmployeeMenuPage(restaurant: RestaurantEnum.souza_de_abreu),
               )));
 
-      when(getRestaurantProductUsecase(RestaurantEnum.biba))
+      when(getRestaurantProductUsecase(RestaurantEnum.souza_de_abreu))
           .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester.runAsync(() async => controller.changeState(
@@ -133,10 +133,10 @@ void main() {
                   GlobalWidgetsLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                home: const EmployeeMenuPage(restaurant: RestaurantEnum.biba),
+                home: const EmployeeMenuPage(restaurant: RestaurantEnum.souza_de_abreu),
               )));
 
-      when(getRestaurantProductUsecase(RestaurantEnum.biba))
+      when(getRestaurantProductUsecase(RestaurantEnum.souza_de_abreu))
           .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester.runAsync(
@@ -158,10 +158,10 @@ void main() {
                   GlobalWidgetsLocalizations.delegate,
                 ],
                 supportedLocales: S.delegate.supportedLocales,
-                home: const EmployeeMenuPage(restaurant: RestaurantEnum.biba),
+                home: const EmployeeMenuPage(restaurant: RestaurantEnum.souza_de_abreu),
               )));
 
-      when(getRestaurantProductUsecase(RestaurantEnum.biba))
+      when(getRestaurantProductUsecase(RestaurantEnum.souza_de_abreu))
           .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester.runAsync(() async => controller.changeState(

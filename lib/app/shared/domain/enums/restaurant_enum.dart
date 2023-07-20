@@ -3,7 +3,7 @@
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
-enum RestaurantEnum { none, biba, hora_h, moleza }
+enum  RestaurantEnum { none, souza_de_abreu, hora_h, cantina_do_moleza }
 
 extension RestaurantEnumExtension on RestaurantEnum {
   String get restaurantName {

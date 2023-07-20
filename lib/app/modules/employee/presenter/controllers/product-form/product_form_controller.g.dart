@@ -199,7 +199,7 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
       AsyncAction('ProductFormControllerBase.createProduct', context: context);
 
   @override
-  Future<dynamic> createProduct(RestaurantEnum restaurant) {
+  Future<void> createProduct(RestaurantEnum restaurant) {
     return _$createProductAsyncAction
         .run(() => super.createProduct(restaurant));
   }
@@ -208,9 +208,9 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
       AsyncAction('ProductFormControllerBase.updateProduct', context: context);
 
   @override
-  Future<dynamic> updateProduct(RestaurantEnum restaurant) {
+  Future<void> updateProduct(RestaurantEnum restaurant, String productId) {
     return _$updateProductAsyncAction
-        .run(() => super.updateProduct(restaurant));
+        .run(() => super.updateProduct(restaurant, productId));
   }
 
   late final _$ProductFormControllerBaseActionController =

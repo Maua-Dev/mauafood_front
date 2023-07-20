@@ -25,7 +25,7 @@ void main() {
   IGetRestaurant getRestaurant = MockIGetRestaurant();
 
   List<Restaurant> mockRestaurants = [
-    const Restaurant(restaurantInfo: RestaurantEnum.biba),
+    const Restaurant(restaurantInfo: RestaurantEnum.souza_de_abreu),
     const Restaurant(restaurantInfo: RestaurantEnum.hora_h)
   ];
 

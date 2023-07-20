@@ -79,7 +79,7 @@ void main() {
   IGetRestaurantProductUsecase getRestaurantProductFailedUsecase =
       GetRestaurantProductMockFailed();
   IDeleteProductUsecase deleteProductFailedUsecase = DeleteProductMockFailed();
-  RestaurantEnum restaurantInfo = RestaurantEnum.biba;
+  RestaurantEnum restaurantInfo = RestaurantEnum.souza_de_abreu;
   ProductModel testMock = ProductModel(
     id: '0',
     name: 'name',

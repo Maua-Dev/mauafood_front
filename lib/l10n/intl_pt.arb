@@ -88,8 +88,8 @@
 
 
 
-    "restaurantsNameSchema": "{restaurant, select, biba{Souza de Abreu} hora_h{Hora H} moleza{Cantina do Moleza} other{}}",
-    "restaurantsImageSchema": "{restaurant, select, biba{bibaImage} hora_h{hora_hImage} moleza{molezaImage} other{}}",
+    "restaurantsNameSchema": "{restaurant, select, souza_de_abreu{Souza de Abreu} hora_h{Hora H} cantina_do_moleza{Cantina do Moleza} other{}}",
+    "restaurantsImageSchema": "{restaurant, select, souza_de_abreu{bibaImage} hora_h{hora_hImage} cantina_do_moleza{molezaImage} other{}}",
 
 
     "typeContact": "Entre em contato conosco",

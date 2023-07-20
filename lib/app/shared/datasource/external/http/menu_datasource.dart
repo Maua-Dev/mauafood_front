@@ -23,7 +23,7 @@ class MenuDatasource implements IMenuDatasource {
       ProductModel product, RestaurantEnum restaurant) async {
     var response = await _httpService.post('/create-product',
         data: product.toJson(restaurant));
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return;
     }
     throw Exception();
@@ -33,7 +33,7 @@ class MenuDatasource implements IMenuDatasource {
   Future<void> updateProduct(
       ProductModel product, RestaurantEnum restaurant) async {
     var response = await _httpService.post('/update-product',
-        data: product.toJson(restaurant));
+        data: product.newProductJson(restaurant));
     if (response.statusCode == 200) {
       return;
     }

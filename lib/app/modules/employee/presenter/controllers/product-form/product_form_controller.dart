@@ -146,12 +146,12 @@ abstract class ProductFormControllerBase with Store {
   }
 
   @action
-  Future createProduct(RestaurantEnum restaurant) async {
+  Future<void> createProduct(RestaurantEnum restaurant) async {
     changeState(ProductFormLoadingState());
     var result = await _createProduct(
         ProductModel(
           name: productName!,
-          description: productDescription!,
+          description: productDescription ?? "",
           price: productPrice!,
           prepareTime: productPrepareTime!,
           type: productType!,
@@ -165,12 +165,14 @@ abstract class ProductFormControllerBase with Store {
   }
 
   @action
-  Future updateProduct(RestaurantEnum restaurant) async {
+  Future<void> updateProduct(
+      RestaurantEnum restaurant, String productId) async {
     changeState(ProductFormLoadingState());
     var result = await _updateProduct(
         ProductModel(
+          id: productId,
           name: productName!,
-          description: productDescription!,
+          description: productDescription ?? "",
           price: productPrice!,
           prepareTime: productPrepareTime!,
           type: productType!,

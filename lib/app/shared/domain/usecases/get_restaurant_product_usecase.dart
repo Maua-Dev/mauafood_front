@@ -15,7 +15,7 @@ class GetRestaurantProductUsecase implements IGetRestaurantProductUsecase {
 
   @override
   Future<Either<Failure, List<Product>>> call(RestaurantEnum restaurantInfo) {
-    if (restaurantInfo == RestaurantEnum.biba) {
+    if (restaurantInfo == RestaurantEnum.souza_de_abreu) {
       return getBibaProducts();
     } else if (restaurantInfo == RestaurantEnum.hora_h) {
       return getHProducts();

@@ -1,3 +1,4 @@
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 
 import '../../domain/enums/product_enum.dart';
@@ -39,10 +40,24 @@ class ProductModel extends Product {
       'price': price,
       'name': name,
       'description': description,
-      'meal_type': type,
+      'meal_type': EnumToString.convertToString(type).toUpperCase(),
       'photo': photo,
-      'restaurant': RestaurantEnumExtension.enumToStringMap(restaurantEnum),
-      'prepare_time': prepareTime
+      'restaurant': EnumToString.convertToString(restaurantEnum).toUpperCase(),
+      'prepare_time': prepareTime,
+    };
+  }
+
+  Map<String, dynamic> newProductJson(RestaurantEnum restaurantEnum) {
+    return {
+      'product_id': id,
+      'restaurant': EnumToString.convertToString(restaurantEnum).toUpperCase(),
+      'new_available': available,
+      'new_price': price,
+      'new_name': name,
+      'new_description': description,
+      'new_prepare_time': prepareTime,
+      'new_meal_type': EnumToString.convertToString(type).toUpperCase(),
+      'new_photo': photo,
     };
   }
 }

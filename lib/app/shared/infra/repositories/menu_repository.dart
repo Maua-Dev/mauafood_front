@@ -14,7 +14,7 @@ class MenuRepository implements IMenuRepository {
   Map<String, dynamic> jsonAllRestaurants = {};
 
   MenuRepository({required this.datasource}) {
-    getAllProducts();
+    //getAllProducts();
   }
 
   @override

@@ -776,14 +776,14 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{Souza de Abreu} hora_h{H Hour} moleza{Cantina do Moleza} other{}}`
+  /// `{restaurant, select, souza_de_abreu{Souza de Abreu} hora_h{H Hour} cantina_do_moleza{Cantina do Moleza} other{}}`
   String restaurantsNameSchema(Object restaurant) {
     return Intl.select(
       restaurant,
       {
-        'biba': 'Souza de Abreu',
+        'souza_de_abreu': 'Souza de Abreu',
         'hora_h': 'H Hour',
-        'moleza': 'Cantina do Moleza',
+        'cantina_do_moleza': 'Cantina do Moleza',
         'other': '',
       },
       name: 'restaurantsNameSchema',
@@ -792,14 +792,14 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{bibaImage} hora_h{hora_hImage} moleza{molezaImage} other{}}`
+  /// `{restaurant, select, souza_de_abreu{bibaImage} hora_h{hora_hImage} cantina_do_moleza{molezaImage} other{}}`
   String restaurantsImageSchema(Object restaurant) {
     return Intl.select(
       restaurant,
       {
-        'biba': 'bibaImage',
+        'souza_de_abreu': 'bibaImage',
         'hora_h': 'hora_hImage',
-        'moleza': 'molezaImage',
+        'cantina_do_moleza': 'molezaImage',
         'other': '',
       },
       name: 'restaurantsImageSchema',

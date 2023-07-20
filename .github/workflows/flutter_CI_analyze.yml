@@ -68,7 +68,7 @@ jobs:
           echo "$AMPLIFY"
           echo "$PROVIDERS"
           echo "$FRONTEND"
-          cat amplify/.config/local-aws-info.json
+       
           amplify pull --amplify $AMPLIFY --frontend $FRONTEND --providers $PROVIDERS --yes
 
       - name: Run Analyze code

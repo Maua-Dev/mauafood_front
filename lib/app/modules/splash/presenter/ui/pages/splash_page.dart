@@ -1,4 +1,3 @@
-import 'package:auth_package/core/auth_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -12,7 +11,6 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final AuthStore store = Modular.get();
     var controller = Modular.get<SplashController>();
     return Scaffold(
       backgroundColor: AppColors.mainBlueColor,
@@ -27,11 +25,6 @@ class SplashPage extends StatelessWidget {
           );
         }
         if (controller.state is SplashSuccessState) {
-          if (store.isLogged) {
-            Modular.to.navigate('/user/');
-          } else {
-            Modular.to.navigate('/login/');
-          }
           return const CircularProgressIndicator();
         } else {
           return const CircularProgressIndicator();

@@ -7,9 +7,7 @@ class RestaurantModule extends Module {
   @override
   List<Bind> get binds => [
         Bind<IGetRestaurant>((i) => GetRestaurant()),
-        Bind<RestaurantController>((i) => RestaurantController(
-              getRestaurant: i(),
-            ))
+        Bind<RestaurantController>((i) => RestaurantController(i(), i()))
       ];
 
   @override
@@ -17,7 +15,6 @@ class RestaurantModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => const RestaurantsPage(),
-          // guards: [UserAuthGuard()],
         ),
       ];
 }

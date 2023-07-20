@@ -82,130 +82,127 @@ class _UserMenuPageState extends State<UserMenuPage> {
       ),
       body: SafeArea(
         bottom: false,
-        child: Padding(
-          padding: const EdgeInsets.only(top: 24),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  children: [
-                    IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        Modular.to.pop();
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  IconButton(
+                    padding: EdgeInsets.zero,
+                    onPressed: () {
+                      Modular.to.pop();
+                    },
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      color: AppColors.mainBlueColor,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 16,
+                  ),
+                  Text(
+                    S.of(context).restaurantTitle(
+                        '', menuController.restaurantInfo.restaurantName),
+                    style: AppTextStyles.h1
+                        .copyWith(color: AppColors.mainBlueColor),
+                  ),
+                ],
+              ),
+            ),
+            ConstrainedBox(
+                constraints: const BoxConstraints(
+                  minHeight: 35.0,
+                  maxHeight: 100,
+                ),
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+                  child: TextFormField(
+                    onChanged: (value) {
+                      menuController.searchProduct(value);
+                    },
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 1,
+                            color: AppColors.backgroundColor2), //<-- SEE HERE
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                            width: 1,
+                            color: AppColors.mainBlueColor), //<-- SEE HERE
+                        borderRadius: BorderRadius.circular(50.0),
+                      ),
+                      labelStyle: AppTextStyles.h2Highlight
+                          .copyWith(fontWeight: FontWeight.bold),
+                      labelText: S.of(context).searchTitle,
+                      prefixIcon: Icon(
+                        Icons.search,
                         color: AppColors.mainBlueColor,
                       ),
                     ),
-                    const SizedBox(
-                      width: 16,
-                    ),
-                    Text(
-                      S.of(context).restaurantTitle(
-                          '', menuController.restaurantInfo.restaurantName),
-                      style: AppTextStyles.h1
-                          .copyWith(color: AppColors.mainBlueColor),
-                    ),
-                  ],
+                  ),
+                )),
+            Observer(builder: (_) {
+              var state = menuController.state;
+              return Expanded(
+                child: Container(
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: AppColors.backgroundColor2,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(40),
+                      )),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                          padding: const EdgeInsets.only(top: 24, bottom: 16),
+                          child: state is MenuLoadedSuccessState
+                              ? ConstrainedBox(
+                                  constraints: const BoxConstraints(
+                                    minHeight: 35.0,
+                                    maxHeight: 50,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 16,
+                                    ),
+                                    child: ListView.builder(
+                                      itemCount: ProductEnum.values.length,
+                                      scrollDirection: Axis.horizontal,
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, index) {
+                                        return FilterButtonWidget(
+                                          myIndex: index,
+                                          actualIndex: state.index,
+                                          onPressed: () {
+                                            menuController.filterProduct(
+                                                ProductEnum.values[index]);
+                                          },
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox.shrink()),
+                      state is MenuLoadingState
+                          ? const Center(child: CircularProgressIndicator())
+                          : state is MenuLoadedSuccessState
+                              ? buildSuccess(state.listProduct)
+                              : state is MenuErrorState
+                                  ? buildError(state.failure)
+                                  : const SizedBox.shrink(),
+                    ],
+                  ),
                 ),
-              ),
-              ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    minHeight: 35.0,
-                    maxHeight: 100,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 16, horizontal: 24),
-                    child: TextFormField(
-                      onChanged: (value) {
-                        menuController.searchProduct(value);
-                      },
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: AppColors.backgroundColor2), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: AppColors.mainBlueColor), //<-- SEE HERE
-                          borderRadius: BorderRadius.circular(50.0),
-                        ),
-                        labelStyle: AppTextStyles.h2Highlight
-                            .copyWith(fontWeight: FontWeight.bold),
-                        labelText: S.of(context).searchTitle,
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: AppColors.mainBlueColor,
-                        ),
-                      ),
-                    ),
-                  )),
-              Observer(builder: (_) {
-                var state = menuController.state;
-                return Expanded(
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: AppColors.backgroundColor2,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(40),
-                        )),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                            padding: const EdgeInsets.only(top: 24, bottom: 16),
-                            child: state is MenuLoadedSuccessState
-                                ? ConstrainedBox(
-                                    constraints: const BoxConstraints(
-                                      minHeight: 35.0,
-                                      maxHeight: 50,
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 16,
-                                      ),
-                                      child: ListView.builder(
-                                        itemCount: ProductEnum.values.length,
-                                        scrollDirection: Axis.horizontal,
-                                        shrinkWrap: true,
-                                        itemBuilder: (context, index) {
-                                          return FilterButtonWidget(
-                                            myIndex: index,
-                                            actualIndex: state.index,
-                                            onPressed: () {
-                                              menuController.filterProduct(
-                                                  ProductEnum.values[index]);
-                                            },
-                                          );
-                                        },
-                                      ),
-                                    ),
-                                  )
-                                : const SizedBox.shrink()),
-                        state is MenuLoadingState
-                            ? const Center(child: CircularProgressIndicator())
-                            : state is MenuLoadedSuccessState
-                                ? buildSuccess(state.listProduct)
-                                : state is MenuErrorState
-                                    ? buildError(state.failure)
-                                    : const SizedBox.shrink(),
-                      ],
-                    ),
-                  ),
-                );
-              })
-            ],
-          ),
+              );
+            })
+          ],
         ),
       ),
     );

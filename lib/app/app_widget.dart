@@ -27,6 +27,7 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         fontFamily: GoogleFonts.lato().fontFamily,
         scaffoldBackgroundColor: AppColors.backgroundColor,
+        primaryColor: AppColors.mainBlueColor,
         appBarTheme: AppBarTheme(
           backgroundColor: AppColors.backgroundColor,
         ),
@@ -50,15 +51,13 @@ class AppWidget extends StatelessWidget {
             ),
           ),
         ),
-        inputDecorationTheme: const InputDecorationTheme(
-          hintStyle: TextStyle(color: Colors.grey),
-          fillColor: Colors.white,
-          filled: true,
-          focusColor: Colors.white,
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-        ),
+        inputDecorationTheme: InputDecorationTheme(
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20.0),
+                borderSide: BorderSide.none),
+            filled: true,
+            fillColor: Colors.grey.withOpacity(0.1)),
+        iconTheme: IconThemeData(color: AppColors.mainBlueColor),
       ),
     ); //added by extension
   }

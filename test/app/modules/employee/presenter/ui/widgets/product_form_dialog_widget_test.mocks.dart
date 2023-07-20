@@ -48,7 +48,7 @@ class MockIUpdateProductUsecase extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, void>> call(
+  _i4.Future<_i2.Either<_i5.Failure, _i6.ProductModel>> call(
     _i6.ProductModel? product,
     _i7.RestaurantEnum? restaurant,
   ) =>
@@ -60,8 +60,9 @@ class MockIUpdateProductUsecase extends _i1.Mock
             restaurant,
           ],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, void>>.value(
-            _FakeEither_0<_i5.Failure, void>(
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, _i6.ProductModel>>.value(
+                _FakeEither_0<_i5.Failure, _i6.ProductModel>(
           this,
           Invocation.method(
             #call,
@@ -71,7 +72,7 @@ class MockIUpdateProductUsecase extends _i1.Mock
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i6.ProductModel>>);
 }
 
 /// A class which mocks [ICreateProductUsecase].
@@ -84,7 +85,7 @@ class MockICreateProductUsecase extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, void>> call(
+  _i4.Future<_i2.Either<_i5.Failure, _i6.ProductModel>> call(
     _i6.ProductModel? product,
     _i7.RestaurantEnum? restaurant,
   ) =>
@@ -96,8 +97,9 @@ class MockICreateProductUsecase extends _i1.Mock
             restaurant,
           ],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, void>>.value(
-            _FakeEither_0<_i5.Failure, void>(
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, _i6.ProductModel>>.value(
+                _FakeEither_0<_i5.Failure, _i6.ProductModel>(
           this,
           Invocation.method(
             #call,
@@ -107,5 +109,5 @@ class MockICreateProductUsecase extends _i1.Mock
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i6.ProductModel>>);
 }

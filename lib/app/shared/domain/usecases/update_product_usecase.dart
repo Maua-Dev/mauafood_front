@@ -5,7 +5,7 @@ import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 
 abstract class IUpdateProductUsecase {
-  Future<Either<Failure, void>> call(
+  Future<Either<Failure, ProductModel>> call(
       ProductModel product, RestaurantEnum restaurant);
 }
 
@@ -15,7 +15,7 @@ class UpdateProductUsecase extends IUpdateProductUsecase {
   UpdateProductUsecase({required this.repository});
 
   @override
-  Future<Either<Failure, void>> call(
+  Future<Either<Failure, ProductModel>> call(
       ProductModel product, RestaurantEnum restaurant) async {
     var result = await repository.updateProduct(product, restaurant);
     return result.fold(

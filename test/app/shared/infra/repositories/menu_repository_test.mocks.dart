@@ -3,14 +3,14 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i3;
+import 'dart:async' as _i4;
 
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart'
     as _i5;
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart'
-    as _i2;
+    as _i3;
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart'
-    as _i4;
+    as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -24,26 +24,36 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
+class _FakeProductModel_0 extends _i1.SmartFake implements _i2.ProductModel {
+  _FakeProductModel_0(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
 /// A class which mocks [IMenuDatasource].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIMenuDatasource extends _i1.Mock implements _i2.IMenuDatasource {
+class MockIMenuDatasource extends _i1.Mock implements _i3.IMenuDatasource {
   MockIMenuDatasource() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i3.Future<Map<String, dynamic>> getAllProducts() => (super.noSuchMethod(
+  _i4.Future<Map<String, dynamic>> getAllProducts() => (super.noSuchMethod(
         Invocation.method(
           #getAllProducts,
           [],
         ),
         returnValue:
-            _i3.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
-      ) as _i3.Future<Map<String, dynamic>>);
+            _i4.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i4.Future<Map<String, dynamic>>);
   @override
-  _i3.Future<void> createProduct(
-    _i4.ProductModel? product,
+  _i4.Future<_i2.ProductModel> createProduct(
+    _i2.ProductModel? product,
     _i5.RestaurantEnum? restaurant,
   ) =>
       (super.noSuchMethod(
@@ -54,12 +64,20 @@ class MockIMenuDatasource extends _i1.Mock implements _i2.IMenuDatasource {
             restaurant,
           ],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<_i2.ProductModel>.value(_FakeProductModel_0(
+          this,
+          Invocation.method(
+            #createProduct,
+            [
+              product,
+              restaurant,
+            ],
+          ),
+        )),
+      ) as _i4.Future<_i2.ProductModel>);
   @override
-  _i3.Future<void> updateProduct(
-    _i4.ProductModel? product,
+  _i4.Future<_i2.ProductModel> updateProduct(
+    _i2.ProductModel? product,
     _i5.RestaurantEnum? restaurant,
   ) =>
       (super.noSuchMethod(
@@ -70,11 +88,19 @@ class MockIMenuDatasource extends _i1.Mock implements _i2.IMenuDatasource {
             restaurant,
           ],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<_i2.ProductModel>.value(_FakeProductModel_0(
+          this,
+          Invocation.method(
+            #updateProduct,
+            [
+              product,
+              restaurant,
+            ],
+          ),
+        )),
+      ) as _i4.Future<_i2.ProductModel>);
   @override
-  _i3.Future<void> deleteProduct(
+  _i4.Future<void> deleteProduct(
     String? id,
     _i5.RestaurantEnum? restaurant,
   ) =>
@@ -86,7 +112,7 @@ class MockIMenuDatasource extends _i1.Mock implements _i2.IMenuDatasource {
             restaurant,
           ],
         ),
-        returnValue: _i3.Future<void>.value(),
-        returnValueForMissingStub: _i3.Future<void>.value(),
-      ) as _i3.Future<void>);
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
 }

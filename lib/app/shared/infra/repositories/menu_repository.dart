@@ -86,11 +86,11 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
-  Future<Either<Failure, void>> createProduct(
+  Future<Either<Failure, ProductModel>> createProduct(
       ProductModel product, RestaurantEnum restaurant) async {
     try {
-      await datasource.createProduct(product, restaurant);
-      return right(null);
+      var response = await datasource.createProduct(product, restaurant);
+      return right(response);
     } on DioError catch (e) {
       HttpStatusCodeEnum errorType =
           getHttpStatusFunction(e.response!.statusCode);
@@ -112,11 +112,11 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
-  Future<Either<Failure, void>> updateProduct(
+  Future<Either<Failure, ProductModel>> updateProduct(
       ProductModel product, RestaurantEnum restaurant) async {
     try {
-      await datasource.updateProduct(product, restaurant);
-      return right(null);
+      var response = await datasource.updateProduct(product, restaurant);
+      return right(response);
     } on DioError catch (e) {
       HttpStatusCodeEnum errorType =
           getHttpStatusFunction(e.response!.statusCode);

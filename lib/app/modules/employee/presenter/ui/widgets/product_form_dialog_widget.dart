@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
+import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/product-form/product_form_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
 import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/product_card_widget.dart';
@@ -48,6 +49,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
   @override
   Widget build(BuildContext context) {
     var productFormController = Modular.get<ProductFormController>();
+    var menuController = Modular.get<EmployeeMenuRestaurantController>();
     if (widget.product != null) {
       productFormController.setProductAvailability(widget.product!.available);
       productFormController.setProductType(widget.product!.type.name);
@@ -516,7 +518,25 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                       if (productFormController
                                                               .state
                                                           is ProductFormSuccessState) {
+                                                        var state =
+                                                            productFormController
+                                                                    .state
+                                                                as ProductFormSuccessState;
+                                                        menuController
+                                                            .listAllProduct
+                                                            .removeWhere(
+                                                                (element) =>
+                                                                    element
+                                                                        .id ==
+                                                                    widget
+                                                                        .product!
+                                                                        .id);
+                                                        menuController
+                                                            .listAllProduct
+                                                            .add(state.product);
                                                         Modular.to.pop();
+                                                        menuController
+                                                            .loadRestaurantMenu();
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
@@ -566,6 +586,13 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                       if (productFormController
                                                               .state
                                                           is ProductFormSuccessState) {
+                                                        var state =
+                                                            productFormController
+                                                                    .state
+                                                                as ProductFormSuccessState;
+                                                        menuController
+                                                            .listAllProduct
+                                                            .add(state.product);
                                                         Modular.to.pop();
                                                         ScaffoldMessenger.of(
                                                                 context)

@@ -106,7 +106,7 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, void>> createProduct(
+  _i4.Future<_i2.Either<_i5.Failure, _i7.ProductModel>> createProduct(
     _i7.ProductModel? product,
     _i8.RestaurantEnum? restaurant,
   ) =>
@@ -118,8 +118,9 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
             restaurant,
           ],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, void>>.value(
-            _FakeEither_0<_i5.Failure, void>(
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, _i7.ProductModel>>.value(
+                _FakeEither_0<_i5.Failure, _i7.ProductModel>(
           this,
           Invocation.method(
             #createProduct,
@@ -129,9 +130,9 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i7.ProductModel>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, void>> updateProduct(
+  _i4.Future<_i2.Either<_i5.Failure, _i7.ProductModel>> updateProduct(
     _i7.ProductModel? product,
     _i8.RestaurantEnum? restaurant,
   ) =>
@@ -143,8 +144,9 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
             restaurant,
           ],
         ),
-        returnValue: _i4.Future<_i2.Either<_i5.Failure, void>>.value(
-            _FakeEither_0<_i5.Failure, void>(
+        returnValue:
+            _i4.Future<_i2.Either<_i5.Failure, _i7.ProductModel>>.value(
+                _FakeEither_0<_i5.Failure, _i7.ProductModel>(
           this,
           Invocation.method(
             #updateProduct,
@@ -154,7 +156,7 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i7.ProductModel>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, void>> deleteProduct(
     String? id,

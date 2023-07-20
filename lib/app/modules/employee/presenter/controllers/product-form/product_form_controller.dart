@@ -159,8 +159,9 @@ abstract class ProductFormControllerBase with Store {
           photo: "https://avatars.githubusercontent.com/u/24724451?v=4",
         ),
         restaurant);
-    changeState(result.fold((l) => ProductFormFailureState(failure: l), (r) {
-      return ProductFormSuccessState();
+    changeState(
+        result.fold((l) => ProductFormFailureState(failure: l), (product) {
+      return ProductFormSuccessState(product: product);
     }));
   }
 
@@ -180,8 +181,9 @@ abstract class ProductFormControllerBase with Store {
           photo: "https://avatars.githubusercontent.com/u/24724451?v=4",
         ),
         restaurant);
-    changeState(result.fold((l) => ProductFormFailureState(failure: l), (r) {
-      return ProductFormSuccessState();
+    changeState(
+        result.fold((l) => ProductFormFailureState(failure: l), (product) {
+      return ProductFormSuccessState(product: product);
     }));
   }
 

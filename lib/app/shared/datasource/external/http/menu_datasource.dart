@@ -1,3 +1,4 @@
+import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
@@ -19,23 +20,23 @@ class MenuDatasource implements IMenuDatasource {
   }
 
   @override
-  Future<void> createProduct(
+  Future<ProductModel> createProduct(
       ProductModel product, RestaurantEnum restaurant) async {
-    var response = await _httpService.post('/create-product',
-        data: product.toJson(restaurant));
+    var data = product.toJson(restaurant);
+    var response = await _httpService.post('/create-product', data: data);
     if (response.statusCode == 201) {
-      return;
+      return ProductModel.fromMap(response.data["product"]);
     }
     throw Exception();
   }
 
   @override
-  Future<void> updateProduct(
+  Future<ProductModel> updateProduct(
       ProductModel product, RestaurantEnum restaurant) async {
-    var response = await _httpService.post('/update-product',
-        data: product.newProductJson(restaurant));
+    var data = product.newProductJson(restaurant);
+    var response = await _httpService.post('/update-product', data: data);
     if (response.statusCode == 200) {
-      return;
+      return ProductModel.fromMap(response.data["product"]);
     }
     throw Exception();
   }

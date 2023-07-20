@@ -64,7 +64,7 @@ jobs:
           PROVIDERS="{\
             \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
             }"
-          cat aws_config_file_path.json
+        
           echo "$AMPLIFY"
           echo "$PROVIDERS"
           echo "$FRONTEND"

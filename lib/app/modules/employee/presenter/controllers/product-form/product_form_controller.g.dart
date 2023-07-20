@@ -261,18 +261,6 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
   }
 
   @override
-  String? validateProductPrepareTime(String? value) {
-    final _$actionInfo =
-        _$ProductFormControllerBaseActionController.startAction(
-            name: 'ProductFormControllerBase.validateProductPrepareTime');
-    try {
-      return super.validateProductPrepareTime(value);
-    } finally {
-      _$ProductFormControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void setProductPrice(String value) {
     final _$actionInfo = _$ProductFormControllerBaseActionController
         .startAction(name: 'ProductFormControllerBase.setProductPrice');

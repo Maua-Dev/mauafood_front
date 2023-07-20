@@ -1,4 +1,3 @@
-import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';

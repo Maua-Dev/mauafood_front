@@ -27,7 +27,7 @@ class SplashPage extends StatelessWidget {
         }
         if (controller.state is SplashSuccessState) {
           Modular.to.pushNamed('/employee/',
-              arguments: RestaurantEnum.souza_de_abreu);
+              arguments: RestaurantEnum.cantina_do_moleza);
           return const Center(child: CircularProgressIndicator());
         } else {
           return const Center(child: CircularProgressIndicator());

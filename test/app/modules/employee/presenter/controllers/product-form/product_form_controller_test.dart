@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/product-form/product_form_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
+import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart';
@@ -13,7 +14,7 @@ import 'package:mockito/mockito.dart';
 
 class CreateProductMockFailed extends Mock implements ICreateProductUsecase {
   @override
-  Future<Either<Failure, void>> call(
+  Future<Either<Failure, ProductModel>> call(
       ProductModel product, RestaurantEnum restaurant) async {
     return left(Failure(message: ''));
   }
@@ -21,15 +22,25 @@ class CreateProductMockFailed extends Mock implements ICreateProductUsecase {
 
 class CreateProductMockSuccess extends Mock implements ICreateProductUsecase {
   @override
-  Future<Either<Failure, void>> call(
+  Future<Either<Failure, ProductModel>> call(
       ProductModel product, RestaurantEnum restaurant) async {
-    return right(null);
+    ProductModel testMock = ProductModel(
+      id: '0',
+      name: 'name',
+      description: 'description',
+      price: 10,
+      type: ProductEnum.DRINKS,
+      photo: '',
+      available: true,
+      lastUpdate: DateTime.now(),
+    );
+    return right(testMock);
   }
 }
 
 class UpdateProductMockFailed extends Mock implements IUpdateProductUsecase {
   @override
-  Future<Either<Failure, void>> call(
+  Future<Either<Failure, ProductModel>> call(
       ProductModel product, RestaurantEnum restaurant) async {
     return left(Failure(message: ''));
   }
@@ -37,9 +48,19 @@ class UpdateProductMockFailed extends Mock implements IUpdateProductUsecase {
 
 class UpdateProductMockSuccess extends Mock implements IUpdateProductUsecase {
   @override
-  Future<Either<Failure, void>> call(
+  Future<Either<Failure, ProductModel>> call(
       ProductModel product, RestaurantEnum restaurant) async {
-    return right(null);
+    ProductModel testMock = ProductModel(
+      id: '0',
+      name: 'name',
+      description: 'description',
+      price: 10,
+      type: ProductEnum.DRINKS,
+      photo: '',
+      available: true,
+      lastUpdate: DateTime.now(),
+    );
+    return right(testMock);
   }
 }
 
@@ -49,6 +70,16 @@ void main() {
       UpdateProductMockSuccess();
   ICreateProductUsecase createProductSuccessUsecase =
       CreateProductMockSuccess();
+  ProductModel testMock = ProductModel(
+    id: '0',
+    name: 'name',
+    description: 'description',
+    price: 10,
+    type: ProductEnum.DRINKS,
+    photo: '',
+    available: true,
+    lastUpdate: DateTime.now(),
+  );
 
   setUp(() async {
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
@@ -64,7 +95,7 @@ void main() {
     test('changeState', () {
       controller = ProductFormController(
           updateProductSuccessUsecase, createProductSuccessUsecase);
-      controller.changeState(ProductFormSuccessState());
+      controller.changeState(ProductFormSuccessState(product: testMock));
       expect(controller.state, isA<ProductFormSuccessState>());
     });
 
@@ -113,12 +144,6 @@ void main() {
     test('validateProductName', () {
       expect(controller.validateProductName(''), S.current.requiredFieldAlert);
       expect(controller.validateProductName('123445'), null);
-    });
-
-    test('validateProductPrepareTime', () {
-      expect(controller.validateProductPrepareTime(''),
-          S.current.requiredFieldAlert);
-      expect(controller.validateProductPrepareTime('123445'), null);
     });
 
     test('validateProductPrice', () {

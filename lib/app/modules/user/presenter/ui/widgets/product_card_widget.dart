@@ -37,8 +37,9 @@ class ProductCardWidget extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: product.photo == ''
-                      ? kIsWeb && mobilePhoto != null || webPhoto == null
+                  child: product.photo == '' && mobilePhoto != null ||
+                          webPhoto != null
+                      ? kIsWeb
                           ? Image.file(mobilePhoto!)
                           : Image.memory(webPhoto!)
                       : CachedNetworkImage(

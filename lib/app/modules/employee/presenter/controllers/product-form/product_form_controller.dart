@@ -54,14 +54,6 @@ abstract class ProductFormControllerBase with Store {
     productPrepareTime = int.parse(value);
   }
 
-  @action
-  String? validateProductPrepareTime(String? value) {
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    }
-    return null;
-  }
-
   @observable
   double? productPrice;
 
@@ -175,7 +167,7 @@ abstract class ProductFormControllerBase with Store {
           name: productName!,
           description: productDescription ?? "",
           price: productPrice!,
-          prepareTime: productPrepareTime!,
+          prepareTime: productPrepareTime ?? 0,
           type: productType!,
           available: productAvailability,
           photo: "https://avatars.githubusercontent.com/u/24724451?v=4",

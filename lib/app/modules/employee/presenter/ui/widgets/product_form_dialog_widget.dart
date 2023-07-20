@@ -56,8 +56,11 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
       productFormController.setProductName(widget.product!.name);
       productFormController.setProductDescription(widget.product!.description);
       productFormController.setProductPrice(widget.product!.price.toString());
-      productFormController
-          .setProductPrepareTime(widget.product!.prepareTime.toString());
+      if (widget.product!.prepareTime != null) {
+        productFormController
+            .setProductPrepareTime(widget.product!.prepareTime.toString());
+      }
+
       productFormController.setProductPhoto(widget.product!.photo);
     }
     return Scaffold(
@@ -244,8 +247,6 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                             inputFormatters: [
                               FilteringTextInputFormatter.digitsOnly
                             ],
-                            validator: productFormController
-                                .validateProductPrepareTime,
                             initialValue: productFormController
                                 .productPrepareTime
                                 ?.toString(),

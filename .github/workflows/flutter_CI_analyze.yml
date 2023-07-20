@@ -33,13 +33,21 @@ jobs:
           role-session-name: github-action
   
       - run: npm install -g @aws-amplify/cli
-      - name: Set AWS credentials
-        run: |
-          echo '{"accessKeyId":"${{ env.AWS_ACCESS_KEY_ID}}","secretAccessKey":"${{ env.AWS_SECRET_ACCESS_KEY}}","region":"sa-east-1"}' > ${{github.workspace}}/aws_config_file_path.json
-          echo '{"dev":{"configLevel":"general","useProfile":true,"profileName":"default"}}' > amplify/.config/local-aws-info.json
+      # - name: Set AWS credentials
+      #   run: |
+      #     echo '{"accessKeyId":"${{ env.AWS_ACCESS_KEY_ID}}","secretAccessKey":"${{ env.AWS_SECRET_ACCESS_KEY}}","region":"sa-east-1"}' > ${{github.workspace}}/aws_config_file_path.json
+      #     echo '{"dev":{"configLevel":"general","useProfile":true,"profileName":"default"}}' > amplify/.config/local-aws-info.json
 
       - name: Setup Amplify projects
         run: |
+          AWSCLOUDFORMATIONCONFIG="{\
+            \"configLevel\":\"general\",\
+            \"useProfile\":false,\
+            \"profileName\":\"default\",\
+            \"accessKeyId\":\"${{ env.AWS_ACCESS_KEY_ID}}\",\
+            \"secretAccessKey\":\"${{ env.AWS_SECRET_ACCESS_KEY}}\",\
+            \"region\":\"sa-east-1\"\
+            }"
           CONFIG="{\
             \"ResDir\":\"lib\",\
             }"
@@ -53,10 +61,15 @@ jobs:
             \"envName\":\"dev\",\
             \"defaultEditor\":\"code\"\
             }"
+          PROVIDERS="{\
+            \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
+            }"
           cat aws_config_file_path.json
           echo "$AMPLIFY"
+          echo "$PROVIDERS"
+          echo "$FRONTEND"
           cat amplify/.config/local-aws-info.json
-          amplify pull --amplify $AMPLIFY --frontend $FRONTEND --yes
+          amplify pull --amplify $AMPLIFY --frontend $FRONTEND --providers $PROVIDERS --yes
 
       - name: Run Analyze code
         run: flutter analyze

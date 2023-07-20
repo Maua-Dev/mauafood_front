@@ -90,7 +90,7 @@ class FavoritesPage extends StatelessWidget {
                   ),
                 ));
           },
-          itemCount: 2,
+          itemCount: 15,
           separatorBuilder: (BuildContext context, int index) {
             return Divider();
           },

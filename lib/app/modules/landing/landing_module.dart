@@ -32,9 +32,12 @@ class LandingModule extends Module {
           ModuleRoute('/restaurants/', module: UserMenuModule()),
           ChildRoute('/cart/',
               child: (_, args) => const Center(
-                    child: Text('carrinho/'),
+                    child: Text(
+                      "Cart Page",
+                      style: TextStyle(fontSize: 48),
+                    ),
                   )),
-          ChildRoute('/faq/', child: (_, args) => const FaqPage()),
+          ChildRoute('/faq/', child: (_, args) => FaqPage()),
           ModuleRoute('/profile/', module: ProfileModule())
         ],
         transition: TransitionType.fadeIn),

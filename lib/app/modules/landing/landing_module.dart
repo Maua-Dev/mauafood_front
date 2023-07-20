@@ -17,11 +17,11 @@ class LandingModule extends Module {
   final List<Bind> binds = [
     Bind.lazySingleton((i) => LandingController()),
     Bind<IContactUsecase>((i) => ContactUsecase(i())),
-        Bind<IContactRepository>((i) => ContactRepository(datasource: i())),
-        Bind<IContactDatasource>((i) => ContactDatasource()),
-        Bind<ContactController>(
-          (i) => ContactController(i()),
-        ),
+    Bind<IContactRepository>((i) => ContactRepository(datasource: i())),
+    Bind<IContactDatasource>((i) => ContactDatasource()),
+    Bind<ContactController>(
+      (i) => ContactController(i()),
+    ),
   ];
 
   @override
@@ -29,14 +29,13 @@ class LandingModule extends Module {
     ChildRoute('/',
         child: (_, args) => const LandingPage(),
         children: [
-          ModuleRoute('/restaurants', module: UserMenuModule()),
-          ChildRoute('/cart',
+          ModuleRoute('/restaurants/', module: UserMenuModule()),
+          ChildRoute('/cart/',
               child: (_, args) => const Center(
-                    child: Text('carrinho'),
+                    child: Text('carrinho/'),
                   )),
-          ChildRoute('/faq',
-              child: (_, args) => const FaqPage()),
-          ModuleRoute('/profile', module: ProfileModule())
+          ChildRoute('/faq/', child: (_, args) => const FaqPage()),
+          ModuleRoute('/profile/', module: ProfileModule())
         ],
         transition: TransitionType.fadeIn),
   ];

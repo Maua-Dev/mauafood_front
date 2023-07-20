@@ -23,7 +23,7 @@ jobs:
       - name: Get flutter dependencies
         run: flutter pub get
       - name: Setup AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v3
         with:
           aws-region: sa-east-1
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole

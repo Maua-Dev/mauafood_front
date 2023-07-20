@@ -25,13 +25,6 @@ jobs:
         with:
           java-version: "12.x"
 
-      - name: Setup AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-region: sa-east-1
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
-          role-session-name: github-action
-  
       - name: Setup Flutter Version
         uses: subosito/flutter-action@v1
         with:
@@ -40,20 +33,42 @@ jobs:
       - name: Get flutter dependencies
         run: flutter pub get
 
+      - name: Setup AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: sa-east-1
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
+          role-session-name: github-action
+  
       - run: npm install -g @aws-amplify/cli
-
-      - name: Set AWS credentials
-        run: |
-          echo '{"accessKeyId":"${{ env.AWS_ACCESS_KEY_ID}}","secretAccessKey":"${{ env.AWS_SECRET_ACCESS_KEY}}","region":"sa-east-1"}' > ${{github.workspace}}/aws_config_file_path.json
-          echo '{"projectPath": "${{github.workspace}}/packages/auth_package","defaultEditor":"code","envName":"${{ github.ref_name }}"}' > amplify/.config/local-env-info.json
-          echo '{"${{ github.ref_name }}":{"configLevel":"project","useProfile":true,"profileName":"default"}}' > amplify/.config/local-aws-info.json
-
       - name: Setup Amplify projects
         run: |
-          cat aws_config_file_path.json
-          cat amplify/.config/local-env-info.json
-          cat amplify/.config/local-aws-info.json
-          amplify env pull --yes
+          AWSCLOUDFORMATIONCONFIG="{\
+          \"configLevel\":\"general\",\
+          \"useProfile\":true,\
+          \"profileName\":\"default\",\
+          \"accessKeyId\":\"${{ env.AWS_ACCESS_KEY_ID}}\",\
+          \"secretAccessKey\":\"${{ env.AWS_SECRET_ACCESS_KEY}}\",\
+          \"region\":\"sa-east-1\"\
+          }"
+          CONFIG="{\
+          \"ResDir\":\"lib\"\
+          }"
+          FRONTEND="{\
+          \"frontend\":\"flutter\",\
+          \"config\":$CONFIG\
+          }"
+          AMPLIFY="{\
+          \"projectName\":\"${{ secrets.AMPLIFY_AUTH_PROJECT }}\",\
+          \"appId\":\"${{ secrets.AMPLIFY_AUTH_APP_ID }}\",\
+          \"envName\":\"dev\",\
+          \"defaultEditor\":\"code\"\
+          }"
+          PROVIDERS="{\
+          \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
+          }"
+       
+          amplify pull --amplify $AMPLIFY --frontend $FRONTEND --providers $PROVIDERS --yes
      
       - name: Setup Fastlane
         uses: ruby/setup-ruby@v1

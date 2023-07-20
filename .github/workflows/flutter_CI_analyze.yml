@@ -33,11 +33,6 @@ jobs:
           role-session-name: github-action
   
       - run: npm install -g @aws-amplify/cli
-      # - name: Set AWS credentials
-      #   run: |
-      #     echo '{"accessKeyId":"${{ env.AWS_ACCESS_KEY_ID}}","secretAccessKey":"${{ env.AWS_SECRET_ACCESS_KEY}}","region":"sa-east-1"}' > ${{github.workspace}}/aws_config_file_path.json
-      #     echo '{"dev":{"configLevel":"general","useProfile":true,"profileName":"default"}}' > amplify/.config/local-aws-info.json
-
       - name: Setup Amplify projects
         run: |
           AWSCLOUDFORMATIONCONFIG="{\
@@ -56,18 +51,14 @@ jobs:
           \"config\":$CONFIG\
           }"
           AMPLIFY="{\
-          \"projectName\":\"authentication\",\
-          \"appId\":\"d3naf2rz1nj7ky\",\
+          \"projectName\":\"${{ secrets.AMPLIFY_AUTH_PROJECT }}\",\
+          \"appId\":\"${{ secrets.AMPLIFY_AUTH_APP_ID }}\",\
           \"envName\":\"dev\",\
           \"defaultEditor\":\"code\"\
           }"
           PROVIDERS="{\
           \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
           }"
-        
-          echo "$AMPLIFY"
-          echo "$PROVIDERS"
-          echo "$FRONTEND"
        
           amplify pull --amplify $AMPLIFY --frontend $FRONTEND --providers $PROVIDERS --yes
 

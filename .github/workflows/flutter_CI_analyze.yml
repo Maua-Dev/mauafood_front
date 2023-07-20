@@ -35,16 +35,30 @@ jobs:
       - run: npm install -g @aws-amplify/cli
       - name: Set AWS credentials
         run: |
+          A
+
           echo '{"accessKeyId":"${{ env.AWS_ACCESS_KEY_ID}}","secretAccessKey":"${{ env.AWS_SECRET_ACCESS_KEY}}","region":"sa-east-1"}' > ${{github.workspace}}/aws_config_file_path.json
-          echo '{"projectPath": "${{github.workspace}}","defaultEditor":"code","envName":"dev"}' > amplify/.config/local-env-info.json
           echo '{"dev":{"configLevel":"general","useProfile":true,"profileName":"default"}}' > amplify/.config/local-aws-info.json
 
       - name: Setup Amplify projects
         run: |
+          CONFIG="{\
+            \"ResDir\":\"lib\",\
+            }"
+          FRONTEND="{\
+            \"frontend\":\"flutter\",\
+            \"config\":$CONFIG\
+            }"
+          AMPLIFY="{\
+            \"projectName\":\"authentication\",\
+            \"appId\":\"d3naf2rz1nj7ky\",\
+            \"envName\":\"dev\",\
+            \"defaultEditor\":\"code\"\
+            }"
           cat aws_config_file_path.json
-          cat amplify/.config/local-env-info.json
+          echo "$AMPLIFY"
           cat amplify/.config/local-aws-info.json
-          amplify env pull --yes
+          amplify pull --amplify $AMPLIFY --frontend $FRONTEND --yes
 
       - name: Run Analyze code
         run: flutter analyze

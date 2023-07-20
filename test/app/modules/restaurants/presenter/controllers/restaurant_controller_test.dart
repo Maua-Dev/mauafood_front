@@ -1,6 +1,5 @@
 import 'package:auth_package/core/auth_store.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/app_module.dart';
 import 'package:mauafood_front/app/shared/domain/entities/restaurant.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant.dart';
@@ -14,7 +13,7 @@ import 'restaurant_controller_test.mocks.dart';
 
 @GenerateMocks([IGetRestaurant, AuthStore])
 void main() {
-  initModules([AppModule(), RestaurantModule()]);
+  initModules([RestaurantModule()]);
 
   IGetRestaurant getRestaurants = MockIGetRestaurant();
   final authStore = MockAuthStore();

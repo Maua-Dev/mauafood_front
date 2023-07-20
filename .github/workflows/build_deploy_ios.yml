@@ -25,6 +25,13 @@ jobs:
         with:
           java-version: "12.x"
 
+      - name: Setup AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: sa-east-1
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
+          role-session-name: github-action
+  
       - name: Setup Flutter Version
         uses: subosito/flutter-action@v1
         with:
@@ -32,6 +39,8 @@ jobs:
 
       - name: Get flutter dependencies
         run: flutter pub get
+
+      - run: npm install -g @aws-amplify/cli
 
       - name: Setup Fastlane
         uses: ruby/setup-ruby@v1

@@ -5,7 +5,7 @@ import 'package:mauafood_front/app/modules/splash/presenter/ui/pages/splash_page
 class SplashModule extends Module {
   @override
   List<Bind> get binds => [
-        Bind((i) => SplashController(i())),
+        Bind<SplashController>((i) => SplashController(i())),
       ];
 
   @override

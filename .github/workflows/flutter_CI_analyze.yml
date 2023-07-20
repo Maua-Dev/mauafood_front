@@ -37,7 +37,7 @@ jobs:
         run: |
           echo '{"accessKeyId":"${{ env.AWS_ACCESS_KEY_ID}}","secretAccessKey":"${{ env.AWS_SECRET_ACCESS_KEY}}","region":"sa-east-1"}' > ${{github.workspace}}/aws_config_file_path.json
           echo '{"projectPath": "${{github.workspace}}","defaultEditor":"code","envName":"dev"}' > amplify/.config/local-env-info.json
-          echo '{"dev":{"configLevel":"project","useProfile":true,"profileName":"default"}}' > amplify/.config/local-aws-info.json
+          echo '{"dev":{"configLevel":"general","useProfile":true,"profileName":"default"}}' > amplify/.config/local-aws-info.json
 
       - name: Setup Amplify projects
         run: |

@@ -1,11 +1,7 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/controllers/menu/menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/menu/presenter/ui/employee/pages/employee_menu_page.dart';
-import 'package:mauafood_front/app/shared/helpers/services/dio/options/product_base_options.dart';
-import '../../shared/helpers/services/dio/dio_http_request.dart';
-import '../../shared/helpers/services/http/http_request_interface.dart';
-import '../../shared/helpers/services/http_service.dart';
+
 import 'guards/employee_auth_guard.dart';
 import '../../shared/domain/enums/restaurant_enum.dart';
 import '../../shared/datasource/external/http/menu_datasource.dart';
@@ -22,9 +18,6 @@ class EmployeeMenuModule extends Module {
         Bind<MenuRestaurantController>(
           (i) => MenuRestaurantController(i(), i.args.data),
         ),
-        Bind((i) => Dio(productBaseOptions)),
-        Bind<IHttpRequest>((i) => DioHttpRequest(dio: i<Dio>()), export: true),
-        Bind<HttpService>((i) => HttpService(httpRequest: i()), export: true),
         Bind<IMenuRepository>((i) => MenuRepository(datasource: i())),
         Bind<IMenuDatasource>((i) => MenuDatasource(i())),
       ];

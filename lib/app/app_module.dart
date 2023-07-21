@@ -2,6 +2,7 @@ import 'package:auth_package/login.dart';
 import 'package:dio/dio.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
+import 'modules/landing/landing_module.dart';
 import 'package:mauafood_front/app/modules/employee/employee_menu_module.dart';
 import 'modules/user/user_menu_module.dart';
 import 'package:mauafood_front/amplifyconfiguration.dart';
@@ -39,5 +40,6 @@ class AppModule extends Module {
           '/user',
           module: UserMenuModule(),
         ),
+        ModuleRoute('/landing', module: LandingModule()),
       ];
 }

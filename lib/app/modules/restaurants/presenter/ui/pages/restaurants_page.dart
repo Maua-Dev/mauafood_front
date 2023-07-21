@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/restaurant_widget.dart';
-import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/contact/contact_dialog.dart';
+
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
@@ -38,14 +38,6 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: AppColors.mainBlueColor,
-          onPressed: () {
-            showDialog(
-                context: context, builder: (context) => const ContactDialog());
-          },
-          child: const Icon(Icons.mail),
-        ),
         backgroundColor: AppColors.mainBlueColor,
         appBar: AppBar(
           toolbarHeight: 150,

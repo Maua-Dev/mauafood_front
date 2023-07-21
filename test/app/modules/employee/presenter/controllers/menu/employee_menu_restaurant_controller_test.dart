@@ -144,7 +144,7 @@ void main() {
           getRestaurantProductFailedUsecase,
           restaurantInfo,
           deleteProductFailedUsecase);
-      await controller.filterProduct(ProductEnum.SNACKS);
+      await controller.filterProduct(ProductEnum.SNACKS, 2);
       expect(controller.state, isA<EmployeeMenuErrorState>());
     });
   });

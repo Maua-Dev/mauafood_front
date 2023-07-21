@@ -74,7 +74,7 @@ abstract class MenuRestaurantControllerBase with Store {
   }
 
   @action
-  Future<void> filterProduct(ProductEnum productType) async {
+  Future<void> filterProduct(ProductEnum productType, int index) async {
     if (state is EmployeeMenuLoadedSuccessState) {
       if (productType == ProductEnum.ALL) {
         changeState(EmployeeMenuLoadedSuccessState(
@@ -86,7 +86,7 @@ abstract class MenuRestaurantControllerBase with Store {
             )
             .toList();
         changeState(EmployeeMenuLoadedSuccessState(
-            listProduct: filterList, index: productType.index));
+            listProduct: filterList, index: index));
       }
     }
   }

@@ -83,9 +83,9 @@ mixin _$UserMenuRestaurantController on MenuRestaurantControllerBase, Store {
       context: context);
 
   @override
-  Future<void> filterProduct(ProductEnum productType) {
+  Future<void> filterProduct(ProductEnum productType, int index) {
     return _$filterProductAsyncAction
-        .run(() => super.filterProduct(productType));
+        .run(() => super.filterProduct(productType, index));
   }
 
   late final _$MenuRestaurantControllerBaseActionController =

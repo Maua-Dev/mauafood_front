@@ -111,7 +111,7 @@ void main() {
   group('[TEST] - filterProduct', () {
     test('must return MenuErrorState', () async {
       controller = UserMenuRestaurantController(usecaseFailed, restaurantInfo);
-      await controller.filterProduct(ProductEnum.SNACKS);
+      await controller.filterProduct(ProductEnum.SNACKS, 2);
       expect(controller.state, isA<UserMenuErrorState>());
     });
   });

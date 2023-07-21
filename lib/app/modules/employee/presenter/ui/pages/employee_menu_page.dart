@@ -15,13 +15,18 @@ import '../../../../../shared/widgets/error_loading_menu_widget.dart';
 import '../../../../../shared/widgets/filter_button_widget.dart';
 import '../widgets/product_card_employee_widget.dart';
 
-class EmployeeMenuPage extends StatelessWidget {
+class EmployeeMenuPage extends StatefulWidget {
   final RestaurantEnum restaurant;
   const EmployeeMenuPage({super.key, required this.restaurant});
 
   @override
+  State<EmployeeMenuPage> createState() => _EmployeeMenuPageState();
+}
+
+class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
+  var store = Modular.get<EmployeeMenuRestaurantController>();
+  @override
   Widget build(BuildContext context) {
-    var menuController = Modular.get<EmployeeMenuRestaurantController>();
     return Scaffold(
       backgroundColor: AppColors.mainBlueColor,
       appBar: AppBar(
@@ -45,8 +50,12 @@ class EmployeeMenuPage extends StatelessWidget {
             )),
         width: double.infinity,
         child: Observer(builder: (_) {
-          var productCardState = menuController.productCardState;
-          var state = menuController.state;
+          var productCardState = store.productCardState;
+          var state = store.state;
+          var listTypesProducts = [
+            ProductEnum.ALL,
+            ...store.listAllProduct.map((e) => e.type).toSet().toList()
+          ];
           return Padding(
             padding: const EdgeInsets.only(top: 24, right: 12, left: 12),
             child: Column(
@@ -57,7 +66,7 @@ class EmployeeMenuPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      restaurant.restaurantName,
+                      widget.restaurant.restaurantName,
                       style: AppTextStyles.h1
                           .copyWith(color: AppColors.mainBlueColor),
                     ),
@@ -66,7 +75,7 @@ class EmployeeMenuPage extends StatelessWidget {
                             context: context,
                             builder: (BuildContext buildContext) {
                               return ProductFormDialogWidget(
-                                restaurant: restaurant,
+                                restaurant: widget.restaurant,
                                 title: S.of(context).createProductTitle,
                                 buttonText: S.of(context).createTitle,
                                 snackBarText: S
@@ -84,7 +93,7 @@ class EmployeeMenuPage extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: TextField(
                     onChanged: (value) {
-                      menuController.searchProduct(value);
+                      store.searchProduct(value);
                     },
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
@@ -122,11 +131,11 @@ class EmployeeMenuPage extends StatelessWidget {
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return FilterButtonWidget(
-                              myIndex: index,
-                              actualIndex: state.index,
+                              text: listTypesProducts[index].name,
+                              selected: state.index == index,
                               onPressed: () {
-                                menuController
-                                    .filterProduct(ProductEnum.values[index]);
+                                store.filterProduct(
+                                    listTypesProducts[index], index);
                               },
                             );
                           },
@@ -145,7 +154,7 @@ class EmployeeMenuPage extends StatelessWidget {
                             color: AppColors.mainBlueColor,
                             strokeWidth: 3,
                             onRefresh: () async {
-                              menuController.loadRestaurantMenu();
+                              store.loadRestaurantMenu();
                             },
                             child: ListView.builder(
                               itemCount: state.listProduct.length,
@@ -174,7 +183,7 @@ class EmployeeMenuPage extends StatelessWidget {
                                           child: ProductCardEmployeeWidget(
                                             index: index,
                                             product: state.listProduct[index],
-                                            restaurant: restaurant,
+                                            restaurant: widget.restaurant,
                                           ),
                                         ),
                                       ),

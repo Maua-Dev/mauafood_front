@@ -16,19 +16,13 @@ class FilterButtonWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(right: 6, bottom: 4),
-      child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          padding: EdgeInsets.zero,
-          fixedSize: const Size(80, 0),
-          backgroundColor:
-              actualIndex == myIndex ? AppColors.mainBlueColor : Colors.white,
-        ),
+      padding: const EdgeInsets.only(right: 6),
+      child: ActionChip(
+        elevation: 2,
+        backgroundColor:
+            actualIndex == myIndex ? AppColors.mainBlueColor : Colors.white,
         onPressed: onPressed,
-        child: Text(ProductEnum.values[myIndex].name,
+        label: Text(ProductEnum.values[myIndex].name,
             style: actualIndex == myIndex
                 ? AppTextStyles.h2.copyWith(
                     color: AppColors.white, fontWeight: FontWeight.bold)

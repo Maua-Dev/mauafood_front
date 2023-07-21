@@ -25,8 +25,7 @@ class SplashPage extends StatelessWidget {
           );
         }
         if (controller.state is SplashSuccessState) {
-          Modular.to.pushNamed('/user/');
-          return const Center(child: CircularProgressIndicator());
+          return const CircularProgressIndicator();
         } else {
           return const Center(child: CircularProgressIndicator());
         }

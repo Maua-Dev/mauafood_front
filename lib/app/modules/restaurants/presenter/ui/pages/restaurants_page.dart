@@ -18,6 +18,7 @@ class RestaurantsPage extends StatefulWidget {
 }
 
 class _RestaurantsPageState extends State<RestaurantsPage> {
+  final controller = Modular.get<RestaurantController>();
   @override
   void initState() {
     super.initState();
@@ -36,8 +37,6 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Modular.get<RestaurantController>();
-
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: AppColors.mainBlueColor,
@@ -60,6 +59,11 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
           backgroundColor: AppColors.mainBlueColor,
           elevation: 0,
           automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+                onPressed: controller.logout,
+                icon: const Icon(Icons.logout_outlined))
+          ],
         ),
         body: Container(
           decoration: BoxDecoration(

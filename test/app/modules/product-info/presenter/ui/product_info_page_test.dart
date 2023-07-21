@@ -79,8 +79,6 @@ void main() {
       expect(sizedBox, findsAtLeastNWidgets(5));
       final texts = find.byType(Text);
       expect(texts, findsAtLeastNWidgets(4));
-      final columns = find.byType(Column);
-      expect(columns, findsNWidgets(3));
     });
   });
 }

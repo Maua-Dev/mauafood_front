@@ -1,12 +1,11 @@
 import 'dart:ui';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/app_module.dart';
+import 'package:mauafood_front/app/modules/user/user_menu_module.dart';
 import 'package:mauafood_front/app/shared/domain/repositories/menu_repository_interface.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 import 'package:mauafood_front/app/shared/infra/repositories/menu_repository.dart';
-import 'package:mauafood_front/app/modules/menu/user_menu_module.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -16,7 +15,7 @@ import 'menu_repository_test.mocks.dart';
 
 @GenerateMocks([IMenuDatasource])
 void main() {
-  initModules([AppModule(), UserMenuModule()]);
+  initModules([UserMenuModule()]);
 
   IMenuDatasource datasource = MockIMenuDatasource();
   late IMenuRepository repository;

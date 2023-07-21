@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/controllers/restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/restaurants/presenter/ui/widgets/restaurant_widget.dart';
+
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
@@ -17,6 +18,7 @@ class RestaurantsPage extends StatefulWidget {
 }
 
 class _RestaurantsPageState extends State<RestaurantsPage> {
+  final controller = Modular.get<RestaurantController>();
   @override
   void initState() {
     super.initState();
@@ -35,8 +37,6 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
 
   @override
   Widget build(BuildContext context) {
-    var controller = Modular.get<RestaurantController>();
-
     return Scaffold(
         backgroundColor: AppColors.mainBlueColor,
         appBar: AppBar(
@@ -51,6 +51,11 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
           backgroundColor: AppColors.mainBlueColor,
           elevation: 0,
           automaticallyImplyLeading: false,
+          actions: [
+            IconButton(
+                onPressed: controller.logout,
+                icon: const Icon(Icons.logout_outlined))
+          ],
         ),
         body: Container(
           decoration: BoxDecoration(

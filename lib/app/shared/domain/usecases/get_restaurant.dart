@@ -7,9 +7,9 @@ abstract class IGetRestaurant {
 
 class GetRestaurant implements IGetRestaurant {
   final List<Restaurant> listRestaurant = [
-    const Restaurant(restaurantInfo: RestaurantEnum.biba),
+    const Restaurant(restaurantInfo: RestaurantEnum.souza_de_abreu),
     const Restaurant(restaurantInfo: RestaurantEnum.hora_h),
-    const Restaurant(restaurantInfo: RestaurantEnum.moleza),
+    const Restaurant(restaurantInfo: RestaurantEnum.cantina_do_moleza),
   ];
 
   @override

@@ -92,7 +92,7 @@ class FavoritesPage extends StatelessWidget {
           },
           itemCount: 15,
           separatorBuilder: (BuildContext context, int index) {
-            return Divider();
+            return const Divider();
           },
         ),
       ),

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:mauafood_front/app/modules/menu/presenter/ui/user/widgets/contact/contact_dialog.dart';
+
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
+import '../../../../user/presenter/ui/widgets/contact/contact_dialog.dart';
+
 class FaqPage extends StatelessWidget {
-  FaqPage({super.key});
+  const FaqPage({super.key});
 
   final String string = "Faq Page";
 
@@ -28,7 +30,7 @@ class FaqPage extends StatelessWidget {
           builder: (BuildContext context, int value, Widget? child) {
             return Text(
               "${string.substring(0, value)}_",
-              style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
             );
           },
           tween: IntTween(begin: 0, end: string.length),

@@ -71,21 +71,36 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m6(amount) => "${amount} ";
 
-  static String m7(placeholders, message) => "${message}";
+  static String m7(name) => "${Intl.select(name, {
+            'Tudo': 'ALL',
+            'Lanches': 'SANDWICHES',
+            'Bebidas': 'DRINKS',
+            'Doces': 'CANDIES',
+            'Pratos': 'PLATES',
+            'Porcoes': 'PORTIONS',
+            'Massas': 'PASTAS',
+            'Snacks': 'SNACKS',
+            'Saladas': 'SALADS',
+            'Sobremesa': 'DESSERT',
+            'Salgado': 'SAVOURY',
+            'other': 'OUTROS',
+          })}";
 
-  static String m8(placeholders, restaurantName) => "${restaurantName}";
+  static String m8(placeholders, message) => "${message}";
 
-  static String m9(restaurant) => "${Intl.select(restaurant, {
-            'biba': 'bibaImage',
+  static String m9(placeholders, restaurantName) => "${restaurantName}";
+
+  static String m10(restaurant) => "${Intl.select(restaurant, {
+            'souza_de_abreu': 'bibaImage',
             'hora_h': 'hora_hImage',
-            'moleza': 'molezaImage',
+            'cantina_do_moleza': 'molezaImage',
             'other': '',
           })}";
 
-  static String m10(restaurant) => "${Intl.select(restaurant, {
-            'biba': 'Souza de Abreu',
+  static String m11(restaurant) => "${Intl.select(restaurant, {
+            'souza_de_abreu': 'Souza de Abreu',
             'hora_h': 'Hora H',
-            'moleza': 'Cantina do Moleza',
+            'cantina_do_moleza': 'Cantina do Moleza',
             'other': '',
           })}";
 
@@ -96,8 +111,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "appTitle": MessageLookupByLibrary.simpleMessage("Mauá Food"),
         "attentionTitle": MessageLookupByLibrary.simpleMessage("Atenção"),
         "authErrorsSchema": m0,
+        "cancelationTitle": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "categoryTitle": MessageLookupByLibrary.simpleMessage("Categoria"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Alterar senha"),
+        "closeTitle": MessageLookupByLibrary.simpleMessage("Fechar"),
         "codeErrorAlert":
             MessageLookupByLibrary.simpleMessage("Erro com código."),
         "codeTitle": MessageLookupByLibrary.simpleMessage("Código"),
@@ -115,9 +133,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "correctFieldsInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se que os campos estão corretos."),
         "cpfTitle": MessageLookupByLibrary.simpleMessage("CPF"),
+        "createProductTitle":
+            MessageLookupByLibrary.simpleMessage("Criar produto"),
+        "createTitle": MessageLookupByLibrary.simpleMessage("Criar"),
+        "dataStorageAlertTitle": MessageLookupByLibrary.simpleMessage(
+            "Caso voce confirme o envio da mensagem, está concordando que armazenemos seu nome e e-mail para que possamos ter o seu feedback e caso necessário, responde-lo."),
+        "dataStorageTitle":
+            MessageLookupByLibrary.simpleMessage("Armazenamento de dados"),
+        "deleteProductConfirmationTitle": MessageLookupByLibrary.simpleMessage(
+            "Tem certeza que deseja excluir o produto?"),
+        "deleteTitle": MessageLookupByLibrary.simpleMessage("Excluir"),
+        "descriptionTitle": MessageLookupByLibrary.simpleMessage("Descrição"),
         "disclaimerText": MessageLookupByLibrary.simpleMessage(
             "O MauáFood trabalha em conjunto com os restaurantes para estarmos sempre atualizados, porém não nos responsabilizamos por qualquer diferença entre os preços, disponibilidade e informações dos produtos dos menus exibidos.\nQualquer erro encontrado nos informe clicando no ícone de e-mail no canto inferior direito da tela!"),
         "doLoginTitle": MessageLookupByLibrary.simpleMessage("Faça o login"),
+        "editProductTitle":
+            MessageLookupByLibrary.simpleMessage("Editar produto"),
+        "editTitle": MessageLookupByLibrary.simpleMessage("Editar"),
         "emailConfirmationTitle":
             MessageLookupByLibrary.simpleMessage("Confirmação de e-mail"),
         "emailTitle": MessageLookupByLibrary.simpleMessage("E-mail"),
@@ -161,15 +193,32 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "messageSentSuccessfully":
             MessageLookupByLibrary.simpleMessage("Email enviado com sucesso!"),
+        "minutesTitle": MessageLookupByLibrary.simpleMessage("minutos"),
+        "nameTitle": MessageLookupByLibrary.simpleMessage("Nome"),
         "newPasswordTitle": MessageLookupByLibrary.simpleMessage("Nova senha"),
         "noItemsFoundErrorMessage": m2,
         "notificationsOptionsSchema": m3,
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \\\$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Senha"),
+        "photoTitle": MessageLookupByLibrary.simpleMessage("Foto"),
+        "prepareTimeTitle":
+            MessageLookupByLibrary.simpleMessage("Tempo de Preparo"),
+        "previewTitle":
+            MessageLookupByLibrary.simpleMessage("Pré-visualização"),
+        "priceTitle": MessageLookupByLibrary.simpleMessage("Preço"),
+        "productAvailabilityTitle":
+            MessageLookupByLibrary.simpleMessage("Disponibilidade do Produto"),
         "productNameSchema": m4,
         "productPrepareTimeMinutes": m5,
         "productPriceCurrency": m6,
+        "productSuccessfullyCreatedTitle":
+            MessageLookupByLibrary.simpleMessage("Produto criado com sucesso."),
+        "productSuccessfullyDeletedTitle": MessageLookupByLibrary.simpleMessage(
+            "Produto excluído com sucesso."),
+        "productSuccessfullyEditedTitle": MessageLookupByLibrary.simpleMessage(
+            "Produto editado com sucesso."),
+        "productToEnumSchema": m7,
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recomendações"),
@@ -178,16 +227,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "Para completar seu cadastro enviamos um e-mail com um código, insira-o no campo abaixo."),
         "registerTitle": MessageLookupByLibrary.simpleMessage("Cadastrar"),
-        "requestErrorMessage": m7,
+        "requestErrorMessage": m8,
         "requiredFieldAlert":
             MessageLookupByLibrary.simpleMessage("Campo obrigatório."),
         "resendConfirmationCodeTitle": MessageLookupByLibrary.simpleMessage(
             "Reeviar código de confirmação"),
-        "restaurantTitle": m8,
-        "restaurantsImageSchema": m9,
-        "restaurantsNameSchema": m10,
+        "restaurantTitle": m9,
+        "restaurantsImageSchema": m10,
+        "restaurantsNameSchema": m11,
         "restaurantsTitle":
             MessageLookupByLibrary.simpleMessage("Restaurantes"),
+        "saveTitle": MessageLookupByLibrary.simpleMessage("Salvar"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Pesquisa"),
         "seeMenuTitle": MessageLookupByLibrary.simpleMessage("Ver cardápio"),
         "sendCodeEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(

@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/domain/repositories/menu_repository_interface.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
@@ -13,7 +14,7 @@ class MenuRepository implements IMenuRepository {
   Map<String, dynamic> jsonAllRestaurants = {};
 
   MenuRepository({required this.datasource}) {
-    getAllProducts();
+    //getAllProducts();
   }
 
   @override
@@ -82,5 +83,44 @@ class MenuRepository implements IMenuRepository {
               ? left(EmptyList())
               : right(restaurantProducts!);
     });
+  }
+
+  @override
+  Future<Either<Failure, ProductModel>> createProduct(
+      ProductModel product, RestaurantEnum restaurant) async {
+    try {
+      var response = await datasource.createProduct(product, restaurant);
+      return right(response);
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType =
+          getHttpStatusFunction(e.response!.statusCode);
+      return left(ErrorRequest(message: errorType.errorMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> deleteProduct(
+      String id, RestaurantEnum restaurant) async {
+    try {
+      await datasource.deleteProduct(id, restaurant);
+      return right(null);
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType =
+          getHttpStatusFunction(e.response!.statusCode);
+      return left(ErrorRequest(message: errorType.errorMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, ProductModel>> updateProduct(
+      ProductModel product, RestaurantEnum restaurant) async {
+    try {
+      var response = await datasource.updateProduct(product, restaurant);
+      return right(response);
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType =
+          getHttpStatusFunction(e.response!.statusCode);
+      return left(ErrorRequest(message: errorType.errorMessage));
+    }
   }
 }

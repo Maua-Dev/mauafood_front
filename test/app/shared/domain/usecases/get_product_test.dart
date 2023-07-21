@@ -19,7 +19,7 @@ void main() {
   late IGetRestaurantProductUsecase useCase;
   IMenuRepository repository = MockIMenuRepository();
   var h = RestaurantEnum.hora_h;
-  var biba = RestaurantEnum.biba;
+  var biba = RestaurantEnum.souza_de_abreu;
   var listMock = [
     Product(
       id: '0',

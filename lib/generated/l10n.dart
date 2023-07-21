@@ -250,6 +250,126 @@ class S {
     );
   }
 
+  /// `Name`
+  String get nameTitle {
+    return Intl.message(
+      'Name',
+      name: 'nameTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Photo`
+  String get photoTitle {
+    return Intl.message(
+      'Photo',
+      name: 'photoTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prepare Time`
+  String get prepareTimeTitle {
+    return Intl.message(
+      'Prepare Time',
+      name: 'prepareTimeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get priceTitle {
+    return Intl.message(
+      'Price',
+      name: 'priceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get categoryTitle {
+    return Intl.message(
+      'Category',
+      name: 'categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get descriptionTitle {
+    return Intl.message(
+      'Description',
+      name: 'descriptionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product Availability`
+  String get productAvailabilityTitle {
+    return Intl.message(
+      'Product Availability',
+      name: 'productAvailabilityTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preview`
+  String get previewTitle {
+    return Intl.message(
+      'Preview',
+      name: 'previewTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `minutes`
+  String get minutesTitle {
+    return Intl.message(
+      'minutes',
+      name: 'minutesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get saveTitle {
+    return Intl.message(
+      'Save',
+      name: 'saveTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get createTitle {
+    return Intl.message(
+      'Create',
+      name: 'createTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get editTitle {
+    return Intl.message(
+      'Edit',
+      name: 'editTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{notifications, select, normalPart{Want to receive } email{email notifications} app{app notifications} other{}}`
   String notificationsOptionsSchema(Object notifications) {
     return Intl.select(
@@ -271,6 +391,96 @@ class S {
     return Intl.message(
       'Full Name',
       name: 'labelName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancelationTitle {
+    return Intl.message(
+      'Cancel',
+      name: 'cancelationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get deleteTitle {
+    return Intl.message(
+      'Delete',
+      name: 'deleteTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete the product?`
+  String get deleteProductConfirmationTitle {
+    return Intl.message(
+      'Are you sure you want to delete the product?',
+      name: 'deleteProductConfirmationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product successfully deleted.`
+  String get productSuccessfullyDeletedTitle {
+    return Intl.message(
+      'Product successfully deleted.',
+      name: 'productSuccessfullyDeletedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Poduct successfully created.`
+  String get productSuccessfullyCreatedTitle {
+    return Intl.message(
+      'Poduct successfully created.',
+      name: 'productSuccessfullyCreatedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product successfully edited.`
+  String get productSuccessfullyEditedTitle {
+    return Intl.message(
+      'Product successfully edited.',
+      name: 'productSuccessfullyEditedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data storage`
+  String get dataStorageTitle {
+    return Intl.message(
+      'Data storage',
+      name: 'dataStorageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it.`
+  String get dataStorageAlertTitle {
+    return Intl.message(
+      'If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it.',
+      name: 'dataStorageAlertTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get closeTitle {
+    return Intl.message(
+      'Close',
+      name: 'closeTitle',
       desc: '',
       args: [],
     );
@@ -566,14 +776,14 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{Souza de Abreu} hora_h{H Hour} moleza{Cantina do Moleza} other{}}`
+  /// `{restaurant, select, souza_de_abreu{Souza de Abreu} hora_h{H Hour} cantina_do_moleza{Cantina do Moleza} other{}}`
   String restaurantsNameSchema(Object restaurant) {
     return Intl.select(
       restaurant,
       {
-        'biba': 'Souza de Abreu',
+        'souza_de_abreu': 'Souza de Abreu',
         'hora_h': 'H Hour',
-        'moleza': 'Cantina do Moleza',
+        'cantina_do_moleza': 'Cantina do Moleza',
         'other': '',
       },
       name: 'restaurantsNameSchema',
@@ -582,14 +792,14 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{bibaImage} hora_h{hora_hImage} moleza{molezaImage} other{}}`
+  /// `{restaurant, select, souza_de_abreu{bibaImage} hora_h{hora_hImage} cantina_do_moleza{molezaImage} other{}}`
   String restaurantsImageSchema(Object restaurant) {
     return Intl.select(
       restaurant,
       {
-        'biba': 'bibaImage',
+        'souza_de_abreu': 'bibaImage',
         'hora_h': 'hora_hImage',
-        'moleza': 'molezaImage',
+        'cantina_do_moleza': 'molezaImage',
         'other': '',
       },
       name: 'restaurantsImageSchema',
@@ -628,13 +838,13 @@ class S {
     );
   }
 
-  /// `{product, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}`
+  /// `{product, select, ALL{All} SANDWICHES{Sandwiches} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}`
   String productNameSchema(Object product) {
     return Intl.select(
       product,
       {
         'ALL': 'All',
-        'SANDWICHES': 'Sandwich',
+        'SANDWICHES': 'Sandwiches',
         'DRINKS': 'Drinks',
         'CANDIES': 'Candies',
         'PLATES': 'Dishes',
@@ -649,6 +859,30 @@ class S {
       name: 'productNameSchema',
       desc: '',
       args: [product],
+    );
+  }
+
+  /// `{name, select, All{ALL} Sandwiches{SANDWICHES} Drinks{DRINKS} Candies{CANDIES} Dishes{PLATES} Portions{PORTIONS} Pastas{PASTAS} Snacks{SNACKS} Salads{SALADS} Dessert{DESSERT} Savoury{SAVOURY} other{OUTROS}}`
+  String productToEnumSchema(Object name) {
+    return Intl.select(
+      name,
+      {
+        'All': 'ALL',
+        'Sandwiches': 'SANDWICHES',
+        'Drinks': 'DRINKS',
+        'Candies': 'CANDIES',
+        'Dishes': 'PLATES',
+        'Portions': 'PORTIONS',
+        'Pastas': 'PASTAS',
+        'Snacks': 'SNACKS',
+        'Salads': 'SALADS',
+        'Dessert': 'DESSERT',
+        'Savoury': 'SAVOURY',
+        'other': 'OUTROS',
+      },
+      name: 'productToEnumSchema',
+      desc: '',
+      args: [name],
     );
   }
 
@@ -685,6 +919,26 @@ class S {
     return Intl.message(
       'Recommendations',
       name: 'recommendationsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create product`
+  String get createProductTitle {
+    return Intl.message(
+      'Create product',
+      name: 'createProductTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit product`
+  String get editProductTitle {
+    return Intl.message(
+      'Edit product',
+      name: 'editProductTitle',
       desc: '',
       args: [],
     );

@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/user_menu_state.dart';
 import 'package:mauafood_front/app/modules/user/presenter/controllers/menu/user_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/contact/contact_dialog.dart';
+import 'package:mauafood_front/app/shared/widgets/filter_sheet_widget.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
@@ -121,7 +122,8 @@ class _UserMenuPageState extends State<UserMenuPage> {
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
                   child: TextFormField(
                     onChanged: (value) {
-                      store.searchProduct(value);
+                      store.search = value;
+                      store.filterProduct();
                     },
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
@@ -185,9 +187,10 @@ class _UserMenuPageState extends State<UserMenuPage> {
                                           text: listTypesProducts[index].name,
                                           selected: state.index == index,
                                           onPressed: () {
-                                            store.filterProduct(
-                                                listTypesProducts[index],
-                                                index);
+                                            store.productType =
+                                                listTypesProducts[index];
+                                            store.index = index;
+                                            store.filterProduct();
                                           },
                                         );
                                       },
@@ -195,6 +198,42 @@ class _UserMenuPageState extends State<UserMenuPage> {
                                   ),
                                 )
                               : const SizedBox.shrink()),
+                      if (state is UserMenuLoadedSuccessState)
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            child: IconButton(
+                                onPressed: () {
+                                  showModalBottomSheet(
+                                      context: context,
+                                      builder: (BuildContext bc) {
+                                        return Observer(builder: (_) {
+                                          return FilterSheetWidget(
+                                              filterClean: store.cleanFilter,
+                                              isMaxPriceSearch:
+                                                  store.isMaxPriceSearch,
+                                              isMinPriceSearch:
+                                                  store.isMinPriceSearch,
+                                              setIsMaxPriceSearch:
+                                                  store.setIsMaxPriceSearch,
+                                              setIsMinPriceSearch:
+                                                  store.setIsMinPriceSearch,
+                                              setRangeValues:
+                                                  store.setRangeValues,
+                                              rangeValues: store.rangeValues!,
+                                              maxValue: store.listAllProduct
+                                                  .map((e) => e.price)
+                                                  .reduce(
+                                                      (a, b) => a > b ? a : b),
+                                              filterProductsByPrice:
+                                                  store.filterProduct);
+                                        });
+                                      });
+                                },
+                                icon: const Icon(Icons.filter_alt)),
+                          ),
+                        ),
                       state is UserMenuLoadingState
                           ? const Center(child: CircularProgressIndicator())
                           : state is UserMenuLoadedSuccessState

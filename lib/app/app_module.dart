@@ -5,7 +5,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'modules/landing/landing_module.dart';
 import 'package:mauafood_front/app/modules/employee/employee_menu_module.dart';
 import 'modules/user/user_menu_module.dart';
-import 'package:mauafood_front/amplifyconfiguration.dart';
 import 'package:mauafood_front/app/shared/helpers/services/dio/auth_interceptor.dart';
 
 import 'modules/splash/splash_module.dart';
@@ -15,7 +14,7 @@ import 'shared/helpers/services/http/http_request_interface.dart';
 
 class AppModule extends Module {
   @override
-  List<Module> get imports => [MicroAppAuthModule(amplifyconfig)];
+  List<Module> get imports => [MicroAppAuthModule()];
 
   @override
   List<Bind<Object>> get binds => [

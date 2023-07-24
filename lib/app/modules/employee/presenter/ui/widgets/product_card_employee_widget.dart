@@ -48,26 +48,32 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: FittedBox(
                           fit: BoxFit.fill,
-                          child: Image.network(
-                            product.photo,
-                            loadingBuilder: (BuildContext context, Widget child,
-                                ImageChunkEvent? loadingProgress) {
-                              if (loadingProgress == null) return child;
-                              return Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: CircularProgressIndicatorCustomWidget(
-                                    value: loadingProgress.expectedTotalBytes !=
-                                            null
-                                        ? loadingProgress
-                                                .cumulativeBytesLoaded /
-                                            loadingProgress.expectedTotalBytes!
-                                        : null,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+                          child: product.photo != ''
+                              ? Image.network(
+                                  product.photo,
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8),
+                                        child:
+                                            CircularProgressIndicatorCustomWidget(
+                                          value: loadingProgress
+                                                      .expectedTotalBytes !=
+                                                  null
+                                              ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                  loadingProgress
+                                                      .expectedTotalBytes!
+                                              : null,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                )
+                              : const Icon(Icons.image_not_supported),
                         ),
                       ),
                     ),

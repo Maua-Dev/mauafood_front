@@ -51,6 +51,10 @@ abstract class ProductFormControllerBase with Store {
 
   @action
   void setProductPrepareTime(String value) {
+    if (value == "") {
+      productPrepareTime = null;
+      return;
+    }
     productPrepareTime = int.parse(value);
   }
 
@@ -118,9 +122,6 @@ abstract class ProductFormControllerBase with Store {
   @observable
   Uint8List? uploadedWebPhoto;
 
-  @observable
-  bool? isPhotoUploaded;
-
   @action
   Future uploadProductPhoto() async {
     if (!kIsWeb) {
@@ -145,10 +146,10 @@ abstract class ProductFormControllerBase with Store {
           name: productName!,
           description: productDescription ?? "",
           price: productPrice!,
-          prepareTime: productPrepareTime!,
+          prepareTime: productPrepareTime,
           type: productType!,
           available: productAvailability,
-          photo: "https://avatars.githubusercontent.com/u/24724451?v=4",
+          photo: "",
         ),
         restaurant);
     changeState(
@@ -167,7 +168,7 @@ abstract class ProductFormControllerBase with Store {
           name: productName!,
           description: productDescription ?? "",
           price: productPrice!,
-          prepareTime: productPrepareTime ?? 0,
+          prepareTime: productPrepareTime,
           type: productType!,
           available: productAvailability,
           photo: "https://avatars.githubusercontent.com/u/24724451?v=4",

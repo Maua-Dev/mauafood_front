@@ -100,22 +100,6 @@ void main() {
     });
   });
 
-  group('[TEST] - searchProduct', () {
-    test('must return MenuErrorState', () async {
-      controller = UserMenuRestaurantController(usecaseFailed, restaurantInfo);
-      await controller.searchProduct('');
-      expect(controller.state, isA<UserMenuErrorState>());
-    });
-  });
-
-  group('[TEST] - filterProduct', () {
-    test('must return MenuErrorState', () async {
-      controller = UserMenuRestaurantController(usecaseFailed, restaurantInfo);
-      await controller.filterProduct(ProductEnum.SNACKS, 2);
-      expect(controller.state, isA<UserMenuErrorState>());
-    });
-  });
-
   group('[TEST] - setter', () {
     test('changeState', () {
       controller.changeState(

@@ -37,11 +37,12 @@ class ProductCardWidget extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: product.photo == '' && mobilePhoto != null ||
-                          webPhoto != null
-                      ? kIsWeb
-                          ? Image.file(mobilePhoto!)
-                          : Image.memory(webPhoto!)
+                  child: product.photo == ''
+                      ? mobilePhoto != null || webPhoto != null
+                          ? kIsWeb
+                              ? Image.file(mobilePhoto!)
+                              : Image.memory(webPhoto!)
+                          : const Icon(Icons.image_not_supported)
                       : CachedNetworkImage(
                           imageUrl: product.photo,
                           errorWidget: (context, url, error) =>

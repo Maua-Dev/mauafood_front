@@ -109,12 +109,17 @@ class MessageLookup extends MessageLookupByLibrary {
         "appAcceptTerms": MessageLookupByLibrary.simpleMessage(
             "Li e aceito os Termos de Uso"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Mauá Food"),
+        "applyTitle": MessageLookupByLibrary.simpleMessage("Aplicar"),
         "attentionTitle": MessageLookupByLibrary.simpleMessage("Atenção"),
         "authErrorsSchema": m0,
+        "biggestPriceTitle":
+            MessageLookupByLibrary.simpleMessage("Maior Preço"),
         "cancelationTitle": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "categoryTitle": MessageLookupByLibrary.simpleMessage("Categoria"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Alterar senha"),
+        "cleanFilterTitle":
+            MessageLookupByLibrary.simpleMessage("Limpar filtro"),
         "closeTitle": MessageLookupByLibrary.simpleMessage("Fechar"),
         "codeErrorAlert":
             MessageLookupByLibrary.simpleMessage("Erro com código."),
@@ -191,6 +196,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelName": MessageLookupByLibrary.simpleMessage("Nome Completo"),
         "labelSend": MessageLookupByLibrary.simpleMessage("Enviar agora"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
+        "lowestPriceTitle": MessageLookupByLibrary.simpleMessage("Menor Preço"),
         "messageSentSuccessfully":
             MessageLookupByLibrary.simpleMessage("Email enviado com sucesso!"),
         "minutesTitle": MessageLookupByLibrary.simpleMessage("minutos"),

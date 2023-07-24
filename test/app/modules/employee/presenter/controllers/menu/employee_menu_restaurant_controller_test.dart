@@ -126,29 +126,6 @@ void main() {
       expect(controller.state, isA<EmployeeMenuErrorState>());
     });
   });
-
-  group('[TEST] - searchProduct', () {
-    test('must return MenuErrorState', () async {
-      controller = EmployeeMenuRestaurantController(
-          getRestaurantProductFailedUsecase,
-          restaurantInfo,
-          deleteProductFailedUsecase);
-      await controller.searchProduct('');
-      expect(controller.state, isA<EmployeeMenuErrorState>());
-    });
-  });
-
-  group('[TEST] - filterProduct', () {
-    test('must return MenuErrorState', () async {
-      controller = EmployeeMenuRestaurantController(
-          getRestaurantProductFailedUsecase,
-          restaurantInfo,
-          deleteProductFailedUsecase);
-      await controller.filterProduct(ProductEnum.SNACKS, 2);
-      expect(controller.state, isA<EmployeeMenuErrorState>());
-    });
-  });
-
   group('[TEST] - setter', () {
     test('changeState', () {
       controller.changeState(

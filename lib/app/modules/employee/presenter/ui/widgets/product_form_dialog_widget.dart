@@ -111,14 +111,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               border: Border.all(
-                                                  color: productFormController
-                                                              .isPhotoUploaded ==
-                                                          false
-                                                      ? Theme.of(context)
-                                                          .colorScheme
-                                                          .error
-                                                      : AppColors
-                                                          .mainBlueColor)),
+                                                  color:
+                                                      AppColors.mainBlueColor)),
                                           child: SizedBox(
                                             width: 80,
                                             height: 88,
@@ -185,26 +179,6 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                       ),
                                     );
                                   }),
-                                  Observer(builder: (_) {
-                                    return productFormController
-                                                .isPhotoUploaded ==
-                                            false
-                                        ? Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                12, 8, 0, 0),
-                                            child: Text(
-                                              S.of(context).requiredFieldAlert,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall
-                                                  ?.copyWith(
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .error),
-                                            ),
-                                          )
-                                        : Container();
-                                  })
                                 ],
                               ),
                               const SizedBox(
@@ -393,22 +367,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                         color: AppColors.mainBlueColor);
                                   })),
                                   onPressed: () {
-                                    productFormController.isPhotoUploaded =
-                                        false;
-                                    if (productFormController
-                                                .uploadedWebPhoto !=
-                                            null ||
-                                        productFormController
-                                                .uploadedMobilePhoto !=
-                                            null ||
-                                        productFormController.productPhoto !=
-                                            null) {
-                                      productFormController.isPhotoUploaded =
-                                          true;
-                                    }
-                                    if (_formKey.currentState!.validate() &&
-                                        productFormController.isPhotoUploaded ==
-                                            true) {
+                                    if (_formKey.currentState!.validate()) {
                                       showDialog(
                                           context: context,
                                           builder: (BuildContext buildContext) {
@@ -493,23 +452,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                             .wasProductFormChanged(
                                                 widget.product)
                                         ? () {
-                                            productFormController
-                                                .isPhotoUploaded = false;
-                                            if (productFormController
-                                                        .uploadedWebPhoto !=
-                                                    null ||
-                                                productFormController
-                                                        .uploadedMobilePhoto !=
-                                                    null ||
-                                                widget.product?.photo != null) {
-                                              productFormController
-                                                  .isPhotoUploaded = true;
-                                            }
                                             if (_formKey.currentState!
-                                                    .validate() &&
-                                                productFormController
-                                                        .isPhotoUploaded ==
-                                                    true) {
+                                                .validate()) {
                                               widget.product != null
                                                   ? productFormController
                                                       .updateProduct(

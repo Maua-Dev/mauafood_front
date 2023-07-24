@@ -13,6 +13,7 @@ import '../../../../../shared/themes/app_text_styles.dart';
 import '../../../../../shared/domain/enums/restaurant_enum.dart';
 import '../../../../../shared/widgets/error_loading_menu_widget.dart';
 import '../../../../../shared/widgets/filter_button_widget.dart';
+import '../../../../../shared/widgets/filter_sheet_widget.dart';
 import '../widgets/product_card_employee_widget.dart';
 
 class EmployeeMenuPage extends StatefulWidget {
@@ -93,7 +94,8 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                   padding: const EdgeInsets.symmetric(vertical: 12),
                   child: TextField(
                     onChanged: (value) {
-                      store.searchProduct(value);
+                      store.search = value;
+                      store.filterProduct();
                     },
                     keyboardType: TextInputType.emailAddress,
                     decoration: InputDecoration(
@@ -126,7 +128,7 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                           maxHeight: 50,
                         ),
                         child: ListView.builder(
-                          itemCount: ProductEnum.values.length,
+                          itemCount: listTypesProducts.length,
                           scrollDirection: Axis.horizontal,
                           shrinkWrap: true,
                           itemBuilder: (context, index) {
@@ -134,14 +136,49 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                               text: listTypesProducts[index].name,
                               selected: state.index == index,
                               onPressed: () {
-                                store.filterProduct(
-                                    listTypesProducts[index], index);
+                                store.productType = listTypesProducts[index];
+                                store.index = index;
+                                store.filterProduct();
                               },
                             );
                           },
                         ),
                       )
                     : const SizedBox.shrink(),
+                if (state is EmployeeMenuLoadedSuccessState)
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24),
+                      child: IconButton(
+                          onPressed: () {
+                            showModalBottomSheet(
+                                context: context,
+                                builder: (BuildContext bc) {
+                                  return Observer(builder: (_) {
+                                    return FilterSheetWidget(
+                                        filterClean: store.cleanFilter,
+                                        isMaxPriceSearch:
+                                            store.isMaxPriceSearch,
+                                        isMinPriceSearch:
+                                            store.isMinPriceSearch,
+                                        setIsMaxPriceSearch:
+                                            store.setIsMaxPriceSearch,
+                                        setIsMinPriceSearch:
+                                            store.setIsMinPriceSearch,
+                                        setRangeValues: store.setRangeValues,
+                                        rangeValues: store.rangeValues!,
+                                        maxValue: store.listAllProduct
+                                            .map((e) => e.price)
+                                            .reduce((a, b) => a > b ? a : b),
+                                        filterProductsByPrice:
+                                            store.filterProduct);
+                                  });
+                                });
+                          },
+                          icon: const Icon(Icons.filter_alt)),
+                    ),
+                  ),
                 const SizedBox(
                   height: 12,
                 ),

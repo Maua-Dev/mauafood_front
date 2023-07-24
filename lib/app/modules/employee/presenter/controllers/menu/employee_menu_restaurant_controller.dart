@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-card/product_card_employee_state.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
@@ -36,6 +37,33 @@ abstract class MenuRestaurantControllerBase with Store {
   @observable
   List<Product> listAllProductWithoutAccent = [];
 
+  @observable
+  bool isMaxPriceSearch = false;
+
+  @observable
+  bool isMinPriceSearch = false;
+
+  @observable
+  RangeValues? rangeValues;
+
+  @observable
+  String search = '';
+
+  @observable
+  int index = 0;
+
+  @observable
+  ProductEnum productType = ProductEnum.ALL;
+
+  @action
+  void setIsMaxPriceSearch(bool value) => isMaxPriceSearch = value;
+
+  @action
+  void setIsMinPriceSearch(bool value) => isMinPriceSearch = value;
+
+  @action
+  void setRangeValues(RangeValues value) => rangeValues = value;
+
   @action
   void changeState(EmployeeMenuState value) => state = value;
 
@@ -49,46 +77,69 @@ abstract class MenuRestaurantControllerBase with Store {
     var result = await _getRestaurantProduct(restaurantInfo);
     changeState(result.fold((l) => EmployeeMenuErrorState(failure: l), (list) {
       listAllProduct = list;
+      listAllProduct.sort(
+        (a, b) {
+          return a.type.index.compareTo(b.type.index);
+        },
+      );
+      rangeValues = RangeValues(0,
+          listAllProduct.map((e) => e.price).reduce((a, b) => a > b ? a : b));
       return EmployeeMenuLoadedSuccessState(listProduct: list, index: 0);
     }));
   }
 
   @action
-  Future<void> searchProduct(String search) async {
+  void filterProduct() {
+    var filterList = listAllProduct;
     if (state is EmployeeMenuLoadedSuccessState) {
-      if (search == '') {
-        changeState(EmployeeMenuLoadedSuccessState(
-            listProduct: listAllProduct, index: 0));
-      } else {
-        var filterList = listAllProduct
+      if (search != '') {
+        filterList = filterList
             .where(
               (e) => e.name.withoutDiacritics
                   .toLowerCase()
                   .startsWith(search.toLowerCase().withoutDiacritics),
             )
             .toList();
-        changeState(
-            EmployeeMenuLoadedSuccessState(listProduct: filterList, index: 0));
       }
-    }
-  }
-
-  @action
-  Future<void> filterProduct(ProductEnum productType, int index) async {
-    if (state is EmployeeMenuLoadedSuccessState) {
-      if (productType == ProductEnum.ALL) {
-        changeState(EmployeeMenuLoadedSuccessState(
-            listProduct: listAllProduct, index: 0));
-      } else {
-        var filterList = listAllProduct
+      if (productType != ProductEnum.ALL) {
+        filterList = filterList
             .where(
               (e) => e.type == productType,
             )
             .toList();
-        changeState(EmployeeMenuLoadedSuccessState(
-            listProduct: filterList, index: index));
       }
+      if (isMaxPriceSearch) {
+        filterList.sort((a, b) => b.price.compareTo(a.price));
+      }
+      if (isMinPriceSearch) {
+        filterList.sort((a, b) => a.price.compareTo(b.price));
+      }
+      if (isMinPriceSearch == false && isMaxPriceSearch == false) {
+        filterList.sort(
+          (a, b) {
+            return a.type.index.compareTo(b.type.index);
+          },
+        );
+      }
+      filterList = filterList
+          .where((e) => e.price >= rangeValues!.start)
+          .where((e) => e.price <= rangeValues!.end)
+          .toList();
+      changeState(EmployeeMenuLoadedSuccessState(
+          listProduct: filterList, index: index));
     }
+  }
+
+  @action
+  void cleanFilter() {
+    isMaxPriceSearch = false;
+    isMinPriceSearch = false;
+    rangeValues = RangeValues(
+        0, listAllProduct.map((e) => e.price).reduce((a, b) => a > b ? a : b));
+    search = '';
+    productType = ProductEnum.ALL;
+    index = 0;
+    filterProduct();
   }
 
   @action

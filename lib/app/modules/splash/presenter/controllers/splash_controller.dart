@@ -1,4 +1,5 @@
 import 'package:auth_package/core/auth_store.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/splash/presenter/states/splash_state.dart';
 import 'package:mobx/mobx.dart';
 
@@ -23,6 +24,7 @@ abstract class SplashControllerBase with Store {
     changeState(SplashLoadingState());
     await _authStore.checkLogin();
     await Future.delayed(const Duration(seconds: 3));
+    Modular.to.navigate('/landing/');
     changeState(SplashSuccessState());
   }
 }

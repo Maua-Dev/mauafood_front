@@ -12,7 +12,7 @@ dependencies:
   auth_package:
     git:
       url: https://github.com/Maua-Dev/dev_authentication.git
-      ref: alpha
+      ref: dev
       path: packages/auth_package
   flutter:
     sdk: flutter

@@ -13,6 +13,7 @@ import 'shared/helpers/services/dio/dio_http_request.dart';
 import 'shared/helpers/services/dio/options/product_base_options.dart';
 import 'shared/helpers/services/http/http_request_interface.dart';
 
+
 class AppModule extends Module {
   @override
   List<Module> get imports => [MicroAppAuthModule(amplifyconfig)];

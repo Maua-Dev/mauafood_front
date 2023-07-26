@@ -125,11 +125,11 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/auth_package"
-      ref: dev
-      resolved-ref: "25dc975cfd82f700544d19d8764d8652e03927b1"
+      ref: HEAD
+      resolved-ref: "8fdd5ff7c9fa62ec6cb33310c091c966a0eec92a"
       url: "https://github.com/Maua-Dev/dev_authentication.git"
     source: git
-    version: "1.0.0"
+    version: "0.0.1"
   aws_common:
     dependency: transitive
     description:

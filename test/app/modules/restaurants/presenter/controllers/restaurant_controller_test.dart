@@ -9,6 +9,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
 
+import 'restaurant_controller_test.mocks.dart';
 
 @GenerateMocks([IGetRestaurant, AuthStore])
 void main() {

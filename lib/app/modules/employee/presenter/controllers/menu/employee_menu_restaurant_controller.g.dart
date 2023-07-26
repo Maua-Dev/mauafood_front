@@ -229,6 +229,28 @@ mixin _$EmployeeMenuRestaurantController
   }
 
   @override
+  void setIndex(int value) {
+    final _$actionInfo = _$MenuRestaurantControllerBaseActionController
+        .startAction(name: 'MenuRestaurantControllerBase.setIndex');
+    try {
+      return super.setIndex(value);
+    } finally {
+      _$MenuRestaurantControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setProductType(ProductEnum value) {
+    final _$actionInfo = _$MenuRestaurantControllerBaseActionController
+        .startAction(name: 'MenuRestaurantControllerBase.setProductType');
+    try {
+      return super.setProductType(value);
+    } finally {
+      _$MenuRestaurantControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void changeState(EmployeeMenuState value) {
     final _$actionInfo = _$MenuRestaurantControllerBaseActionController
         .startAction(name: 'MenuRestaurantControllerBase.changeState');

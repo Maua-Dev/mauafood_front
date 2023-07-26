@@ -7,6 +7,7 @@ import 'package:mauafood_front/app/modules/profile/profile_module.dart';
 import '../../shared/datasource/external/http/contact_datasource.dart';
 import '../../shared/domain/repositories/contact_repository_interface.dart';
 import '../../shared/domain/usecases/contact_usecase.dart';
+import '../../shared/guards/auth_guard.dart';
 import '../../shared/infra/datasource/external/http/contact_datasource_interface.dart';
 import '../../shared/infra/repositories/contact_repository.dart';
 import '../user/presenter/controllers/contact/contact_controller.dart';
@@ -38,7 +39,8 @@ class LandingModule extends Module {
                     ),
                   )),
           ChildRoute('/faq/', child: (_, args) => const FaqPage()),
-          ModuleRoute('/profile/', module: ProfileModule())
+          ModuleRoute('/profile/',
+              module: ProfileModule(), guards: [AuthGuard()])
         ],
         transition: TransitionType.fadeIn),
   ];

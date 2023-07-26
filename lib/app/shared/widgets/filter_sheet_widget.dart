@@ -74,7 +74,7 @@ class FilterSheetWidget extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 8),
+        const SizedBox(height: 16),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0),
           child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
@@ -107,6 +107,7 @@ class FilterSheetWidget extends StatelessWidget {
                 style: AppTextStyles.h2.copyWith(fontWeight: FontWeight.bold))
           ]),
         ),
+        const SizedBox(height: 8),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0),
           child: Column(
@@ -140,7 +141,7 @@ class FilterSheetWidget extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 32),
+        const SizedBox(height: 48),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0),
           child: ButtonWidget(

@@ -27,7 +27,7 @@ class SplashPage extends StatelessWidget {
         }
         if (controller.state is SplashSuccessState) {
           Modular.to
-              .navigate('/employee', arguments: RestaurantEnum.souza_de_abreu);
+              .navigate('/user', arguments: RestaurantEnum.souza_de_abreu);
           return const CircularProgressIndicator();
         } else {
           return const Center(child: CircularProgressIndicator());

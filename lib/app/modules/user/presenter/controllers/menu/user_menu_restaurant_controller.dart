@@ -59,6 +59,12 @@ abstract class MenuRestaurantControllerBase with Store {
   void setRangeValues(RangeValues value) => rangeValues = value;
 
   @action
+  void setIndex(int value) => index = value;
+
+  @action
+  void setProductType(ProductEnum value) => productType = value;
+
+  @action
   void changeState(UserMenuState value) => state = value;
 
   @action

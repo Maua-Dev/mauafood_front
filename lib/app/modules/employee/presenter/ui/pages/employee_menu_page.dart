@@ -6,13 +6,11 @@ import 'package:mauafood_front/app/modules/employee/presenter/states/employee_me
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-card/product_card_employee_state.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/ui/widgets/product_form_dialog_widget.dart';
 import '../../../../../../generated/l10n.dart';
-import '../../../../../shared/domain/enums/product_enum.dart';
 import '../../../../../shared/helpers/services/s3/assets_s3.dart';
 import '../../../../../shared/themes/app_colors.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../../../../shared/domain/enums/restaurant_enum.dart';
 import '../../../../../shared/widgets/error_loading_menu_widget.dart';
-import '../../../../../shared/widgets/filter_button_widget.dart';
 import '../../../../../shared/widgets/filter_sheet_widget.dart';
 import '../widgets/product_card_employee_widget.dart';
 
@@ -53,10 +51,6 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
         child: Observer(builder: (_) {
           var productCardState = store.productCardState;
           var state = store.state;
-          var listTypesProducts = [
-            ProductEnum.ALL,
-            ...store.listAllProduct.map((e) => e.type).toSet().toList()
-          ];
           return Padding(
             padding: const EdgeInsets.only(top: 24, right: 12, left: 12),
             child: Column(
@@ -92,93 +86,79 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 12),
-                  child: TextField(
-                    onChanged: (value) {
-                      store.search = value;
-                      store.filterProduct();
-                    },
-                    keyboardType: TextInputType.emailAddress,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 1,
-                            color: AppColors.backgroundColor2), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: TextField(
+                          onChanged: (value) {
+                            store.search = value;
+                            store.filterProduct();
+                          },
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1,
+                                  color: AppColors
+                                      .backgroundColor2), //<-- SEE HERE
+                              borderRadius: BorderRadius.circular(50.0),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1,
+                                  color:
+                                      AppColors.mainBlueColor), //<-- SEE HERE
+                              borderRadius: BorderRadius.circular(50.0),
+                            ),
+                            labelStyle: AppTextStyles.h2Highlight
+                                .copyWith(fontWeight: FontWeight.bold),
+                            labelText: S.of(context).searchTitle,
+                            prefixIcon: Icon(
+                              Icons.search,
+                              color: AppColors.mainBlueColor,
+                            ),
+                          ),
+                        ),
                       ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                            width: 1,
-                            color: AppColors.mainBlueColor), //<-- SEE HERE
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      labelStyle: AppTextStyles.h2Highlight
-                          .copyWith(fontWeight: FontWeight.bold),
-                      labelText: S.of(context).searchTitle,
-                      prefixIcon: Icon(
-                        Icons.search,
-                        color: AppColors.mainBlueColor,
-                      ),
-                    ),
+                      state is EmployeeMenuLoadedSuccessState
+                          ? IconButton(
+                              onPressed: () {
+                                showModalBottomSheet(
+                                    context: context,
+                                    builder: (BuildContext bc) {
+                                      return Observer(builder: (_) {
+                                        return FilterSheetWidget(
+                                            setIndex: store.setIndex,
+                                            productIndex: store.index,
+                                            setProductType:
+                                                store.setProductType,
+                                            listAllProduct:
+                                                store.listAllProduct,
+                                            filterClean: store.cleanFilter,
+                                            isMaxPriceSearch:
+                                                store.isMaxPriceSearch,
+                                            isMinPriceSearch:
+                                                store.isMinPriceSearch,
+                                            setIsMaxPriceSearch:
+                                                store.setIsMaxPriceSearch,
+                                            setIsMinPriceSearch:
+                                                store.setIsMinPriceSearch,
+                                            setRangeValues:
+                                                store.setRangeValues,
+                                            rangeValues: store.rangeValues!,
+                                            maxValue: store.listAllProduct
+                                                .map((e) => e.price)
+                                                .reduce(
+                                                    (a, b) => a > b ? a : b),
+                                            filterProduct: store.filterProduct);
+                                      });
+                                    });
+                              },
+                              icon: const Icon(Icons.filter_alt))
+                          : const SizedBox.shrink()
+                    ],
                   ),
                 ),
-                state is EmployeeMenuLoadedSuccessState
-                    ? ConstrainedBox(
-                        constraints: const BoxConstraints(
-                          minHeight: 35.0,
-                          maxHeight: 50,
-                        ),
-                        child: ListView.builder(
-                          itemCount: listTypesProducts.length,
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                          itemBuilder: (context, index) {
-                            return FilterButtonWidget(
-                              text: listTypesProducts[index].name,
-                              selected: state.index == index,
-                              onPressed: () {
-                                store.productType = listTypesProducts[index];
-                                store.index = index;
-                                store.filterProduct();
-                              },
-                            );
-                          },
-                        ),
-                      )
-                    : const SizedBox.shrink(),
-                if (state is EmployeeMenuLoadedSuccessState)
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 24),
-                      child: IconButton(
-                          onPressed: () {
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (BuildContext bc) {
-                                  return Observer(builder: (_) {
-                                    return FilterSheetWidget(
-                                        filterClean: store.cleanFilter,
-                                        isMaxPriceSearch:
-                                            store.isMaxPriceSearch,
-                                        isMinPriceSearch:
-                                            store.isMinPriceSearch,
-                                        setIsMaxPriceSearch:
-                                            store.setIsMaxPriceSearch,
-                                        setIsMinPriceSearch:
-                                            store.setIsMinPriceSearch,
-                                        setRangeValues: store.setRangeValues,
-                                        rangeValues: store.rangeValues!,
-                                        maxValue: store.listAllProduct
-                                            .map((e) => e.price)
-                                            .reduce((a, b) => a > b ? a : b),
-                                        filterProductsByPrice:
-                                            store.filterProduct);
-                                  });
-                                });
-                          },
-                          icon: const Icon(Icons.filter_alt)),
-                    ),
-                  ),
                 const SizedBox(
                   height: 12,
                 ),

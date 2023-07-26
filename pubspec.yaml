@@ -3,7 +3,7 @@ description: Mauá Food.
 
 publish_to: 'none'
 
-version: 1.8.16+57
+version: 1.10.16+59
 
 environment:
   sdk: '>=2.18.0 <3.0.0'
@@ -12,7 +12,7 @@ dependencies:
   auth_package:
     git:
       url: https://github.com/Maua-Dev/dev_authentication.git
-      ref: alpha
+      ref: dev
       path: packages/auth_package
   flutter:
     sdk: flutter

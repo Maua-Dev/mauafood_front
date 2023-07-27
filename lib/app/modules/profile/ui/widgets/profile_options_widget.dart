@@ -14,26 +14,28 @@ class ProfileOptionsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        IconButton(
-            onPressed: () {
-              Modular.to.navigate(route);
-            },
-            icon: icon),
-        Padding(
-          padding: const EdgeInsets.only(left: 8.0),
-          child: SizedBox(width: 200, child: text),
+    return GestureDetector(
+      onTap: () => Modular.to.navigate(route),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            icon,
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: SizedBox(width: 200, child: text),
+            ),
+            SizedBox(
+              width: ScreenHelper.width(context) * 0.21,
+            ),
+            Icon(
+              Icons.keyboard_arrow_right_rounded,
+              color: AppColors.mainBlueColor,
+            )
+          ],
         ),
-        SizedBox(
-          width: ScreenHelper.width(context) * 0.21,
-        ),
-        Icon(
-          Icons.keyboard_arrow_right_rounded,
-          color: AppColors.mainBlueColor,
-        )
-      ],
+      ),
     );
   }
 }

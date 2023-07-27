@@ -16,19 +16,9 @@ class FavoritesPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 8),
             child: Row(
               children: [
-                Container(
-                    decoration: BoxDecoration(
-                        color: AppColors.mainBlueColor,
-                        borderRadius:
-                            const BorderRadius.all(Radius.circular(8))),
-                    child: IconButton(
-                        onPressed: () =>
-                            Modular.to.navigate('/landing/profile/'),
-                        icon: Icon(
-                          FontAwesomeIcons.arrowLeft,
-                          color: AppColors.white,
-                          size: 23,
-                        ))),
+                BackButton(
+                  onPressed: () => Modular.to.navigate('/landing/profile/'),
+                ),
                 SizedBox(
                   width: ScreenHelper.width(context) * 0.24,
                 ),

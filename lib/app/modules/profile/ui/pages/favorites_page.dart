@@ -12,26 +12,29 @@ class FavoritesPage extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
           preferredSize: Size.fromHeight(ScreenHelper.height(context) * 0.15),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 8),
-            child: Row(
-              children: [
-                BackButton(
-                  onPressed: () => Modular.to.navigate('/landing/profile/'),
-                ),
-                SizedBox(
-                  width: ScreenHelper.width(context) * 0.24,
-                ),
-                const SizedBox(
-                  child: Text(
-                    "Favoritos",
-                    style: TextStyle(
-                        fontSize: 28,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
+          child: SafeArea(
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 24.0, horizontal: 8),
+              child: Row(
+                children: [
+                  BackButton(
+                    onPressed: () => Modular.to.navigate('/landing/profile/'),
                   ),
-                ),
-              ],
+                  SizedBox(
+                    width: ScreenHelper.width(context) * 0.24,
+                  ),
+                  const SizedBox(
+                    child: Text(
+                      "Favoritos",
+                      style: TextStyle(
+                          fontSize: 28,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
             ),
           )),
       backgroundColor: AppColors.backgroundColor2,

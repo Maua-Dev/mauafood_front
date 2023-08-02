@@ -23,7 +23,12 @@ class _LandingPageState extends State<LandingPage> {
     return Scaffold(
       extendBody: true,
       bottomNavigationBar: SafeArea(
-          child: NavBarWidget(controller: store,)),
+          child: Padding(
+        padding: const EdgeInsets.only(bottom: 16.0),
+        child: NavBarWidget(
+          controller: store,
+        ),
+      )),
       body: const RouterOutlet(),
     );
   }

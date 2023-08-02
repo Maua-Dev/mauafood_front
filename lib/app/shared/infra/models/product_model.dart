@@ -8,7 +8,7 @@ class ProductModel extends Product {
   const ProductModel(
       {super.id,
       required super.name,
-      required super.description,
+      super.description,
       required super.price,
       super.prepareTime,
       required super.type,

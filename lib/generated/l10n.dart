@@ -310,11 +310,41 @@ class S {
     );
   }
 
+  /// `Price order`
+  String get priceOrder {
+    return Intl.message(
+      'Price order',
+      name: 'priceOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price range`
+  String get priceRangeOrder {
+    return Intl.message(
+      'Price range',
+      name: 'priceRangeOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Category`
   String get categoryTitle {
     return Intl.message(
       'Category',
       name: 'categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Categories`
+  String get categoriesTitle {
+    return Intl.message(
+      'Categories',
+      name: 'categoriesTitle',
       desc: '',
       args: [],
     );

@@ -54,11 +54,15 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
       productFormController.setProductAvailability(widget.product!.available);
       productFormController.setProductType(widget.product!.type.name);
       productFormController.setProductName(widget.product!.name);
-      productFormController.setProductDescription(widget.product!.description);
+
       productFormController.setProductPrice(widget.product!.price.toString());
       if (widget.product!.prepareTime != null) {
         productFormController
             .setProductPrepareTime(widget.product!.prepareTime.toString());
+      }
+      if (widget.product!.description != null) {
+        productFormController
+            .setProductDescription(widget.product!.description!);
       }
 
       productFormController.setProductPhoto(widget.product!.photo);

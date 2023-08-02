@@ -189,7 +189,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 8),
                                   child: Text(
-                                    product.description,
+                                    product.description!,
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                     style: AppTextStyles.h2.copyWith(

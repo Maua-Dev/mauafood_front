@@ -115,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "biggestPriceTitle":
             MessageLookupByLibrary.simpleMessage("Maior Preço"),
         "cancelationTitle": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "categoriesTitle": MessageLookupByLibrary.simpleMessage("Categorias"),
         "categoryTitle": MessageLookupByLibrary.simpleMessage("Categoria"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Alterar senha"),
@@ -212,6 +213,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tempo de Preparo"),
         "previewTitle":
             MessageLookupByLibrary.simpleMessage("Pré-visualização"),
+        "priceOrder": MessageLookupByLibrary.simpleMessage("Ordem de preço"),
+        "priceRangeOrder":
+            MessageLookupByLibrary.simpleMessage("Faixa de preço"),
         "priceTitle": MessageLookupByLibrary.simpleMessage("Preço"),
         "productAvailabilityTitle":
             MessageLookupByLibrary.simpleMessage("Disponibilidade do Produto"),

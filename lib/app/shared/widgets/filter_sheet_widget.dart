@@ -47,124 +47,154 @@ class FilterSheetWidget extends StatelessWidget {
       ProductEnum.ALL,
       ...listAllProduct.map((e) => e.type).toSet().toList()
     ];
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              minHeight: 35.0,
-              maxHeight: 50,
-            ),
-            child: ListView.builder(
-              itemCount: listTypesProducts.length,
-              scrollDirection: Axis.horizontal,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return FilterButtonWidget(
-                  text: listTypesProducts[index].name,
-                  selected: productIndex == index,
-                  onPressed: () {
-                    setProductType(listTypesProducts[index]);
-                    setIndex(index);
-                  },
-                );
-              },
-            ),
-          ),
-        ),
-        const SizedBox(height: 16),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            Checkbox(
-              side: BorderSide(color: AppColors.mainBlueColor, width: 2),
-              activeColor: AppColors.mainBlueColor,
-              value: isMaxPriceSearch,
-              onChanged: (value) {
-                setIsMaxPriceSearch(value!);
-                setIsMinPriceSearch(false);
-              },
-            ),
-            Text(S.of(context).biggestPriceTitle,
-                style: AppTextStyles.h2.copyWith(fontWeight: FontWeight.bold))
-          ]),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-            Checkbox(
-              side: BorderSide(color: AppColors.mainBlueColor, width: 2),
-              activeColor: AppColors.mainBlueColor,
-              value: isMinPriceSearch,
-              onChanged: (value) {
-                setIsMinPriceSearch(value!);
-                setIsMaxPriceSearch(false);
-              },
-            ),
-            Text(S.of(context).lowestPriceTitle,
-                style: AppTextStyles.h2.copyWith(fontWeight: FontWeight.bold))
-          ]),
-        ),
-        const SizedBox(height: 8),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          child: Column(
-            children: [
-              RangeSlider(
-                activeColor: AppColors.mainBlueColor,
-                values: rangeValues,
-                max: maxValue,
-                divisions: maxValue.round(),
-                labels: RangeLabels(
-                  "R\$ ${rangeValues.start.round().toString()}",
-                  "R\$ ${rangeValues.end.round().toString()}",
-                ),
-                onChanged: (RangeValues values) {
-                  setRangeValues(values);
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 8),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(S.of(context).categoriesTitle,
+                    style: AppTextStyles.h1.copyWith(fontSize: 20)),
+              )),
+          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(
+                minHeight: 35.0,
+                maxHeight: 50,
+              ),
+              child: ListView.builder(
+                itemCount: listTypesProducts.length,
+                scrollDirection: Axis.horizontal,
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return FilterButtonWidget(
+                    text: listTypesProducts[index].name,
+                    selected: productIndex == index,
+                    onPressed: () {
+                      setProductType(listTypesProducts[index]);
+                      setIndex(index);
+                    },
+                  );
                 },
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "R\$ 0",
-                    style: AppTextStyles.h2Highlight,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(S.of(context).priceOrder,
+                    style: AppTextStyles.h1.copyWith(fontSize: 20)),
+              )),
+          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child:
+                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+              Checkbox(
+                side: BorderSide(color: AppColors.mainBlueColor, width: 2),
+                activeColor: AppColors.mainBlueColor,
+                value: isMaxPriceSearch,
+                onChanged: (value) {
+                  setIsMaxPriceSearch(value!);
+                  setIsMinPriceSearch(false);
+                },
+              ),
+              Text(S.of(context).biggestPriceTitle,
+                  style: AppTextStyles.h2.copyWith(fontWeight: FontWeight.bold))
+            ]),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child:
+                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+              Checkbox(
+                side: BorderSide(color: AppColors.mainBlueColor, width: 2),
+                activeColor: AppColors.mainBlueColor,
+                value: isMinPriceSearch,
+                onChanged: (value) {
+                  setIsMinPriceSearch(value!);
+                  setIsMaxPriceSearch(false);
+                },
+              ),
+              Text(S.of(context).lowestPriceTitle,
+                  style: AppTextStyles.h2.copyWith(fontWeight: FontWeight.bold))
+            ]),
+          ),
+          const SizedBox(height: 16),
+          Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Text(S.of(context).priceRangeOrder,
+                    style: AppTextStyles.h1.copyWith(fontSize: 20)),
+              )),
+          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: Column(
+              children: [
+                RangeSlider(
+                  activeColor: AppColors.mainBlueColor,
+                  values: rangeValues,
+                  max: maxValue,
+                  divisions: maxValue.round(),
+                  labels: RangeLabels(
+                    "R\$ ${rangeValues.start.round().toString()}",
+                    "R\$ ${rangeValues.end.round().toString()}",
                   ),
-                  Text(
-                    "R\$ ${maxValue.round().toString()}",
-                    style: AppTextStyles.h2Highlight,
-                  ),
-                ],
-              )
-            ],
+                  onChanged: (RangeValues values) {
+                    setRangeValues(values);
+                  },
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "R\$ 0",
+                      style: AppTextStyles.h2Highlight,
+                    ),
+                    Text(
+                      "R\$ ${maxValue.round().toString()}",
+                      style: AppTextStyles.h2Highlight,
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: 48),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          child: ButtonWidget(
-            title: S.of(context).applyTitle,
-            onPressed: () {
-              filterProduct();
-              Modular.to.pop();
-            },
+          const SizedBox(height: 32),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: ButtonWidget(
+              title: S.of(context).applyTitle,
+              onPressed: () {
+                filterProduct();
+                Modular.to.pop();
+              },
+            ),
           ),
-        ),
-        const SizedBox(height: 8),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 32.0),
-          child: TextButton(
-            onPressed: () {
-              filterClean();
-              Modular.to.pop();
-            },
-            child: Text(S.of(context).cleanFilterTitle,
-                style: AppTextStyles.h1.copyWith(fontSize: 14)),
+          const SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 32.0),
+            child: TextButton(
+              onPressed: () {
+                filterClean();
+                Modular.to.pop();
+              },
+              child: Text(S.of(context).cleanFilterTitle,
+                  style: AppTextStyles.h1.copyWith(fontSize: 14)),
+            ),
           ),
-        )
-      ],
+          const SizedBox(height: 8),
+        ],
+      ),
     );
   }
 }

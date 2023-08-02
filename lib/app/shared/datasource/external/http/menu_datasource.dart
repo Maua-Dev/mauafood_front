@@ -42,10 +42,11 @@ class MenuDatasource implements IMenuDatasource {
   }
 
   @override
-  Future<void> deleteProduct(String id, RestaurantEnum restaurant) async {
+  Future<void> deleteProduct(
+      String id, RestaurantEnum restaurant) async {
     var response = await _httpService.post('/delete-product', {
       'product_id': id,
-      'restaurant': RestaurantEnumExtension.enumToStringMap(restaurant)
+      'restaurant': RestaurantEnumExtension.enumToStringMap(restaurant),
     });
     if (response.statusCode == 200) {
       return;

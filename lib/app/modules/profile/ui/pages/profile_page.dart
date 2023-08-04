@@ -68,49 +68,73 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.mainBlueColor,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: Stack(
           children: [
-            SizedBox(height: ScreenHelper.height(context) * 0.1),
-            Container(
-              height: ScreenHelper.height(context) * 0.9,
-              width: ScreenHelper.width(context),
-              decoration: BoxDecoration(
-                  color: AppColors.backgroundColor2,
-                  borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(32),
-                      topRight: Radius.circular(32))),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 16.0, left: 12, right: 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 24, vertical: 48),
-                      child: Text(
-                        store.name,
-                        style: TextStyle(
-                            fontSize: 32,
-                            color: AppColors.mainBlueColor,
-                            fontWeight: FontWeight.bold),
-                      ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(height: ScreenHelper.height(context) * 0.17),
+                Container(
+                  height: ScreenHelper.height(context) * 0.83,
+                  width: ScreenHelper.width(context),
+                  decoration: BoxDecoration(
+                      color: AppColors.backgroundColor2,
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(32),
+                          topRight: Radius.circular(32))),
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(top: 16.0, left: 12, right: 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 24, bottom: 48, top: 120),
+                          child: Text(
+                            store.name,
+                            style: TextStyle(
+                                fontSize: 32,
+                                color: AppColors.mainBlueColor,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Expanded(
+                            child: ListView.separated(
+                          itemCount: texts.length,
+                          separatorBuilder: (context, index) {
+                            return const Divider();
+                          },
+                          itemBuilder: (BuildContext context, int index) {
+                            return ProfileOptionsWidget(
+                              icon: icons[index],
+                              route: routes[index],
+                              text: texts[index],
+                            );
+                          },
+                        ))
+                      ],
                     ),
-                    Expanded(
-                        child: ListView.separated(
-                      itemCount: texts.length,
-                      separatorBuilder: (context, index) {
-                        return const Divider();
-                      },
-                      itemBuilder: (BuildContext context, int index) {
-                        return ProfileOptionsWidget(
-                          icon: icons[index],
-                          route: routes[index],
-                          text: texts[index],
-                        );
-                      },
-                    ))
-                  ],
+                  ),
+                )
+              ],
+            ),
+            Positioned(
+              left: ScreenHelper.width(context) * 0.1,
+              top: ScreenHelper.height(context) * 0.17 - 100,
+              child: Container(
+                height: 200,
+                width: 200,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100),
+                    color: AppColors.backgroundColor2),
+                child: const Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: CircleAvatar(
+                    radius: 32, // Image radius
+                    backgroundImage: NetworkImage(
+                        'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                  ),
                 ),
               ),
             )

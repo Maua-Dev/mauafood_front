@@ -69,6 +69,7 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
         backgroundColor: AppColors.mainBlueColor,
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(height: ScreenHelper.height(context) * 0.1),
             Container(

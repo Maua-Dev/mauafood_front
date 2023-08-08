@@ -1,3 +1,4 @@
+import 'package:mauafood_front/app/modules/user/presenter/controllers/user_controller.dart';
 import 'package:mobx/mobx.dart';
 
 part 'landing_controller.g.dart';
@@ -6,6 +7,10 @@ part 'landing_controller.g.dart';
 class LandingController = _LandingControllerBase with _$LandingController;
 
 abstract class _LandingControllerBase with Store {
+  final UserController _userController;
+
+  _LandingControllerBase(this._userController);
+
   @observable
   int _selectedIndex = 0;
 

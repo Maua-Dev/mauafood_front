@@ -16,12 +16,12 @@ class DioHttpRequest implements IHttpRequest {
   }
 
   @override
-  Future<Response> post(String url, dynamic data) async {
+  Future<Response> post(String url, {dynamic data}) async {
     return _dio.post(url, data: data);
   }
 
   @override
-  Future<Response> put(String url, dynamic data) async {
+  Future<Response> put(String url, {dynamic data}) async {
     return _dio.put(url, data: data);
   }
 }

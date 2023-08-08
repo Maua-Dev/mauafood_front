@@ -24,7 +24,7 @@ abstract class SplashControllerBase with Store {
     changeState(SplashLoadingState());
     await _authStore.checkLogin();
     await Future.delayed(const Duration(seconds: 3));
-    Modular.to.navigate('/employee/');
+    Modular.to.navigate('/landing/');
     changeState(SplashSuccessState());
   }
 }

@@ -169,22 +169,6 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
     });
   }
 
-  late final _$isPhotoUploadedAtom =
-      Atom(name: 'ProductFormControllerBase.isPhotoUploaded', context: context);
-
-  @override
-  bool? get isPhotoUploaded {
-    _$isPhotoUploadedAtom.reportRead();
-    return super.isPhotoUploaded;
-  }
-
-  @override
-  set isPhotoUploaded(bool? value) {
-    _$isPhotoUploadedAtom.reportWrite(value, super.isPhotoUploaded, () {
-      super.isPhotoUploaded = value;
-    });
-  }
-
   late final _$uploadProductPhotoAsyncAction = AsyncAction(
       'ProductFormControllerBase.uploadProductPhoto',
       context: context);
@@ -349,8 +333,7 @@ productDescription: ${productDescription},
 productAvailability: ${productAvailability},
 productPhoto: ${productPhoto},
 uploadedMobilePhoto: ${uploadedMobilePhoto},
-uploadedWebPhoto: ${uploadedWebPhoto},
-isPhotoUploaded: ${isPhotoUploaded}
+uploadedWebPhoto: ${uploadedWebPhoto}
     ''';
   }
 }

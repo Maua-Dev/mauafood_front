@@ -290,11 +290,61 @@ class S {
     );
   }
 
+  /// `Biggest Price`
+  String get biggestPriceTitle {
+    return Intl.message(
+      'Biggest Price',
+      name: 'biggestPriceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lowest Price`
+  String get lowestPriceTitle {
+    return Intl.message(
+      'Lowest Price',
+      name: 'lowestPriceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price order`
+  String get priceOrder {
+    return Intl.message(
+      'Price order',
+      name: 'priceOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price range`
+  String get priceRangeOrder {
+    return Intl.message(
+      'Price range',
+      name: 'priceRangeOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Category`
   String get categoryTitle {
     return Intl.message(
       'Category',
       name: 'categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Categories`
+  String get categoriesTitle {
+    return Intl.message(
+      'Categories',
+      name: 'categoriesTitle',
       desc: '',
       args: [],
     );
@@ -411,6 +461,26 @@ class S {
     return Intl.message(
       'Delete',
       name: 'deleteTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply`
+  String get applyTitle {
+    return Intl.message(
+      'Apply',
+      name: 'applyTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clean filter`
+  String get cleanFilterTitle {
+    return Intl.message(
+      'Clean filter',
+      name: 'cleanFilterTitle',
       desc: '',
       args: [],
     );

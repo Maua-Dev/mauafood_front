@@ -11,4 +11,20 @@ abstract class ProfileControllerBase with Store {
 
   @computed
   String get name => _authStore.user?.email ?? '';
+
+  @observable
+  int photoIndex = 0;
+
+  @observable
+  int tempPhotoIndex = 0;
+
+  @action
+  void setPhotoIndex() {
+    photoIndex = tempPhotoIndex;
+  }
+
+  @action
+  void getTempPhotoIndex(int index) {
+    tempPhotoIndex = index;
+  }
 }

@@ -16,9 +16,68 @@ mixin _$ProfileController on ProfileControllerBase, Store {
           name: 'ProfileControllerBase.name'))
       .value;
 
+  late final _$photoIndexAtom =
+      Atom(name: 'ProfileControllerBase.photoIndex', context: context);
+
+  @override
+  int get photoIndex {
+    _$photoIndexAtom.reportRead();
+    return super.photoIndex;
+  }
+
+  @override
+  set photoIndex(int value) {
+    _$photoIndexAtom.reportWrite(value, super.photoIndex, () {
+      super.photoIndex = value;
+    });
+  }
+
+  late final _$tempPhotoIndexAtom =
+      Atom(name: 'ProfileControllerBase.tempPhotoIndex', context: context);
+
+  @override
+  int get tempPhotoIndex {
+    _$tempPhotoIndexAtom.reportRead();
+    return super.tempPhotoIndex;
+  }
+
+  @override
+  set tempPhotoIndex(int value) {
+    _$tempPhotoIndexAtom.reportWrite(value, super.tempPhotoIndex, () {
+      super.tempPhotoIndex = value;
+    });
+  }
+
+  late final _$ProfileControllerBaseActionController =
+      ActionController(name: 'ProfileControllerBase', context: context);
+
+  @override
+  void setPhotoIndex() {
+    final _$actionInfo = _$ProfileControllerBaseActionController.startAction(
+        name: 'ProfileControllerBase.setPhotoIndex');
+    try {
+      return super.setPhotoIndex();
+    } finally {
+      _$ProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void getTempPhotoIndex(int index) {
+    final _$actionInfo = _$ProfileControllerBaseActionController.startAction(
+        name: 'ProfileControllerBase.getTempPhotoIndex');
+    try {
+      return super.getTempPhotoIndex(index);
+    } finally {
+      _$ProfileControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
+photoIndex: ${photoIndex},
+tempPhotoIndex: ${tempPhotoIndex},
 name: ${name}
     ''';
   }

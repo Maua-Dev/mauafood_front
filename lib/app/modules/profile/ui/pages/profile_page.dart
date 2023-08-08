@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mauafood_front/app/modules/profile/controllers/profile_controller.dart';
@@ -135,8 +136,9 @@ class _ProfilePageState extends State<ProfilePage> {
                     onTap: () {
                       showDialog(
                           context: context,
-                          builder: (context) =>
-                              const ProfilePictureSelectorWidget());
+                          builder: (context) => ProfilePictureSelectorWidget(
+                                controller: store,
+                              ));
                     },
                     child: const CircleAvatar(
                       radius: 32,

@@ -11,6 +11,11 @@ abstract class _LandingControllerBase with Store {
 
   _LandingControllerBase(this._userController);
 
+  @computed
+  bool get isUser => _userController.user?.isUser ?? false;
+  @computed
+  bool get isEmployee => _userController.user?.isEmployee ?? false;
+
   @observable
   int _selectedIndex = 0;
 

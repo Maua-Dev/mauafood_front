@@ -12,7 +12,7 @@ class ProductModel extends Product {
       required super.price,
       super.prepareTime,
       required super.type,
-      required super.photo,
+      super.photo,
       required super.available,
       super.lastUpdate});
 

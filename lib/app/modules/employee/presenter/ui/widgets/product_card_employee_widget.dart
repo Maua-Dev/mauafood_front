@@ -50,7 +50,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                           fit: BoxFit.fill,
                           child: product.photo != ''
                               ? Image.network(
-                                  product.photo,
+                                  product.photo!,
                                   loadingBuilder: (BuildContext context,
                                       Widget child,
                                       ImageChunkEvent? loadingProgress) {

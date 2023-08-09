@@ -145,12 +145,12 @@ abstract class ProductFormControllerBase with Store {
     var result = await _createProduct(
         ProductModel(
           name: productName!,
-          description: productDescription,
+          description: productDescription ?? "",
           price: productPrice!,
           prepareTime: productPrepareTime,
           type: productType!,
           available: productAvailability,
-          photo: "",
+          photo: productPhoto,
         ),
         restaurant);
     changeState(
@@ -167,12 +167,12 @@ abstract class ProductFormControllerBase with Store {
         ProductModel(
           id: productId,
           name: productName!,
-          description: productDescription,
+          description: productDescription ?? "",
           price: productPrice!,
           prepareTime: productPrepareTime,
           type: productType!,
           available: productAvailability,
-          photo: "https://avatars.githubusercontent.com/u/24724451?v=4",
+          photo: productPhoto,
         ),
         restaurant);
     changeState(

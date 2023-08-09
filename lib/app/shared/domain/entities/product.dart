@@ -5,7 +5,7 @@ class Product {
   final String name;
   final String? description;
   final double price;
-  final String photo;
+  final String? photo;
   final int? prepareTime;
   final ProductEnum type;
   final bool available;

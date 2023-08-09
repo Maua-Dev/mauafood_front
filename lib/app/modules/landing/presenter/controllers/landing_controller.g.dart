@@ -9,6 +9,19 @@ part of 'landing_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$LandingController on _LandingControllerBase, Store {
+  Computed<bool>? _$isUserComputed;
+
+  @override
+  bool get isUser => (_$isUserComputed ??= Computed<bool>(() => super.isUser,
+          name: '_LandingControllerBase.isUser'))
+      .value;
+  Computed<bool>? _$isEmployeeComputed;
+
+  @override
+  bool get isEmployee =>
+      (_$isEmployeeComputed ??= Computed<bool>(() => super.isEmployee,
+              name: '_LandingControllerBase.isEmployee'))
+          .value;
   Computed<int>? _$indexComputed;
 
   @override
@@ -49,6 +62,8 @@ mixin _$LandingController on _LandingControllerBase, Store {
   @override
   String toString() {
     return '''
+isUser: ${isUser},
+isEmployee: ${isEmployee},
 index: ${index}
     ''';
   }

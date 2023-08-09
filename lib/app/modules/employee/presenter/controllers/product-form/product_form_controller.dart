@@ -22,6 +22,7 @@ class ProductFormController = ProductFormControllerBase
 abstract class ProductFormControllerBase with Store {
   final IUpdateProductUsecase _updateProduct;
   final ICreateProductUsecase _createProduct;
+
   ProductFormControllerBase(this._updateProduct, this._createProduct);
 
   @observable
@@ -51,6 +52,10 @@ abstract class ProductFormControllerBase with Store {
 
   @action
   void setProductPrepareTime(String value) {
+    if (value == "") {
+      productPrepareTime = null;
+      return;
+    }
     productPrepareTime = int.parse(value);
   }
 
@@ -118,9 +123,6 @@ abstract class ProductFormControllerBase with Store {
   @observable
   Uint8List? uploadedWebPhoto;
 
-  @observable
-  bool? isPhotoUploaded;
-
   @action
   Future uploadProductPhoto() async {
     if (!kIsWeb) {
@@ -143,12 +145,12 @@ abstract class ProductFormControllerBase with Store {
     var result = await _createProduct(
         ProductModel(
           name: productName!,
-          description: productDescription ?? "",
+          description: productDescription,
           price: productPrice!,
-          prepareTime: productPrepareTime!,
+          prepareTime: productPrepareTime,
           type: productType!,
           available: productAvailability,
-          photo: "https://avatars.githubusercontent.com/u/24724451?v=4",
+          photo: "",
         ),
         restaurant);
     changeState(
@@ -165,9 +167,9 @@ abstract class ProductFormControllerBase with Store {
         ProductModel(
           id: productId,
           name: productName!,
-          description: productDescription ?? "",
+          description: productDescription,
           price: productPrice!,
-          prepareTime: productPrepareTime ?? 0,
+          prepareTime: productPrepareTime,
           type: productType!,
           available: productAvailability,
           photo: "https://avatars.githubusercontent.com/u/24724451?v=4",

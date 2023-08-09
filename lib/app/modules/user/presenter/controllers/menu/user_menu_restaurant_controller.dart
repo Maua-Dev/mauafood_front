@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/user_menu_state.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mobx/mobx.dart';
@@ -14,7 +15,7 @@ class UserMenuRestaurantController = MenuRestaurantControllerBase
 
 abstract class MenuRestaurantControllerBase with Store {
   final IGetRestaurantProductUsecase _getRestaurantProduct;
-  RestaurantEnum restaurantInfo = RestaurantEnum.souza_de_abreu;
+  RestaurantEnum restaurantInfo;
 
   MenuRestaurantControllerBase(
       this._getRestaurantProduct, this.restaurantInfo) {
@@ -30,6 +31,39 @@ abstract class MenuRestaurantControllerBase with Store {
   @observable
   List<Product> listAllProductWithoutAccent = [];
 
+  @observable
+  bool isMaxPriceSearch = false;
+
+  @observable
+  bool isMinPriceSearch = false;
+
+  @observable
+  RangeValues? rangeValues;
+
+  @observable
+  String search = '';
+
+  @observable
+  int index = 0;
+
+  @observable
+  ProductEnum productType = ProductEnum.ALL;
+
+  @action
+  void setIsMaxPriceSearch(bool value) => isMaxPriceSearch = value;
+
+  @action
+  void setIsMinPriceSearch(bool value) => isMinPriceSearch = value;
+
+  @action
+  void setRangeValues(RangeValues value) => rangeValues = value;
+
+  @action
+  void setIndex(int value) => index = value;
+
+  @action
+  void setProductType(ProductEnum value) => productType = value;
+
   @action
   void changeState(UserMenuState value) => state = value;
 
@@ -39,45 +73,68 @@ abstract class MenuRestaurantControllerBase with Store {
     var result = await _getRestaurantProduct(restaurantInfo);
     changeState(result.fold((l) => UserMenuErrorState(failure: l), (list) {
       listAllProduct = list;
+      listAllProduct.sort(
+        (a, b) {
+          return a.type.index.compareTo(b.type.index);
+        },
+      );
+      rangeValues = RangeValues(0,
+          listAllProduct.map((e) => e.price).reduce((a, b) => a > b ? a : b));
       return UserMenuLoadedSuccessState(listProduct: list, index: 0);
     }));
   }
 
   @action
-  Future<void> searchProduct(String search) async {
+  void filterProduct() {
+    var filterList = listAllProduct;
     if (state is UserMenuLoadedSuccessState) {
-      if (search == '') {
-        changeState(
-            UserMenuLoadedSuccessState(listProduct: listAllProduct, index: 0));
-      } else {
-        var filterList = listAllProduct
+      if (search != '') {
+        filterList = filterList
             .where(
               (e) => e.name.withoutDiacritics
                   .toLowerCase()
                   .startsWith(search.toLowerCase().withoutDiacritics),
             )
             .toList();
-        changeState(
-            UserMenuLoadedSuccessState(listProduct: filterList, index: 0));
       }
-    }
-  }
-
-  @action
-  Future<void> filterProduct(ProductEnum productType, int index) async {
-    if (state is UserMenuLoadedSuccessState) {
-      if (productType == ProductEnum.ALL) {
-        changeState(
-            UserMenuLoadedSuccessState(listProduct: listAllProduct, index: 0));
-      } else {
-        var filterList = listAllProduct
+      if (productType != ProductEnum.ALL) {
+        filterList = filterList
             .where(
               (e) => e.type == productType,
             )
             .toList();
-        changeState(
-            UserMenuLoadedSuccessState(listProduct: filterList, index: index));
       }
+      if (isMaxPriceSearch) {
+        filterList.sort((a, b) => b.price.compareTo(a.price));
+      }
+      if (isMinPriceSearch) {
+        filterList.sort((a, b) => a.price.compareTo(b.price));
+      }
+      if (isMinPriceSearch == false && isMaxPriceSearch == false) {
+        filterList.sort(
+          (a, b) {
+            return a.type.index.compareTo(b.type.index);
+          },
+        );
+      }
+      filterList = filterList
+          .where((e) => e.price >= rangeValues!.start)
+          .where((e) => e.price <= rangeValues!.end)
+          .toList();
+      changeState(
+          UserMenuLoadedSuccessState(listProduct: filterList, index: index));
     }
+  }
+
+  @action
+  void cleanFilter() {
+    isMaxPriceSearch = false;
+    isMinPriceSearch = false;
+    rangeValues = RangeValues(
+        0, listAllProduct.map((e) => e.price).reduce((a, b) => a > b ? a : b));
+    search = '';
+    productType = ProductEnum.ALL;
+    index = 0;
+    filterProduct();
   }
 }

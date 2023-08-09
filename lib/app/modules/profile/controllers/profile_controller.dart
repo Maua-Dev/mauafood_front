@@ -1,16 +1,13 @@
-import 'package:auth_package/core/auth_store.dart';
+import 'package:mauafood_front/app/modules/user/presenter/controllers/user_controller.dart';
 import 'package:mobx/mobx.dart';
 part 'profile_controller.g.dart';
 
 class ProfileController = ProfileControllerBase with _$ProfileController;
 
 abstract class ProfileControllerBase with Store {
-  final AuthStore _authStore;
+  final UserController _userController;
 
-  ProfileControllerBase(this._authStore);
-
-  @computed
-  String get name => _authStore.user?.email ?? '';
+  ProfileControllerBase(this._userController);
 
   @observable
   int photoIndex = 0;
@@ -27,4 +24,7 @@ abstract class ProfileControllerBase with Store {
   void getTempPhotoIndex(int index) {
     tempPhotoIndex = index;
   }
+
+  @computed
+  String get name => _userController.user?.name ?? '';
 }

@@ -23,7 +23,7 @@ class MenuDatasource implements IMenuDatasource {
   Future<ProductModel> createProduct(
       ProductModel product, RestaurantEnum restaurant) async {
     var data = product.toJson(restaurant);
-    var response = await _httpService.post('/create-product', data);
+    var response = await _httpService.post('/create-product', data: data);
     if (response.statusCode == 201) {
       return ProductModel.fromMap(response.data["product"]);
     }
@@ -34,7 +34,7 @@ class MenuDatasource implements IMenuDatasource {
   Future<ProductModel> updateProduct(
       ProductModel product, RestaurantEnum restaurant) async {
     var data = product.newProductJson(restaurant);
-    var response = await _httpService.post('/update-product', data);
+    var response = await _httpService.post('/update-product', data: data);
     if (response.statusCode == 200) {
       return ProductModel.fromMap(response.data["product"]);
     }
@@ -43,9 +43,9 @@ class MenuDatasource implements IMenuDatasource {
 
   @override
   Future<void> deleteProduct(String id, RestaurantEnum restaurant) async {
-    var response = await _httpService.post('/delete-product', {
+    var response = await _httpService.post('/delete-product', data: {
       'product_id': id,
-      'restaurant': RestaurantEnumExtension.enumToStringMap(restaurant)
+      'restaurant': RestaurantEnumExtension.enumToStringMap(restaurant),
     });
     if (response.statusCode == 200) {
       return;

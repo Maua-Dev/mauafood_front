@@ -90,7 +90,7 @@ class ProductInfoPage extends StatelessWidget {
                               height: 16,
                             ),
                             Text(
-                              productInfo.description,
+                              productInfo.description ?? "",
                               style: AppTextStyles.h3
                                   .copyWith(fontWeight: FontWeight.bold),
                               textAlign: TextAlign.left,

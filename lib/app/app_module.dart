@@ -4,7 +4,6 @@ import 'package:dio/dio.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'modules/landing/landing_module.dart';
 import 'package:mauafood_front/app/modules/employee/employee_menu_module.dart';
-import 'modules/user/user_menu_module.dart';
 import 'package:mauafood_front/amplifyconfiguration.dart';
 import 'package:mauafood_front/app/shared/helpers/services/dio/auth_interceptor.dart';
 
@@ -12,6 +11,7 @@ import 'modules/splash/splash_module.dart';
 import 'shared/helpers/services/dio/dio_http_request.dart';
 import 'shared/helpers/services/dio/options/product_base_options.dart';
 import 'shared/helpers/services/http/http_request_interface.dart';
+
 
 class AppModule extends Module {
   @override
@@ -35,10 +35,6 @@ class AppModule extends Module {
         ModuleRoute(
           '/employee',
           module: EmployeeMenuModule(),
-        ),
-        ModuleRoute(
-          '/user',
-          module: UserMenuModule(),
         ),
         ModuleRoute('/landing', module: LandingModule()),
       ];

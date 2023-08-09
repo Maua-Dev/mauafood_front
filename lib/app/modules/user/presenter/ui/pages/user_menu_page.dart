@@ -91,7 +91,7 @@ class _UserMenuPageState extends State<UserMenuPage> {
                   IconButton(
                     padding: EdgeInsets.zero,
                     onPressed: () {
-                      Modular.to.pop();
+                      Modular.to.navigate('/landing/restaurants/');
                     },
                     icon: Icon(
                       Icons.arrow_back_ios,

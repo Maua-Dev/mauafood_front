@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:mauafood_front/app/shared/helpers/services/s3/assets_s3.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
@@ -40,12 +41,11 @@ class ProfilePictureSelectorWidget extends StatelessWidget {
                               ? AppColors.mainBlueColor
                               : AppColors.backgroundColor2,
                           borderRadius: BorderRadius.circular(120)),
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: CircleAvatar(
                           radius: 24, // Image radius
-                          backgroundImage: NetworkImage(
-                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                          backgroundImage: NetworkImage(profilePictureCoxinha),
                         ),
                       ),
                     ),
@@ -58,12 +58,11 @@ class ProfilePictureSelectorWidget extends StatelessWidget {
                               ? AppColors.mainBlueColor
                               : AppColors.backgroundColor2,
                           borderRadius: BorderRadius.circular(120)),
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: CircleAvatar(
                           radius: 24, // Image radius
-                          backgroundImage: NetworkImage(
-                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                          backgroundImage: NetworkImage(profilePictureSoda),
                         ),
                       ),
                     ),
@@ -76,12 +75,11 @@ class ProfilePictureSelectorWidget extends StatelessWidget {
                               ? AppColors.mainBlueColor
                               : AppColors.backgroundColor2,
                           borderRadius: BorderRadius.circular(120)),
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: CircleAvatar(
                           radius: 24, // Image radius
-                          backgroundImage: NetworkImage(
-                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                          backgroundImage: NetworkImage(profilePicturePotato),
                         ),
                       ),
                     ),
@@ -94,12 +92,12 @@ class ProfilePictureSelectorWidget extends StatelessWidget {
                               ? AppColors.mainBlueColor
                               : AppColors.backgroundColor2,
                           borderRadius: BorderRadius.circular(120)),
-                      child: const Padding(
-                        padding: EdgeInsets.all(8.0),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
                         child: CircleAvatar(
                           radius: 24, // Image radius
-                          backgroundImage: NetworkImage(
-                              'https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg'),
+                          backgroundImage:
+                              NetworkImage(profilePictureHamburguer),
                         ),
                       ),
                     ),

@@ -6,6 +6,8 @@ var baseUrlS3 = EnvironmentConfig.S3_ASSETS_BASE_URL;
 
 var baseLogosGif = '$baseUrlS3/logos/gif';
 
+var baseProfileImages = '$baseUrlS3/Imagens Perfil';
+
 var baseLogosImages = '$baseUrlS3/logos/images';
 
 var baseRestaurantImages = '$baseUrlS3/restaurants/restaurant_front';
@@ -17,6 +19,15 @@ var greyLogo = '$baseLogosImages/grey_logo.png';
 var transparentLogo = '$baseLogosImages/transparent_logo.png';
 
 var whiteLogo = '$baseLogosImages/white_logo.png';
+
+var profilePictureSoda = '$baseProfileImages/profile_picture_soda.png';
+
+var profilePictureHamburguer =
+    '$baseProfileImages/profile_picture_hamburguer.png';
+
+var profilePictureCoxinha = '$baseProfileImages/profile_picture_coxinha.png';
+
+var profilePicturePotato = '$baseProfileImages/profile_picture_potato.png';
 
 var restaurantImages = {
   'bibaImage': '$baseRestaurantImages/front_souza_de_abreu.jpg',

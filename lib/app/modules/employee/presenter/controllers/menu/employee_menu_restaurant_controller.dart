@@ -1,4 +1,6 @@
+import 'package:auth_package/core/auth_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-card/product_card_employee_state.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
@@ -18,11 +20,17 @@ class EmployeeMenuRestaurantController = MenuRestaurantControllerBase
 abstract class MenuRestaurantControllerBase with Store {
   final IGetRestaurantProductUsecase _getRestaurantProduct;
   final IDeleteProductUsecase _deleteProduct;
+  final AuthStore _authStore;
   RestaurantEnum restaurantInfo;
 
-  MenuRestaurantControllerBase(
-      this._getRestaurantProduct, this.restaurantInfo, this._deleteProduct) {
+  MenuRestaurantControllerBase(this._getRestaurantProduct, this.restaurantInfo,
+      this._deleteProduct, this._authStore) {
     loadRestaurantMenu();
+  }
+
+  void logout() async {
+    await _authStore.signOut();
+    Modular.to.navigate('/landing/');
   }
 
   @observable

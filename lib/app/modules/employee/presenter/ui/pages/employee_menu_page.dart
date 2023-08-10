@@ -40,6 +40,10 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
         backgroundColor: AppColors.mainBlueColor,
         elevation: 0,
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: store.logout, icon: const Icon(Icons.logout_outlined))
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(

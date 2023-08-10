@@ -146,6 +146,12 @@
 
     "messageSentSuccessfully": "Email enviado com sucesso!",
 
+    "cart": "Cesta",
+    "home": "Home",
+    "profile": "Perfil",
+    "help": "Ajuda",
+    "orders": "Pedidos",
+
 
     
     "errorGeneric": "Algo deu errado!",

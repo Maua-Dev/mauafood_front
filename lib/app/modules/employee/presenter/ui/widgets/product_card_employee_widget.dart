@@ -14,10 +14,11 @@ import '../../../../../shared/widgets/circular_progress_indicator_custom_widget.
 import '../../../../../shared/domain/entities/product.dart';
 
 class ProductCardEmployeeWidget extends StatelessWidget {
+  final menuController = Modular.get<EmployeeMenuRestaurantController>();
   final Product product;
   final RestaurantEnum restaurant;
   final int index;
-  const ProductCardEmployeeWidget(
+  ProductCardEmployeeWidget(
       {super.key,
       required this.product,
       required this.restaurant,
@@ -25,7 +26,6 @@ class ProductCardEmployeeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var menuController = Modular.get<EmployeeMenuRestaurantController>();
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: InkWell(

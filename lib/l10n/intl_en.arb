@@ -146,6 +146,14 @@
 
     "messageSentSuccessfully": "Email successfully sent!",
 
+    "cart": "Cesta",
+    "home": "Home",
+    "profile": "Profile",
+    "help": "Help",
+    "orders": "Orders",
+
+
+
 
     
     "errorGeneric": "Something went wrong!",

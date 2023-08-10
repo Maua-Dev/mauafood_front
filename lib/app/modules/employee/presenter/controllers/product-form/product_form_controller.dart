@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
@@ -22,8 +23,10 @@ class ProductFormController = ProductFormControllerBase
 abstract class ProductFormControllerBase with Store {
   final IUpdateProductUsecase _updateProduct;
   final ICreateProductUsecase _createProduct;
+  final EmployeeMenuRestaurantController _employeeMenuRestaurantController;
 
-  ProductFormControllerBase(this._updateProduct, this._createProduct);
+  ProductFormControllerBase(this._updateProduct, this._createProduct,
+      this._employeeMenuRestaurantController);
 
   @observable
   ProductFormState state = ProductFormInitialState();
@@ -150,11 +153,14 @@ abstract class ProductFormControllerBase with Store {
           prepareTime: productPrepareTime,
           type: productType!,
           available: productAvailability,
-          photo: productPhoto,
+          photo:
+              "https://dygzp3rn48wd5.cloudfront.net/products/icons/plates.png",
         ),
         restaurant);
     changeState(
         result.fold((l) => ProductFormFailureState(failure: l), (product) {
+      _employeeMenuRestaurantController.listAllProduct.add(product);
+      _employeeMenuRestaurantController.filterProduct();
       return ProductFormSuccessState(product: product);
     }));
   }
@@ -175,8 +181,16 @@ abstract class ProductFormControllerBase with Store {
           photo: productPhoto,
         ),
         restaurant);
+
     changeState(
         result.fold((l) => ProductFormFailureState(failure: l), (product) {
+      var element = _employeeMenuRestaurantController.listAllProduct
+          .firstWhere((element) => element.id == productId);
+      var index =
+          _employeeMenuRestaurantController.listAllProduct.indexOf(element);
+      _employeeMenuRestaurantController.listAllProduct[index] = product;
+      _employeeMenuRestaurantController.filterProduct();
+
       return ProductFormSuccessState(product: product);
     }));
   }

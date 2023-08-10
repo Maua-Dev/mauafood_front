@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/product-form/product_form_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
 import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
@@ -10,8 +11,12 @@ import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 import 'package:mauafood_front/generated/l10n.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
+import 'product_form_controller_test.mocks.dart';
+
+@GenerateNiceMocks([MockSpec<EmployeeMenuRestaurantController>()])
 class CreateProductMockFailed extends Mock implements ICreateProductUsecase {
   @override
   Future<Either<Failure, ProductModel>> call(
@@ -65,6 +70,8 @@ class UpdateProductMockSuccess extends Mock implements IUpdateProductUsecase {
 }
 
 void main() {
+  final employeeMenuRestaurantController =
+      MockEmployeeMenuRestaurantController();
   late ProductFormController controller;
   IUpdateProductUsecase updateProductSuccessUsecase =
       UpdateProductMockSuccess();
@@ -88,20 +95,20 @@ void main() {
   group('[TEST] - state', () {
     test('changeState', () {
       controller = ProductFormController(
-          updateProductSuccessUsecase, createProductSuccessUsecase);
+          updateProductSuccessUsecase, createProductSuccessUsecase, employeeMenuRestaurantController);
       controller.changeState(ProductFormLoadingState());
       expect(controller.state, isA<ProductFormLoadingState>());
     });
     test('changeState', () {
       controller = ProductFormController(
-          updateProductSuccessUsecase, createProductSuccessUsecase);
+          updateProductSuccessUsecase, createProductSuccessUsecase, employeeMenuRestaurantController);
       controller.changeState(ProductFormSuccessState(product: testMock));
       expect(controller.state, isA<ProductFormSuccessState>());
     });
 
     test('changeState', () {
       controller = ProductFormController(
-          updateProductSuccessUsecase, createProductSuccessUsecase);
+          updateProductSuccessUsecase, createProductSuccessUsecase, employeeMenuRestaurantController);
       controller.changeState(
           ProductFormFailureState(failure: Failure(message: 'fail')));
       expect(controller.state, isA<ProductFormFailureState>());

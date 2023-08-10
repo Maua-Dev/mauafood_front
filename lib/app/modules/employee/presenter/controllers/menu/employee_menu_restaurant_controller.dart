@@ -40,10 +40,10 @@ abstract class MenuRestaurantControllerBase with Store {
   ProductCardEmployeeState productCardState = ProductCardEmployeeInitialState();
 
   @observable
-  List<Product> listAllProduct = [];
+  List<Product> listAllProduct = ObservableList();
 
   @observable
-  List<Product> listAllProductWithoutAccent = [];
+  List<Product> listAllProductWithoutAccent = ObservableList();
 
   @observable
   bool isMaxPriceSearch = false;
@@ -165,6 +165,7 @@ abstract class MenuRestaurantControllerBase with Store {
         result.fold((l) => ProductCardEmployeeFailureState(failure: l), (r) {
       listAllProductWithoutAccent.removeWhere((element) => element.id == id);
       listAllProduct.removeWhere((element) => element.id == id);
+      filterProduct();
       return ProductCardEmployeeSuccessState();
     }));
   }

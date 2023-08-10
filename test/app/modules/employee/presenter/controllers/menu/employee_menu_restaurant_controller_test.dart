@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:auth_package/core/auth_store.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
@@ -11,10 +12,14 @@ import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
 import 'package:mauafood_front/generated/l10n.dart';
+import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
+
+import '../../../../restaurants/presenter/controllers/restaurant_controller_test.mocks.dart';
 
 class GetRestaurantProductMockSuccess extends Mock
     implements IGetRestaurantProductUsecase {
+  @GenerateNiceMocks([MockSpec<AuthStore>()])
   @override
   Future<Either<Failure, List<Product>>> call(
       RestaurantEnum restaurantInfo) async {
@@ -71,6 +76,8 @@ class DeleteProductMockFailed extends Mock implements IDeleteProductUsecase {
 }
 
 void main() {
+  final authStore = MockAuthStore();
+
   late EmployeeMenuRestaurantController controller;
   IGetRestaurantProductUsecase getRestaurantProductSuccessUsecase =
       GetRestaurantProductMockSuccess();
@@ -112,7 +119,8 @@ void main() {
       controller = EmployeeMenuRestaurantController(
           getRestaurantProductSuccessUsecase,
           restaurantInfo,
-          deleteProductSuccessUsecase);
+          deleteProductSuccessUsecase,
+          authStore);
       await controller.loadRestaurantMenu();
       expect(controller.listAllProduct, isNotEmpty);
     });
@@ -121,7 +129,8 @@ void main() {
       controller = EmployeeMenuRestaurantController(
           getRestaurantProductFailedUsecase,
           restaurantInfo,
-          deleteProductFailedUsecase);
+          deleteProductFailedUsecase,
+          authStore);
       await controller.loadRestaurantMenu();
       expect(controller.state, isA<EmployeeMenuErrorState>());
     });

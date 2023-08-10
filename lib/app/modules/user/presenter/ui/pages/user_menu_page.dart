@@ -55,7 +55,7 @@ class _UserMenuPageState extends State<UserMenuPage> {
                     child: ProductCardWidget(
                       product: listProduct[index],
                       onPressed: () {
-                        Modular.to.pushNamed('/user/product-info/', arguments: [
+                        Modular.to.pushNamed('product-info/', arguments: [
                           listProduct[index],
                           listProduct
                               .where((element) =>

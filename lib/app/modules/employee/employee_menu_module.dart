@@ -39,8 +39,8 @@ class EmployeeMenuModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
-          child: (context, args) =>
-              EmployeeMenuPage(restaurant: RestaurantEnum.cantina_do_moleza),
+          child: (context, args) => const EmployeeMenuPage(
+              restaurant: RestaurantEnum.cantina_do_moleza),
         )
       ];
 }

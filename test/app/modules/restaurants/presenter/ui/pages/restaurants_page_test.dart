@@ -35,6 +35,7 @@ void main() {
   setUpAll(() {
     HttpOverrides.global = null;
     when(store.restaurants).thenReturn(mockRestaurants);
+    when(store.isLogged).thenReturn(false);
   });
 
   testWidgets('[WIDGETS TEST] - Restaurants Page', (widgetTester) async {

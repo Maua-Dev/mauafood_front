@@ -41,6 +41,7 @@ class LandingModule extends Module {
     ChildRoute('/',
         child: (_, args) => const LandingPage(),
         children: [
+          ModuleRoute('/employee/', module: EmployeeMenuModule()),
           ModuleRoute('/restaurants/', module: UserMenuModule()),
           ChildRoute('/cart/',
               child: (_, args) => const Center(
@@ -52,7 +53,7 @@ class LandingModule extends Module {
           ChildRoute('/faq/', child: (_, args) => const FaqPage()),
           ModuleRoute('/profile/',
               module: ProfileModule(), guards: [AuthGuard()]),
-          ModuleRoute('/employee/', module: EmployeeMenuModule())
+          ChildRoute('/orders', child: (_, args) => const FaqPage())
         ],
         transition: TransitionType.fadeIn),
   ];

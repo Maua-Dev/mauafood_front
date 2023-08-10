@@ -115,6 +115,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "biggestPriceTitle":
             MessageLookupByLibrary.simpleMessage("Maior Preço"),
         "cancelationTitle": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "cart": MessageLookupByLibrary.simpleMessage("Cesta"),
         "categoriesTitle": MessageLookupByLibrary.simpleMessage("Categorias"),
         "categoryTitle": MessageLookupByLibrary.simpleMessage("Categoria"),
         "changePasswordTitle":
@@ -183,6 +184,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Já tem uma conta?"),
         "havePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Já tem uma senha?"),
+        "help": MessageLookupByLibrary.simpleMessage("Ajuda"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "invalidCodeAlert":
             MessageLookupByLibrary.simpleMessage("Código inválido."),
         "invalidCpfAlert":
@@ -205,6 +208,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPasswordTitle": MessageLookupByLibrary.simpleMessage("Nova senha"),
         "noItemsFoundErrorMessage": m2,
         "notificationsOptionsSchema": m3,
+        "orders": MessageLookupByLibrary.simpleMessage("Pedidos"),
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \\\$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Senha"),
@@ -229,6 +233,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "productSuccessfullyEditedTitle": MessageLookupByLibrary.simpleMessage(
             "Produto editado com sucesso."),
         "productToEnumSchema": m7,
+        "profile": MessageLookupByLibrary.simpleMessage("Perfil"),
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recomendações"),

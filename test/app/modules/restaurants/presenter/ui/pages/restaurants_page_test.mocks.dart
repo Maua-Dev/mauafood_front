@@ -64,6 +64,11 @@ class MockRestaurantController extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
+  bool get isLogged => (super.noSuchMethod(
+        Invocation.getter(#isLogged),
+        returnValue: false,
+      ) as bool);
+  @override
   void logout() => super.noSuchMethod(
         Invocation.method(
           #logout,

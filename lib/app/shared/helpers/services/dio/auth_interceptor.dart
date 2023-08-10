@@ -14,9 +14,12 @@ class AuthInterceptor extends Interceptor {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    if (response.statusCode == 401) {
-      Modular.to.navigate('/login');
-    }
     return handler.next(response);
+  }
+
+  @override
+  void onError(DioError err, ErrorInterceptorHandler handler) {
+    err.response?.statusCode == 401 ? Modular.to.navigate('/login') : null;
+    return handler.next(err);
   }
 }

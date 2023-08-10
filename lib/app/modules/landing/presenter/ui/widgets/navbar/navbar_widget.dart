@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
 import 'package:mauafood_front/app/modules/landing/presenter/ui/widgets/navbar/navbar_component_widget.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -15,8 +14,6 @@ class NavBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var navbarLenght = controller.navbar.length;
-
     return Container(
       padding: const EdgeInsets.all(12),
       margin: EdgeInsets.only(
@@ -28,13 +25,23 @@ class NavBarWidget extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(6))),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            for (var i = 0; i < navbarLenght; i++)
-              NavBarComponentWidget(controller: controller, index: i)
-          ],
-        ),
+        child: Observer(builder: (context) {
+          final navbar = controller.navbar;
+          final navbarLenght = navbar.length;
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: List.generate(
+                navbarLenght,
+                (index) => NavBarComponentWidget(
+                      icon: navbar[index]['icon'],
+                      index: index,
+                      onSelect: controller.selectIndex,
+                      route: navbar[index]['route'],
+                      title: navbar[index]['title'],
+                      selectIndex: controller.index,
+                    )),
+          );
+        }),
       ),
     );
   }

@@ -143,8 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Observer(builder: (_) {
                       return CircleAvatar(
                         radius: 32,
-                        backgroundImage: NetworkImage(
-                            store.profilePictures[store.photoIndex]),
+                        backgroundImage: NetworkImage(store.photo),
                       );
                     }),
                   ),

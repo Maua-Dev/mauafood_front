@@ -48,19 +48,32 @@ mixin _$ProfileController on ProfileControllerBase, Store {
     });
   }
 
-  late final _$ProfileControllerBaseActionController =
-      ActionController(name: 'ProfileControllerBase', context: context);
+  late final _$photoAtom =
+      Atom(name: 'ProfileControllerBase.photo', context: context);
 
   @override
-  void setPhotoIndex() {
-    final _$actionInfo = _$ProfileControllerBaseActionController.startAction(
-        name: 'ProfileControllerBase.setPhotoIndex');
-    try {
-      return super.setPhotoIndex();
-    } finally {
-      _$ProfileControllerBaseActionController.endAction(_$actionInfo);
-    }
+  String get photo {
+    _$photoAtom.reportRead();
+    return super.photo;
   }
+
+  @override
+  set photo(String value) {
+    _$photoAtom.reportWrite(value, super.photo, () {
+      super.photo = value;
+    });
+  }
+
+  late final _$setPhotoIndexAsyncAction =
+      AsyncAction('ProfileControllerBase.setPhotoIndex', context: context);
+
+  @override
+  Future setPhotoIndex() {
+    return _$setPhotoIndexAsyncAction.run(() => super.setPhotoIndex());
+  }
+
+  late final _$ProfileControllerBaseActionController =
+      ActionController(name: 'ProfileControllerBase', context: context);
 
   @override
   void getTempPhotoIndex(int index) {
@@ -78,6 +91,7 @@ mixin _$ProfileController on ProfileControllerBase, Store {
     return '''
 photoIndex: ${photoIndex},
 tempPhotoIndex: ${tempPhotoIndex},
+photo: ${photo},
 name: ${name}
     ''';
   }

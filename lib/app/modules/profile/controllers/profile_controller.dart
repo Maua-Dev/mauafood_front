@@ -27,13 +27,17 @@ abstract class ProfileControllerBase with Store {
   @observable
   int tempPhotoIndex = 0;
 
+  @observable
+  String photo = profilePictureCoxinha;
+
   @action
-  void setPhotoIndex() async {
+  Future setPhotoIndex() async {
     photoIndex = tempPhotoIndex;
     final user =
         _userController.user!.copyWith(photo: profilePictures[photoIndex]);
     final res = await _updateUser(user);
-    res.fold((l) => print("DEU RUIM"), (r) => print("deu certo"));
+    res.fold((l) => print("DEU RUIM"), (r) => print("funcionou"));
+    photo = user.photo;
   }
 
   @action

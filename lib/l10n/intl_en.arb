@@ -194,5 +194,7 @@
             }
         }
     },
-    "": ""
+    "": "",
+    "profileErrorPictureMessage": "An error ocurred while changing your profile picture",
+    "selectButton": "Select"
 }

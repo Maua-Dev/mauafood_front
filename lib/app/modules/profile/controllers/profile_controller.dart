@@ -21,6 +21,8 @@ abstract class ProfileControllerBase with Store {
 
   ProfileControllerBase(this._userController, this._updateUser);
 
+  var successful = true;
+
   @observable
   int photoIndex = 0;
 
@@ -36,8 +38,12 @@ abstract class ProfileControllerBase with Store {
     final user =
         _userController.user!.copyWith(photo: profilePictures[photoIndex]);
     final res = await _updateUser(user);
-    res.fold((l) => print("DEU RUIM"), (r) => print("funcionou"));
+    res.fold(
+      (r) => successful = true,
+      (l) => successful = false,
+    );
     photo = user.photo;
+    successful = true;
   }
 
   @action

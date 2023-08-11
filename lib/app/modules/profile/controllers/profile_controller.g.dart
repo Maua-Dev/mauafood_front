@@ -68,7 +68,7 @@ mixin _$ProfileController on ProfileControllerBase, Store {
       AsyncAction('ProfileControllerBase.setPhotoIndex', context: context);
 
   @override
-  Future setPhotoIndex() {
+  Future<dynamic> setPhotoIndex() {
     return _$setPhotoIndexAsyncAction.run(() => super.setPhotoIndex());
   }
 

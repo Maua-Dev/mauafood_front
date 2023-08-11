@@ -3,7 +3,9 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mauafood_front/app/shared/helpers/services/s3/assets_s3.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
+import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
+import '../../../../../generated/l10n.dart';
 import '../../controllers/profile_controller.dart';
 
 class ProfilePictureSelectorWidget extends StatelessWidget {
@@ -113,7 +115,17 @@ class ProfilePictureSelectorWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 16.0),
             child: GestureDetector(
-              onTap: () => {controller.setPhotoIndex(), Navigator.pop(context)},
+              onTap: () => {
+                controller.setPhotoIndex(),
+                !controller.successful
+                    ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text(S.of(context).profileErrorPictureMessage,
+                            style: AppTextStyles.h2
+                                .copyWith(color: AppColors.white)),
+                      ))
+                    : null,
+                Navigator.pop(context),
+              },
               child: Container(
                 height: 50,
                 width: ScreenHelper.width(context) * 0.6,
@@ -122,7 +134,7 @@ class ProfilePictureSelectorWidget extends StatelessWidget {
                     color: AppColors.mainBlueColor),
                 child: Center(
                     child: Text(
-                  "Selecionar",
+                  S.of(context).selectButton,
                   style: TextStyle(
                       color: AppColors.backgroundColor2, fontSize: 16),
                 )),

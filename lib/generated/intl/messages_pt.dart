@@ -234,6 +234,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Produto editado com sucesso."),
         "productToEnumSchema": m7,
         "profile": MessageLookupByLibrary.simpleMessage("Perfil"),
+        "profileErrorPictureMessage": MessageLookupByLibrary.simpleMessage(
+            "Ocorreu um erro ao mudar a foto de perfil"),
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recomendações"),
@@ -255,6 +257,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "saveTitle": MessageLookupByLibrary.simpleMessage("Salvar"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Pesquisa"),
         "seeMenuTitle": MessageLookupByLibrary.simpleMessage("Ver cardápio"),
+        "selectButton": MessageLookupByLibrary.simpleMessage("Selecionar"),
         "sendCodeEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "Enviamos um código de confirmação em seu e-mail, digite-o no campo abaixo."),
         "sendTitle": MessageLookupByLibrary.simpleMessage("Enviar"),

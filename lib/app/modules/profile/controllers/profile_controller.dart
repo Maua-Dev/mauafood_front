@@ -1,5 +1,8 @@
+import 'package:mauafood_front/app/modules/user/domain/usecases/update_user.dart';
 import 'package:mauafood_front/app/modules/user/presenter/controllers/user_controller.dart';
 import 'package:mobx/mobx.dart';
+
+import '../../../shared/helpers/services/s3/assets_s3.dart';
 part 'profile_controller.g.dart';
 
 class ProfileController = ProfileControllerBase with _$ProfileController;
@@ -7,7 +10,16 @@ class ProfileController = ProfileControllerBase with _$ProfileController;
 abstract class ProfileControllerBase with Store {
   final UserController _userController;
 
-  ProfileControllerBase(this._userController);
+  final UpdatePhoto _updateUser;
+
+  final profilePictures = [
+    profilePictureCoxinha,
+    profilePictureSoda,
+    profilePicturePotato,
+    profilePictureHamburguer,
+  ];
+
+  ProfileControllerBase(this._userController, this._updateUser);
 
   @observable
   int photoIndex = 0;
@@ -16,8 +28,12 @@ abstract class ProfileControllerBase with Store {
   int tempPhotoIndex = 0;
 
   @action
-  void setPhotoIndex() {
+  void setPhotoIndex() async {
     photoIndex = tempPhotoIndex;
+    final user =
+        _userController.user!.copyWith(photo: profilePictures[photoIndex]);
+    final res = await _updateUser(user);
+    res.fold((l) => print("DEU RUIM"), (r) => print("deu certo"));
   }
 
   @action

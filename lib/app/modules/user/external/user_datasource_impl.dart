@@ -34,4 +34,14 @@ class UserDatasourceImpl implements UserDatasource {
           : throw Exception();
     }
   }
+
+  @override
+  Future<UserModel> updateUser(Map data) async {
+    final res = await _client.post('/update-user', data: data);
+    if (res.statusCode == 200) {
+      return UserModel.fromJson(res.data['user']);
+    } else {
+      throw Exception();
+    }
+  }
 }

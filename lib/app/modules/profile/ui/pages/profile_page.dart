@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mauafood_front/app/modules/profile/controllers/profile_controller.dart';
 import 'package:mauafood_front/app/modules/profile/ui/widgets/profile_options_widget.dart';
 import 'package:mauafood_front/app/modules/profile/ui/widgets/profile_picture_selecter_widget.dart';
-import 'package:mauafood_front/app/shared/helpers/services/s3/assets_s3.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
@@ -65,13 +64,6 @@ class _ProfilePageState extends State<ProfilePage> {
     "favorites/",
     "favorites/",
     "favorites/",
-  ];
-
-  final profilePictures = [
-    profilePictureCoxinha,
-    profilePictureSoda,
-    profilePicturePotato,
-    profilePictureHamburguer,
   ];
 
   @override
@@ -151,8 +143,8 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: Observer(builder: (_) {
                       return CircleAvatar(
                         radius: 32,
-                        backgroundImage:
-                            NetworkImage(profilePictures[store.photoIndex]),
+                        backgroundImage: NetworkImage(
+                            store.profilePictures[store.photoIndex]),
                       );
                     }),
                   ),

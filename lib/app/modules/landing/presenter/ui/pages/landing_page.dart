@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/landing/landing/presenter/navbar/navbar_widget.dart';
+import 'package:mauafood_front/app/modules/landing/presenter/ui/widgets/navbar/navbar_widget.dart';
 import 'package:mauafood_front/app/modules/landing/presenter/controllers/landing_controller.dart';
 
 class LandingPage extends StatefulWidget {
@@ -15,7 +16,6 @@ class _LandingPageState extends State<LandingPage> {
   @override
   void initState() {
     super.initState();
-    Modular.to.navigate('/landing/restaurants/');
   }
 
   @override
@@ -29,7 +29,14 @@ class _LandingPageState extends State<LandingPage> {
           controller: store,
         ),
       )),
-      body: const RouterOutlet(),
+      body: Observer(builder: (context) {
+        if (store.loading) {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        return const RouterOutlet();
+      }),
     );
   }
 }

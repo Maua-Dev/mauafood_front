@@ -28,6 +28,45 @@ mixin _$LandingController on _LandingControllerBase, Store {
   int get index => (_$indexComputed ??= Computed<int>(() => super.index,
           name: '_LandingControllerBase.index'))
       .value;
+  Computed<List<Map<String, dynamic>>>? _$navbarComputed;
+
+  @override
+  List<Map<String, dynamic>> get navbar => (_$navbarComputed ??=
+          Computed<List<Map<String, dynamic>>>(() => super.navbar,
+              name: '_LandingControllerBase.navbar'))
+      .value;
+
+  late final _$loadingAtom =
+      Atom(name: '_LandingControllerBase.loading', context: context);
+
+  @override
+  bool get loading {
+    _$loadingAtom.reportRead();
+    return super.loading;
+  }
+
+  @override
+  set loading(bool value) {
+    _$loadingAtom.reportWrite(value, super.loading, () {
+      super.loading = value;
+    });
+  }
+
+  late final _$userAtom =
+      Atom(name: '_LandingControllerBase.user', context: context);
+
+  @override
+  User? get user {
+    _$userAtom.reportRead();
+    return super.user;
+  }
+
+  @override
+  set user(User? value) {
+    _$userAtom.reportWrite(value, super.user, () {
+      super.user = value;
+    });
+  }
 
   late final _$_selectedIndexAtom =
       Atom(name: '_LandingControllerBase._selectedIndex', context: context);
@@ -62,9 +101,12 @@ mixin _$LandingController on _LandingControllerBase, Store {
   @override
   String toString() {
     return '''
+loading: ${loading},
+user: ${user},
 isUser: ${isUser},
 isEmployee: ${isEmployee},
-index: ${index}
+index: ${index},
+navbar: ${navbar}
     ''';
   }
 }

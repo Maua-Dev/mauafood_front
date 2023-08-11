@@ -113,6 +113,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "biggestPriceTitle":
             MessageLookupByLibrary.simpleMessage("Biggest Price"),
         "cancelationTitle": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "cart": MessageLookupByLibrary.simpleMessage("Cesta"),
         "categoriesTitle": MessageLookupByLibrary.simpleMessage("Categories"),
         "categoryTitle": MessageLookupByLibrary.simpleMessage("Category"),
         "changePasswordTitle":
@@ -181,6 +182,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "havePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Already have a password?"),
+        "help": MessageLookupByLibrary.simpleMessage("Help"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "invalidCodeAlert":
             MessageLookupByLibrary.simpleMessage("Invalid code."),
         "invalidCpfAlert": MessageLookupByLibrary.simpleMessage("Invalid CPF."),
@@ -204,6 +207,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("New password"),
         "noItemsFoundErrorMessage": m2,
         "notificationsOptionsSchema": m3,
+        "orders": MessageLookupByLibrary.simpleMessage("Orders"),
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Your password must contain: \n - One or more uppercase letters \n - One or more lowercase letters \n - One or more numbers \n - One or more special characters\n(#, ?, !, @, \\\$, %, ^, &, *, -) \n - Minimum 8 characters"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Password"),
@@ -226,6 +230,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "productSuccessfullyEditedTitle": MessageLookupByLibrary.simpleMessage(
             "Product successfully edited."),
         "productToEnumSchema": m7,
+        "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recommendations"),

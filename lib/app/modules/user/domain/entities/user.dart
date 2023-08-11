@@ -12,7 +12,7 @@ class User {
       required this.role,
       required this.photo});
 
-  bool get isEmployee => role == 'employee';
+  bool get isEmployee => role == 'OWNER';
   bool get isUser => role == 'USER';
 
   User copyWith({String? name, String? photo}) {

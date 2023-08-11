@@ -52,9 +52,10 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
           elevation: 0,
           automaticallyImplyLeading: false,
           actions: [
-            IconButton(
-                onPressed: controller.logout,
-                icon: const Icon(Icons.logout_outlined))
+            if (controller.isLogged)
+              IconButton(
+                  onPressed: controller.logout,
+                  icon: const Icon(Icons.logout_outlined))
           ],
         ),
         body: Container(

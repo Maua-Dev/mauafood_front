@@ -10,6 +10,6 @@ class User {
       required this.email,
       required this.role});
 
-  bool get isEmployee => role == 'employee';
+  bool get isEmployee => role == 'OWNER';
   bool get isUser => role == 'USER';
 }

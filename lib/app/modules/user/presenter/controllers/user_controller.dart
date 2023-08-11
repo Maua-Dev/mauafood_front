@@ -1,12 +1,17 @@
+import 'package:auth_package/core/auth_store.dart';
+
 import '../../domain/entities/user.dart';
 import '../../domain/usecases/get_user.dart';
 
 class UserController {
   final GetUser _getUser;
+  final AuthStore _authStore;
+  UserController(
+    this._getUser,
+    this._authStore,
+  );
 
-  UserController(this._getUser) {
-    loadUser();
-  }
+  bool get isLogged => _authStore.isLogged;
 
   User? user;
 

@@ -22,7 +22,7 @@ class UserModel extends User {
         name: json['name'],
         email: json['email'],
         role: json['role'],
-        photo: json['photo']);
+        photo: json['photo'] ?? '');
   }
   Map<String, dynamic> toUpdatePhoto() {
     return {'new_photo': photo};

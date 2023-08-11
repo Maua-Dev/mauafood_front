@@ -158,6 +158,10 @@ class _UserMenuPageState extends State<UserMenuPage> {
                             ? IconButton(
                                 onPressed: () {
                                   showModalBottomSheet(
+                                      useRootNavigator: true,
+                                      useSafeArea: true,
+                                      showDragHandle: true,
+                                      isScrollControlled: true,
                                       context: context,
                                       builder: (BuildContext bc) {
                                         return Observer(builder: (_) {

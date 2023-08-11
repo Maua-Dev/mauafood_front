@@ -20,10 +20,10 @@ class EmployeeMenuModule extends Module {
             (i) => GetRestaurantProductUsecase(repository: i())),
         Bind<EmployeeMenuRestaurantController>(
           (i) => EmployeeMenuRestaurantController(
-              i(), RestaurantEnum.cantina_do_moleza, i()),
+              i(), RestaurantEnum.cantina_do_moleza, i(), i()),
         ),
         Bind.factory<ProductFormController>(
-          (i) => ProductFormController(i(), i()),
+          (i) => ProductFormController(i(), i(), i()),
         ),
         Bind<ICreateProductUsecase>(
             (i) => CreateProductUsecase(repository: i())),

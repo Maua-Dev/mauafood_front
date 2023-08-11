@@ -115,8 +115,8 @@ class ProfilePictureSelectorWidget extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 16.0),
             child: GestureDetector(
-              onTap: () => {
-                controller.setPhotoIndex(),
+              onTap: () async => {
+                await controller.setPhotoIndex(),
                 !controller.successful
                     ? ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(S.of(context).profileErrorPictureMessage,

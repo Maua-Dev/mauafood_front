@@ -6,7 +6,7 @@ var baseUrlS3 = EnvironmentConfig.S3_ASSETS_BASE_URL;
 
 var baseLogosGif = '$baseUrlS3/logos/gif';
 
-var baseProfileImages = '$baseUrlS3/Imagens Perfil';
+var baseProfileImages = '$baseUrlS3/profile';
 
 var baseLogosImages = '$baseUrlS3/logos/images';
 

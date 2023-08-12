@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../../../shared/helpers/utils/screen_helper.dart';
-import '../../../../shared/themes/app_colors.dart';
+import '../../../../../shared/helpers/utils/screen_helper.dart';
+import '../../../../../shared/themes/app_colors.dart';
 
 class ProfileOptionsWidget extends StatelessWidget {
   const ProfileOptionsWidget(

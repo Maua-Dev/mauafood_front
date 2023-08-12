@@ -1222,6 +1222,36 @@ class S {
   }
 
   // skipped getter for the '' key
+
+  /// `An error ocurred while changing your profile picture`
+  String get profileErrorPictureMessage {
+    return Intl.message(
+      'An error ocurred while changing your profile picture',
+      name: 'profileErrorPictureMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile picture successfully updated`
+  String get profileSuccessPictureMessage {
+    return Intl.message(
+      'Profile picture successfully updated',
+      name: 'profileSuccessPictureMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select`
+  String get selectButton {
+    return Intl.message(
+      'Select',
+      name: 'selectButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

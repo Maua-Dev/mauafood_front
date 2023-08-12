@@ -236,6 +236,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "profile": MessageLookupByLibrary.simpleMessage("Perfil"),
         "profileErrorPictureMessage": MessageLookupByLibrary.simpleMessage(
             "Ocorreu um erro ao mudar a foto de perfil"),
+        "profileSuccessPictureMessage": MessageLookupByLibrary.simpleMessage(
+            "Foto de perfil atualizado com sucesso"),
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recomendações"),

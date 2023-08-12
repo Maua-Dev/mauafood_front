@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mauafood_front/app/modules/profile/controllers/profile_controller.dart';
-import 'package:mauafood_front/app/modules/profile/ui/widgets/profile_options_widget.dart';
-import 'package:mauafood_front/app/modules/profile/ui/widgets/profile_picture_selecter_widget.dart';
+import 'package:mauafood_front/app/modules/profile/presenter/controllers/profile_controller.dart';
+import 'package:mauafood_front/app/modules/profile/presenter/ui/widgets/profile_options_widget.dart';
+import 'package:mauafood_front/app/modules/profile/presenter/ui/widgets/profile_picture_selecter_widget.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 

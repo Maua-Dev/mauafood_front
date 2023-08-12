@@ -1233,6 +1233,16 @@ class S {
     );
   }
 
+  /// `Profile picture successfully updated`
+  String get profileSuccessPictureMessage {
+    return Intl.message(
+      'Profile picture successfully updated',
+      name: 'profileSuccessPictureMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Select`
   String get selectButton {
     return Intl.message(

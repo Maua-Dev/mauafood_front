@@ -15,7 +15,7 @@ class UserDatasourceImpl implements UserDatasource {
     if (res.statusCode == 201) {
       return UserModel.fromJson(res.data['user']);
     } else {
-      throw Exception();
+      throw Failure(message: 'Error to create user');
     }
   }
 
@@ -26,22 +26,26 @@ class UserDatasourceImpl implements UserDatasource {
       if (res.statusCode == 200) {
         return UserModel.fromJson(res.data['user']);
       } else {
-        throw Exception();
+        throw Failure(message: 'Error to get user');
       }
     } on DioError catch (e) {
       e.response?.statusCode == 404
           ? throw UserNotFound(message: 'User Not Found')
-          : throw Exception();
+          : throw Failure(message: 'Error to get user');
     }
   }
 
   @override
   Future<UserModel> updateUser(Map data) async {
-    final res = await _client.post('/update-user', data: data);
-    if (res.statusCode == 200) {
-      return UserModel.fromJson(res.data['user']);
-    } else {
-      throw Exception();
+    try {
+      final res = await _client.post('/update-user', data: data);
+      if (res.statusCode == 200) {
+        return UserModel.fromJson(res.data['user']);
+      } else {
+        throw Failure(message: 'Error to get user');
+      }
+    } on DioError catch (_) {
+      throw Failure(message: 'Error to update user');
     }
   }
 }

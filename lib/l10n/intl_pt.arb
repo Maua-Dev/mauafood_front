@@ -196,5 +196,6 @@
     "": "",
 
     "profileErrorPictureMessage": "Ocorreu um erro ao mudar a foto de perfil",
+    "profileSuccessPictureMessage": "Foto de perfil atualizado com sucesso",
     "selectButton": "Selecionar"
 }

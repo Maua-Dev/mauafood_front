@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/domain/repositories/menu_repository_interface.dart';
@@ -33,8 +32,8 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getBibaProducts() async {
-    List<Product>? restaurantProducts;
+  Future<Either<Failure, List<ProductModel>>> getBibaProducts() async {
+    List<ProductModel>? restaurantProducts;
     var result = await getAllProducts();
 
     return result.fold((l) {
@@ -51,8 +50,8 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getHoraHProducts() async {
-    List<Product>? restaurantProducts;
+  Future<Either<Failure, List<ProductModel>>> getHoraHProducts() async {
+    List<ProductModel>? restaurantProducts;
     var result = await getAllProducts();
 
     return result.fold((l) {
@@ -68,8 +67,8 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getMolezaProducts() async {
-    List<Product>? restaurantProducts;
+  Future<Either<Failure, List<ProductModel>>> getMolezaProducts() async {
+    List<ProductModel>? restaurantProducts;
     var result = await getAllProducts();
 
     return result.fold((l) {

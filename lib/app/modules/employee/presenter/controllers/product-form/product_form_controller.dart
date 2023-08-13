@@ -190,7 +190,6 @@ abstract class ProductFormControllerBase with Store {
           _employeeMenuRestaurantController.listAllProduct.indexOf(element);
       _employeeMenuRestaurantController.listAllProduct[index] = product;
       _employeeMenuRestaurantController.filterProduct();
-
       return ProductFormSuccessState(product: product);
     }));
   }

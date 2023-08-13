@@ -48,7 +48,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: FittedBox(
                           fit: BoxFit.fill,
-                          child: product.photo != ''
+                          child: product.photo != '' && product.photo != null
                               ? Image.network(
                                   product.photo!,
                                   loadingBuilder: (BuildContext context,

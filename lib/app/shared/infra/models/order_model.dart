@@ -7,5 +7,6 @@ class OrderModel extends Order {
     required super.description,
     required super.status,
     required super.hour,
+    required super.products,
   });
 }

@@ -6,10 +6,12 @@ class Order {
   final String description;
   final StatusEnum status;
   final String hour;
+  final List<String> products;
   Order(
       {required this.id,
       required this.totalPrice,
       required this.description,
       required this.status,
-      required this.hour});
+      required this.hour,
+      required this.products});
 }

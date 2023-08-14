@@ -30,7 +30,7 @@ abstract class _LandingControllerBase with Store {
   @computed
   bool get isUser => user?.isUser ?? true;
   @computed
-  bool get isEmployee => user?.isEmployee ?? false;
+  bool get isEmployee => true;
 
   @observable
   User? user;
@@ -74,7 +74,7 @@ abstract class _LandingControllerBase with Store {
     {
       'icon': FontAwesomeIcons.barsStaggered,
       'title': S.current.orders,
-      'route': '/landing/orders/',
+      'route': '/landing/employee/orders',
     },
     {
       'icon': Icons.person_outline_outlined,

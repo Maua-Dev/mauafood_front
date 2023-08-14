@@ -1,7 +1,9 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/employee/presenter/controllers/orders/orders_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/product-form/product_form_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/ui/pages/employee_menu_page.dart';
+import 'package:mauafood_front/app/modules/employee/presenter/ui/pages/orders_page.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart';
@@ -22,6 +24,9 @@ class EmployeeMenuModule extends Module {
           (i) => EmployeeMenuRestaurantController(
               i(), RestaurantEnum.cantina_do_moleza, i()),
         ),
+        Bind<OrdersController>(
+          (i) => OrdersController(),
+        ),
         Bind.factory<ProductFormController>(
           (i) => ProductFormController(i(), i()),
         ),
@@ -41,6 +46,7 @@ class EmployeeMenuModule extends Module {
           Modular.initialRoute,
           child: (context, args) => const EmployeeMenuPage(
               restaurant: RestaurantEnum.cantina_do_moleza),
-        )
+        ),
+        ChildRoute('/orders/', child: (_, args) => OrdersPage())
       ];
 }

@@ -51,7 +51,6 @@ class FilterSheetWidget extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const SizedBox(height: 8),
           Align(
               alignment: Alignment.centerLeft,
               child: Padding(

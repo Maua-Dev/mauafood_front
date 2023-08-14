@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
 import '../generated/l10n.dart';
+import 'shared/helpers/services/snackbar/global_snackbar.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -14,6 +15,7 @@ class AppWidget extends StatelessWidget {
     Modular.setInitialRoute('/');
     return MaterialApp.router(
       title: 'Mauá Food',
+      scaffoldMessengerKey: rootScaffoldMessengerKey,
       localizationsDelegates: const [
         S.delegate,
         GlobalMaterialLocalizations.delegate,

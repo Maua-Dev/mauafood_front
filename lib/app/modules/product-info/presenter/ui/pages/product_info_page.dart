@@ -37,7 +37,7 @@ class ProductInfoPage extends StatelessWidget {
             child: SizedBox.fromSize(
               size: Size.fromHeight(MediaQuery.of(context).size.height / 4),
               child: CachedNetworkImage(
-                imageUrl: productInfo.photo,
+                imageUrl: productInfo.photo!,
                 placeholder: (context, url) => const Center(
                   child: CircularProgressIndicator(),
                 ),

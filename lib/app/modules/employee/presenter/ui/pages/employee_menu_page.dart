@@ -40,6 +40,10 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
         backgroundColor: AppColors.mainBlueColor,
         elevation: 0,
         automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+              onPressed: store.logout, icon: const Icon(Icons.logout_outlined))
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -124,6 +128,10 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                           ? IconButton(
                               onPressed: () {
                                 showModalBottomSheet(
+                                    useRootNavigator: true,
+                                    useSafeArea: true,
+                                    showDragHandle: true,
+                                    isScrollControlled: true,
                                     context: context,
                                     builder: (BuildContext bc) {
                                       return Observer(builder: (_) {
@@ -176,35 +184,37 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                             child: ListView.builder(
                               itemCount: state.listProduct.length,
                               itemBuilder: (context, index) {
-                                return Stack(
-                                    alignment: Alignment.center,
-                                    children: [
-                                      productCardState
+                                return Observer(builder: (_) {
+                                  return Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        productCardState
+                                                    is ProductCardEmployeeLoadingState &&
+                                                productCardState.index == index
+                                            ? const Center(
+                                                child:
+                                                    CircularProgressIndicator())
+                                            : const SizedBox.shrink(),
+                                        AbsorbPointer(
+                                          absorbing: productCardState
                                                   is ProductCardEmployeeLoadingState &&
-                                              productCardState.index == index
-                                          ? const Center(
-                                              child:
-                                                  CircularProgressIndicator())
-                                          : const SizedBox.shrink(),
-                                      AbsorbPointer(
-                                        absorbing: productCardState
-                                                is ProductCardEmployeeLoadingState &&
-                                            productCardState.index == index,
-                                        child: Opacity(
-                                          opacity: productCardState
-                                                      is ProductCardEmployeeLoadingState &&
-                                                  productCardState.index ==
-                                                      index
-                                              ? 0.5
-                                              : 1,
-                                          child: ProductCardEmployeeWidget(
-                                            index: index,
-                                            product: state.listProduct[index],
-                                            restaurant: widget.restaurant,
+                                              productCardState.index == index,
+                                          child: Opacity(
+                                            opacity: productCardState
+                                                        is ProductCardEmployeeLoadingState &&
+                                                    productCardState.index ==
+                                                        index
+                                                ? 0.5
+                                                : 1,
+                                            child: ProductCardEmployeeWidget(
+                                              index: index,
+                                              product: state.listProduct[index],
+                                              restaurant: widget.restaurant,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ]);
+                                      ]);
+                                });
                               },
                             ),
                           ))

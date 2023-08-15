@@ -48,7 +48,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: FittedBox(
                           fit: BoxFit.fill,
-                          child: product.photo != ''
+                          child: product.photo != '' && product.photo != null
                               ? Image.network(
                                   product.photo!,
                                   loadingBuilder: (BuildContext context,
@@ -137,6 +137,8 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                                     is ProductCardEmployeeFailureState) {
                                                   ScaffoldMessenger.of(context)
                                                       .showSnackBar(SnackBar(
+                                                    behavior: SnackBarBehavior
+                                                        .floating,
                                                     backgroundColor:
                                                         AppColors.errorColor,
                                                     content: Text(
@@ -181,7 +183,8 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                             style: AppTextStyles.h1.copyWith(
                                 fontSize: 20, color: AppColors.mainBlueColor),
                           ),
-                          product.description == ''
+                          product.description == '' ||
+                                  product.description == null
                               ? const SizedBox(
                                   height: 16,
                                 )

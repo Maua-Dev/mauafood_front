@@ -22,4 +22,5 @@ class Product {
     this.prepareTime,
     required this.type,
   });
+  
 }

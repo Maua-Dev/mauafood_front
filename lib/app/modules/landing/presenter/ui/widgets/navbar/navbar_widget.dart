@@ -27,12 +27,12 @@ class NavBarWidget extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Observer(builder: (context) {
           final navbar = controller.navbar;
-          final navbarLenght = navbar.length;
+          final navbarLenght = navbar.length;                                     
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: List.generate(
                 navbarLenght,
-                (index) => NavBarComponentWidget(
+                (index) => NavBarComponentWidget(                         
                       icon: navbar[index]['icon'],
                       index: index,
                       onSelect: controller.selectIndex,

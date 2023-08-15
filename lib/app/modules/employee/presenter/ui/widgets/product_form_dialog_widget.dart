@@ -235,6 +235,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                             children: [
                               Expanded(
                                 child: TextFieldWidget(
+                                  maxLenght: 12,
                                   title: S.of(context).priceTitle,
                                   keyboardType: TextInputType.number,
                                   onChanged: (value) => productFormController
@@ -470,6 +471,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                 context)
                                                             .showSnackBar(
                                                                 SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
                                                           backgroundColor:
                                                               AppColors
                                                                   .mainBlueColor,
@@ -494,6 +498,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                 context)
                                                             .showSnackBar(
                                                                 SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
                                                           backgroundColor:
                                                               AppColors
                                                                   .errorColor,

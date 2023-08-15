@@ -6,8 +6,10 @@ part 'orders_controller.g.dart';
 class OrdersController = OrdersControllerBase with _$OrdersController;
 
 abstract class OrdersControllerBase with Store {
-  List<OrderModel> ordersList = [
+  @observable
+  List<OrderModel> ordersList = <OrderModel>[
     OrderModel(
+        isExpanded: Observable(false),
         id: '1',
         totalPrice: 55,
         description: "Bauru sem tomate com pepino e maionese verde",
@@ -19,6 +21,7 @@ abstract class OrdersControllerBase with Store {
         ],
         hour: "10:20"),
     OrderModel(
+        isExpanded: Observable(false),
         id: '2',
         totalPrice: 10,
         description: "",
@@ -28,6 +31,7 @@ abstract class OrdersControllerBase with Store {
         ],
         hour: "10:30"),
     OrderModel(
+        isExpanded: Observable(false),
         id: '3',
         totalPrice: 15,
         description: "",
@@ -35,6 +39,7 @@ abstract class OrdersControllerBase with Store {
         products: ["Bife acebolado", "Coxinha"],
         hour: "9:30"),
     OrderModel(
+        isExpanded: Observable(false),
         id: '4',
         totalPrice: 115,
         description: "Calabresa e um vasco",
@@ -42,4 +47,10 @@ abstract class OrdersControllerBase with Store {
         products: ["Calabresão", "Vasco"],
         hour: "9:00"),
   ];
+
+  @action
+  void setIsPanelExpanded(int index) {
+    ordersList[index].isExpanded!.value = !ordersList[index].isExpanded!.value;
+    ordersList[index] = ordersList[index];
+  }
 }

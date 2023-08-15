@@ -29,11 +29,11 @@ mixin _$OrdersController on OrdersControllerBase, Store {
       ActionController(name: 'OrdersControllerBase', context: context);
 
   @override
-  void setIsPanelExpanded(int index) {
+  void setIsCollapsed(int index) {
     final _$actionInfo = _$OrdersControllerBaseActionController.startAction(
-        name: 'OrdersControllerBase.setIsPanelExpanded');
+        name: 'OrdersControllerBase.setIsCollapsed');
     try {
-      return super.setIsPanelExpanded(index);
+      return super.setIsCollapsed(index);
     } finally {
       _$OrdersControllerBaseActionController.endAction(_$actionInfo);
     }

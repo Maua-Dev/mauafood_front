@@ -9,7 +9,8 @@ abstract class OrdersControllerBase with Store {
   @observable
   List<OrderModel> ordersList = <OrderModel>[
     OrderModel(
-        isExpanded: Observable(false),
+        isCollapsedState: Observable(true),
+        owner: "Brenas",
         id: '1',
         totalPrice: 55,
         description: "Bauru sem tomate com pepino e maionese verde",
@@ -21,17 +22,17 @@ abstract class OrdersControllerBase with Store {
         ],
         hour: "10:20"),
     OrderModel(
-        isExpanded: Observable(false),
+        isCollapsedState: Observable(true),
+        owner: "Vitor Soller",
         id: '2',
         totalPrice: 10,
         description: "",
         status: StatusEnum.IN_PREPARATION,
-        products: [
-          "Cachorro Quente",
-        ],
+        products: ["Cachorro Quente"],
         hour: "10:30"),
     OrderModel(
-        isExpanded: Observable(false),
+        isCollapsedState: Observable(true),
+        owner: "Carol Mota",
         id: '3',
         totalPrice: 15,
         description: "",
@@ -39,7 +40,8 @@ abstract class OrdersControllerBase with Store {
         products: ["Bife acebolado", "Coxinha"],
         hour: "9:30"),
     OrderModel(
-        isExpanded: Observable(false),
+        isCollapsedState: Observable(true),
+        owner: "Enrico Santarelli",
         id: '4',
         totalPrice: 115,
         description: "Calabresa e um vasco",
@@ -49,8 +51,8 @@ abstract class OrdersControllerBase with Store {
   ];
 
   @action
-  void setIsPanelExpanded(int index) {
-    ordersList[index].isExpanded!.value = !ordersList[index].isExpanded!.value;
-    ordersList[index] = ordersList[index];
+  void setIsCollapsed(int index) {
+    ordersList[index].isCollapsedState!.value =
+        !ordersList[index].isCollapsedState!.value;
   }
 }

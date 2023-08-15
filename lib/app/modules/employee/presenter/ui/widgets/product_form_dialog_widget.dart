@@ -62,8 +62,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
         productFormController
             .setProductDescription(widget.product!.description!);
       }
-
-      productFormController.setProductPhoto(widget.product!.photo);
+      if (widget.product!.photo != null) {
+        productFormController.setProductPhoto(widget.product!.photo);
+      }
     }
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -125,7 +126,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                         productFormController
                                                                 .uploadedMobilePhoto ==
                                                             null &&
-                                                        widget.product == null)
+                                                        widget.product?.photo ==
+                                                            null)
                                                     ? Column(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment

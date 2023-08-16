@@ -237,7 +237,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                             children: [
                               Expanded(
                                 child: TextFieldWidget(
-                                  maxLenght: 10,
+                                  maxLenght: 9,
                                   title: S.of(context).priceTitle,
                                   keyboardType: TextInputType.number,
                                   onChanged: (value) => productFormController

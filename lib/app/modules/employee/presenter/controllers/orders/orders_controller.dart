@@ -9,7 +9,6 @@ abstract class OrdersControllerBase with Store {
   @observable
   List<OrderModel> ordersList = <OrderModel>[
     OrderModel(
-        isCollapsedState: Observable(true),
         owner: "Brenas",
         id: '1',
         totalPrice: 55,
@@ -22,7 +21,6 @@ abstract class OrdersControllerBase with Store {
         ],
         hour: "10:20"),
     OrderModel(
-        isCollapsedState: Observable(true),
         owner: "Vitor Soller",
         id: '2',
         totalPrice: 10,
@@ -31,7 +29,6 @@ abstract class OrdersControllerBase with Store {
         products: ["Cachorro Quente"],
         hour: "10:30"),
     OrderModel(
-        isCollapsedState: Observable(true),
         owner: "Carol Mota",
         id: '3',
         totalPrice: 15,
@@ -40,7 +37,42 @@ abstract class OrdersControllerBase with Store {
         products: ["Bife acebolado", "Coxinha"],
         hour: "9:30"),
     OrderModel(
-        isCollapsedState: Observable(true),
+        owner: "Enrico Santarelli",
+        id: '4',
+        totalPrice: 115,
+        description: "Calabresa e um vasco",
+        status: StatusEnum.PENDING,
+        products: ["Calabresão", "Vasco"],
+        hour: "9:00"),
+    OrderModel(
+        owner: "Brenas",
+        id: '1',
+        totalPrice: 55,
+        description: "Bauru sem tomate com pepino e maionese verde",
+        status: StatusEnum.READY,
+        products: [
+          "Bauru",
+          "Pepino",
+          "Maionese Verde",
+        ],
+        hour: "10:20"),
+    OrderModel(
+        owner: "Vitor Soller",
+        id: '2',
+        totalPrice: 10,
+        description: "",
+        status: StatusEnum.IN_PREPARATION,
+        products: ["Cachorro Quente"],
+        hour: "10:30"),
+    OrderModel(
+        owner: "Carol Mota",
+        id: '3',
+        totalPrice: 15,
+        description: "",
+        status: StatusEnum.IN_PREPARATION,
+        products: ["Bife acebolado", "Coxinha"],
+        hour: "9:30"),
+    OrderModel(
         owner: "Enrico Santarelli",
         id: '4',
         totalPrice: 115,
@@ -49,10 +81,4 @@ abstract class OrdersControllerBase with Store {
         products: ["Calabresão", "Vasco"],
         hour: "9:00"),
   ];
-
-  @action
-  void setIsCollapsed(int index) {
-    ordersList[index].isCollapsedState!.value =
-        !ordersList[index].isCollapsedState!.value;
-  }
 }

@@ -138,7 +138,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                                   ScaffoldMessenger.of(context)
                                                       .showSnackBar(SnackBar(
                                                     backgroundColor:
-                                                        AppColors.errorColor,
+                                                        AppColors.redColor,
                                                     content: Text(
                                                         state.failure.message,
                                                         style: AppTextStyles.h2

@@ -7,5 +7,7 @@ class AppColors {
   static Color backgroundColor2 = const Color(0xFFF6F6F8);
   static Color letterColor = const Color(0xFF000000);
   static Color letterThinColor = const Color(0xFF9C9C9C);
-  static Color errorColor = const Color(0xFFE83F5B);
+  static Color redColor = const Color(0xFFEE1D5C);
+  static Color yellowColor = const Color(0xFFEED91D);
+  static Color greenColor = const Color(0xFF71D64D);
 }

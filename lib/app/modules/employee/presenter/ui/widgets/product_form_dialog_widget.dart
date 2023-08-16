@@ -496,7 +496,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                 SnackBar(
                                                           backgroundColor:
                                                               AppColors
-                                                                  .errorColor,
+                                                                  .redColor,
                                                           content: Text(
                                                               state.failure
                                                                   .message,
@@ -546,7 +546,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                 SnackBar(
                                                           backgroundColor:
                                                               AppColors
-                                                                  .errorColor,
+                                                                  .redColor,
                                                           content: Text(
                                                               state.failure
                                                                   .message,

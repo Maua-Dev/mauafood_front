@@ -25,20 +25,6 @@ mixin _$OrdersController on OrdersControllerBase, Store {
     });
   }
 
-  late final _$OrdersControllerBaseActionController =
-      ActionController(name: 'OrdersControllerBase', context: context);
-
-  @override
-  void setIsCollapsed(int index) {
-    final _$actionInfo = _$OrdersControllerBaseActionController.startAction(
-        name: 'OrdersControllerBase.setIsCollapsed');
-    try {
-      return super.setIsCollapsed(index);
-    } finally {
-      _$OrdersControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
   @override
   String toString() {
     return '''

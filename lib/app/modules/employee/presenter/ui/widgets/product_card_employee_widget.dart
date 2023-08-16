@@ -112,7 +112,6 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                     size: 24,
                                   )),
                               Observer(builder: (_) {
-                                var state = menuController.productCardState;
                                 return IconButton(
                                     onPressed: () {
                                       showDialog(
@@ -129,30 +128,39 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                                   S.of(context).deleteTitle,
                                               onConfirmation: () {
                                                 Modular.to.pop();
-                                                menuController.deleteProduct(
-                                                    restaurant,
-                                                    product.id!,
-                                                    index);
-                                                if (state
-                                                    is ProductCardEmployeeFailureState) {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(SnackBar(
-                                                    behavior: SnackBarBehavior
-                                                        .floating,
-                                                    backgroundColor:
-                                                        AppColors.errorColor,
-                                                    content: Text(
-                                                        state.failure.message,
-                                                        style: AppTextStyles.h2
-                                                            .copyWith(
-                                                                color: AppColors
-                                                                    .white)),
-                                                  ));
+                                                menuController
+                                                    .deleteProduct(restaurant,
+                                                        product.id!, index)
+                                                    .then((value) {
+                                                  var state = menuController
+                                                      .productCardState;
+                                                  if (state
+                                                      is ProductCardEmployeeFailureState) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor:
+                                                          AppColors.errorColor,
+                                                      content: Text(
+                                                          state.failure.message,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .white)),
+                                                    ));
+                                                  }
                                                   if (state
                                                       is ProductCardEmployeeSuccessState) {
                                                     ScaffoldMessenger.of(
                                                             context)
                                                         .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor: AppColors
+                                                          .mainBlueColor,
                                                       content: Text(
                                                           S
                                                               .of(context)
@@ -164,7 +172,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                                                       .white)),
                                                     ));
                                                   }
-                                                }
+                                                });
                                               },
                                             );
                                           });

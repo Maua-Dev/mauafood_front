@@ -492,10 +492,6 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                       if (productFormController
                                                               .state
                                                           is ProductFormFailureState) {
-                                                        var state =
-                                                            productFormController
-                                                                    .state
-                                                                as ProductFormFailureState;
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
@@ -505,10 +501,10 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                   .floating,
                                                           backgroundColor:
                                                               AppColors
-                                                                  .errorColor,
+                                                                  .mainBlueColor,
                                                           content: Text(
-                                                              state.failure
-                                                                  .message,
+                                                              widget
+                                                                  .snackBarText,
                                                               style: AppTextStyles
                                                                   .h2
                                                                   .copyWith(
@@ -529,6 +525,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                 context)
                                                             .showSnackBar(
                                                                 SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
                                                           backgroundColor:
                                                               AppColors
                                                                   .mainBlueColor,
@@ -553,6 +552,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                 context)
                                                             .showSnackBar(
                                                                 SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
                                                           backgroundColor:
                                                               AppColors
                                                                   .errorColor,

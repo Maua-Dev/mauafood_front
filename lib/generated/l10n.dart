@@ -556,6 +556,16 @@ class S {
     );
   }
 
+  /// `Without description`
+  String get withoutDescriptionTitle {
+    return Intl.message(
+      'Without description',
+      name: 'withoutDescriptionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Required field.`
   String get requiredFieldAlert {
     return Intl.message(
@@ -981,6 +991,24 @@ class S {
       name: 'productPrepareTimeMinutes',
       desc: '',
       args: [placeholders, prepareTime],
+    );
+  }
+
+  /// `{status, select, PENDING{Pending} IN_PREPARATION{In preparation} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}`
+  String statusNameSchema(Object status) {
+    return Intl.select(
+      status,
+      {
+        'PENDING': 'Pending',
+        'IN_PREPARATION': 'In preparation',
+        'READY': 'Ready',
+        'CANCELED': 'Canceled',
+        'ALL': 'All',
+        'other': 'Others',
+      },
+      name: 'statusNameSchema',
+      desc: '',
+      args: [status],
     );
   }
 

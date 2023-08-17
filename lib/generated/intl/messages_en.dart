@@ -102,6 +102,15 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': '',
           })}";
 
+  static String m12(status) => "${Intl.select(status, {
+            'PENDING': 'Pending',
+            'IN_PREPARATION': 'In preparation',
+            'READY': 'Ready',
+            'CANCELED': 'Canceled',
+            'ALL': 'All',
+            'other': 'Others',
+          })}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appAcceptTerms": MessageLookupByLibrary.simpleMessage(
@@ -259,6 +268,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendCodeEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "We sent a confirmation code to your email, enter it in the field below."),
         "sendTitle": MessageLookupByLibrary.simpleMessage("Send"),
+        "statusNameSchema": m12,
         "successChangePassword": MessageLookupByLibrary.simpleMessage(
             "Password changed successfully!"),
         "successConfirmEmail":
@@ -270,6 +280,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Make sure you typed email correctly."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure you enter email and password."),
-        "understoodTitle": MessageLookupByLibrary.simpleMessage("Understood!")
+        "understoodTitle": MessageLookupByLibrary.simpleMessage("Understood!"),
+        "withoutDescriptionTitle":
+            MessageLookupByLibrary.simpleMessage("Without description")
       };
 }

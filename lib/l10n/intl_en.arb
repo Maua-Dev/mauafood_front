@@ -59,6 +59,7 @@
     "dataStorageTitle": "Data storage",
     "dataStorageAlertTitle": "If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it.",
     "closeTitle": "Close",
+    "withoutDescriptionTitle": "Without description",
 
     "requiredFieldAlert": "Required field.",
     "invalidEmailAlert": "Invalid email.",
@@ -131,6 +132,8 @@
             }
         }
     },
+
+    "statusNameSchema": "{status, select, PENDING{Pending} IN_PREPARATION{In preparation} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}",
 
 
 

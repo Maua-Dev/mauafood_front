@@ -134,32 +134,26 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                                     isScrollControlled: true,
                                     context: context,
                                     builder: (BuildContext bc) {
-                                      return Observer(builder: (_) {
-                                        return FilterSheetWidget(
-                                            setIndex: store.setIndex,
-                                            productIndex: store.index,
-                                            setProductType:
-                                                store.setProductType,
-                                            listAllProduct:
-                                                store.listAllProduct,
-                                            filterClean: store.cleanFilter,
-                                            isMaxPriceSearch:
-                                                store.isMaxPriceSearch,
-                                            isMinPriceSearch:
-                                                store.isMinPriceSearch,
-                                            setIsMaxPriceSearch:
-                                                store.setIsMaxPriceSearch,
-                                            setIsMinPriceSearch:
-                                                store.setIsMinPriceSearch,
-                                            setRangeValues:
-                                                store.setRangeValues,
-                                            rangeValues: store.rangeValues!,
-                                            maxValue: store.listAllProduct
-                                                .map((e) => e.price)
-                                                .reduce(
-                                                    (a, b) => a > b ? a : b),
-                                            filterProduct: store.filterProduct);
-                                      });
+                                      return FilterSheetWidget(
+                                          setIndex: store.setIndex,
+                                          productIndex: store.index,
+                                          setProductType: store.setProductType,
+                                          listAllProduct: store.listAllProduct,
+                                          filterClean: store.cleanFilter,
+                                          isMaxPriceSearch:
+                                              store.isMaxPriceSearch,
+                                          isMinPriceSearch:
+                                              store.isMinPriceSearch,
+                                          setIsMaxPriceSearch:
+                                              store.setIsMaxPriceSearch,
+                                          setIsMinPriceSearch:
+                                              store.setIsMinPriceSearch,
+                                          setRangeValues: store.setRangeValues,
+                                          rangeValues: store.rangeValues!,
+                                          maxValue: store.listAllProduct
+                                              .map((e) => e.price)
+                                              .reduce((a, b) => a > b ? a : b),
+                                          filterProduct: store.filterProduct);
                                     });
                               },
                               icon: const Icon(Icons.filter_alt))
@@ -184,37 +178,35 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                             child: ListView.builder(
                               itemCount: state.listProduct.length,
                               itemBuilder: (context, index) {
-                                return Observer(builder: (_) {
-                                  return Stack(
-                                      alignment: Alignment.center,
-                                      children: [
-                                        productCardState
-                                                    is ProductCardEmployeeLoadingState &&
-                                                productCardState.index == index
-                                            ? const Center(
-                                                child:
-                                                    CircularProgressIndicator())
-                                            : const SizedBox.shrink(),
-                                        AbsorbPointer(
-                                          absorbing: productCardState
+                                return Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      productCardState
                                                   is ProductCardEmployeeLoadingState &&
-                                              productCardState.index == index,
-                                          child: Opacity(
-                                            opacity: productCardState
-                                                        is ProductCardEmployeeLoadingState &&
-                                                    productCardState.index ==
-                                                        index
-                                                ? 0.5
-                                                : 1,
-                                            child: ProductCardEmployeeWidget(
-                                              index: index,
-                                              product: state.listProduct[index],
-                                              restaurant: widget.restaurant,
-                                            ),
+                                              productCardState.index == index
+                                          ? const Center(
+                                              child:
+                                                  CircularProgressIndicator())
+                                          : const SizedBox.shrink(),
+                                      AbsorbPointer(
+                                        absorbing: productCardState
+                                                is ProductCardEmployeeLoadingState &&
+                                            productCardState.index == index,
+                                        child: Opacity(
+                                          opacity: productCardState
+                                                      is ProductCardEmployeeLoadingState &&
+                                                  productCardState.index ==
+                                                      index
+                                              ? 0.5
+                                              : 1,
+                                          child: ProductCardEmployeeWidget(
+                                            index: index,
+                                            product: state.listProduct[index],
+                                            restaurant: widget.restaurant,
                                           ),
                                         ),
-                                      ]);
-                                });
+                                      ),
+                                    ]);
                               },
                             ),
                           ))

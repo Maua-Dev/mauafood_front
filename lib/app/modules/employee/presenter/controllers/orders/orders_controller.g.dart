@@ -73,6 +73,55 @@ mixin _$OrdersController on OrdersControllerBase, Store {
     });
   }
 
+  late final _$reasonIndexAtom =
+      Atom(name: 'OrdersControllerBase.reasonIndex', context: context);
+
+  @override
+  int get reasonIndex {
+    _$reasonIndexAtom.reportRead();
+    return super.reasonIndex;
+  }
+
+  @override
+  set reasonIndex(int value) {
+    _$reasonIndexAtom.reportWrite(value, super.reasonIndex, () {
+      super.reasonIndex = value;
+    });
+  }
+
+  late final _$reasonDescriptionAtom =
+      Atom(name: 'OrdersControllerBase.reasonDescription', context: context);
+
+  @override
+  String get reasonDescription {
+    _$reasonDescriptionAtom.reportRead();
+    return super.reasonDescription;
+  }
+
+  @override
+  set reasonDescription(String value) {
+    _$reasonDescriptionAtom.reportWrite(value, super.reasonDescription, () {
+      super.reasonDescription = value;
+    });
+  }
+
+  late final _$isMissingDescriptionAtom =
+      Atom(name: 'OrdersControllerBase.isMissingDescription', context: context);
+
+  @override
+  bool get isMissingDescription {
+    _$isMissingDescriptionAtom.reportRead();
+    return super.isMissingDescription;
+  }
+
+  @override
+  set isMissingDescription(bool value) {
+    _$isMissingDescriptionAtom.reportWrite(value, super.isMissingDescription,
+        () {
+      super.isMissingDescription = value;
+    });
+  }
+
   late final _$OrdersControllerBaseActionController =
       ActionController(name: 'OrdersControllerBase', context: context);
 
@@ -121,12 +170,48 @@ mixin _$OrdersController on OrdersControllerBase, Store {
   }
 
   @override
+  void setReasonIndex(int value) {
+    final _$actionInfo = _$OrdersControllerBaseActionController.startAction(
+        name: 'OrdersControllerBase.setReasonIndex');
+    try {
+      return super.setReasonIndex(value);
+    } finally {
+      _$OrdersControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setReasonDescription(String value) {
+    final _$actionInfo = _$OrdersControllerBaseActionController.startAction(
+        name: 'OrdersControllerBase.setReasonDescription');
+    try {
+      return super.setReasonDescription(value);
+    } finally {
+      _$OrdersControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  String? validateReasonDescription(String? value) {
+    final _$actionInfo = _$OrdersControllerBaseActionController.startAction(
+        name: 'OrdersControllerBase.validateReasonDescription');
+    try {
+      return super.validateReasonDescription(value);
+    } finally {
+      _$OrdersControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 state: ${state},
 ordersList: ${ordersList},
 statusFiltered: ${statusFiltered},
-statusIndex: ${statusIndex}
+statusIndex: ${statusIndex},
+reasonIndex: ${reasonIndex},
+reasonDescription: ${reasonDescription},
+isMissingDescription: ${isMissingDescription}
     ''';
   }
 }

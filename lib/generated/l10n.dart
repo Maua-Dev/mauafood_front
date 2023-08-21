@@ -1122,6 +1122,86 @@ class S {
     );
   }
 
+  /// `Refuse order`
+  String get refuseOrder {
+    return Intl.message(
+      'Refuse order',
+      name: 'refuseOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upon clicking “OK” the request will be declined and removed from the control list.`
+  String get refuseOrderAlert {
+    return Intl.message(
+      'Upon clicking “OK” the request will be declined and removed from the control list.',
+      name: 'refuseOrderAlert',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Others`
+  String get othersTitle {
+    return Intl.message(
+      'Others',
+      name: 'othersTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lack of input`
+  String get lackOfInputTitle {
+    return Intl.message(
+      'Lack of input',
+      name: 'lackOfInputTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Closed`
+  String get closedTitle {
+    return Intl.message(
+      'Closed',
+      name: 'closedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Overload`
+  String get overloadTitle {
+    return Intl.message(
+      'Overload',
+      name: 'overloadTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go back`
+  String get goBackTitle {
+    return Intl.message(
+      'Go back',
+      name: 'goBackTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type what happened here`
+  String get whatHappenedTitle {
+    return Intl.message(
+      'Type what happened here',
+      name: 'whatHappenedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Something went wrong!`
   String get errorGeneric {
     return Intl.message(

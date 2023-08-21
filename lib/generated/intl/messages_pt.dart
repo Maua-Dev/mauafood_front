@@ -132,6 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cleanFilterTitle":
             MessageLookupByLibrary.simpleMessage("Limpar filtro"),
         "closeTitle": MessageLookupByLibrary.simpleMessage("Fechar"),
+        "closedTitle": MessageLookupByLibrary.simpleMessage("Fechado"),
         "codeErrorAlert":
             MessageLookupByLibrary.simpleMessage("Erro com código."),
         "codeTitle": MessageLookupByLibrary.simpleMessage("Código"),
@@ -189,6 +190,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotPasswordTitle":
             MessageLookupByLibrary.simpleMessage("Esqueceu a senha?"),
         "fullNameTitle": MessageLookupByLibrary.simpleMessage("Nome Completo"),
+        "goBackTitle": MessageLookupByLibrary.simpleMessage("Voltar"),
         "haveAccountTitle":
             MessageLookupByLibrary.simpleMessage("Já tem uma conta?"),
         "havePasswordTitle":
@@ -208,6 +210,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelMessage": MessageLookupByLibrary.simpleMessage("Mensagem"),
         "labelName": MessageLookupByLibrary.simpleMessage("Nome Completo"),
         "labelSend": MessageLookupByLibrary.simpleMessage("Enviar agora"),
+        "lackOfInputTitle":
+            MessageLookupByLibrary.simpleMessage("Falta de insumo"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "lowestPriceTitle": MessageLookupByLibrary.simpleMessage("Menor Preço"),
         "messageSentSuccessfully":
@@ -218,6 +222,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "noItemsFoundErrorMessage": m2,
         "notificationsOptionsSchema": m3,
         "orders": MessageLookupByLibrary.simpleMessage("Pedidos"),
+        "othersTitle": MessageLookupByLibrary.simpleMessage("Outros"),
+        "overloadTitle": MessageLookupByLibrary.simpleMessage("Sobrecarga"),
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \\\$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Senha"),
@@ -252,6 +258,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Recomendações"),
         "recommendedTitle":
             MessageLookupByLibrary.simpleMessage("Outras Opções"),
+        "refuseOrder": MessageLookupByLibrary.simpleMessage("Recusar pedido"),
+        "refuseOrderAlert": MessageLookupByLibrary.simpleMessage(
+            "Ao clicar em “OK” o pedido será recusado e removido da lista de controle."),
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "Para completar seu cadastro enviamos um e-mail com um código, insira-o no campo abaixo."),
         "registerTitle": MessageLookupByLibrary.simpleMessage("Cadastrar"),
@@ -286,6 +295,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se que digitou e-mail e senha."),
         "understoodTitle": MessageLookupByLibrary.simpleMessage("Entendido!"),
+        "whatHappenedTitle":
+            MessageLookupByLibrary.simpleMessage("Digite o que aconteceu aqui"),
         "withoutDescriptionTitle":
             MessageLookupByLibrary.simpleMessage("Sem descrição")
       };

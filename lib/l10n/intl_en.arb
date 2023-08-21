@@ -155,7 +155,14 @@
     "help": "Help",
     "orders": "Orders",
 
-
+    "refuseOrder": "Refuse order",
+    "refuseOrderAlert": "Upon clicking “OK” the request will be declined and removed from the control list.",
+    "othersTitle": "Others",
+    "lackOfInputTitle": "Lack of input",
+    "closedTitle": "Closed",
+    "overloadTitle": "Overload",
+    "goBackTitle": "Go back",
+    "whatHappenedTitle": "Type what happened here",
 
 
     

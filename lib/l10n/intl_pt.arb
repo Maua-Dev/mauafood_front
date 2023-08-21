@@ -155,6 +155,15 @@
     "help": "Ajuda",
     "orders": "Pedidos",
 
+    "refuseOrder": "Recusar pedido",
+    "refuseOrderAlert": "Ao clicar em “OK” o pedido será recusado e removido da lista de controle.",
+    "othersTitle": "Outros",
+    "lackOfInputTitle": "Falta de insumo",
+    "closedTitle": "Fechado",
+    "overloadTitle": "Sobrecarga",
+    "goBackTitle": "Voltar",
+    "whatHappenedTitle": "Digite o que aconteceu aqui",
+
 
     
     "errorGeneric": "Algo deu errado!",

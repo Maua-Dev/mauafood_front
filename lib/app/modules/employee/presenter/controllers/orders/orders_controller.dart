@@ -2,6 +2,7 @@ import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/infra/models/order_model.dart';
 import 'package:mobx/mobx.dart';
 
+import '../../../../../../generated/l10n.dart';
 import '../../states/orders/orders_state.dart';
 part 'orders_controller.g.dart';
 
@@ -76,6 +77,7 @@ abstract class OrdersControllerBase with Store {
         products: ["Calabresão", "Vasco"],
         hour: "9:00"),
   ];
+
   @observable
   OrdersState state = OrdersInitialState();
 
@@ -101,10 +103,8 @@ abstract class OrdersControllerBase with Store {
 
   @action
   void setOrderStatus(int index, StatusEnum? value) {
-    print(ordersList![index].status);
-    print("Valor: $value ");
     ordersList![index].status = value!;
-    print(ordersList![index].status);
+
     ordersList!.sort(
       (a, b) {
         return a.status.index.compareTo(b.status.index);
@@ -131,4 +131,31 @@ abstract class OrdersControllerBase with Store {
 
     changeState(OrdersLoadedSuccessState(ordersList: list!));
   }
+
+  @observable
+  int reasonIndex = 0;
+
+  @action
+  void setReasonIndex(int value) {
+    reasonIndex = value;
+  }
+
+  @observable
+  String reasonDescription = '';
+
+  @action
+  void setReasonDescription(String value) {
+    reasonDescription = value;
+  }
+
+  @action
+  String? validateReasonDescription(String? value) {
+    if (value!.isEmpty) {
+      return S.current.requiredFieldAlert;
+    }
+    return null;
+  }
+
+  @observable
+  bool isMissingDescription = false;
 }

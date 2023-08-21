@@ -235,188 +235,7 @@ class OrdersPage extends StatelessWidget {
                                                                                   )),
                                                                               IconButton(
                                                                                 onPressed: () {
-                                                                                  showDialog(
-                                                                                      context: context,
-                                                                                      builder: (BuildContext context) {
-                                                                                        return AlertDialog(
-                                                                                          content: SizedBox(
-                                                                                            height: ScreenHelper.height(context) / 2,
-                                                                                            width: ScreenHelper.width(context),
-                                                                                            child: Align(
-                                                                                              alignment: Alignment.center,
-                                                                                              child: Observer(builder: (context) {
-                                                                                                return SingleChildScrollView(
-                                                                                                  child: Column(
-                                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                                    children: [
-                                                                                                      Text(
-                                                                                                        '${S.of(context).refuseOrder}?',
-                                                                                                        style: AppTextStyles.h1.copyWith(fontSize: 24),
-                                                                                                      ),
-                                                                                                      const SizedBox(
-                                                                                                        height: 8,
-                                                                                                      ),
-                                                                                                      Text(
-                                                                                                        S.of(context).refuseOrderAlert,
-                                                                                                        style: AppTextStyles.h3,
-                                                                                                        textAlign: TextAlign.center,
-                                                                                                      ),
-                                                                                                      const SizedBox(
-                                                                                                        height: 32,
-                                                                                                      ),
-                                                                                                      Wrap(
-                                                                                                        runSpacing: 8,
-                                                                                                        spacing: 8,
-                                                                                                        alignment: WrapAlignment.center,
-                                                                                                        children: [
-                                                                                                          ActionChip(
-                                                                                                            elevation: 2,
-                                                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: store.isMissingDescription ? Theme.of(context).colorScheme.error : AppColors.lightBlueColor, width: 1)),
-                                                                                                            backgroundColor: store.reasonIndex == 1 ? AppColors.lightBlueColor : AppColors.white,
-                                                                                                            onPressed: () {
-                                                                                                              store.reasonIndex = 1;
-                                                                                                              store.reasonDescription = 'Falta de insumo';
-                                                                                                            },
-                                                                                                            label: Text(S.of(context).lackOfInputTitle, style: AppTextStyles.h1.copyWith(fontSize: 16, color: store.reasonIndex == 1 ? AppColors.white : AppColors.letterColor)),
-                                                                                                          ),
-                                                                                                          ActionChip(
-                                                                                                            elevation: 2,
-                                                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: store.isMissingDescription ? Theme.of(context).colorScheme.error : AppColors.lightBlueColor, width: 1)),
-                                                                                                            backgroundColor: store.reasonIndex == 2 ? AppColors.lightBlueColor : AppColors.white,
-                                                                                                            onPressed: () {
-                                                                                                              store.reasonIndex = 2;
-                                                                                                              store.reasonDescription = 'Fechado';
-                                                                                                            },
-                                                                                                            label: Text(S.of(context).closedTitle, style: AppTextStyles.h1.copyWith(fontSize: 16, color: store.reasonIndex == 2 ? AppColors.white : AppColors.letterColor)),
-                                                                                                          ),
-                                                                                                          ActionChip(
-                                                                                                            elevation: 2,
-                                                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: store.isMissingDescription ? Theme.of(context).colorScheme.error : AppColors.lightBlueColor, width: 1)),
-                                                                                                            backgroundColor: store.reasonIndex == 3 ? AppColors.lightBlueColor : AppColors.white,
-                                                                                                            onPressed: () {
-                                                                                                              store.reasonIndex = 3;
-                                                                                                              store.reasonDescription = 'Sobrecarga';
-                                                                                                            },
-                                                                                                            label: Text(S.of(context).overloadTitle, style: AppTextStyles.h1.copyWith(fontSize: 16, color: store.reasonIndex == 3 ? AppColors.white : AppColors.letterColor)),
-                                                                                                          ),
-                                                                                                        ],
-                                                                                                      ),
-                                                                                                      if (store.isMissingDescription == true)
-                                                                                                        Padding(
-                                                                                                          padding: const EdgeInsets.fromLTRB(16, 16, 0, 0),
-                                                                                                          child: Align(alignment: Alignment.bottomLeft, child: Text(S.of(context).requiredFieldAlert, style: AppTextStyles.h3.copyWith(color: Theme.of(context).colorScheme.error, fontSize: 12))),
-                                                                                                        ),
-                                                                                                      const SizedBox(
-                                                                                                        height: 32,
-                                                                                                      ),
-                                                                                                      SizedBox(
-                                                                                                          width: double.infinity,
-                                                                                                          height: 40,
-                                                                                                          child: TextButton(
-                                                                                                              onPressed: () {
-                                                                                                                if (store.reasonDescription != '') {
-                                                                                                                  var orderListIndex = store.ordersList!.indexOf(state.ordersList[index]);
-                                                                                                                  store.setOrderStatus(orderListIndex, StatusEnum.CANCELED);
-                                                                                                                  store.reasonIndex = 0;
-                                                                                                                  store.reasonDescription = '';
-                                                                                                                  store.isMissingDescription = false;
-
-                                                                                                                  Modular.to.pop();
-                                                                                                                } else {
-                                                                                                                  store.isMissingDescription = true;
-                                                                                                                }
-                                                                                                              },
-                                                                                                              style: TextButton.styleFrom(backgroundColor: AppColors.lightBlueColor),
-                                                                                                              child: Text("OK", style: AppTextStyles.h2.copyWith(color: AppColors.white)))),
-                                                                                                      const SizedBox(
-                                                                                                        height: 8,
-                                                                                                      ),
-                                                                                                      TextButton(
-                                                                                                          onPressed: () {
-                                                                                                            store.reasonIndex = 0;
-                                                                                                            store.reasonDescription = '';
-                                                                                                            store.isMissingDescription = false;
-                                                                                                            showDialog(
-                                                                                                                barrierColor: null,
-                                                                                                                context: context,
-                                                                                                                builder: (BuildContext context) {
-                                                                                                                  return AlertDialog(
-                                                                                                                    elevation: 0,
-                                                                                                                    scrollable: true,
-                                                                                                                    content: SizedBox(
-                                                                                                                      height: ScreenHelper.height(context) / 2,
-                                                                                                                      width: ScreenHelper.width(context),
-                                                                                                                      child: Align(
-                                                                                                                        alignment: Alignment.center,
-                                                                                                                        child: Form(
-                                                                                                                          key: _formKey,
-                                                                                                                          child: SingleChildScrollView(
-                                                                                                                            child: Column(
-                                                                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                                              children: [
-                                                                                                                                Text(
-                                                                                                                                  '${S.of(context).refuseOrder}?',
-                                                                                                                                  style: AppTextStyles.h1.copyWith(fontSize: 24),
-                                                                                                                                ),
-                                                                                                                                const SizedBox(
-                                                                                                                                  height: 8,
-                                                                                                                                ),
-                                                                                                                                Text(
-                                                                                                                                  '${S.of(context).whatHappenedTitle}!',
-                                                                                                                                  style: AppTextStyles.h3,
-                                                                                                                                  textAlign: TextAlign.center,
-                                                                                                                                ),
-                                                                                                                                const SizedBox(
-                                                                                                                                  height: 32,
-                                                                                                                                ),
-                                                                                                                                TextFieldWidget(
-                                                                                                                                  onChanged: (value) => store.setReasonDescription(value),
-                                                                                                                                  validator: store.validateReasonDescription,
-                                                                                                                                ),
-                                                                                                                                const SizedBox(
-                                                                                                                                  height: 32,
-                                                                                                                                ),
-                                                                                                                                SizedBox(
-                                                                                                                                    width: double.infinity,
-                                                                                                                                    height: 40,
-                                                                                                                                    child: TextButton(
-                                                                                                                                        onPressed: () {
-                                                                                                                                          if (_formKey.currentState!.validate()) {
-                                                                                                                                            var orderListIndex = store.ordersList!.indexOf(state.ordersList[index]);
-                                                                                                                                            store.setOrderStatus(orderListIndex, StatusEnum.CANCELED);
-                                                                                                                                            Modular.to.pop();
-                                                                                                                                            Modular.to.pop();
-                                                                                                                                          }
-                                                                                                                                        },
-                                                                                                                                        style: TextButton.styleFrom(backgroundColor: AppColors.lightBlueColor),
-                                                                                                                                        child: Text("OK", style: AppTextStyles.h2.copyWith(color: AppColors.white)))),
-                                                                                                                                const SizedBox(
-                                                                                                                                  height: 8,
-                                                                                                                                ),
-                                                                                                                                TextButton(
-                                                                                                                                    onPressed: () {
-                                                                                                                                      Modular.to.pop();
-                                                                                                                                    },
-                                                                                                                                    child: Text(S.of(context).goBackTitle, style: AppTextStyles.h1.copyWith(color: AppColors.letterColor, fontSize: 14)))
-                                                                                                                              ],
-                                                                                                                            ),
-                                                                                                                          ),
-                                                                                                                        ),
-                                                                                                                      ),
-                                                                                                                    ),
-                                                                                                                  );
-                                                                                                                });
-                                                                                                          },
-                                                                                                          child: Text(S.of(context).othersTitle, style: AppTextStyles.h1.copyWith(color: AppColors.letterColor, fontSize: 14)))
-                                                                                                    ],
-                                                                                                  ),
-                                                                                                );
-                                                                                              }),
-                                                                                            ),
-                                                                                          ),
-                                                                                        );
-                                                                                      });
+                                                                                  showReasonsDialog(context, state, index);
                                                                                 },
                                                                                 icon: Icon(
                                                                                   Icons.close,
@@ -549,188 +368,7 @@ class OrdersPage extends StatelessWidget {
                                                                                   var orderListIndex = store.ordersList!.indexOf(state.ordersList[index]);
                                                                                   store.setOrderStatus(orderListIndex, value);
                                                                                 } else {
-                                                                                  showDialog(
-                                                                                      context: context,
-                                                                                      builder: (BuildContext context) {
-                                                                                        return AlertDialog(
-                                                                                          content: SizedBox(
-                                                                                            height: ScreenHelper.height(context) / 2,
-                                                                                            width: ScreenHelper.width(context),
-                                                                                            child: Align(
-                                                                                              alignment: Alignment.center,
-                                                                                              child: Observer(builder: (context) {
-                                                                                                return SingleChildScrollView(
-                                                                                                  child: Column(
-                                                                                                    mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                    mainAxisSize: MainAxisSize.max,
-                                                                                                    children: [
-                                                                                                      Text(
-                                                                                                        '${S.of(context).refuseOrder}?',
-                                                                                                        style: AppTextStyles.h1.copyWith(fontSize: 24),
-                                                                                                      ),
-                                                                                                      const SizedBox(
-                                                                                                        height: 8,
-                                                                                                      ),
-                                                                                                      Text(
-                                                                                                        S.of(context).refuseOrderAlert,
-                                                                                                        style: AppTextStyles.h3,
-                                                                                                        textAlign: TextAlign.center,
-                                                                                                      ),
-                                                                                                      const SizedBox(
-                                                                                                        height: 32,
-                                                                                                      ),
-                                                                                                      Wrap(
-                                                                                                        runSpacing: 8,
-                                                                                                        spacing: 8,
-                                                                                                        alignment: WrapAlignment.center,
-                                                                                                        children: [
-                                                                                                          ActionChip(
-                                                                                                            elevation: 2,
-                                                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: store.isMissingDescription ? Theme.of(context).colorScheme.error : AppColors.lightBlueColor, width: 1)),
-                                                                                                            backgroundColor: store.reasonIndex == 1 ? AppColors.lightBlueColor : AppColors.white,
-                                                                                                            onPressed: () {
-                                                                                                              store.reasonIndex = 1;
-                                                                                                              store.reasonDescription = 'Falta de insumo';
-                                                                                                            },
-                                                                                                            label: Text(S.of(context).lackOfInputTitle, style: AppTextStyles.h1.copyWith(fontSize: 16, color: store.reasonIndex == 1 ? AppColors.white : AppColors.letterColor)),
-                                                                                                          ),
-                                                                                                          ActionChip(
-                                                                                                            elevation: 2,
-                                                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: store.isMissingDescription ? Theme.of(context).colorScheme.error : AppColors.lightBlueColor, width: 1)),
-                                                                                                            backgroundColor: store.reasonIndex == 2 ? AppColors.lightBlueColor : AppColors.white,
-                                                                                                            onPressed: () {
-                                                                                                              store.reasonIndex = 2;
-                                                                                                              store.reasonDescription = 'Fechado';
-                                                                                                            },
-                                                                                                            label: Text(S.of(context).closedTitle, style: AppTextStyles.h1.copyWith(fontSize: 16, color: store.reasonIndex == 2 ? AppColors.white : AppColors.letterColor)),
-                                                                                                          ),
-                                                                                                          ActionChip(
-                                                                                                            elevation: 2,
-                                                                                                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4), side: BorderSide(color: store.isMissingDescription ? Theme.of(context).colorScheme.error : AppColors.lightBlueColor, width: 1)),
-                                                                                                            backgroundColor: store.reasonIndex == 3 ? AppColors.lightBlueColor : AppColors.white,
-                                                                                                            onPressed: () {
-                                                                                                              store.reasonIndex = 3;
-                                                                                                              store.reasonDescription = 'Sobrecarga';
-                                                                                                            },
-                                                                                                            label: Text(S.of(context).overloadTitle, style: AppTextStyles.h1.copyWith(fontSize: 16, color: store.reasonIndex == 3 ? AppColors.white : AppColors.letterColor)),
-                                                                                                          ),
-                                                                                                        ],
-                                                                                                      ),
-                                                                                                      if (store.isMissingDescription == true)
-                                                                                                        Padding(
-                                                                                                          padding: const EdgeInsets.fromLTRB(16, 16, 0, 0),
-                                                                                                          child: Align(alignment: Alignment.bottomLeft, child: Text(S.of(context).requiredFieldAlert, style: AppTextStyles.h3.copyWith(color: Theme.of(context).colorScheme.error, fontSize: 12))),
-                                                                                                        ),
-                                                                                                      const SizedBox(
-                                                                                                        height: 32,
-                                                                                                      ),
-                                                                                                      SizedBox(
-                                                                                                          width: double.infinity,
-                                                                                                          height: 40,
-                                                                                                          child: TextButton(
-                                                                                                              onPressed: () {
-                                                                                                                if (store.reasonDescription != '') {
-                                                                                                                  var orderListIndex = store.ordersList!.indexOf(state.ordersList[index]);
-                                                                                                                  store.setOrderStatus(orderListIndex, StatusEnum.CANCELED);
-                                                                                                                  store.reasonIndex = 0;
-                                                                                                                  store.reasonDescription = '';
-                                                                                                                  store.isMissingDescription = false;
-
-                                                                                                                  Modular.to.pop();
-                                                                                                                } else {
-                                                                                                                  store.isMissingDescription = true;
-                                                                                                                }
-                                                                                                              },
-                                                                                                              style: TextButton.styleFrom(backgroundColor: AppColors.lightBlueColor),
-                                                                                                              child: Text("OK", style: AppTextStyles.h2.copyWith(color: AppColors.white)))),
-                                                                                                      const SizedBox(
-                                                                                                        height: 8,
-                                                                                                      ),
-                                                                                                      TextButton(
-                                                                                                          onPressed: () {
-                                                                                                            store.reasonIndex = 0;
-                                                                                                            store.reasonDescription = '';
-                                                                                                            store.isMissingDescription = false;
-                                                                                                            showDialog(
-                                                                                                                barrierColor: null,
-                                                                                                                context: context,
-                                                                                                                builder: (BuildContext context) {
-                                                                                                                  return AlertDialog(
-                                                                                                                    elevation: 0,
-                                                                                                                    scrollable: true,
-                                                                                                                    content: SizedBox(
-                                                                                                                      height: ScreenHelper.height(context) / 2,
-                                                                                                                      width: ScreenHelper.width(context),
-                                                                                                                      child: Align(
-                                                                                                                        alignment: Alignment.center,
-                                                                                                                        child: Form(
-                                                                                                                          key: _formKey,
-                                                                                                                          child: SingleChildScrollView(
-                                                                                                                            child: Column(
-                                                                                                                              mainAxisAlignment: MainAxisAlignment.center,
-                                                                                                                              children: [
-                                                                                                                                Text(
-                                                                                                                                  '${S.of(context).refuseOrder}?',
-                                                                                                                                  style: AppTextStyles.h1.copyWith(fontSize: 24),
-                                                                                                                                ),
-                                                                                                                                const SizedBox(
-                                                                                                                                  height: 8,
-                                                                                                                                ),
-                                                                                                                                Text(
-                                                                                                                                  '${S.of(context).whatHappenedTitle}!',
-                                                                                                                                  style: AppTextStyles.h3,
-                                                                                                                                  textAlign: TextAlign.center,
-                                                                                                                                ),
-                                                                                                                                const SizedBox(
-                                                                                                                                  height: 32,
-                                                                                                                                ),
-                                                                                                                                TextFieldWidget(
-                                                                                                                                  onChanged: (value) => store.setReasonDescription(value),
-                                                                                                                                  validator: store.validateReasonDescription,
-                                                                                                                                ),
-                                                                                                                                const SizedBox(
-                                                                                                                                  height: 32,
-                                                                                                                                ),
-                                                                                                                                SizedBox(
-                                                                                                                                    width: double.infinity,
-                                                                                                                                    height: 40,
-                                                                                                                                    child: TextButton(
-                                                                                                                                        onPressed: () {
-                                                                                                                                          if (_formKey.currentState!.validate()) {
-                                                                                                                                            var orderListIndex = store.ordersList!.indexOf(state.ordersList[index]);
-                                                                                                                                            store.setOrderStatus(orderListIndex, StatusEnum.CANCELED);
-                                                                                                                                            Modular.to.pop();
-                                                                                                                                            Modular.to.pop();
-                                                                                                                                          }
-                                                                                                                                        },
-                                                                                                                                        style: TextButton.styleFrom(backgroundColor: AppColors.lightBlueColor),
-                                                                                                                                        child: Text("OK", style: AppTextStyles.h2.copyWith(color: AppColors.white)))),
-                                                                                                                                const SizedBox(
-                                                                                                                                  height: 8,
-                                                                                                                                ),
-                                                                                                                                TextButton(
-                                                                                                                                    onPressed: () {
-                                                                                                                                      Modular.to.pop();
-                                                                                                                                    },
-                                                                                                                                    child: Text(S.of(context).goBackTitle, style: AppTextStyles.h1.copyWith(color: AppColors.letterColor, fontSize: 14)))
-                                                                                                                              ],
-                                                                                                                            ),
-                                                                                                                          ),
-                                                                                                                        ),
-                                                                                                                      ),
-                                                                                                                    ),
-                                                                                                                  );
-                                                                                                                });
-                                                                                                          },
-                                                                                                          child: Text(S.of(context).othersTitle, style: AppTextStyles.h1.copyWith(color: AppColors.letterColor, fontSize: 14)))
-                                                                                                    ],
-                                                                                                  ),
-                                                                                                );
-                                                                                              }),
-                                                                                            ),
-                                                                                          ),
-                                                                                        );
-                                                                                      });
+                                                                                  showReasonsDialog(context, state, index);
                                                                                 }
                                                                               }),
                                                                         ),
@@ -784,5 +422,276 @@ class OrdersPage extends StatelessWidget {
             ],
           ),
         ));
+  }
+
+  void showReasonsDialog(context, state, index) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            content: SizedBox(
+              height: ScreenHelper.height(context) / 2,
+              width: ScreenHelper.width(context),
+              child: Align(
+                alignment: Alignment.center,
+                child: Observer(builder: (context) {
+                  return SingleChildScrollView(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          '${S.of(context).refuseOrder}?',
+                          style: AppTextStyles.h1.copyWith(fontSize: 24),
+                        ),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          S.of(context).refuseOrderAlert,
+                          style: AppTextStyles.h3,
+                          textAlign: TextAlign.center,
+                        ),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        Wrap(
+                          runSpacing: 8,
+                          spacing: 8,
+                          alignment: WrapAlignment.center,
+                          children: [
+                            ActionChip(
+                              elevation: 2,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                  side: BorderSide(
+                                      color: store.isMissingDescription
+                                          ? Theme.of(context).colorScheme.error
+                                          : AppColors.lightBlueColor,
+                                      width: 1)),
+                              backgroundColor: store.reasonIndex == 1
+                                  ? AppColors.lightBlueColor
+                                  : AppColors.white,
+                              onPressed: () {
+                                store.reasonIndex = 1;
+                                store.reasonDescription = 'Falta de insumo';
+                              },
+                              label: Text(S.of(context).lackOfInputTitle,
+                                  style: AppTextStyles.h1.copyWith(
+                                      fontSize: 16,
+                                      color: store.reasonIndex == 1
+                                          ? AppColors.white
+                                          : AppColors.letterColor)),
+                            ),
+                            ActionChip(
+                              elevation: 2,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                  side: BorderSide(
+                                      color: store.isMissingDescription
+                                          ? Theme.of(context).colorScheme.error
+                                          : AppColors.lightBlueColor,
+                                      width: 1)),
+                              backgroundColor: store.reasonIndex == 2
+                                  ? AppColors.lightBlueColor
+                                  : AppColors.white,
+                              onPressed: () {
+                                store.reasonIndex = 2;
+                                store.reasonDescription = 'Fechado';
+                              },
+                              label: Text(S.of(context).closedTitle,
+                                  style: AppTextStyles.h1.copyWith(
+                                      fontSize: 16,
+                                      color: store.reasonIndex == 2
+                                          ? AppColors.white
+                                          : AppColors.letterColor)),
+                            ),
+                            ActionChip(
+                              elevation: 2,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                  side: BorderSide(
+                                      color: store.isMissingDescription
+                                          ? Theme.of(context).colorScheme.error
+                                          : AppColors.lightBlueColor,
+                                      width: 1)),
+                              backgroundColor: store.reasonIndex == 3
+                                  ? AppColors.lightBlueColor
+                                  : AppColors.white,
+                              onPressed: () {
+                                store.reasonIndex = 3;
+                                store.reasonDescription = 'Sobrecarga';
+                              },
+                              label: Text(S.of(context).overloadTitle,
+                                  style: AppTextStyles.h1.copyWith(
+                                      fontSize: 16,
+                                      color: store.reasonIndex == 3
+                                          ? AppColors.white
+                                          : AppColors.letterColor)),
+                            ),
+                          ],
+                        ),
+                        if (store.isMissingDescription == true)
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(16, 16, 0, 0),
+                            child: Align(
+                                alignment: Alignment.bottomLeft,
+                                child: Text(S.of(context).requiredFieldAlert,
+                                    style: AppTextStyles.h3.copyWith(
+                                        color:
+                                            Theme.of(context).colorScheme.error,
+                                        fontSize: 12))),
+                          ),
+                        const SizedBox(
+                          height: 32,
+                        ),
+                        SizedBox(
+                            width: double.infinity,
+                            height: 40,
+                            child: TextButton(
+                                onPressed: () {
+                                  if (store.reasonDescription != '') {
+                                    var orderListIndex = store.ordersList!
+                                        .indexOf(state.ordersList[index]);
+                                    store.setOrderStatus(
+                                        orderListIndex, StatusEnum.CANCELED);
+                                    store.reasonIndex = 0;
+                                    store.reasonDescription = '';
+                                    store.isMissingDescription = false;
+
+                                    Modular.to.pop();
+                                  } else {
+                                    store.isMissingDescription = true;
+                                  }
+                                },
+                                style: TextButton.styleFrom(
+                                    backgroundColor: AppColors.lightBlueColor),
+                                child: Text("OK",
+                                    style: AppTextStyles.h2
+                                        .copyWith(color: AppColors.white)))),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        TextButton(
+                            onPressed: () {
+                              store.reasonIndex = 0;
+                              store.reasonDescription = '';
+                              store.isMissingDescription = false;
+                              showDialog(
+                                  barrierColor: null,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      elevation: 0,
+                                      scrollable: true,
+                                      content: SizedBox(
+                                        height:
+                                            ScreenHelper.height(context) / 2,
+                                        width: ScreenHelper.width(context),
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: Form(
+                                            key: _formKey,
+                                            child: SingleChildScrollView(
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    '${S.of(context).refuseOrder}?',
+                                                    style: AppTextStyles.h1
+                                                        .copyWith(fontSize: 24),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  Text(
+                                                    '${S.of(context).whatHappenedTitle}!',
+                                                    style: AppTextStyles.h3,
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 32,
+                                                  ),
+                                                  TextFieldWidget(
+                                                    onChanged: (value) => store
+                                                        .setReasonDescription(
+                                                            value),
+                                                    validator: store
+                                                        .validateReasonDescription,
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 32,
+                                                  ),
+                                                  SizedBox(
+                                                      width: double.infinity,
+                                                      height: 40,
+                                                      child: TextButton(
+                                                          onPressed: () {
+                                                            if (_formKey
+                                                                .currentState!
+                                                                .validate()) {
+                                                              var orderListIndex = store
+                                                                  .ordersList!
+                                                                  .indexOf(state
+                                                                          .ordersList[
+                                                                      index]);
+                                                              store.setOrderStatus(
+                                                                  orderListIndex,
+                                                                  StatusEnum
+                                                                      .CANCELED);
+                                                              Modular.to.pop();
+                                                              Modular.to.pop();
+                                                            }
+                                                          },
+                                                          style: TextButton.styleFrom(
+                                                              backgroundColor:
+                                                                  AppColors
+                                                                      .lightBlueColor),
+                                                          child: Text("OK",
+                                                              style: AppTextStyles
+                                                                  .h2
+                                                                  .copyWith(
+                                                                      color: AppColors
+                                                                          .white)))),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  TextButton(
+                                                      onPressed: () {
+                                                        Modular.to.pop();
+                                                      },
+                                                      child: Text(
+                                                          S
+                                                              .of(context)
+                                                              .goBackTitle,
+                                                          style: AppTextStyles
+                                                              .h1
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .letterColor,
+                                                                  fontSize:
+                                                                      14)))
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  });
+                            },
+                            child: Text(S.of(context).othersTitle,
+                                style: AppTextStyles.h1.copyWith(
+                                    color: AppColors.letterColor,
+                                    fontSize: 14)))
+                      ],
+                    ),
+                  );
+                }),
+              ),
+            ),
+          );
+        });
   }
 }

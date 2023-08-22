@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -118,64 +117,49 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                           child: SizedBox(
                                             width: 80,
                                             height: 88,
-                                            child:
-                                                (productFormController
-                                                                .uploadedWebPhoto ==
-                                                            null &&
-                                                        productFormController
-                                                                .uploadedMobilePhoto ==
-                                                            null &&
-                                                        widget.product == null)
-                                                    ? Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                            Icon(
-                                                              Icons.fastfood,
-                                                              color: AppColors
-                                                                  .mainBlueColor,
-                                                            ),
-                                                            Text(
-                                                              S
-                                                                  .of(context)
-                                                                  .photoTitle,
-                                                              style:
-                                                                  AppTextStyles
-                                                                      .h2
-                                                                      .copyWith(
-                                                                color: AppColors
-                                                                    .mainBlueColor,
-                                                              ),
-                                                            )
-                                                          ])
-                                                    : Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(4),
-                                                        child: productFormController
-                                                                    .productPhoto ==
-                                                                null
-                                                            ? kIsWeb
-                                                                ? Image.memory(
-                                                                    productFormController
-                                                                        .uploadedWebPhoto!,
-                                                                    fit: BoxFit
-                                                                        .contain,
-                                                                  )
-                                                                : Image.file(
-                                                                    productFormController
-                                                                        .uploadedMobilePhoto!,
-                                                                    fit: BoxFit
-                                                                        .contain,
-                                                                  )
-                                                            : Image.network(
-                                                                productFormController
-                                                                    .productPhoto!,
-                                                                fit: BoxFit
-                                                                    .contain,
-                                                              ),
-                                                      ),
+                                            child: (productFormController
+                                                            .uploadedWebPhoto ==
+                                                        null &&
+                                                    widget.product == null)
+                                                ? Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                        Icon(
+                                                          Icons.fastfood,
+                                                          color: AppColors
+                                                              .mainBlueColor,
+                                                        ),
+                                                        Text(
+                                                          S
+                                                              .of(context)
+                                                              .photoTitle,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                            color: AppColors
+                                                                .mainBlueColor,
+                                                          ),
+                                                        )
+                                                      ])
+                                                : Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(4),
+                                                    child: productFormController
+                                                                .productPhoto ==
+                                                            null
+                                                        ? Image.memory(
+                                                            productFormController
+                                                                .uploadedWebPhoto!,
+                                                            fit: BoxFit.contain,
+                                                          )
+                                                        : Image.network(
+                                                            productFormController
+                                                                .productPhoto!,
+                                                            fit: BoxFit.contain,
+                                                          ),
+                                                  ),
                                           ),
                                         ),
                                       ),
@@ -422,9 +406,6 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                   webPhoto:
                                                       productFormController
                                                           .uploadedWebPhoto,
-                                                  mobilePhoto:
-                                                      productFormController
-                                                          .uploadedMobilePhoto,
                                                 ));
                                           });
                                     }

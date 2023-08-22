@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -11,14 +9,12 @@ import '../../../../../shared/domain/entities/product.dart';
 class ProductCardWidget extends StatelessWidget {
   final Product product;
   final Function()? onPressed;
-  final File? mobilePhoto;
   final Uint8List? webPhoto;
 
   const ProductCardWidget({
     Key? key,
     required this.product,
     this.onPressed,
-    this.mobilePhoto,
     this.webPhoto,
   }) : super(key: key);
 
@@ -38,10 +34,8 @@ class ProductCardWidget extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: product.photo == ''
-                      ? mobilePhoto != null || webPhoto != null
-                          ? kIsWeb
-                              ? Image.file(mobilePhoto!)
-                              : Image.memory(webPhoto!)
+                      ? webPhoto != null
+                          ? Image.memory(webPhoto!)
                           : const Icon(Icons.image_not_supported)
                       : CachedNetworkImage(
                           imageUrl: product.photo!,

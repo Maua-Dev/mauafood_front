@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -121,23 +120,13 @@ abstract class ProductFormControllerBase with Store {
   }
 
   @observable
-  File? uploadedMobilePhoto;
-
-  @observable
   Uint8List? uploadedWebPhoto;
 
   @action
   Future uploadProductPhoto() async {
-    if (!kIsWeb) {
-      XFile? photo = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (photo != null) {
-        uploadedMobilePhoto = File(photo.path);
-      }
-    } else {
-      XFile? photo = await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (photo != null) {
-        uploadedWebPhoto = await photo.readAsBytes();
-      }
+    XFile? photo = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (photo != null) {
+      uploadedWebPhoto = await photo.readAsBytes();
     }
     setProductPhoto(null);
   }

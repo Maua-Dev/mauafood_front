@@ -137,22 +137,6 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
     });
   }
 
-  late final _$uploadedMobilePhotoAtom = Atom(
-      name: 'ProductFormControllerBase.uploadedMobilePhoto', context: context);
-
-  @override
-  File? get uploadedMobilePhoto {
-    _$uploadedMobilePhotoAtom.reportRead();
-    return super.uploadedMobilePhoto;
-  }
-
-  @override
-  set uploadedMobilePhoto(File? value) {
-    _$uploadedMobilePhotoAtom.reportWrite(value, super.uploadedMobilePhoto, () {
-      super.uploadedMobilePhoto = value;
-    });
-  }
-
   late final _$uploadedWebPhotoAtom = Atom(
       name: 'ProductFormControllerBase.uploadedWebPhoto', context: context);
 
@@ -332,7 +316,6 @@ productType: ${productType},
 productDescription: ${productDescription},
 productAvailability: ${productAvailability},
 productPhoto: ${productPhoto},
-uploadedMobilePhoto: ${uploadedMobilePhoto},
 uploadedWebPhoto: ${uploadedWebPhoto}
     ''';
   }

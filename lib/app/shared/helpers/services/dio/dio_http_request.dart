@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 import '../http/http_request_interface.dart';
@@ -23,5 +25,10 @@ class DioHttpRequest implements IHttpRequest {
   @override
   Future<Response> put(String url, {dynamic data}) async {
     return _dio.put(url, data: data);
+  }
+
+  @override
+  Future<Response> postPhoto(String url, File photo) {
+    return _dio.post(url, data: photo);
   }
 }

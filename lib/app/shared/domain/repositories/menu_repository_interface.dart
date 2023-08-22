@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
@@ -14,4 +16,6 @@ abstract class IMenuRepository {
       ProductModel product, RestaurantEnum restaurant);
   Future<Either<Failure, void>> deleteProduct(
       String id, RestaurantEnum restaurant);
+  Future<Either<Failure, String>> uploadProductPhoto(String id);
+  Future<Either<Failure, void>> uploadPhotoToS3(String url, File photo);
 }

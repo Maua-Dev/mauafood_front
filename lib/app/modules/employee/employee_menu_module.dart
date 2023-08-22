@@ -5,6 +5,8 @@ import 'package:mauafood_front/app/modules/employee/presenter/ui/pages/employee_
 import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/upload_photo_to_s3_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/upload_product_photo_usecase.dart';
 
 import '../../shared/domain/enums/restaurant_enum.dart';
 import '../../shared/datasource/external/http/menu_datasource.dart';
@@ -23,7 +25,7 @@ class EmployeeMenuModule extends Module {
               i(), RestaurantEnum.cantina_do_moleza, i(), i()),
         ),
         Bind.factory<ProductFormController>(
-          (i) => ProductFormController(i(), i(), i()),
+          (i) => ProductFormController(i(), i(), i(), i(), i()),
         ),
         Bind<ICreateProductUsecase>(
             (i) => CreateProductUsecase(repository: i())),
@@ -31,6 +33,10 @@ class EmployeeMenuModule extends Module {
             (i) => UpdateProductUsecase(repository: i())),
         Bind<IDeleteProductUsecase>(
             (i) => DeleteProductUsecase(repository: i())),
+        Bind<IUploadProductPhotoUsecase>(
+            (i) => UploadProductPhotoUsecase(repository: i())),
+        Bind<IUploadPhotoToS3Usecase>(
+            (i) => UploadPhotoToS3Usecase(repository: i())),
         Bind<IMenuRepository>((i) => MenuRepository(datasource: i())),
         Bind<IMenuDatasource>((i) => MenuDatasource(i())),
       ];

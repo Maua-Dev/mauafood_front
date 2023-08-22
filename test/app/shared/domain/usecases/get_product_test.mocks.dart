@@ -4,6 +4,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
+import 'dart:io' as _i8;
 
 import 'package:dartz/dartz.dart' as _i2;
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart'
@@ -177,6 +178,47 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
             [
               id,
               restaurant,
+            ],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, String>> uploadProductPhoto(String? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #uploadProductPhoto,
+          [id],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.Failure, String>>.value(
+            _FakeEither_0<_i5.Failure, String>(
+          this,
+          Invocation.method(
+            #uploadProductPhoto,
+            [id],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, String>>);
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, void>> uploadPhotoToS3(
+    String? url,
+    _i8.File? photo,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #uploadPhotoToS3,
+          [
+            url,
+            photo,
+          ],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.Failure, void>>.value(
+            _FakeEither_0<_i5.Failure, void>(
+          this,
+          Invocation.method(
+            #uploadPhotoToS3,
+            [
+              url,
+              photo,
             ],
           ),
         )),

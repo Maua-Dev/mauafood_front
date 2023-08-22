@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:mauafood_front/app/shared/helpers/services/http/http_request_interface.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart';
 
@@ -47,6 +49,27 @@ class MenuDatasource implements IMenuDatasource {
       'product_id': id,
       'restaurant': RestaurantEnumExtension.enumToStringMap(restaurant),
     });
+    if (response.statusCode == 200) {
+      return;
+    }
+    throw Exception();
+  }
+
+  @override
+  Future<String> uploadProductPhoto(String id) async {
+    var response =
+        await _httpService.post('/request-upload-product-photo', data: {
+      'product_id': id,
+    });
+    if (response.statusCode == 200) {
+      return response.data['url'];
+    }
+    throw Exception();
+  }
+
+  @override
+  Future<void> uploadPhotoToS3(String url, File photo) async {
+    var response = await _httpService.postPhoto(url, photo);
     if (response.statusCode == 200) {
       return;
     }

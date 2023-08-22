@@ -137,19 +137,35 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
     });
   }
 
-  late final _$uploadedWebPhotoAtom = Atom(
-      name: 'ProductFormControllerBase.uploadedWebPhoto', context: context);
+  late final _$uploadedPhotoAtom =
+      Atom(name: 'ProductFormControllerBase.uploadedPhoto', context: context);
 
   @override
-  Uint8List? get uploadedWebPhoto {
-    _$uploadedWebPhotoAtom.reportRead();
-    return super.uploadedWebPhoto;
+  Uint8List? get uploadedPhoto {
+    _$uploadedPhotoAtom.reportRead();
+    return super.uploadedPhoto;
   }
 
   @override
-  set uploadedWebPhoto(Uint8List? value) {
-    _$uploadedWebPhotoAtom.reportWrite(value, super.uploadedWebPhoto, () {
-      super.uploadedWebPhoto = value;
+  set uploadedPhoto(Uint8List? value) {
+    _$uploadedPhotoAtom.reportWrite(value, super.uploadedPhoto, () {
+      super.uploadedPhoto = value;
+    });
+  }
+
+  late final _$photoFileAtom =
+      Atom(name: 'ProductFormControllerBase.photoFile', context: context);
+
+  @override
+  File? get photoFile {
+    _$photoFileAtom.reportRead();
+    return super.photoFile;
+  }
+
+  @override
+  set photoFile(File? value) {
+    _$photoFileAtom.reportWrite(value, super.photoFile, () {
+      super.photoFile = value;
     });
   }
 
@@ -316,7 +332,8 @@ productType: ${productType},
 productDescription: ${productDescription},
 productAvailability: ${productAvailability},
 productPhoto: ${productPhoto},
-uploadedWebPhoto: ${uploadedWebPhoto}
+uploadedPhoto: ${uploadedPhoto},
+photoFile: ${photoFile}
     ''';
   }
 }

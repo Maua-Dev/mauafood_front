@@ -9,13 +9,13 @@ import '../../../../../shared/domain/entities/product.dart';
 class ProductCardWidget extends StatelessWidget {
   final Product product;
   final Function()? onPressed;
-  final Uint8List? webPhoto;
+  final Uint8List? uploadedPhoto;
 
   const ProductCardWidget({
     Key? key,
     required this.product,
     this.onPressed,
-    this.webPhoto,
+    this.uploadedPhoto,
   }) : super(key: key);
 
   @override
@@ -34,8 +34,8 @@ class ProductCardWidget extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: product.photo == ''
-                      ? webPhoto != null
-                          ? Image.memory(webPhoto!)
+                      ? uploadedPhoto != null
+                          ? Image.memory(uploadedPhoto!)
                           : const Icon(Icons.image_not_supported)
                       : CachedNetworkImage(
                           imageUrl: product.photo!,

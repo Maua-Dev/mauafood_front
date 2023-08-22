@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -7,6 +9,8 @@ import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/upload_photo_to_s3_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/upload_product_photo_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 import 'package:mobx/mobx.dart';
@@ -23,9 +27,15 @@ abstract class ProductFormControllerBase with Store {
   final IUpdateProductUsecase _updateProduct;
   final ICreateProductUsecase _createProduct;
   final EmployeeMenuRestaurantController _employeeMenuRestaurantController;
+  final IUploadProductPhotoUsecase _uploadProductPhotoUsecase;
+  final IUploadPhotoToS3Usecase _uploadPhotoToS3Usecase;
 
-  ProductFormControllerBase(this._updateProduct, this._createProduct,
-      this._employeeMenuRestaurantController);
+  ProductFormControllerBase(
+      this._updateProduct,
+      this._createProduct,
+      this._employeeMenuRestaurantController,
+      this._uploadProductPhotoUsecase,
+      this._uploadPhotoToS3Usecase);
 
   @observable
   ProductFormState state = ProductFormInitialState();
@@ -120,13 +130,17 @@ abstract class ProductFormControllerBase with Store {
   }
 
   @observable
-  Uint8List? uploadedWebPhoto;
+  Uint8List? uploadedPhoto;
+
+  @observable
+  File? photoFile;
 
   @action
   Future uploadProductPhoto() async {
     XFile? photo = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (photo != null) {
-      uploadedWebPhoto = await photo.readAsBytes();
+      uploadedPhoto = await photo.readAsBytes();
+      photoFile = File(photo.path);
     }
     setProductPhoto(null);
   }
@@ -163,6 +177,23 @@ abstract class ProductFormControllerBase with Store {
   Future<void> updateProduct(
       RestaurantEnum restaurant, String productId) async {
     changeState(ProductFormLoadingState());
+    var uploadPhoto = await _uploadProductPhotoUsecase(productId);
+    var uploadUrl = '';
+    changeState(uploadPhoto.fold((l) {
+      return ProductFormFailureState(failure: l);
+    }, (url) {
+      uploadUrl = url;
+      return ProductFormLoadingState();
+    }));
+
+    if (photoFile != null && uploadUrl != '') {
+      try {
+        await _uploadPhotoToS3Usecase(uploadUrl, photoFile!);
+      } catch (e) {
+        print("DEU BO");
+      }
+    }
+
     var result = await _updateProduct(
         ProductModel(
           id: productId,

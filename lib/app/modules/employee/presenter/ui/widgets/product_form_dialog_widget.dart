@@ -118,7 +118,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                             width: 80,
                                             height: 88,
                                             child: (productFormController
-                                                            .uploadedWebPhoto ==
+                                                            .uploadedPhoto ==
                                                         null &&
                                                     widget.product == null)
                                                 ? Column(
@@ -151,7 +151,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                             null
                                                         ? Image.memory(
                                                             productFormController
-                                                                .uploadedWebPhoto!,
+                                                                .uploadedPhoto!,
                                                             fit: BoxFit.contain,
                                                           )
                                                         : Image.network(
@@ -394,7 +394,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                             '',
                                                     prepareTime:
                                                         productFormController
-                                                            .productPrepareTime!,
+                                                            .productPrepareTime,
                                                     price: productFormController
                                                         .productPrice!,
                                                     type: productFormController
@@ -403,9 +403,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                             .productPhoto ??
                                                         '',
                                                   ),
-                                                  webPhoto:
+                                                  uploadedPhoto:
                                                       productFormController
-                                                          .uploadedWebPhoto,
+                                                          .uploadedPhoto,
                                                 ));
                                           });
                                     }

@@ -55,7 +55,7 @@ abstract class _LandingControllerBase with Store {
       'route': '/landing/cart/',
     },
     {
-      'icon': Icons.person_outline_outlined,
+      'icon': FontAwesomeIcons.user,
       'title': S.current.profile,
       'route': '/landing/profile/',
     },
@@ -77,7 +77,7 @@ abstract class _LandingControllerBase with Store {
       'route': '/landing/orders/',
     },
     {
-      'icon': Icons.person_outline_outlined,
+      'icon': FontAwesomeIcons.user,
       'title': S.current.profile,
       'route': '/landing/profile/',
     },

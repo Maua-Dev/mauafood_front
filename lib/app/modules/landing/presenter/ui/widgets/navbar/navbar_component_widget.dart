@@ -22,35 +22,42 @@ class NavBarComponentWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return selectIndex == index
-        ? Container(
-            height: 50,
-            width: 125,
-            decoration: BoxDecoration(
-                color: AppColors.backgroundColor2,
-                borderRadius: BorderRadius.circular(12)),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Icon(icon, color: AppColors.mainBlueColor, size: 30),
-                  Text(
-                    title,
-                    style: TextStyle(
-                        color: AppColors.mainBlueColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-            ))
-        : IconButton(
-            onPressed: () {
-              onSelect(index);
-              Modular.to.navigate(route);
-            },
-            padding: const EdgeInsets.all(0),
-            icon: Icon(icon, color: AppColors.backgroundColor2, size: 30));
+    final isSelect = selectIndex == index;
+    return InkWell(
+      onTap: () {
+        onSelect(index);
+        Modular.to.navigate(route);
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 350),
+        height: 50,
+        width: isSelect ? 125 : 48,
+        padding: EdgeInsets.symmetric(horizontal: isSelect ? 16.0 : 0),
+        decoration: BoxDecoration(
+            color:
+                isSelect ? AppColors.backgroundColor2 : AppColors.mainBlueColor,
+            borderRadius: BorderRadius.circular(12)),
+        child: LayoutBuilder(builder: (context, constraints) {
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Icon(icon,
+                  color: isSelect
+                      ? AppColors.mainBlueColor
+                      : AppColors.backgroundColor2,
+                  size: 30),
+              if (isSelect && constraints.minWidth >= 75)
+                Text(
+                  title,
+                  style: TextStyle(
+                      color: AppColors.mainBlueColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold),
+                )
+            ],
+          );
+        }),
+      ),
+    );
   }
 }

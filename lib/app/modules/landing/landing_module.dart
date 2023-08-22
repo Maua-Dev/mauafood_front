@@ -44,7 +44,7 @@ class LandingModule extends Module {
                       style: TextStyle(fontSize: 48),
                     ),
                   )),
-          ChildRoute('/faq/', child: (_, args) => const FaqPage()),
+          ChildRoute('/faq/', child: (_, args) => FaqPage()),
           ModuleRoute('/profile/',
               module: ProfileModule(), guards: [AuthGuard()]),
           ChildRoute('/orders/',

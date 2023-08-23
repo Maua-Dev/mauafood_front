@@ -3,7 +3,7 @@ description: Mauá Food.
 
 publish_to: 'none'
 
-version: 1.14.20+67
+version: 1.14.21+68
 
 environment:
   sdk: '>=2.18.0 <3.0.0'

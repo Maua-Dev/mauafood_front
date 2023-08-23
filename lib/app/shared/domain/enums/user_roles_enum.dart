@@ -5,7 +5,7 @@ import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 
 enum UserRolesEnum {
   EMPLOYEE_H,
-  EMPLOYEE_BIBA,
+  EMPLOYEE_SOUZA_DE_ABREU,
   USER,
   STUDENT,
 }
@@ -15,8 +15,8 @@ extension UserRolesEnumExtension on UserRolesEnum {
     switch (this) {
       case UserRolesEnum.EMPLOYEE_H:
         return 'Employee H';
-      case UserRolesEnum.EMPLOYEE_BIBA:
-        return 'Employee';
+      case UserRolesEnum.EMPLOYEE_SOUZA_DE_ABREU:
+        return 'Employee Souza de Abreu';
       case UserRolesEnum.USER:
         return 'User';
       case UserRolesEnum.STUDENT:
@@ -28,8 +28,8 @@ extension UserRolesEnumExtension on UserRolesEnum {
     switch (this) {
       case UserRolesEnum.EMPLOYEE_H:
         return RestaurantEnum.hora_h;
-      case UserRolesEnum.EMPLOYEE_BIBA:
-        return RestaurantEnum.biba;
+      case UserRolesEnum.EMPLOYEE_SOUZA_DE_ABREU:
+        return RestaurantEnum.souza_de_abreu;
       case UserRolesEnum.USER:
         return RestaurantEnum.none;
       case UserRolesEnum.STUDENT:

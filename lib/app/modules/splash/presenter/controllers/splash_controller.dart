@@ -22,9 +22,9 @@ abstract class SplashControllerBase with Store {
   @action
   Future<void> loadSplash() async {
     changeState(SplashLoadingState());
-    final value = await _authStore.checkLogin();
+    await _authStore.checkLogin();
     await Future.delayed(const Duration(seconds: 3));
-    !value ? Modular.to.navigate('/login/') : Modular.to.navigate('/user/');
+    Modular.to.navigate('/landing/');
     changeState(SplashSuccessState());
   }
 }

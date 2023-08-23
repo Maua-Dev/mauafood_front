@@ -10,29 +10,18 @@ class DioHttpRequest implements IHttpRequest {
   }) : _dio = dio;
 
   @override
-  Future<Response> get(String url) async {
-    return _dio.get(url);
+  Future<Response> get(String url,
+      {Map<String, dynamic>? queryParameters}) async {
+    return _dio.get(url, queryParameters: queryParameters);
   }
 
   @override
-  Future<Response> post(String url, dynamic data) async {
+  Future<Response> post(String url, {dynamic data}) async {
     return _dio.post(url, data: data);
   }
 
   @override
-  Future<Response> put(String url, dynamic data) async {
+  Future<Response> put(String url, {dynamic data}) async {
     return _dio.put(url, data: data);
-  }
-
-  @override
-  void setAuthorizationToken(String authorizationToken) {
-    if (authorizationToken.isNotEmpty) {
-      _dio.options.headers["authorization"] = authorizationToken;
-    }
-  }
-
-  @override
-  void clearAuthorizationToken() {
-    _dio.options.headers.remove("authorization");
   }
 }

@@ -28,13 +28,14 @@ void main() {
   ]);
 
   List<Restaurant> mockRestaurants = [
-    const Restaurant(restaurantInfo: RestaurantEnum.biba),
+    const Restaurant(restaurantInfo: RestaurantEnum.souza_de_abreu),
     const Restaurant(restaurantInfo: RestaurantEnum.hora_h)
   ];
 
   setUpAll(() {
     HttpOverrides.global = null;
     when(store.restaurants).thenReturn(mockRestaurants);
+    when(store.isLogged).thenReturn(false);
   });
 
   testWidgets('[WIDGETS TEST] - Restaurants Page', (widgetTester) async {

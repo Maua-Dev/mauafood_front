@@ -2,9 +2,11 @@ import 'package:auth_package/login.dart';
 import 'package:dio/dio.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
+import 'modules/landing/landing_module.dart';
+import 'package:mauafood_front/app/modules/employee/employee_menu_module.dart';
 import 'package:mauafood_front/amplifyconfiguration.dart';
 import 'package:mauafood_front/app/shared/helpers/services/dio/auth_interceptor.dart';
-import 'modules/menu/user_menu_module.dart';
+
 import 'modules/splash/splash_module.dart';
 import 'shared/helpers/services/dio/dio_http_request.dart';
 import 'shared/helpers/services/dio/options/product_base_options.dart';
@@ -30,8 +32,9 @@ class AppModule extends Module {
         ModuleRoute('/login',
             module: MicroAppLoginModule(), guards: [LoginGuard()]),
         ModuleRoute(
-          '/user',
-          module: UserMenuModule(),
+          '/employee',
+          module: EmployeeMenuModule(),
         ),
+        ModuleRoute('/landing', module: LandingModule()),
       ];
 }

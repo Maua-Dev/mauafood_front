@@ -27,7 +27,7 @@ class SplashPage extends StatelessWidget {
         if (controller.state is SplashSuccessState) {
           return const CircularProgressIndicator();
         } else {
-          return const CircularProgressIndicator();
+          return const Center(child: CircularProgressIndicator());
         }
       }),
     );

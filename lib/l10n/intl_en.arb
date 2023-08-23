@@ -29,8 +29,36 @@
     "sendTitle": "Send",
     "codeTitle": "Code",
     "confirmTitle": "Confirm",
+    "nameTitle": "Name",
+    "photoTitle": "Photo",
+    "prepareTimeTitle": "Prepare Time",
+    "priceTitle": "Price",
+    "biggestPriceTitle": "Biggest Price",
+    "lowestPriceTitle": "Lowest Price",
+    "priceOrder": "Price order",
+    "priceRangeOrder": "Price range",
+    "categoryTitle": "Category",
+    "categoriesTitle": "Categories",
+    "descriptionTitle": "Description",
+    "productAvailabilityTitle": "Product Availability",
+    "previewTitle": "Preview",
+    "minutesTitle": "minutes",
+    "saveTitle": "Save",
+    "createTitle": "Create",
+    "editTitle": "Edit",
     "notificationsOptionsSchema": "{notifications, select, normalPart{Want to receive } email{email notifications} app{app notifications} other{}}",
     "labelName": "Full Name",
+    "cancelationTitle": "Cancel",
+    "deleteTitle": "Delete",
+    "applyTitle": "Apply",
+    "cleanFilterTitle": "Clean filter",
+    "deleteProductConfirmationTitle": "Are you sure you want to delete the product?",
+    "productSuccessfullyDeletedTitle": "Product successfully deleted.",
+    "productSuccessfullyCreatedTitle": "Poduct successfully created.",
+    "productSuccessfullyEditedTitle": "Product successfully edited.",
+    "dataStorageTitle": "Data storage",
+    "dataStorageAlertTitle": "If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it.",
+    "closeTitle": "Close",
 
     "requiredFieldAlert": "Required field.",
     "invalidEmailAlert": "Invalid email.",
@@ -67,8 +95,8 @@
 
 
 
-    "restaurantsNameSchema": "{restaurant, select, biba{Souza de Abreu} hora_h{H Hour} moleza{Cantina do Moleza} other{}}",
-    "restaurantsImageSchema": "{restaurant, select, biba{bibaImage} hora_h{hora_hImage} moleza{molezaImage} other{}}",
+    "restaurantsNameSchema": "{restaurant, select, souza_de_abreu{Souza de Abreu} hora_h{H Hour} cantina_do_moleza{Cantina do Moleza} other{}}",
+    "restaurantsImageSchema": "{restaurant, select, souza_de_abreu{bibaImage} hora_h{hora_hImage} cantina_do_moleza{molezaImage} other{}}",
     
 
     "typeContact": "Contact us",
@@ -76,7 +104,8 @@
     "labelSend": "Send now",
 
 
-    "productNameSchema": "{product, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}",
+    "productNameSchema": "{product, select, ALL{All} SANDWICHES{Sandwiches} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}",
+    "productToEnumSchema": "{name, select, All{ALL} Sandwiches{SANDWICHES} Drinks{DRINKS} Candies{CANDIES} Dishes{PLATES} Portions{PORTIONS} Pastas{PASTAS} Snacks{SNACKS} Salads{SALADS} Dessert{DESSERT} Savoury{SAVOURY} other{OUTROS}}",
     "productPriceCurrency": "{amount} ",
     "@productPriceCurrency" : {
         "placeholders": {
@@ -106,6 +135,8 @@
 
 
     "recommendationsTitle": "Recommendations",
+    "createProductTitle": "Create product",
+    "editProductTitle": "Edit product",
 
 
 
@@ -114,6 +145,14 @@
 
 
     "messageSentSuccessfully": "Email successfully sent!",
+
+    "cart": "Cesta",
+    "home": "Home",
+    "profile": "Profile",
+    "help": "Help",
+    "orders": "Orders",
+
+
 
 
     
@@ -155,5 +194,8 @@
             }
         }
     },
-    "": ""
+    "": "",
+    "profileErrorPictureMessage": "An error ocurred while changing your profile picture",
+    "profileSuccessPictureMessage": "Profile picture successfully updated",
+    "selectButton": "Select"
 }

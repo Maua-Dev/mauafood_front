@@ -21,8 +21,7 @@ class RestaurantWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: InkWell(
-        onTap: () =>
-            Modular.to.pushNamed('/user/menu', arguments: restaurantInfo),
+        onTap: () => Modular.to.pushNamed('./menu', arguments: restaurantInfo),
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),

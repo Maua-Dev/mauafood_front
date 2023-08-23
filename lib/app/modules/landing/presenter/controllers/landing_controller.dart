@@ -23,7 +23,8 @@ abstract class _LandingControllerBase with Store {
       loading = false;
     }
   }
-
+  @computed
+  bool get isLogged => _userController.isLogged;
   @observable
   bool loading = true;
   @observable

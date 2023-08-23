@@ -21,6 +21,7 @@ class _FaqPageState extends State<FaqPage> {
     super.initState();
     controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0xFFFFFFFF))
       ..setNavigationDelegate(
         NavigationDelegate(onPageFinished: (url) {
           setState(() {

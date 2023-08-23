@@ -4,9 +4,9 @@ import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
-import '../../../../../../shared/helpers/services/s3/assets_s3.dart';
-import '../../../../../../shared/themes/app_colors.dart';
-import '../../../../../../shared/widgets/button_widget.dart';
+import '../helpers/services/s3/assets_s3.dart';
+import '../themes/app_colors.dart';
+import 'button_widget.dart';
 
 class DisclaimerDialog extends StatelessWidget {
   const DisclaimerDialog({super.key});

@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../../../user/presenter/ui/widgets/contact/contact_dialog.dart';
+import '../../../../../shared/widgets/contact/contact_dialog.dart';
 
 class FaqPage extends StatefulWidget {
-  FaqPage({super.key});
+  const FaqPage({super.key});
 
   @override
   State<FaqPage> createState() => _FaqPageState();

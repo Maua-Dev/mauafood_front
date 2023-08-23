@@ -147,15 +147,13 @@ abstract class ProductFormControllerBase with Store {
     changeState(ProductFormLoadingState());
     var result = await _createProduct(
         ProductModel(
-          name: productName!,
-          description: productDescription ?? "",
-          price: productPrice!,
-          prepareTime: productPrepareTime,
-          type: productType!,
-          available: productAvailability,
-          photo:
-              "https://dygzp3rn48wd5.cloudfront.net/products/icons/plates.png",
-        ),
+            name: productName!,
+            description: productDescription ?? "",
+            price: productPrice!,
+            prepareTime: productPrepareTime,
+            type: productType!,
+            available: productAvailability,
+            photo: productPhoto),
         restaurant);
     changeState(
         result.fold((l) => ProductFormFailureState(failure: l), (product) {

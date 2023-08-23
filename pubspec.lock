@@ -125,8 +125,8 @@ packages:
     dependency: "direct main"
     description:
       path: "packages/auth_package"
-      ref: dev
-      resolved-ref: "25dc975cfd82f700544d19d8764d8652e03927b1"
+      ref: "1.0.1"
+      resolved-ref: "33589f5b61ce0cc1936ea5528af31db6937fd66f"
       url: "https://github.com/Maua-Dev/dev_authentication.git"
     source: git
     version: "1.0.0"

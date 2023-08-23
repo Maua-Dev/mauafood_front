@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mauafood_front/app/modules/user/domain/entities/user.dart';
@@ -18,6 +17,7 @@ abstract class _LandingControllerBase with Store {
   _LandingControllerBase(this._userController) {
     if (_userController.isLogged) {
       loadUser();
+      checkFirstUse();
     } else {
       Modular.to.navigate('./restaurants/');
       loading = false;
@@ -26,7 +26,8 @@ abstract class _LandingControllerBase with Store {
 
   @observable
   bool loading = true;
-
+  @observable
+  bool isFirstUse = false;
   @computed
   bool get isUser => user?.isUser ?? true;
   @computed
@@ -55,7 +56,7 @@ abstract class _LandingControllerBase with Store {
       'route': '/landing/cart/',
     },
     {
-      'icon': Icons.person_outline_outlined,
+      'icon': FontAwesomeIcons.user,
       'title': S.current.profile,
       'route': '/landing/profile/',
     },
@@ -77,7 +78,7 @@ abstract class _LandingControllerBase with Store {
       'route': '/landing/orders/',
     },
     {
-      'icon': Icons.person_outline_outlined,
+      'icon': FontAwesomeIcons.user,
       'title': S.current.profile,
       'route': '/landing/profile/',
     },
@@ -95,5 +96,9 @@ abstract class _LandingControllerBase with Store {
         ? Modular.to.navigate('./employee/')
         : Modular.to.navigate('./restaurants/');
     loading = false;
+  }
+
+  Future<void> checkFirstUse() async {
+    isFirstUse = await _userController.isFirstUse();
   }
 }

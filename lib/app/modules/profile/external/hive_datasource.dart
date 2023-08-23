@@ -10,7 +10,6 @@ class HiveDatasource implements FavoriteDatasource {
   HiveDatasource._(this.box, this._authStore);
 
   static Future<HiveDatasource> instance(AuthStore authStore) async {
-    await Hive.initFlutter();
     var box = await Hive.openBox('favorites');
     return HiveDatasource._(box, authStore);
   }

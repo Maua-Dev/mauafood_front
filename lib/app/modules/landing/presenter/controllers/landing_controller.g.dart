@@ -52,6 +52,22 @@ mixin _$LandingController on _LandingControllerBase, Store {
     });
   }
 
+  late final _$isFirstUseAtom =
+      Atom(name: '_LandingControllerBase.isFirstUse', context: context);
+
+  @override
+  bool get isFirstUse {
+    _$isFirstUseAtom.reportRead();
+    return super.isFirstUse;
+  }
+
+  @override
+  set isFirstUse(bool value) {
+    _$isFirstUseAtom.reportWrite(value, super.isFirstUse, () {
+      super.isFirstUse = value;
+    });
+  }
+
   late final _$userAtom =
       Atom(name: '_LandingControllerBase.user', context: context);
 
@@ -102,6 +118,7 @@ mixin _$LandingController on _LandingControllerBase, Store {
   String toString() {
     return '''
 loading: ${loading},
+isFirstUse: ${isFirstUse},
 user: ${user},
 isUser: ${isUser},
 isEmployee: ${isEmployee},

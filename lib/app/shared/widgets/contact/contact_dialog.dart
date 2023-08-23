@@ -3,12 +3,12 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/contact/text_field_contact_widget.dart';
+import 'package:mauafood_front/app/shared/widgets/contact/text_field_contact_widget.dart';
 import 'package:mauafood_front/app/shared/widgets/confirm_dialog_widget.dart';
 import 'package:mauafood_front/generated/l10n.dart';
-import '../../../../../../shared/themes/app_colors.dart';
-import '../../../../../../shared/themes/app_text_styles.dart';
-import '../../../controllers/contact/contact_controller.dart';
+import '../../themes/app_colors.dart';
+import '../../themes/app_text_styles.dart';
+import 'contact_controller.dart';
 
 class ContactDialog extends StatelessWidget {
   const ContactDialog({super.key});

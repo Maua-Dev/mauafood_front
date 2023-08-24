@@ -1,6 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
@@ -8,7 +7,7 @@ import 'package:mauafood_front/generated/l10n.dart';
 
 import '../widgets/recommended_product_widget.dart';
 
-class ProductInfoPage extends StatelessWidget {
+class ProductInfoPage extends StatefulWidget {
   final Product productInfo;
   final List<Product> recommendedProductList;
   const ProductInfoPage(
@@ -17,9 +16,21 @@ class ProductInfoPage extends StatelessWidget {
       required this.recommendedProductList});
 
   @override
+  State<ProductInfoPage> createState() => _ProductInfoPageState();
+}
+
+class _ProductInfoPageState extends State<ProductInfoPage> {
+  late Product product;
+  @override
+  void initState() {
+    super.initState();
+    product = widget.productInfo;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final recommendedProductListFilter = recommendedProductList
-        .where((element) => element.id != productInfo.id)
+    final recommendedProductListFilter = widget.recommendedProductList
+        .where((element) => element.id != product.id)
         .toList();
     return Scaffold(
       backgroundColor: const Color(0xffFAF9F6),
@@ -37,7 +48,7 @@ class ProductInfoPage extends StatelessWidget {
             child: SizedBox.fromSize(
               size: Size.fromHeight(MediaQuery.of(context).size.height / 4),
               child: CachedNetworkImage(
-                imageUrl: productInfo.photo!,
+                imageUrl: product.photo!,
                 placeholder: (context, url) => const Center(
                   child: CircularProgressIndicator(),
                 ),
@@ -77,20 +88,18 @@ class ProductInfoPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Text(
-                              productInfo.name,
+                              product.name,
                               style: AppTextStyles.h1,
                             ),
                             Text(
-                              S
-                                  .of(context)
-                                  .productPriceCurrency(productInfo.price),
+                              S.of(context).productPriceCurrency(product.price),
                               style: AppTextStyles.h1.copyWith(fontSize: 22),
                             ),
                             const SizedBox(
                               height: 16,
                             ),
                             Text(
-                              productInfo.description ?? "",
+                              product.description ?? "",
                               style: AppTextStyles.h3
                                   .copyWith(fontWeight: FontWeight.bold),
                               textAlign: TextAlign.left,
@@ -121,11 +130,13 @@ class ProductInfoPage extends StatelessWidget {
                           child: RecommendedProductWidget(
                             product: recommendedProductListFilter[index],
                             onPressed: () {
-                              Modular.to.popAndPushNamed('/user/product-info/',
-                                  arguments: [
-                                    recommendedProductListFilter[index],
-                                    recommendedProductList
-                                  ]);
+                              product = recommendedProductListFilter[index];
+
+                              setState(() {});
+                              // Modular.to.popAndPushNamed('./', arguments: [
+                              //   recommendedProductListFilter[index],
+                              //   widget.recommendedProductList
+                              // ]);
                             },
                           ),
                         ),

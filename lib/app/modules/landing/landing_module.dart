@@ -11,9 +11,11 @@ import '../../shared/datasource/external/http/contact_datasource.dart';
 import '../../shared/domain/repositories/contact_repository_interface.dart';
 import '../../shared/domain/usecases/contact_usecase.dart';
 import '../../shared/guards/auth_guard.dart';
+import '../../shared/helpers/services/s3/assets_s3.dart';
 import '../../shared/infra/datasource/external/http/contact_datasource_interface.dart';
 import '../../shared/infra/repositories/contact_repository.dart';
-import '../user/presenter/controllers/contact/contact_controller.dart';
+import '../../shared/themes/app_text_styles.dart';
+import '../../shared/widgets/contact/contact_controller.dart';
 import 'presenter/ui/pages/faq_page.dart';
 
 class LandingModule extends Module {
@@ -37,13 +39,26 @@ class LandingModule extends Module {
         children: [
           ModuleRoute('/employee/', module: EmployeeMenuModule()),
           ModuleRoute('/restaurants/', module: UserMenuModule()),
-          ChildRoute('/cart/',
-              child: (_, args) => const Center(
-                    child: Text(
-                      "Cart Page",
-                      style: TextStyle(fontSize: 48),
-                    ),
-                  )),
+          ChildRoute(
+            '/cart/',
+            child: (_, args) => Stack(
+              alignment: Alignment.center,
+              children: [
+                SizedBox(
+                  width: double.infinity,
+                  height: 300,
+                  child: Image.network(
+                    greyLogo,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                Text(
+                  'Funcionalidade em Construção',
+                  style: AppTextStyles.h2,
+                ),
+              ],
+            ),
+          ),
           ChildRoute('/faq/', child: (_, args) => const FaqPage()),
           ModuleRoute('/profile/',
               module: ProfileModule(), guards: [AuthGuard()]),

@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mauafood_front/app/modules/user/presenter/controllers/contact/contact_controller.dart';
+import 'package:mauafood_front/app/shared/widgets/contact/contact_controller.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/contact_usecase.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';

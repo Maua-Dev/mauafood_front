@@ -9,6 +9,13 @@ part of 'landing_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$LandingController on _LandingControllerBase, Store {
+  Computed<bool>? _$isLoggedComputed;
+
+  @override
+  bool get isLogged =>
+      (_$isLoggedComputed ??= Computed<bool>(() => super.isLogged,
+              name: '_LandingControllerBase.isLogged'))
+          .value;
   Computed<bool>? _$isUserComputed;
 
   @override
@@ -49,6 +56,22 @@ mixin _$LandingController on _LandingControllerBase, Store {
   set loading(bool value) {
     _$loadingAtom.reportWrite(value, super.loading, () {
       super.loading = value;
+    });
+  }
+
+  late final _$isFirstUseAtom =
+      Atom(name: '_LandingControllerBase.isFirstUse', context: context);
+
+  @override
+  bool get isFirstUse {
+    _$isFirstUseAtom.reportRead();
+    return super.isFirstUse;
+  }
+
+  @override
+  set isFirstUse(bool value) {
+    _$isFirstUseAtom.reportWrite(value, super.isFirstUse, () {
+      super.isFirstUse = value;
     });
   }
 
@@ -102,7 +125,9 @@ mixin _$LandingController on _LandingControllerBase, Store {
   String toString() {
     return '''
 loading: ${loading},
+isFirstUse: ${isFirstUse},
 user: ${user},
+isLogged: ${isLogged},
 isUser: ${isUser},
 isEmployee: ${isEmployee},
 index: ${index},

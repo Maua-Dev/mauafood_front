@@ -38,7 +38,7 @@ class ProductCardWidget extends StatelessWidget {
                           ? Image.memory(uploadedPhoto!)
                           : const Icon(Icons.image_not_supported)
                       : CachedNetworkImage(
-                          imageUrl: product.photo!,
+                          imageUrl: product.photo ?? '',
                           errorWidget: (context, url, error) =>
                               const Icon(Icons.error),
                         ),

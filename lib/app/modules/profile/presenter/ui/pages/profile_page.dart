@@ -89,10 +89,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         const EdgeInsets.only(top: 16.0, left: 12, right: 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(
-                              left: 24, bottom: 48, top: 120),
+                          padding: const EdgeInsets.only(left: 24, top: 120),
                           child: Text(
                             store.name,
                             style: TextStyle(

@@ -127,7 +127,7 @@ class MockIMenuDatasource extends _i1.Mock implements _i3.IMenuDatasource {
   @override
   _i4.Future<void> uploadPhotoToS3(
     String? url,
-    _i6.Uint8List? photo,
+    _i6.Uint8ClampedList? photo,
   ) =>
       (super.noSuchMethod(
         Invocation.method(

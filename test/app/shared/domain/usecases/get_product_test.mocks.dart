@@ -201,7 +201,7 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
   @override
   _i4.Future<_i2.Either<_i5.Failure, void>> uploadPhotoToS3(
     String? url,
-    _i8.Uint8List? photo,
+    _i8.Uint8ClampedList? photo,
   ) =>
       (super.noSuchMethod(
         Invocation.method(

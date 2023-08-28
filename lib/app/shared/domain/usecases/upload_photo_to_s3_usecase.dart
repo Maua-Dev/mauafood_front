@@ -5,7 +5,7 @@ import 'package:mauafood_front/app/shared/domain/repositories/menu_repository_in
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 
 abstract class IUploadPhotoToS3Usecase {
-  Future<Either<Failure, void>> call(String url, Uint8List photo);
+  Future<Either<Failure, void>> call(String url, Uint8ClampedList photo);
 }
 
 class UploadPhotoToS3Usecase extends IUploadPhotoToS3Usecase {
@@ -14,7 +14,7 @@ class UploadPhotoToS3Usecase extends IUploadPhotoToS3Usecase {
   UploadPhotoToS3Usecase({required this.repository});
 
   @override
-  Future<Either<Failure, void>> call(String url, Uint8List photo) async {
+  Future<Either<Failure, void>> call(String url, Uint8ClampedList photo) async {
     var result = await repository.uploadPhotoToS3(url, photo);
     return result;
   }

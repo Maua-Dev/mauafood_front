@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+import 'package:typed_data/typed_data.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
@@ -11,7 +13,6 @@ import 'package:mauafood_front/app/shared/domain/usecases/upload_product_photo_u
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 import 'package:mobx/mobx.dart';
-import 'dart:typed_data';
 
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/domain/enums/product_enum.dart';
@@ -128,7 +129,7 @@ abstract class ProductFormControllerBase with Store {
   }
 
   @observable
-  Uint8List? uploadedPhoto;
+  Uint8ClampedList? uploadedPhoto;
 
   @action
   Future uploadProductPhoto() async {

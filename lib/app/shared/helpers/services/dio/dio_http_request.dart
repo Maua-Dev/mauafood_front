@@ -27,9 +27,9 @@ class DioHttpRequest implements IHttpRequest {
   }
 
   @override
-  Future<Response> uploadPhotoToS3(String url, Uint8List photo) async {
-    img.Image image = img.decodeImage(Uint8List.fromList(photo))!;
-    Uint8List jpegData = Uint8List.fromList(img.encodeJpg(image));
-    return _dio.put(url, data: photo);
+  Future<Response> uploadPhotoToS3(String url, Uint8ClampedList photo) async {
+    img.Image image = img.decodeImage(Uint8ClampedList.fromList(photo))!;
+    Uint8ClampedList jpegData = Uint8ClampedList.fromList(img.encodeJpg(image));
+    return _dio.put(url, data: jpegData);
   }
 }

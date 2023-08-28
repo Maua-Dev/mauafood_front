@@ -141,13 +141,13 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
       Atom(name: 'ProductFormControllerBase.uploadedPhoto', context: context);
 
   @override
-  Uint8List? get uploadedPhoto {
+  Uint8ClampedList? get uploadedPhoto {
     _$uploadedPhotoAtom.reportRead();
     return super.uploadedPhoto;
   }
 
   @override
-  set uploadedPhoto(Uint8List? value) {
+  set uploadedPhoto(Uint8ClampedList? value) {
     _$uploadedPhotoAtom.reportWrite(value, super.uploadedPhoto, () {
       super.uploadedPhoto = value;
     });

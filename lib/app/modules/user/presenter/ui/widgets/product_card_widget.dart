@@ -10,7 +10,7 @@ import '../../../../../shared/domain/entities/product.dart';
 class ProductCardWidget extends StatelessWidget {
   final Product product;
   final Function()? onPressed;
-  final Uint8List? uploadedPhoto;
+  final Uint8ClampedList? uploadedPhoto;
 
   const ProductCardWidget({
     Key? key,

@@ -17,5 +17,6 @@ abstract class IMenuRepository {
   Future<Either<Failure, void>> deleteProduct(
       String id, RestaurantEnum restaurant);
   Future<Either<Failure, String>> uploadProductPhoto(String id);
-  Future<Either<Failure, void>> uploadPhotoToS3(String url, Uint8List photo);
+  Future<Either<Failure, void>> uploadPhotoToS3(
+      String url, Uint8ClampedList photo);
 }

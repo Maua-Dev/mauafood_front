@@ -11,5 +11,5 @@ abstract class IMenuDatasource {
       ProductModel product, RestaurantEnum restaurant);
   Future<void> deleteProduct(String id, RestaurantEnum restaurant);
   Future<String> uploadProductPhoto(String id);
-  Future<void> uploadPhotoToS3(String url, Uint8List photo);
+  Future<void> uploadPhotoToS3(String url, Uint8ClampedList photo);
 }

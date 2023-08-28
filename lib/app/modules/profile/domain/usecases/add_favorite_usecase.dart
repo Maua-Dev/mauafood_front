@@ -1,4 +1,4 @@
-import 'package:mauafood_front/app/modules/landing/domain/repositories/favorites_repositorie_interface.dart';
+import 'package:mauafood_front/app/modules/profile/domain/repositories/favorites_repositorie_interface.dart';
 
 abstract class AddFavoriteUsecase {
   Future<void> call(id);

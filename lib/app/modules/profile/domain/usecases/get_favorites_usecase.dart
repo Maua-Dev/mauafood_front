@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:mauafood_front/app/modules/landing/domain/repositories/favorites_repositorie_interface.dart';
+import 'package:mauafood_front/app/modules/profile/domain/repositories/favorites_repositorie_interface.dart';
 
 import '../../../../shared/domain/entities/product.dart';
 import '../../../../shared/helpers/errors/errors.dart';

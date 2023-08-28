@@ -5,6 +5,6 @@ import '../../../../shared/helpers/errors/errors.dart';
 
 abstract class FavoritesRepository {
   Future<Either<Failure, List<Product>>> getFavorites();
-  Future<Either<Failure, String>> removeFavorite(String id);
-  Future<Either<Failure, String>> addFavorite(String id);
+  Future<void> removeFavorite(String id);
+  Future<void> addFavorite(String id);
 }

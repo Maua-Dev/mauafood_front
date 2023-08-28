@@ -17,8 +17,8 @@ class FavoritoriesRepositoryImpl implements FavoritesRepository {
   List<Product>? favoritesList;
 
   @override
-  Future<Either<Failure, String>> addFavorite(String id) {
-    throw UnimplementedError();
+  Future<void> addFavorite(String id) async {
+    favDatasource.addFavorite(id);
   }
 
   @override
@@ -48,7 +48,7 @@ class FavoritoriesRepositoryImpl implements FavoritesRepository {
   }
 
   @override
-  Future<Either<Failure, String>> removeFavorite(String id) {
-    throw UnimplementedError();
+  Future<void> removeFavorite(String id) async {
+    favDatasource.addFavorite(id);
   }
 }

@@ -1,8 +1,7 @@
-import 'dart:io';
-
+import 'dart:typed_data';
 import 'package:dio/dio.dart';
-
 import '../http/http_request_interface.dart';
+import 'package:image/image.dart' as img;
 
 class DioHttpRequest implements IHttpRequest {
   final Dio _dio;
@@ -28,7 +27,9 @@ class DioHttpRequest implements IHttpRequest {
   }
 
   @override
-  Future<Response> postPhoto(String url, File photo) {
-    return _dio.post(url, data: photo);
+  Future<Response> uploadPhotoToS3(String url, Uint8List photo) async {
+    img.Image image = img.decodeImage(Uint8List.fromList(photo))!;
+    Uint8List jpegData = Uint8List.fromList(img.encodeJpg(image));
+    return _dio.put(url, data: photo);
   }
 }

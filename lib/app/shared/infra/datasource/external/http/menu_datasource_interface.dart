@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
@@ -11,5 +11,5 @@ abstract class IMenuDatasource {
       ProductModel product, RestaurantEnum restaurant);
   Future<void> deleteProduct(String id, RestaurantEnum restaurant);
   Future<String> uploadProductPhoto(String id);
-  Future<void> uploadPhotoToS3(String url, File photo);
+  Future<void> uploadPhotoToS3(String url, Uint8List photo);
 }

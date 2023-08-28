@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -138,7 +138,8 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
-  Future<Either<Failure, void>> uploadPhotoToS3(String url, File photo) async {
+  Future<Either<Failure, void>> uploadPhotoToS3(
+      String url, Uint8List photo) async {
     try {
       var response = await datasource.uploadPhotoToS3(url, photo);
       return right(response);

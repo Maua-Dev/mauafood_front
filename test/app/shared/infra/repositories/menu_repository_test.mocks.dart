@@ -4,7 +4,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
-import 'dart:io' as _i6;
+import 'dart:typed_data' as _i6;
 
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart'
     as _i5;
@@ -127,7 +127,7 @@ class MockIMenuDatasource extends _i1.Mock implements _i3.IMenuDatasource {
   @override
   _i4.Future<void> uploadPhotoToS3(
     String? url,
-    _i6.File? photo,
+    _i6.Uint8List? photo,
   ) =>
       (super.noSuchMethod(
         Invocation.method(

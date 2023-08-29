@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:dartz/dartz.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';

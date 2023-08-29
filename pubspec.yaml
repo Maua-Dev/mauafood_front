@@ -41,6 +41,7 @@ dependencies:
   cached_network_image: ^3.2.3
   hive: ^2.2.3
   webview_flutter: ^4.2.3
+  image: ^3.3.0
   
 dev_dependencies:
   flutter_test:

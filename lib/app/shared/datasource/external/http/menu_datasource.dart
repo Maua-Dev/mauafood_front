@@ -1,4 +1,4 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:mauafood_front/app/shared/helpers/services/http/http_request_interface.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart';

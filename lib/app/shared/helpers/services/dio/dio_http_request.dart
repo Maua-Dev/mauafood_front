@@ -1,8 +1,8 @@
-import 'dart:io';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import '../http/http_request_interface.dart';
-import 'package:image/image.dart' as img;
-import 'dart:typed_data' as td;
+import 'package:image/image.dart';
+import 'dart:typed_data';
 
 class DioHttpRequest implements IHttpRequest {
   final Dio _dio;
@@ -29,8 +29,8 @@ class DioHttpRequest implements IHttpRequest {
 
   @override
   Future<Response> uploadPhotoToS3(String url, Uint8List photo) async {
-    img.Image image = img.decodeImage(td.Uint8List().fromList(photo))!;
-    Uint8List jpegData = td.Uint8List().fromList(img.encodeJpg(image));
-    return _dio.put(url, data: jpegData);
+    Image image = decodeImage(Uint8List.fromList(photo))!;
+    Uint8List jpgData = Uint8List.fromList(encodeJpg(image));
+    return _dio.put(url, data: jpgData);
   }
 }

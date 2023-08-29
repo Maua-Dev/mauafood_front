@@ -1,7 +1,7 @@
-import 'dart:io';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mauafood_front/app/shared/helpers/services/s3/assets_s3.dart';
 import 'package:mobx/mobx.dart';
 
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
@@ -147,6 +147,42 @@ abstract class ProductFormControllerBase with Store {
   @action
   Future<void> createProduct(RestaurantEnum restaurant) async {
     changeState(ProductFormLoadingState());
+    if (productPhoto == '' || productPhoto == null) {
+      switch (productType) {
+        case ProductEnum.SANDWICHES:
+          productPhoto = productIcons['SANDWICHES'];
+          break;
+        case ProductEnum.DRINKS:
+          productPhoto = productIcons['DRINKS'];
+          break;
+        case ProductEnum.CANDIES:
+          productPhoto = productIcons['CANDIES'];
+          break;
+        case ProductEnum.PLATES:
+          productPhoto = productIcons['PLATES'];
+          break;
+        case ProductEnum.PORTIONS:
+          productPhoto = productIcons['PORTIONS'];
+          break;
+        case ProductEnum.SNACKS:
+          productPhoto = productIcons['SNACKS'];
+          break;
+        case ProductEnum.PASTAS:
+          productPhoto = productIcons['PASTAS'];
+          break;
+        case ProductEnum.SALADS:
+          productPhoto = productIcons['SALADS'];
+          break;
+        case ProductEnum.DESSERT:
+          productPhoto = productIcons['DESSERT'];
+          break;
+        case ProductEnum.SAVOURY:
+          productPhoto = productIcons['SAVOURY'];
+          break;
+        default:
+          productPhoto = productIcons['SANDWICHES'];
+      }
+    }
     var result = await _createProduct(
         ProductModel(
             name: productName!,
@@ -174,20 +210,25 @@ abstract class ProductFormControllerBase with Store {
   Future<void> updateProduct(
       RestaurantEnum restaurant, String productId) async {
     changeState(ProductFormLoadingState());
-    var uploadPhoto = await _uploadProductPhotoUsecase(productId);
-    var uploadUrl = '';
-    changeState(uploadPhoto.fold((l) {
-      return ProductFormFailureState(failure: l);
-    }, (url) {
-      uploadUrl = url;
-      return ProductFormLoadingState();
-    }));
 
-    if (uploadUrl != '') {
-      try {
-        await _uploadPhotoToS3Usecase(uploadUrl, uploadedPhoto!);
-      } catch (e) {
-        print("DEU BO");
+    var uploadUrl = '';
+    if (uploadedPhoto != null) {
+      var uploadPhoto = await _uploadProductPhotoUsecase(productId);
+      changeState(uploadPhoto.fold((l) {
+        return ProductFormFailureState(failure: l);
+      }, (url) {
+        uploadUrl = url;
+        return ProductFormLoadingState();
+      }));
+      if (uploadUrl != '') {
+        var resultUpload =
+            await _uploadPhotoToS3Usecase(uploadUrl, uploadedPhoto!);
+        changeState(resultUpload.fold((l) {
+          return ProductFormFailureState(failure: l);
+        }, (response) {
+          productPhoto = uploadUrl.substring(0, uploadUrl.indexOf('?'));
+          return ProductFormLoadingState();
+        }));
       }
     }
 

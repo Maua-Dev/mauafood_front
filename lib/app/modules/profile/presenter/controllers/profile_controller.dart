@@ -43,9 +43,14 @@ abstract class ProfileControllerBase with Store {
     final user =
         _userController.user!.copyWith(photo: profilePictures[photoIndex]);
     final res = await _updateUser(user);
-    res.fold(
-      (l) => successful = false,
-      (r) => successful = true,
+    await res.fold<Future<void>>(
+      (l) async {
+        successful = false;
+      },
+      (r) async {
+        await _userController.loadUser();
+        successful = true;
+      },
     );
     photo = user.photo;
   }

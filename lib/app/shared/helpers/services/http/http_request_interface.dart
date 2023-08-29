@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 
@@ -6,5 +6,5 @@ abstract class IHttpRequest {
   Future<Response> get(String url);
   Future<Response> post(String url, {dynamic data});
   Future<Response> put(String url, {dynamic data});
-  Future<Response> uploadPhotoToS3(String url, Uint8ClampedList photo);
+  Future<Response> uploadPhotoToS3(String url, Uint8List photo);
 }

@@ -1,4 +1,4 @@
-import 'dart:typed_data';
+import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +10,7 @@ import '../../../../../shared/domain/entities/product.dart';
 class ProductCardWidget extends StatelessWidget {
   final Product product;
   final Function()? onPressed;
-  final Uint8ClampedList? uploadedPhoto;
+  final Uint8List? uploadedPhoto;
 
   const ProductCardWidget({
     Key? key,

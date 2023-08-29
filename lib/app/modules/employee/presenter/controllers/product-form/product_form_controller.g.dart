@@ -141,15 +141,31 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
       Atom(name: 'ProductFormControllerBase.uploadedPhoto', context: context);
 
   @override
-  Uint8ClampedList? get uploadedPhoto {
+  InvalidType get uploadedPhoto {
     _$uploadedPhotoAtom.reportRead();
     return super.uploadedPhoto;
   }
 
   @override
-  set uploadedPhoto(Uint8ClampedList? value) {
+  set uploadedPhoto(InvalidType value) {
     _$uploadedPhotoAtom.reportWrite(value, super.uploadedPhoto, () {
       super.uploadedPhoto = value;
+    });
+  }
+
+  late final _$photoAtom =
+      Atom(name: 'ProductFormControllerBase.photo', context: context);
+
+  @override
+  XFile? get photo {
+    _$photoAtom.reportRead();
+    return super.photo;
+  }
+
+  @override
+  set photo(XFile? value) {
+    _$photoAtom.reportWrite(value, super.photo, () {
+      super.photo = value;
     });
   }
 
@@ -158,7 +174,7 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
       context: context);
 
   @override
-  Future<dynamic> uploadProductPhoto() {
+  Future<void> uploadProductPhoto() {
     return _$uploadProductPhotoAsyncAction
         .run(() => super.uploadProductPhoto());
   }
@@ -316,7 +332,8 @@ productType: ${productType},
 productDescription: ${productDescription},
 productAvailability: ${productAvailability},
 productPhoto: ${productPhoto},
-uploadedPhoto: ${uploadedPhoto}
+uploadedPhoto: ${uploadedPhoto},
+photo: ${photo}
     ''';
   }
 }

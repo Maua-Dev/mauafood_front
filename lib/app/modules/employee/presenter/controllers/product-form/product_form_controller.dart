@@ -1,7 +1,9 @@
-import 'dart:typed_data';
-import 'package:typed_data/typed_data.dart';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:mobx/mobx.dart';
+
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
@@ -12,7 +14,6 @@ import 'package:mauafood_front/app/shared/domain/usecases/upload_photo_to_s3_use
 import 'package:mauafood_front/app/shared/domain/usecases/upload_product_photo_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
-import 'package:mobx/mobx.dart';
 
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/domain/enums/product_enum.dart';
@@ -129,13 +130,16 @@ abstract class ProductFormControllerBase with Store {
   }
 
   @observable
-  Uint8ClampedList? uploadedPhoto;
+  Uint8List? uploadedPhoto;
+
+  @observable
+  XFile? photo;
 
   @action
-  Future uploadProductPhoto() async {
-    XFile? photo = await ImagePicker().pickImage(source: ImageSource.gallery);
+  Future<void> uploadProductPhoto() async {
+    photo = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (photo != null) {
-      uploadedPhoto = await photo.readAsBytes();
+      uploadedPhoto = await photo!.readAsBytes();
     }
     setProductPhoto(null);
   }

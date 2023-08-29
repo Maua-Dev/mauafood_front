@@ -2,7 +2,6 @@ import 'dart:typed_data';
 
 import 'package:mauafood_front/app/shared/helpers/services/http/http_request_interface.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart';
-
 import '../../../domain/enums/restaurant_enum.dart';
 import '../../../infra/models/product_model.dart';
 
@@ -69,7 +68,12 @@ class MenuDatasource implements IMenuDatasource {
 
   @override
   Future<void> uploadPhotoToS3(String url, Uint8List photo) async {
-    var response = await _httpService.uploadPhotoToS3(url, photo);
+    var response = await _httpService.put(
+      url,
+      data: Stream.fromIterable(photo.map((e) => [
+            e,
+          ])),
+    );
     if (response.statusCode == 200) {
       return;
     }

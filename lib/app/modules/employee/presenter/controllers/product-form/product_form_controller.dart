@@ -132,12 +132,11 @@ abstract class ProductFormControllerBase with Store {
   @observable
   Uint8List? uploadedPhoto;
 
-  @observable
-  XFile? photo;
-
   @action
   Future<void> uploadProductPhoto() async {
-    photo = await ImagePicker().pickImage(source: ImageSource.gallery);
+    var photo = await ImagePicker().pickImage(
+      source: ImageSource.gallery,
+    );
     if (photo != null) {
       uploadedPhoto = await photo!.readAsBytes();
     }

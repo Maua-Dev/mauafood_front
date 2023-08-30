@@ -141,7 +141,7 @@ abstract class ProductFormControllerBase with Store {
       maxWidth: 480,
     );
 
-    if (photo != null) {
+    if (photo != null && photo.mimeType!.contains('image')) {
       uploadedPhoto = await photo.readAsBytes();
     }
     setProductPhoto(null);
@@ -150,7 +150,7 @@ abstract class ProductFormControllerBase with Store {
   @action
   Future<void> createProduct(RestaurantEnum restaurant) async {
     changeState(ProductFormLoadingState());
-    if (productPhoto == '' && uploadedPhoto == null) {
+    if (productPhoto == null && uploadedPhoto == null) {
       productPhoto = productIcons[EnumToString.convertToString(productType)];
     }
     var result = await _createProduct(
@@ -206,6 +206,10 @@ abstract class ProductFormControllerBase with Store {
       }
     }
 
+    if (state is ProductFormFailureState) {
+      return;
+    }
+
     var result = await _updateProduct(
         ProductModel(
           id: productId,
@@ -243,6 +247,7 @@ abstract class ProductFormControllerBase with Store {
         productPrepareTime != product?.prepareTime ||
         productType != product?.type ||
         productAvailability != product?.available ||
-        productPhoto != product?.photo;
+        productPhoto != product?.photo ||
+        uploadedPhoto != null;
   }
 }

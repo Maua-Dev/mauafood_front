@@ -9,15 +9,16 @@ import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/e
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/upload_photo_to_s3_usecase.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/upload_product_photo_usecase.dart';
+
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/domain/enums/product_enum.dart';
+import '../../../usecases/create_product_usecase.dart';
+import '../../../usecases/update_product_usecase.dart';
+import '../../../usecases/upload_photo_to_s3_usecase.dart';
+import '../../../usecases/upload_product_photo_usecase.dart';
 
 part 'product_form_controller.g.dart';
 

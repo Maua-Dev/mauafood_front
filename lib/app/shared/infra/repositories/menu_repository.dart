@@ -145,7 +145,7 @@ class MenuRepository implements IMenuRepository {
       return right(response);
     } on DioError catch (e) {
       HttpStatusCodeEnum errorType =
-          getHttpStatusFunction(e.response!.statusCode);
+          getHttpStatusFunction(e.response?.statusCode ?? 500);
       return left(ErrorRequest(message: errorType.errorMessage));
     }
   }

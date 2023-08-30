@@ -25,7 +25,9 @@ abstract class MenuRestaurantControllerBase with Store {
 
   MenuRestaurantControllerBase(this._getRestaurantProduct, this.restaurantInfo,
       this._deleteProduct, this._authStore) {
-    loadRestaurantMenu();
+    loadRestaurantMenu().then((value) {
+      filterProduct();
+    });
   }
 
   void logout() async {
@@ -91,11 +93,6 @@ abstract class MenuRestaurantControllerBase with Store {
     var result = await _getRestaurantProduct(restaurantInfo);
     changeState(result.fold((l) => EmployeeMenuErrorState(failure: l), (list) {
       listAllProduct = list;
-      listAllProduct.sort(
-        (a, b) {
-          return a.type.index.compareTo(b.type.index);
-        },
-      );
       rangeValues = RangeValues(0,
           listAllProduct.map((e) => e.price).reduce((a, b) => a > b ? a : b));
       return EmployeeMenuLoadedSuccessState(listProduct: list, index: 0);
@@ -129,11 +126,15 @@ abstract class MenuRestaurantControllerBase with Store {
         filterList.sort((a, b) => a.price.compareTo(b.price));
       }
       if (isMinPriceSearch == false && isMaxPriceSearch == false) {
-        filterList.sort(
-          (a, b) {
-            return a.type.index.compareTo(b.type.index);
-          },
-        );
+        filterList.sort((a, b) {
+          final typeComparison = a.type.index.compareTo(b.type.index);
+          if (typeComparison != 0) {
+            return typeComparison; // Ordena por tipo
+          } else {
+            return a.name
+                .compareTo(b.name); // Dentro do mesmo tipo, ordena por nome
+          }
+        });
       }
       filterList = filterList
           .where((e) => e.price >= rangeValues!.start)

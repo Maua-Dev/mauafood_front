@@ -1,3 +1,4 @@
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
@@ -136,9 +137,12 @@ abstract class ProductFormControllerBase with Store {
   Future<void> uploadProductPhoto() async {
     var photo = await ImagePicker().pickImage(
       source: ImageSource.gallery,
+      maxHeight: 640,
+      maxWidth: 480,
     );
+
     if (photo != null) {
-      uploadedPhoto = await photo!.readAsBytes();
+      uploadedPhoto = await photo.readAsBytes();
     }
     setProductPhoto(null);
   }
@@ -146,41 +150,8 @@ abstract class ProductFormControllerBase with Store {
   @action
   Future<void> createProduct(RestaurantEnum restaurant) async {
     changeState(ProductFormLoadingState());
-    if (productPhoto == '' || productPhoto == null) {
-      switch (productType) {
-        case ProductEnum.SANDWICHES:
-          productPhoto = productIcons['SANDWICHES'];
-          break;
-        case ProductEnum.DRINKS:
-          productPhoto = productIcons['DRINKS'];
-          break;
-        case ProductEnum.CANDIES:
-          productPhoto = productIcons['CANDIES'];
-          break;
-        case ProductEnum.PLATES:
-          productPhoto = productIcons['PLATES'];
-          break;
-        case ProductEnum.PORTIONS:
-          productPhoto = productIcons['PORTIONS'];
-          break;
-        case ProductEnum.SNACKS:
-          productPhoto = productIcons['SNACKS'];
-          break;
-        case ProductEnum.PASTAS:
-          productPhoto = productIcons['PASTAS'];
-          break;
-        case ProductEnum.SALADS:
-          productPhoto = productIcons['SALADS'];
-          break;
-        case ProductEnum.DESSERT:
-          productPhoto = productIcons['DESSERT'];
-          break;
-        case ProductEnum.SAVOURY:
-          productPhoto = productIcons['SAVOURY'];
-          break;
-        default:
-          productPhoto = productIcons['SANDWICHES'];
-      }
+    if (productPhoto == '' && uploadedPhoto == null) {
+      productPhoto = productIcons[EnumToString.convertToString(productType)];
     }
     var result = await _createProduct(
         ProductModel(
@@ -192,8 +163,12 @@ abstract class ProductFormControllerBase with Store {
             available: productAvailability,
             photo: productPhoto),
         restaurant);
+
     changeState(
         result.fold((l) => ProductFormFailureState(failure: l), (product) {
+      if (uploadedPhoto != null) {
+        updateProduct(restaurant, product.id!);
+      }
       _employeeMenuRestaurantController.listAllProduct.add(product);
       _employeeMenuRestaurantController.rangeValues = RangeValues(
           0,
@@ -210,8 +185,8 @@ abstract class ProductFormControllerBase with Store {
       RestaurantEnum restaurant, String productId) async {
     changeState(ProductFormLoadingState());
 
-    var uploadUrl = '';
     if (uploadedPhoto != null) {
+      var uploadUrl = '';
       var uploadPhoto = await _uploadProductPhotoUsecase(productId);
       changeState(uploadPhoto.fold((l) {
         return ProductFormFailureState(failure: l);

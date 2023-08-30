@@ -47,7 +47,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: FittedBox(
-                          fit: BoxFit.fill,
+                          fit: BoxFit.contain,
                           child: product.photo != '' && product.photo != null
                               ? Image.network(
                                   product.photo!,
@@ -73,7 +73,10 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                     );
                                   },
                                 )
-                              : const Icon(Icons.image_not_supported),
+                              : const Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(Icons.image_not_supported),
+                                ),
                         ),
                       ),
                     ),

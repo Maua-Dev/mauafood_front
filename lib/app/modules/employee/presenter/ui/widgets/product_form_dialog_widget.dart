@@ -5,7 +5,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/product-form/product_form_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
-import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/product_card_widget.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
@@ -51,8 +50,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
       productFormController.setProductAvailability(widget.product!.available);
       productFormController.setProductType(widget.product!.type.name);
       productFormController.setProductName(widget.product!.name);
+      productFormController.productPrice = widget.product!.price;
 
-      productFormController.setProductPrice(widget.product!.price.toString());
       if (widget.product!.prepareTime != null) {
         productFormController
             .setProductPrepareTime(widget.product!.prepareTime.toString());
@@ -121,7 +120,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                             child: (productFormController
                                                             .uploadedPhoto ==
                                                         null &&
-                                                    widget.product == null)
+                                                    widget.product?.photo ==
+                                                        null)
                                                 ? Column(
                                                     mainAxisAlignment:
                                                         MainAxisAlignment
@@ -338,229 +338,132 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                             );
                           }),
                           const SizedBox(
-                            height: 32,
+                            height: 16,
                           ),
-                          Wrap(
-                            runAlignment: WrapAlignment.center,
-                            alignment: WrapAlignment.center,
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            spacing: 32,
-                            runSpacing: 8,
-                            children: [
-                              TextButton(
-                                  style: ButtonStyle(side:
-                                      MaterialStateBorderSide.resolveWith(
-                                          (Set<MaterialState> states) {
-                                    return BorderSide(
-                                        color: AppColors.mainBlueColor);
-                                  })),
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      showDialog(
-                                          context: context,
-                                          builder: (BuildContext buildContext) {
-                                            return AlertDialog(
-                                                title: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                        S
-                                                            .of(context)
-                                                            .previewTitle,
-                                                        style: AppTextStyles
-                                                            .h2HighlightBold
-                                                            .copyWith(
-                                                                fontSize: 16)),
-                                                    IconButton(
-                                                        onPressed: () =>
-                                                            Modular.to.pop(),
-                                                        icon: Icon(Icons.close,
-                                                            color: AppColors
-                                                                .mainBlueColor)),
-                                                  ],
-                                                ),
-                                                content: ProductCardWidget(
-                                                  onPressed: () {},
-                                                  product: Product(
-                                                    available:
-                                                        productFormController
-                                                            .productAvailability,
-                                                    name: productFormController
-                                                        .productName!,
-                                                    description:
-                                                        productFormController
-                                                                .productDescription ??
-                                                            '',
-                                                    prepareTime:
-                                                        productFormController
-                                                            .productPrepareTime,
-                                                    price: productFormController
-                                                        .productPrice!,
-                                                    type: productFormController
-                                                        .productType!,
-                                                    photo: productFormController
-                                                            .productPhoto ??
-                                                        '',
-                                                  ),
-                                                  uploadedPhoto:
-                                                      productFormController
-                                                          .uploadedPhoto,
-                                                ));
-                                          });
-                                    }
-                                  },
-                                  child: Text(
-                                    S.of(context).previewTitle,
-                                    style: AppTextStyles.h2.copyWith(
-                                        color: AppColors.mainBlueColor),
-                                  )),
-                              Observer(builder: ((context) {
-                                return TextButton(
-                                    style: ButtonStyle(
-                                        backgroundColor: productFormController
-                                                .wasProductFormChanged(
-                                                    widget.product)
-                                            ? MaterialStateProperty.all<Color>(
-                                                AppColors.backgroundColor)
-                                            : MaterialStateProperty.all<Color>(
-                                                AppColors.letterColor
-                                                    .withOpacity(0.1)),
-                                        side:
-                                            MaterialStateBorderSide.resolveWith(
-                                                (Set<MaterialState> states) {
-                                          return BorderSide(
-                                              color: AppColors.mainBlueColor);
-                                        })),
-                                    onPressed: productFormController
+                          Observer(builder: ((context) {
+                            return TextButton(
+                                style: ButtonStyle(
+                                    backgroundColor: productFormController
                                             .wasProductFormChanged(
                                                 widget.product)
-                                        ? () {
-                                            if (_formKey.currentState!
-                                                .validate()) {
-                                              widget.product != null
-                                                  ? productFormController
-                                                      .updateProduct(
-                                                          widget.restaurant,
-                                                          widget.product!.id!)
-                                                      .then((value) {
-                                                      if (productFormController
-                                                              .state
-                                                          is ProductFormSuccessState) {
-                                                        Modular.to.pop();
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                SnackBar(
-                                                          behavior:
-                                                              SnackBarBehavior
-                                                                  .floating,
-                                                          backgroundColor:
-                                                              AppColors
-                                                                  .mainBlueColor,
-                                                          content: Text(
-                                                              widget
-                                                                  .snackBarText,
-                                                              style: AppTextStyles
-                                                                  .h2
-                                                                  .copyWith(
-                                                                      color: AppColors
-                                                                          .white)),
-                                                        ));
-                                                      }
-                                                      if (productFormController
-                                                              .state
-                                                          is ProductFormFailureState) {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                SnackBar(
-                                                          behavior:
-                                                              SnackBarBehavior
-                                                                  .floating,
-                                                          backgroundColor:
-                                                              AppColors
-                                                                  .mainBlueColor,
-                                                          content: Text(
-                                                              widget
-                                                                  .snackBarText,
-                                                              style: AppTextStyles
-                                                                  .h2
-                                                                  .copyWith(
-                                                                      color: AppColors
-                                                                          .white)),
-                                                        ));
-                                                      }
-                                                    })
-                                                  : productFormController
-                                                      .createProduct(
-                                                          widget.restaurant)
-                                                      .then((value) {
-                                                      if (productFormController
-                                                              .state
-                                                          is ProductFormSuccessState) {
-                                                        Modular.to.pop();
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                SnackBar(
-                                                          behavior:
-                                                              SnackBarBehavior
-                                                                  .floating,
-                                                          backgroundColor:
-                                                              AppColors
-                                                                  .mainBlueColor,
-                                                          content: Text(
-                                                              widget
-                                                                  .snackBarText,
-                                                              style: AppTextStyles
-                                                                  .h2
-                                                                  .copyWith(
-                                                                      color: AppColors
-                                                                          .white)),
-                                                        ));
-                                                      }
-                                                      if (productFormController
-                                                              .state
-                                                          is ProductFormFailureState) {
-                                                        var state =
-                                                            productFormController
-                                                                    .state
-                                                                as ProductFormFailureState;
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                SnackBar(
-                                                          behavior:
-                                                              SnackBarBehavior
-                                                                  .floating,
-                                                          backgroundColor:
-                                                              AppColors
-                                                                  .errorColor,
-                                                          content: Text(
-                                                              state.failure
-                                                                  .message,
-                                                              style: AppTextStyles
-                                                                  .h2
-                                                                  .copyWith(
-                                                                      color: AppColors
-                                                                          .white)),
-                                                        ));
-                                                      }
-                                                    });
-                                            }
-                                          }
-                                        : null,
-                                    child: Text(
-                                      widget.buttonText,
-                                      style: AppTextStyles.h1.copyWith(
-                                          color: AppColors.mainBlueColor,
-                                          fontSize: 16),
-                                    ));
-                              }))
-                            ],
-                          )
+                                        ? MaterialStateProperty.all<Color>(
+                                            AppColors.backgroundColor)
+                                        : MaterialStateProperty.all<Color>(
+                                            AppColors.letterColor
+                                                .withOpacity(0.1)),
+                                    side: MaterialStateBorderSide.resolveWith(
+                                        (Set<MaterialState> states) {
+                                      return BorderSide(
+                                          color: AppColors.mainBlueColor);
+                                    })),
+                                onPressed: productFormController
+                                        .wasProductFormChanged(widget.product)
+                                    ? () {
+                                        if (_formKey.currentState!.validate()) {
+                                          widget.product != null
+                                              ? productFormController
+                                                  .updateProduct(
+                                                      widget.restaurant,
+                                                      widget.product!.id!)
+                                                  .then((value) {
+                                                  if (productFormController
+                                                          .state
+                                                      is ProductFormSuccessState) {
+                                                    Modular.to.pop();
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor: AppColors
+                                                          .mainBlueColor,
+                                                      content: Text(
+                                                          widget.snackBarText,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .white)),
+                                                    ));
+                                                  }
+                                                  if (productFormController
+                                                          .state
+                                                      is ProductFormFailureState) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor: AppColors
+                                                          .mainBlueColor,
+                                                      content: Text(
+                                                          widget.snackBarText,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .white)),
+                                                    ));
+                                                  }
+                                                })
+                                              : productFormController
+                                                  .createProduct(
+                                                      widget.restaurant)
+                                                  .then((value) {
+                                                  if (productFormController
+                                                          .state
+                                                      is ProductFormSuccessState) {
+                                                    Modular.to.pop();
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor: AppColors
+                                                          .mainBlueColor,
+                                                      content: Text(
+                                                          widget.snackBarText,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .white)),
+                                                    ));
+                                                  }
+                                                  if (productFormController
+                                                          .state
+                                                      is ProductFormFailureState) {
+                                                    var state =
+                                                        productFormController
+                                                                .state
+                                                            as ProductFormFailureState;
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor:
+                                                          AppColors.errorColor,
+                                                      content: Text(
+                                                          state.failure.message,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .white)),
+                                                    ));
+                                                  }
+                                                });
+                                        }
+                                      }
+                                    : null,
+                                child: Text(
+                                  widget.buttonText,
+                                  style: AppTextStyles.h1.copyWith(
+                                      color: AppColors.mainBlueColor,
+                                      fontSize: 16),
+                                ));
+                          }))
                         ],
                       ),
                     ),

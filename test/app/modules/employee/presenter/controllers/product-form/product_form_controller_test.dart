@@ -8,6 +8,8 @@ import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/upload_photo_to_s3_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/upload_product_photo_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -69,6 +71,18 @@ class UpdateProductMockSuccess extends Mock implements IUpdateProductUsecase {
   }
 }
 
+class UploadProductPhotoMockFailed extends Mock
+    implements IUploadProductPhotoUsecase {}
+
+class UploadProductPhotokSuccess extends Mock
+    implements IUploadProductPhotoUsecase {}
+
+class IUploadPhotoToS3MockFailed extends Mock
+    implements IUploadPhotoToS3Usecase {}
+
+class UIUploadPhotoToS3Success extends Mock
+    implements IUploadPhotoToS3Usecase {}
+
 void main() {
   final employeeMenuRestaurantController =
       MockEmployeeMenuRestaurantController();
@@ -77,6 +91,9 @@ void main() {
       UpdateProductMockSuccess();
   ICreateProductUsecase createProductSuccessUsecase =
       CreateProductMockSuccess();
+  IUploadPhotoToS3Usecase uploadPhotoToS3Usecase = UIUploadPhotoToS3Success();
+  IUploadProductPhotoUsecase uploadProductPhotoUsecase =
+      UploadProductPhotokSuccess();
   ProductModel testMock = ProductModel(
     id: '0',
     name: 'name',
@@ -95,20 +112,32 @@ void main() {
   group('[TEST] - state', () {
     test('changeState', () {
       controller = ProductFormController(
-          updateProductSuccessUsecase, createProductSuccessUsecase, employeeMenuRestaurantController);
+          updateProductSuccessUsecase,
+          createProductSuccessUsecase,
+          employeeMenuRestaurantController,
+          uploadProductPhotoUsecase,
+          uploadPhotoToS3Usecase);
       controller.changeState(ProductFormLoadingState());
       expect(controller.state, isA<ProductFormLoadingState>());
     });
     test('changeState', () {
       controller = ProductFormController(
-          updateProductSuccessUsecase, createProductSuccessUsecase, employeeMenuRestaurantController);
+          updateProductSuccessUsecase,
+          createProductSuccessUsecase,
+          employeeMenuRestaurantController,
+          uploadProductPhotoUsecase,
+          uploadPhotoToS3Usecase);
       controller.changeState(ProductFormSuccessState(product: testMock));
       expect(controller.state, isA<ProductFormSuccessState>());
     });
 
     test('changeState', () {
       controller = ProductFormController(
-          updateProductSuccessUsecase, createProductSuccessUsecase, employeeMenuRestaurantController);
+          updateProductSuccessUsecase,
+          createProductSuccessUsecase,
+          employeeMenuRestaurantController,
+          uploadProductPhotoUsecase,
+          uploadPhotoToS3Usecase);
       controller.changeState(
           ProductFormFailureState(failure: Failure(message: 'fail')));
       expect(controller.state, isA<ProductFormFailureState>());

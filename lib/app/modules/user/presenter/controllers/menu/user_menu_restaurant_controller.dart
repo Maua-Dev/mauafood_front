@@ -19,7 +19,9 @@ abstract class MenuRestaurantControllerBase with Store {
 
   MenuRestaurantControllerBase(
       this._getRestaurantProduct, this.restaurantInfo) {
-    loadRestaurantMenu();
+    loadRestaurantMenu().then((value) {
+      filterProduct();
+    });
   }
 
   @observable
@@ -111,11 +113,15 @@ abstract class MenuRestaurantControllerBase with Store {
         filterList.sort((a, b) => a.price.compareTo(b.price));
       }
       if (isMinPriceSearch == false && isMaxPriceSearch == false) {
-        filterList.sort(
-          (a, b) {
-            return a.type.index.compareTo(b.type.index);
-          },
-        );
+        filterList.sort((a, b) {
+          final typeComparison = a.type.index.compareTo(b.type.index);
+          if (typeComparison != 0) {
+            return typeComparison; // Ordena por tipo
+          } else {
+            return a.name
+                .compareTo(b.name); // Dentro do mesmo tipo, ordena por nome
+          }
+        });
       }
       filterList = filterList
           .where((e) => e.price >= rangeValues!.start)

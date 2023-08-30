@@ -10,16 +10,6 @@
       "StackName": "amplify-authentication-dev-180846",
       "StackId": "arn:aws:cloudformation:sa-east-1:264055331071:stack/amplify-authentication-dev-180846/7bb0ad60-0ee5-11ee-86f1-06f51a86ca82",
       "AmplifyAppId": "d3naf2rz1nj7ky"
-    },
-    "categories": {
-      "auth": {
-        "authenticationfc0f2c95": {
-          "nativeClientId": "6nvinuq1mbkju02dabfdpij3kn",
-          "userPoolId": "sa-east-1_nitcbMuAk",
-          "userPoolName": "authdevcognitostackdevauthdevuserpooldevC7139F74-pR1Mu1egrsFU",
-          "webClientId": "6nvinuq1mbkju02dabfdpij3kn"
-        }
-      }
     }
   }
 }

@@ -4,7 +4,8 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/employee_menu_state.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
+import 'package:mauafood_front/app/modules/employee/usecases/delete_product_usecase.dart';
+
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';

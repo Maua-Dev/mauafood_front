@@ -7,13 +7,14 @@ import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/e
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/product-form/product_form_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/ui/widgets/product_form_dialog_widget.dart';
+import 'package:mauafood_front/app/modules/employee/usecases/create_product_usecase.dart';
+import 'package:mauafood_front/app/modules/employee/usecases/delete_product_usecase.dart';
+import 'package:mauafood_front/app/modules/employee/usecases/update_product_usecase.dart';
+import 'package:mauafood_front/app/modules/employee/usecases/upload_photo_to_s3_usecase.dart';
+import 'package:mauafood_front/app/modules/employee/usecases/upload_product_photo_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/upload_photo_to_s3_usecase.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/upload_product_photo_usecase.dart';
+
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:modular_test/modular_test.dart';
@@ -23,6 +24,7 @@ import '../../../../restaurants/presenter/controllers/restaurant_controller_test
 import '../../controllers/menu/employee_menu_restaurant_controller_test.dart';
 import '../../controllers/product-form/product_form_controller_test.dart';
 import '../../controllers/product-form/product_form_controller_test.mocks.dart';
+
 import 'product_form_dialog_widget_test.mocks.dart';
 
 @GenerateMocks([IUpdateProductUsecase, ICreateProductUsecase])

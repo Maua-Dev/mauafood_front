@@ -193,6 +193,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Please enter the full name."),
         "invalidPasswordAlert":
             MessageLookupByLibrary.simpleMessage("Invalid password."),
+        "invalidPhotoAlert":
+            MessageLookupByLibrary.simpleMessage("Invalid photo"),
         "labelMessage": MessageLookupByLibrary.simpleMessage("Message"),
         "labelName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "labelSend": MessageLookupByLibrary.simpleMessage("Send now"),

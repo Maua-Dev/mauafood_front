@@ -158,9 +158,9 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
       context: context);
 
   @override
-  Future<void> uploadProductPhoto() {
+  Future<void> uploadProductPhoto(dynamic context) {
     return _$uploadProductPhotoAsyncAction
-        .run(() => super.uploadProductPhoto());
+        .run(() => super.uploadProductPhoto(context));
   }
 
   late final _$createProductAsyncAction =

@@ -106,7 +106,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                       child: InkWell(
                                         key: const Key('productPhoto'),
                                         onTap: () => productFormController
-                                            .uploadProductPhoto(),
+                                            .uploadProductPhoto(context),
                                         child: Ink(
                                           decoration: BoxDecoration(
                                               borderRadius:

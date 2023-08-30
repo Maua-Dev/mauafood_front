@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mauafood_front/app/shared/helpers/services/s3/assets_s3.dart';
+import 'package:mauafood_front/app/shared/themes/app_colors.dart';
+import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mobx/mobx.dart';
 
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
@@ -135,7 +137,7 @@ abstract class ProductFormControllerBase with Store {
   Uint8List? uploadedPhoto;
 
   @action
-  Future<void> uploadProductPhoto() async {
+  Future<void> uploadProductPhoto(context) async {
     var photo = await ImagePicker().pickImage(
       source: ImageSource.gallery,
       maxHeight: 640,
@@ -144,8 +146,15 @@ abstract class ProductFormControllerBase with Store {
 
     if (photo != null && photo.mimeType!.contains('image')) {
       uploadedPhoto = await photo.readAsBytes();
+      setProductPhoto(null);
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: AppColors.errorColor,
+        content: Text(S.of(context).invalidPhotoAlert,
+            style: AppTextStyles.h2.copyWith(color: AppColors.white)),
+      ));
     }
-    setProductPhoto(null);
   }
 
   @action

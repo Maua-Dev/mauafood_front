@@ -606,6 +606,16 @@ class S {
     );
   }
 
+  /// `Invalid photo`
+  String get invalidPhotoAlert {
+    return Intl.message(
+      'Invalid photo',
+      name: 'invalidPhotoAlert',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please enter the full name.`
   String get invalidFullNameAlert {
     return Intl.message(

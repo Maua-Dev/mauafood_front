@@ -14,10 +14,11 @@ import '../../../../../shared/widgets/circular_progress_indicator_custom_widget.
 import '../../../../../shared/domain/entities/product.dart';
 
 class ProductCardEmployeeWidget extends StatelessWidget {
+  final menuController = Modular.get<EmployeeMenuRestaurantController>();
   final Product product;
   final RestaurantEnum restaurant;
   final int index;
-  const ProductCardEmployeeWidget(
+  ProductCardEmployeeWidget(
       {super.key,
       required this.product,
       required this.restaurant,
@@ -25,7 +26,6 @@ class ProductCardEmployeeWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var menuController = Modular.get<EmployeeMenuRestaurantController>();
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: InkWell(
@@ -48,26 +48,32 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: FittedBox(
                           fit: BoxFit.fill,
-                          child: Image.network(
-                            product.photo,
-                            loadingBuilder: (BuildContext context, Widget child,
-                                ImageChunkEvent? loadingProgress) {
-                              if (loadingProgress == null) return child;
-                              return Center(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: CircularProgressIndicatorCustomWidget(
-                                    value: loadingProgress.expectedTotalBytes !=
-                                            null
-                                        ? loadingProgress
-                                                .cumulativeBytesLoaded /
-                                            loadingProgress.expectedTotalBytes!
-                                        : null,
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
+                          child: product.photo != '' && product.photo != null
+                              ? Image.network(
+                                  product.photo!,
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8),
+                                        child:
+                                            CircularProgressIndicatorCustomWidget(
+                                          value: loadingProgress
+                                                      .expectedTotalBytes !=
+                                                  null
+                                              ? loadingProgress
+                                                      .cumulativeBytesLoaded /
+                                                  loadingProgress
+                                                      .expectedTotalBytes!
+                                              : null,
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                )
+                              : const Icon(Icons.image_not_supported),
                         ),
                       ),
                     ),
@@ -106,7 +112,6 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                     size: 24,
                                   )),
                               Observer(builder: (_) {
-                                var state = menuController.productCardState;
                                 return IconButton(
                                     onPressed: () {
                                       showDialog(
@@ -123,28 +128,39 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                                   S.of(context).deleteTitle,
                                               onConfirmation: () {
                                                 Modular.to.pop();
-                                                menuController.deleteProduct(
-                                                    restaurant,
-                                                    product.id!,
-                                                    index);
-                                                if (state
-                                                    is ProductCardEmployeeFailureState) {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(SnackBar(
-                                                    backgroundColor:
-                                                        AppColors.errorColor,
-                                                    content: Text(
-                                                        state.failure.message,
-                                                        style: AppTextStyles.h2
-                                                            .copyWith(
-                                                                color: AppColors
-                                                                    .white)),
-                                                  ));
+                                                menuController
+                                                    .deleteProduct(restaurant,
+                                                        product.id!, index)
+                                                    .then((value) {
+                                                  var state = menuController
+                                                      .productCardState;
+                                                  if (state
+                                                      is ProductCardEmployeeFailureState) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor:
+                                                          AppColors.errorColor,
+                                                      content: Text(
+                                                          state.failure.message,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .white)),
+                                                    ));
+                                                  }
                                                   if (state
                                                       is ProductCardEmployeeSuccessState) {
                                                     ScaffoldMessenger.of(
                                                             context)
                                                         .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor: AppColors
+                                                          .mainBlueColor,
                                                       content: Text(
                                                           S
                                                               .of(context)
@@ -156,7 +172,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                                                       .white)),
                                                     ));
                                                   }
-                                                }
+                                                });
                                               },
                                             );
                                           });
@@ -175,7 +191,8 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                             style: AppTextStyles.h1.copyWith(
                                 fontSize: 20, color: AppColors.mainBlueColor),
                           ),
-                          product.description == ''
+                          product.description == '' ||
+                                  product.description == null
                               ? const SizedBox(
                                   height: 16,
                                 )
@@ -183,7 +200,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 8),
                                   child: Text(
-                                    product.description,
+                                    product.description!,
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                     style: AppTextStyles.h2.copyWith(

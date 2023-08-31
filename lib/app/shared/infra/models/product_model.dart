@@ -8,11 +8,11 @@ class ProductModel extends Product {
   const ProductModel(
       {super.id,
       required super.name,
-      required super.description,
+      super.description,
       required super.price,
       super.prepareTime,
       required super.type,
-      required super.photo,
+      super.photo,
       required super.available,
       super.lastUpdate});
 
@@ -55,7 +55,7 @@ class ProductModel extends Product {
       'new_price': price,
       'new_name': name,
       'new_description': description,
-      'new_prepare_time': prepareTime ?? 0,
+      'new_prepare_time': prepareTime,
       'new_meal_type': EnumToString.convertToString(type).toUpperCase(),
       'new_photo': photo,
     };

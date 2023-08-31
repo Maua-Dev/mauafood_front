@@ -19,10 +19,11 @@ class EmployeeMenuModule extends Module {
         Bind<IGetRestaurantProductUsecase>(
             (i) => GetRestaurantProductUsecase(repository: i())),
         Bind<EmployeeMenuRestaurantController>(
-          (i) => EmployeeMenuRestaurantController(i(), i.args.data, i()),
+          (i) => EmployeeMenuRestaurantController(
+              i(), RestaurantEnum.cantina_do_moleza, i(), i()),
         ),
         Bind.factory<ProductFormController>(
-          (i) => ProductFormController(i(), i()),
+          (i) => ProductFormController(i(), i(), i()),
         ),
         Bind<ICreateProductUsecase>(
             (i) => CreateProductUsecase(repository: i())),
@@ -38,8 +39,8 @@ class EmployeeMenuModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
-          child: (context, args) =>
-              EmployeeMenuPage(restaurant: args.data as RestaurantEnum),
+          child: (context, args) => const EmployeeMenuPage(
+              restaurant: RestaurantEnum.cantina_do_moleza),
         )
       ];
 }

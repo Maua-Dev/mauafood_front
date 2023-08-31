@@ -11,6 +11,8 @@ class RestaurantController {
     getRestaurants();
   }
 
+  bool get isLogged => _authStore.isLogged;
+
   void logout() async {
     await _authStore.signOut();
     Modular.to.navigate('/login/');

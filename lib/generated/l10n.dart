@@ -290,11 +290,61 @@ class S {
     );
   }
 
+  /// `Biggest Price`
+  String get biggestPriceTitle {
+    return Intl.message(
+      'Biggest Price',
+      name: 'biggestPriceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lowest Price`
+  String get lowestPriceTitle {
+    return Intl.message(
+      'Lowest Price',
+      name: 'lowestPriceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price order`
+  String get priceOrder {
+    return Intl.message(
+      'Price order',
+      name: 'priceOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price range`
+  String get priceRangeOrder {
+    return Intl.message(
+      'Price range',
+      name: 'priceRangeOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Category`
   String get categoryTitle {
     return Intl.message(
       'Category',
       name: 'categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Categories`
+  String get categoriesTitle {
+    return Intl.message(
+      'Categories',
+      name: 'categoriesTitle',
       desc: '',
       args: [],
     );
@@ -411,6 +461,26 @@ class S {
     return Intl.message(
       'Delete',
       name: 'deleteTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply`
+  String get applyTitle {
+    return Intl.message(
+      'Apply',
+      name: 'applyTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clean filter`
+  String get cleanFilterTitle {
+    return Intl.message(
+      'Clean filter',
+      name: 'cleanFilterTitle',
       desc: '',
       args: [],
     );
@@ -974,6 +1044,56 @@ class S {
     );
   }
 
+  /// `Cesta`
+  String get cart {
+    return Intl.message(
+      'Cesta',
+      name: 'cart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help`
+  String get help {
+    return Intl.message(
+      'Help',
+      name: 'help',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Orders`
+  String get orders {
+    return Intl.message(
+      'Orders',
+      name: 'orders',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Something went wrong!`
   String get errorGeneric {
     return Intl.message(
@@ -1102,6 +1222,36 @@ class S {
   }
 
   // skipped getter for the '' key
+
+  /// `An error ocurred while changing your profile picture`
+  String get profileErrorPictureMessage {
+    return Intl.message(
+      'An error ocurred while changing your profile picture',
+      name: 'profileErrorPictureMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile picture successfully updated`
+  String get profileSuccessPictureMessage {
+    return Intl.message(
+      'Profile picture successfully updated',
+      name: 'profileSuccessPictureMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select`
+  String get selectButton {
+    return Intl.message(
+      'Select',
+      name: 'selectButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

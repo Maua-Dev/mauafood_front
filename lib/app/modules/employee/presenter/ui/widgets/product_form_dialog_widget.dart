@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
-import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/product-form/product_form_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
 import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/product_card_widget.dart';
@@ -49,19 +48,23 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
   @override
   Widget build(BuildContext context) {
     var productFormController = Modular.get<ProductFormController>();
-    var menuController = Modular.get<EmployeeMenuRestaurantController>();
     if (widget.product != null) {
       productFormController.setProductAvailability(widget.product!.available);
       productFormController.setProductType(widget.product!.type.name);
       productFormController.setProductName(widget.product!.name);
-      productFormController.setProductDescription(widget.product!.description);
+
       productFormController.setProductPrice(widget.product!.price.toString());
       if (widget.product!.prepareTime != null) {
         productFormController
             .setProductPrepareTime(widget.product!.prepareTime.toString());
       }
-
-      productFormController.setProductPhoto(widget.product!.photo);
+      if (widget.product!.description != null) {
+        productFormController
+            .setProductDescription(widget.product!.description!);
+      }
+      if (widget.product!.photo != null) {
+        productFormController.setProductPhoto(widget.product!.photo);
+      }
     }
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -111,14 +114,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               border: Border.all(
-                                                  color: productFormController
-                                                              .isPhotoUploaded ==
-                                                          false
-                                                      ? Theme.of(context)
-                                                          .colorScheme
-                                                          .error
-                                                      : AppColors
-                                                          .mainBlueColor)),
+                                                  color:
+                                                      AppColors.mainBlueColor)),
                                           child: SizedBox(
                                             width: 80,
                                             height: 88,
@@ -129,7 +126,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                         productFormController
                                                                 .uploadedMobilePhoto ==
                                                             null &&
-                                                        widget.product == null)
+                                                        widget.product?.photo ==
+                                                            null)
                                                     ? Column(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
@@ -185,26 +183,6 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                       ),
                                     );
                                   }),
-                                  Observer(builder: (_) {
-                                    return productFormController
-                                                .isPhotoUploaded ==
-                                            false
-                                        ? Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                12, 8, 0, 0),
-                                            child: Text(
-                                              S.of(context).requiredFieldAlert,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .bodySmall
-                                                  ?.copyWith(
-                                                      color: Theme.of(context)
-                                                          .colorScheme
-                                                          .error),
-                                            ),
-                                          )
-                                        : Container();
-                                  })
                                 ],
                               ),
                               const SizedBox(
@@ -259,6 +237,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                             children: [
                               Expanded(
                                 child: TextFieldWidget(
+                                  maxLenght: 9,
                                   title: S.of(context).priceTitle,
                                   keyboardType: TextInputType.number,
                                   onChanged: (value) => productFormController
@@ -393,22 +372,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                         color: AppColors.mainBlueColor);
                                   })),
                                   onPressed: () {
-                                    productFormController.isPhotoUploaded =
-                                        false;
-                                    if (productFormController
-                                                .uploadedWebPhoto !=
-                                            null ||
-                                        productFormController
-                                                .uploadedMobilePhoto !=
-                                            null ||
-                                        productFormController.productPhoto !=
-                                            null) {
-                                      productFormController.isPhotoUploaded =
-                                          true;
-                                    }
-                                    if (_formKey.currentState!.validate() &&
-                                        productFormController.isPhotoUploaded ==
-                                            true) {
+                                    if (_formKey.currentState!.validate()) {
                                       showDialog(
                                           context: context,
                                           builder: (BuildContext buildContext) {
@@ -493,23 +457,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                             .wasProductFormChanged(
                                                 widget.product)
                                         ? () {
-                                            productFormController
-                                                .isPhotoUploaded = false;
-                                            if (productFormController
-                                                        .uploadedWebPhoto !=
-                                                    null ||
-                                                productFormController
-                                                        .uploadedMobilePhoto !=
-                                                    null ||
-                                                widget.product?.photo != null) {
-                                              productFormController
-                                                  .isPhotoUploaded = true;
-                                            }
                                             if (_formKey.currentState!
-                                                    .validate() &&
-                                                productFormController
-                                                        .isPhotoUploaded ==
-                                                    true) {
+                                                .validate()) {
                                               widget.product != null
                                                   ? productFormController
                                                       .updateProduct(
@@ -519,29 +468,14 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                       if (productFormController
                                                               .state
                                                           is ProductFormSuccessState) {
-                                                        var state =
-                                                            productFormController
-                                                                    .state
-                                                                as ProductFormSuccessState;
-                                                        menuController
-                                                            .listAllProduct
-                                                            .removeWhere(
-                                                                (element) =>
-                                                                    element
-                                                                        .id ==
-                                                                    widget
-                                                                        .product!
-                                                                        .id);
-                                                        menuController
-                                                            .listAllProduct
-                                                            .add(state.product);
                                                         Modular.to.pop();
-                                                        menuController
-                                                            .loadRestaurantMenu();
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
                                                                 SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
                                                           backgroundColor:
                                                               AppColors
                                                                   .mainBlueColor,
@@ -558,20 +492,19 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                       if (productFormController
                                                               .state
                                                           is ProductFormFailureState) {
-                                                        var state =
-                                                            productFormController
-                                                                    .state
-                                                                as ProductFormFailureState;
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
                                                                 SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
                                                           backgroundColor:
                                                               AppColors
-                                                                  .errorColor,
+                                                                  .mainBlueColor,
                                                           content: Text(
-                                                              state.failure
-                                                                  .message,
+                                                              widget
+                                                                  .snackBarText,
                                                               style: AppTextStyles
                                                                   .h2
                                                                   .copyWith(
@@ -587,18 +520,14 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                       if (productFormController
                                                               .state
                                                           is ProductFormSuccessState) {
-                                                        var state =
-                                                            productFormController
-                                                                    .state
-                                                                as ProductFormSuccessState;
-                                                        menuController
-                                                            .listAllProduct
-                                                            .add(state.product);
                                                         Modular.to.pop();
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
                                                                 SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
                                                           backgroundColor:
                                                               AppColors
                                                                   .mainBlueColor,
@@ -623,6 +552,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                 context)
                                                             .showSnackBar(
                                                                 SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
                                                           backgroundColor:
                                                               AppColors
                                                                   .errorColor,

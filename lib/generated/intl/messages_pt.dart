@@ -109,12 +109,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "appAcceptTerms": MessageLookupByLibrary.simpleMessage(
             "Li e aceito os Termos de Uso"),
         "appTitle": MessageLookupByLibrary.simpleMessage("Mauá Food"),
+        "applyTitle": MessageLookupByLibrary.simpleMessage("Aplicar"),
         "attentionTitle": MessageLookupByLibrary.simpleMessage("Atenção"),
         "authErrorsSchema": m0,
+        "biggestPriceTitle":
+            MessageLookupByLibrary.simpleMessage("Maior Preço"),
         "cancelationTitle": MessageLookupByLibrary.simpleMessage("Cancelar"),
+        "cart": MessageLookupByLibrary.simpleMessage("Cesta"),
+        "categoriesTitle": MessageLookupByLibrary.simpleMessage("Categorias"),
         "categoryTitle": MessageLookupByLibrary.simpleMessage("Categoria"),
         "changePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Alterar senha"),
+        "cleanFilterTitle":
+            MessageLookupByLibrary.simpleMessage("Limpar filtro"),
         "closeTitle": MessageLookupByLibrary.simpleMessage("Fechar"),
         "codeErrorAlert":
             MessageLookupByLibrary.simpleMessage("Erro com código."),
@@ -177,6 +184,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Já tem uma conta?"),
         "havePasswordTitle":
             MessageLookupByLibrary.simpleMessage("Já tem uma senha?"),
+        "help": MessageLookupByLibrary.simpleMessage("Ajuda"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "invalidCodeAlert":
             MessageLookupByLibrary.simpleMessage("Código inválido."),
         "invalidCpfAlert":
@@ -191,6 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelName": MessageLookupByLibrary.simpleMessage("Nome Completo"),
         "labelSend": MessageLookupByLibrary.simpleMessage("Enviar agora"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
+        "lowestPriceTitle": MessageLookupByLibrary.simpleMessage("Menor Preço"),
         "messageSentSuccessfully":
             MessageLookupByLibrary.simpleMessage("Email enviado com sucesso!"),
         "minutesTitle": MessageLookupByLibrary.simpleMessage("minutos"),
@@ -198,6 +208,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPasswordTitle": MessageLookupByLibrary.simpleMessage("Nova senha"),
         "noItemsFoundErrorMessage": m2,
         "notificationsOptionsSchema": m3,
+        "orders": MessageLookupByLibrary.simpleMessage("Pedidos"),
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \\\$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Senha"),
@@ -206,6 +217,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Tempo de Preparo"),
         "previewTitle":
             MessageLookupByLibrary.simpleMessage("Pré-visualização"),
+        "priceOrder": MessageLookupByLibrary.simpleMessage("Ordem de preço"),
+        "priceRangeOrder":
+            MessageLookupByLibrary.simpleMessage("Faixa de preço"),
         "priceTitle": MessageLookupByLibrary.simpleMessage("Preço"),
         "productAvailabilityTitle":
             MessageLookupByLibrary.simpleMessage("Disponibilidade do Produto"),
@@ -219,6 +233,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "productSuccessfullyEditedTitle": MessageLookupByLibrary.simpleMessage(
             "Produto editado com sucesso."),
         "productToEnumSchema": m7,
+        "profile": MessageLookupByLibrary.simpleMessage("Perfil"),
+        "profileErrorPictureMessage": MessageLookupByLibrary.simpleMessage(
+            "Ocorreu um erro ao mudar a foto de perfil"),
+        "profileSuccessPictureMessage": MessageLookupByLibrary.simpleMessage(
+            "Foto de perfil atualizado com sucesso"),
         "questionMark": MessageLookupByLibrary.simpleMessage("?"),
         "recommendationsTitle":
             MessageLookupByLibrary.simpleMessage("Recomendações"),
@@ -240,6 +259,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "saveTitle": MessageLookupByLibrary.simpleMessage("Salvar"),
         "searchTitle": MessageLookupByLibrary.simpleMessage("Pesquisa"),
         "seeMenuTitle": MessageLookupByLibrary.simpleMessage("Ver cardápio"),
+        "selectButton": MessageLookupByLibrary.simpleMessage("Selecionar"),
         "sendCodeEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "Enviamos um código de confirmação em seu e-mail, digite-o no campo abaixo."),
         "sendTitle": MessageLookupByLibrary.simpleMessage("Enviar"),

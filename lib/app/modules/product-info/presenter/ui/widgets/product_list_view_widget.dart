@@ -17,7 +17,7 @@ class RecommendationCardWidget extends StatelessWidget {
       child: SizedBox(
         width: 175,
         child: CachedNetworkImage(
-          imageUrl: productInfo.photo,
+          imageUrl: productInfo.photo!,
           placeholder: (context, url) => const Center(
             child: CircularProgressIndicator(),
           ),

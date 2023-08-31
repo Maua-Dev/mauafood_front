@@ -17,11 +17,16 @@ import 'package:mockito/annotations.dart';
 import 'package:modular_test/modular_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
+import '../../../../restaurants/presenter/controllers/restaurant_controller_test.mocks.dart';
 import '../../controllers/menu/employee_menu_restaurant_controller_test.dart';
+import '../../controllers/product-form/product_form_controller_test.mocks.dart';
 import 'product_form_dialog_widget_test.mocks.dart';
 
 @GenerateMocks([IUpdateProductUsecase, ICreateProductUsecase])
 void main() {
+  final authStore = MockAuthStore();
+  final employeeMenuRestaurantController =
+      MockEmployeeMenuRestaurantController();
   late ProductFormController controller;
   late EmployeeMenuRestaurantController menuController;
   IUpdateProductUsecase updateProductUsecase = MockIUpdateProductUsecase();
@@ -34,12 +39,13 @@ void main() {
 
   setUpAll(() async {
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
-    controller =
-        ProductFormController(updateProductUsecase, createProductUsecase);
+    controller = ProductFormController(updateProductUsecase,
+        createProductUsecase, employeeMenuRestaurantController);
     menuController = EmployeeMenuRestaurantController(
         getRestaurantProductSuccessUsecase,
         restaurantInfo,
-        deleteProductSuccessUsecase);
+        deleteProductSuccessUsecase,
+        authStore);
     initModules([
       EmployeeMenuModule()
     ], replaceBinds: [

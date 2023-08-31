@@ -3,9 +3,9 @@ import '../enums/product_enum.dart';
 class Product {
   final String? id;
   final String name;
-  final String description;
+  final String? description;
   final double price;
-  final String photo;
+  final String? photo;
   final int? prepareTime;
   final ProductEnum type;
   final bool available;
@@ -22,4 +22,5 @@ class Product {
     this.prepareTime,
     required this.type,
   });
+  
 }

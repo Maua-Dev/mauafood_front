@@ -23,6 +23,7 @@ class FilterButtonWidget extends StatelessWidget {
                     color: AppColors.white, fontWeight: FontWeight.bold)
                 : AppTextStyles.h2.copyWith(
                     color: AppColors.mainBlueColor,
+                    fontWeight: FontWeight.bold,
                   )),
       ),
     );

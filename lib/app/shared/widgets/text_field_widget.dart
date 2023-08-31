@@ -13,6 +13,7 @@ class TextFieldWidget extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
   final String? suffixText;
   final String? initialValue;
+  final int? maxLenght;
 
   const TextFieldWidget(
       {super.key,
@@ -24,7 +25,8 @@ class TextFieldWidget extends StatelessWidget {
       this.onChanged,
       this.validator,
       this.suffixText,
-      this.initialValue});
+      this.initialValue,
+      this.maxLenght});
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,7 @@ class TextFieldWidget extends StatelessWidget {
               )
             : const SizedBox.shrink(),
         TextFormField(
+          maxLength: maxLenght,
           inputFormatters: inputFormatters,
           initialValue: initialValue,
           textAlign: TextAlign.start,
@@ -52,6 +55,7 @@ class TextFieldWidget extends StatelessWidget {
           cursorColor: AppColors.mainBlueColor,
           style: AppTextStyles.h2,
           decoration: InputDecoration(
+              counterText: "",
               suffixText: suffixText,
               contentPadding: const EdgeInsets.symmetric(horizontal: 12),
               hintText: hintText,

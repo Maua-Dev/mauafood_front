@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/datasource/external/http/menu_datasource.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
-import 'package:mauafood_front/app/modules/user/presenter/controllers/contact/contact_controller.dart';
+import 'package:mauafood_front/app/shared/widgets/contact/contact_controller.dart';
 import 'package:mauafood_front/app/modules/user/presenter/controllers/menu/user_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/user/presenter/ui/pages/user_menu_page.dart';
 import '../../shared/datasource/external/http/contact_datasource.dart';

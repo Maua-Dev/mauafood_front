@@ -1,9 +1,9 @@
 import 'package:mauafood_front/app/shared/domain/usecases/contact_usecase.dart';
 import 'package:mobx/mobx.dart';
 
-import '../../../../../../generated/l10n.dart';
-import '../../../../../shared/helpers/utils/validation_helper.dart';
-import '../../states/contact/contact_state.dart';
+import '../../../../generated/l10n.dart';
+import '../../helpers/utils/validation_helper.dart';
+import '../../../modules/user/presenter/states/contact/contact_state.dart';
 
 part 'contact_controller.g.dart';
 

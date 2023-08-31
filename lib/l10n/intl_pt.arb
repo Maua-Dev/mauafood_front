@@ -33,7 +33,12 @@
     "photoTitle": "Foto",
     "prepareTimeTitle": "Tempo de Preparo",
     "priceTitle": "Preço",
+    "biggestPriceTitle": "Maior Preço",
+    "lowestPriceTitle": "Menor Preço",
+    "priceOrder": "Ordem de preço",
+    "priceRangeOrder": "Faixa de preço",
     "categoryTitle": "Categoria",
+    "categoriesTitle": "Categorias",
     "descriptionTitle": "Descrição",
     "productAvailabilityTitle": "Disponibilidade do Produto",
     "previewTitle": "Pré-visualização",
@@ -45,6 +50,8 @@
     "labelName": "Nome Completo",
     "cancelationTitle": "Cancelar",
     "deleteTitle": "Excluir",
+    "applyTitle": "Aplicar",
+    "cleanFilterTitle": "Limpar filtro",
     "deleteProductConfirmationTitle": "Tem certeza que deseja excluir o produto?",
     "productSuccessfullyDeletedTitle": "Produto excluído com sucesso.",
     "productSuccessfullyCreatedTitle": "Produto criado com sucesso.",
@@ -139,6 +146,12 @@
 
     "messageSentSuccessfully": "Email enviado com sucesso!",
 
+    "cart": "Cesta",
+    "home": "Home",
+    "profile": "Perfil",
+    "help": "Ajuda",
+    "orders": "Pedidos",
+
 
     
     "errorGeneric": "Algo deu errado!",
@@ -180,5 +193,9 @@
         }
     },
 
-    "": ""
+    "": "",
+
+    "profileErrorPictureMessage": "Ocorreu um erro ao mudar a foto de perfil",
+    "profileSuccessPictureMessage": "Foto de perfil atualizado com sucesso",
+    "selectButton": "Selecionar"
 }

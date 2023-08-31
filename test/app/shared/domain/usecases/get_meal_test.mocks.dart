@@ -6,14 +6,13 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:mauafood_front/app/shared/domain/entities/product.dart' as _i6;
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart'
-    as _i8;
+    as _i7;
 import 'package:mauafood_front/app/shared/domain/repositories/menu_repository_interface.dart'
     as _i3;
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart' as _i5;
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart'
-    as _i7;
+    as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -55,60 +54,60 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
         returnValueForMissingStub: _i4.Future<void>.value(),
       ) as _i4.Future<void>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>> getBibaProducts() =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getBibaProducts,
-          [],
-        ),
-        returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>.value(
-                _FakeEither_0<_i5.Failure, List<_i6.Product>>(
-          this,
-          Invocation.method(
-            #getBibaProducts,
-            [],
-          ),
-        )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>);
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.ProductModel>>>
+      getBibaProducts() => (super.noSuchMethod(
+            Invocation.method(
+              #getBibaProducts,
+              [],
+            ),
+            returnValue: _i4
+                .Future<_i2.Either<_i5.Failure, List<_i6.ProductModel>>>.value(
+                _FakeEither_0<_i5.Failure, List<_i6.ProductModel>>(
+              this,
+              Invocation.method(
+                #getBibaProducts,
+                [],
+              ),
+            )),
+          ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.ProductModel>>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>> getHoraHProducts() =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getHoraHProducts,
-          [],
-        ),
-        returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>.value(
-                _FakeEither_0<_i5.Failure, List<_i6.Product>>(
-          this,
-          Invocation.method(
-            #getHoraHProducts,
-            [],
-          ),
-        )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>);
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.ProductModel>>>
+      getHoraHProducts() => (super.noSuchMethod(
+            Invocation.method(
+              #getHoraHProducts,
+              [],
+            ),
+            returnValue: _i4
+                .Future<_i2.Either<_i5.Failure, List<_i6.ProductModel>>>.value(
+                _FakeEither_0<_i5.Failure, List<_i6.ProductModel>>(
+              this,
+              Invocation.method(
+                #getHoraHProducts,
+                [],
+              ),
+            )),
+          ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.ProductModel>>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>> getMolezaProducts() =>
-      (super.noSuchMethod(
-        Invocation.method(
-          #getMolezaProducts,
-          [],
-        ),
-        returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>.value(
-                _FakeEither_0<_i5.Failure, List<_i6.Product>>(
-          this,
-          Invocation.method(
-            #getMolezaProducts,
-            [],
-          ),
-        )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>);
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.ProductModel>>>
+      getMolezaProducts() => (super.noSuchMethod(
+            Invocation.method(
+              #getMolezaProducts,
+              [],
+            ),
+            returnValue: _i4
+                .Future<_i2.Either<_i5.Failure, List<_i6.ProductModel>>>.value(
+                _FakeEither_0<_i5.Failure, List<_i6.ProductModel>>(
+              this,
+              Invocation.method(
+                #getMolezaProducts,
+                [],
+              ),
+            )),
+          ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.ProductModel>>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i7.ProductModel>> createProduct(
-    _i7.ProductModel? product,
-    _i8.RestaurantEnum? restaurant,
+  _i4.Future<_i2.Either<_i5.Failure, _i6.ProductModel>> createProduct(
+    _i6.ProductModel? product,
+    _i7.RestaurantEnum? restaurant,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -119,8 +118,8 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
           ],
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, _i7.ProductModel>>.value(
-                _FakeEither_0<_i5.Failure, _i7.ProductModel>(
+            _i4.Future<_i2.Either<_i5.Failure, _i6.ProductModel>>.value(
+                _FakeEither_0<_i5.Failure, _i6.ProductModel>(
           this,
           Invocation.method(
             #createProduct,
@@ -130,11 +129,11 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, _i7.ProductModel>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i6.ProductModel>>);
   @override
-  _i4.Future<_i2.Either<_i5.Failure, _i7.ProductModel>> updateProduct(
-    _i7.ProductModel? product,
-    _i8.RestaurantEnum? restaurant,
+  _i4.Future<_i2.Either<_i5.Failure, _i6.ProductModel>> updateProduct(
+    _i6.ProductModel? product,
+    _i7.RestaurantEnum? restaurant,
   ) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -145,8 +144,8 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
           ],
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, _i7.ProductModel>>.value(
-                _FakeEither_0<_i5.Failure, _i7.ProductModel>(
+            _i4.Future<_i2.Either<_i5.Failure, _i6.ProductModel>>.value(
+                _FakeEither_0<_i5.Failure, _i6.ProductModel>(
           this,
           Invocation.method(
             #updateProduct,
@@ -156,11 +155,11 @@ class MockIMenuRepository extends _i1.Mock implements _i3.IMenuRepository {
             ],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, _i7.ProductModel>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, _i6.ProductModel>>);
   @override
   _i4.Future<_i2.Either<_i5.Failure, void>> deleteProduct(
     String? id,
-    _i8.RestaurantEnum? restaurant,
+    _i7.RestaurantEnum? restaurant,
   ) =>
       (super.noSuchMethod(
         Invocation.method(

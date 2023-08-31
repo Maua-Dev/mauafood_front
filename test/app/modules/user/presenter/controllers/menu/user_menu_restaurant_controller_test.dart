@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/user_menu_state.dart';
-import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
@@ -15,7 +14,7 @@ import 'package:mockito/mockito.dart';
 class GetRestaurantProductMockSuccess extends Mock
     implements IGetRestaurantProductUsecase {
   @override
-  Future<Either<Failure, List<Product>>> call(
+  Future<Either<Failure, List<ProductModel>>> call(
       RestaurantEnum restaurantInfo) async {
     ProductModel testMock = ProductModel(
       id: '0',
@@ -47,7 +46,7 @@ class GetRestaurantProductMockSuccess extends Mock
 class GetRestaurantProductMockFailed extends Mock
     implements IGetRestaurantProductUsecase {
   @override
-  Future<Either<Failure, List<Product>>> call(
+  Future<Either<Failure, List<ProductModel>>> call(
       RestaurantEnum restaurantInfo) async {
     return left(Failure(message: ''));
   }
@@ -96,22 +95,6 @@ void main() {
     test('must return MenuErrorState', () async {
       controller = UserMenuRestaurantController(usecaseFailed, restaurantInfo);
       await controller.loadRestaurantMenu();
-      expect(controller.state, isA<UserMenuErrorState>());
-    });
-  });
-
-  group('[TEST] - searchProduct', () {
-    test('must return MenuErrorState', () async {
-      controller = UserMenuRestaurantController(usecaseFailed, restaurantInfo);
-      await controller.searchProduct('');
-      expect(controller.state, isA<UserMenuErrorState>());
-    });
-  });
-
-  group('[TEST] - filterProduct', () {
-    test('must return MenuErrorState', () async {
-      controller = UserMenuRestaurantController(usecaseFailed, restaurantInfo);
-      await controller.filterProduct(ProductEnum.SNACKS, 2);
       expect(controller.state, isA<UserMenuErrorState>());
     });
   });

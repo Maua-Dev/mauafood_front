@@ -9,7 +9,11 @@ import '../../shared/domain/repositories/contact_repository_interface.dart';
 import '../../shared/domain/usecases/contact_usecase.dart';
 import '../../shared/infra/datasource/external/http/contact_datasource_interface.dart';
 import '../../shared/infra/repositories/contact_repository.dart';
+import '../landing/domain/datasource/hive_datasource.dart';
 import '../product-info/product_info_module.dart';
+import '../profile/domain/repositories/favorites_repositorie_interface.dart';
+import '../profile/domain/repositories/favoritories_repositorie.dart';
+import '../profile/domain/usecases/add_favorite_usecase.dart';
 import '../restaurants/restaurant_module.dart';
 import '../../shared/domain/repositories/menu_repository_interface.dart';
 import '../../shared/infra/datasource/external/http/menu_datasource_interface.dart';
@@ -21,8 +25,13 @@ class UserMenuModule extends Module {
         Bind<IGetRestaurantProductUsecase>(
             (i) => GetRestaurantProductUsecase(repository: i())),
         Bind.factory<UserMenuRestaurantController>(
-          (i) => UserMenuRestaurantController(i(), i.args.data),
+          (i) => UserMenuRestaurantController(i(), i.args.data, i()),
         ),
+        Bind<AddFavoriteUsecase>(
+            (i) => AddFavoriteUsecaseImpl(repository: i())),
+        Bind<FavoritesRepository>(
+            (i) => FavoritoriesRepositoryImpl(favDatasource: i())),
+        AsyncBind<HiveDatasource>((i) => HiveDatasource.instance(i())),
         Bind<IContactUsecase>((i) => ContactUsecase(i())),
         Bind<IContactRepository>((i) => ContactRepository(datasource: i())),
         Bind<IContactDatasource>((i) => ContactDatasource()),

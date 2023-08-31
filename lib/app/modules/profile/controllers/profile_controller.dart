@@ -1,6 +1,7 @@
 import 'package:auth_package/core/auth_store.dart';
 import 'package:mauafood_front/app/modules/profile/domain/usecases/get_favorites_usecase.dart';
 import 'package:mobx/mobx.dart';
+
 part 'profile_controller.g.dart';
 
 class ProfileController = ProfileControllerBase with _$ProfileController;

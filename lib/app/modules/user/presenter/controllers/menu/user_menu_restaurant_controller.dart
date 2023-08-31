@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/user_menu_state.dart';
+import 'package:mauafood_front/app/modules/profile/domain/usecases/add_favorite_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mobx/mobx.dart';
 
@@ -15,10 +16,11 @@ class UserMenuRestaurantController = MenuRestaurantControllerBase
 
 abstract class MenuRestaurantControllerBase with Store {
   final IGetRestaurantProductUsecase _getRestaurantProduct;
+  final AddFavoriteUsecase _addFavorite;
   RestaurantEnum restaurantInfo;
 
   MenuRestaurantControllerBase(
-      this._getRestaurantProduct, this.restaurantInfo) {
+      this._getRestaurantProduct, this.restaurantInfo, this._addFavorite) {
     loadRestaurantMenu();
   }
 
@@ -136,5 +138,9 @@ abstract class MenuRestaurantControllerBase with Store {
     productType = ProductEnum.ALL;
     index = 0;
     filterProduct();
+  }
+
+  Future<void> setProductFavorite(String id) async {
+    await _addFavorite(id);
   }
 }

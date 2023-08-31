@@ -1,15 +1,20 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
+import '../../../../user/presenter/controllers/menu/user_menu_restaurant_controller.dart';
 import '../widgets/recommended_product_widget.dart';
 
 class ProductInfoPage extends StatefulWidget {
   final Product productInfo;
   final List<Product> recommendedProductList;
+
   const ProductInfoPage(
       {super.key,
       required this.productInfo,
@@ -21,6 +26,8 @@ class ProductInfoPage extends StatefulWidget {
 
 class _ProductInfoPageState extends State<ProductInfoPage> {
   late Product product;
+  final UserMenuRestaurantController controller = Modular.get();
+
   @override
   void initState() {
     super.initState();
@@ -153,6 +160,15 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
               ),
             ],
           ),
+          Positioned(
+              right: ScreenHelper.height(context) * 0.03,
+              top: ScreenHelper.height(context) * 0.4,
+              child: IconButton(
+                  onPressed: () => controller.setProductFavorite(product.id!),
+                  icon: Icon(
+                    FontAwesomeIcons.heart,
+                    size: 28,
+                  ))),
         ],
       ),
     );

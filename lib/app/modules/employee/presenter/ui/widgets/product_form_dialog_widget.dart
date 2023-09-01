@@ -232,7 +232,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Flexible(
-                                flex: 1,
+                                flex: 2,
                                 child: TextFieldWidget(
                                   maxLenght: 9,
                                   title: S.of(context).priceTitle,
@@ -258,7 +258,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                 width: 8,
                               ),
                               Expanded(
-                                flex: 2,
+                                flex: 3,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

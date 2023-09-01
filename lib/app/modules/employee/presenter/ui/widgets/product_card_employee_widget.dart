@@ -49,29 +49,39 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                         child: FittedBox(
                           fit: BoxFit.contain,
                           child: product.photo != '' && product.photo != null
-                              ? Image.network(
-                                  product.photo!,
-                                  loadingBuilder: (BuildContext context,
-                                      Widget child,
-                                      ImageChunkEvent? loadingProgress) {
-                                    if (loadingProgress == null) return child;
-                                    return Center(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8),
-                                        child:
-                                            CircularProgressIndicatorCustomWidget(
-                                          value: loadingProgress
-                                                      .expectedTotalBytes !=
-                                                  null
-                                              ? loadingProgress
-                                                      .cumulativeBytesLoaded /
-                                                  loadingProgress
-                                                      .expectedTotalBytes!
-                                              : null,
+                              ? InkWell(
+                                  onLongPress: () => showDialog(
+                                      context: context,
+                                      builder: ((context) => AlertDialog(
+                                            content: Image.network(
+                                              product.photo!,
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ))),
+                                  child: Image.network(
+                                    product.photo!,
+                                    loadingBuilder: (BuildContext context,
+                                        Widget child,
+                                        ImageChunkEvent? loadingProgress) {
+                                      if (loadingProgress == null) return child;
+                                      return Center(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8),
+                                          child:
+                                              CircularProgressIndicatorCustomWidget(
+                                            value: loadingProgress
+                                                        .expectedTotalBytes !=
+                                                    null
+                                                ? loadingProgress
+                                                        .cumulativeBytesLoaded /
+                                                    loadingProgress
+                                                        .expectedTotalBytes!
+                                                : null,
+                                          ),
                                         ),
-                                      ),
-                                    );
-                                  },
+                                      );
+                                    },
+                                  ),
                                 )
                               : const Padding(
                                   padding: EdgeInsets.all(8.0),
@@ -192,7 +202,9 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                             overflow: TextOverflow.clip,
                             product.name,
                             style: AppTextStyles.h1.copyWith(
-                                fontSize: 20, color: AppColors.mainBlueColor),
+                                fontSize:
+                                    ScreenHelper.width(context) < 400 ? 16 : 20,
+                                color: AppColors.mainBlueColor),
                           ),
                           product.description == '' ||
                                   product.description == null
@@ -210,43 +222,63 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                         color: AppColors.mainBlueColor),
                                   ),
                                 ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                S
-                                    .of(context)
-                                    .productPriceCurrency(product.price),
-                                style: AppTextStyles.h2.copyWith(
-                                    fontSize: 18,
-                                    color: AppColors.mainBlueColor),
-                              ),
-                              product.prepareTime == null
-                                  ? const SizedBox.shrink()
-                                  : Row(
-                                      children: [
-                                        Icon(
-                                          Icons.timer_sharp,
-                                          color: AppColors.mainBlueColor,
-                                          size: 24,
+                          SizedBox(
+                            width: double.infinity,
+                            child: Wrap(
+                              alignment: WrapAlignment.spaceBetween,
+                              runAlignment: WrapAlignment.start,
+                              runSpacing: 4,
+                              children: [
+                                Text(
+                                  S
+                                      .of(context)
+                                      .productPriceCurrency(product.price),
+                                  style: AppTextStyles.h2.copyWith(
+                                      fontSize:
+                                          ScreenHelper.width(context) < 400
+                                              ? 16
+                                              : 18,
+                                      color: AppColors.mainBlueColor),
+                                ),
+                                product.prepareTime == null
+                                    ? const SizedBox.shrink()
+                                    : SizedBox(
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(
+                                              Icons.timer_sharp,
+                                              color: AppColors.mainBlueColor,
+                                              size:
+                                                  ScreenHelper.width(context) <
+                                                          400
+                                                      ? 20
+                                                      : 24,
+                                            ),
+                                            const SizedBox(
+                                              width: 2,
+                                            ),
+                                            Text(
+                                              S
+                                                  .of(context)
+                                                  .productPrepareTimeMinutes(
+                                                      '',
+                                                      product.prepareTime
+                                                          .toString()),
+                                              style: AppTextStyles.h2.copyWith(
+                                                  fontSize: ScreenHelper.width(
+                                                              context) <
+                                                          400
+                                                      ? 16
+                                                      : 18,
+                                                  color:
+                                                      AppColors.mainBlueColor),
+                                            ),
+                                          ],
                                         ),
-                                        const SizedBox(
-                                          width: 2,
-                                        ),
-                                        Text(
-                                          S
-                                              .of(context)
-                                              .productPrepareTimeMinutes(
-                                                  '',
-                                                  product.prepareTime
-                                                      .toString()),
-                                          style: AppTextStyles.h2.copyWith(
-                                              fontSize: 18,
-                                              color: AppColors.mainBlueColor),
-                                        ),
-                                      ],
-                                    ),
-                            ],
+                                      ),
+                              ],
+                            ),
                           ),
                         ],
                       ),

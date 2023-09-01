@@ -196,18 +196,6 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                               const SizedBox(
                                 width: 8,
                               ),
-                              Observer(builder: (_) {
-                                return Flexible(
-                                  child: Text(
-                                    productFormController.productName ?? "",
-                                    style: AppTextStyles.h1.copyWith(
-                                        color: AppColors.mainBlueColor,
-                                        fontSize: 16,
-                                        decoration: TextDecoration.underline,
-                                        overflow: TextOverflow.clip),
-                                  ),
-                                );
-                              }),
                             ],
                           ),
                           const SizedBox(
@@ -243,7 +231,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Expanded(
+                              Flexible(
+                                flex: 1,
                                 child: TextFieldWidget(
                                   maxLenght: 9,
                                   title: S.of(context).priceTitle,
@@ -269,6 +258,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                 width: 8,
                               ),
                               Expanded(
+                                flex: 2,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [

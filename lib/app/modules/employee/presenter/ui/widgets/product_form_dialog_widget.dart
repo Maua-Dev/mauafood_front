@@ -107,31 +107,42 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                         key: const Key('productPhoto'),
                                         onTap: () => productFormController
                                             .uploadProductPhoto(context),
-                                        onLongPress: (productFormController
-                                                        .uploadedPhoto ==
-                                                    null &&
-                                                widget.product?.photo == null)
-                                            ? null
-                                            : () => showDialog(
-                                                context: context,
-                                                builder: ((context) =>
-                                                    AlertDialog(
-                                                      content: productFormController
-                                                                  .productPhoto ==
-                                                              null
-                                                          ? Image.memory(
-                                                              productFormController
-                                                                  .uploadedPhoto!,
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                            )
-                                                          : Image.network(
-                                                              productFormController
-                                                                  .productPhoto!,
-                                                              fit: BoxFit
-                                                                  .contain,
-                                                            ),
-                                                    ))),
+                                        onLongPress:
+                                            (productFormController
+                                                            .uploadedPhoto ==
+                                                        null &&
+                                                    widget.product?.photo ==
+                                                        null)
+                                                ? null
+                                                : () => showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        ((context) =>
+                                                            AlertDialog(
+                                                              content:
+                                                                  ConstrainedBox(
+                                                                      constraints:
+                                                                          BoxConstraints(
+                                                                        maxHeight:
+                                                                            ScreenHelper.height(context) *
+                                                                                0.5,
+                                                                        maxWidth:
+                                                                            ScreenHelper.width(context) *
+                                                                                0.5,
+                                                                      ),
+                                                                      child: productFormController.productPhoto ==
+                                                                              null
+                                                                          ? Image
+                                                                              .memory(
+                                                                              productFormController.uploadedPhoto!,
+                                                                              fit: BoxFit.contain,
+                                                                            )
+                                                                          : Image
+                                                                              .network(
+                                                                              productFormController.productPhoto!,
+                                                                              fit: BoxFit.contain,
+                                                                            )),
+                                                            ))),
                                         child: Ink(
                                           decoration: BoxDecoration(
                                               borderRadius:

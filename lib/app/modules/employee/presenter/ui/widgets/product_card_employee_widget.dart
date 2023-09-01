@@ -53,9 +53,19 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                   onLongPress: () => showDialog(
                                       context: context,
                                       builder: ((context) => AlertDialog(
-                                            content: Image.network(
-                                              product.photo!,
-                                              fit: BoxFit.contain,
+                                            content: ConstrainedBox(
+                                              constraints: BoxConstraints(
+                                                maxHeight: ScreenHelper.height(
+                                                        context) *
+                                                    0.5,
+                                                maxWidth: ScreenHelper.width(
+                                                        context) *
+                                                    0.5,
+                                              ),
+                                              child: Image.network(
+                                                product.photo!,
+                                                fit: BoxFit.contain,
+                                              ),
                                             ),
                                           ))),
                                   child: Image.network(
@@ -85,7 +95,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                 )
                               : const Padding(
                                   padding: EdgeInsets.all(8.0),
-                                  child: Icon(Icons.image_not_supported),
+                                  child: Icon(Icons.error),
                                 ),
                         ),
                       ),

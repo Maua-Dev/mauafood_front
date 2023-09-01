@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import '../../../../../../generated/l10n.dart';
@@ -9,13 +9,11 @@ import '../../../../../shared/domain/entities/product.dart';
 class ProductCardWidget extends StatelessWidget {
   final Product product;
   final Function()? onPressed;
-  final Uint8List? uploadedPhoto;
 
   const ProductCardWidget({
     Key? key,
     required this.product,
     this.onPressed,
-    this.uploadedPhoto,
   }) : super(key: key);
 
   @override
@@ -33,15 +31,31 @@ class ProductCardWidget extends StatelessWidget {
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: product.photo == ''
-                      ? uploadedPhoto != null
-                          ? Image.memory(uploadedPhoto!)
-                          : const Icon(Icons.image_not_supported)
-                      : CachedNetworkImage(
-                          imageUrl: product.photo ?? '',
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                        ),
+                  child: InkWell(
+                    onLongPress: product.photo != '' && product.photo != null
+                        ? () => showDialog(
+                            context: context,
+                            builder: ((context) => AlertDialog(
+                                  content: ConstrainedBox(
+                                    constraints: BoxConstraints(
+                                      maxHeight:
+                                          ScreenHelper.height(context) * 0.5,
+                                      maxWidth:
+                                          ScreenHelper.width(context) * 0.5,
+                                    ),
+                                    child: Image.network(
+                                      product.photo!,
+                                      fit: BoxFit.contain,
+                                    ),
+                                  ),
+                                )))
+                        : null,
+                    child: CachedNetworkImage(
+                      imageUrl: product.photo ?? '',
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
+                  ),
                 ),
               ),
               Expanded(

@@ -53,6 +53,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                   onLongPress: () => showDialog(
                                       context: context,
                                       builder: ((context) => AlertDialog(
+                                            contentPadding: EdgeInsets.zero,
                                             content: ConstrainedBox(
                                               constraints: BoxConstraints(
                                                 maxHeight: ScreenHelper.height(

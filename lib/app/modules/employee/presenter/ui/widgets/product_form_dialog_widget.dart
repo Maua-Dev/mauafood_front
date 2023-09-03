@@ -119,6 +119,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                     builder:
                                                         ((context) =>
                                                             AlertDialog(
+                                                              contentPadding:
+                                                                  EdgeInsets
+                                                                      .zero,
                                                               content:
                                                                   ConstrainedBox(
                                                                       constraints:

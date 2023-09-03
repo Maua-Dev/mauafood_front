@@ -36,6 +36,7 @@ class ProductCardWidget extends StatelessWidget {
                         ? () => showDialog(
                             context: context,
                             builder: ((context) => AlertDialog(
+                                  contentPadding: EdgeInsets.zero,
                                   content: ConstrainedBox(
                                     constraints: BoxConstraints(
                                       maxHeight:

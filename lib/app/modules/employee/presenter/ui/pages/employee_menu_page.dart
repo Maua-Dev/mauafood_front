@@ -167,6 +167,12 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                     ],
                   ),
                 ),
+                state is EmployeeMenuLoadedSuccessState
+                    ? IconButton(
+                        icon: Icon(Icons.abc),
+                        onPressed: () {},
+                      )
+                    : const SizedBox.shrink(),
                 const SizedBox(
                   height: 12,
                 ),

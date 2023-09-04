@@ -205,7 +205,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                       ),
                                     );
                                   }),
-                                  SizedBox(
+                                  const SizedBox(
                                     width: 8,
                                   ),
                                   Expanded(

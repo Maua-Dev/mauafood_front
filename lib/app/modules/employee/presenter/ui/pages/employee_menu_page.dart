@@ -5,6 +5,7 @@ import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/e
 import 'package:mauafood_front/app/modules/employee/presenter/states/employee_menu_state.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-card/product_card_employee_state.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/ui/widgets/product_form_dialog_widget.dart';
+import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/product_card_widget.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/helpers/services/s3/assets_s3.dart';
 import '../../../../../shared/themes/app_colors.dart';
@@ -168,9 +169,43 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                   ),
                 ),
                 state is EmployeeMenuLoadedSuccessState
-                    ? IconButton(
-                        icon: Icon(Icons.abc),
-                        onPressed: () {},
+                    ? Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            width: 56,
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: AppColors.mainBlueColor,
+                                width: 2,
+                              ),
+                              color: !store.isUserMenu
+                                  ? AppColors.mainBlueColor
+                                  : AppColors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: IconButton(
+                              icon: const Icon(Icons.remove_red_eye),
+                              color: !store.isUserMenu
+                                  ? AppColors.white
+                                  : AppColors.mainBlueColor,
+                              onPressed: () {
+                                store.isUserMenu = !store.isUserMenu;
+                                if (store.isUserMenu) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    duration: const Duration(milliseconds: 800),
+                                    behavior: SnackBarBehavior.floating,
+                                    backgroundColor: AppColors.mainBlueColor,
+                                    content: Text(S.of(context).customersView,
+                                        style: AppTextStyles.h2
+                                            .copyWith(color: AppColors.white)),
+                                  ));
+                                }
+                              },
+                            ),
+                          ),
+                        ],
                       )
                     : const SizedBox.shrink(),
                 const SizedBox(
@@ -212,11 +247,35 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                                                         index
                                                 ? 0.5
                                                 : 1,
-                                            child: ProductCardEmployeeWidget(
-                                              index: index,
-                                              product: state.listProduct[index],
-                                              restaurant: widget.restaurant,
-                                            ),
+                                            child: !store.isUserMenu
+                                                ? ProductCardEmployeeWidget(
+                                                    index: index,
+                                                    product: state
+                                                        .listProduct[index],
+                                                    restaurant:
+                                                        widget.restaurant,
+                                                  )
+                                                : ProductCardWidget(
+                                                    product: state
+                                                        .listProduct[index],
+                                                    onPressed: () {
+                                                      Modular.to.pushNamed(
+                                                          'product-info/',
+                                                          arguments: [
+                                                            state.listProduct[
+                                                                index],
+                                                            state.listProduct
+                                                                .where((element) =>
+                                                                    element
+                                                                        .type ==
+                                                                    state
+                                                                        .listProduct[
+                                                                            index]
+                                                                        .type)
+                                                                .toList()
+                                                          ]);
+                                                    },
+                                                  ),
                                           ),
                                         ),
                                       ]);

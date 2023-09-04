@@ -103,6 +103,8 @@
     "labelMessage": "Message",
     "labelSend": "Send now",
 
+    "customersView": "Customers view",
+
 
     "productNameSchema": "{product, select, ALL{All} SANDWICHES{Sandwiches} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}",
     "productToEnumSchema": "{name, select, All{ALL} Sandwiches{SANDWICHES} Drinks{DRINKS} Candies{CANDIES} Dishes{PLATES} Portions{PORTIONS} Pastas{PASTAS} Snacks{SNACKS} Salads{SALADS} Dessert{DESSERT} Savoury{SAVOURY} other{OUTROS}}",

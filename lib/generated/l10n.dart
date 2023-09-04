@@ -908,6 +908,16 @@ class S {
     );
   }
 
+  /// `Customers view`
+  String get customersView {
+    return Intl.message(
+      'Customers view',
+      name: 'customersView',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{product, select, ALL{All} SANDWICHES{Sandwiches} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}`
   String productNameSchema(Object product) {
     return Intl.select(

@@ -109,113 +109,54 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              IconButton(
-                                  onPressed: () {
-                                    showDialog(
-                                        context: context,
-                                        builder: ((context) =>
-                                            ProductFormDialogWidget(
-                                              restaurant: restaurant,
-                                              product: product,
-                                              title: S
-                                                  .of(context)
-                                                  .editProductTitle,
-                                              buttonText:
-                                                  S.of(context).editTitle,
-                                              snackBarText: S
-                                                  .of(context)
-                                                  .productSuccessfullyEditedTitle,
-                                            )));
-                                  },
-                                  icon: Icon(
-                                    Icons.edit,
-                                    color: AppColors.mainBlueColor,
-                                    size: 24,
-                                  )),
-                              Observer(builder: (_) {
-                                return IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (BuildContext buildContext) {
-                                            return ConfirmationDialogWidget(
-                                              cancellationText: S
-                                                  .of(context)
-                                                  .cancelationTitle,
-                                              dialogContent: S
-                                                  .of(context)
-                                                  .deleteProductConfirmationTitle,
-                                              confirmationText:
-                                                  S.of(context).deleteTitle,
-                                              onConfirmation: () {
-                                                Modular.to.pop();
-                                                menuController
-                                                    .deleteProduct(restaurant,
-                                                        product.id!, index)
-                                                    .then((value) {
-                                                  var state = menuController
-                                                      .productCardState;
-                                                  if (state
-                                                      is ProductCardEmployeeFailureState) {
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(SnackBar(
-                                                      behavior: SnackBarBehavior
-                                                          .floating,
-                                                      backgroundColor:
-                                                          AppColors.errorColor,
-                                                      content: Text(
-                                                          state.failure.message,
-                                                          style: AppTextStyles
-                                                              .h2
-                                                              .copyWith(
-                                                                  color: AppColors
-                                                                      .white)),
-                                                    ));
-                                                  }
-                                                  if (state
-                                                      is ProductCardEmployeeSuccessState) {
-                                                    ScaffoldMessenger.of(
-                                                            context)
-                                                        .showSnackBar(SnackBar(
-                                                      behavior: SnackBarBehavior
-                                                          .floating,
-                                                      backgroundColor: AppColors
-                                                          .mainBlueColor,
-                                                      content: Text(
-                                                          S
-                                                              .of(context)
-                                                              .productSuccessfullyDeletedTitle,
-                                                          style: AppTextStyles
-                                                              .h2
-                                                              .copyWith(
-                                                                  color: AppColors
-                                                                      .white)),
-                                                    ));
-                                                  }
-                                                });
-                                              },
-                                            );
-                                          });
-                                    },
-                                    icon: Icon(
-                                      Icons.delete,
-                                      color: AppColors.mainBlueColor,
-                                      size: 24,
-                                    ));
-                              })
-                            ],
-                          ),
-                          Text(
-                            overflow: TextOverflow.clip,
-                            product.name,
-                            style: AppTextStyles.h1.copyWith(
-                                fontSize:
-                                    ScreenHelper.width(context) < 400 ? 16 : 20,
-                                color: AppColors.mainBlueColor),
+                          Container(
+                            decoration: BoxDecoration(
+                                color: AppColors.mainBlueColor.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 4.0, horizontal: 8.0),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    flex: 4,
+                                    child: Text(
+                                      overflow: TextOverflow.clip,
+                                      product.name,
+                                      style: AppTextStyles.h1.copyWith(
+                                          fontSize: 16,
+                                          color: AppColors.mainBlueColor),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerRight,
+                                    child: IconButton(
+                                        onPressed: () {
+                                          showDialog(
+                                              context: context,
+                                              builder: ((context) =>
+                                                  ProductFormDialogWidget(
+                                                    restaurant: restaurant,
+                                                    product: product,
+                                                    title: S
+                                                        .of(context)
+                                                        .editProductTitle,
+                                                    buttonText:
+                                                        S.of(context).editTitle,
+                                                    snackBarText: S
+                                                        .of(context)
+                                                        .productSuccessfullyEditedTitle,
+                                                  )));
+                                        },
+                                        icon: Icon(
+                                          Icons.edit,
+                                          color: AppColors.mainBlueColor,
+                                          size: 20,
+                                        )),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                           product.description == '' ||
                                   product.description == null
@@ -233,63 +174,148 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                         color: AppColors.mainBlueColor),
                                   ),
                                 ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: Wrap(
-                              alignment: WrapAlignment.spaceBetween,
-                              runAlignment: WrapAlignment.start,
-                              runSpacing: 4,
-                              children: [
-                                Text(
-                                  S
-                                      .of(context)
-                                      .productPriceCurrency(product.price),
-                                  style: AppTextStyles.h2.copyWith(
-                                      fontSize:
-                                          ScreenHelper.width(context) < 400
-                                              ? 16
-                                              : 18,
-                                      color: AppColors.mainBlueColor),
-                                ),
-                                product.prepareTime == null
-                                    ? const SizedBox.shrink()
-                                    : SizedBox(
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Icon(
-                                              Icons.timer_sharp,
-                                              color: AppColors.mainBlueColor,
-                                              size:
-                                                  ScreenHelper.width(context) <
-                                                          400
-                                                      ? 20
-                                                      : 24,
-                                            ),
-                                            const SizedBox(
-                                              width: 2,
-                                            ),
-                                            Text(
-                                              S
-                                                  .of(context)
-                                                  .productPrepareTimeMinutes(
-                                                      '',
-                                                      product.prepareTime
-                                                          .toString()),
-                                              style: AppTextStyles.h2.copyWith(
-                                                  fontSize: ScreenHelper.width(
-                                                              context) <
-                                                          400
-                                                      ? 16
-                                                      : 18,
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                flex: 4,
+                                child: Wrap(
+                                  runSpacing: 2,
+                                  children: [
+                                    Text(
+                                      S
+                                          .of(context)
+                                          .productPriceCurrency(product.price),
+                                      style: AppTextStyles.h2.copyWith(
+                                          fontSize: 16,
+                                          color: AppColors.mainBlueColor),
+                                    ),
+                                    const SizedBox(
+                                      width: 4,
+                                    ),
+                                    product.prepareTime == null
+                                        ? const SizedBox.shrink()
+                                        : SizedBox(
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Icon(
+                                                  Icons.timer_sharp,
                                                   color:
-                                                      AppColors.mainBlueColor),
+                                                      AppColors.mainBlueColor,
+                                                  size: 20,
+                                                ),
+                                                const SizedBox(
+                                                  width: 2,
+                                                ),
+                                                Text(
+                                                  S
+                                                      .of(context)
+                                                      .productPrepareTimeMinutes(
+                                                          '',
+                                                          product.prepareTime
+                                                              .toString()),
+                                                  style: AppTextStyles.h2
+                                                      .copyWith(
+                                                          fontSize: 16,
+                                                          color: AppColors
+                                                              .mainBlueColor),
+                                                ),
+                                              ],
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                              ],
-                            ),
+                                          ),
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Observer(builder: (_) {
+                                    return IconButton(
+                                        onPressed: () {
+                                          showDialog(
+                                              context: context,
+                                              builder:
+                                                  (BuildContext buildContext) {
+                                                return ConfirmationDialogWidget(
+                                                  cancellationText: S
+                                                      .of(context)
+                                                      .cancelationTitle,
+                                                  dialogContent: S
+                                                      .of(context)
+                                                      .deleteProductConfirmationTitle,
+                                                  confirmationText:
+                                                      S.of(context).deleteTitle,
+                                                  onConfirmation: () {
+                                                    Modular.to.pop();
+                                                    menuController
+                                                        .deleteProduct(
+                                                            restaurant,
+                                                            product.id!,
+                                                            index)
+                                                        .then((value) {
+                                                      var state = menuController
+                                                          .productCardState;
+                                                      if (state
+                                                          is ProductCardEmployeeFailureState) {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                                SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
+                                                          backgroundColor:
+                                                              AppColors
+                                                                  .errorColor,
+                                                          content: Text(
+                                                              state.failure
+                                                                  .message,
+                                                              style: AppTextStyles
+                                                                  .h2
+                                                                  .copyWith(
+                                                                      color: AppColors
+                                                                          .white)),
+                                                        ));
+                                                      }
+                                                      if (state
+                                                          is ProductCardEmployeeSuccessState) {
+                                                        ScaffoldMessenger.of(
+                                                                context)
+                                                            .showSnackBar(
+                                                                SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
+                                                          backgroundColor:
+                                                              AppColors
+                                                                  .mainBlueColor,
+                                                          content: Text(
+                                                              S
+                                                                  .of(context)
+                                                                  .productSuccessfullyDeletedTitle,
+                                                              style: AppTextStyles
+                                                                  .h2
+                                                                  .copyWith(
+                                                                      color: AppColors
+                                                                          .white)),
+                                                        ));
+                                                      }
+                                                    });
+                                                  },
+                                                );
+                                              });
+                                        },
+                                        icon: Icon(
+                                          Icons.delete,
+                                          color: AppColors.mainBlueColor,
+                                          size: 20,
+                                        ));
+                                  }),
+                                ),
+                              )
+                            ],
                           ),
                         ],
                       ),

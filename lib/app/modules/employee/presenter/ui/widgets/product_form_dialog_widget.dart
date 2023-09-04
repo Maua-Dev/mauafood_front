@@ -94,11 +94,11 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Observer(builder: (_) {
                                     return MouseRegion(
@@ -205,26 +205,30 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                       ),
                                     );
                                   }),
+                                  SizedBox(
+                                    width: 8,
+                                  ),
+                                  Expanded(
+                                    child: TextFieldWidget(
+                                      title: S.of(context).nameTitle,
+                                      onChanged: (value) =>
+                                          productFormController
+                                              .setProductName(value),
+                                      validator: productFormController
+                                          .validateProductName,
+                                      initialValue:
+                                          productFormController.productName,
+                                    ),
+                                  ),
                                 ],
-                              ),
-                              const SizedBox(
-                                width: 8,
                               ),
                             ],
                           ),
                           const SizedBox(
-                            height: 16,
-                          ),
-                          TextFieldWidget(
-                            title: S.of(context).nameTitle,
-                            onChanged: (value) =>
-                                productFormController.setProductName(value),
-                            validator:
-                                productFormController.validateProductName,
-                            initialValue: productFormController.productName,
+                            width: 8,
                           ),
                           const SizedBox(
-                            height: 8,
+                            height: 16,
                           ),
                           TextFieldWidget(
                             title: S.of(context).prepareTimeTitle,

@@ -25,10 +25,12 @@ class ProductCardWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: SizedBox(
-          height: 100,
+          height: ScreenHelper.width(context) / 3.5,
           child: Row(
             children: [
-              Expanded(
+              SizedBox(
+                width: ScreenHelper.width(context) / 3.5,
+                height: ScreenHelper.width(context) / 3.5,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: InkWell(
@@ -46,15 +48,22 @@ class ProductCardWidget extends StatelessWidget {
                                     ),
                                     child: Image.network(
                                       product.photo!,
-                                      fit: BoxFit.contain,
                                     ),
                                   ),
                                 )))
                         : null,
-                    child: CachedNetworkImage(
-                      imageUrl: product.photo ?? '',
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+                    child: SizedBox(
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: FittedBox(
+                          fit: BoxFit.cover,
+                          child: CachedNetworkImage(
+                            imageUrl: product.photo ?? '',
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),

@@ -31,7 +31,8 @@ class RecommendedProductWidget extends StatelessWidget {
                       maxHeight: 75,
                     ),
                     child: CachedNetworkImage(
-                      imageUrl: product.photo!,
+                      imageUrl: product.photo ?? "",
+                      fit: BoxFit.cover,
                       placeholder: (context, url) => const Center(
                         child: CircularProgressIndicator(),
                       ),

@@ -138,12 +138,12 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                           ? Image
                                                                               .memory(
                                                                               productFormController.uploadedPhoto!,
-                                                                              fit: BoxFit.contain,
+                                                                              fit: BoxFit.cover,
                                                                             )
                                                                           : Image
                                                                               .network(
                                                                               productFormController.productPhoto!,
-                                                                              fit: BoxFit.contain,
+                                                                              fit: BoxFit.cover,
                                                                             )),
                                                             ))),
                                         child: Ink(

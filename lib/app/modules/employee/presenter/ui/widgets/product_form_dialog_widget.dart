@@ -154,8 +154,10 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                   color:
                                                       AppColors.mainBlueColor)),
                                           child: SizedBox(
-                                            width: 80,
-                                            height: 88,
+                                            width:
+                                                ScreenHelper.width(context) / 5,
+                                            height:
+                                                ScreenHelper.width(context) / 5,
                                             child: (productFormController
                                                             .uploadedPhoto ==
                                                         null &&
@@ -183,23 +185,29 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                           ),
                                                         )
                                                       ])
-                                                : Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(4),
-                                                    child: productFormController
-                                                                .productPhoto ==
-                                                            null
-                                                        ? Image.memory(
-                                                            productFormController
-                                                                .uploadedPhoto!,
-                                                            fit: BoxFit.contain,
-                                                          )
-                                                        : Image.network(
-                                                            productFormController
-                                                                .productPhoto!,
-                                                            fit: BoxFit.contain,
-                                                          ),
-                                                  ),
+                                                : productFormController
+                                                            .productPhoto ==
+                                                        null
+                                                    ? ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        child: Image.memory(
+                                                          productFormController
+                                                              .uploadedPhoto!,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      )
+                                                    : ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        child: Image.network(
+                                                          productFormController
+                                                              .productPhoto!,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      ),
                                           ),
                                         ),
                                       ),
@@ -223,9 +231,6 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                 ],
                               ),
                             ],
-                          ),
-                          const SizedBox(
-                            width: 8,
                           ),
                           const SizedBox(
                             height: 16,

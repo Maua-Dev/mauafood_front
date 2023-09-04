@@ -47,7 +47,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(10),
                         child: FittedBox(
-                          fit: BoxFit.contain,
+                          fit: BoxFit.cover,
                           child: product.photo != '' && product.photo != null
                               ? InkWell(
                                   onLongPress: () => showDialog(
@@ -65,7 +65,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                               ),
                                               child: Image.network(
                                                 product.photo!,
-                                                fit: BoxFit.contain,
+                                                fit: BoxFit.cover,
                                               ),
                                             ),
                                           ))),

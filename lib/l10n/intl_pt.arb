@@ -103,6 +103,9 @@
     "labelMessage": "Mensagem",
     "labelSend": "Enviar agora",
 
+    "customersView": "Visão dos clientes",
+
+
 
     "productNameSchema": "{product, select, ALL{Tudo} SANDWICHES{Lanches} DRINKS{Bebidas} CANDIES{Doces} PLATES{Pratos} PORTIONS{Porções} PASTAS{Massas} SNACKS{Snacks} SALADS{Saladas} DESSERT{Sobremesa} SAVOURY{Salgado} other{Outros}}",
     "productToEnumSchema": "{name, select, Tudo{ALL} Lanches{SANDWICHES} Bebidas{DRINKS} Doces{CANDIES} Pratos{PLATES} Porcoes{PORTIONS} Massas{PASTAS} Snacks{SNACKS} Saladas{SALADS} Sobremesa{DESSERT} Salgado{SAVOURY} other{OUTROS}}",

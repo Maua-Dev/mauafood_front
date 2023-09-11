@@ -172,6 +172,22 @@ mixin _$EmployeeMenuRestaurantController
     });
   }
 
+  late final _$isUserMenuAtom =
+      Atom(name: 'MenuRestaurantControllerBase.isUserMenu', context: context);
+
+  @override
+  bool get isUserMenu {
+    _$isUserMenuAtom.reportRead();
+    return super.isUserMenu;
+  }
+
+  @override
+  set isUserMenu(bool value) {
+    _$isUserMenuAtom.reportWrite(value, super.isUserMenu, () {
+      super.isUserMenu = value;
+    });
+  }
+
   late final _$loadRestaurantMenuAsyncAction = AsyncAction(
       'MenuRestaurantControllerBase.loadRestaurantMenu',
       context: context);
@@ -307,7 +323,8 @@ isMinPriceSearch: ${isMinPriceSearch},
 rangeValues: ${rangeValues},
 search: ${search},
 index: ${index},
-productType: ${productType}
+productType: ${productType},
+isUserMenu: ${isUserMenu}
     ''';
   }
 }

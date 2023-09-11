@@ -141,6 +141,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "createProductTitle":
             MessageLookupByLibrary.simpleMessage("Create product"),
         "createTitle": MessageLookupByLibrary.simpleMessage("Create"),
+        "customersView": MessageLookupByLibrary.simpleMessage("Customers view"),
         "dataStorageAlertTitle": MessageLookupByLibrary.simpleMessage(
             "If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it."),
         "dataStorageTitle":

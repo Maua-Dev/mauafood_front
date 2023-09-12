@@ -147,7 +147,7 @@
 
 
     "messageSentSuccessfully": "Email successfully sent!",
-
+    "messageSentError": "Error sending email, please try again later.",
     "cart": "Cesta",
     "home": "Home",
     "profile": "Profile",

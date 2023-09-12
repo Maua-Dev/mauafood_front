@@ -26,7 +26,7 @@ class LandingModule extends Module {
     Bind.lazySingleton((i) => LandingController(i())),
     Bind<IContactUsecase>((i) => ContactUsecase(i())),
     Bind<IContactRepository>((i) => ContactRepository(datasource: i())),
-    Bind<IContactDatasource>((i) => ContactDatasource()),
+    Bind<IContactDatasource>((i) => ContactDatasource(i())),
     Bind<ContactController>(
       (i) => ContactController(i()),
     ),

@@ -200,6 +200,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "lowestPriceTitle":
             MessageLookupByLibrary.simpleMessage("Lowest Price"),
+        "messageSentError": MessageLookupByLibrary.simpleMessage(
+            "Error sending email, please try again later."),
         "messageSentSuccessfully":
             MessageLookupByLibrary.simpleMessage("Email successfully sent!"),
         "minutesTitle": MessageLookupByLibrary.simpleMessage("minutes"),

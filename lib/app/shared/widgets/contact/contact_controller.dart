@@ -1,4 +1,5 @@
 import 'package:mauafood_front/app/shared/domain/usecases/contact_usecase.dart';
+import 'package:mauafood_front/app/shared/helpers/services/snackbar/global_snackbar.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../generated/l10n.dart';
@@ -60,7 +61,11 @@ abstract class ContactControllerBase with Store {
   Future<void> sendEmail() async {
     changeState(ContactLoadingState());
     var result = await _contactUsecase(name, email, message);
-    changeState(result.fold((l) => ContactErrorState(failure: l), (list) {
+    changeState(result.fold((l) {
+      GlobalSnackBar.error(S.current.messageSentError);
+      return ContactErrorState(failure: l);
+    }, (list) {
+      GlobalSnackBar.success(S.current.messageSentSuccessfully);
       return ContactLoadedSuccessState();
     }));
   }

@@ -3,6 +3,8 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:mauafood_front/app/modules/user/presenter/states/contact/contact_state.dart';
+import 'package:mauafood_front/app/shared/helpers/services/snackbar/global_snackbar.dart';
 import 'package:mauafood_front/app/shared/widgets/contact/text_field_contact_widget.dart';
 import 'package:mauafood_front/app/shared/widgets/confirm_dialog_widget.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -13,18 +15,9 @@ import 'contact_controller.dart';
 class ContactDialog extends StatelessWidget {
   const ContactDialog({super.key});
 
-  void showSnackBar(BuildContext context, String? message) {
-    final snackbar = SnackBar(
-      elevation: 150.0,
-      content: Text(message!),
-      backgroundColor: AppColors.mainBlueColor,
-    );
-
-    ScaffoldMessenger.of(context).showSnackBar(snackbar);
-  }
-
   @override
   Widget build(BuildContext context) {
+    final formKey = GlobalKey<FormState>();
     var contactController = Modular.get<ContactController>();
     return AlertDialog(
       backgroundColor: AppColors.backgroundColor2,
@@ -47,49 +40,61 @@ class ContactDialog extends StatelessWidget {
           ),
         ],
       ),
-      content: Scrollable(
-        viewportBuilder: (BuildContext context, ViewportOffset position) {
-          return SingleChildScrollView(
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                minHeight: 100,
-                maxHeight: 500,
+      content: Form(
+        key: formKey,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: Scrollable(
+          viewportBuilder: (BuildContext context, ViewportOffset position) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(
+                  minHeight: 100,
+                  maxHeight: 600,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if (!contactController.isLogged)
+                      TextFieldContactWidget(
+                        suffixIcon: const Icon(Icons.person),
+                        onChanged: contactController.setName,
+                        validator: contactController.validateName,
+                        title: '${S.of(context).labelName} *',
+                        hintText: S.of(context).labelName,
+                        keyboardType: TextInputType.multiline,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(50),
+                        ],
+                      ),
+                    if (!contactController.isLogged)
+                      TextFieldContactWidget(
+                        suffixIcon: const Icon(Icons.email),
+                        onChanged: contactController.setEmail,
+                        validator: contactController.validateEmail,
+                        title: '${S.of(context).emailTitle} *',
+                        hintText: S.of(context).emailTitle,
+                        keyboardType: TextInputType.multiline,
+                        inputFormatters: [
+                          LengthLimitingTextInputFormatter(100),
+                        ],
+                      ),
+                    TextFieldContactWidget(
+                      onChanged: contactController.setMessage,
+                      validator: contactController.validateMessage,
+                      title: '${S.of(context).labelMessage} *',
+                      hintText: S.of(context).labelMessage,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 5,
+                      inputFormatters: [
+                        LengthLimitingTextInputFormatter(500),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextFieldContactWidget(
-                    validator: contactController.validateName,
-                    title: '${S.of(context).labelName} *',
-                    hintText: S.of(context).labelName,
-                    keyboardType: TextInputType.multiline,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(500),
-                    ],
-                  ),
-                  TextFieldContactWidget(
-                    validator: contactController.validateEmail,
-                    title: '${S.of(context).emailTitle} *',
-                    hintText: S.of(context).emailTitle,
-                    keyboardType: TextInputType.multiline,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(500),
-                    ],
-                  ),
-                  TextFieldContactWidget(
-                    validator: contactController.validateMessage,
-                    title: '${S.of(context).labelMessage} *',
-                    hintText: S.of(context).labelMessage,
-                    keyboardType: TextInputType.multiline,
-                    inputFormatters: [
-                      LengthLimitingTextInputFormatter(500),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
       scrollable: false,
       shape: RoundedRectangleBorder(
@@ -115,8 +120,13 @@ class ContactDialog extends StatelessWidget {
                 fontSize: 16,
               ),
             ),
-            onPressed: () {
-              contactController.sendEmail();
+            onPressed: () async {
+              await contactController.sendEmail();
+              if (contactController.state is ContactSuccessState) {
+                GlobalSnackBar.success(S.current.messageSentSuccessfully);
+              } else if (contactController.state is ContactErrorState) {
+                GlobalSnackBar.error(S.current.messageSentError);
+              }
               Modular.to.pop();
             },
           ),

@@ -1054,6 +1054,16 @@ class S {
     );
   }
 
+  /// `Error sending email, please try again later.`
+  String get messageSentError {
+    return Intl.message(
+      'Error sending email, please try again later.',
+      name: 'messageSentError',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cesta`
   String get cart {
     return Intl.message(

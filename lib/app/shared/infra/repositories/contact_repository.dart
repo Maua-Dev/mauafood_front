@@ -24,4 +24,16 @@ class ContactRepository extends IContactRepository {
       return Left(ErrorRequest(message: errorType.errorMessage));
     }
   }
+
+  @override
+  Future<Either<Failure, Unit>> sendEmailOnlyMessage(String message) async {
+    try {
+      await datasource.sendEmailOnlyMessage(message);
+      return const Right(unit);
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType = getHttpStatusFunction(
+          e.response?.statusCode ?? HttpStatus.badRequest);
+      return Left(ErrorRequest(message: errorType.errorMessage));
+    }
+  }
 }

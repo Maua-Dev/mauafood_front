@@ -1,5 +1,8 @@
-import 'package:mauafood_front/app/shared/domain/usecases/contact_usecase.dart';
-import 'package:mauafood_front/app/shared/helpers/services/snackbar/global_snackbar.dart';
+import 'package:mauafood_front/app/modules/user/presenter/controllers/user_controller.dart';
+
+import 'package:mauafood_front/app/shared/domain/usecases/send_email.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/user_send_email.dart';
+
 import 'package:mobx/mobx.dart';
 
 import '../../../../generated/l10n.dart';
@@ -11,9 +14,14 @@ part 'contact_controller.g.dart';
 class ContactController = ContactControllerBase with _$ContactController;
 
 abstract class ContactControllerBase with Store {
-  final IContactUsecase _contactUsecase;
-
-  ContactControllerBase(this._contactUsecase);
+  final ISendEmail _sendEmail;
+  final IUserSendEmail _userSendEmail;
+  final UserController _userController;
+  ContactControllerBase(
+    this._sendEmail,
+    this._userSendEmail,
+    this._userController,
+  );
 
   @observable
   ContactState state = ContactInitialState();
@@ -40,33 +48,31 @@ abstract class ContactControllerBase with Store {
   void setName(String value) => name = value;
 
   @action
-  String? validateName(String? value) {
-    return ValidationHelper.validateName(value);
-  }
+  String? validateName(String? value) =>
+      isLogged ? null : ValidationHelper.validateName(value);
 
   @action
-  String? validateEmail(String? value) {
-    return ValidationHelper.validateEmail(value);
-  }
+  String? validateEmail(String? value) =>
+      isLogged ? null : ValidationHelper.validateEmail(value);
 
   @action
-  String? validateMessage(String? value) {
-    if (value!.isEmpty) {
-      return S.current.requiredFieldAlert;
-    }
-    return null;
-  }
+  String? validateMessage(String? value) =>
+      value?.isEmpty ?? false ? S.current.requiredFieldAlert : null;
+
+  @computed
+  bool get isLogged => _userController.isLogged;
 
   @action
   Future<void> sendEmail() async {
     changeState(ContactLoadingState());
-    var result = await _contactUsecase(name, email, message);
+    final result = isLogged
+        ? await _userSendEmail(message)
+        : await _sendEmail(name, email, message);
+
     changeState(result.fold((l) {
-      GlobalSnackBar.error(S.current.messageSentError);
       return ContactErrorState(failure: l);
     }, (list) {
-      GlobalSnackBar.success(S.current.messageSentSuccessfully);
-      return ContactLoadedSuccessState();
+      return ContactSuccessState();
     }));
   }
 }

@@ -19,4 +19,17 @@ class ContactDatasource extends IContactDatasource {
       throw Exception('Erro ao enviar email');
     }
   }
+
+  @override
+  Future<void> sendEmailOnlyMessage(String message) async {
+    final response = await _client.post(
+      '/contact-us',
+      data: {
+        'message': message,
+      },
+    );
+    if (response.statusCode != 200) {
+      throw Exception('Erro ao enviar email');
+    }
+  }
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -6,7 +5,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:intl/intl.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/product-form/product_form_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
-import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/product_card_widget.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
@@ -52,8 +50,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
       productFormController.setProductAvailability(widget.product!.available);
       productFormController.setProductType(widget.product!.type.name);
       productFormController.setProductName(widget.product!.name);
+      productFormController.productPrice = widget.product!.price;
 
-      productFormController.setProductPrice(widget.product!.price.toString());
       if (widget.product!.prepareTime != null) {
         productFormController
             .setProductPrepareTime(widget.product!.prepareTime.toString());
@@ -96,11 +94,11 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                              Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
                                 children: [
                                   Observer(builder: (_) {
                                     return MouseRegion(
@@ -108,7 +106,46 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                       child: InkWell(
                                         key: const Key('productPhoto'),
                                         onTap: () => productFormController
-                                            .uploadProductPhoto(),
+                                            .uploadProductPhoto(context),
+                                        onLongPress:
+                                            (productFormController
+                                                            .uploadedPhoto ==
+                                                        null &&
+                                                    widget.product?.photo ==
+                                                        null)
+                                                ? null
+                                                : () => showDialog(
+                                                    context: context,
+                                                    builder:
+                                                        ((context) =>
+                                                            AlertDialog(
+                                                              contentPadding:
+                                                                  EdgeInsets
+                                                                      .zero,
+                                                              content:
+                                                                  ConstrainedBox(
+                                                                      constraints:
+                                                                          BoxConstraints(
+                                                                        maxHeight:
+                                                                            ScreenHelper.height(context) *
+                                                                                0.5,
+                                                                        maxWidth:
+                                                                            ScreenHelper.width(context) *
+                                                                                0.5,
+                                                                      ),
+                                                                      child: productFormController.productPhoto ==
+                                                                              null
+                                                                          ? Image
+                                                                              .memory(
+                                                                              productFormController.uploadedPhoto!,
+                                                                              fit: BoxFit.cover,
+                                                                            )
+                                                                          : Image
+                                                                              .network(
+                                                                              productFormController.productPhoto!,
+                                                                              fit: BoxFit.cover,
+                                                                            )),
+                                                            ))),
                                         child: Ink(
                                           decoration: BoxDecoration(
                                               borderRadius:
@@ -117,104 +154,86 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                   color:
                                                       AppColors.mainBlueColor)),
                                           child: SizedBox(
-                                            width: 80,
-                                            height: 88,
-                                            child:
-                                                (productFormController
-                                                                .uploadedWebPhoto ==
-                                                            null &&
-                                                        productFormController
-                                                                .uploadedMobilePhoto ==
-                                                            null &&
-                                                        widget.product?.photo ==
-                                                            null)
-                                                    ? Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                            Icon(
-                                                              Icons.fastfood,
-                                                              color: AppColors
-                                                                  .mainBlueColor,
-                                                            ),
-                                                            Text(
-                                                              S
-                                                                  .of(context)
-                                                                  .photoTitle,
-                                                              style:
-                                                                  AppTextStyles
-                                                                      .h2
-                                                                      .copyWith(
-                                                                color: AppColors
-                                                                    .mainBlueColor,
-                                                              ),
-                                                            )
-                                                          ])
-                                                    : Padding(
-                                                        padding:
-                                                            const EdgeInsets
-                                                                .all(4),
-                                                        child: productFormController
-                                                                    .productPhoto ==
-                                                                null
-                                                            ? kIsWeb
-                                                                ? Image.memory(
-                                                                    productFormController
-                                                                        .uploadedWebPhoto!,
-                                                                    fit: BoxFit
-                                                                        .contain,
-                                                                  )
-                                                                : Image.file(
-                                                                    productFormController
-                                                                        .uploadedMobilePhoto!,
-                                                                    fit: BoxFit
-                                                                        .contain,
-                                                                  )
-                                                            : Image.network(
-                                                                productFormController
-                                                                    .productPhoto!,
-                                                                fit: BoxFit
-                                                                    .contain,
-                                                              ),
+                                            width:
+                                                ScreenHelper.width(context) / 5,
+                                            height:
+                                                ScreenHelper.width(context) / 5,
+                                            child: (productFormController
+                                                            .uploadedPhoto ==
+                                                        null &&
+                                                    widget.product?.photo ==
+                                                        null)
+                                                ? Column(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    children: [
+                                                        Icon(
+                                                          Icons.fastfood,
+                                                          color: AppColors
+                                                              .mainBlueColor,
+                                                        ),
+                                                        Text(
+                                                          S
+                                                              .of(context)
+                                                              .photoTitle,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                            color: AppColors
+                                                                .mainBlueColor,
+                                                          ),
+                                                        )
+                                                      ])
+                                                : productFormController
+                                                            .productPhoto ==
+                                                        null
+                                                    ? ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        child: Image.memory(
+                                                          productFormController
+                                                              .uploadedPhoto!,
+                                                          fit: BoxFit.cover,
+                                                        ),
+                                                      )
+                                                    : ClipRRect(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(10),
+                                                        child: Image.network(
+                                                          productFormController
+                                                              .productPhoto!,
+                                                          fit: BoxFit.cover,
+                                                        ),
                                                       ),
                                           ),
                                         ),
                                       ),
                                     );
                                   }),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  Expanded(
+                                    child: TextFieldWidget(
+                                      title: S.of(context).nameTitle,
+                                      onChanged: (value) =>
+                                          productFormController
+                                              .setProductName(value),
+                                      validator: productFormController
+                                          .validateProductName,
+                                      initialValue:
+                                          productFormController.productName,
+                                    ),
+                                  ),
                                 ],
                               ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              Observer(builder: (_) {
-                                return Flexible(
-                                  child: Text(
-                                    productFormController.productName ?? "",
-                                    style: AppTextStyles.h1.copyWith(
-                                        color: AppColors.mainBlueColor,
-                                        fontSize: 16,
-                                        decoration: TextDecoration.underline,
-                                        overflow: TextOverflow.clip),
-                                  ),
-                                );
-                              }),
                             ],
                           ),
                           const SizedBox(
                             height: 16,
-                          ),
-                          TextFieldWidget(
-                            title: S.of(context).nameTitle,
-                            onChanged: (value) =>
-                                productFormController.setProductName(value),
-                            validator:
-                                productFormController.validateProductName,
-                            initialValue: productFormController.productName,
-                          ),
-                          const SizedBox(
-                            height: 8,
                           ),
                           TextFieldWidget(
                             title: S.of(context).prepareTimeTitle,
@@ -235,7 +254,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                           Row(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Expanded(
+                              Flexible(
+                                flex: 2,
                                 child: TextFieldWidget(
                                   maxLenght: 9,
                                   title: S.of(context).priceTitle,
@@ -261,6 +281,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                 width: 8,
                               ),
                               Expanded(
+                                flex: 3,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -355,232 +376,132 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                             );
                           }),
                           const SizedBox(
-                            height: 32,
+                            height: 16,
                           ),
-                          Wrap(
-                            runAlignment: WrapAlignment.center,
-                            alignment: WrapAlignment.center,
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            spacing: 32,
-                            runSpacing: 8,
-                            children: [
-                              TextButton(
-                                  style: ButtonStyle(side:
-                                      MaterialStateBorderSide.resolveWith(
-                                          (Set<MaterialState> states) {
-                                    return BorderSide(
-                                        color: AppColors.mainBlueColor);
-                                  })),
-                                  onPressed: () {
-                                    if (_formKey.currentState!.validate()) {
-                                      showDialog(
-                                          context: context,
-                                          builder: (BuildContext buildContext) {
-                                            return AlertDialog(
-                                                title: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceBetween,
-                                                  children: [
-                                                    Text(
-                                                        S
-                                                            .of(context)
-                                                            .previewTitle,
-                                                        style: AppTextStyles
-                                                            .h2HighlightBold
-                                                            .copyWith(
-                                                                fontSize: 16)),
-                                                    IconButton(
-                                                        onPressed: () =>
-                                                            Modular.to.pop(),
-                                                        icon: Icon(Icons.close,
-                                                            color: AppColors
-                                                                .mainBlueColor)),
-                                                  ],
-                                                ),
-                                                content: ProductCardWidget(
-                                                  onPressed: () {},
-                                                  product: Product(
-                                                    available:
-                                                        productFormController
-                                                            .productAvailability,
-                                                    name: productFormController
-                                                        .productName!,
-                                                    description:
-                                                        productFormController
-                                                                .productDescription ??
-                                                            '',
-                                                    prepareTime:
-                                                        productFormController
-                                                            .productPrepareTime!,
-                                                    price: productFormController
-                                                        .productPrice!,
-                                                    type: productFormController
-                                                        .productType!,
-                                                    photo: productFormController
-                                                            .productPhoto ??
-                                                        '',
-                                                  ),
-                                                  webPhoto:
-                                                      productFormController
-                                                          .uploadedWebPhoto,
-                                                  mobilePhoto:
-                                                      productFormController
-                                                          .uploadedMobilePhoto,
-                                                ));
-                                          });
-                                    }
-                                  },
-                                  child: Text(
-                                    S.of(context).previewTitle,
-                                    style: AppTextStyles.h2.copyWith(
-                                        color: AppColors.mainBlueColor),
-                                  )),
-                              Observer(builder: ((context) {
-                                return TextButton(
-                                    style: ButtonStyle(
-                                        backgroundColor: productFormController
-                                                .wasProductFormChanged(
-                                                    widget.product)
-                                            ? MaterialStateProperty.all<Color>(
-                                                AppColors.backgroundColor)
-                                            : MaterialStateProperty.all<Color>(
-                                                AppColors.letterColor
-                                                    .withOpacity(0.1)),
-                                        side:
-                                            MaterialStateBorderSide.resolveWith(
-                                                (Set<MaterialState> states) {
-                                          return BorderSide(
-                                              color: AppColors.mainBlueColor);
-                                        })),
-                                    onPressed: productFormController
+                          Observer(builder: ((context) {
+                            return TextButton(
+                                style: ButtonStyle(
+                                    backgroundColor: productFormController
                                             .wasProductFormChanged(
                                                 widget.product)
-                                        ? () {
-                                            if (_formKey.currentState!
-                                                .validate()) {
-                                              widget.product != null
-                                                  ? productFormController
-                                                      .updateProduct(
-                                                          widget.restaurant,
-                                                          widget.product!.id!)
-                                                      .then((value) {
-                                                      if (productFormController
-                                                              .state
-                                                          is ProductFormSuccessState) {
-                                                        Modular.to.pop();
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                SnackBar(
-                                                          behavior:
-                                                              SnackBarBehavior
-                                                                  .floating,
-                                                          backgroundColor:
-                                                              AppColors
-                                                                  .mainBlueColor,
-                                                          content: Text(
-                                                              widget
-                                                                  .snackBarText,
-                                                              style: AppTextStyles
-                                                                  .h2
-                                                                  .copyWith(
-                                                                      color: AppColors
-                                                                          .white)),
-                                                        ));
-                                                      }
-                                                      if (productFormController
-                                                              .state
-                                                          is ProductFormFailureState) {
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                SnackBar(
-                                                          behavior:
-                                                              SnackBarBehavior
-                                                                  .floating,
-                                                          backgroundColor:
-                                                              AppColors
-                                                                  .mainBlueColor,
-                                                          content: Text(
-                                                              widget
-                                                                  .snackBarText,
-                                                              style: AppTextStyles
-                                                                  .h2
-                                                                  .copyWith(
-                                                                      color: AppColors
-                                                                          .white)),
-                                                        ));
-                                                      }
-                                                    })
-                                                  : productFormController
-                                                      .createProduct(
-                                                          widget.restaurant)
-                                                      .then((value) {
-                                                      if (productFormController
-                                                              .state
-                                                          is ProductFormSuccessState) {
-                                                        Modular.to.pop();
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                SnackBar(
-                                                          behavior:
-                                                              SnackBarBehavior
-                                                                  .floating,
-                                                          backgroundColor:
-                                                              AppColors
-                                                                  .mainBlueColor,
-                                                          content: Text(
-                                                              widget
-                                                                  .snackBarText,
-                                                              style: AppTextStyles
-                                                                  .h2
-                                                                  .copyWith(
-                                                                      color: AppColors
-                                                                          .white)),
-                                                        ));
-                                                      }
-                                                      if (productFormController
-                                                              .state
-                                                          is ProductFormFailureState) {
-                                                        var state =
-                                                            productFormController
-                                                                    .state
-                                                                as ProductFormFailureState;
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                                SnackBar(
-                                                          behavior:
-                                                              SnackBarBehavior
-                                                                  .floating,
-                                                          backgroundColor:
-                                                              AppColors
-                                                                  .errorColor,
-                                                          content: Text(
-                                                              state.failure
-                                                                  .message,
-                                                              style: AppTextStyles
-                                                                  .h2
-                                                                  .copyWith(
-                                                                      color: AppColors
-                                                                          .white)),
-                                                        ));
-                                                      }
-                                                    });
-                                            }
-                                          }
-                                        : null,
-                                    child: Text(
-                                      widget.buttonText,
-                                      style: AppTextStyles.h1.copyWith(
-                                          color: AppColors.mainBlueColor,
-                                          fontSize: 16),
-                                    ));
-                              }))
-                            ],
-                          )
+                                        ? MaterialStateProperty.all<Color>(
+                                            AppColors.backgroundColor)
+                                        : MaterialStateProperty.all<Color>(
+                                            AppColors.letterColor
+                                                .withOpacity(0.1)),
+                                    side: MaterialStateBorderSide.resolveWith(
+                                        (Set<MaterialState> states) {
+                                      return BorderSide(
+                                          color: AppColors.mainBlueColor);
+                                    })),
+                                onPressed: productFormController
+                                        .wasProductFormChanged(widget.product)
+                                    ? () {
+                                        if (_formKey.currentState!.validate()) {
+                                          widget.product != null
+                                              ? productFormController
+                                                  .updateProduct(
+                                                      widget.restaurant,
+                                                      widget.product!.id!)
+                                                  .then((value) {
+                                                  if (productFormController
+                                                          .state
+                                                      is ProductFormSuccessState) {
+                                                    Modular.to.pop();
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor: AppColors
+                                                          .mainBlueColor,
+                                                      content: Text(
+                                                          widget.snackBarText,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .white)),
+                                                    ));
+                                                  }
+                                                  if (productFormController
+                                                          .state
+                                                      is ProductFormFailureState) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor: AppColors
+                                                          .mainBlueColor,
+                                                      content: Text(
+                                                          widget.snackBarText,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .white)),
+                                                    ));
+                                                  }
+                                                })
+                                              : productFormController
+                                                  .createProduct(
+                                                      widget.restaurant)
+                                                  .then((value) {
+                                                  if (productFormController
+                                                          .state
+                                                      is ProductFormSuccessState) {
+                                                    Modular.to.pop();
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor: AppColors
+                                                          .mainBlueColor,
+                                                      content: Text(
+                                                          widget.snackBarText,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .white)),
+                                                    ));
+                                                  }
+                                                  if (productFormController
+                                                          .state
+                                                      is ProductFormFailureState) {
+                                                    var state =
+                                                        productFormController
+                                                                .state
+                                                            as ProductFormFailureState;
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor:
+                                                          AppColors.errorColor,
+                                                      content: Text(
+                                                          state.failure.message,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .white)),
+                                                    ));
+                                                  }
+                                                });
+                                        }
+                                      }
+                                    : null,
+                                child: Text(
+                                  widget.buttonText,
+                                  style: AppTextStyles.h1.copyWith(
+                                      color: AppColors.mainBlueColor,
+                                      fontSize: 16),
+                                ));
+                          }))
                         ],
                       ),
                     ),

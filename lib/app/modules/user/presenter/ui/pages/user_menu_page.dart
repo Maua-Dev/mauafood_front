@@ -39,7 +39,8 @@ class _UserMenuPageState extends State<UserMenuPage> {
         color: AppColors.mainBlueColor,
         strokeWidth: 3,
         onRefresh: () async {
-          store.loadRestaurantMenu();
+          await store.loadRestaurantMenu();
+          store.filterProduct();
         },
         child: listProduct.isEmpty
             ? Center(

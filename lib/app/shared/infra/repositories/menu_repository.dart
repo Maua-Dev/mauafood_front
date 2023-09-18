@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
@@ -119,6 +121,31 @@ class MenuRepository implements IMenuRepository {
     } on DioError catch (e) {
       HttpStatusCodeEnum errorType =
           getHttpStatusFunction(e.response!.statusCode);
+      return left(ErrorRequest(message: errorType.errorMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> uploadProductPhoto(String id) async {
+    try {
+      var response = await datasource.uploadProductPhoto(id);
+      return right(response);
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType =
+          getHttpStatusFunction(e.response!.statusCode);
+      return left(ErrorRequest(message: errorType.errorMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> uploadPhotoToS3(
+      String url, Uint8List photo) async {
+    try {
+      var response = await datasource.uploadPhotoToS3(url, photo);
+      return right(response);
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType =
+          getHttpStatusFunction(e.response?.statusCode ?? 500);
       return left(ErrorRequest(message: errorType.errorMessage));
     }
   }

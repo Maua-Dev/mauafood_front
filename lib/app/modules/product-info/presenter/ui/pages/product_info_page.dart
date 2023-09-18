@@ -48,7 +48,7 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
             child: SizedBox.fromSize(
               size: Size.fromHeight(MediaQuery.of(context).size.height / 4),
               child: CachedNetworkImage(
-                imageUrl: product.photo!,
+                imageUrl: product.photo ?? "",
                 placeholder: (context, url) => const Center(
                   child: CircularProgressIndicator(),
                 ),

@@ -137,35 +137,19 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
     });
   }
 
-  late final _$uploadedMobilePhotoAtom = Atom(
-      name: 'ProductFormControllerBase.uploadedMobilePhoto', context: context);
+  late final _$uploadedPhotoAtom =
+      Atom(name: 'ProductFormControllerBase.uploadedPhoto', context: context);
 
   @override
-  File? get uploadedMobilePhoto {
-    _$uploadedMobilePhotoAtom.reportRead();
-    return super.uploadedMobilePhoto;
+  Uint8List? get uploadedPhoto {
+    _$uploadedPhotoAtom.reportRead();
+    return super.uploadedPhoto;
   }
 
   @override
-  set uploadedMobilePhoto(File? value) {
-    _$uploadedMobilePhotoAtom.reportWrite(value, super.uploadedMobilePhoto, () {
-      super.uploadedMobilePhoto = value;
-    });
-  }
-
-  late final _$uploadedWebPhotoAtom = Atom(
-      name: 'ProductFormControllerBase.uploadedWebPhoto', context: context);
-
-  @override
-  Uint8List? get uploadedWebPhoto {
-    _$uploadedWebPhotoAtom.reportRead();
-    return super.uploadedWebPhoto;
-  }
-
-  @override
-  set uploadedWebPhoto(Uint8List? value) {
-    _$uploadedWebPhotoAtom.reportWrite(value, super.uploadedWebPhoto, () {
-      super.uploadedWebPhoto = value;
+  set uploadedPhoto(Uint8List? value) {
+    _$uploadedPhotoAtom.reportWrite(value, super.uploadedPhoto, () {
+      super.uploadedPhoto = value;
     });
   }
 
@@ -174,9 +158,9 @@ mixin _$ProductFormController on ProductFormControllerBase, Store {
       context: context);
 
   @override
-  Future<dynamic> uploadProductPhoto() {
+  Future<void> uploadProductPhoto(dynamic context) {
     return _$uploadProductPhotoAsyncAction
-        .run(() => super.uploadProductPhoto());
+        .run(() => super.uploadProductPhoto(context));
   }
 
   late final _$createProductAsyncAction =
@@ -332,8 +316,7 @@ productType: ${productType},
 productDescription: ${productDescription},
 productAvailability: ${productAvailability},
 productPhoto: ${productPhoto},
-uploadedMobilePhoto: ${uploadedMobilePhoto},
-uploadedWebPhoto: ${uploadedWebPhoto}
+uploadedPhoto: ${uploadedPhoto}
     ''';
   }
 }

@@ -220,7 +220,8 @@ class _EmployeeMenuPageState extends State<EmployeeMenuPage> {
                             color: AppColors.mainBlueColor,
                             strokeWidth: 3,
                             onRefresh: () async {
-                              store.loadRestaurantMenu();
+                              await store.loadRestaurantMenu();
+                              store.filterProduct();
                             },
                             child: ListView.builder(
                               itemCount: state.listProduct.length,

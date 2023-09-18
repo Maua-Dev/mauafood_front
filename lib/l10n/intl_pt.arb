@@ -65,6 +65,7 @@
     "invalidPasswordAlert": "Senha inválida.",
     "invalidCpfAlert": "CPF inválido.",
     "invalidCodeAlert": "Código inválido.",
+    "invalidPhotoAlert": "Foto inválida",
     "invalidFullNameAlert": "Por favor, insira o nome completo.",
     "typeEmailCorrectlyAlert": "Certifique-se que digitou e-mail corretamente.",
     "typeEmailPasswordAlert": "Certifique-se que digitou e-mail e senha.",

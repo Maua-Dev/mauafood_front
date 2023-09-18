@@ -2,7 +2,7 @@ import 'package:auth_package/core/auth_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-card/product_card_employee_state.dart';
-import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
+
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 import 'package:mobx/mobx.dart';
@@ -10,6 +10,7 @@ import 'package:mobx/mobx.dart';
 import '../../../../../shared/domain/enums/product_enum.dart';
 import '../../../../../shared/domain/enums/restaurant_enum.dart';
 import '../../../../../shared/domain/usecases/get_restaurant_product_usecase.dart';
+import '../../../usecases/delete_product_usecase.dart';
 import '../../states/employee_menu_state.dart';
 
 part 'employee_menu_restaurant_controller.g.dart';
@@ -25,7 +26,9 @@ abstract class MenuRestaurantControllerBase with Store {
 
   MenuRestaurantControllerBase(this._getRestaurantProduct, this.restaurantInfo,
       this._deleteProduct, this._authStore) {
-    loadRestaurantMenu();
+    loadRestaurantMenu().then((value) {
+      filterProduct();
+    });
   }
 
   void logout() async {
@@ -94,11 +97,6 @@ abstract class MenuRestaurantControllerBase with Store {
     var result = await _getRestaurantProduct(restaurantInfo);
     changeState(result.fold((l) => EmployeeMenuErrorState(failure: l), (list) {
       listAllProduct = list;
-      listAllProduct.sort(
-        (a, b) {
-          return a.type.index.compareTo(b.type.index);
-        },
-      );
       rangeValues = RangeValues(0,
           listAllProduct.map((e) => e.price).reduce((a, b) => a > b ? a : b));
       return EmployeeMenuLoadedSuccessState(listProduct: list, index: 0);
@@ -132,11 +130,15 @@ abstract class MenuRestaurantControllerBase with Store {
         filterList.sort((a, b) => a.price.compareTo(b.price));
       }
       if (isMinPriceSearch == false && isMaxPriceSearch == false) {
-        filterList.sort(
-          (a, b) {
-            return a.type.index.compareTo(b.type.index);
-          },
-        );
+        filterList.sort((a, b) {
+          final typeComparison = a.type.index.compareTo(b.type.index);
+          if (typeComparison != 0) {
+            return typeComparison; // Ordena por tipo
+          } else {
+            return a.name
+                .compareTo(b.name); // Dentro do mesmo tipo, ordena por nome
+          }
+        });
       }
       filterList = filterList
           .where((e) => e.price >= rangeValues!.start)

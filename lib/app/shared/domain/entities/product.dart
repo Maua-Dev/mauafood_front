@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import '../enums/product_enum.dart';
 
 class Product {
@@ -10,17 +12,18 @@ class Product {
   final ProductEnum type;
   final bool available;
   final DateTime? lastUpdate;
+  final Uint8List? photoBytes;
 
   const Product({
     this.lastUpdate,
     required this.available,
-    required this.photo,
+    this.photo,
     this.id,
     required this.name,
     required this.description,
     required this.price,
     this.prepareTime,
     required this.type,
+    this.photoBytes,
   });
-  
 }

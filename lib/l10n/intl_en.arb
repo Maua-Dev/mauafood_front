@@ -65,6 +65,7 @@
     "invalidPasswordAlert": "Invalid password.",
     "invalidCpfAlert": "Invalid CPF.",
     "invalidCodeAlert": "Invalid code.",
+    "invalidPhotoAlert": "Invalid photo",
     "invalidFullNameAlert": "Please enter the full name.",
     "typeEmailCorrectlyAlert": "Make sure you typed email correctly.",
     "typeEmailPasswordAlert": "Make sure you enter email and password.",

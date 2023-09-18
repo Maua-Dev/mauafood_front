@@ -6,12 +6,12 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
+import 'package:mauafood_front/app/modules/employee/usecases/create_product_usecase.dart'
+    as _i8;
+import 'package:mauafood_front/app/modules/employee/usecases/update_product_usecase.dart'
+    as _i3;
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart'
     as _i7;
-import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart'
-    as _i8;
-import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart'
-    as _i3;
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart' as _i5;
 import 'package:mauafood_front/app/shared/infra/models/product_model.dart'
     as _i6;

@@ -18,7 +18,7 @@ abstract class OrdersControllerBase with Store {
 
   List<StatusEnum> statusList = [...StatusEnum.values];
 
-  List<OrderModel> list = [
+  List<OrderModel> mockedOrdersList = [
     OrderModel(
       userName: "Brenas",
       userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
@@ -150,11 +150,17 @@ abstract class OrdersControllerBase with Store {
   @observable
   StatusEnum statusFiltered = StatusEnum.ALL;
 
-  @observable
-  int teste = 0;
-
   @action
   Future<void> getAllActiveOrders() async {
+    /* ordersList = mockedOrdersList;
+    ordersList.sort((a, b) {
+      if (a.status.index.compareTo(b.status.index) == 0) {
+        return a.creationTime.compareTo(b.creationTime);
+      } else {
+        return a.status.index.compareTo(b.status.index);
+      }
+    });
+    changeState(OrdersLoadedSuccessState(ordersList: ordersList)); */
     changeState(OrdersLoadingState());
     var result = await _getAllActiveOrdersUsecase();
     changeState(result.fold((l) => OrdersErrorState(failure: l), (list) {
@@ -198,7 +204,6 @@ abstract class OrdersControllerBase with Store {
           .toList();
     }
 
-    teste++;
     changeState(OrdersLoadedSuccessState(ordersList: list));
   }
 

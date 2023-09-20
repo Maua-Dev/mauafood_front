@@ -57,22 +57,6 @@ mixin _$OrdersController on OrdersControllerBase, Store {
     });
   }
 
-  late final _$testeAtom =
-      Atom(name: 'OrdersControllerBase.teste', context: context);
-
-  @override
-  int get teste {
-    _$testeAtom.reportRead();
-    return super.teste;
-  }
-
-  @override
-  set teste(int value) {
-    _$testeAtom.reportWrite(value, super.teste, () {
-      super.teste = value;
-    });
-  }
-
   late final _$statusIndexAtom =
       Atom(name: 'OrdersControllerBase.statusIndex', context: context);
 
@@ -222,7 +206,6 @@ mixin _$OrdersController on OrdersControllerBase, Store {
 state: ${state},
 ordersList: ${ordersList},
 statusFiltered: ${statusFiltered},
-teste: ${teste},
 statusIndex: ${statusIndex},
 reasonIndex: ${reasonIndex},
 reasonDescription: ${reasonDescription},

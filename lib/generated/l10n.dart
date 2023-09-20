@@ -360,6 +360,16 @@ class S {
     );
   }
 
+  /// `Observation`
+  String get observationTitle {
+    return Intl.message(
+      'Observation',
+      name: 'observationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Product Availability`
   String get productAvailabilityTitle {
     return Intl.message(
@@ -556,11 +566,21 @@ class S {
     );
   }
 
-  /// `Without description`
-  String get withoutDescriptionTitle {
+  /// `Without observation`
+  String get withoutObservationTitle {
     return Intl.message(
-      'Without description',
-      name: 'withoutDescriptionTitle',
+      'Without observation',
+      name: 'withoutObservationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No orders at the moment`
+  String get emptyOrdersListWarn {
+    return Intl.message(
+      'No orders at the moment',
+      name: 'emptyOrdersListWarn',
       desc: '',
       args: [],
     );
@@ -994,13 +1014,14 @@ class S {
     );
   }
 
-  /// `{status, select, PENDING{Pending} IN_PREPARATION{In preparation} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}`
+  /// `{status, select, PENDING{Pending} PREPARING{Preparing} REFUSED{Refused} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}`
   String statusNameSchema(Object status) {
     return Intl.select(
       status,
       {
         'PENDING': 'Pending',
-        'IN_PREPARATION': 'In preparation',
+        'PREPARING': 'Preparing',
+        'REFUSED': 'Refused',
         'READY': 'Ready',
         'CANCELED': 'Canceled',
         'ALL': 'All',

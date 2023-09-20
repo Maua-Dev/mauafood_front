@@ -4,9 +4,14 @@ import 'package:mauafood_front/app/modules/employee/presenter/controllers/produc
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/ui/pages/employee_menu_page.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/ui/pages/orders_page.dart';
+import 'package:mauafood_front/app/shared/datasource/external/http/orders_datasource.dart';
+import 'package:mauafood_front/app/shared/domain/repositories/orders_repository_interface.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/get_all_active_orders.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/update_product_usecase.dart';
+import 'package:mauafood_front/app/shared/infra/datasource/external/http/orders_datasource_interface.dart';
+import 'package:mauafood_front/app/shared/infra/repositories/orders_repository.dart';
 
 import '../../shared/domain/enums/restaurant_enum.dart';
 import '../../shared/datasource/external/http/menu_datasource.dart';
@@ -25,7 +30,7 @@ class EmployeeMenuModule extends Module {
               i(), RestaurantEnum.cantina_do_moleza, i(), i()),
         ),
         Bind<OrdersController>(
-          (i) => OrdersController(),
+          (i) => OrdersController(i()),
         ),
         Bind.factory<ProductFormController>(
           (i) => ProductFormController(i(), i(), i()),
@@ -36,8 +41,12 @@ class EmployeeMenuModule extends Module {
             (i) => UpdateProductUsecase(repository: i())),
         Bind<IDeleteProductUsecase>(
             (i) => DeleteProductUsecase(repository: i())),
+        Bind<IGetAllActiveOrdersUsecase>(
+            (i) => GetAllActiveOrdersUsecase(repository: i())),
         Bind<IMenuRepository>((i) => MenuRepository(datasource: i())),
+        Bind<IOrdersRepository>((i) => OrdersRepository(i())),
         Bind<IMenuDatasource>((i) => MenuDatasource(i())),
+        Bind<IOrdersDatasource>((i) => OrdersDatasource(i())),
       ];
 
   @override

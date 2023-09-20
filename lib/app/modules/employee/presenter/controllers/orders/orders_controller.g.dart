@@ -29,13 +29,13 @@ mixin _$OrdersController on OrdersControllerBase, Store {
       Atom(name: 'OrdersControllerBase.ordersList', context: context);
 
   @override
-  List<OrderModel>? get ordersList {
+  List<OrderModel> get ordersList {
     _$ordersListAtom.reportRead();
     return super.ordersList;
   }
 
   @override
-  set ordersList(List<OrderModel>? value) {
+  set ordersList(List<OrderModel> value) {
     _$ordersListAtom.reportWrite(value, super.ordersList, () {
       super.ordersList = value;
     });
@@ -54,6 +54,22 @@ mixin _$OrdersController on OrdersControllerBase, Store {
   set statusFiltered(StatusEnum value) {
     _$statusFilteredAtom.reportWrite(value, super.statusFiltered, () {
       super.statusFiltered = value;
+    });
+  }
+
+  late final _$testeAtom =
+      Atom(name: 'OrdersControllerBase.teste', context: context);
+
+  @override
+  int get teste {
+    _$testeAtom.reportRead();
+    return super.teste;
+  }
+
+  @override
+  set teste(int value) {
+    _$testeAtom.reportWrite(value, super.teste, () {
+      super.teste = value;
     });
   }
 
@@ -122,6 +138,15 @@ mixin _$OrdersController on OrdersControllerBase, Store {
     });
   }
 
+  late final _$getAllActiveOrdersAsyncAction =
+      AsyncAction('OrdersControllerBase.getAllActiveOrders', context: context);
+
+  @override
+  Future<void> getAllActiveOrders() {
+    return _$getAllActiveOrdersAsyncAction
+        .run(() => super.getAllActiveOrders());
+  }
+
   late final _$OrdersControllerBaseActionController =
       ActionController(name: 'OrdersControllerBase', context: context);
 
@@ -131,17 +156,6 @@ mixin _$OrdersController on OrdersControllerBase, Store {
         name: 'OrdersControllerBase.changeState');
     try {
       return super.changeState(value);
-    } finally {
-      _$OrdersControllerBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void getAllOrderList() {
-    final _$actionInfo = _$OrdersControllerBaseActionController.startAction(
-        name: 'OrdersControllerBase.getAllOrderList');
-    try {
-      return super.getAllOrderList();
     } finally {
       _$OrdersControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -208,6 +222,7 @@ mixin _$OrdersController on OrdersControllerBase, Store {
 state: ${state},
 ordersList: ${ordersList},
 statusFiltered: ${statusFiltered},
+teste: ${teste},
 statusIndex: ${statusIndex},
 reasonIndex: ${reasonIndex},
 reasonDescription: ${reasonDescription},

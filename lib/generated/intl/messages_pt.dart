@@ -106,7 +106,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m12(status) => "${Intl.select(status, {
             'PENDING': 'Pendente',
-            'IN_PREPARATION': 'Em preparo',
+            'PREPARING': 'Em preparo',
+            'REFUSED': 'Recusado',
             'READY': 'Pronto',
             'CANCELED': 'Cancelado',
             'ALL': 'Todos',
@@ -172,6 +173,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailTitle": MessageLookupByLibrary.simpleMessage("E-mail"),
         "emptyListErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Lista vazia, itens não encontrados para essa requisição"),
+        "emptyOrdersListWarn":
+            MessageLookupByLibrary.simpleMessage("Sem pedidos no momento"),
         "enterTitle": MessageLookupByLibrary.simpleMessage("Entrar"),
         "entityErrorMessage": m1,
         "equalPasswordAlert":
@@ -221,6 +224,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPasswordTitle": MessageLookupByLibrary.simpleMessage("Nova senha"),
         "noItemsFoundErrorMessage": m2,
         "notificationsOptionsSchema": m3,
+        "observationTitle": MessageLookupByLibrary.simpleMessage("Observação"),
         "orders": MessageLookupByLibrary.simpleMessage("Pedidos"),
         "othersTitle": MessageLookupByLibrary.simpleMessage("Outros"),
         "overloadTitle": MessageLookupByLibrary.simpleMessage("Sobrecarga"),
@@ -297,7 +301,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "understoodTitle": MessageLookupByLibrary.simpleMessage("Entendido!"),
         "whatHappenedTitle":
             MessageLookupByLibrary.simpleMessage("Digite o que aconteceu aqui"),
-        "withoutDescriptionTitle":
-            MessageLookupByLibrary.simpleMessage("Sem descrição")
+        "withoutObservationTitle":
+            MessageLookupByLibrary.simpleMessage("Sem observação")
       };
 }

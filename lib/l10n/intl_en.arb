@@ -40,6 +40,7 @@
     "categoryTitle": "Category",
     "categoriesTitle": "Categories",
     "descriptionTitle": "Description",
+    "observationTitle": "Observation",
     "productAvailabilityTitle": "Product Availability",
     "previewTitle": "Preview",
     "minutesTitle": "minutes",
@@ -59,7 +60,8 @@
     "dataStorageTitle": "Data storage",
     "dataStorageAlertTitle": "If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it.",
     "closeTitle": "Close",
-    "withoutDescriptionTitle": "Without description",
+    "withoutObservationTitle": "Without observation",
+    "emptyOrdersListWarn": "No orders at the moment",
 
     "requiredFieldAlert": "Required field.",
     "invalidEmailAlert": "Invalid email.",
@@ -133,7 +135,7 @@
         }
     },
 
-    "statusNameSchema": "{status, select, PENDING{Pending} IN_PREPARATION{In preparation} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}",
+    "statusNameSchema": "{status, select, PENDING{Pending} PREPARING{Preparing} REFUSED{Refused} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}",
 
 
 

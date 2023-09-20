@@ -1,4 +1,6 @@
+import 'package:mauafood_front/app/shared/domain/entities/order.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/get_all_active_orders.dart';
 import 'package:mauafood_front/app/shared/infra/models/order_model.dart';
 import 'package:mobx/mobx.dart';
 
@@ -9,73 +11,131 @@ part 'orders_controller.g.dart';
 class OrdersController = OrdersControllerBase with _$OrdersController;
 
 abstract class OrdersControllerBase with Store {
-  OrdersControllerBase() {
-    getAllOrderList();
+  final GetAllActiveOrdersUsecase _getAllActiveOrdersUsecase;
+  OrdersControllerBase(this._getAllActiveOrdersUsecase) {
+    getAllActiveOrders();
   }
 
   List<StatusEnum> statusList = [...StatusEnum.values];
 
   List<OrderModel> list = [
     OrderModel(
-        owner: "Brenas",
-        id: '1',
-        totalPrice: 55,
-        description: "Bauru sem tomate com pepino e maionese verde",
-        status: StatusEnum.READY,
-        products: [
-          "Bauru",
-          "Pepino",
-          "Maionese Verde",
-        ],
-        hour: "10:20"),
+      userName: "Brenas",
+      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
+      id: "d4c63753-5119-4990-b427-926798499924",
+      totalPrice: 55,
+      observation: "Bauru sem tomate com pepino e maionese verde",
+      status: StatusEnum.READY,
+      products: [
+        OrderProduct(
+            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
+            name: "Carteira",
+            quantity: 3)
+      ],
+      creationTime: 1692156322000,
+    ),
     OrderModel(
-        owner: "Vitor Soller",
-        id: '2',
-        totalPrice: 10,
-        description: "",
-        status: StatusEnum.CANCELED,
-        products: ["Cachorro Quente"],
-        hour: "10:30"),
+      userName: "Vitor Soller",
+      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
+      id: "d4c63753-5119-4990-b427-926798499924",
+      totalPrice: 10,
+      status: StatusEnum.CANCELED,
+      products: [
+        OrderProduct(
+            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
+            name: "Carteira",
+            quantity: 2)
+      ],
+      creationTime: 1692156322000,
+    ),
     OrderModel(
-        owner: "Carol Mota",
-        id: '3',
-        totalPrice: 15,
-        description: "",
-        status: StatusEnum.IN_PREPARATION,
-        products: ["Bife acebolado", "Coxinha"],
-        hour: "9:30"),
+      userName: "Carol Mota",
+      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
+      id: "d4c63753-5119-4990-b427-926798499924",
+      totalPrice: 15,
+      status: StatusEnum.REFUSED,
+      products: [
+        OrderProduct(
+            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
+            name: "Lateral",
+            quantity: 3),
+        OrderProduct(
+            id: "9589b258-ed44-4c24-b7d6-e96ae221basd",
+            name: "Computador",
+            quantity: 1),
+        OrderProduct(
+            id: "9589b258-ed44-4c24-b7d6-e96ae221ba32",
+            name: "Coxinha",
+            quantity: 2),
+      ],
+      creationTime: 1692156322000,
+    ),
     OrderModel(
-        owner: "Enrico Santarelli",
-        id: '4',
-        totalPrice: 115,
-        description: "Calabresa e um vasco",
-        status: StatusEnum.PENDING,
-        products: ["Calabresão", "Vasco"],
-        hour: "9:00"),
+      userName: "Enrico Santarelli",
+      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
+      id: "d4c63753-5119-4990-b427-926798499924",
+      totalPrice: 115,
+      observation: "Calabresa e um vasco",
+      status: StatusEnum.PENDING,
+      products: [
+        OrderProduct(
+            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
+            name: "Carteira",
+            quantity: 3)
+      ],
+      creationTime: 1692156322000,
+    ),
     OrderModel(
-        owner: "Vitor Soller",
-        id: '2',
-        totalPrice: 10,
-        description: "",
-        status: StatusEnum.CANCELED,
-        products: ["Cachorro Quente"],
-        hour: "10:30"),
+      userName: "Vitor Soller",
+      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
+      id: "d4c63753-5119-4990-b427-926798499924",
+      totalPrice: 10,
+      status: StatusEnum.CANCELED,
+      products: [
+        OrderProduct(
+            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
+            name: "Carteira",
+            quantity: 3)
+      ],
+      creationTime: 1692156322000,
+    ),
     OrderModel(
-        owner: "Carol Mota",
-        id: '3',
-        totalPrice: 15,
-        description: "",
-        status: StatusEnum.IN_PREPARATION,
-        products: ["Bife acebolado", "Coxinha"],
-        hour: "9:30"),
+      userName: "Carol Mota",
+      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
+      id: "d4c63753-5119-4990-b427-926798499924",
+      totalPrice: 15,
+      status: StatusEnum.PREPARING,
+      products: [
+        OrderProduct(
+            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
+            name: "Carteira",
+            quantity: 2),
+        OrderProduct(
+            id: "9589b258-ed44-4c24-b7d6-e96ae221basd",
+            name: "Pão de Queijo",
+            quantity: 1),
+        OrderProduct(
+            id: "9589b258-ed44-4c24-b7d6-e96ae221ba32",
+            name: "Joelho",
+            quantity: 1),
+      ],
+      creationTime: 1692156322000,
+    ),
     OrderModel(
-        owner: "Enrico Santarelli",
-        id: '4',
-        totalPrice: 115,
-        description: "Calabresa e um vasco",
-        status: StatusEnum.PENDING,
-        products: ["Calabresão", "Vasco"],
-        hour: "9:00"),
+      userName: "Enrico Santarelli",
+      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
+      id: "d4c63753-5119-4990-b427-926798499924",
+      totalPrice: 115,
+      observation: "Calabresa e um vasco",
+      status: StatusEnum.REFUSED,
+      products: [
+        OrderProduct(
+            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
+            name: "Carteira",
+            quantity: 3),
+      ],
+      creationTime: 1692156322000,
+    ),
   ];
 
   @observable
@@ -85,27 +145,36 @@ abstract class OrdersControllerBase with Store {
   void changeState(OrdersState value) => state = value;
 
   @observable
-  List<OrderModel>? ordersList;
+  List<OrderModel> ordersList = [];
 
   @observable
   StatusEnum statusFiltered = StatusEnum.ALL;
 
+  @observable
+  int teste = 0;
+
   @action
-  void getAllOrderList() {
-    ordersList = list;
-    changeState(OrdersLoadedSuccessState(ordersList: ordersList!));
-    ordersList!.sort(
-      (a, b) {
-        return a.status.index.compareTo(b.status.index);
-      },
-    );
+  Future<void> getAllActiveOrders() async {
+    changeState(OrdersLoadingState());
+    var result = await _getAllActiveOrdersUsecase();
+    changeState(result.fold((l) => OrdersErrorState(failure: l), (list) {
+      ordersList = list;
+      ordersList.sort((a, b) {
+        if (a.status.index.compareTo(b.status.index) == 0) {
+          return a.creationTime.compareTo(b.creationTime);
+        } else {
+          return a.status.index.compareTo(b.status.index);
+        }
+      });
+      return OrdersLoadedSuccessState(ordersList: list);
+    }));
   }
 
   @action
   void setOrderStatus(int index, StatusEnum? value) {
-    ordersList![index].status = value!;
+    ordersList[index].status = value!;
 
-    ordersList!.sort(
+    ordersList.sort(
       (a, b) {
         return a.status.index.compareTo(b.status.index);
       },
@@ -122,14 +191,15 @@ abstract class OrdersControllerBase with Store {
     statusIndex = index;
     statusFiltered = status;
     if (index != 0) {
-      list = list!
+      list = list
           .where(
             (e) => e.status == status,
           )
           .toList();
     }
 
-    changeState(OrdersLoadedSuccessState(ordersList: list!));
+    teste++;
+    changeState(OrdersLoadedSuccessState(ordersList: list));
   }
 
   @observable

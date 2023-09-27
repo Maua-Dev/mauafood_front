@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
@@ -56,102 +57,177 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
               ),
             ),
           ),
-          Column(
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                width: double.infinity,
-                padding: const EdgeInsets.symmetric(vertical: 24),
-                decoration: BoxDecoration(
-                    color: AppColors.white,
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        blurRadius: 20,
-                        spreadRadius: 4,
-                        offset: Offset(0, -4), // Shadow position
+          Padding(
+            padding: const EdgeInsets.only(top: 250),
+            child: ListView(
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 650,
+                  padding: const EdgeInsets.symmetric(vertical: 24),
+                  decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      )),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                product.name,
+                                style: AppTextStyles.h1,
+                              ),
+                              Text(
+                                S
+                                    .of(context)
+                                    .productPriceCurrency(product.price),
+                                style: AppTextStyles.h1.copyWith(fontSize: 22),
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              Text(
+                                product.description ?? "",
+                                style: AppTextStyles.h3
+                                    .copyWith(fontWeight: FontWeight.bold),
+                                textAlign: TextAlign.left,
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              Text(
+                                S.of(context).recommendedTitle,
+                                style: AppTextStyles.h2
+                                    .copyWith(color: AppColors.mainBlueColor),
+                                textAlign: TextAlign.left,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ],
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                    )),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.start,
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      SafeArea(
+                          child: SizedBox(
+                        height: 160,
+                        child: ListView.separated(
+                          itemBuilder: (context, index) => SizedBox(
+                            height: 150,
+                            width: MediaQuery.of(context).size.width / 4,
+                            child: RecommendedProductWidget(
+                              product: recommendedProductListFilter[index],
+                              onPressed: () {
+                                product = recommendedProductListFilter[index];
+
+                                setState(() {});
+                                // Modular.to.popAndPushNamed('./', arguments: [
+                                //   recommendedProductListFilter[index],
+                                //   widget.recommendedProductList
+                                // ]);
+                              },
+                            ),
+                          ),
+                          separatorBuilder: (context, index) => const SizedBox(
+                            width: 12,
+                          ),
+                          itemCount: recommendedProductListFilter.length,
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                        ),
+                      )),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: Row(
                           children: [
-                            Text(
-                              product.name,
-                              style: AppTextStyles.h1,
+                            SizedBox(
+                              width: ScreenHelper.width(context) * 0.65,
                             ),
-                            Text(
-                              S.of(context).productPriceCurrency(product.price),
-                              style: AppTextStyles.h1.copyWith(fontSize: 22),
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Text(
-                              product.description ?? "",
-                              style: AppTextStyles.h3
-                                  .copyWith(fontWeight: FontWeight.bold),
-                              textAlign: TextAlign.left,
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Text(
-                              S.of(context).recommendedTitle,
-                              style: AppTextStyles.h2
-                                  .copyWith(color: AppColors.mainBlueColor),
-                              textAlign: TextAlign.left,
+                            Container(
+                              height: 32,
+                              width: 120,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: AppColors.mainBlueColor),
                             ),
                           ],
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    SafeArea(
-                        child: SizedBox(
-                      height: 160,
-                      child: ListView.separated(
-                        itemBuilder: (context, index) => SizedBox(
-                          height: 150,
-                          width: MediaQuery.of(context).size.width / 4,
-                          child: RecommendedProductWidget(
-                            product: recommendedProductListFilter[index],
-                            onPressed: () {
-                              product = recommendedProductListFilter[index];
-
-                              setState(() {});
-                              // Modular.to.popAndPushNamed('./', arguments: [
-                              //   recommendedProductListFilter[index],
-                              //   widget.recommendedProductList
-                              // ]);
-                            },
+                      Divider(
+                        color: Colors.grey[350],
+                        height: 64,
+                        thickness: 1,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.message,
+                              color: Colors.grey,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Text(
+                              "Alguma Observação",
+                              style: TextStyle(
+                                  color: AppColors.mainBlueColor,
+                                  fontWeight: FontWeight.bold),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: TextField(
+                          maxLines: 3,
+                          minLines: 1,
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            hintText: "Ex: Tirar o alface",
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1, color: AppColors.mainBlueColor),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  width: 1, color: AppColors.mainBlueColor),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
                           ),
                         ),
-                        separatorBuilder: (context, index) => const SizedBox(
-                          width: 12,
-                        ),
-                        itemCount: recommendedProductListFilter.length,
-                        scrollDirection: Axis.horizontal,
-                        shrinkWrap: true,
                       ),
-                    ))
-                  ],
+                      Container(
+                        height: 40,
+                        width: 200,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            border: Border.all(
+                                color: AppColors.mainBlueColor, width: 1)),
+                        child: Row(
+                          children: [
+                            Container(
+                                child: Text("Texto 1"),
+                                color: AppColors.mainBlueColor),
+                            Text("Texto 2")
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ],
       ),

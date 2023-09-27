@@ -1,4 +1,5 @@
-import '../../../../shared/domain/entities/product.dart';
+import 'package:mauafood_front/app/modules/user/presenter/models/product_viewmodel.dart';
+
 import '../../../../shared/helpers/errors/errors.dart';
 
 abstract class UserMenuState {
@@ -10,7 +11,7 @@ class UserMenuInitialState extends UserMenuState {}
 class UserMenuLoadingState extends UserMenuState {}
 
 class UserMenuLoadedSuccessState extends UserMenuState {
-  final List<Product> listProduct;
+  final List<ProductViewModel> listProduct;
   final int index;
 
   const UserMenuLoadedSuccessState(

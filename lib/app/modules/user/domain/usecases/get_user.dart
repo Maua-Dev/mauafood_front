@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:mauafood_front/app/modules/user/domain/errors/errors.dart';
+import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import '../entities/user.dart';
+import '../errors/errors.dart';
 import '../repositories/user_repository.dart';
 
 abstract class GetUser {

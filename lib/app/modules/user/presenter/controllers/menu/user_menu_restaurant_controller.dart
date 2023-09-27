@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/user_menu_state.dart';
+import 'package:mauafood_front/app/modules/profile/domain/usecases/add_favorite_product.dart';
+import 'package:mauafood_front/app/modules/profile/domain/usecases/get_favorites.dart';
+import 'package:mauafood_front/app/modules/profile/domain/usecases/remove_favorite_product.dart';
+import 'package:mauafood_front/app/modules/user/presenter/models/product_viewmodel.dart';
+import 'package:mauafood_front/app/shared/helpers/services/snackbar/global_snackbar.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../../shared/domain/enums/product_enum.dart';
 import '../../../../../shared/domain/enums/restaurant_enum.dart';
-import '../../../../../shared/domain/entities/product.dart';
+
 import '../../../../../shared/domain/usecases/get_restaurant_product_usecase.dart';
 
 part 'user_menu_restaurant_controller.g.dart';
@@ -15,21 +20,25 @@ class UserMenuRestaurantController = MenuRestaurantControllerBase
 
 abstract class MenuRestaurantControllerBase with Store {
   final IGetRestaurantProductUsecase _getRestaurantProduct;
+  final AddFavoriteProduct _addFavoriteProduct;
+  final RemoveFavoriteProduct _removeFavoriteProduct;
+  final GetFavorites _getFavorites;
   RestaurantEnum restaurantInfo;
 
   MenuRestaurantControllerBase(
-      this._getRestaurantProduct, this.restaurantInfo) {
-    loadRestaurantMenu();
+      this._getRestaurantProduct,
+      this.restaurantInfo,
+      this._addFavoriteProduct,
+      this._removeFavoriteProduct,
+      this._getFavorites) {
+    loadFavorites().then((value) => loadRestaurantMenu());
   }
 
   @observable
   UserMenuState state = UserMenuInitialState();
 
   @observable
-  List<Product> listAllProduct = [];
-
-  @observable
-  List<Product> listAllProductWithoutAccent = [];
+  List<ProductViewModel> listAllProduct = [];
 
   @observable
   bool isMaxPriceSearch = false;
@@ -72,15 +81,17 @@ abstract class MenuRestaurantControllerBase with Store {
     changeState(UserMenuLoadingState());
     var result = await _getRestaurantProduct(restaurantInfo);
     changeState(result.fold((l) => UserMenuErrorState(failure: l), (list) {
-      listAllProduct = list;
+      listAllProduct = ProductViewModel.fromListProductWithFavorite(
+          list, _productsFavorites);
       listAllProduct.sort(
         (a, b) {
           return a.type.index.compareTo(b.type.index);
         },
       );
+
       rangeValues = RangeValues(0,
           listAllProduct.map((e) => e.price).reduce((a, b) => a > b ? a : b));
-      return UserMenuLoadedSuccessState(listProduct: list, index: 0);
+      return UserMenuLoadedSuccessState(listProduct: listAllProduct, index: 0);
     }));
   }
 
@@ -136,5 +147,39 @@ abstract class MenuRestaurantControllerBase with Store {
     productType = ProductEnum.ALL;
     index = 0;
     filterProduct();
+  }
+
+  List<String> _productsFavorites = [];
+  Future<void> loadFavorites() async {
+    final result = await _getFavorites();
+    result.fold((l) => null, (r) {
+      _productsFavorites = r;
+    });
+  }
+
+  @action
+  Future<bool> setFavoriteProduct(ProductViewModel product) async {
+    if (product.isFavorite) {
+      final result = await _removeFavoriteProduct(product.id!);
+      result.fold((l) {
+        GlobalSnackBar.error('Erro ao remover ${product.name} aos favoritos');
+      }, (r) {
+        _productsFavorites.remove(product.id);
+        GlobalSnackBar.success('${product.name} removido dos favoritos');
+      });
+    } else {
+      final result = await _addFavoriteProduct(product.id!);
+      result.fold((l) {
+        GlobalSnackBar.error('Erro ao adicionar ${product.name} aos favoritos');
+      }, (r) {
+        _productsFavorites.add(product.id!);
+        GlobalSnackBar.success('${product.name} adicionado aos favoritos');
+      });
+    }
+    listAllProduct = ProductViewModel.fromListProductWithFavorite(
+        listAllProduct, _productsFavorites);
+    changeState(
+        UserMenuLoadedSuccessState(listProduct: listAllProduct, index: 0));
+    return !product.isFavorite;
   }
 }

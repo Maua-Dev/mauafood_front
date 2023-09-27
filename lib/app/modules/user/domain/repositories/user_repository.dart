@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
+import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 
 import '../entities/user.dart';
-import '../errors/errors.dart';
 
 abstract class UserRepository {
   Future<Either<Failure, User>> getUser();

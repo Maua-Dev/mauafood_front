@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:mauafood_front/app/modules/user/domain/errors/errors.dart';
+import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/modules/user/infra/datasources/user_datasource.dart';
 import 'package:mauafood_front/app/modules/user/infra/models/user_model.dart';
 
 import '../../../shared/helpers/services/http/http_request_interface.dart';
+import '../domain/errors/errors.dart';
 
 class UserDatasourceImpl implements UserDatasource {
   final IHttpRequest _client;

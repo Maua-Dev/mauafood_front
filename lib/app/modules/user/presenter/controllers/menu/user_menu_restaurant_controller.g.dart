@@ -29,33 +29,15 @@ mixin _$UserMenuRestaurantController on MenuRestaurantControllerBase, Store {
       name: 'MenuRestaurantControllerBase.listAllProduct', context: context);
 
   @override
-  List<Product> get listAllProduct {
+  List<ProductViewModel> get listAllProduct {
     _$listAllProductAtom.reportRead();
     return super.listAllProduct;
   }
 
   @override
-  set listAllProduct(List<Product> value) {
+  set listAllProduct(List<ProductViewModel> value) {
     _$listAllProductAtom.reportWrite(value, super.listAllProduct, () {
       super.listAllProduct = value;
-    });
-  }
-
-  late final _$listAllProductWithoutAccentAtom = Atom(
-      name: 'MenuRestaurantControllerBase.listAllProductWithoutAccent',
-      context: context);
-
-  @override
-  List<Product> get listAllProductWithoutAccent {
-    _$listAllProductWithoutAccentAtom.reportRead();
-    return super.listAllProductWithoutAccent;
-  }
-
-  @override
-  set listAllProductWithoutAccent(List<Product> value) {
-    _$listAllProductWithoutAccentAtom
-        .reportWrite(value, super.listAllProductWithoutAccent, () {
-      super.listAllProductWithoutAccent = value;
     });
   }
 
@@ -165,6 +147,16 @@ mixin _$UserMenuRestaurantController on MenuRestaurantControllerBase, Store {
         .run(() => super.loadRestaurantMenu());
   }
 
+  late final _$setFavoriteProductAsyncAction = AsyncAction(
+      'MenuRestaurantControllerBase.setFavoriteProduct',
+      context: context);
+
+  @override
+  Future<bool> setFavoriteProduct(ProductViewModel product) {
+    return _$setFavoriteProductAsyncAction
+        .run(() => super.setFavoriteProduct(product));
+  }
+
   late final _$MenuRestaurantControllerBaseActionController =
       ActionController(name: 'MenuRestaurantControllerBase', context: context);
 
@@ -261,7 +253,6 @@ mixin _$UserMenuRestaurantController on MenuRestaurantControllerBase, Store {
     return '''
 state: ${state},
 listAllProduct: ${listAllProduct},
-listAllProductWithoutAccent: ${listAllProductWithoutAccent},
 isMaxPriceSearch: ${isMaxPriceSearch},
 isMinPriceSearch: ${isMinPriceSearch},
 rangeValues: ${rangeValues},

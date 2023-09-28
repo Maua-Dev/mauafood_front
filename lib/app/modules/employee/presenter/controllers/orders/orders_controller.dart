@@ -1,4 +1,3 @@
-import 'package:mauafood_front/app/shared/domain/entities/order.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_all_active_orders.dart';
 import 'package:mauafood_front/app/shared/infra/models/order_model.dart';
@@ -27,7 +26,7 @@ abstract class OrdersControllerBase with Store {
       observation: "Bauru sem tomate com pepino e maionese verde",
       status: StatusEnum.READY,
       products: [
-        OrderProduct(
+        OrderProductModel(
             id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
             name: "Carteira",
             quantity: 3)
@@ -41,7 +40,7 @@ abstract class OrdersControllerBase with Store {
       totalPrice: 10,
       status: StatusEnum.CANCELED,
       products: [
-        OrderProduct(
+        OrderProductModel(
             id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
             name: "Carteira",
             quantity: 2)
@@ -55,15 +54,15 @@ abstract class OrdersControllerBase with Store {
       totalPrice: 15,
       status: StatusEnum.REFUSED,
       products: [
-        OrderProduct(
+        OrderProductModel(
             id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
             name: "Lateral",
             quantity: 3),
-        OrderProduct(
+        OrderProductModel(
             id: "9589b258-ed44-4c24-b7d6-e96ae221basd",
             name: "Computador",
             quantity: 1),
-        OrderProduct(
+        OrderProductModel(
             id: "9589b258-ed44-4c24-b7d6-e96ae221ba32",
             name: "Coxinha",
             quantity: 2),
@@ -78,7 +77,7 @@ abstract class OrdersControllerBase with Store {
       observation: "Calabresa e um vasco",
       status: StatusEnum.PENDING,
       products: [
-        OrderProduct(
+        OrderProductModel(
             id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
             name: "Carteira",
             quantity: 3)
@@ -92,7 +91,7 @@ abstract class OrdersControllerBase with Store {
       totalPrice: 10,
       status: StatusEnum.CANCELED,
       products: [
-        OrderProduct(
+        OrderProductModel(
             id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
             name: "Carteira",
             quantity: 3)
@@ -106,15 +105,15 @@ abstract class OrdersControllerBase with Store {
       totalPrice: 15,
       status: StatusEnum.PREPARING,
       products: [
-        OrderProduct(
+        OrderProductModel(
             id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
             name: "Carteira",
             quantity: 2),
-        OrderProduct(
+        OrderProductModel(
             id: "9589b258-ed44-4c24-b7d6-e96ae221basd",
             name: "Pão de Queijo",
             quantity: 1),
-        OrderProduct(
+        OrderProductModel(
             id: "9589b258-ed44-4c24-b7d6-e96ae221ba32",
             name: "Joelho",
             quantity: 1),
@@ -129,7 +128,7 @@ abstract class OrdersControllerBase with Store {
       observation: "Calabresa e um vasco",
       status: StatusEnum.REFUSED,
       products: [
-        OrderProduct(
+        OrderProductModel(
             id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
             name: "Carteira",
             quantity: 3),

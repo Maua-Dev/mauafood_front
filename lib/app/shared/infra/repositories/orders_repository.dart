@@ -24,6 +24,5 @@ class OrdersRepository implements IOrdersRepository {
       return left(ErrorRequest(message: errorType.errorMessage));
     }
     return right(ordersList);
-
   }
 }

@@ -9,7 +9,7 @@ class Order {
   final int creationTime;
   final String? abortedReason;
   final String? observation;
-  final List<OrderProduct> products;
+
   Order(
       {required this.status,
       required this.userName,
@@ -17,7 +17,6 @@ class Order {
       required this.userId,
       required this.totalPrice,
       this.observation,
-      required this.products,
       required this.creationTime,
       this.abortedReason});
 }
@@ -31,4 +30,15 @@ class OrderProduct {
     required this.name,
     required this.quantity,
   });
+
+  factory OrderProduct.fromMap(Map<String, dynamic> json) {
+    return OrderProduct(
+        id: json['product_id'],
+        name: json['product_name'],
+        quantity: json['quantity']);
+  }
+
+  static List<OrderProduct> fromMaps(List array) {
+    return array.map((e) => OrderProduct.fromMap(e)).toList();
+  }
 }

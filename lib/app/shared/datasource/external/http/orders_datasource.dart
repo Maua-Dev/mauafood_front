@@ -9,7 +9,7 @@ class OrdersDatasource implements IOrdersDatasource {
   @override
   Future<Map<String, dynamic>> getAllActiveOrders() async {
     var response =
-        await _httpService.get('/get_all_active_orders_by_restaurant');
+        await _httpService.get('/get-all-active-orders-by-restaurant');
     if (response.statusCode == 200) {
       return response.data;
     }

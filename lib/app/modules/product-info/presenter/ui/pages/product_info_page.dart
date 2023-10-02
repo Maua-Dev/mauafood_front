@@ -63,7 +63,7 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
               children: [
                 Container(
                   width: double.infinity,
-                  height: 650,
+                  height: 620,
                   padding: const EdgeInsets.symmetric(vertical: 24),
                   decoration: BoxDecoration(
                       color: AppColors.white,
@@ -100,65 +100,8 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
                                     .copyWith(fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.left,
                               ),
-                              const SizedBox(
-                                height: 16,
-                              ),
-                              Text(
-                                S.of(context).recommendedTitle,
-                                style: AppTextStyles.h2
-                                    .copyWith(color: AppColors.mainBlueColor),
-                                textAlign: TextAlign.left,
-                              ),
                             ],
                           ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 8,
-                      ),
-                      SafeArea(
-                          child: SizedBox(
-                        height: 160,
-                        child: ListView.separated(
-                          itemBuilder: (context, index) => SizedBox(
-                            height: 150,
-                            width: MediaQuery.of(context).size.width / 4,
-                            child: RecommendedProductWidget(
-                              product: recommendedProductListFilter[index],
-                              onPressed: () {
-                                product = recommendedProductListFilter[index];
-
-                                setState(() {});
-                                // Modular.to.popAndPushNamed('./', arguments: [
-                                //   recommendedProductListFilter[index],
-                                //   widget.recommendedProductList
-                                // ]);
-                              },
-                            ),
-                          ),
-                          separatorBuilder: (context, index) => const SizedBox(
-                            width: 12,
-                          ),
-                          itemCount: recommendedProductListFilter.length,
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
-                        ),
-                      )),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: ScreenHelper.width(context) * 0.65,
-                            ),
-                            Container(
-                              height: 32,
-                              width: 120,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: AppColors.mainBlueColor),
-                            ),
-                          ],
                         ),
                       ),
                       Divider(
@@ -167,7 +110,7 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
                         thickness: 1,
                       ),
                       Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
                         child: Row(
                           children: [
                             const Icon(
@@ -189,9 +132,12 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: TextField(
+                          style: const TextStyle(height: 1, fontSize: 16),
                           maxLines: 3,
                           minLines: 1,
                           decoration: InputDecoration(
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 16),
                             fillColor: Colors.white,
                             hintText: "Ex: Tirar o alface",
                             enabledBorder: OutlineInputBorder(
@@ -208,21 +154,95 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
                         ),
                       ),
                       Container(
-                        height: 40,
-                        width: 200,
+                        height: 50,
+                        width: 360,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
+                            borderRadius: BorderRadius.circular(8),
                             border: Border.all(
                                 color: AppColors.mainBlueColor, width: 1)),
                         child: Row(
                           children: [
+                            TextButton(
+                                onPressed: () => {},
+                                child: Text(
+                                  "-",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      color: AppColors.mainBlueColor,
+                                      fontSize: 16),
+                                )),
+                            Text("1",
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.mainBlueColor,
+                                    fontSize: 16)),
+                            TextButton(
+                                onPressed: () => {},
+                                child: Text("+",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.mainBlueColor,
+                                        fontSize: 16))),
+                            const Flexible(child: SizedBox.expand()),
                             Container(
-                                child: Text("Texto 1"),
-                                color: AppColors.mainBlueColor),
-                            Text("Texto 2")
+                              height: 60,
+                              width: 160,
+                              decoration: BoxDecoration(
+                                  color: AppColors.mainBlueColor,
+                                  borderRadius: BorderRadius.circular(8),
+                                  border: Border.all(
+                                    color: AppColors.mainBlueColor,
+                                    width: 1,
+                                  )),
+                              child: Center(
+                                  child: Text(
+                                "Adicionar Pedido",
+                                style: TextStyle(
+                                    color: AppColors.white,
+                                    fontWeight: FontWeight.bold),
+                              )),
+                            ),
                           ],
                         ),
-                      )
+                      ),
+                      Divider(
+                        color: Colors.grey[350],
+                        height: 64,
+                        thickness: 1,
+                      ),
+                      SizedBox(
+                        width: ScreenHelper.width(context) * 0.9,
+                        child: Text(
+                          S.of(context).recommendedTitle,
+                          style: AppTextStyles.h2
+                              .copyWith(color: AppColors.mainBlueColor),
+                          textAlign: TextAlign.left,
+                        ),
+                      ),
+                      SafeArea(
+                          child: SizedBox(
+                        height: 160,
+                        width: ScreenHelper.width(context),
+                        child: ListView.separated(
+                          itemBuilder: (context, index) => SizedBox(
+                            height: 150,
+                            width: MediaQuery.of(context).size.width / 4,
+                            child: RecommendedProductWidget(
+                              product: recommendedProductListFilter[index],
+                              onPressed: () {
+                                product = recommendedProductListFilter[index];
+                                setState(() {});
+                              },
+                            ),
+                          ),
+                          separatorBuilder: (context, index) => const SizedBox(
+                            width: 12,
+                          ),
+                          itemCount: recommendedProductListFilter.length,
+                          scrollDirection: Axis.horizontal,
+                          shrinkWrap: true,
+                        ),
+                      )),
                     ],
                   ),
                 ),

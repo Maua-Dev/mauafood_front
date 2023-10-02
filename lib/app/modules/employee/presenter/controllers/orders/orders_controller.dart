@@ -1,4 +1,5 @@
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/change_order_status_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_all_active_orders.dart';
 import 'package:mauafood_front/app/shared/infra/models/order_model.dart';
 import 'package:mobx/mobx.dart';
@@ -11,7 +12,9 @@ class OrdersController = OrdersControllerBase with _$OrdersController;
 
 abstract class OrdersControllerBase with Store {
   final GetAllActiveOrdersUsecase _getAllActiveOrdersUsecase;
-  OrdersControllerBase(this._getAllActiveOrdersUsecase) {
+  final ChangeOrderStatusUsecase _changeOrderStatusUsecase;
+  OrdersControllerBase(
+      this._getAllActiveOrdersUsecase, this._changeOrderStatusUsecase) {
     getAllActiveOrders();
   }
 

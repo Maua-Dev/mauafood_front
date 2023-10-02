@@ -6,6 +6,7 @@ import 'package:mauafood_front/app/modules/employee/presenter/ui/pages/employee_
 import 'package:mauafood_front/app/modules/employee/presenter/ui/pages/orders_page.dart';
 import 'package:mauafood_front/app/shared/datasource/external/http/orders_datasource.dart';
 import 'package:mauafood_front/app/shared/domain/repositories/orders_repository_interface.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/change_order_status_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/create_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_all_active_orders.dart';
@@ -30,7 +31,7 @@ class EmployeeMenuModule extends Module {
               i(), RestaurantEnum.cantina_do_moleza, i(), i()),
         ),
         Bind<OrdersController>(
-          (i) => OrdersController(i()),
+          (i) => OrdersController(i(), i()),
         ),
         Bind.factory<ProductFormController>(
           (i) => ProductFormController(i(), i(), i()),
@@ -43,6 +44,8 @@ class EmployeeMenuModule extends Module {
             (i) => DeleteProductUsecase(repository: i())),
         Bind<IGetAllActiveOrdersUsecase>(
             (i) => GetAllActiveOrdersUsecase(repository: i())),
+        Bind<IChangeOrderStatusUsecase>(
+            (i) => ChangeOrderStatusUsecase(repository: i())),
         Bind<IMenuRepository>((i) => MenuRepository(datasource: i())),
         Bind<IOrdersRepository>((i) => OrdersRepository(i())),
         Bind<IMenuDatasource>((i) => MenuDatasource(i())),

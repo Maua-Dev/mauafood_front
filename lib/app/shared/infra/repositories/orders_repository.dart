@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/domain/repositories/orders_repository_interface.dart';
 import 'package:mauafood_front/app/shared/helpers/enums/http_status_code_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
@@ -24,5 +25,20 @@ class OrdersRepository implements IOrdersRepository {
       return left(ErrorRequest(message: errorType.errorMessage));
     }
     return right(ordersList);
+  }
+
+  @override
+  Future<Either<Failure, OrderModel>> changeOrderStatus(
+      String orderId, StatusEnum status) async {
+    OrderModel order;
+    try {
+      var orderMap = await datasource.changeOrderStatus(orderId, status);
+      order = OrderModel.fromMap(orderMap);
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType =
+          getHttpStatusFunction(e.response!.statusCode);
+      return left(ErrorRequest(message: errorType.errorMessage));
+    }
+    return right(order);
   }
 }

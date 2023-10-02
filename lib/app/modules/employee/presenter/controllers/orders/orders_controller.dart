@@ -1,3 +1,4 @@
+import 'package:mauafood_front/app/modules/employee/presenter/states/orders/order_state.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/change_order_status_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_all_active_orders.dart';
@@ -20,7 +21,7 @@ abstract class OrdersControllerBase with Store {
 
   List<StatusEnum> statusList = [...StatusEnum.values];
 
-  List<OrderModel> mockedOrdersList = [
+  /* List<OrderModel> mockedOrdersList = [
     OrderModel(
       userName: "Brenas",
       userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
@@ -138,13 +139,19 @@ abstract class OrdersControllerBase with Store {
       ],
       creationTime: 1692156322000,
     ),
-  ];
+  ]; */
 
   @observable
   OrdersState state = OrdersInitialState();
 
   @action
   void changeState(OrdersState value) => state = value;
+
+  @observable
+  OrderState orderState = OrderInitialState();
+
+  @action
+  void changeOrderState(OrderState value) => orderState = value;
 
   @observable
   List<OrderModel> ordersList = [];
@@ -154,6 +161,7 @@ abstract class OrdersControllerBase with Store {
 
   @action
   Future<void> getAllActiveOrders() async {
+    changeState(OrdersLoadingState());
     /* ordersList = mockedOrdersList;
     ordersList.sort((a, b) {
       if (a.status.index.compareTo(b.status.index) == 0) {
@@ -163,7 +171,6 @@ abstract class OrdersControllerBase with Store {
       }
     });
     changeState(OrdersLoadedSuccessState(ordersList: ordersList)); */
-    changeState(OrdersLoadingState());
     var result = await _getAllActiveOrdersUsecase();
     changeState(result.fold((l) => OrdersErrorState(failure: l), (list) {
       ordersList = list;
@@ -179,14 +186,31 @@ abstract class OrdersControllerBase with Store {
   }
 
   @action
-  void setOrderStatus(int index, StatusEnum? value) {
-    ordersList[index].status = value!;
+  Future<void> changeOrderStatus(int index, StatusEnum? value) async {
+    changeOrderState(OrderLoadingState(index));
 
-    ordersList.sort(
-      (a, b) {
-        return a.status.index.compareTo(b.status.index);
-      },
+    var result = await _changeOrderStatusUsecase(ordersList[index].id, value!);
+    changeOrderState(
+      result.fold(
+        (l) {
+          OrdersErrorState(failure: l);
+          return OrderErrorState(failure: l);
+        },
+        (r) {
+          ordersList[index].status = r.status;
+          return OrderLoadedSuccessState();
+        },
+      ),
     );
+
+    ordersList.sort((a, b) {
+      if (a.status.index.compareTo(b.status.index) == 0) {
+        return a.creationTime.compareTo(b.creationTime);
+      } else {
+        return a.status.index.compareTo(b.status.index);
+      }
+    });
+
     setStatusIndex(statusIndex, statusFiltered);
   }
 

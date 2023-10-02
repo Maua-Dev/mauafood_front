@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/orders/orders_controller.dart';
+import 'package:mauafood_front/app/modules/employee/presenter/states/orders/order_state.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/orders/orders_state.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -109,259 +110,269 @@ class OrdersPage extends StatelessWidget {
                                           )
                                         : const SizedBox.shrink(),
                                     Observer(builder: (context) {
+                                      var orderState = store.orderState;
                                       return Expanded(
                                           child: store.ordersList.isNotEmpty
                                               ? ListView.builder(
                                                   itemCount:
                                                       state.ordersList.length,
-                                                  itemBuilder: (context,
-                                                          index) =>
-                                                      Padding(
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .symmetric(
-                                                                  vertical:
-                                                                      8.0),
-                                                          child: Container(
-                                                            decoration:
-                                                                BoxDecoration(
-                                                                    color: AppColors
-                                                                        .backgroundColor,
-                                                                    boxShadow: [
-                                                                      BoxShadow(
-                                                                        color: AppColors
-                                                                            .letterColor
-                                                                            .withOpacity(0.2),
-                                                                        spreadRadius:
-                                                                            1,
-                                                                        blurRadius:
-                                                                            1,
-                                                                        offset: const Offset(
-                                                                            2,
-                                                                            4),
-                                                                      ),
-                                                                    ],
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            10.0)),
-                                                            child: Observer(
-                                                                builder:
-                                                                    (context) {
-                                                              return ExpansionTile(
-                                                                shape:
-                                                                    const Border(),
-                                                                tilePadding:
-                                                                    const EdgeInsets
-                                                                        .all(8),
-                                                                collapsedIconColor:
-                                                                    AppColors
-                                                                        .mainBlueColor,
-                                                                iconColor: AppColors
-                                                                    .mainBlueColor,
-                                                                textColor: AppColors
-                                                                    .mainBlueColor,
-                                                                title:
-                                                                    IntrinsicHeight(
-                                                                  child: Row(
-                                                                    crossAxisAlignment:
-                                                                        CrossAxisAlignment
-                                                                            .start,
-                                                                    children: [
-                                                                      Container(
-                                                                        width:
-                                                                            16,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color: state
-                                                                              .ordersList[index]
-                                                                              .status
-                                                                              .color,
-                                                                          borderRadius:
-                                                                              const BorderRadius.only(
-                                                                            bottomLeft:
-                                                                                Radius.circular(10),
-                                                                            topLeft:
-                                                                                Radius.circular(10),
-                                                                          ),
+                                                  itemBuilder:
+                                                      (context, index) {
+                                                    return AbsorbPointer(
+                                                      absorbing: orderState
+                                                              is OrderLoadingState &&
+                                                          orderState.index ==
+                                                              index,
+                                                      child: Opacity(
+                                                        opacity: orderState
+                                                                    is OrderLoadingState &&
+                                                                orderState
+                                                                        .index ==
+                                                                    index
+                                                            ? 0.5
+                                                            : 1,
+                                                        child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                    .symmetric(
+                                                                    vertical:
+                                                                        8.0),
+                                                            child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                      color: AppColors
+                                                                          .backgroundColor,
+                                                                      boxShadow: [
+                                                                        BoxShadow(
+                                                                          color: AppColors
+                                                                              .letterColor
+                                                                              .withOpacity(0.2),
+                                                                          spreadRadius:
+                                                                              1,
+                                                                          blurRadius:
+                                                                              1,
+                                                                          offset: const Offset(
+                                                                              2,
+                                                                              4),
                                                                         ),
-                                                                      ),
-                                                                      const SizedBox(
-                                                                          width:
-                                                                              16),
-                                                                      Expanded(
-                                                                        child:
-                                                                            Column(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.start,
-                                                                          children: [
-                                                                            Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.start,
-                                                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                                                              children: [
-                                                                                SizedBox(
-                                                                                  width: ScreenHelper.width(context) < 425 ? 80 : 160,
-                                                                                  child: Text(
-                                                                                    overflow: TextOverflow.clip,
-                                                                                    state.ordersList[index].userName,
-                                                                                    style: AppTextStyles.h1.copyWith(fontSize: ScreenHelper.width(context) < 425 ? 16 : 20),
-                                                                                  ),
-                                                                                ),
-                                                                                if (state.ordersList[index].status == StatusEnum.PENDING)
-                                                                                  Row(
-                                                                                    children: [
-                                                                                      IconButton(
-                                                                                          onPressed: () {
-                                                                                            var orderListIndex = store.ordersList.indexOf(state.ordersList[index]);
-                                                                                            store.setOrderStatus(orderListIndex, StatusEnum.PREPARING);
-                                                                                          },
-                                                                                          icon: Icon(
-                                                                                            Icons.check,
-                                                                                            size: ScreenHelper.width(context) < 425 ? 16 : 24,
-                                                                                            color: AppColors.mainBlueColor,
-                                                                                          )),
-                                                                                      IconButton(
-                                                                                        onPressed: () {
-                                                                                          showReasonsDialog(context, state, index);
-                                                                                        },
-                                                                                        icon: Icon(
-                                                                                          Icons.close,
-                                                                                          size: ScreenHelper.width(context) < 425 ? 16 : 24,
-                                                                                        ),
-                                                                                        color: AppColors.redColor,
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
-                                                                                const Spacer(),
-                                                                                Text(
-                                                                                  DateTime.fromMillisecondsSinceEpoch(state.ordersList[index].creationTime, isUtc: true).toString().substring(10, 16),
-                                                                                  style: AppTextStyles.h1.copyWith(fontSize: ScreenHelper.width(context) < 425 ? 14 : 16),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            const SizedBox(height: 8),
-                                                                            Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                              crossAxisAlignment: CrossAxisAlignment.end,
-                                                                              children: [
-                                                                                Column(
-                                                                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                                                                  children: List.generate(
-                                                                                    state.ordersList[index].products.length,
-                                                                                    (productIndex) => Text(
-                                                                                      "• ${state.ordersList[index].products[productIndex].quantity} x ${state.ordersList[index].products[productIndex].name}",
-                                                                                      style: AppTextStyles.h2.copyWith(fontSize: 16),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  S.of(context).productPriceCurrency(
-                                                                                        state.ordersList[index].totalPrice,
-                                                                                      ),
-                                                                                  style: AppTextStyles.h1.copyWith(fontSize: ScreenHelper.width(context) < 425 ? 14 : 16),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                                children: [
-                                                                  Padding(
-                                                                    padding:
-                                                                        const EdgeInsets
-                                                                            .fromLTRB(
-                                                                            16,
-                                                                            0,
-                                                                            16,
-                                                                            16),
-                                                                    child:
-                                                                        Column(
+                                                                      ],
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              10.0)),
+                                                              child: Observer(
+                                                                  builder:
+                                                                      (context) {
+                                                                return ExpansionTile(
+                                                                  shape:
+                                                                      const Border(),
+                                                                  tilePadding:
+                                                                      const EdgeInsets
+                                                                          .all(
+                                                                          8),
+                                                                  collapsedIconColor:
+                                                                      AppColors
+                                                                          .mainBlueColor,
+                                                                  iconColor:
+                                                                      AppColors
+                                                                          .mainBlueColor,
+                                                                  textColor:
+                                                                      AppColors
+                                                                          .mainBlueColor,
+                                                                  title:
+                                                                      IntrinsicHeight(
+                                                                    child: Row(
                                                                       crossAxisAlignment:
                                                                           CrossAxisAlignment
                                                                               .start,
                                                                       children: [
-                                                                        Row(
-                                                                          crossAxisAlignment:
-                                                                              CrossAxisAlignment.center,
-                                                                          children: [
-                                                                            Text(
-                                                                              S.of(context).observationTitle,
-                                                                              style: AppTextStyles.h1.copyWith(fontSize: 16),
-                                                                            ),
-                                                                            if (state.ordersList[index].status ==
-                                                                                StatusEnum.PREPARING)
-                                                                              Expanded(
-                                                                                child: Align(
-                                                                                  alignment: Alignment.centerRight,
-                                                                                  child: DropdownButton(
-                                                                                      isDense: true,
-                                                                                      underline: const SizedBox.shrink(),
-                                                                                      value: state.ordersList[index].status,
-                                                                                      items: [
-                                                                                        DropdownMenuItem(
-                                                                                          value: StatusEnum.READY,
-                                                                                          child: Text(
-                                                                                            StatusEnum.READY.name,
-                                                                                            style: AppTextStyles.h1.copyWith(fontSize: 16),
-                                                                                          ),
-                                                                                        ),
-                                                                                        DropdownMenuItem(
-                                                                                          value: StatusEnum.PREPARING,
-                                                                                          child: Text(
-                                                                                            StatusEnum.PREPARING.name,
-                                                                                            style: AppTextStyles.h1.copyWith(fontSize: 16),
-                                                                                          ),
-                                                                                        ),
-                                                                                        DropdownMenuItem(
-                                                                                          value: StatusEnum.REFUSED,
-                                                                                          child: Text(
-                                                                                            StatusEnum.REFUSED.name,
-                                                                                            style: AppTextStyles.h1.copyWith(fontSize: 16),
-                                                                                          ),
-                                                                                        ),
-                                                                                      ],
-                                                                                      onChanged: (value) {
-                                                                                        if (value != StatusEnum.REFUSED) {
-                                                                                          var orderListIndex = store.ordersList.indexOf(state.ordersList[index]);
-                                                                                          store.setOrderStatus(orderListIndex, value);
-                                                                                        } else {
-                                                                                          showReasonsDialog(context, state, index);
-                                                                                        }
-                                                                                      }),
-                                                                                ),
-                                                                              ),
-                                                                          ],
-                                                                        ),
-                                                                        const SizedBox(
-                                                                          height:
-                                                                              8,
-                                                                        ),
                                                                         Container(
                                                                           width:
-                                                                              double.infinity,
+                                                                              16,
                                                                           decoration:
-                                                                              BoxDecoration(border: Border.all(color: AppColors.letterThinColor)),
-                                                                          child:
-                                                                              Padding(
-                                                                            padding:
-                                                                                const EdgeInsets.all(8.0),
-                                                                            child:
-                                                                                Text(
-                                                                              state.ordersList[index].observation != null ? state.ordersList[index].observation! : S.of(context).withoutObservationTitle,
-                                                                              style: AppTextStyles.h3.copyWith(fontSize: 14),
+                                                                              BoxDecoration(
+                                                                            color:
+                                                                                state.ordersList[index].status.color,
+                                                                            borderRadius:
+                                                                                const BorderRadius.only(
+                                                                              bottomLeft: Radius.circular(10),
+                                                                              topLeft: Radius.circular(10),
                                                                             ),
                                                                           ),
-                                                                        )
+                                                                        ),
+                                                                        const SizedBox(
+                                                                            width:
+                                                                                16),
+                                                                        Expanded(
+                                                                          child:
+                                                                              Column(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.start,
+                                                                            children: [
+                                                                              Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.start,
+                                                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                                                children: [
+                                                                                  SizedBox(
+                                                                                    width: ScreenHelper.width(context) < 425 ? 80 : 160,
+                                                                                    child: Text(
+                                                                                      overflow: TextOverflow.clip,
+                                                                                      state.ordersList[index].userName,
+                                                                                      style: AppTextStyles.h1.copyWith(fontSize: ScreenHelper.width(context) < 425 ? 16 : 20),
+                                                                                    ),
+                                                                                  ),
+                                                                                  if (state.ordersList[index].status == StatusEnum.PENDING)
+                                                                                    Row(
+                                                                                      children: [
+                                                                                        IconButton(
+                                                                                            onPressed: () {
+                                                                                              var orderListIndex = store.ordersList.indexOf(state.ordersList[index]);
+                                                                                              store.changeOrderStatus(orderListIndex, StatusEnum.PREPARING);
+                                                                                            },
+                                                                                            icon: Icon(
+                                                                                              Icons.check,
+                                                                                              size: ScreenHelper.width(context) < 425 ? 16 : 24,
+                                                                                              color: AppColors.mainBlueColor,
+                                                                                            )),
+                                                                                        IconButton(
+                                                                                          onPressed: () {
+                                                                                            showReasonsDialog(context, state, index);
+                                                                                          },
+                                                                                          icon: Icon(
+                                                                                            Icons.close,
+                                                                                            size: ScreenHelper.width(context) < 425 ? 16 : 24,
+                                                                                          ),
+                                                                                          color: AppColors.redColor,
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
+                                                                                  const Spacer(),
+                                                                                  Text(
+                                                                                    DateTime.fromMillisecondsSinceEpoch(state.ordersList[index].creationTime, isUtc: true).toString().substring(10, 16),
+                                                                                    style: AppTextStyles.h1.copyWith(fontSize: ScreenHelper.width(context) < 425 ? 14 : 16),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                              const SizedBox(height: 8),
+                                                                              Row(
+                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                                                children: [
+                                                                                  Column(
+                                                                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                                                                    children: List.generate(
+                                                                                      state.ordersList[index].products.length,
+                                                                                      (productIndex) => Text(
+                                                                                        "• ${state.ordersList[index].products[productIndex].quantity} x ${state.ordersList[index].products[productIndex].name}",
+                                                                                        style: AppTextStyles.h2.copyWith(fontSize: 16),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
+                                                                                  Text(
+                                                                                    S.of(context).productPriceCurrency(
+                                                                                          state.ordersList[index].totalPrice,
+                                                                                        ),
+                                                                                    style: AppTextStyles.h1.copyWith(fontSize: ScreenHelper.width(context) < 425 ? 14 : 16),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
+                                                                            ],
+                                                                          ),
+                                                                        ),
                                                                       ],
                                                                     ),
-                                                                  )
-                                                                ],
-                                                              );
-                                                            }),
-                                                          )),
-                                                )
+                                                                  ),
+                                                                  children: [
+                                                                    Padding(
+                                                                      padding: const EdgeInsets
+                                                                          .fromLTRB(
+                                                                          16,
+                                                                          0,
+                                                                          16,
+                                                                          16),
+                                                                      child:
+                                                                          Column(
+                                                                        crossAxisAlignment:
+                                                                            CrossAxisAlignment.start,
+                                                                        children: [
+                                                                          Row(
+                                                                            crossAxisAlignment:
+                                                                                CrossAxisAlignment.center,
+                                                                            children: [
+                                                                              Text(
+                                                                                S.of(context).observationTitle,
+                                                                                style: AppTextStyles.h1.copyWith(fontSize: 16),
+                                                                              ),
+                                                                              if (state.ordersList[index].status == StatusEnum.PREPARING)
+                                                                                Expanded(
+                                                                                  child: Align(
+                                                                                    alignment: Alignment.centerRight,
+                                                                                    child: DropdownButton(
+                                                                                        isDense: true,
+                                                                                        underline: const SizedBox.shrink(),
+                                                                                        value: state.ordersList[index].status,
+                                                                                        items: [
+                                                                                          DropdownMenuItem(
+                                                                                            value: StatusEnum.READY,
+                                                                                            child: Text(
+                                                                                              StatusEnum.READY.name,
+                                                                                              style: AppTextStyles.h1.copyWith(fontSize: 16),
+                                                                                            ),
+                                                                                          ),
+                                                                                          DropdownMenuItem(
+                                                                                            value: StatusEnum.PREPARING,
+                                                                                            child: Text(
+                                                                                              StatusEnum.PREPARING.name,
+                                                                                              style: AppTextStyles.h1.copyWith(fontSize: 16),
+                                                                                            ),
+                                                                                          ),
+                                                                                          DropdownMenuItem(
+                                                                                            value: StatusEnum.REFUSED,
+                                                                                            child: Text(
+                                                                                              StatusEnum.REFUSED.name,
+                                                                                              style: AppTextStyles.h1.copyWith(fontSize: 16),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ],
+                                                                                        onChanged: (value) {
+                                                                                          if (value != StatusEnum.REFUSED) {
+                                                                                            var orderListIndex = store.ordersList.indexOf(state.ordersList[index]);
+                                                                                            store.changeOrderStatus(orderListIndex, value);
+                                                                                          } else {
+                                                                                            showReasonsDialog(context, state, index);
+                                                                                          }
+                                                                                        }),
+                                                                                  ),
+                                                                                ),
+                                                                            ],
+                                                                          ),
+                                                                          const SizedBox(
+                                                                            height:
+                                                                                8,
+                                                                          ),
+                                                                          Container(
+                                                                            width:
+                                                                                double.infinity,
+                                                                            decoration:
+                                                                                BoxDecoration(border: Border.all(color: AppColors.letterThinColor)),
+                                                                            child:
+                                                                                Padding(
+                                                                              padding: const EdgeInsets.all(8.0),
+                                                                              child: Text(
+                                                                                state.ordersList[index].observation != null ? state.ordersList[index].observation! : S.of(context).withoutObservationTitle,
+                                                                                style: AppTextStyles.h3.copyWith(fontSize: 14),
+                                                                              ),
+                                                                            ),
+                                                                          )
+                                                                        ],
+                                                                      ),
+                                                                    )
+                                                                  ],
+                                                                );
+                                                              }),
+                                                            )),
+                                                      ),
+                                                    );
+                                                  })
                                               : Center(
                                                   child: ErrorLoadingMenuWidget(
                                                       errorMessage: S
@@ -517,7 +528,7 @@ class OrdersPage extends StatelessWidget {
                                   if (store.reasonDescription != '') {
                                     var orderListIndex = store.ordersList
                                         .indexOf(state.ordersList[index]);
-                                    store.setOrderStatus(
+                                    store.changeOrderStatus(
                                         orderListIndex, StatusEnum.REFUSED);
                                     store.reasonIndex = 0;
                                     store.reasonDescription = '';
@@ -600,7 +611,7 @@ class OrdersPage extends StatelessWidget {
                                                                   .indexOf(state
                                                                           .ordersList[
                                                                       index]);
-                                                              store.setOrderStatus(
+                                                              store.changeOrderStatus(
                                                                   orderListIndex,
                                                                   StatusEnum
                                                                       .REFUSED);

@@ -1,3 +1,4 @@
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/services/http/http_request_interface.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/orders_datasource_interface.dart';
@@ -22,7 +23,7 @@ class OrdersDatasource implements IOrdersDatasource {
       String orderId, StatusEnum status) async {
     var response = await _httpService.post('/change-order-status', data: {
       'order_id': orderId,
-      'new_status': status.toString(),
+      'new_status': EnumToString.convertToString(status),
     });
     if (response.statusCode == 200) {
       return response.data;

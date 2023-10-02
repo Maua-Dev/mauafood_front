@@ -25,6 +25,22 @@ mixin _$OrdersController on OrdersControllerBase, Store {
     });
   }
 
+  late final _$orderStateAtom =
+      Atom(name: 'OrdersControllerBase.orderState', context: context);
+
+  @override
+  OrderState get orderState {
+    _$orderStateAtom.reportRead();
+    return super.orderState;
+  }
+
+  @override
+  set orderState(OrderState value) {
+    _$orderStateAtom.reportWrite(value, super.orderState, () {
+      super.orderState = value;
+    });
+  }
+
   late final _$ordersListAtom =
       Atom(name: 'OrdersControllerBase.ordersList', context: context);
 
@@ -131,6 +147,15 @@ mixin _$OrdersController on OrdersControllerBase, Store {
         .run(() => super.getAllActiveOrders());
   }
 
+  late final _$changeOrderStatusAsyncAction =
+      AsyncAction('OrdersControllerBase.changeOrderStatus', context: context);
+
+  @override
+  Future<void> changeOrderStatus(int index, StatusEnum? value) {
+    return _$changeOrderStatusAsyncAction
+        .run(() => super.changeOrderStatus(index, value));
+  }
+
   late final _$OrdersControllerBaseActionController =
       ActionController(name: 'OrdersControllerBase', context: context);
 
@@ -146,11 +171,11 @@ mixin _$OrdersController on OrdersControllerBase, Store {
   }
 
   @override
-  void setOrderStatus(int index, StatusEnum? value) {
+  void changeOrderState(OrderState value) {
     final _$actionInfo = _$OrdersControllerBaseActionController.startAction(
-        name: 'OrdersControllerBase.setOrderStatus');
+        name: 'OrdersControllerBase.changeOrderState');
     try {
-      return super.setOrderStatus(index, value);
+      return super.changeOrderState(value);
     } finally {
       _$OrdersControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -204,6 +229,7 @@ mixin _$OrdersController on OrdersControllerBase, Store {
   String toString() {
     return '''
 state: ${state},
+orderState: ${orderState},
 ordersList: ${ordersList},
 statusFiltered: ${statusFiltered},
 statusIndex: ${statusIndex},

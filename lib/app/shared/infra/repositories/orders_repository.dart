@@ -33,7 +33,7 @@ class OrdersRepository implements IOrdersRepository {
     OrderModel order;
     try {
       var orderMap = await datasource.changeOrderStatus(orderId, status);
-      order = OrderModel.fromMap(orderMap);
+      order = OrderModel.fromMap(orderMap['order']);
     } on DioError catch (e) {
       HttpStatusCodeEnum errorType =
           getHttpStatusFunction(e.response!.statusCode);

@@ -226,7 +226,7 @@ class OrdersPage extends StatelessWidget {
                                                                                         IconButton(
                                                                                             onPressed: () {
                                                                                               var orderListIndex = store.ordersList.indexOf(state.ordersList[index]);
-                                                                                              store.changeOrderStatus(orderListIndex, StatusEnum.PREPARING);
+                                                                                              store.changeOrderStatus(orderListIndex, StatusEnum.PREPARING, context);
                                                                                             },
                                                                                             icon: Icon(
                                                                                               Icons.check,
@@ -336,7 +336,7 @@ class OrdersPage extends StatelessWidget {
                                                                                         onChanged: (value) {
                                                                                           if (value != StatusEnum.REFUSED) {
                                                                                             var orderListIndex = store.ordersList.indexOf(state.ordersList[index]);
-                                                                                            store.changeOrderStatus(orderListIndex, value);
+                                                                                            store.changeOrderStatus(orderListIndex, value, context);
                                                                                           } else {
                                                                                             showReasonsDialog(context, state, index);
                                                                                           }
@@ -449,7 +449,7 @@ class OrdersPage extends StatelessWidget {
                                   : AppColors.white,
                               onPressed: () {
                                 store.reasonIndex = 1;
-                                store.reasonDescription = 'Falta de insumo';
+                                store.abortReason = 'Falta de insumo';
                               },
                               label: Text(S.of(context).lackOfInputTitle,
                                   style: AppTextStyles.h1.copyWith(
@@ -472,7 +472,7 @@ class OrdersPage extends StatelessWidget {
                                   : AppColors.white,
                               onPressed: () {
                                 store.reasonIndex = 2;
-                                store.reasonDescription = 'Fechado';
+                                store.abortReason = 'Fechado';
                               },
                               label: Text(S.of(context).closedTitle,
                                   style: AppTextStyles.h1.copyWith(
@@ -495,7 +495,7 @@ class OrdersPage extends StatelessWidget {
                                   : AppColors.white,
                               onPressed: () {
                                 store.reasonIndex = 3;
-                                store.reasonDescription = 'Sobrecarga';
+                                store.abortReason = 'Sobrecarga';
                               },
                               label: Text(S.of(context).overloadTitle,
                                   style: AppTextStyles.h1.copyWith(
@@ -525,13 +525,10 @@ class OrdersPage extends StatelessWidget {
                             height: 40,
                             child: TextButton(
                                 onPressed: () {
-                                  if (store.reasonDescription != '') {
-                                    var orderListIndex = store.ordersList
-                                        .indexOf(state.ordersList[index]);
-                                    store.changeOrderStatus(
-                                        orderListIndex, StatusEnum.REFUSED);
+                                  if (store.abortReason != '') {
+                                    store.abortOrder(index, context);
                                     store.reasonIndex = 0;
-                                    store.reasonDescription = '';
+                                    store.abortReason = '';
                                     store.isMissingDescription = false;
 
                                     Modular.to.pop();
@@ -550,7 +547,7 @@ class OrdersPage extends StatelessWidget {
                         TextButton(
                             onPressed: () {
                               store.reasonIndex = 0;
-                              store.reasonDescription = '';
+                              store.abortReason = '';
                               store.isMissingDescription = false;
                               showDialog(
                                   barrierColor: null,
@@ -590,8 +587,7 @@ class OrdersPage extends StatelessWidget {
                                                   ),
                                                   TextFieldWidget(
                                                     onChanged: (value) => store
-                                                        .setReasonDescription(
-                                                            value),
+                                                        .setAbortReason(value),
                                                     validator: store
                                                         .validateReasonDescription,
                                                   ),
@@ -611,10 +607,9 @@ class OrdersPage extends StatelessWidget {
                                                                   .indexOf(state
                                                                           .ordersList[
                                                                       index]);
-                                                              store.changeOrderStatus(
+                                                              store.abortOrder(
                                                                   orderListIndex,
-                                                                  StatusEnum
-                                                                      .REFUSED);
+                                                                  context);
                                                               Modular.to.pop();
                                                               Modular.to.pop();
                                                             }
@@ -646,7 +641,7 @@ class OrdersPage extends StatelessWidget {
                                                                   color: AppColors
                                                                       .letterColor,
                                                                   fontSize:
-                                                                      14)))
+                                                                      14))),
                                                 ],
                                               ),
                                             ),
@@ -659,7 +654,7 @@ class OrdersPage extends StatelessWidget {
                             child: Text(S.of(context).othersTitle,
                                 style: AppTextStyles.h1.copyWith(
                                     color: AppColors.letterColor,
-                                    fontSize: 14)))
+                                    fontSize: 14))),
                       ],
                     ),
                   );

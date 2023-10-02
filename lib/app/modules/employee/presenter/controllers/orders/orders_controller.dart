@@ -1,7 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/orders/order_state.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/abort_order_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/change_order_status_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_all_active_orders.dart';
+import 'package:mauafood_front/app/shared/helpers/services/snackbar/global_snackbar.dart';
 import 'package:mauafood_front/app/shared/infra/models/order_model.dart';
 import 'package:mobx/mobx.dart';
 
@@ -12,10 +15,11 @@ part 'orders_controller.g.dart';
 class OrdersController = OrdersControllerBase with _$OrdersController;
 
 abstract class OrdersControllerBase with Store {
-  final GetAllActiveOrdersUsecase _getAllActiveOrdersUsecase;
-  final ChangeOrderStatusUsecase _changeOrderStatusUsecase;
-  OrdersControllerBase(
-      this._getAllActiveOrdersUsecase, this._changeOrderStatusUsecase) {
+  final IGetAllActiveOrdersUsecase _getAllActiveOrdersUsecase;
+  final IChangeOrderStatusUsecase _changeOrderStatusUsecase;
+  final IAbortOrderUsecase _abortOrderUsecase;
+  OrdersControllerBase(this._getAllActiveOrdersUsecase,
+      this._changeOrderStatusUsecase, this._abortOrderUsecase) {
     getAllActiveOrders();
   }
 
@@ -186,14 +190,47 @@ abstract class OrdersControllerBase with Store {
   }
 
   @action
-  Future<void> changeOrderStatus(int index, StatusEnum? value) async {
+  Future<void> changeOrderStatus(
+      int index, StatusEnum? value, BuildContext context) async {
     changeOrderState(OrderLoadingState(index));
 
     var result = await _changeOrderStatusUsecase(ordersList[index].id, value!);
     changeOrderState(
       result.fold(
         (l) {
+          GlobalSnackBar.error(l.message);
+
           OrdersErrorState(failure: l);
+          return OrderErrorState(failure: l);
+        },
+        (r) {
+          ordersList[index].status = r.status;
+          return OrderLoadedSuccessState();
+        },
+      ),
+    );
+
+    ordersList.sort((a, b) {
+      if (a.status.index.compareTo(b.status.index) == 0) {
+        return a.creationTime.compareTo(b.creationTime);
+      } else {
+        return a.status.index.compareTo(b.status.index);
+      }
+    });
+
+    setStatusIndex(statusIndex, statusFiltered);
+  }
+
+  @action
+  Future<void> abortOrder(int index, BuildContext context) async {
+    changeOrderState(OrderLoadingState(index));
+    var result = await _abortOrderUsecase(ordersList[index].id, abortReason);
+
+    changeOrderState(
+      result.fold(
+        (l) {
+          GlobalSnackBar.error(l.message);
+          changeState(OrdersErrorState(failure: l));
           return OrderErrorState(failure: l);
         },
         (r) {
@@ -242,11 +279,11 @@ abstract class OrdersControllerBase with Store {
   }
 
   @observable
-  String reasonDescription = '';
+  String abortReason = '';
 
   @action
-  void setReasonDescription(String value) {
-    reasonDescription = value;
+  void setAbortReason(String value) {
+    abortReason = value;
   }
 
   @action

@@ -41,4 +41,19 @@ class OrdersRepository implements IOrdersRepository {
     }
     return right(order);
   }
+
+  @override
+  Future<Either<Failure, OrderModel>> abortOrder(
+      String orderId, String abortedReason) async {
+    OrderModel order;
+    try {
+      var orderMap = await datasource.abortOrder(orderId, abortedReason);
+      order = OrderModel.fromMap(orderMap['order']);
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType =
+          getHttpStatusFunction(e.response!.statusCode);
+      return left(ErrorRequest(message: errorType.errorMessage));
+    }
+    return right(order);
+  }
 }

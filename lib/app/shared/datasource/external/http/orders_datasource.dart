@@ -30,4 +30,17 @@ class OrdersDatasource implements IOrdersDatasource {
     }
     throw Exception();
   }
+
+  @override
+  Future<Map<String, dynamic>> abortOrder(
+      String orderId, String abortedReason) async {
+    var response = await _httpService.post('/abort-order', data: {
+      'order_id': orderId,
+      'aborted_reason': abortedReason,
+    });
+    if (response.statusCode == 200) {
+      return response.data;
+    }
+    throw Exception();
+  }
 }

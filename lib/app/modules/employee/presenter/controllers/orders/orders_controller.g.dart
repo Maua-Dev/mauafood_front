@@ -105,19 +105,19 @@ mixin _$OrdersController on OrdersControllerBase, Store {
     });
   }
 
-  late final _$reasonDescriptionAtom =
-      Atom(name: 'OrdersControllerBase.reasonDescription', context: context);
+  late final _$abortReasonAtom =
+      Atom(name: 'OrdersControllerBase.abortReason', context: context);
 
   @override
-  String get reasonDescription {
-    _$reasonDescriptionAtom.reportRead();
-    return super.reasonDescription;
+  String get abortReason {
+    _$abortReasonAtom.reportRead();
+    return super.abortReason;
   }
 
   @override
-  set reasonDescription(String value) {
-    _$reasonDescriptionAtom.reportWrite(value, super.reasonDescription, () {
-      super.reasonDescription = value;
+  set abortReason(String value) {
+    _$abortReasonAtom.reportWrite(value, super.abortReason, () {
+      super.abortReason = value;
     });
   }
 
@@ -151,9 +151,18 @@ mixin _$OrdersController on OrdersControllerBase, Store {
       AsyncAction('OrdersControllerBase.changeOrderStatus', context: context);
 
   @override
-  Future<void> changeOrderStatus(int index, StatusEnum? value) {
+  Future<void> changeOrderStatus(
+      int index, StatusEnum? value, BuildContext context) {
     return _$changeOrderStatusAsyncAction
-        .run(() => super.changeOrderStatus(index, value));
+        .run(() => super.changeOrderStatus(index, value, context));
+  }
+
+  late final _$abortOrderAsyncAction =
+      AsyncAction('OrdersControllerBase.abortOrder', context: context);
+
+  @override
+  Future<void> abortOrder(int index, BuildContext context) {
+    return _$abortOrderAsyncAction.run(() => super.abortOrder(index, context));
   }
 
   late final _$OrdersControllerBaseActionController =
@@ -204,11 +213,11 @@ mixin _$OrdersController on OrdersControllerBase, Store {
   }
 
   @override
-  void setReasonDescription(String value) {
+  void setAbortReason(String value) {
     final _$actionInfo = _$OrdersControllerBaseActionController.startAction(
-        name: 'OrdersControllerBase.setReasonDescription');
+        name: 'OrdersControllerBase.setAbortReason');
     try {
-      return super.setReasonDescription(value);
+      return super.setAbortReason(value);
     } finally {
       _$OrdersControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -234,7 +243,7 @@ ordersList: ${ordersList},
 statusFiltered: ${statusFiltered},
 statusIndex: ${statusIndex},
 reasonIndex: ${reasonIndex},
-reasonDescription: ${reasonDescription},
+abortReason: ${abortReason},
 isMissingDescription: ${isMissingDescription}
     ''';
   }

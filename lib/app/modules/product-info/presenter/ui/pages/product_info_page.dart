@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/product-info/presenter/controllers/product_info_controller.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -11,10 +14,11 @@ import '../widgets/recommended_product_widget.dart';
 class ProductInfoPage extends StatefulWidget {
   final Product productInfo;
   final List<Product> recommendedProductList;
-  const ProductInfoPage(
-      {super.key,
-      required this.productInfo,
-      required this.recommendedProductList});
+  const ProductInfoPage({
+    super.key,
+    required this.productInfo,
+    required this.recommendedProductList,
+  });
 
   @override
   State<ProductInfoPage> createState() => _ProductInfoPageState();
@@ -27,6 +31,8 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
     super.initState();
     product = widget.productInfo;
   }
+
+  final ProductInfoController controller = Modular.get();
 
   @override
   Widget build(BuildContext context) {
@@ -143,12 +149,12 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                   width: 1, color: AppColors.mainBlueColor),
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(16),
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                   width: 1, color: AppColors.mainBlueColor),
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(16),
                             ),
                           ),
                         ),
@@ -162,22 +168,31 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
                                 color: AppColors.mainBlueColor, width: 1)),
                         child: Row(
                           children: [
-                            TextButton(
-                                onPressed: () => {},
-                                child: Text(
-                                  "-",
+                            Observer(builder: (_) {
+                              return TextButton(
+                                  onPressed: () => controller.productCount != 1
+                                      ? controller.decreaseProductCount()
+                                      : null,
+                                  child: Text(
+                                    "-",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: controller.productCount != 1
+                                            ? AppColors.mainBlueColor
+                                            : Colors.grey,
+                                        fontSize: 16),
+                                  ));
+                            }),
+                            Observer(builder: (_) {
+                              return Text(controller.productCount.toString(),
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       color: AppColors.mainBlueColor,
-                                      fontSize: 16),
-                                )),
-                            Text("1",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.mainBlueColor,
-                                    fontSize: 16)),
+                                      fontSize: 16));
+                            }),
                             TextButton(
-                                onPressed: () => {},
+                                onPressed: () =>
+                                    controller.increaseProductCount(),
                                 child: Text("+",
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,

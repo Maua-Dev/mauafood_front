@@ -57,7 +57,8 @@ void main() {
     HttpOverrides.global = null;
     when(usecase(RestaurantEnum.souza_de_abreu))
         .thenAnswer((realInvocation) async => Right(listMock));
-    controller = UserMenuRestaurantController(usecase, RestaurantEnum.souza_de_abreu);
+    controller =
+        UserMenuRestaurantController(usecase, RestaurantEnum.souza_de_abreu);
     initModules([
       UserMenuModule()
     ], replaceBinds: [
@@ -93,10 +94,6 @@ void main() {
       expect(gridView, findsNothing);
       final productCards = find.byType(ProductCardWidget);
       expect(productCards, findsNWidgets(0));
-      final floatingButton = find.byType(FloatingActionButton);
-      expect(floatingButton, findsOneWidget);
-      final iconFloatingButton = find.byIcon(Icons.mail);
-      expect(iconFloatingButton, findsOneWidget);
     });
   });
 

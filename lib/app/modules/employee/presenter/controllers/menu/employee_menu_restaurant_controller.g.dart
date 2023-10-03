@@ -46,13 +46,13 @@ mixin _$EmployeeMenuRestaurantController
       name: 'MenuRestaurantControllerBase.listAllProduct', context: context);
 
   @override
-  List<Product> get listAllProduct {
+  List<ProductModel> get listAllProduct {
     _$listAllProductAtom.reportRead();
     return super.listAllProduct;
   }
 
   @override
-  set listAllProduct(List<Product> value) {
+  set listAllProduct(List<ProductModel> value) {
     _$listAllProductAtom.reportWrite(value, super.listAllProduct, () {
       super.listAllProduct = value;
     });
@@ -63,13 +63,13 @@ mixin _$EmployeeMenuRestaurantController
       context: context);
 
   @override
-  List<Product> get listAllProductWithoutAccent {
+  List<ProductModel> get listAllProductWithoutAccent {
     _$listAllProductWithoutAccentAtom.reportRead();
     return super.listAllProductWithoutAccent;
   }
 
   @override
-  set listAllProductWithoutAccent(List<Product> value) {
+  set listAllProductWithoutAccent(List<ProductModel> value) {
     _$listAllProductWithoutAccentAtom
         .reportWrite(value, super.listAllProductWithoutAccent, () {
       super.listAllProductWithoutAccent = value;
@@ -169,6 +169,22 @@ mixin _$EmployeeMenuRestaurantController
   set productType(ProductEnum value) {
     _$productTypeAtom.reportWrite(value, super.productType, () {
       super.productType = value;
+    });
+  }
+
+  late final _$isUserMenuAtom =
+      Atom(name: 'MenuRestaurantControllerBase.isUserMenu', context: context);
+
+  @override
+  bool get isUserMenu {
+    _$isUserMenuAtom.reportRead();
+    return super.isUserMenu;
+  }
+
+  @override
+  set isUserMenu(bool value) {
+    _$isUserMenuAtom.reportWrite(value, super.isUserMenu, () {
+      super.isUserMenu = value;
     });
   }
 
@@ -307,7 +323,8 @@ isMinPriceSearch: ${isMinPriceSearch},
 rangeValues: ${rangeValues},
 search: ${search},
 index: ${index},
-productType: ${productType}
+productType: ${productType},
+isUserMenu: ${isUserMenu}
     ''';
   }
 }

@@ -7,6 +7,7 @@ import 'package:mauafood_front/app/shared/domain/repositories/menu_repository_in
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
+import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -20,7 +21,7 @@ void main() {
   var h = RestaurantEnum.hora_h;
   var biba = RestaurantEnum.souza_de_abreu;
   var listMock = [
-    Product(
+    ProductModel(
       id: '0',
       name: 'name',
       description: 'description',
@@ -51,7 +52,7 @@ void main() {
 
     test('return EmptyList if json is empty', () async {
       when(repository.getBibaProducts()).thenAnswer(
-        (realInvocation) async => const Right(<Product>[]),
+        (realInvocation) async => const Right(<ProductModel>[]),
       );
       var result = await useCase(biba);
       expect(result.fold(id, id), isA<EmptyList>());
@@ -80,7 +81,7 @@ void main() {
 
     test('return EmptyList if json is empty', () async {
       when(repository.getHoraHProducts()).thenAnswer(
-        (realInvocation) async => const Right(<Product>[]),
+        (realInvocation) async => const Right(<ProductModel>[]),
       );
       var result = await useCase(h);
       expect(result.fold(id, id), isA<EmptyList>());

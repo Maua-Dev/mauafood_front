@@ -1,13 +1,36 @@
 import 'package:flutter/material.dart';
 
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-import '../../../../user/presenter/ui/widgets/contact/contact_dialog.dart';
+import '../../../../../shared/widgets/contact/contact_dialog.dart';
 
-class FaqPage extends StatelessWidget {
+class FaqPage extends StatefulWidget {
   const FaqPage({super.key});
 
-  final String string = "Faq Page";
+  @override
+  State<FaqPage> createState() => _FaqPageState();
+}
+
+class _FaqPageState extends State<FaqPage> {
+  final _key = UniqueKey();
+  var controller = WebViewController();
+  bool isLoading = true;
+  @override
+  void initState() {
+    super.initState();
+    controller = WebViewController()
+      ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setBackgroundColor(const Color(0xFFFFFFFF))
+      ..setNavigationDelegate(
+        NavigationDelegate(onPageFinished: (url) {
+          setState(() {
+            isLoading = false;
+          });
+        }),
+      )
+      ..loadRequest(Uri.parse('https://faq.devmaua.com/mauafood/index.html'));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +48,16 @@ class FaqPage extends StatelessWidget {
             child: const Icon(Icons.mail),
           ),
         ),
-        body: Center(
-            child: TweenAnimationBuilder<int>(
-          builder: (BuildContext context, int value, Widget? child) {
-            return Text(
-              "${string.substring(0, value)}_",
-              style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-            );
-          },
-          tween: IntTween(begin: 0, end: string.length),
-          duration: const Duration(milliseconds: 1500),
-        )));
+        body: SafeArea(
+          child: Stack(
+            children: [
+              WebViewWidget(key: _key, controller: controller),
+              if (isLoading)
+                const Center(
+                  child: CircularProgressIndicator(),
+                )
+            ],
+          ),
+        ));
   }
 }

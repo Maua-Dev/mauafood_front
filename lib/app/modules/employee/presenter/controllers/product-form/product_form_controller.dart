@@ -1,6 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-form/product_form_state.dart';
@@ -147,19 +147,22 @@ abstract class ProductFormControllerBase with Store {
     changeState(ProductFormLoadingState());
     var result = await _createProduct(
         ProductModel(
-          name: productName!,
-          description: productDescription ?? "",
-          price: productPrice!,
-          prepareTime: productPrepareTime,
-          type: productType!,
-          available: productAvailability,
-          photo:
-              "https://dygzp3rn48wd5.cloudfront.net/products/icons/plates.png",
-        ),
+            name: productName!,
+            description: productDescription ?? "",
+            price: productPrice!,
+            prepareTime: productPrepareTime,
+            type: productType!,
+            available: productAvailability,
+            photo: productPhoto),
         restaurant);
     changeState(
         result.fold((l) => ProductFormFailureState(failure: l), (product) {
       _employeeMenuRestaurantController.listAllProduct.add(product);
+      _employeeMenuRestaurantController.rangeValues = RangeValues(
+          0,
+          _employeeMenuRestaurantController.listAllProduct
+              .map((e) => e.price)
+              .reduce((a, b) => a > b ? a : b));
       _employeeMenuRestaurantController.filterProduct();
       return ProductFormSuccessState(product: product);
     }));
@@ -189,8 +192,12 @@ abstract class ProductFormControllerBase with Store {
       var index =
           _employeeMenuRestaurantController.listAllProduct.indexOf(element);
       _employeeMenuRestaurantController.listAllProduct[index] = product;
+      _employeeMenuRestaurantController.rangeValues = RangeValues(
+          0,
+          _employeeMenuRestaurantController.listAllProduct
+              .map((e) => e.price)
+              .reduce((a, b) => a > b ? a : b));
       _employeeMenuRestaurantController.filterProduct();
-
       return ProductFormSuccessState(product: product);
     }));
   }

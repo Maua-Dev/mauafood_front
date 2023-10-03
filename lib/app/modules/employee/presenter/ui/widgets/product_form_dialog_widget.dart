@@ -62,8 +62,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
         productFormController
             .setProductDescription(widget.product!.description!);
       }
-
-      productFormController.setProductPhoto(widget.product!.photo);
+      if (widget.product!.photo != null) {
+        productFormController.setProductPhoto(widget.product!.photo);
+      }
     }
     return Scaffold(
       backgroundColor: Colors.transparent,
@@ -125,7 +126,8 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                         productFormController
                                                                 .uploadedMobilePhoto ==
                                                             null &&
-                                                        widget.product == null)
+                                                        widget.product?.photo ==
+                                                            null)
                                                     ? Column(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
@@ -235,6 +237,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                             children: [
                               Expanded(
                                 child: TextFieldWidget(
+                                  maxLenght: 9,
                                   title: S.of(context).priceTitle,
                                   keyboardType: TextInputType.number,
                                   onChanged: (value) => productFormController
@@ -470,6 +473,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                 context)
                                                             .showSnackBar(
                                                                 SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
                                                           backgroundColor:
                                                               AppColors
                                                                   .mainBlueColor,
@@ -486,20 +492,19 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                       if (productFormController
                                                               .state
                                                           is ProductFormFailureState) {
-                                                        var state =
-                                                            productFormController
-                                                                    .state
-                                                                as ProductFormFailureState;
                                                         ScaffoldMessenger.of(
                                                                 context)
                                                             .showSnackBar(
                                                                 SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
                                                           backgroundColor:
                                                               AppColors
                                                                   .redColor,
                                                           content: Text(
-                                                              state.failure
-                                                                  .message,
+                                                              widget
+                                                                  .snackBarText,
                                                               style: AppTextStyles
                                                                   .h2
                                                                   .copyWith(
@@ -520,6 +525,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                 context)
                                                             .showSnackBar(
                                                                 SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
                                                           backgroundColor:
                                                               AppColors
                                                                   .mainBlueColor,
@@ -544,6 +552,9 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                 context)
                                                             .showSnackBar(
                                                                 SnackBar(
+                                                          behavior:
+                                                              SnackBarBehavior
+                                                                  .floating,
                                                           backgroundColor:
                                                               AppColors
                                                                   .redColor,

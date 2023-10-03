@@ -15,7 +15,7 @@ class ProfileOptionsWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Modular.to.navigate(route),
+      onTap: () => Modular.to.pushNamed(route),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: Row(

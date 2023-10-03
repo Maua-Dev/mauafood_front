@@ -1,6 +1,5 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/domain/repositories/menu_repository_interface.dart';
@@ -11,37 +10,33 @@ import '../datasource/external/http/menu_datasource_interface.dart';
 
 class MenuRepository implements IMenuRepository {
   final IMenuDatasource datasource;
-  Map<String, dynamic> jsonAllRestaurants = {};
+  Map<String, dynamic> _jsonAllRestaurants = {};
 
-  MenuRepository({required this.datasource}) {
-    //getAllProducts();
-  }
+  MenuRepository({required this.datasource});
 
   @override
-  Future<Either<Failure, void>> getAllProducts() async {
-    if (jsonAllRestaurants.isNotEmpty) return right(null);
+  Future<Either<Failure, Map<String, dynamic>>> getAllProducts() async {
+    if (_jsonAllRestaurants.isNotEmpty) return right(_jsonAllRestaurants);
     try {
-      jsonAllRestaurants = await datasource.getAllProducts();
+      _jsonAllRestaurants = await datasource.getAllProducts();
+      return right(_jsonAllRestaurants);
     } on DioError catch (e) {
       HttpStatusCodeEnum errorType =
           getHttpStatusFunction(e.response!.statusCode);
       return left(ErrorRequest(message: errorType.errorMessage));
-      //caso erro venha do back
-      //return left(ErrorRequest(message: e.response?.data));
     }
-    return right(null);
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getBibaProducts() async {
-    List<Product>? restaurantProducts;
+  Future<Either<Failure, List<ProductModel>>> getBibaProducts() async {
+    List<ProductModel>? restaurantProducts;
     var result = await getAllProducts();
 
     return result.fold((l) {
       return left(l);
     }, (r) {
       restaurantProducts =
-          ProductModel.fromMaps(jsonAllRestaurants['SOUZA_DE_ABREU']);
+          ProductModel.fromMaps(_jsonAllRestaurants['SOUZA_DE_ABREU']);
       return restaurantProducts == null
           ? left(NoItemsFound(message: 'SOUZA_DE_ABREU'))
           : restaurantProducts!.isEmpty
@@ -51,14 +46,14 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getHoraHProducts() async {
-    List<Product>? restaurantProducts;
+  Future<Either<Failure, List<ProductModel>>> getHoraHProducts() async {
+    List<ProductModel>? restaurantProducts;
     var result = await getAllProducts();
 
     return result.fold((l) {
       return left(l);
     }, (r) {
-      restaurantProducts = ProductModel.fromMaps(jsonAllRestaurants['HORA_H']);
+      restaurantProducts = ProductModel.fromMaps(_jsonAllRestaurants['HORA_H']);
       return restaurantProducts == null
           ? left(NoItemsFound(message: 'HORA_H'))
           : restaurantProducts!.isEmpty
@@ -68,15 +63,15 @@ class MenuRepository implements IMenuRepository {
   }
 
   @override
-  Future<Either<Failure, List<Product>>> getMolezaProducts() async {
-    List<Product>? restaurantProducts;
+  Future<Either<Failure, List<ProductModel>>> getMolezaProducts() async {
+    List<ProductModel>? restaurantProducts;
     var result = await getAllProducts();
 
     return result.fold((l) {
       return left(l);
     }, (r) {
       restaurantProducts =
-          ProductModel.fromMaps(jsonAllRestaurants['CANTINA_DO_MOLEZA']);
+          ProductModel.fromMaps(_jsonAllRestaurants['CANTINA_DO_MOLEZA']);
       return restaurantProducts == null
           ? left(NoItemsFound(message: 'CANTINA_DO_MOLEZA'))
           : restaurantProducts!.isEmpty

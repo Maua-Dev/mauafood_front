@@ -3,20 +3,14 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 import '../infra/datasource/favorite_datasource.dart';
 
-class HiveDatasource implements FavoriteDatasource {
+class FavoritesHiveDatasource implements FavoriteDatasource {
   final AuthStore _authStore;
-  final Box box;
-
-  HiveDatasource._(this.box, this._authStore);
-
-  static Future<HiveDatasource> instance(AuthStore authStore) async {
-    await Hive.initFlutter();
-    var box = await Hive.openBox('favorites');
-    return HiveDatasource._(box, authStore);
-  }
+  final String _boxName = 'favorites';
+  FavoritesHiveDatasource(this._authStore);
 
   @override
   Future<void> addFavorite(String id) async {
+    final box = Hive.box(_boxName);
     final listFav =
         await box.get(_authStore.user!.username, defaultValue: <String>[]);
     listFav.add(id);
@@ -25,11 +19,13 @@ class HiveDatasource implements FavoriteDatasource {
 
   @override
   Future<List<String>> getFavorites() async {
+    final box = Hive.box(_boxName);
     return await box.get(_authStore.user!.username, defaultValue: <String>[]);
   }
 
   @override
   Future<void> removeFavorite(String id) async {
+    final box = Hive.box(_boxName);
     final listFav =
         await box.get(_authStore.user!.username, defaultValue: <String>[]);
     listFav.remove(id);

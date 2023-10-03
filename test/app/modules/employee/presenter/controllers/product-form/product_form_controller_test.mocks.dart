@@ -12,11 +12,12 @@ import 'package:mauafood_front/app/modules/employee/presenter/states/employee_me
     as _i2;
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-card/product_card_employee_state.dart'
     as _i3;
-import 'package:mauafood_front/app/shared/domain/entities/product.dart' as _i7;
 import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart'
     as _i9;
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart'
     as _i6;
+import 'package:mauafood_front/app/shared/infra/models/product_model.dart'
+    as _i7;
 import 'package:mobx/mobx.dart' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -125,13 +126,13 @@ class MockEmployeeMenuRestaurantController extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  List<_i7.Product> get listAllProduct => (super.noSuchMethod(
+  List<_i7.ProductModel> get listAllProduct => (super.noSuchMethod(
         Invocation.getter(#listAllProduct),
-        returnValue: <_i7.Product>[],
-        returnValueForMissingStub: <_i7.Product>[],
-      ) as List<_i7.Product>);
+        returnValue: <_i7.ProductModel>[],
+        returnValueForMissingStub: <_i7.ProductModel>[],
+      ) as List<_i7.ProductModel>);
   @override
-  set listAllProduct(List<_i7.Product>? value) => super.noSuchMethod(
+  set listAllProduct(List<_i7.ProductModel>? value) => super.noSuchMethod(
         Invocation.setter(
           #listAllProduct,
           value,
@@ -139,13 +140,13 @@ class MockEmployeeMenuRestaurantController extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  List<_i7.Product> get listAllProductWithoutAccent => (super.noSuchMethod(
+  List<_i7.ProductModel> get listAllProductWithoutAccent => (super.noSuchMethod(
         Invocation.getter(#listAllProductWithoutAccent),
-        returnValue: <_i7.Product>[],
-        returnValueForMissingStub: <_i7.Product>[],
-      ) as List<_i7.Product>);
+        returnValue: <_i7.ProductModel>[],
+        returnValueForMissingStub: <_i7.ProductModel>[],
+      ) as List<_i7.ProductModel>);
   @override
-  set listAllProductWithoutAccent(List<_i7.Product>? value) =>
+  set listAllProductWithoutAccent(List<_i7.ProductModel>? value) =>
       super.noSuchMethod(
         Invocation.setter(
           #listAllProductWithoutAccent,
@@ -227,6 +228,20 @@ class MockEmployeeMenuRestaurantController extends _i1.Mock
   set productType(_i9.ProductEnum? value) => super.noSuchMethod(
         Invocation.setter(
           #productType,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  bool get isUserMenu => (super.noSuchMethod(
+        Invocation.getter(#isUserMenu),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+  @override
+  set isUserMenu(bool? value) => super.noSuchMethod(
+        Invocation.setter(
+          #isUserMenu,
           value,
         ),
         returnValueForMissingStub: null,

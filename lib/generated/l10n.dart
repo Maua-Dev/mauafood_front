@@ -938,6 +938,16 @@ class S {
     );
   }
 
+  /// `Customers view`
+  String get customersView {
+    return Intl.message(
+      'Customers view',
+      name: 'customersView',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{product, select, ALL{All} SANDWICHES{Sandwiches} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}`
   String productNameSchema(Object product) {
     return Intl.select(
@@ -1088,6 +1098,16 @@ class S {
     return Intl.message(
       'Email successfully sent!',
       name: 'messageSentSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error sending email, please try again later.`
+  String get messageSentError {
+    return Intl.message(
+      'Error sending email, please try again later.',
+      name: 'messageSentError',
       desc: '',
       args: [],
     );

@@ -8,7 +8,7 @@ class ContactInitialState extends ContactState {}
 
 class ContactLoadingState extends ContactState {}
 
-class ContactLoadedSuccessState extends ContactState {}
+class ContactSuccessState extends ContactState {}
 
 class ContactErrorState extends ContactState {
   final Failure failure;

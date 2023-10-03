@@ -48,7 +48,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(10),
                         child: FittedBox(
                           fit: BoxFit.fill,
-                          child: product.photo != ''
+                          child: product.photo != '' && product.photo != null
                               ? Image.network(
                                   product.photo!,
                                   loadingBuilder: (BuildContext context,
@@ -112,7 +112,6 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                     size: 24,
                                   )),
                               Observer(builder: (_) {
-                                var state = menuController.productCardState;
                                 return IconButton(
                                     onPressed: () {
                                       showDialog(
@@ -129,28 +128,39 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                                   S.of(context).deleteTitle,
                                               onConfirmation: () {
                                                 Modular.to.pop();
-                                                menuController.deleteProduct(
-                                                    restaurant,
-                                                    product.id!,
-                                                    index);
-                                                if (state
-                                                    is ProductCardEmployeeFailureState) {
-                                                  ScaffoldMessenger.of(context)
-                                                      .showSnackBar(SnackBar(
-                                                    backgroundColor:
-                                                        AppColors.redColor,
-                                                    content: Text(
-                                                        state.failure.message,
-                                                        style: AppTextStyles.h2
-                                                            .copyWith(
-                                                                color: AppColors
-                                                                    .white)),
-                                                  ));
+                                                menuController
+                                                    .deleteProduct(restaurant,
+                                                        product.id!, index)
+                                                    .then((value) {
+                                                  var state = menuController
+                                                      .productCardState;
+                                                  if (state
+                                                      is ProductCardEmployeeFailureState) {
+                                                    ScaffoldMessenger.of(
+                                                            context)
+                                                        .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor:
+                                                          AppColors.redColor,
+                                                      content: Text(
+                                                          state.failure.message,
+                                                          style: AppTextStyles
+                                                              .h2
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .white)),
+                                                    ));
+                                                  }
                                                   if (state
                                                       is ProductCardEmployeeSuccessState) {
                                                     ScaffoldMessenger.of(
                                                             context)
                                                         .showSnackBar(SnackBar(
+                                                      behavior: SnackBarBehavior
+                                                          .floating,
+                                                      backgroundColor: AppColors
+                                                          .mainBlueColor,
                                                       content: Text(
                                                           S
                                                               .of(context)
@@ -162,7 +172,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                                                       .white)),
                                                     ));
                                                   }
-                                                }
+                                                });
                                               },
                                             );
                                           });
@@ -181,7 +191,8 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                             style: AppTextStyles.h1.copyWith(
                                 fontSize: 20, color: AppColors.mainBlueColor),
                           ),
-                          product.description == ''
+                          product.description == '' ||
+                                  product.description == null
                               ? const SizedBox(
                                   height: 16,
                                 )

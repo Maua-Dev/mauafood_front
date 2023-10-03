@@ -6,12 +6,13 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:mauafood_front/app/shared/domain/entities/product.dart' as _i6;
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart'
     as _i7;
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart'
     as _i3;
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart' as _i5;
+import 'package:mauafood_front/app/shared/infra/models/product_model.dart'
+    as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -45,7 +46,7 @@ class MockIGetRestaurantProductUsecase extends _i1.Mock
   }
 
   @override
-  _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>> call(
+  _i4.Future<_i2.Either<_i5.Failure, List<_i6.ProductModel>>> call(
           _i7.RestaurantEnum? restaurantInfo) =>
       (super.noSuchMethod(
         Invocation.method(
@@ -53,13 +54,13 @@ class MockIGetRestaurantProductUsecase extends _i1.Mock
           [restaurantInfo],
         ),
         returnValue:
-            _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>.value(
-                _FakeEither_0<_i5.Failure, List<_i6.Product>>(
+            _i4.Future<_i2.Either<_i5.Failure, List<_i6.ProductModel>>>.value(
+                _FakeEither_0<_i5.Failure, List<_i6.ProductModel>>(
           this,
           Invocation.method(
             #call,
             [restaurantInfo],
           ),
         )),
-      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.Product>>>);
+      ) as _i4.Future<_i2.Either<_i5.Failure, List<_i6.ProductModel>>>);
 }

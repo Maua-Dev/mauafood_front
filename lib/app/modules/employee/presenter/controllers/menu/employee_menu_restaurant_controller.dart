@@ -4,11 +4,11 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/product-card/product_card_employee_state.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/string_helper.dart';
+import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 import 'package:mobx/mobx.dart';
 
 import '../../../../../shared/domain/enums/product_enum.dart';
 import '../../../../../shared/domain/enums/restaurant_enum.dart';
-import '../../../../../shared/domain/entities/product.dart';
 import '../../../../../shared/domain/usecases/get_restaurant_product_usecase.dart';
 import '../../states/employee_menu_state.dart';
 
@@ -30,7 +30,7 @@ abstract class MenuRestaurantControllerBase with Store {
 
   void logout() async {
     await _authStore.signOut();
-    Modular.to.navigate('/landing/');
+    Modular.to.navigate('/login/');
   }
 
   @observable
@@ -40,10 +40,10 @@ abstract class MenuRestaurantControllerBase with Store {
   ProductCardEmployeeState productCardState = ProductCardEmployeeInitialState();
 
   @observable
-  List<Product> listAllProduct = ObservableList();
+  List<ProductModel> listAllProduct = ObservableList();
 
   @observable
-  List<Product> listAllProductWithoutAccent = ObservableList();
+  List<ProductModel> listAllProductWithoutAccent = ObservableList();
 
   @observable
   bool isMaxPriceSearch = false;
@@ -62,6 +62,9 @@ abstract class MenuRestaurantControllerBase with Store {
 
   @observable
   ProductEnum productType = ProductEnum.ALL;
+
+  @observable
+  bool isUserMenu = false;
 
   @action
   void setIsMaxPriceSearch(bool value) => isMaxPriceSearch = value;

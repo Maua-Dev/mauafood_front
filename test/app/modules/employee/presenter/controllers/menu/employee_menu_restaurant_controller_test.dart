@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/employee_menu_state.dart';
-import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/delete_product_usecase.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
@@ -21,7 +20,7 @@ class GetRestaurantProductMockSuccess extends Mock
     implements IGetRestaurantProductUsecase {
   @GenerateNiceMocks([MockSpec<AuthStore>()])
   @override
-  Future<Either<Failure, List<Product>>> call(
+  Future<Either<Failure, List<ProductModel>>> call(
       RestaurantEnum restaurantInfo) async {
     ProductModel testMock = ProductModel(
       id: '0',
@@ -53,7 +52,7 @@ class GetRestaurantProductMockSuccess extends Mock
 class GetRestaurantProductMockFailed extends Mock
     implements IGetRestaurantProductUsecase {
   @override
-  Future<Either<Failure, List<Product>>> call(
+  Future<Either<Failure, List<ProductModel>>> call(
       RestaurantEnum restaurantInfo) async {
     return left(Failure(message: ''));
   }

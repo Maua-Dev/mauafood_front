@@ -49,7 +49,8 @@ class _FavoritesPageState extends State<FavoritesPage> {
                 baseColor: Colors.grey.shade300,
                 highlightColor: Colors.white,
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,7 +76,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                           ),
                         ],
                       ),
-                      LikeButton()
+                      const LikeButton()
                     ],
                   ),
                 ),

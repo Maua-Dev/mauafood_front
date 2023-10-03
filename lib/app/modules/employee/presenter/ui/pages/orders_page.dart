@@ -325,21 +325,10 @@ class OrdersPage extends StatelessWidget {
                                                                                               style: AppTextStyles.h1.copyWith(fontSize: 16),
                                                                                             ),
                                                                                           ),
-                                                                                          DropdownMenuItem(
-                                                                                            value: StatusEnum.REFUSED,
-                                                                                            child: Text(
-                                                                                              StatusEnum.REFUSED.name,
-                                                                                              style: AppTextStyles.h1.copyWith(fontSize: 16),
-                                                                                            ),
-                                                                                          ),
                                                                                         ],
                                                                                         onChanged: (value) {
-                                                                                          if (value != StatusEnum.REFUSED) {
-                                                                                            var orderListIndex = store.ordersList.indexOf(state.ordersList[index]);
-                                                                                            store.changeOrderStatus(orderListIndex, value, context);
-                                                                                          } else {
-                                                                                            showReasonsDialog(context, state, index);
-                                                                                          }
+                                                                                          var orderListIndex = store.ordersList.indexOf(state.ordersList[index]);
+                                                                                          store.changeOrderStatus(orderListIndex, value, context);
                                                                                         }),
                                                                                   ),
                                                                                 ),

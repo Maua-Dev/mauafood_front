@@ -102,6 +102,16 @@ class MessageLookup extends MessageLookupByLibrary {
             'other': '',
           })}";
 
+  static String m12(status) => "${Intl.select(status, {
+            'PENDING': 'Pending',
+            'PREPARING': 'Preparing',
+            'REFUSED': 'Refused',
+            'READY': 'Ready',
+            'CANCELED': 'Canceled',
+            'ALL': 'All',
+            'other': 'Others',
+          })}";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appAcceptTerms": MessageLookupByLibrary.simpleMessage(
@@ -262,6 +272,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendCodeEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "We sent a confirmation code to your email, enter it in the field below."),
         "sendTitle": MessageLookupByLibrary.simpleMessage("Send"),
+        "statusNameSchema": m12,
         "successChangePassword": MessageLookupByLibrary.simpleMessage(
             "Password changed successfully!"),
         "successConfirmEmail":

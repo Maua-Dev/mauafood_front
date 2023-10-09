@@ -161,74 +161,86 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
                           ),
                         ),
                       ),
-                      Container(
-                        height: 50,
-                        width: 360,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(17),
-                            border: Border.all(
-                                color: AppColors.mainBlueColor, width: 1)),
-                        child: Row(
-                          children: [
-                            Observer(builder: (_) {
-                              return TextButton(
-                                  onPressed: () => controller.productCount != 1
-                                      ? controller.decreaseProductCount()
-                                      : null,
-                                  child: Text(
-                                    "-",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: controller.productCount != 1
-                                            ? AppColors.mainBlueColor
-                                            : Colors.grey,
-                                        fontSize: 16),
-                                  ));
-                            }),
-                            Observer(builder: (_) {
-                              return Text(controller.productCount.toString(),
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                        child: Expanded(
+                          child: Flexible(
+                            child: Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(17),
+                                  border: Border.all(
                                       color: AppColors.mainBlueColor,
-                                      fontSize: 16));
-                            }),
-                            TextButton(
-                                onPressed: () =>
-                                    controller.increaseProductCount(),
-                                child: Text("+",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.mainBlueColor,
-                                        fontSize: 16))),
-                            const Flexible(child: SizedBox.expand()),
-                            GestureDetector(
-                              onTap: () => {
-                                Modular.to.navigate("/landing/cart/",
-                                    arguments: [
-                                      controller.product,
-                                      controller.productPrice
-                                    ])
-                              },
-                              child: Container(
-                                height: 60,
-                                width: 176,
-                                decoration: BoxDecoration(
-                                    color: AppColors.mainBlueColor,
-                                    borderRadius: BorderRadius.circular(16),
-                                    border: Border.all(
-                                      color: AppColors.mainBlueColor,
-                                      width: 1,
-                                    )),
-                                child: Center(
-                                    child: Text(
-                                  "Adicionar ao Carrinho",
-                                  style: TextStyle(
-                                      color: AppColors.white,
-                                      fontWeight: FontWeight.bold),
-                                )),
+                                      width: 1)),
+                              child: Row(
+                                children: [
+                                  Observer(builder: (_) {
+                                    return TextButton(
+                                        onPressed: () =>
+                                            controller.productCount != 1
+                                                ? controller
+                                                    .decreaseProductCount()
+                                                : null,
+                                        child: Text(
+                                          "-",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color:
+                                                  controller.productCount != 1
+                                                      ? AppColors.mainBlueColor
+                                                      : Colors.grey,
+                                              fontSize: 16),
+                                        ));
+                                  }),
+                                  Observer(builder: (_) {
+                                    return Text(
+                                        controller.productCount.toString(),
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.mainBlueColor,
+                                            fontSize: 16));
+                                  }),
+                                  TextButton(
+                                      onPressed: () =>
+                                          controller.increaseProductCount(),
+                                      child: Text("+",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.mainBlueColor,
+                                              fontSize: 16))),
+                                  const Flexible(child: SizedBox.expand()),
+                                  GestureDetector(
+                                    onTap: () => {
+                                      Modular.to.navigate("/landing/cart/",
+                                          arguments: [
+                                            controller.product,
+                                            controller.productPrice
+                                          ])
+                                    },
+                                    child: Container(
+                                      height: 60,
+                                      width: 176,
+                                      decoration: BoxDecoration(
+                                          color: AppColors.mainBlueColor,
+                                          borderRadius:
+                                              BorderRadius.circular(16),
+                                          border: Border.all(
+                                            color: AppColors.mainBlueColor,
+                                            width: 1,
+                                          )),
+                                      child: Center(
+                                          child: Text(
+                                        "Adicionar ao Carrinho",
+                                        style: TextStyle(
+                                            color: AppColors.white,
+                                            fontWeight: FontWeight.bold),
+                                      )),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          ],
+                          ),
                         ),
                       ),
                       Divider(

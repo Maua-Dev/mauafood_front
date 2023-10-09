@@ -25,6 +25,22 @@ mixin _$ProductInfoController on ProductInfoControllerBase, Store {
     });
   }
 
+  late final _$observationAtom =
+      Atom(name: 'ProductInfoControllerBase.observation', context: context);
+
+  @override
+  String get observation {
+    _$observationAtom.reportRead();
+    return super.observation;
+  }
+
+  @override
+  set observation(String value) {
+    _$observationAtom.reportWrite(value, super.observation, () {
+      super.observation = value;
+    });
+  }
+
   late final _$ProductInfoControllerBaseActionController =
       ActionController(name: 'ProductInfoControllerBase', context: context);
 
@@ -51,9 +67,21 @@ mixin _$ProductInfoController on ProductInfoControllerBase, Store {
   }
 
   @override
+  void setProductObservation(dynamic text) {
+    final _$actionInfo = _$ProductInfoControllerBaseActionController
+        .startAction(name: 'ProductInfoControllerBase.setProductObservation');
+    try {
+      return super.setProductObservation(text);
+    } finally {
+      _$ProductInfoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-productCount: ${productCount}
+productCount: ${productCount},
+observation: ${observation}
     ''';
   }
 }

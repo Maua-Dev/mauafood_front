@@ -138,6 +138,7 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: TextField(
+                          onChanged: controller.setProductObservation,
                           style: const TextStyle(height: 1, fontSize: 16),
                           maxLines: 3,
                           minLines: 1,
@@ -163,7 +164,7 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
                         height: 50,
                         width: 360,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: BorderRadius.circular(17),
                             border: Border.all(
                                 color: AppColors.mainBlueColor, width: 1)),
                         child: Row(
@@ -201,17 +202,17 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
                             const Flexible(child: SizedBox.expand()),
                             Container(
                               height: 60,
-                              width: 160,
+                              width: 176,
                               decoration: BoxDecoration(
                                   color: AppColors.mainBlueColor,
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(16),
                                   border: Border.all(
                                     color: AppColors.mainBlueColor,
                                     width: 1,
                                   )),
                               child: Center(
                                   child: Text(
-                                "Adicionar Pedido",
+                                "Adicionar ao Carrinho",
                                 style: TextStyle(
                                     color: AppColors.white,
                                     fontWeight: FontWeight.bold),

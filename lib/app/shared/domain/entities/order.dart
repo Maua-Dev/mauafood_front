@@ -30,16 +30,4 @@ class OrderProduct {
     required this.quantity,
     required this.observation,
   });
-
-  factory OrderProduct.fromMap(Map<String, dynamic> json) {
-    return OrderProduct(
-        id: json['product_id'],
-        name: json['product_name'],
-        quantity: json['quantity'],
-        observation: json['observation']);
-  }
-
-  static List<OrderProduct> fromMaps(List array) {
-    return array.map((e) => OrderProduct.fromMap(e)).toList();
-  }
 }

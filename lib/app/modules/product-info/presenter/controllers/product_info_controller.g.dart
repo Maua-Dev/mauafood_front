@@ -67,7 +67,7 @@ mixin _$ProductInfoController on ProductInfoControllerBase, Store {
   }
 
   @override
-  void setProductObservation(dynamic text) {
+  void setProductObservation(String text) {
     final _$actionInfo = _$ProductInfoControllerBaseActionController
         .startAction(name: 'ProductInfoControllerBase.setProductObservation');
     try {

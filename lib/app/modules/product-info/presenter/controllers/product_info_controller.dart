@@ -1,5 +1,6 @@
 import 'package:mobx/mobx.dart';
 
+import '../../../../shared/domain/entities/product.dart';
 import '../../../../shared/infra/models/order_model.dart';
 
 part 'product_info_controller.g.dart';
@@ -33,5 +34,13 @@ abstract class ProductInfoControllerBase with Store {
   @action
   void setProductObservation(String text) {
     product = product.copyWith(observation: text);
+  }
+
+  @action
+  void setProduct(Product pageProduct) {
+    product = product.copyWith(
+      name: pageProduct.name,
+      id: pageProduct.id,
+    );
   }
 }

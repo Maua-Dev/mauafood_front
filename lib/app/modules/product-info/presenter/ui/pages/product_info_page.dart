@@ -30,6 +30,7 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
   void initState() {
     super.initState();
     product = widget.productInfo;
+    controller.setProduct(product);
   }
 
   final ProductInfoController controller = Modular.get();
@@ -200,23 +201,29 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
                                         color: AppColors.mainBlueColor,
                                         fontSize: 16))),
                             const Flexible(child: SizedBox.expand()),
-                            Container(
-                              height: 60,
-                              width: 176,
-                              decoration: BoxDecoration(
-                                  color: AppColors.mainBlueColor,
-                                  borderRadius: BorderRadius.circular(16),
-                                  border: Border.all(
+                            GestureDetector(
+                              onTap: () => {
+                                Modular.to.navigate("/landing/cart/",
+                                    arguments: controller.product)
+                              },
+                              child: Container(
+                                height: 60,
+                                width: 176,
+                                decoration: BoxDecoration(
                                     color: AppColors.mainBlueColor,
-                                    width: 1,
-                                  )),
-                              child: Center(
-                                  child: Text(
-                                "Adicionar ao Carrinho",
-                                style: TextStyle(
-                                    color: AppColors.white,
-                                    fontWeight: FontWeight.bold),
-                              )),
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(
+                                      color: AppColors.mainBlueColor,
+                                      width: 1,
+                                    )),
+                                child: Center(
+                                    child: Text(
+                                  "Adicionar ao Carrinho",
+                                  style: TextStyle(
+                                      color: AppColors.white,
+                                      fontWeight: FontWeight.bold),
+                                )),
+                              ),
                             ),
                           ],
                         ),

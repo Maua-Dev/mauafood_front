@@ -43,7 +43,8 @@ class LandingModule extends Module {
           ModuleRoute('/restaurants/', module: UserMenuModule()),
           ChildRoute('/cart/',
               child: (_, args) => CartPage(
-                    product: args.data,
+                    product: args.data[0],
+                    productPrice: args.data[1],
                   )),
           ChildRoute('/faq/', child: (_, args) => const FaqPage()),
           ModuleRoute('/profile/',

@@ -204,7 +204,10 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
                             GestureDetector(
                               onTap: () => {
                                 Modular.to.navigate("/landing/cart/",
-                                    arguments: controller.product)
+                                    arguments: [
+                                      controller.product,
+                                      controller.productPrice
+                                    ])
                               },
                               child: Container(
                                 height: 60,

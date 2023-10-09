@@ -12,6 +12,8 @@ abstract class ProductInfoControllerBase with Store {
   @observable
   var productCount = 1;
 
+  double productPrice = 0;
+
   @observable
   String observation = '';
 
@@ -42,5 +44,6 @@ abstract class ProductInfoControllerBase with Store {
       name: pageProduct.name,
       id: pageProduct.id,
     );
+    productPrice = pageProduct.price;
   }
 }

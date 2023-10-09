@@ -5,9 +5,10 @@ import '../../../../../shared/themes/app_text_styles.dart';
 
 // ignore: must_be_immutable
 class CartPage extends StatelessWidget {
-  CartPage({super.key, required this.product});
+  CartPage({super.key, required this.product, required this.productPrice});
 
   OrderProductModel product;
+  double productPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +30,7 @@ class CartPage extends StatelessWidget {
         Positioned(
             top: 60,
             child: Text(
-                "Produto: ${product.name} \n Quantidade: ${product.quantity} \n ${product.observation}"))
+                "Produto: ${product.name} \n Quantidade: ${product.quantity} \n ${product.observation} Price: ${productPrice * product.quantity}"))
       ],
     );
   }

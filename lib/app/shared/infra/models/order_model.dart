@@ -10,7 +10,6 @@ class OrderModel extends Order {
       required super.totalPrice,
       required super.userName,
       required super.userId,
-      super.observation,
       required super.creationTime,
       super.abortedReason,
       required this.products});
@@ -20,7 +19,6 @@ class OrderModel extends Order {
         id: json['order_id'],
         creationTime: json['creation_time_milliseconds'],
         status: StatusEnumExtension.stringToEnumMap(json['status']),
-        observation: json['observation'],
         totalPrice: json['total_price'],
         abortedReason: json['aborted_reason'],
         userId: json['user_id'],
@@ -38,13 +36,15 @@ class OrderProductModel extends OrderProduct {
     required super.id,
     required super.name,
     required super.quantity,
+    required super.observation,
   });
 
   factory OrderProductModel.fromMap(Map<String, dynamic> json) {
     return OrderProductModel(
         id: json['product_id'],
         name: json['product_name'],
-        quantity: json['quantity']);
+        quantity: json['quantity'],
+        observation: json["observation"]);
   }
 
   static List<OrderProductModel> fromMaps(List array) {

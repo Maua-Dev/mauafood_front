@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:mauafood_front/app/modules/user/domain/entities/user.dart';
-import 'package:mauafood_front/app/modules/user/domain/errors/errors.dart';
+import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/modules/user/domain/repositories/user_repository.dart';
 
 abstract class UpdatePhoto {

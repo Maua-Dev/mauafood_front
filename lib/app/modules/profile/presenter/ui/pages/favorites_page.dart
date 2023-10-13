@@ -1,94 +1,159 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:like_button/like_button.dart';
+
+import 'package:mauafood_front/app/modules/profile/presenter/controllers/favorites_controller.dart';
+import 'package:mauafood_front/app/shared/helpers/services/snackbar/global_snackbar.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
+import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
+import 'package:mauafood_front/app/shared/widgets/like_button_custom.dart';
+import 'package:shimmer/shimmer.dart';
 
-class FavoritesPage extends StatelessWidget {
+import '../../states/favorite_state.dart';
+
+class FavoritesPage extends StatefulWidget {
   const FavoritesPage({super.key});
 
   @override
+  State<FavoritesPage> createState() => _FavoritesPageState();
+}
+
+class _FavoritesPageState extends State<FavoritesPage> {
+  final FavoritesController store = Modular.get();
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: Size.fromHeight(ScreenHelper.height(context) * 0.15),
-          child: SafeArea(
-            child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(vertical: 24.0, horizontal: 8),
-              child: Row(
-                children: [
-                  BackButton(
-                    onPressed: () => Modular.to.navigate('/landing/profile/'),
-                  ),
-                  SizedBox(
-                    width: ScreenHelper.width(context) * 0.24,
-                  ),
-                  const SizedBox(
-                    child: Text(
-                      "Favoritos",
-                      style: TextStyle(
-                          fontSize: 28,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )),
+      appBar: AppBar(
+        leading: BackButton(
+          color: AppColors.mainBlueColor,
+        ),
+        title: Text('Favoritos',
+            style: AppTextStyles.h1.copyWith(color: AppColors.mainBlueColor)),
+        backgroundColor: AppColors.backgroundColor2,
+        elevation: 0,
+      ),
       backgroundColor: AppColors.backgroundColor2,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
-        child: ListView.separated(
+      body: Observer(builder: (context) {
+        if (store.state is LoadingFavoriteState) {
+          return ListView.builder(
+            padding: const EdgeInsets.symmetric(
+              vertical: 10,
+              horizontal: 10,
+            ),
+            itemCount: 15,
+            itemBuilder: (BuildContext context, int index) {
+              return Shimmer.fromColors(
+                baseColor: Colors.grey.shade300,
+                highlightColor: Colors.white,
+                child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Container(
+                        height: 80,
+                        width: 80,
+                        color: Colors.grey,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            height: 20,
+                            width: 200,
+                            color: Colors.grey,
+                          ),
+                          const SizedBox(height: 5.0),
+                          Container(
+                            height: 20,
+                            width: 200,
+                            color: Colors.grey,
+                          ),
+                        ],
+                      ),
+                      LikeButton()
+                    ],
+                  ),
+                ),
+              );
+            },
+          );
+        }
+        if (store.state is ErrorFavoriteState) {
+          GlobalSnackBar.error((store.state as ErrorFavoriteState).message);
+        }
+        final list = (store.state as SuccessFavoriteState).products;
+        return ListView.separated(
+          itemCount: list.length,
           itemBuilder: (BuildContext context, int index) {
+            final item = list[index];
             return SizedBox(
-                height: 120,
+                height: 100,
                 child: Padding(
                   padding: const EdgeInsets.all(12.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Container(
-                        height: 100,
-                        width: 100,
-                        decoration: const BoxDecoration(
-                            borderRadius: BorderRadius.all(Radius.circular(8)),
-                            color: Colors.black),
+                      CachedNetworkImage(
+                        imageUrl: item.photo ?? '',
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
                       ),
                       SizedBox(
                         width: ScreenHelper.width(context) * 0.45,
-                        child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Macarronada",
-                              style: TextStyle(
+                              item.name,
+                              style: const TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
                             Text(
-                              "Restaurante do H",
-                              style: TextStyle(fontSize: 16),
+                              item.restaurant,
+                              style: const TextStyle(fontSize: 16),
                             ),
                           ],
                         ),
                       ),
-                      Icon(
-                        FontAwesomeIcons.solidHeart,
-                        size: 32,
-                        color: AppColors.mainBlueColor,
-                      ),
+                      LikeButtonCustom(
+                        isFavorite: true,
+                        onFavoritePressed: (value) async {
+                          final res = await showDialog<bool>(
+                            context: context,
+                            builder: (context) => AlertDialog.adaptive(
+                                title:
+                                    const Text('Deseja remover dos favoritos?'),
+                                actions: [
+                                  TextButton(
+                                      onPressed: () => Modular.to.pop(false),
+                                      child: const Text('Não')),
+                                  TextButton(
+                                      onPressed: () => Modular.to.pop(true),
+                                      child: const Text('Sim'))
+                                ]),
+                          );
+
+                          if (res ?? false) {
+                            return store.removeFavorite(item.id!);
+                          }
+                          return true;
+                        },
+                      )
                     ],
                   ),
                 ));
           },
-          itemCount: 15,
           separatorBuilder: (BuildContext context, int index) {
             return const Divider();
           },
-        ),
-      ),
+        );
+      }),
     );
   }
 }

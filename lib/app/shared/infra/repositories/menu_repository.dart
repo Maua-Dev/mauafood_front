@@ -10,25 +10,21 @@ import '../datasource/external/http/menu_datasource_interface.dart';
 
 class MenuRepository implements IMenuRepository {
   final IMenuDatasource datasource;
-  Map<String, dynamic> jsonAllRestaurants = {};
+  Map<String, dynamic> _jsonAllRestaurants = {};
 
-  MenuRepository({required this.datasource}) {
-    //getAllProducts();
-  }
+  MenuRepository({required this.datasource});
 
   @override
-  Future<Either<Failure, void>> getAllProducts() async {
-    if (jsonAllRestaurants.isNotEmpty) return right(null);
+  Future<Either<Failure, Map<String, dynamic>>> getAllProducts() async {
+    if (_jsonAllRestaurants.isNotEmpty) return right(_jsonAllRestaurants);
     try {
-      jsonAllRestaurants = await datasource.getAllProducts();
+      _jsonAllRestaurants = await datasource.getAllProducts();
+      return right(_jsonAllRestaurants);
     } on DioError catch (e) {
       HttpStatusCodeEnum errorType =
           getHttpStatusFunction(e.response!.statusCode);
       return left(ErrorRequest(message: errorType.errorMessage));
-      //caso erro venha do back
-      //return left(ErrorRequest(message: e.response?.data));
     }
-    return right(null);
   }
 
   @override
@@ -40,7 +36,7 @@ class MenuRepository implements IMenuRepository {
       return left(l);
     }, (r) {
       restaurantProducts =
-          ProductModel.fromMaps(jsonAllRestaurants['SOUZA_DE_ABREU']);
+          ProductModel.fromMaps(_jsonAllRestaurants['SOUZA_DE_ABREU']);
       return restaurantProducts == null
           ? left(NoItemsFound(message: 'SOUZA_DE_ABREU'))
           : restaurantProducts!.isEmpty
@@ -57,7 +53,7 @@ class MenuRepository implements IMenuRepository {
     return result.fold((l) {
       return left(l);
     }, (r) {
-      restaurantProducts = ProductModel.fromMaps(jsonAllRestaurants['HORA_H']);
+      restaurantProducts = ProductModel.fromMaps(_jsonAllRestaurants['HORA_H']);
       return restaurantProducts == null
           ? left(NoItemsFound(message: 'HORA_H'))
           : restaurantProducts!.isEmpty
@@ -75,7 +71,7 @@ class MenuRepository implements IMenuRepository {
       return left(l);
     }, (r) {
       restaurantProducts =
-          ProductModel.fromMaps(jsonAllRestaurants['CANTINA_DO_MOLEZA']);
+          ProductModel.fromMaps(_jsonAllRestaurants['CANTINA_DO_MOLEZA']);
       return restaurantProducts == null
           ? left(NoItemsFound(message: 'CANTINA_DO_MOLEZA'))
           : restaurantProducts!.isEmpty

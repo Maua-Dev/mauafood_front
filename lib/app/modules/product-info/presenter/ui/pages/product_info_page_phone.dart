@@ -214,7 +214,8 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                                       Modular.to.navigate("/landing/cart/",
                                           arguments: [
                                             controller.product,
-                                            controller.productPrice
+                                            controller.productPrice,
+                                            product.photo
                                           ])
                                     },
                                     child: Container(

@@ -168,7 +168,7 @@ class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
                                 ),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 20,
                             ),
                             SizedBox(
@@ -223,7 +223,8 @@ class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
                                         Modular.to.navigate("/landing/cart/",
                                             arguments: [
                                               controller.product,
-                                              controller.productPrice
+                                              controller.productPrice,
+                                              product.photo
                                             ])
                                       },
                                       child: SizedBox(

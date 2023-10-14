@@ -45,6 +45,7 @@ class LandingModule extends Module {
               child: (_, args) => CartPage(
                     product: args.data[0],
                     productPrice: args.data[1],
+                    productPhoto: args.data[2],
                   )),
           ChildRoute('/faq/', child: (_, args) => const FaqPage()),
           ModuleRoute('/profile/',

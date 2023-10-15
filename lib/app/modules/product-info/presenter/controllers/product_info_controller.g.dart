@@ -9,35 +9,19 @@ part of 'product_info_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ProductInfoController on ProductInfoControllerBase, Store {
-  late final _$productCountAtom =
-      Atom(name: 'ProductInfoControllerBase.productCount', context: context);
+  late final _$productAtom =
+      Atom(name: 'ProductInfoControllerBase.product', context: context);
 
   @override
-  int get productCount {
-    _$productCountAtom.reportRead();
-    return super.productCount;
+  CartProductModel get product {
+    _$productAtom.reportRead();
+    return super.product;
   }
 
   @override
-  set productCount(int value) {
-    _$productCountAtom.reportWrite(value, super.productCount, () {
-      super.productCount = value;
-    });
-  }
-
-  late final _$observationAtom =
-      Atom(name: 'ProductInfoControllerBase.observation', context: context);
-
-  @override
-  String get observation {
-    _$observationAtom.reportRead();
-    return super.observation;
-  }
-
-  @override
-  set observation(String value) {
-    _$observationAtom.reportWrite(value, super.observation, () {
-      super.observation = value;
+  set product(CartProductModel value) {
+    _$productAtom.reportWrite(value, super.product, () {
+      super.product = value;
     });
   }
 
@@ -78,10 +62,20 @@ mixin _$ProductInfoController on ProductInfoControllerBase, Store {
   }
 
   @override
+  void setProduct(Product pageProduct) {
+    final _$actionInfo = _$ProductInfoControllerBaseActionController
+        .startAction(name: 'ProductInfoControllerBase.setProduct');
+    try {
+      return super.setProduct(pageProduct);
+    } finally {
+      _$ProductInfoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-productCount: ${productCount},
-observation: ${observation}
+product: ${product}
     ''';
   }
 }

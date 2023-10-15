@@ -177,7 +177,7 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                                   Observer(builder: (_) {
                                     return TextButton(
                                         onPressed: () =>
-                                            controller.productCount != 1
+                                            controller.product.quantity != 1
                                                 ? controller
                                                     .decreaseProductCount()
                                                 : null,
@@ -186,7 +186,8 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color:
-                                                  controller.productCount != 1
+                                                  controller.product.quantity !=
+                                                          1
                                                       ? AppColors.mainBlueColor
                                                       : Colors.grey,
                                               fontSize: 16),
@@ -194,7 +195,7 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                                   }),
                                   Observer(builder: (_) {
                                     return Text(
-                                        controller.productCount.toString(),
+                                        controller.product.quantity.toString(),
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: AppColors.mainBlueColor,
@@ -214,8 +215,6 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                                       Modular.to.navigate("/landing/cart/",
                                           arguments: [
                                             controller.product,
-                                            controller.productPrice,
-                                            product.photo
                                           ])
                                     },
                                     child: Container(

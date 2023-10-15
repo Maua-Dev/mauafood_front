@@ -3,20 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import '../../../../../../generated/l10n.dart';
-import '../../../../../shared/infra/models/order_model.dart';
+import '../../../../../shared/infra/models/cart_product_model.dart';
 
 // ignore: must_be_immutable
 class ProductCardCartWidget extends StatefulWidget {
-  OrderProductModel product;
+  CartProductModel product;
   final Function()? onAdd;
   final Function()? onSubtract;
-  final String productPhoto;
-  double productPrice;
   ProductCardCartWidget({
     Key? key,
     required this.product,
-    required this.productPhoto,
-    required this.productPrice,
     required this.onAdd,
     required this.onSubtract,
   }) : super(key: key);
@@ -43,7 +39,7 @@ class _ProductCardCartWidgetState extends State<ProductCardCartWidget> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CachedNetworkImage(
-                      imageUrl: widget.productPhoto,
+                      imageUrl: widget.product.photo,
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
                     ),
@@ -117,7 +113,7 @@ class _ProductCardCartWidgetState extends State<ProductCardCartWidget> {
                               Text(
                                 S
                                     .of(context)
-                                    .productPriceCurrency(widget.productPrice),
+                                    .productPriceCurrency(widget.product.price),
                                 overflow: TextOverflow.ellipsis,
                                 style: AppTextStyles.h2Highlight.copyWith(
                                     fontWeight: FontWeight.bold,

@@ -3,6 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/employee/employee_menu_module.dart';
 import 'package:mauafood_front/app/modules/landing/presenter/controllers/landing_controller.dart';
 import 'package:mauafood_front/app/modules/landing/presenter/ui/pages/landing_page.dart';
+import 'package:mauafood_front/app/modules/user/presenter/controllers/cart/cart_controller.dart';
 import 'package:mauafood_front/app/modules/user/presenter/ui/pages/cart_page.dart';
 
 import 'package:mauafood_front/app/modules/user/user_menu_module.dart';
@@ -25,6 +26,7 @@ class LandingModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => LandingController(i())),
+    Bind<CartController>((i) => CartController()),
     Bind<ISendEmail>((i) => SendEmail(i())),
     Bind<IUserSendEmail>((i) => UserSendEmail(i())),
     Bind<IContactRepository>((i) => ContactRepository(datasource: i())),
@@ -44,8 +46,6 @@ class LandingModule extends Module {
           ChildRoute('/cart/',
               child: (_, args) => CartPage(
                     product: args.data[0],
-                    productPrice: args.data[1],
-                    productPhoto: args.data[2],
                   )),
           ChildRoute('/faq/', child: (_, args) => const FaqPage()),
           ModuleRoute('/profile/',

@@ -185,7 +185,7 @@ class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
                                     Observer(builder: (_) {
                                       return TextButton(
                                           onPressed: () =>
-                                              controller.productCount != 1
+                                              controller.product.quantity != 1
                                                   ? controller
                                                       .decreaseProductCount()
                                                   : null,
@@ -193,17 +193,18 @@ class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
                                             "-",
                                             style: TextStyle(
                                                 fontWeight: FontWeight.bold,
-                                                color:
-                                                    controller.productCount != 1
-                                                        ? AppColors
-                                                            .mainBlueColor
-                                                        : Colors.grey,
+                                                color: controller
+                                                            .product.quantity !=
+                                                        1
+                                                    ? AppColors.mainBlueColor
+                                                    : Colors.grey,
                                                 fontSize: 16),
                                           ));
                                     }),
                                     Observer(builder: (_) {
                                       return Text(
-                                          controller.productCount.toString(),
+                                          controller.product.quantity
+                                              .toString(),
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
                                               color: AppColors.mainBlueColor,
@@ -223,8 +224,6 @@ class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
                                         Modular.to.navigate("/landing/cart/",
                                             arguments: [
                                               controller.product,
-                                              controller.productPrice,
-                                              product.photo
                                             ])
                                       },
                                       child: SizedBox(

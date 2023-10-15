@@ -1,36 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/product_card_cart_widget.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
-import 'package:mauafood_front/app/shared/infra/models/order_model.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/helpers/services/s3/assets_s3.dart';
+import '../../../../../shared/infra/models/cart_product_model.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
+import '../../controllers/cart/cart_controller.dart';
 
 // ignore: must_be_immutable
 class CartPage extends StatelessWidget {
-  CartPage(
-      {super.key,
-      required this.product,
-      required this.productPrice,
-      required this.productPhoto});
+  CartPage({
+    super.key,
+    required this.product,
+  });
 
-  OrderProductModel product;
-  double productPrice;
-  String productPhoto;
+  CartProductModel product;
   String restaurantName = 'Nome do Restaurante';
 
   bool first = false;
 
+  final CartController controller = Modular.get();
+
   @override
   Widget build(BuildContext context) {
-    if (product == null) {
-      product = OrderProductModel.newInstance();
-      productPrice = 0;
-    }
-
     return SafeArea(
       child: Scaffold(
+          appBar: AppBar(
+            title: Padding(
+              padding: const EdgeInsets.all(80.0),
+              child: Text(
+                S.of(context).cart,
+                style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            backgroundColor: AppColors.backgroundColor,
+            elevation: 0,
+            leading: BackButton(
+              color: AppColors.mainBlueColor,
+            ),
+          ),
           body: first == true
               ? Stack(
                   alignment: Alignment.center,
@@ -50,7 +63,7 @@ class CartPage extends StatelessWidget {
                   ],
                 )
               : Padding(
-                  padding: const EdgeInsets.only(top: 80.0),
+                  padding: const EdgeInsets.only(top: 48.0),
                   child: Column(
                     children: [
                       Container(
@@ -63,8 +76,7 @@ class CartPage extends StatelessWidget {
                               color: Colors.grey.withOpacity(0.3),
                               spreadRadius: 3,
                               blurRadius: 5,
-                              offset: const Offset(
-                                  0, -3), // changes position of shadow
+                              offset: const Offset(0, -3),
                             ),
                           ],
                         ),
@@ -72,26 +84,26 @@ class CartPage extends StatelessWidget {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 24.0),
-                              child: Text(
-                                restaurantName,
-                                style: const TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 80.0),
+                                child: Text(
+                                  restaurantName,
+                                  style: const TextStyle(
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ),
                             Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 16.0, bottom: 8),
+                              padding: const EdgeInsets.only(
+                                  top: 16.0, bottom: 8, left: 16, right: 16),
                               child: SizedBox(
-                                height: ScreenHelper.height(context) * 0.53,
+                                height: ScreenHelper.height(context) * 0.5,
                                 child: ListView.builder(
                                   itemBuilder: (context, index) {
                                     return ProductCardCartWidget(
                                       product: product,
-                                      productPhoto: productPhoto,
-                                      productPrice:
-                                          productPrice * product.quantity,
                                       onAdd: null,
                                       onSubtract: null,
                                     );
@@ -135,7 +147,7 @@ class CartPage extends StatelessWidget {
                                   ),
                                   Text(
                                       S.of(context).productPriceCurrency(
-                                          productPrice * product.quantity * 3),
+                                          product.price * product.quantity * 3),
                                       style: TextStyle(
                                           fontSize: 16,
                                           fontWeight: FontWeight.bold,

@@ -1,7 +1,6 @@
 import 'package:mobx/mobx.dart';
-
 import '../../../../shared/domain/entities/product.dart';
-import '../../../../shared/infra/models/order_model.dart';
+import '../../../../shared/infra/models/cart_product_model.dart';
 
 part 'product_info_controller.g.dart';
 
@@ -10,26 +9,17 @@ class ProductInfoController = ProductInfoControllerBase
 
 abstract class ProductInfoControllerBase with Store {
   @observable
-  var productCount = 1;
-
-  double productPrice = 0;
-
-  @observable
-  String observation = '';
-
-  var product = OrderProductModel.newInstance();
+  var product = CartProductModel.newInstance();
 
   @action
   void increaseProductCount() {
-    productCount = productCount + 1;
-    product = product.copyWith(quantity: productCount);
+    product = product.copyWith(quantity: product.quantity + 1);
   }
 
   @action
   void decreaseProductCount() {
-    if (productCount > 1) {
-      productCount = productCount - 1;
-      product = product.copyWith(quantity: productCount);
+    if (product.quantity > 1) {
+      product = product.copyWith(quantity: product.quantity - 1);
     }
   }
 
@@ -43,7 +33,8 @@ abstract class ProductInfoControllerBase with Store {
     product = product.copyWith(
       name: pageProduct.name,
       id: pageProduct.id,
+      price: pageProduct.price,
+      photo: pageProduct.photo,
     );
-    productPrice = pageProduct.price;
   }
 }

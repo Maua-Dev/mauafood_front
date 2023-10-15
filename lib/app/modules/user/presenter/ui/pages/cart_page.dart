@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/product_card_cart_widget.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
@@ -15,13 +16,12 @@ class CartPage extends StatelessWidget {
     super.key,
     required this.product,
   });
-
   CartProductModel product;
+  final CartController controller = Modular.get();
+
   String restaurantName = 'Nome do Restaurante';
 
   bool first = false;
-
-  final CartController controller = Modular.get();
 
   @override
   Widget build(BuildContext context) {
@@ -44,16 +44,18 @@ class CartPage extends StatelessWidget {
               color: AppColors.mainBlueColor,
             ),
           ),
-          body: first == true
+          body: controller.cartList.isEmpty
               ? Stack(
                   alignment: Alignment.center,
                   children: [
-                    SizedBox(
-                      width: double.infinity,
-                      height: 300,
-                      child: Image.network(
-                        greyLogo,
-                        fit: BoxFit.contain,
+                    Center(
+                      child: SizedBox(
+                        width: double.infinity,
+                        height: 300,
+                        child: Image.network(
+                          greyLogo,
+                          fit: BoxFit.contain,
+                        ),
                       ),
                     ),
                     Text(
@@ -102,13 +104,17 @@ class CartPage extends StatelessWidget {
                                 height: ScreenHelper.height(context) * 0.5,
                                 child: ListView.builder(
                                   itemBuilder: (context, index) {
-                                    return ProductCardCartWidget(
-                                      product: product,
-                                      onAdd: null,
-                                      onSubtract: null,
-                                    );
+                                    return Observer(builder: (_) {
+                                      return ProductCardCartWidget(
+                                        product: controller.cartList[index],
+                                        onAdd: () => controller
+                                            .addQuantitytoProduct(index),
+                                        onSubtract: () => controller
+                                            .subtractQuantitytoProduct(index),
+                                      );
+                                    });
                                   },
-                                  itemCount: 3,
+                                  itemCount: controller.cartList.length,
                                 ),
                               ),
                             ),

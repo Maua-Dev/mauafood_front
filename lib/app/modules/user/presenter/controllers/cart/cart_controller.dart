@@ -7,12 +7,34 @@ class CartController = CartControllerBase with _$CartController;
 
 abstract class CartControllerBase with Store {
   @observable
+  bool isNewProduct = true;
+
+  @observable
   List<CartProductModel> cartList = [];
 
   @observable
   List<CartProductModel> priceList = [];
 
   @action
-  void addProductToCart(
-      CartProductModel product, String productPhoto, double productPrice) {}
+  void addProductToCart(CartProductModel? product) {
+    if (product != null && isNewProduct) {
+      cartList.add(product);
+      isNewProduct = false;
+    }
+  }
+
+  @action
+  void addQuantitytoProduct(int index) {
+    cartList[index].copyWith(quantity: cartList[index].quantity + 1);
+  }
+
+  @action
+  void subtractQuantitytoProduct(int index) {
+    if (cartList[index].quantity == 1) {
+      cartList.removeAt(index);
+    }
+    cartList[index].copyWith(quantity: cartList[index].quantity - 1);
+
+    print(cartList[index].quantity);
+  }
 }

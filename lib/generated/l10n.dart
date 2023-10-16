@@ -370,6 +370,16 @@ class S {
     );
   }
 
+  /// `Total`
+  String get totalTitle {
+    return Intl.message(
+      'Total',
+      name: 'totalTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Product Availability`
   String get productAvailabilityTitle {
     return Intl.message(

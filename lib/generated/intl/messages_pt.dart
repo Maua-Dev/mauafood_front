@@ -296,6 +296,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("E-mail confirmado!"),
         "termsAcceptAlert": MessageLookupByLibrary.simpleMessage(
             "É necessário aceitar os Termos de Uso."),
+        "totalTitle": MessageLookupByLibrary.simpleMessage("Total"),
         "typeContact":
             MessageLookupByLibrary.simpleMessage("Entre em contato conosco"),
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(

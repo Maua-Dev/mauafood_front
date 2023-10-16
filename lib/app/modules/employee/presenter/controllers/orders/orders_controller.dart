@@ -296,4 +296,7 @@ abstract class OrdersControllerBase with Store {
 
   @observable
   bool isMissingDescription = false;
+
+  @observable
+  bool isExpanded = false;
 }

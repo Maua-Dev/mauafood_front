@@ -32,7 +32,7 @@ abstract class _LandingControllerBase with Store {
   @computed
   bool get isUser => user?.isUser ?? true;
   @computed
-  bool get isEmployee => true;
+  bool get isEmployee => user?.isEmployee ?? false;
 
   @observable
   User? user;

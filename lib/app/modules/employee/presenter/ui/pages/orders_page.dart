@@ -254,26 +254,43 @@ class OrdersPage extends StatelessWidget {
                                                                               ),
                                                                               const SizedBox(height: 8),
                                                                               Row(
-                                                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                                                mainAxisSize: MainAxisSize.max,
                                                                                 children: [
                                                                                   Column(
                                                                                     crossAxisAlignment: CrossAxisAlignment.start,
                                                                                     children: List.generate(
                                                                                       state.ordersList[index].products.length,
-                                                                                      (productIndex) => Text(
-                                                                                        "• ${state.ordersList[index].products[productIndex].quantity} x ${state.ordersList[index].products[productIndex].name}",
-                                                                                        style: AppTextStyles.h2.copyWith(fontSize: 16),
+                                                                                      (productIndex) => Column(
+                                                                                        mainAxisAlignment: MainAxisAlignment.start,
+                                                                                        children: [
+                                                                                          Text(
+                                                                                            "• ${state.ordersList[index].products[productIndex].quantity} x ${state.ordersList[index].products[productIndex].name} AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+                                                                                            style: AppTextStyles.h2.copyWith(fontSize: 16),
+                                                                                          ),
+                                                                                          Container(
+                                                                                            constraints: const BoxConstraints(
+                                                                                              maxWidth: double.infinity, // Define a largura máxima como infinita
+                                                                                            ),
+                                                                                            decoration: BoxDecoration(border: Border.all(color: AppColors.letterThinColor)),
+                                                                                            child: Padding(
+                                                                                              padding: const EdgeInsets.all(8.0),
+                                                                                              child: Text(
+                                                                                                state.ordersList[index].products[productIndex].observation ?? S.of(context).withoutObservationTitle,
+                                                                                                style: AppTextStyles.h3.copyWith(fontSize: 14),
+                                                                                              ),
+                                                                                            ),
+                                                                                          )
+                                                                                        ],
                                                                                       ),
                                                                                     ),
                                                                                   ),
-                                                                                  Text(
-                                                                                    S.of(context).productPriceCurrency(
-                                                                                          state.ordersList[index].totalPrice,
-                                                                                        ),
-                                                                                    style: AppTextStyles.h1.copyWith(fontSize: ScreenHelper.width(context) < 425 ? 14 : 16),
-                                                                                  ),
                                                                                 ],
+                                                                              ),
+                                                                              Text(
+                                                                                S.of(context).productPriceCurrency(
+                                                                                      state.ordersList[index].totalPrice,
+                                                                                    ),
+                                                                                style: AppTextStyles.h1.copyWith(fontSize: ScreenHelper.width(context) < 425 ? 14 : 16),
                                                                               ),
                                                                             ],
                                                                           ),
@@ -338,20 +355,6 @@ class OrdersPage extends StatelessWidget {
                                                                             height:
                                                                                 8,
                                                                           ),
-                                                                          Container(
-                                                                            width:
-                                                                                double.infinity,
-                                                                            decoration:
-                                                                                BoxDecoration(border: Border.all(color: AppColors.letterThinColor)),
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: const EdgeInsets.all(8.0),
-                                                                              child: Text(
-                                                                                state.ordersList[index].observation != null ? state.ordersList[index].observation! : S.of(context).withoutObservationTitle,
-                                                                                style: AppTextStyles.h3.copyWith(fontSize: 14),
-                                                                              ),
-                                                                            ),
-                                                                          )
                                                                         ],
                                                                       ),
                                                                     )

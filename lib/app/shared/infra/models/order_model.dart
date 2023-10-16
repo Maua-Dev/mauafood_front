@@ -36,7 +36,7 @@ class OrderProductModel extends OrderProduct {
     required super.id,
     required super.name,
     required super.quantity,
-    required super.observation,
+    super.observation,
   });
 
   factory OrderProductModel.fromMap(Map<String, dynamic> json) {

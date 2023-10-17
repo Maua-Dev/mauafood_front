@@ -9,19 +9,19 @@ part of 'product_info_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ProductInfoController on ProductInfoControllerBase, Store {
-  late final _$productAtom =
-      Atom(name: 'ProductInfoControllerBase.product', context: context);
+  late final _$productCartAtom =
+      Atom(name: 'ProductInfoControllerBase.productCart', context: context);
 
   @override
-  CartProductModel get product {
-    _$productAtom.reportRead();
-    return super.product;
+  CartProductModel get productCart {
+    _$productCartAtom.reportRead();
+    return super.productCart;
   }
 
   @override
-  set product(CartProductModel value) {
-    _$productAtom.reportWrite(value, super.product, () {
-      super.product = value;
+  set productCart(CartProductModel value) {
+    _$productCartAtom.reportWrite(value, super.productCart, () {
+      super.productCart = value;
     });
   }
 
@@ -62,11 +62,11 @@ mixin _$ProductInfoController on ProductInfoControllerBase, Store {
   }
 
   @override
-  void setProduct(Product pageProduct) {
+  void setProduct() {
     final _$actionInfo = _$ProductInfoControllerBaseActionController
         .startAction(name: 'ProductInfoControllerBase.setProduct');
     try {
-      return super.setProduct(pageProduct);
+      return super.setProduct();
     } finally {
       _$ProductInfoControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -75,7 +75,7 @@ mixin _$ProductInfoController on ProductInfoControllerBase, Store {
   @override
   String toString() {
     return '''
-product: ${product}
+productCart: ${productCart}
     ''';
   }
 }

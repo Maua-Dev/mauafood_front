@@ -8,7 +8,8 @@ class ProductInfoModule extends Module {
   @override
   List<Bind> get binds => [
         Bind<Product>((i) => productInfo),
-        Bind<ProductInfoController>((i) => ProductInfoController())
+        Bind<ProductInfoController>(
+            (i) => ProductInfoController(product: i.args.data[0]))
       ];
 
   @override
@@ -16,7 +17,6 @@ class ProductInfoModule extends Module {
         ChildRoute(
           Modular.initialRoute,
           child: (context, args) => ProductInfoPage(
-            productInfo: args.data[0],
             recommendedProductList: args.data[1],
           ),
         ),

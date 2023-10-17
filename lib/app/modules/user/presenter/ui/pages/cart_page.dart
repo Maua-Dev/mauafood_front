@@ -6,7 +6,6 @@ import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/helpers/services/s3/assets_s3.dart';
-import '../../../../../shared/infra/models/cart_product_model.dart';
 import '../../../../../shared/themes/app_text_styles.dart';
 import '../../controllers/cart/cart_controller.dart';
 
@@ -14,9 +13,7 @@ import '../../controllers/cart/cart_controller.dart';
 class CartPage extends StatelessWidget {
   CartPage({
     super.key,
-    required this.product,
   });
-  CartProductModel product;
   final CartController controller = Modular.get();
 
   String restaurantName = 'Nome do Restaurante';
@@ -25,7 +22,6 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    controller.setRestaurantName(restaurantName, product);
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(

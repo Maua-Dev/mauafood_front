@@ -9,14 +9,13 @@ import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
+import '../../../../user/presenter/controllers/cart/cart_controller.dart';
 import '../widgets/recommended_product_widget.dart';
 
 class ProductInfoPagePhone extends StatefulWidget {
-  final Product productInfo;
   final List<Product> recommendedProductList;
   const ProductInfoPagePhone({
     super.key,
-    required this.productInfo,
     required this.recommendedProductList,
   });
 
@@ -25,20 +24,13 @@ class ProductInfoPagePhone extends StatefulWidget {
 }
 
 class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
-  late Product product;
-  @override
-  void initState() {
-    super.initState();
-    product = widget.productInfo;
-    controller.setProduct(product);
-  }
-
   final ProductInfoController controller = Modular.get();
+  final CartController controllerCart = Modular.get();
 
   @override
   Widget build(BuildContext context) {
     final recommendedProductListFilter = widget.recommendedProductList
-        .where((element) => element.id != product.id)
+        .where((element) => element.id != controller.product.id)
         .toList();
     return Scaffold(
       backgroundColor: const Color(0xffFAF9F6),
@@ -56,7 +48,7 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
             child: SizedBox.fromSize(
               size: Size.fromHeight(MediaQuery.of(context).size.height / 4),
               child: CachedNetworkImage(
-                imageUrl: product.photo!,
+                imageUrl: controller.product.photo!,
                 placeholder: (context, url) => const Center(
                   child: CircularProgressIndicator(),
                 ),
@@ -89,20 +81,19 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                product.name,
+                                controller.product.name,
                                 style: AppTextStyles.h1,
                               ),
                               Text(
-                                S
-                                    .of(context)
-                                    .productPriceCurrency(product.price),
+                                S.of(context).productPriceCurrency(
+                                    controller.product.price),
                                 style: AppTextStyles.h1.copyWith(fontSize: 22),
                               ),
                               const SizedBox(
                                 height: 16,
                               ),
                               Text(
-                                product.description ?? "",
+                                controller.product.description ?? "",
                                 style: AppTextStyles.h3
                                     .copyWith(fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.left,
@@ -177,7 +168,7 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                                   Observer(builder: (_) {
                                     return TextButton(
                                         onPressed: () =>
-                                            controller.product.quantity != 1
+                                            controller.productCart.quantity != 1
                                                 ? controller
                                                     .decreaseProductCount()
                                                 : null,
@@ -185,17 +176,18 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                                           "-",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              color:
-                                                  controller.product.quantity !=
-                                                          1
-                                                      ? AppColors.mainBlueColor
-                                                      : Colors.grey,
+                                              color: controller.productCart
+                                                          .quantity !=
+                                                      1
+                                                  ? AppColors.mainBlueColor
+                                                  : Colors.grey,
                                               fontSize: 16),
                                         ));
                                   }),
                                   Observer(builder: (_) {
                                     return Text(
-                                        controller.product.quantity.toString(),
+                                        controller.productCart.quantity
+                                            .toString(),
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
                                             color: AppColors.mainBlueColor,
@@ -212,10 +204,9 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                                   const Flexible(child: SizedBox.expand()),
                                   GestureDetector(
                                     onTap: () => {
-                                      Modular.to.navigate("/landing/cart/",
-                                          arguments: [
-                                            controller.product,
-                                          ])
+                                      controllerCart.setRestaurantName(
+                                          "Nome", controller.productCart),
+                                      Modular.to.navigate("/landing/cart"),
                                     },
                                     child: Container(
                                       height: 60,
@@ -268,8 +259,9 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                             child: RecommendedProductWidget(
                               product: recommendedProductListFilter[index],
                               onPressed: () {
-                                product = recommendedProductListFilter[index];
-                                setState(() {});
+                                Modular.to.pushNamed("product-info/",
+                                    arguments:
+                                        recommendedProductListFilter[index]);
                               },
                             ),
                           ),

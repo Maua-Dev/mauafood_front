@@ -259,9 +259,18 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                             child: RecommendedProductWidget(
                               product: recommendedProductListFilter[index],
                               onPressed: () {
-                                Modular.to.pushNamed("product-info/",
-                                    arguments:
-                                        recommendedProductListFilter[index]);
+                                Modular.to.pushNamed(
+                                    "/landing/restaurants/product-info/",
+                                    arguments: [
+                                      recommendedProductListFilter[index],
+                                      recommendedProductListFilter
+                                          .where((element) =>
+                                              element.id !=
+                                              recommendedProductListFilter[
+                                                      index]
+                                                  .id)
+                                          .toList()
+                                    ]);
                               },
                             ),
                           ),

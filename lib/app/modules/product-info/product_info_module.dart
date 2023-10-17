@@ -8,7 +8,7 @@ class ProductInfoModule extends Module {
   @override
   List<Bind> get binds => [
         Bind<Product>((i) => productInfo),
-        Bind<ProductInfoController>(
+        Bind.factory<ProductInfoController>(
             (i) => ProductInfoController(product: i.args.data[0]))
       ];
 

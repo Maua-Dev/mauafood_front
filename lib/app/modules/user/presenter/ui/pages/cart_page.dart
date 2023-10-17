@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/landing/presenter/controllers/landing_controller.dart';
 import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/product_card_cart_widget.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -15,6 +16,7 @@ class CartPage extends StatelessWidget {
     super.key,
   });
   final CartController controller = Modular.get();
+  final LandingController controllerNavBar = Modular.get();
 
   String restaurantName = 'Nome do Restaurante';
 
@@ -39,6 +41,10 @@ class CartPage extends StatelessWidget {
             elevation: 0,
             leading: BackButton(
               color: AppColors.mainBlueColor,
+              onPressed: () {
+                controllerNavBar.selectIndex(0);
+                Modular.to.navigate('/landing/restaurants/');
+              },
             ),
           ),
           body: controller.cartList.isEmpty

@@ -25,6 +25,7 @@ class CartPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    controller.setRestaurantName(restaurantName, product);
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -102,9 +103,9 @@ class CartPage extends StatelessWidget {
                                   top: 16.0, bottom: 8, left: 16, right: 16),
                               child: SizedBox(
                                 height: ScreenHelper.height(context) * 0.5,
-                                child: ListView.builder(
-                                  itemBuilder: (context, index) {
-                                    return Observer(builder: (_) {
+                                child: Observer(builder: (_) {
+                                  return ListView.builder(
+                                    itemBuilder: (context, index) {
                                       return ProductCardCartWidget(
                                         product: controller.cartList[index],
                                         onAdd: () => controller
@@ -112,10 +113,10 @@ class CartPage extends StatelessWidget {
                                         onSubtract: () => controller
                                             .subtractQuantitytoProduct(index),
                                       );
-                                    });
-                                  },
-                                  itemCount: controller.cartList.length,
-                                ),
+                                    },
+                                    itemCount: controller.cartList.length,
+                                  );
+                                }),
                               ),
                             ),
                           ],
@@ -151,13 +152,15 @@ class CartPage extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                         color: AppColors.mainBlueColor),
                                   ),
-                                  Text(
-                                      S.of(context).productPriceCurrency(
-                                          product.price * product.quantity * 3),
-                                      style: TextStyle(
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                          color: AppColors.mainBlueColor)),
+                                  Observer(builder: (_) {
+                                    return Text(
+                                        S.of(context).productPriceCurrency(
+                                            controller.totalPrice),
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.mainBlueColor));
+                                  }),
                                 ],
                               ),
                             ),

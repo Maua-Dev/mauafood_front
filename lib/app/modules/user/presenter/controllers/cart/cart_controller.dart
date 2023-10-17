@@ -7,34 +7,62 @@ class CartController = CartControllerBase with _$CartController;
 
 abstract class CartControllerBase with Store {
   @observable
-  bool isNewProduct = true;
+  List<CartProductModel> cartList = ObservableList<CartProductModel>();
 
   @observable
-  List<CartProductModel> cartList = [];
+  double totalPrice = 0;
 
   @observable
-  List<CartProductModel> priceList = [];
+  String restaurantName = "";
+
+  @action
+  void setRestaurantName(name, product) {
+    if (restaurantName == name) {
+      addProductToCart(product);
+    }
+    if (restaurantName == "") {
+      restaurantName = name;
+      addProductToCart(product);
+    }
+  }
+
+  @action
+  void calculateTotalPrice() {
+    totalPrice = 0;
+    for (CartProductModel product in cartList) {
+      totalPrice = totalPrice + product.price * product.quantity;
+    }
+  }
 
   @action
   void addProductToCart(CartProductModel? product) {
-    if (product != null && isNewProduct) {
+    if (product != null) {
       cartList.add(product);
-      isNewProduct = false;
+      calculateTotalPrice();
     }
   }
 
   @action
   void addQuantitytoProduct(int index) {
-    cartList[index].copyWith(quantity: cartList[index].quantity + 1);
+    var auxiliar = cartList[index];
+    auxiliar = auxiliar.copyWith(quantity: (auxiliar.quantity + 1));
+    cartList[index] = auxiliar;
+    calculateTotalPrice();
   }
 
   @action
   void subtractQuantitytoProduct(int index) {
-    if (cartList[index].quantity == 1) {
+    if (cartList[index].quantity <= 1) {
       cartList.removeAt(index);
+      calculateTotalPrice();
+      if (cartList.isEmpty) {
+        restaurantName = "";
+      }
+    } else {
+      var auxiliar = cartList[index];
+      auxiliar = auxiliar.copyWith(quantity: (auxiliar.quantity - 1));
+      cartList[index] = auxiliar;
+      calculateTotalPrice();
     }
-    cartList[index].copyWith(quantity: cartList[index].quantity - 1);
-
-    print(cartList[index].quantity);
   }
 }

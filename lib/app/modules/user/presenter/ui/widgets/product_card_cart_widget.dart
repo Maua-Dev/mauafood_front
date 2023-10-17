@@ -84,9 +84,7 @@ class _ProductCardCartWidgetState extends State<ProductCardCartWidget> {
                                         "-",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: widget.product.quantity != 1
-                                                ? AppColors.white
-                                                : Colors.grey,
+                                            color: AppColors.white,
                                             fontSize: 12),
                                       ),
                                     ),
@@ -101,9 +99,7 @@ class _ProductCardCartWidgetState extends State<ProductCardCartWidget> {
                                         "+",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            color: widget.product.quantity != 1
-                                                ? AppColors.white
-                                                : Colors.grey,
+                                            color: AppColors.white,
                                             fontSize: 12),
                                       ),
                                     )
@@ -111,9 +107,9 @@ class _ProductCardCartWidgetState extends State<ProductCardCartWidget> {
                                 ),
                               ),
                               Text(
-                                S
-                                    .of(context)
-                                    .productPriceCurrency(widget.product.price),
+                                S.of(context).productPriceCurrency(
+                                    widget.product.price *
+                                        widget.product.quantity),
                                 overflow: TextOverflow.ellipsis,
                                 style: AppTextStyles.h2Highlight.copyWith(
                                     fontWeight: FontWeight.bold,

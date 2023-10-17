@@ -126,7 +126,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                         onFavoritePressed: (value) async {
                           final res = await showDialog<bool>(
                             context: context,
-                            builder: (context) => AlertDialog.adaptive(
+                            builder: (context) => AlertDialog(
                                 title:
                                     const Text('Deseja remover dos favoritos?'),
                                 actions: [

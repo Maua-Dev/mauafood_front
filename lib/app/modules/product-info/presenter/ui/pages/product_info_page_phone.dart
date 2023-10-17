@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/landing/presenter/controllers/landing_controller.dart';
 import 'package:mauafood_front/app/modules/product-info/presenter/controllers/product_info_controller.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
@@ -27,7 +26,6 @@ class ProductInfoPagePhone extends StatefulWidget {
 class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
   final ProductInfoController controller = Modular.get();
   final CartController controllerCart = Modular.get();
-  final LandingController controlerNavBar = Modular.get();
 
   @override
   Widget build(BuildContext context) {
@@ -41,9 +39,6 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
         elevation: 0,
         leading: BackButton(
           color: AppColors.mainBlueColor,
-          onPressed: () {
-            Modular.to.pushNamed('/landing/');
-          },
         ),
       ),
       body: Stack(
@@ -209,9 +204,9 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                                   const Flexible(child: SizedBox.expand()),
                                   GestureDetector(
                                     onTap: () => {
-                                      controlerNavBar.selectIndex(1),
                                       controllerCart.setRestaurantName(
-                                          "Nome", controller.productCart),
+                                          controllerCart.restaurantName,
+                                          controller.productCart),
                                       Modular.to.navigate("/landing/cart/"),
                                     },
                                     child: Container(

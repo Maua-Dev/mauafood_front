@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/landing/presenter/controllers/landing_controller.dart';
 import 'package:mauafood_front/app/modules/product-info/presenter/controllers/product_info_controller.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
@@ -213,10 +214,9 @@ class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
                                     const Flexible(child: SizedBox.expand()),
                                     GestureDetector(
                                       onTap: () => {
-                                        Modular.to.navigate("/landing/cart/",
-                                            arguments: [
-                                              controller.product,
-                                            ])
+                                        controllerCart.setRestaurantName(
+                                            "Nome", controller.productCart),
+                                        Modular.to.navigate("/landing/cart/"),
                                       },
                                       child: SizedBox(
                                         child: Container(
@@ -272,9 +272,18 @@ class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
                             child: RecommendedProductWidget(
                               product: recommendedProductListFilter[index],
                               onPressed: () {
-                                Modular.to.pushNamed("/product-info/",
-                                    arguments:
-                                        recommendedProductListFilter[index]);
+                                Modular.to.pushNamed(
+                                    "/landing/restaurants/product-info/",
+                                    arguments: [
+                                      recommendedProductListFilter[index],
+                                      recommendedProductListFilter
+                                          .where((element) =>
+                                              element.id !=
+                                              recommendedProductListFilter[
+                                                      index]
+                                                  .id)
+                                          .toList()
+                                    ]);
                               },
                             ),
                           ),

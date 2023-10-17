@@ -19,8 +19,7 @@ abstract class CartControllerBase with Store {
   void setRestaurantName(name, product) {
     if (restaurantName == name) {
       addProductToCart(product);
-    }
-    if (restaurantName == "") {
+    } else if (restaurantName.isEmpty) {
       restaurantName = name;
       addProductToCart(product);
     }

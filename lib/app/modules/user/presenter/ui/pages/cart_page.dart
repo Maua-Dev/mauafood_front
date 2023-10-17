@@ -18,12 +18,11 @@ class CartPage extends StatelessWidget {
   final CartController controller = Modular.get();
   final LandingController controllerNavBar = Modular.get();
 
-  String restaurantName = 'Nome do Restaurante';
-
   bool first = false;
 
   @override
   Widget build(BuildContext context) {
+    controllerNavBar.selectIndex(1);
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
@@ -92,7 +91,7 @@ class CartPage extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 80.0),
                                 child: Text(
-                                  restaurantName,
+                                  controller.restaurantName,
                                   style: const TextStyle(
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,

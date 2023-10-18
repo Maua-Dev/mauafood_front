@@ -157,31 +157,47 @@ class _CartPageState extends State<CartPage> {
                                 borderRadius: BorderRadius.circular(8),
                                 border: Border.all(
                                     color: AppColors.mainBlueColor, width: 1)),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 16.0, vertical: 8),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    "Confirmar Pedido",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.mainBlueColor),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                GestureDetector(
+                                  onTap: () => {
+                                    controller.createOrder(context),
+                                    setState(() {}),
+                                  },
+                                  child: Container(
+                                    width: 200,
+                                    height: ScreenHelper.width(context) * 0.25,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: AppColors.mainBlueColor,
+                                        border: Border.all(
+                                            color: AppColors.mainBlueColor,
+                                            width: 1)),
+                                    child: Center(
+                                      child: Text(
+                                        "Confirmar Pedido",
+                                        style: TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.bold,
+                                            color: AppColors.white),
+                                      ),
+                                    ),
                                   ),
-                                  Observer(builder: (_) {
-                                    return Text(
+                                ),
+                                Observer(builder: (_) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(right: 16.0),
+                                    child: Text(
                                         S.of(context).productPriceCurrency(
                                             controller.totalPrice),
                                         style: TextStyle(
                                             fontSize: 16,
                                             fontWeight: FontWeight.bold,
-                                            color: AppColors.mainBlueColor));
-                                  }),
-                                ],
-                              ),
+                                            color: AppColors.mainBlueColor)),
+                                  );
+                                }),
+                              ],
                             ),
                           ),
                         ),

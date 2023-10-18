@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/infra/models/cart_product_model.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
@@ -17,6 +18,45 @@ abstract class CartControllerBase with Store {
 
   @observable
   String restaurantName = "";
+
+  @action
+  void createOrder(BuildContext context) {
+    cartList = [];
+
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Container(
+              width: 400,
+              height: 300,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(40),
+                color: AppColors.white,
+              ),
+              child: const Column(
+                children: [
+                  Icon(
+                    Icons.check_circle_outline,
+                    size: 200,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 24.0),
+                    child: Text(
+                      "Seu pedido foi enviado ao restaurante!",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        });
+  }
 
   @action
   bool setRestaurantName(name, product, BuildContext context) {

@@ -61,6 +61,17 @@ mixin _$CartController on CartControllerBase, Store {
       ActionController(name: 'CartControllerBase', context: context);
 
   @override
+  void createOrder(BuildContext context) {
+    final _$actionInfo = _$CartControllerBaseActionController.startAction(
+        name: 'CartControllerBase.createOrder');
+    try {
+      return super.createOrder(context);
+    } finally {
+      _$CartControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   bool setRestaurantName(dynamic name, dynamic product, BuildContext context) {
     final _$actionInfo = _$CartControllerBaseActionController.startAction(
         name: 'CartControllerBase.setRestaurantName');

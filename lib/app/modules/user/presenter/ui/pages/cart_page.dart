@@ -11,11 +11,18 @@ import '../../../../../shared/themes/app_text_styles.dart';
 import '../../controllers/cart/cart_controller.dart';
 
 // ignore: must_be_immutable
-class CartPage extends StatelessWidget {
+class CartPage extends StatefulWidget {
   CartPage({
     super.key,
   });
+
+  @override
+  State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
   final CartController controller = Modular.get();
+
   final LandingController controllerNavBar = Modular.get();
 
   bool first = false;
@@ -111,8 +118,11 @@ class CartPage extends StatelessWidget {
                                         product: controller.cartList[index],
                                         onAdd: () => controller
                                             .addQuantitytoProduct(index),
-                                        onSubtract: () => controller
-                                            .subtractQuantitytoProduct(index),
+                                        onSubtract: () => {
+                                          controller
+                                              .subtractQuantitytoProduct(index),
+                                          setState(() {}),
+                                        },
                                       );
                                     },
                                     itemCount: controller.cartList.length,

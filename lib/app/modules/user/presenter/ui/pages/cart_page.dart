@@ -115,12 +115,20 @@ class _CartPageState extends State<CartPage> {
                                   return ListView.builder(
                                     itemBuilder: (context, index) {
                                       return ProductCardCartWidget(
-                                        product: controller.cartList[index],
-                                        onAdd: () => controller
-                                            .addQuantitytoProduct(index),
+                                        product: controller.cartList[
+                                            controller.cartList.length -
+                                                1 -
+                                                index],
+                                        onAdd: () =>
+                                            controller.addQuantitytoProduct(
+                                                controller.cartList.length -
+                                                    1 -
+                                                    index),
                                         onSubtract: () => {
-                                          controller
-                                              .subtractQuantitytoProduct(index),
+                                          controller.subtractQuantitytoProduct(
+                                              controller.cartList.length -
+                                                  1 -
+                                                  index),
                                           setState(() {}),
                                         },
                                       );

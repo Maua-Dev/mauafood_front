@@ -61,11 +61,11 @@ mixin _$CartController on CartControllerBase, Store {
       ActionController(name: 'CartControllerBase', context: context);
 
   @override
-  void setRestaurantName(dynamic name, dynamic product) {
+  bool setRestaurantName(dynamic name, dynamic product, BuildContext context) {
     final _$actionInfo = _$CartControllerBaseActionController.startAction(
         name: 'CartControllerBase.setRestaurantName');
     try {
-      return super.setRestaurantName(name, product);
+      return super.setRestaurantName(name, product, context);
     } finally {
       _$CartControllerBaseActionController.endAction(_$actionInfo);
     }

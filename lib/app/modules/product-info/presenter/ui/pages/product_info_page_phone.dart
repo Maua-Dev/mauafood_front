@@ -204,10 +204,13 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                                   const Flexible(child: SizedBox.expand()),
                                   GestureDetector(
                                     onTap: () => {
-                                      controllerCart.setRestaurantName(
+                                      if (controllerCart.setRestaurantName(
                                           controller.restaurantName,
-                                          controller.productCart),
-                                      Modular.to.navigate("/landing/cart/"),
+                                          controller.productCart,
+                                          context))
+                                        {
+                                          Modular.to.navigate("/landing/cart/"),
+                                        }
                                     },
                                     child: Container(
                                       height: 60,

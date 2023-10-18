@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/infra/models/cart_product_model.dart';
+import 'package:mauafood_front/app/shared/themes/app_colors.dart';
+import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mobx/mobx.dart';
 
 part 'cart_controller.g.dart';
@@ -16,13 +19,24 @@ abstract class CartControllerBase with Store {
   String restaurantName = "";
 
   @action
-  void setRestaurantName(name, product) {
+  bool setRestaurantName(name, product, BuildContext context) {
     if (restaurantName == name) {
       addProductToCart(product);
+      return true;
     } else if (restaurantName.isEmpty) {
       restaurantName = name;
       addProductToCart(product);
+      return true;
     }
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      duration: const Duration(milliseconds: 800),
+      behavior: SnackBarBehavior.floating,
+      backgroundColor: AppColors.mainBlueColor,
+      content: Text(
+          "Não é possivel adicionar produtos de restaurantes diferentes",
+          style: AppTextStyles.h2.copyWith(color: AppColors.white)),
+    ));
+    return false;
   }
 
   @action

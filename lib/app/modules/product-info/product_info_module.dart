@@ -9,8 +9,8 @@ class ProductInfoModule extends Module {
   @override
   List<Bind> get binds => [
         Bind<Product>((i) => productInfo),
-        Bind.factory<ProductInfoController>(
-            (i) => ProductInfoController(product: i.args.data[0])),
+        Bind.factory<ProductInfoController>((i) => ProductInfoController(
+            product: i.args.data[0], restaurantName: i.args.data[2])),
         Bind<LandingController>((i) => i()),
       ];
 

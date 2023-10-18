@@ -68,7 +68,8 @@ class _UserMenuPageState extends State<UserMenuPage> {
                           listProduct
                               .where((element) =>
                                   element.type == listProduct[index].type)
-                              .toList()
+                              .toList(),
+                          store.restaurantInfo.restaurantName
                         ]);
                       },
                     ),

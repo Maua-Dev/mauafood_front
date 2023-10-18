@@ -205,7 +205,7 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                                   GestureDetector(
                                     onTap: () => {
                                       controllerCart.setRestaurantName(
-                                          controllerCart.restaurantName,
+                                          controller.restaurantName,
                                           controller.productCart),
                                       Modular.to.navigate("/landing/cart/"),
                                     },

@@ -8,12 +8,15 @@ class ProductInfoController = ProductInfoControllerBase
     with _$ProductInfoController;
 
 abstract class ProductInfoControllerBase with Store {
-  ProductInfoControllerBase({required this.product}) {
+  ProductInfoControllerBase(
+      {required this.product, required this.restaurantName}) {
     setProduct();
   }
 
   @observable
   var productCart = CartProductModel.newInstance();
+
+  final String restaurantName;
 
   final ProductViewModel product;
 

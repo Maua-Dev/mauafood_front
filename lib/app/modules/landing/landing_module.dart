@@ -43,7 +43,7 @@ class LandingModule extends Module {
         children: [
           ModuleRoute('/employee/', module: EmployeeMenuModule()),
           ModuleRoute('/restaurants/', module: UserMenuModule()),
-          ChildRoute('/cart/', child: (_, args) => CartPage()),
+          ChildRoute('/cart/', child: (_, args) => const CartPage()),
           ChildRoute('/faq/', child: (_, args) => const FaqPage()),
           ModuleRoute('/profile/',
               module: ProfileModule(), guards: [AuthGuard()]),

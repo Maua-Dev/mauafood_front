@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/infra/models/cart_product_model.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
@@ -22,7 +21,6 @@ abstract class CartControllerBase with Store {
   @action
   void createOrder(BuildContext context) {
     cartList = [];
-
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -56,6 +54,7 @@ abstract class CartControllerBase with Store {
             ),
           );
         });
+    restaurantName = "";
   }
 
   @action

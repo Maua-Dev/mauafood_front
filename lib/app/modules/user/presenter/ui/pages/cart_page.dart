@@ -12,7 +12,7 @@ import '../../controllers/cart/cart_controller.dart';
 
 // ignore: must_be_immutable
 class CartPage extends StatefulWidget {
-  CartPage({
+  const CartPage({
     super.key,
   });
 

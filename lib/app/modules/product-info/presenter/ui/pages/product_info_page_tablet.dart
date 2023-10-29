@@ -2,7 +2,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:mauafood_front/app/modules/landing/presenter/controllers/landing_controller.dart';
 import 'package:mauafood_front/app/modules/product-info/presenter/controllers/product_info_controller.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';

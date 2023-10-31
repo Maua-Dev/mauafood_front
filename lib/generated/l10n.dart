@@ -456,6 +456,16 @@ class S {
     );
   }
 
+  /// `Cancel order`
+  String get cancelOrderTitle {
+    return Intl.message(
+      'Cancel order',
+      name: 'cancelOrderTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Delete`
   String get deleteTitle {
     return Intl.message(
@@ -991,6 +1001,45 @@ class S {
       name: 'productPrepareTimeMinutes',
       desc: '',
       args: [placeholders, prepareTime],
+    );
+  }
+
+  /// `{status, select, PENDING{Pending} PREPARING{Preparing} REFUSED{Refused} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}`
+  String statusNameSchema(Object status) {
+    return Intl.select(
+      status,
+      {
+        'PENDING': 'Pending',
+        'PREPARING': 'Preparing',
+        'REFUSED': 'Refused',
+        'READY': 'Ready',
+        'CANCELED': 'Canceled',
+        'ALL': 'All',
+        'other': 'Others',
+      },
+      name: 'statusNameSchema',
+      desc: '',
+      args: [status],
+    );
+  }
+
+  /// `{status, select, PENDING{Please wait a moment, your order will be approved!} PREPARING{Your request has been approved! It will soon begin to be prepared!} REFUSED{Refused} READY{Your order is ready! Come pick it up!} CANCELED{Canceled} ALL{All} other{Others}}`
+  String statusAlertSchema(Object status) {
+    return Intl.select(
+      status,
+      {
+        'PENDING': 'Please wait a moment, your order will be approved!',
+        'PREPARING':
+            'Your request has been approved! It will soon begin to be prepared!',
+        'REFUSED': 'Refused',
+        'READY': 'Your order is ready! Come pick it up!',
+        'CANCELED': 'Canceled',
+        'ALL': 'All',
+        'other': 'Others',
+      },
+      name: 'statusAlertSchema',
+      desc: '',
+      args: [status],
     );
   }
 

@@ -8,6 +8,8 @@ var baseLogosGif = '$baseUrlS3/logos/gif';
 
 var baseProfileImages = '$baseUrlS3/profile';
 
+var baseStatusImages = '$baseUrlS3/status';
+
 var baseLogosImages = '$baseUrlS3/logos/images';
 
 var baseRestaurantImages = '$baseUrlS3/restaurants/restaurant_front';
@@ -34,3 +36,9 @@ var restaurantImages = {
   'hora_hImage': '$baseRestaurantImages/front_restaurante_h.jpg',
   'molezaImage': '$baseRestaurantImages/front_moleza.jpg'
 };
+
+var pendingImage = '$baseStatusImages/pending_image.jpg';
+
+var preparingImage = '$baseStatusImages/preparing_image.jpg';
+
+var readyImage = '$baseStatusImages/ready_image.jpg';

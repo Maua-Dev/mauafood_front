@@ -3,8 +3,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/profile/domain/usecases/get_favorites_product.dart';
 import 'package:mauafood_front/app/modules/profile/domain/usecases/remove_favorite_product.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/controllers/favorites_controller.dart';
+import 'package:mauafood_front/app/modules/profile/presenter/controllers/order_status_controller.dart';
 
 import 'package:mauafood_front/app/modules/profile/presenter/ui/pages/favorites_page.dart';
+import 'package:mauafood_front/app/modules/profile/presenter/ui/pages/order_status_page.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/ui/pages/profile_page.dart';
 import 'package:mauafood_front/app/modules/user/domain/usecases/update_user.dart';
 import 'package:mauafood_front/app/shared/datasource/external/http/menu_datasource.dart';
@@ -30,7 +32,7 @@ class ProfileModule extends Module {
         Bind<FavoriteDatasource>((i) => FavoritesHiveDatasource(i())),
         Bind(
           (i) => FavoritesController(i()),
-        )
+        ),
       ];
 
   @override
@@ -41,5 +43,7 @@ class ProfileModule extends Module {
         ),
         ChildRoute('/favorites/',
             child: (context, args) => const FavoritesPage()),
+        ChildRoute("/order-status/",
+            child: ((context, args) => const OrderStatusPage()))
       ];
 }

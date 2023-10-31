@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/profile/presenter/ui/pages/order_status_page.dart';
 
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
@@ -26,7 +27,8 @@ class NavBarComponentWidget extends StatelessWidget {
     return InkWell(
       onTap: () {
         onSelect(index);
-        Modular.to.navigate(route);
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const OrderStatusPage()));
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),

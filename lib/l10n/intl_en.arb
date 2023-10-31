@@ -3,7 +3,7 @@
     "questionMark": "?",
     "appAcceptTerms": "I read and accept the Terms of Use",
     "restaurantTitle": "{restaurantName}",
-    "@restaurantTitle" : {
+    "@restaurantTitle": {
         "placeholders": {
             "placeholders": {
                 "restaurantName": {}
@@ -12,10 +12,7 @@
     },
     "attentionTitle": "Attention",
     "understoodTitle": "Understood!",
-    "disclaimerText":"MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!",
-
-
-
+    "disclaimerText": "MauáFood works together with the restaurants to always be up to date, but we are not responsible for any difference between prices, availability and product information on the displayed menus.\nAny error found, please let us know by clicking the e-mail icon in the lower right corner of the screen!",
     "emailTitle": "E-mail",
     "passwordTitle": "Password",
     "confirmPasswordTitle": "Confirm your password",
@@ -49,6 +46,7 @@
     "notificationsOptionsSchema": "{notifications, select, normalPart{Want to receive } email{email notifications} app{app notifications} other{}}",
     "labelName": "Full Name",
     "cancelationTitle": "Cancel",
+    "cancelOrderTitle": "Cancel order",
     "deleteTitle": "Delete",
     "applyTitle": "Apply",
     "cleanFilterTitle": "Clean filter",
@@ -59,7 +57,6 @@
     "dataStorageTitle": "Data storage",
     "dataStorageAlertTitle": "If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it.",
     "closeTitle": "Close",
-
     "requiredFieldAlert": "Required field.",
     "invalidEmailAlert": "Invalid email.",
     "invalidPasswordAlert": "Invalid password.",
@@ -74,7 +71,6 @@
     "fillFieldsInstructionsAlert": "Make sure you fill in all the fields.",
     "termsAcceptAlert": "It is necessary to accept the Terms of Use.",
     "codeErrorAlert": "Error with code.",
-    
     "forgotPasswordTitle": "Forgot password?",
     "changePasswordTitle": "Change Password",
     "emailConfirmationTitle": "Email confirmation",
@@ -82,8 +78,6 @@
     "confirmationCodeInstructionsTitle": "Please enter your email, we will send you a verification code.",
     "sendCodeEmailInstructionsTitle": "We sent a confirmation code to your email, enter it in the field below.",
     "registerEmailInstructionsTitle": "To complete your registration, we will send you an email with a code, enter it in the field below.",
-
-
     "searchTitle": "Search",
     "restaurantsTitle": "Restaurants",
     "seeMenuTitle": "See menu",
@@ -92,24 +86,16 @@
     "doLoginTitle": "Login",
     "havePasswordTitle": "Already have a password?",
     "haveAccountTitle": "Already have an account?",
-
-
-
     "restaurantsNameSchema": "{restaurant, select, souza_de_abreu{Souza de Abreu} hora_h{H Hour} cantina_do_moleza{Cantina do Moleza} other{}}",
     "restaurantsImageSchema": "{restaurant, select, souza_de_abreu{bibaImage} hora_h{hora_hImage} cantina_do_moleza{molezaImage} other{}}",
-    
-
     "typeContact": "Contact us",
     "labelMessage": "Message",
     "labelSend": "Send now",
-
     "customersView": "Customers view",
-
-
     "productNameSchema": "{product, select, ALL{All} SANDWICHES{Sandwiches} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}",
     "productToEnumSchema": "{name, select, All{ALL} Sandwiches{SANDWICHES} Drinks{DRINKS} Candies{CANDIES} Dishes{PLATES} Portions{PORTIONS} Pastas{PASTAS} Snacks{SNACKS} Salads{SALADS} Dessert{DESSERT} Savoury{SAVOURY} other{OUTROS}}",
     "productPriceCurrency": "{amount} ",
-    "@productPriceCurrency" : {
+    "@productPriceCurrency": {
         "placeholders": {
             "amount": {
                 "type": "double",
@@ -126,26 +112,20 @@
         }
     },
     "productPrepareTimeMinutes": "{prepareTime} min",
-    "@productPrepareTimeMinutes" : {
+    "@productPrepareTimeMinutes": {
         "placeholders": {
             "placeholders": {
                 "prepareTime": {}
             }
         }
     },
-
-
-
+    "statusNameSchema": "{status, select, PENDING{Pending} PREPARING{Preparing} REFUSED{Refused} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}",
+    "statusAlertSchema": "{status, select, PENDING{Please wait a moment, your order will be approved!} PREPARING{Your request has been approved! It will soon begin to be prepared!} REFUSED{Refused} READY{Your order is ready! Come pick it up!} CANCELED{Canceled} ALL{All} other{Others}}",
     "recommendationsTitle": "Recommendations",
     "createProductTitle": "Create product",
     "editProductTitle": "Edit product",
-
-
-
     "successChangePassword": "Password changed successfully!",
     "successConfirmEmail": "Email confirmed!",
-
-
     "messageSentSuccessfully": "Email successfully sent!",
     "messageSentError": "Error sending email, please try again later.",
     "cart": "Cesta",
@@ -153,43 +133,32 @@
     "profile": "Profile",
     "help": "Help",
     "orders": "Orders",
-
-
-
-
-    
     "errorGeneric": "Something went wrong!",
     "errorItemNotFound": "No items found.",
     "errorEmptyList": "Empty List.",
     "errorEmailOrPassword": "Error with email or password.",
     "errorFields": "Error with the inserted fields.",
-
     "authErrorsSchema": "{schema, select, codeDeliveryFailure{Failed to send code to email, please try again.} codeMismatch{Code provided is wrong, please try again.} invalidParameter{Some field filled in incorrectly.} usernameExists{There is already an account with this email.} notAuthorized{Unconfirmed email, confirm it.} userNotConfirmed{Unconfirmed email, confirm it.} signedOut{Incorrect email or password.} limitExceeded{Too many attempts in a row, try again later.} invalidParameter{Email probably already confirmed.} tooManyFailedAttempts{Looks like you tried the code wrong too many times, get in touch.} userNotFound{We couldn't find this registered email.} internalError{We are experiencing internal issues, please try again later.} codeMismatch{Code provided is wrong, please try again.} other{An error occurred while confirming email.}}",
-
     "entityErrorMessage": "Field {entityErrorMessage} is not valid",
-    "@entityErrorMessage" : {
+    "@entityErrorMessage": {
         "placeholders": {
             "placeholders": {
                 "entityErrorMessage": {}
             }
         }
     },
-    
     "emptyListErrorMessage": "List is empty, no items found for this request",
-
     "contactError": "Error sending message, please try again later.",
-
     "requestErrorMessage": "{message}",
-    "@requestErrorMessage" : {
+    "@requestErrorMessage": {
         "placeholders": {
             "placeholders": {
                 "requestErrorMessage": {}
             }
         }
     },
-
     "noItemsFoundErrorMessage": "No items found for {message}",
-    "@noItemsFoundErrorMessage" : {
+    "@noItemsFoundErrorMessage": {
         "placeholders": {
             "placeholders": {
                 "noItemsFoundErrorMessage": {}

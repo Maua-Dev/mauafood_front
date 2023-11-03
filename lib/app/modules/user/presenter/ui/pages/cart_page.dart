@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/landing/presenter/controllers/landing_controller.dart';
 import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/product_card_cart_widget.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import '../../../../../../generated/l10n.dart';
@@ -98,7 +99,7 @@ class _CartPageState extends State<CartPage> {
                               child: Padding(
                                 padding: const EdgeInsets.only(right: 80.0),
                                 child: Text(
-                                  controller.restaurantName,
+                                  controller.restaurantCart.restaurantName,
                                   style: const TextStyle(
                                     fontSize: 28,
                                     fontWeight: FontWeight.bold,

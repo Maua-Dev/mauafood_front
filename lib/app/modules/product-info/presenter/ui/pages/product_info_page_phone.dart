@@ -205,7 +205,7 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                                   GestureDetector(
                                     onTap: () => {
                                       if (controllerCart.setRestaurantName(
-                                          controller.restaurantName,
+                                          controller.restaurant,
                                           controller.productCart,
                                           context))
                                         {

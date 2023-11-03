@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:mauafood_front/app/modules/user/domain/usecases/create_order_usecase.dart';
+import 'package:mauafood_front/app/modules/user/presenter/controllers/cart/states/cart_states.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/infra/models/cart_product_model.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
@@ -12,58 +15,74 @@ abstract class CartControllerBase with Store {
   @observable
   List<CartProductModel> cartList = ObservableList<CartProductModel>();
 
+  final ICreateOrderUsecase _createOrder;
+
   @observable
   double totalPrice = 0;
 
   @observable
-  String restaurantName = "";
+  RestaurantEnum restaurantCart = RestaurantEnum.none;
+
+  @observable
+  CartState state = CartInitialState();
 
   @action
-  void createOrder(BuildContext context) {
-    cartList = [];
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Container(
-              width: 400,
-              height: 300,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(40),
-                color: AppColors.white,
-              ),
-              child: const Column(
-                children: [
-                  Icon(
-                    Icons.check_circle_outline,
-                    size: 200,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.only(top: 24.0),
-                    child: Text(
-                      "Seu pedido foi enviado ao restaurante!",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+  void changeState(CartState value) => state = value;
+
+  CartControllerBase(this._createOrder);
+
+  @action
+  Future<void> createOrder(BuildContext context) async {
+    var result = await _createOrder(cartList, restaurantCart);
+
+    changeState(result.fold((l) => CartErrorState(failure: l), (order) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Container(
+                width: 400,
+                height: 300,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(40),
+                  color: AppColors.white,
+                ),
+                child: const Column(
+                  children: [
+                    Icon(
+                      Icons.check_circle_outline,
+                      size: 200,
                     ),
-                  )
-                ],
+                    Padding(
+                      padding: EdgeInsets.only(top: 24.0),
+                      child: Text(
+                        "Seu pedido foi enviado ao restaurante!",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
               ),
-            ),
-          );
-        });
-    restaurantName = "";
+            );
+          });
+      return CartLoadedSuccessState(order: order, productList: cartList);
+    }));
+    cartList = [];
+    restaurantCart = RestaurantEnum.none;
   }
 
   @action
-  bool setRestaurantName(name, product, BuildContext context) {
-    if (restaurantName == name) {
+  bool setRestaurantName(
+      RestaurantEnum restaurant, product, BuildContext context) {
+    if (restaurantCart == restaurant) {
       addProductToCart(product);
       return true;
-    } else if (restaurantName.isEmpty) {
-      restaurantName = name;
+    } else if (restaurantCart == RestaurantEnum.none) {
+      restaurantCart = restaurant;
       addProductToCart(product);
       return true;
     }
@@ -108,7 +127,7 @@ abstract class CartControllerBase with Store {
       cartList.removeAt(index);
       calculateTotalPrice();
       if (cartList.isEmpty) {
-        restaurantName = "";
+        restaurantCart = RestaurantEnum.none;
       }
     } else {
       var auxiliar = cartList[index];

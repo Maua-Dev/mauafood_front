@@ -213,8 +213,10 @@ class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
                                     const Flexible(child: SizedBox.expand()),
                                     GestureDetector(
                                       onTap: () => {
-                                        controllerCart.setRestaurantName("Nome",
-                                            controller.productCart, context),
+                                        controllerCart.setRestaurantName(
+                                            controllerCart.restaurantCart,
+                                            controller.productCart,
+                                            context),
                                         Modular.to.navigate("/landing/cart/"),
                                       },
                                       child: SizedBox(

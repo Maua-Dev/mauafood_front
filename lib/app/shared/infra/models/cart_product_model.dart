@@ -37,4 +37,11 @@ class CartProductModel extends CartProduct {
         price: price ?? this.price,
         photo: photo ?? this.photo);
   }
+
+  Map<String, dynamic> toJson() => {
+        'product_id': id,
+        'product_name': name,
+        'observation': observation,
+        'quantity': quantity,
+      };
 }

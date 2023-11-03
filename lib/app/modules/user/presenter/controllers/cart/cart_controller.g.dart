@@ -41,42 +41,67 @@ mixin _$CartController on CartControllerBase, Store {
     });
   }
 
-  late final _$restaurantNameAtom =
-      Atom(name: 'CartControllerBase.restaurantName', context: context);
+  late final _$restaurantCartAtom =
+      Atom(name: 'CartControllerBase.restaurantCart', context: context);
 
   @override
-  String get restaurantName {
-    _$restaurantNameAtom.reportRead();
-    return super.restaurantName;
+  RestaurantEnum get restaurantCart {
+    _$restaurantCartAtom.reportRead();
+    return super.restaurantCart;
   }
 
   @override
-  set restaurantName(String value) {
-    _$restaurantNameAtom.reportWrite(value, super.restaurantName, () {
-      super.restaurantName = value;
+  set restaurantCart(RestaurantEnum value) {
+    _$restaurantCartAtom.reportWrite(value, super.restaurantCart, () {
+      super.restaurantCart = value;
     });
+  }
+
+  late final _$stateAtom =
+      Atom(name: 'CartControllerBase.state', context: context);
+
+  @override
+  CartState get state {
+    _$stateAtom.reportRead();
+    return super.state;
+  }
+
+  @override
+  set state(CartState value) {
+    _$stateAtom.reportWrite(value, super.state, () {
+      super.state = value;
+    });
+  }
+
+  late final _$createOrderAsyncAction =
+      AsyncAction('CartControllerBase.createOrder', context: context);
+
+  @override
+  Future<void> createOrder(BuildContext context) {
+    return _$createOrderAsyncAction.run(() => super.createOrder(context));
   }
 
   late final _$CartControllerBaseActionController =
       ActionController(name: 'CartControllerBase', context: context);
 
   @override
-  void createOrder(BuildContext context) {
+  void changeState(CartState value) {
     final _$actionInfo = _$CartControllerBaseActionController.startAction(
-        name: 'CartControllerBase.createOrder');
+        name: 'CartControllerBase.changeState');
     try {
-      return super.createOrder(context);
+      return super.changeState(value);
     } finally {
       _$CartControllerBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  bool setRestaurantName(dynamic name, dynamic product, BuildContext context) {
+  bool setRestaurantName(
+      RestaurantEnum restaurant, dynamic product, BuildContext context) {
     final _$actionInfo = _$CartControllerBaseActionController.startAction(
         name: 'CartControllerBase.setRestaurantName');
     try {
-      return super.setRestaurantName(name, product, context);
+      return super.setRestaurantName(restaurant, product, context);
     } finally {
       _$CartControllerBaseActionController.endAction(_$actionInfo);
     }
@@ -131,7 +156,8 @@ mixin _$CartController on CartControllerBase, Store {
     return '''
 cartList: ${cartList},
 totalPrice: ${totalPrice},
-restaurantName: ${restaurantName}
+restaurantCart: ${restaurantCart},
+state: ${state}
     ''';
   }
 }

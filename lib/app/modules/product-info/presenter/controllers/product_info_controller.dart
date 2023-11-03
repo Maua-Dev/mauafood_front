@@ -1,3 +1,4 @@
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mobx/mobx.dart';
 import '../../../../shared/infra/models/cart_product_model.dart';
 import '../../../user/presenter/models/product_viewmodel.dart';
@@ -8,15 +9,14 @@ class ProductInfoController = ProductInfoControllerBase
     with _$ProductInfoController;
 
 abstract class ProductInfoControllerBase with Store {
-  ProductInfoControllerBase(
-      {required this.product, required this.restaurantName}) {
+  ProductInfoControllerBase({required this.product, required this.restaurant}) {
     setProduct();
   }
 
   @observable
   var productCart = CartProductModel.newInstance();
 
-  final String restaurantName;
+  final RestaurantEnum restaurant;
 
   final ProductViewModel product;
 

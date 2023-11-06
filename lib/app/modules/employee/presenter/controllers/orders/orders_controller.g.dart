@@ -138,22 +138,6 @@ mixin _$OrdersController on OrdersControllerBase, Store {
     });
   }
 
-  late final _$isExpandedAtom =
-      Atom(name: 'OrdersControllerBase.isExpanded', context: context);
-
-  @override
-  bool get isExpanded {
-    _$isExpandedAtom.reportRead();
-    return super.isExpanded;
-  }
-
-  @override
-  set isExpanded(bool value) {
-    _$isExpandedAtom.reportWrite(value, super.isExpanded, () {
-      super.isExpanded = value;
-    });
-  }
-
   late final _$getAllActiveOrdersAsyncAction =
       AsyncAction('OrdersControllerBase.getAllActiveOrders', context: context);
 
@@ -260,8 +244,7 @@ statusFiltered: ${statusFiltered},
 statusIndex: ${statusIndex},
 reasonIndex: ${reasonIndex},
 abortReason: ${abortReason},
-isMissingDescription: ${isMissingDescription},
-isExpanded: ${isExpanded}
+isMissingDescription: ${isMissingDescription}
     ''';
   }
 }

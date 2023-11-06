@@ -61,6 +61,6 @@ class EmployeeMenuModule extends Module {
           child: (context, args) => const EmployeeMenuPage(
               restaurant: RestaurantEnum.cantina_do_moleza),
         ),
-        ChildRoute('/orders/', child: (_, args) => OrdersPage())
+        ChildRoute('/orders/', child: (_, args) => const OrdersPage())
       ];
 }

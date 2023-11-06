@@ -13,10 +13,16 @@ import '../../../../../../generated/l10n.dart';
 import '../../../../../shared/helpers/utils/screen_helper.dart';
 import '../../../../../shared/widgets/text_field_widget.dart';
 
-class OrdersPage extends StatelessWidget {
-  OrdersPage({super.key});
+class OrdersPage extends StatefulWidget {
+  const OrdersPage({super.key});
 
+  @override
+  State<OrdersPage> createState() => _OrdersPageState();
+}
+
+class _OrdersPageState extends State<OrdersPage> {
   final OrdersController store = Modular.get<OrdersController>();
+
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -164,9 +170,15 @@ class OrdersPage extends StatelessWidget {
                                                                       (context) {
                                                                 return ExpansionTile(
                                                                   onExpansionChanged:
-                                                                      (value) =>
-                                                                          store.isExpanded =
-                                                                              value,
+                                                                      (value) {
+                                                                    setState(
+                                                                        () {
+                                                                      state
+                                                                          .ordersList[
+                                                                              index]
+                                                                          .isExpanded = value;
+                                                                    });
+                                                                  },
                                                                   shape:
                                                                       const Border(),
                                                                   tilePadding:
@@ -272,7 +284,7 @@ class OrdersPage extends StatelessWidget {
                                                                                           overflow: TextOverflow.ellipsis,
                                                                                           style: AppTextStyles.h2.copyWith(fontSize: 16),
                                                                                         ),
-                                                                                        if (store.isExpanded)
+                                                                                        if (state.ordersList[index].isExpanded)
                                                                                           Column(
                                                                                             crossAxisAlignment: CrossAxisAlignment.start,
                                                                                             children: [
@@ -288,7 +300,7 @@ class OrdersPage extends StatelessWidget {
                                                                                                 child: Padding(
                                                                                                   padding: const EdgeInsets.all(8.0),
                                                                                                   child: Text(
-                                                                                                    state.ordersList[index].products[productIndex].observation ?? S.of(context).withoutObservationTitle,
+                                                                                                    state.ordersList[index].products[productIndex].observation == null || state.ordersList[index].products[productIndex].observation == "" ? S.of(context).withoutObservationTitle : state.ordersList[index].products[productIndex].observation!,
                                                                                                     style: AppTextStyles.h3.copyWith(fontSize: 14),
                                                                                                   ),
                                                                                                 ),
@@ -330,43 +342,44 @@ class OrdersPage extends StatelessWidget {
                                                                         crossAxisAlignment:
                                                                             CrossAxisAlignment.start,
                                                                         children: [
-                                                                          Row(
-                                                                            crossAxisAlignment:
-                                                                                CrossAxisAlignment.end,
-                                                                            children: [
-                                                                              Expanded(
-                                                                                child: Align(
-                                                                                  alignment: Alignment.centerRight,
-                                                                                  child: DropdownButton(
-                                                                                      isDense: true,
-                                                                                      underline: const SizedBox.shrink(),
-                                                                                      value: state.ordersList[index].status,
-                                                                                      items: [
-                                                                                        DropdownMenuItem(
-                                                                                          value: StatusEnum.READY,
-                                                                                          child: Text(
-                                                                                            StatusEnum.READY.name,
-                                                                                            style: AppTextStyles.h1.copyWith(fontSize: 16),
+                                                                          if (state.ordersList[index].status == StatusEnum.PREPARING ||
+                                                                              state.ordersList[index].status == StatusEnum.READY)
+                                                                            Row(
+                                                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                                                              children: [
+                                                                                Expanded(
+                                                                                  child: Align(
+                                                                                    alignment: Alignment.centerRight,
+                                                                                    child: DropdownButton(
+                                                                                        isDense: true,
+                                                                                        underline: const SizedBox.shrink(),
+                                                                                        value: state.ordersList[index].status,
+                                                                                        items: [
+                                                                                          DropdownMenuItem(
+                                                                                            value: StatusEnum.READY,
+                                                                                            child: Text(
+                                                                                              StatusEnum.READY.name,
+                                                                                              style: AppTextStyles.h1.copyWith(fontSize: 16),
+                                                                                            ),
                                                                                           ),
-                                                                                        ),
-                                                                                        DropdownMenuItem(
-                                                                                          value: StatusEnum.PREPARING,
-                                                                                          child: Text(
-                                                                                            StatusEnum.PREPARING.name,
-                                                                                            style: AppTextStyles.h1.copyWith(fontSize: 16),
+                                                                                          DropdownMenuItem(
+                                                                                            value: StatusEnum.PREPARING,
+                                                                                            child: Text(
+                                                                                              StatusEnum.PREPARING.name,
+                                                                                              style: AppTextStyles.h1.copyWith(fontSize: 16),
+                                                                                            ),
                                                                                           ),
-                                                                                        ),
-                                                                                      ],
-                                                                                      onChanged: (state.ordersList[index].status == StatusEnum.PREPARING)
-                                                                                          ? (value) {
-                                                                                              var orderListIndex = store.ordersList.indexOf(state.ordersList[index]);
-                                                                                              store.changeOrderStatus(orderListIndex, value as StatusEnum, context);
-                                                                                            }
-                                                                                          : null),
+                                                                                        ],
+                                                                                        onChanged: (state.ordersList[index].status == StatusEnum.PREPARING)
+                                                                                            ? (value) {
+                                                                                                var orderListIndex = store.ordersList.indexOf(state.ordersList[index]);
+                                                                                                store.changeOrderStatus(orderListIndex, value as StatusEnum, context);
+                                                                                              }
+                                                                                            : null),
+                                                                                  ),
                                                                                 ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
+                                                                              ],
+                                                                            ),
                                                                           const SizedBox(
                                                                             height:
                                                                                 8,

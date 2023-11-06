@@ -3,7 +3,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/employee/employee_menu_module.dart';
 import 'package:mauafood_front/app/modules/landing/presenter/controllers/landing_controller.dart';
 import 'package:mauafood_front/app/modules/landing/presenter/ui/pages/landing_page.dart';
-import 'package:mauafood_front/app/modules/profile/presenter/controllers/order_status_controller.dart';
 
 import 'package:mauafood_front/app/modules/user/user_menu_module.dart';
 import 'package:mauafood_front/app/modules/profile/profile_module.dart';
@@ -34,9 +33,6 @@ class LandingModule extends Module {
     Bind<ContactController>(
       (i) => ContactController(i(), i(), i()),
     ),
-    Bind(
-      (i) => OrderStatusController(),
-    )
   ];
 
   @override

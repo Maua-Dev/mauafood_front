@@ -43,4 +43,16 @@ class OrdersDatasource implements IOrdersDatasource {
     }
     throw Exception();
   }
+
+  @override
+  Future<Map<String, dynamic>> getCurrentOrderStateById(String orderId) async {
+    var response =
+        await _httpService.post('/get-current-order-state-by-id', data: {
+      'order_id': orderId,
+    });
+    if (response.statusCode == 200) {
+      return response.data;
+    }
+    throw Exception();
+  }
 }

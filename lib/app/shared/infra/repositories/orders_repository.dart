@@ -56,4 +56,19 @@ class OrdersRepository implements IOrdersRepository {
     }
     return right(order);
   }
+
+  @override
+  Future<Either<Failure, OrderModel>> getCurrentOrderStateById(
+      String orderId) async {
+    OrderModel order;
+    try {
+      var orderMap = await datasource.getCurrentOrderStateById(orderId);
+      order = OrderModel.fromMap(orderMap['order']);
+    } on DioError catch (e) {
+      HttpStatusCodeEnum errorType =
+          getHttpStatusFunction(e.response!.statusCode);
+      return left(ErrorRequest(message: errorType.errorMessage));
+    }
+    return right(order);
+  }
 }

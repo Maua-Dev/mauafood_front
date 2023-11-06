@@ -2,11 +2,11 @@ import '../enums/status_enum.dart';
 
 class Order {
   StatusEnum status;
-  final String userName;
+  final String? userName;
   final String id;
-  final String userId;
-  final double totalPrice;
-  final int creationTime;
+  final String? userId;
+  final double? totalPrice;
+  final int? creationTime;
   final String? abortedReason;
 
   Order(

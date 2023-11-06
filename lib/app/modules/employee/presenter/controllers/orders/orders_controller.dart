@@ -180,7 +180,7 @@ abstract class OrdersControllerBase with Store {
       ordersList = list;
       ordersList.sort((a, b) {
         if (a.status.index.compareTo(b.status.index) == 0) {
-          return a.creationTime.compareTo(b.creationTime);
+          return a.creationTime!.compareTo(b.creationTime!);
         } else {
           return a.status.index.compareTo(b.status.index);
         }
@@ -212,7 +212,7 @@ abstract class OrdersControllerBase with Store {
 
     ordersList.sort((a, b) {
       if (a.status.index.compareTo(b.status.index) == 0) {
-        return a.creationTime.compareTo(b.creationTime);
+        return a.creationTime!.compareTo(b.creationTime!);
       } else {
         return a.status.index.compareTo(b.status.index);
       }
@@ -242,7 +242,7 @@ abstract class OrdersControllerBase with Store {
 
     ordersList.sort((a, b) {
       if (a.status.index.compareTo(b.status.index) == 0) {
-        return a.creationTime.compareTo(b.creationTime);
+        return a.creationTime!.compareTo(b.creationTime!);
       } else {
         return a.status.index.compareTo(b.status.index);
       }

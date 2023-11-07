@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import '../../../../../../generated/l10n.dart';
@@ -25,23 +26,25 @@ class _ProductCardCartWidgetState extends State<ProductCardCartWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100,
+      height: widget.product.observation.isEmpty ? 130 : 165,
       child: InkWell(
         child: Card(
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
           child: SizedBox(
-            height: 100,
             child: Row(
               children: [
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: CachedNetworkImage(
-                      imageUrl: widget.product.photo,
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
+                SizedBox(
+                  width: 100,
+                  child: Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CachedNetworkImage(
+                        imageUrl: widget.product.photo,
+                        errorWidget: (context, url, error) =>
+                            const Icon(Icons.error),
+                      ),
                     ),
                   ),
                 ),
@@ -56,66 +59,104 @@ class _ProductCardCartWidgetState extends State<ProductCardCartWidget> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Expanded(
-                                child: Text(
-                                  widget.product.name,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: AppTextStyles.h2.copyWith(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 16.0, bottom: 8),
+                                  child: Text(
+                                    widget.product.name,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: AppTextStyles.h2.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize:
+                                            ScreenHelper.width(context) > 400
+                                                ? 20
+                                                : 16),
+                                  ),
                                 ),
                               ),
                             ],
                           ),
                           const Spacer(),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Container(
-                                height: 30,
-                                decoration: BoxDecoration(
-                                    color: AppColors.mainBlueColor,
-                                    borderRadius: BorderRadius.circular(8)),
-                                child: Row(
-                                  children: [
-                                    TextButton(
-                                      onPressed: widget.onSubtract,
-                                      child: Text(
-                                        "-",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.white,
-                                            fontSize: 12),
-                                      ),
-                                    ),
-                                    Text(
-                                      widget.product.quantity.toString(),
+                          widget.product.observation.isNotEmpty
+                              ? Container(
+                                  constraints: BoxConstraints.tight(Size(
+                                      ScreenHelper.width(context) * 0.6, 30)),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.grey[350],
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 10.0, right: 8.0, top: 4),
+                                    child: Text(
+                                      widget.product.observation,
+                                      overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
-                                          color: AppColors.white, fontSize: 16),
+                                          color: Color.fromARGB(
+                                              255, 100, 100, 100),
+                                          fontSize:
+                                              ScreenHelper.width(context) > 400
+                                                  ? 20
+                                                  : 16),
                                     ),
-                                    TextButton(
-                                      onPressed: widget.onAdd,
-                                      child: Text(
-                                        "+",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.white,
-                                            fontSize: 12),
+                                  ),
+                                )
+                              : const SizedBox.shrink(),
+                          const Spacer(),
+                          const Divider(),
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                  height: 30,
+                                  decoration: BoxDecoration(
+                                      color: AppColors.mainBlueColor,
+                                      borderRadius: BorderRadius.circular(8)),
+                                  child: Row(
+                                    children: [
+                                      TextButton(
+                                        onPressed: widget.onSubtract,
+                                        child: Text(
+                                          "-",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.white,
+                                              fontSize: 12),
+                                        ),
                                       ),
-                                    )
-                                  ],
+                                      Text(
+                                        widget.product.quantity.toString(),
+                                        style: TextStyle(
+                                            color: AppColors.white,
+                                            fontSize: 16),
+                                      ),
+                                      TextButton(
+                                        onPressed: widget.onAdd,
+                                        child: Text(
+                                          "+",
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.white,
+                                              fontSize: 12),
+                                        ),
+                                      )
+                                    ],
+                                  ),
                                 ),
-                              ),
-                              Text(
-                                S.of(context).productPriceCurrency(
-                                    widget.product.price *
-                                        widget.product.quantity),
-                                overflow: TextOverflow.ellipsis,
-                                style: AppTextStyles.h2Highlight.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    overflow: TextOverflow.ellipsis),
-                              ),
-                            ],
+                                Text(
+                                  S.of(context).productPriceCurrency(
+                                      widget.product.price *
+                                          widget.product.quantity),
+                                  overflow: TextOverflow.ellipsis,
+                                  style: AppTextStyles.h2Highlight.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      overflow: TextOverflow.ellipsis),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),

@@ -93,7 +93,7 @@ class _ProductCardCartWidgetState extends State<ProductCardCartWidget> {
                                       widget.product.observation,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
-                                          color: Color.fromARGB(
+                                          color: const Color.fromARGB(
                                               255, 100, 100, 100),
                                           fontSize:
                                               ScreenHelper.width(context) > 400

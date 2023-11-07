@@ -41,16 +41,6 @@ void main() {
       lastUpdate: DateTime.now(),
     )
   ];
-  Product testMock = Product(
-    id: '0',
-    name: 'name',
-    description: 'description',
-    price: 10,
-    type: ProductEnum.CANDIES,
-    photo: '',
-    available: true,
-    lastUpdate: DateTime.now(),
-  );
 
   setUpAll(() {
     HttpOverrides.global = null;
@@ -66,7 +56,6 @@ void main() {
         ],
         supportedLocales: S.delegate.supportedLocales,
         home: ProductInfoPage(
-          productInfo: testMock,
           recommendedProductList: recommendedProductList,
         ),
       ));

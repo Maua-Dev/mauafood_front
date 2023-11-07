@@ -22,5 +22,15 @@ class Product {
     this.prepareTime,
     required this.type,
   });
-  
+
+  factory Product.newProduct() {
+    return const Product(
+      available: true,
+      photo: '',
+      name: '',
+      description: '',
+      price: 0,
+      type: ProductEnum.ALL,
+    );
+  }
 }

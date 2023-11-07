@@ -111,7 +111,9 @@ class _CartPageState extends State<CartPage> {
                               padding: const EdgeInsets.only(
                                   top: 16.0, bottom: 8, left: 16, right: 16),
                               child: SizedBox(
-                                height: ScreenHelper.height(context) * 0.5,
+                                height: ScreenHelper.height(context) < 800
+                                    ? ScreenHelper.height(context) * 0.43
+                                    : ScreenHelper.height(context) * 0.55,
                                 child: Observer(builder: (_) {
                                   return ListView.builder(
                                     itemBuilder: (context, index) {

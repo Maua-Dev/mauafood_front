@@ -44,19 +44,19 @@ class _ProfilePageState extends State<ProfilePage> {
     const Text(
       "Favoritos",
       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    ),
-    const Text(
-      "Notificações",
-      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    ),
-    const Text(
-      "Meus dados",
-      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    ),
-    const Text(
-      "Pagamentos",
-      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    ),
+    )
+    // const Text(
+    //   "Notificações",
+    //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    // ),
+    // const Text(
+    //   "Meus dados",
+    //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    // ),
+    // const Text(
+    //   "Pagamentos",
+    //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    // ),
   ];
 
   final routes = [
@@ -86,13 +86,16 @@ class _ProfilePageState extends State<ProfilePage> {
                           topRight: Radius.circular(32))),
                   child: Padding(
                     padding:
-                        const EdgeInsets.only(top: 16.0, left: 12, right: 12),
+                        const EdgeInsets.only(top: 12.0, left: 12, right: 12),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
+                        const SizedBox(
+                          height: 100,
+                        ),
                         Padding(
-                          padding: const EdgeInsets.only(
-                              left: 24, bottom: 48, top: 120),
+                          padding: const EdgeInsets.only(left: 24),
                           child: Text(
                             store.name,
                             style: TextStyle(

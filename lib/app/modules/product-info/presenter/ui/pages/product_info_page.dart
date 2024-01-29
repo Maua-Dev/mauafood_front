@@ -1,8 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/user/presenter/controllers/menu/user_menu_restaurant_controller.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
+
 import 'package:mauafood_front/generated/l10n.dart';
 
 import '../widgets/recommended_product_widget.dart';
@@ -10,6 +13,7 @@ import '../widgets/recommended_product_widget.dart';
 class ProductInfoPage extends StatefulWidget {
   final Product productInfo;
   final List<Product> recommendedProductList;
+
   const ProductInfoPage(
       {super.key,
       required this.productInfo,
@@ -20,6 +24,7 @@ class ProductInfoPage extends StatefulWidget {
 }
 
 class _ProductInfoPageState extends State<ProductInfoPage> {
+  final store = Modular.get<UserMenuRestaurantController>();
   late Product product;
   @override
   void initState() {
@@ -35,12 +40,11 @@ class _ProductInfoPageState extends State<ProductInfoPage> {
     return Scaffold(
       backgroundColor: const Color(0xffFAF9F6),
       appBar: AppBar(
-        backgroundColor: const Color(0xffFAF9F6),
-        elevation: 0,
-        leading: BackButton(
-          color: AppColors.mainBlueColor,
-        ),
-      ),
+          backgroundColor: const Color(0xffFAF9F6),
+          elevation: 0,
+          leading: BackButton(
+            color: AppColors.mainBlueColor,
+          )),
       body: Stack(
         children: [
           Padding(

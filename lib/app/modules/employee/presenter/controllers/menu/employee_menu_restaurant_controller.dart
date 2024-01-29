@@ -63,6 +63,9 @@ abstract class MenuRestaurantControllerBase with Store {
   @observable
   ProductEnum productType = ProductEnum.ALL;
 
+  @observable
+  bool isUserMenu = false;
+
   @action
   void setIsMaxPriceSearch(bool value) => isMaxPriceSearch = value;
 

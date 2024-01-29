@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/user_menu_state.dart';
 import 'package:mauafood_front/app/modules/user/presenter/controllers/menu/user_menu_restaurant_controller.dart';
+import 'package:mauafood_front/app/modules/user/presenter/models/product_viewmodel.dart';
+import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 
 import 'package:mauafood_front/app/shared/widgets/filter_sheet_widget.dart';
-import 'package:mauafood_front/app/shared/domain/entities/product.dart';
+
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/app/shared/widgets/error_loading_menu_widget.dart';
 import 'package:mauafood_front/generated/l10n.dart';
+import 'package:shimmer/shimmer.dart';
 import '../widgets/product_card_widget.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
@@ -32,7 +35,7 @@ class _UserMenuPageState extends State<UserMenuPage> {
       );
     }
 
-    Widget buildSuccess(List<Product> listProduct) {
+    Widget buildSuccess(List<ProductViewModel> listProduct) {
       return Expanded(
           child: RefreshIndicator(
         backgroundColor: AppColors.white,
@@ -53,6 +56,13 @@ class _UserMenuPageState extends State<UserMenuPage> {
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: ProductCardWidget(
+                      isFavorite: listProduct[index].isFavorite,
+                      onFavoritePressed: (value) async {
+                        final res =
+                            await store.setFavoriteProduct(listProduct[index]);
+                        setState(() {});
+                        return res;
+                      },
                       product: listProduct[index],
                       onPressed: () {
                         Modular.to.pushNamed('product-info/', arguments: [
@@ -203,8 +213,14 @@ class _UserMenuPageState extends State<UserMenuPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      state is UserMenuLoadingState
-                          ? const Center(child: CircularProgressIndicator())
+                      state is UserMenuLoadingState ||
+                              state is UserMenuInitialState
+                          ? Shimmer.fromColors(
+                              baseColor: Colors.grey.shade300,
+                              highlightColor: Colors.white,
+                              child: ProductCardWidget(
+                                product: Product.newProduct(),
+                              ))
                           : state is UserMenuLoadedSuccessState
                               ? buildSuccess(state.listProduct)
                               : state is UserMenuErrorState

@@ -7,9 +7,11 @@ import 'package:mauafood_front/app/modules/landing/presenter/ui/pages/landing_pa
 import 'package:mauafood_front/app/modules/user/user_menu_module.dart';
 import 'package:mauafood_front/app/modules/profile/profile_module.dart';
 import 'package:mauafood_front/app/modules/user/user_module.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/send_email.dart';
 import '../../shared/datasource/external/http/contact_datasource.dart';
 import '../../shared/domain/repositories/contact_repository_interface.dart';
-import '../../shared/domain/usecases/contact_usecase.dart';
+
+import '../../shared/domain/usecases/user_send_email.dart';
 import '../../shared/guards/auth_guard.dart';
 import '../../shared/helpers/services/s3/assets_s3.dart';
 import '../../shared/infra/datasource/external/http/contact_datasource_interface.dart';
@@ -24,11 +26,12 @@ class LandingModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => LandingController(i())),
-    Bind<IContactUsecase>((i) => ContactUsecase(i())),
+    Bind<ISendEmail>((i) => SendEmail(i())),
+    Bind<IUserSendEmail>((i) => UserSendEmail(i())),
     Bind<IContactRepository>((i) => ContactRepository(datasource: i())),
-    Bind<IContactDatasource>((i) => ContactDatasource()),
+    Bind<IContactDatasource>((i) => ContactDatasource(i())),
     Bind<ContactController>(
-      (i) => ContactController(i()),
+      (i) => ContactController(i(), i(), i()),
     ),
   ];
 

@@ -9,6 +9,14 @@ part of 'contact_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$ContactController on ContactControllerBase, Store {
+  Computed<bool>? _$isLoggedComputed;
+
+  @override
+  bool get isLogged =>
+      (_$isLoggedComputed ??= Computed<bool>(() => super.isLogged,
+              name: 'ContactControllerBase.isLogged'))
+          .value;
+
   late final _$stateAtom =
       Atom(name: 'ContactControllerBase.state', context: context);
 
@@ -167,7 +175,8 @@ mixin _$ContactController on ContactControllerBase, Store {
 state: ${state},
 message: ${message},
 email: ${email},
-name: ${name}
+name: ${name},
+isLogged: ${isLogged}
     ''';
   }
 }

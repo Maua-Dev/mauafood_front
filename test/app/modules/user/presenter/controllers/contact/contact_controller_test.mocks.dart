@@ -6,8 +6,14 @@
 import 'dart:async' as _i4;
 
 import 'package:dartz/dartz.dart' as _i2;
-import 'package:mauafood_front/app/shared/domain/usecases/contact_usecase.dart'
+import 'package:mauafood_front/app/modules/user/domain/entities/user.dart'
+    as _i8;
+import 'package:mauafood_front/app/modules/user/presenter/controllers/user_controller.dart'
+    as _i7;
+import 'package:mauafood_front/app/shared/domain/usecases/send_email.dart'
     as _i3;
+import 'package:mauafood_front/app/shared/domain/usecases/user_send_email.dart'
+    as _i6;
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -32,11 +38,11 @@ class _FakeEither_0<L, R> extends _i1.SmartFake implements _i2.Either<L, R> {
         );
 }
 
-/// A class which mocks [IContactUsecase].
+/// A class which mocks [ISendEmail].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockIContactUsecase extends _i1.Mock implements _i3.IContactUsecase {
-  MockIContactUsecase() {
+class MockISendEmail extends _i1.Mock implements _i3.ISendEmail {
+  MockISendEmail() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -68,4 +74,70 @@ class MockIContactUsecase extends _i1.Mock implements _i3.IContactUsecase {
           ),
         )),
       ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
+}
+
+/// A class which mocks [IUserSendEmail].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockIUserSendEmail extends _i1.Mock implements _i6.IUserSendEmail {
+  MockIUserSendEmail() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<_i2.Either<_i5.Failure, void>> call(String? message) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [message],
+        ),
+        returnValue: _i4.Future<_i2.Either<_i5.Failure, void>>.value(
+            _FakeEither_0<_i5.Failure, void>(
+          this,
+          Invocation.method(
+            #call,
+            [message],
+          ),
+        )),
+      ) as _i4.Future<_i2.Either<_i5.Failure, void>>);
+}
+
+/// A class which mocks [UserController].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockUserController extends _i1.Mock implements _i7.UserController {
+  MockUserController() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  set user(_i8.User? _user) => super.noSuchMethod(
+        Invocation.setter(
+          #user,
+          _user,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  bool get isLogged => (super.noSuchMethod(
+        Invocation.getter(#isLogged),
+        returnValue: false,
+      ) as bool);
+  @override
+  _i4.Future<void> loadUser() => (super.noSuchMethod(
+        Invocation.method(
+          #loadUser,
+          [],
+        ),
+        returnValue: _i4.Future<void>.value(),
+        returnValueForMissingStub: _i4.Future<void>.value(),
+      ) as _i4.Future<void>);
+  @override
+  _i4.Future<bool> isFirstUse() => (super.noSuchMethod(
+        Invocation.method(
+          #isFirstUse,
+          [],
+        ),
+        returnValue: _i4.Future<bool>.value(false),
+      ) as _i4.Future<bool>);
 }

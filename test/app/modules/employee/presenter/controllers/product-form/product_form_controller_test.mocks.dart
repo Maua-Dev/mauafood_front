@@ -233,6 +233,20 @@ class MockEmployeeMenuRestaurantController extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
+  bool get isUserMenu => (super.noSuchMethod(
+        Invocation.getter(#isUserMenu),
+        returnValue: false,
+        returnValueForMissingStub: false,
+      ) as bool);
+  @override
+  set isUserMenu(bool? value) => super.noSuchMethod(
+        Invocation.setter(
+          #isUserMenu,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
   _i4.ReactiveContext get context => (super.noSuchMethod(
         Invocation.getter(#context),
         returnValue: _FakeReactiveContext_2(

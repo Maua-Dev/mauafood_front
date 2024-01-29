@@ -8,5 +8,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox('user');
+  await Hive.openBox('favorites');
   return runApp(ModularApp(module: AppModule(), child: const AppWidget()));
 }

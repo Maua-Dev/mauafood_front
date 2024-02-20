@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/user_menu_state.dart';
+import 'package:mauafood_front/app/modules/profile/domain/usecases/add_favorite_product.dart';
+import 'package:mauafood_front/app/modules/profile/domain/usecases/get_favorites.dart';
+import 'package:mauafood_front/app/modules/profile/domain/usecases/remove_favorite_product.dart';
 import 'package:mauafood_front/app/modules/user/presenter/controllers/menu/user_menu_restaurant_controller.dart';
+import 'package:mauafood_front/app/modules/user/presenter/models/product_viewmodel.dart';
 import 'package:mauafood_front/app/modules/user/presenter/ui/pages/user_menu_page.dart';
 import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/product_card_widget.dart';
 import 'package:mauafood_front/app/modules/user/user_menu_module.dart';
@@ -23,12 +27,19 @@ import 'package:flutter_modular/flutter_modular.dart' as modular;
 
 import 'user_menu_page_test.mocks.dart';
 
-@GenerateMocks([IGetRestaurantProductUsecase])
+@GenerateMocks([
+  IGetRestaurantProductUsecase,
+  AddFavoriteProduct,
+  RemoveFavoriteProduct,
+  GetFavorites
+])
 void main() {
   late UserMenuRestaurantController controller;
   IGetRestaurantProductUsecase usecase = MockIGetRestaurantProductUsecase();
-
-  ProductModel testMock = ProductModel(
+  AddFavoriteProduct _addFavoriteProduct = MockAddFavoriteProduct();
+  RemoveFavoriteProduct _removeFavoriteProduct = MockRemoveFavoriteProduct();
+  GetFavorites _getFavorites = MockGetFavorites();
+  ProductViewModel testMock = ProductViewModel(
     id: '0',
     name: 'name',
     description: 'description',
@@ -36,11 +47,10 @@ void main() {
     type: ProductEnum.CANDIES,
     photo: '',
     available: true,
-    lastUpdate: DateTime.now(),
   );
   var listMock = [
     testMock,
-    ProductModel(
+    ProductViewModel(
       id: '0',
       name: 'name',
       description: 'description',
@@ -48,17 +58,20 @@ void main() {
       type: ProductEnum.CANDIES,
       photo: '',
       available: true,
-      lastUpdate: DateTime.now(),
     ),
   ];
 
   setUpAll(() async {
     await S.load(const Locale.fromSubtags(languageCode: 'en'));
     HttpOverrides.global = null;
-    when(usecase(RestaurantEnum.souza_de_abreu))
-        .thenAnswer((realInvocation) async => Right(listMock));
-    controller =
-        UserMenuRestaurantController(usecase, RestaurantEnum.souza_de_abreu);
+    // when(usecase(RestaurantEnum.souza_de_abreu))
+    //     .thenAnswer((realInvocation) async => Right(listMock));
+    controller = UserMenuRestaurantController(
+        usecase,
+        RestaurantEnum.souza_de_abreu,
+        _addFavoriteProduct,
+        _removeFavoriteProduct,
+        _getFavorites);
     initModules([
       UserMenuModule()
     ], replaceBinds: [
@@ -111,8 +124,8 @@ void main() {
                 home: const UserMenuPage(),
               )));
 
-      when(usecase(RestaurantEnum.souza_de_abreu))
-          .thenAnswer((realInvocation) async => Right(listMock));
+      // when(usecase(RestaurantEnum.souza_de_abreu))
+      //     .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester.runAsync(() async => controller.loadRestaurantMenu());
       await widgetTester.runAsync(() async => controller.changeState(
@@ -159,8 +172,8 @@ void main() {
                 home: const UserMenuPage(),
               )));
 
-      when(usecase(RestaurantEnum.souza_de_abreu))
-          .thenAnswer((realInvocation) async => Right(listMock));
+      // when(usecase(RestaurantEnum.souza_de_abreu))
+      //     .thenAnswer((realInvocation) async => Right(listMock));
 
       await widgetTester.runAsync(() async => controller.changeState(
           UserMenuErrorState(failure: Failure(message: 'message'))));

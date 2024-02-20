@@ -144,6 +144,15 @@ class _ProfilePageState extends State<ProfilePage> {
                               ));
                     },
                     child: Observer(builder: (_) {
+                      if (store.photo.isEmpty) {
+                        return CircleAvatar(
+                          child: Icon(
+                            FontAwesomeIcons.penToSquare,
+                            size: 32,
+                            color: AppColors.white,
+                          ),
+                        );
+                      }
                       return CircleAvatar(
                         radius: 32,
                         backgroundImage: NetworkImage(store.photo),

@@ -13,9 +13,11 @@ import '../../../../user/presenter/controllers/cart/cart_controller.dart';
 import '../widgets/recommended_product_widget.dart';
 
 class ProductInfoPagePhone extends StatefulWidget {
+  final Product productInfo;
   final List<Product> recommendedProductList;
   const ProductInfoPagePhone({
     super.key,
+    required this.productInfo,
     required this.recommendedProductList,
   });
 
@@ -26,11 +28,17 @@ class ProductInfoPagePhone extends StatefulWidget {
 class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
   final ProductInfoController controller = Modular.get();
   final CartController controllerCart = Modular.get();
+  late Product product;
+  @override
+  void initState() {
+    super.initState();
+    product = widget.productInfo;
+  }
 
   @override
   Widget build(BuildContext context) {
     final recommendedProductListFilter = widget.recommendedProductList
-        .where((element) => element.id != controller.product.id)
+        .where((element) => element.id != product.id)
         .toList();
     return Scaffold(
       backgroundColor: const Color(0xffFAF9F6),
@@ -48,7 +56,7 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
             child: SizedBox.fromSize(
               size: Size.fromHeight(MediaQuery.of(context).size.height / 4),
               child: CachedNetworkImage(
-                imageUrl: controller.product.photo!,
+                imageUrl: product.photo!,
                 placeholder: (context, url) => const Center(
                   child: CircularProgressIndicator(),
                 ),
@@ -81,19 +89,20 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                controller.product.name,
+                                product.name,
                                 style: AppTextStyles.h1,
                               ),
                               Text(
-                                S.of(context).productPriceCurrency(
-                                    controller.product.price),
+                                S
+                                    .of(context)
+                                    .productPriceCurrency(product.price),
                                 style: AppTextStyles.h1.copyWith(fontSize: 22),
                               ),
                               const SizedBox(
                                 height: 16,
                               ),
                               Text(
-                                controller.product.description ?? "",
+                                product.description ?? "",
                                 style: AppTextStyles.h3
                                     .copyWith(fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.left,
@@ -154,87 +163,79 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Expanded(
-                          child: Flexible(
-                            child: Container(
-                              height: 50,
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(17),
-                                  border: Border.all(
-                                      color: AppColors.mainBlueColor,
-                                      width: 1)),
-                              child: Row(
-                                children: [
-                                  Observer(builder: (_) {
-                                    return TextButton(
-                                        onPressed: () =>
-                                            controller.productCart.quantity != 1
-                                                ? controller
-                                                    .decreaseProductCount()
-                                                : null,
-                                        child: Text(
-                                          "-",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: controller.productCart
-                                                          .quantity !=
+                        child: Container(
+                          height: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(17),
+                              border: Border.all(
+                                  color: AppColors.mainBlueColor, width: 1)),
+                          child: Row(
+                            children: [
+                              Observer(builder: (_) {
+                                return TextButton(
+                                    onPressed: () =>
+                                        controller.productCart.quantity != 1
+                                            ? controller.decreaseProductCount()
+                                            : null,
+                                    child: Text(
+                                      "-",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          color:
+                                              controller.productCart.quantity !=
                                                       1
                                                   ? AppColors.mainBlueColor
                                                   : Colors.grey,
-                                              fontSize: 16),
-                                        ));
-                                  }),
-                                  Observer(builder: (_) {
-                                    return Text(
-                                        controller.productCart.quantity
-                                            .toString(),
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            color: AppColors.mainBlueColor,
-                                            fontSize: 16));
-                                  }),
-                                  TextButton(
-                                      onPressed: () =>
-                                          controller.increaseProductCount(),
-                                      child: Text("+",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColors.mainBlueColor,
-                                              fontSize: 16))),
-                                  const Flexible(child: SizedBox.expand()),
-                                  GestureDetector(
-                                    onTap: () => {
-                                      if (controllerCart.setRestaurantName(
-                                          controller.restaurant,
-                                          controller.productCart,
-                                          context))
-                                        {
-                                          Modular.to.navigate("/landing/cart/"),
-                                        }
-                                    },
-                                    child: Container(
-                                      height: 60,
-                                      width: 176,
-                                      decoration: BoxDecoration(
+                                          fontSize: 16),
+                                    ));
+                              }),
+                              Observer(builder: (_) {
+                                return Text(
+                                    controller.productCart.quantity.toString(),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color: AppColors.mainBlueColor,
+                                        fontSize: 16));
+                              }),
+                              TextButton(
+                                  onPressed: () =>
+                                      controller.increaseProductCount(),
+                                  child: Text("+",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
                                           color: AppColors.mainBlueColor,
-                                          borderRadius:
-                                              BorderRadius.circular(16),
-                                          border: Border.all(
-                                            color: AppColors.mainBlueColor,
-                                            width: 1,
-                                          )),
-                                      child: Center(
-                                          child: Text(
-                                        "Adicionar ao Carrinho",
-                                        style: TextStyle(
-                                            color: AppColors.white,
-                                            fontWeight: FontWeight.bold),
+                                          fontSize: 16))),
+                              const Flexible(child: SizedBox.expand()),
+                              GestureDetector(
+                                onTap: () => {
+                                  if (controllerCart.setRestaurantName(
+                                      controller.restaurant,
+                                      controller.productCart,
+                                      context))
+                                    {
+                                      Modular.to.navigate("/landing/cart/"),
+                                    }
+                                },
+                                child: Container(
+                                  height: 60,
+                                  width: 176,
+                                  decoration: BoxDecoration(
+                                      color: AppColors.mainBlueColor,
+                                      borderRadius: BorderRadius.circular(16),
+                                      border: Border.all(
+                                        color: AppColors.mainBlueColor,
+                                        width: 1,
                                       )),
-                                    ),
-                                  ),
-                                ],
+                                  child: Center(
+                                      child: Text(
+                                    "Adicionar ao Carrinho",
+                                    style: TextStyle(
+                                        color: AppColors.white,
+                                        fontWeight: FontWeight.bold),
+                                  )),
+                                ),
                               ),
-                            ),
+                            ],
                           ),
                         ),
                       ),
@@ -263,18 +264,8 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                             child: RecommendedProductWidget(
                               product: recommendedProductListFilter[index],
                               onPressed: () {
-                                Modular.to.pushNamed(
-                                    "/landing/restaurants/product-info/",
-                                    arguments: [
-                                      recommendedProductListFilter[index],
-                                      recommendedProductListFilter
-                                          .where((element) =>
-                                              element.id !=
-                                              recommendedProductListFilter[
-                                                      index]
-                                                  .id)
-                                          .toList()
-                                    ]);
+                                product = recommendedProductListFilter[index];
+                                setState(() {});
                               },
                             ),
                           ),

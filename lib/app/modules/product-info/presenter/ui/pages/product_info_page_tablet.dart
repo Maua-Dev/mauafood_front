@@ -272,20 +272,8 @@ class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
                             width: MediaQuery.of(context).size.width / 4,
                             child: RecommendedProductWidget(
                               product: recommendedProductListFilter[index],
-                              onPressed: () {
-                                Modular.to.pushNamed(
-                                    "/landing/restaurants/product-info/",
-                                    arguments: [
-                                      recommendedProductListFilter[index],
-                                      recommendedProductListFilter
-                                          .where((element) =>
-                                              element.id !=
-                                              recommendedProductListFilter[
-                                                      index]
-                                                  .id)
-                                          .toList()
-                                    ]);
-                              },
+                              onPressed: () => controller.changeProduct(
+                                  recommendedProductListFilter[index]),
                             ),
                           ),
                           separatorBuilder: (context, index) => const SizedBox(

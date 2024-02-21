@@ -25,8 +25,35 @@ mixin _$ProductInfoController on ProductInfoControllerBase, Store {
     });
   }
 
+  late final _$productAtom =
+      Atom(name: 'ProductInfoControllerBase.product', context: context);
+
+  @override
+  Product get product {
+    _$productAtom.reportRead();
+    return super.product;
+  }
+
+  @override
+  set product(Product value) {
+    _$productAtom.reportWrite(value, super.product, () {
+      super.product = value;
+    });
+  }
+
   late final _$ProductInfoControllerBaseActionController =
       ActionController(name: 'ProductInfoControllerBase', context: context);
+
+  @override
+  void changeProduct(Product product) {
+    final _$actionInfo = _$ProductInfoControllerBaseActionController
+        .startAction(name: 'ProductInfoControllerBase.changeProduct');
+    try {
+      return super.changeProduct(product);
+    } finally {
+      _$ProductInfoControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void increaseProductCount() {
@@ -75,7 +102,8 @@ mixin _$ProductInfoController on ProductInfoControllerBase, Store {
   @override
   String toString() {
     return '''
-productCart: ${productCart}
+productCart: ${productCart},
+product: ${product}
     ''';
   }
 }

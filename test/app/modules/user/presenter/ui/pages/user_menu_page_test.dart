@@ -1,5 +1,4 @@
 import 'dart:io';
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,13 +13,11 @@ import 'package:mauafood_front/app/modules/user/presenter/ui/widgets/product_car
 import 'package:mauafood_front/app/modules/user/user_menu_module.dart';
 import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_restaurant_product_usecase.dart';
-import 'package:mauafood_front/app/shared/infra/models/product_model.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
 import 'package:mauafood_front/app/shared/widgets/error_loading_menu_widget.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/annotations.dart';
-import 'package:mockito/mockito.dart';
 import 'package:modular_test/modular_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:flutter_modular/flutter_modular.dart' as modular;
@@ -36,9 +33,9 @@ import 'user_menu_page_test.mocks.dart';
 void main() {
   late UserMenuRestaurantController controller;
   IGetRestaurantProductUsecase usecase = MockIGetRestaurantProductUsecase();
-  AddFavoriteProduct _addFavoriteProduct = MockAddFavoriteProduct();
-  RemoveFavoriteProduct _removeFavoriteProduct = MockRemoveFavoriteProduct();
-  GetFavorites _getFavorites = MockGetFavorites();
+  AddFavoriteProduct addFavoriteProduct = MockAddFavoriteProduct();
+  RemoveFavoriteProduct removeFavoriteProduct = MockRemoveFavoriteProduct();
+  GetFavorites getFavorites = MockGetFavorites();
   ProductViewModel testMock = ProductViewModel(
     id: '0',
     name: 'name',
@@ -69,9 +66,9 @@ void main() {
     controller = UserMenuRestaurantController(
         usecase,
         RestaurantEnum.souza_de_abreu,
-        _addFavoriteProduct,
-        _removeFavoriteProduct,
-        _getFavorites);
+        addFavoriteProduct,
+        removeFavoriteProduct,
+        getFavorites);
     initModules([
       UserMenuModule()
     ], replaceBinds: [

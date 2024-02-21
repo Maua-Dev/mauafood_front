@@ -62,9 +62,9 @@ class GetRestaurantProductMockFailed extends Mock
 @GenerateMocks([AddFavoriteProduct, RemoveFavoriteProduct, GetFavorites])
 void main() {
   late UserMenuRestaurantController controller;
-  AddFavoriteProduct _addFavoriteProduct = MockAddFavoriteProduct();
-  RemoveFavoriteProduct _removeFavoriteProduct = MockRemoveFavoriteProduct();
-  GetFavorites _getFavorites = MockGetFavorites();
+  AddFavoriteProduct addFavoriteProduct = MockAddFavoriteProduct();
+  RemoveFavoriteProduct removeFavoriteProduct = MockRemoveFavoriteProduct();
+  GetFavorites getFavorites = MockGetFavorites();
   IGetRestaurantProductUsecase usecaseSuccess =
       GetRestaurantProductMockSuccess();
   IGetRestaurantProductUsecase usecaseFailed = GetRestaurantProductMockFailed();
@@ -99,9 +99,9 @@ void main() {
       controller = UserMenuRestaurantController(
         usecaseSuccess,
         restaurantInfo,
-        _addFavoriteProduct,
-        _removeFavoriteProduct,
-        _getFavorites,
+        addFavoriteProduct,
+        removeFavoriteProduct,
+        getFavorites,
       );
       await controller.loadRestaurantMenu();
       expect(controller.listAllProduct, isNotEmpty);
@@ -111,9 +111,9 @@ void main() {
       controller = UserMenuRestaurantController(
         usecaseFailed,
         restaurantInfo,
-        _addFavoriteProduct,
-        _removeFavoriteProduct,
-        _getFavorites,
+        addFavoriteProduct,
+        removeFavoriteProduct,
+        getFavorites,
       );
       await controller.loadRestaurantMenu();
       expect(controller.state, isA<UserMenuErrorState>());

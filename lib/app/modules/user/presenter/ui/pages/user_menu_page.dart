@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/user_menu_state.dart';
 import 'package:mauafood_front/app/modules/user/presenter/controllers/menu/user_menu_restaurant_controller.dart';
+import 'package:mauafood_front/app/modules/user/presenter/controllers/user_controller.dart';
 import 'package:mauafood_front/app/modules/user/presenter/models/product_viewmodel.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 
@@ -26,7 +27,7 @@ class UserMenuPage extends StatefulWidget {
 
 class _UserMenuPageState extends State<UserMenuPage> {
   final UserMenuRestaurantController store = Modular.get();
-
+  final UserController userStore = Modular.get();
   @override
   Widget build(BuildContext context) {
     Widget buildError(Failure failure) {
@@ -57,12 +58,14 @@ class _UserMenuPageState extends State<UserMenuPage> {
                     padding: const EdgeInsets.only(bottom: 16.0),
                     child: ProductCardWidget(
                       isFavorite: listProduct[index].isFavorite,
-                      onFavoritePressed: (value) async {
-                        final res =
-                            await store.setFavoriteProduct(listProduct[index]);
-                        setState(() {});
-                        return res;
-                      },
+                      onFavoritePressed: userStore.isLogged
+                          ? (value) async {
+                              final res = await store
+                                  .setFavoriteProduct(listProduct[index]);
+                              setState(() {});
+                              return res;
+                            }
+                          : null,
                       product: listProduct[index],
                       onPressed: () {
                         Modular.to.pushNamed('product-info/', arguments: [

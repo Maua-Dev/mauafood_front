@@ -24,7 +24,7 @@ class _ProfilePageState extends State<ProfilePage> {
       color: AppColors.mainBlueColor,
     ),
     Icon(
-      FontAwesomeIcons.solidBell,
+      FontAwesomeIcons.gear,
       size: 22,
       color: AppColors.mainBlueColor,
     ),
@@ -44,11 +44,11 @@ class _ProfilePageState extends State<ProfilePage> {
     const Text(
       "Favoritos",
       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    )
-    // const Text(
-    //   "Notificações",
-    //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    // ),
+    ),
+    const Text(
+      "Conta",
+      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    ),
     // const Text(
     //   "Meus dados",
     //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -59,12 +59,7 @@ class _ProfilePageState extends State<ProfilePage> {
     // ),
   ];
 
-  final routes = [
-    "favorites/",
-    "favorites/",
-    "favorites/",
-    "favorites/",
-  ];
+  final routes = ["favorites/", "account/"];
 
   @override
   Widget build(BuildContext context) {

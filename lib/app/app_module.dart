@@ -2,6 +2,8 @@ import 'package:auth_package/login.dart';
 import 'package:dio/dio.dart';
 
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/profile/external/hive_datasource.dart';
+import 'package:mauafood_front/app/modules/profile/infra/datasource/favorite_datasource.dart';
 import 'modules/landing/landing_module.dart';
 import 'package:mauafood_front/app/modules/employee/employee_menu_module.dart';
 import 'package:mauafood_front/amplifyconfiguration.dart';
@@ -21,6 +23,7 @@ class AppModule extends Module {
         Bind((i) =>
             Dio(productBaseOptions)..interceptors.add(AuthInterceptor())),
         Bind<IHttpRequest>((i) => DioHttpRequest(dio: i<Dio>())),
+        Bind.singleton<FavoriteDatasource>((i) => FavoritesHiveDatasource()),
       ];
 
   @override

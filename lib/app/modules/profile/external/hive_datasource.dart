@@ -1,34 +1,27 @@
-import 'package:auth_package/core/auth_store.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../infra/datasource/favorite_datasource.dart';
 
 class FavoritesHiveDatasource implements FavoriteDatasource {
-  final AuthStore _authStore;
   final String _boxName = 'favorites';
-  FavoritesHiveDatasource(this._authStore);
+  FavoritesHiveDatasource();
 
   @override
   Future<void> addFavorite(String id) async {
-    final box = Hive.box(_boxName);
-    final listFav =
-        await box.get(_authStore.user!.username, defaultValue: <String>[]);
-    listFav.add(id);
-    await box.put(_authStore.user!.username, listFav);
+    final box = Hive.box<String>(_boxName);
+    await box.add(id);
   }
 
   @override
   Future<List<String>> getFavorites() async {
-    final box = Hive.box(_boxName);
-    return await box.get(_authStore.user!.username, defaultValue: <String>[]);
+    final box = Hive.box<String>(_boxName);
+
+    return box.values.toList();
   }
 
   @override
   Future<void> removeFavorite(String id) async {
-    final box = Hive.box(_boxName);
-    final listFav =
-        await box.get(_authStore.user!.username, defaultValue: <String>[]);
-    listFav.remove(id);
-    await box.put(_authStore.user!.username, listFav);
+    final box = Hive.box<String>(_boxName);
+    await box.delete(id);
   }
 }

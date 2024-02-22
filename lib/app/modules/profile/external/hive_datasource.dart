@@ -22,6 +22,6 @@ class FavoritesHiveDatasource implements FavoriteDatasource {
   @override
   Future<void> removeFavorite(String id) async {
     final box = Hive.box<String>(_boxName);
-    await box.delete(id);
+    await box.delete(box.values.toList().indexOf(id));
   }
 }

@@ -18,7 +18,7 @@ class CartDatasource extends ICartDatasource {
         'restaurant': RestaurantEnumExtension.enumToStringMap(restaurant),
       },
     );
-    if (response.statusCode != 200) {
+    if (response.statusCode != 201) {
       throw Exception('Não foi possível fazer o pedido');
     }
     return response.data['order_id'];

@@ -74,85 +74,62 @@ class _CartPageState extends State<CartPage> {
                     ),
                   ],
                 )
-              : Padding(
-                  padding: const EdgeInsets.only(top: 48.0),
+              : Container(
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        const BorderRadius.only(topLeft: Radius.circular(64)),
+                    color: AppColors.backgroundColor2,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.3),
+                        spreadRadius: 3,
+                        blurRadius: 5,
+                        offset: const Offset(0, -3),
+                      ),
+                    ],
+                  ),
                   child: Column(
                     children: [
-                      Container(
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(
-                              topLeft: Radius.circular(64)),
-                          color: AppColors.backgroundColor2,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.3),
-                              spreadRadius: 3,
-                              blurRadius: 5,
-                              offset: const Offset(0, -3),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 24.0),
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 80.0),
+                          child: Text(
+                            controller.restaurantCart.restaurantName,
+                            style: const TextStyle(
+                              fontSize: 28,
+                              fontWeight: FontWeight.bold,
                             ),
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 24.0),
-                              child: Padding(
-                                padding: const EdgeInsets.only(right: 80.0),
-                                child: Text(
-                                  controller.restaurantCart.restaurantName,
-                                  style: const TextStyle(
-                                    fontSize: 28,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 16.0, bottom: 8, left: 16, right: 16),
-                              child: SizedBox(
-                                height: ScreenHelper.height(context) < 800
-                                    ? ScreenHelper.height(context) * 0.43
-                                    : ScreenHelper.height(context) * 0.55,
-                                child: Observer(builder: (_) {
-                                  return ListView.builder(
-                                    itemBuilder: (context, index) {
-                                      return ProductCardCartWidget(
-                                        product: controller.cartList[
-                                            controller.cartList.length -
-                                                1 -
-                                                index],
-                                        onAdd: () =>
-                                            controller.addQuantitytoProduct(
-                                                controller.cartList.length -
-                                                    1 -
-                                                    index),
-                                        onSubtract: () => {
-                                          controller.subtractQuantitytoProduct(
-                                              controller.cartList.length -
-                                                  1 -
-                                                  index),
-                                          setState(() {}),
-                                        },
-                                      );
-                                    },
-                                    itemCount: controller.cartList.length,
-                                  );
-                                }),
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
                       ),
-                      const Divider(
-                        height: 2,
-                        color: Colors.black,
-                        thickness: 2,
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 16.0, bottom: 8, left: 16, right: 16),
+                        child: Observer(builder: (_) {
+                          return ListView.builder(
+                            shrinkWrap: true,
+                            itemBuilder: (context, index) {
+                              return ProductCardCartWidget(
+                                product: controller.cartList[
+                                    controller.cartList.length - 1 - index],
+                                onAdd: () => controller.addQuantitytoProduct(
+                                    controller.cartList.length - 1 - index),
+                                onSubtract: () => {
+                                  controller.subtractQuantitytoProduct(
+                                      controller.cartList.length - 1 - index),
+                                  setState(() {}),
+                                },
+                              );
+                            },
+                            itemCount: controller.cartList.length,
+                          );
+                        }),
                       ),
                       Container(
+                        color: AppColors.backgroundColor2,
                         height: ScreenHelper.width(context) * 0.25,
                         width: ScreenHelper.width(context),
-                        color: AppColors.backgroundColor,
                         child: Padding(
                           padding: const EdgeInsets.all(24),
                           child: Container(
@@ -204,7 +181,7 @@ class _CartPageState extends State<CartPage> {
                             ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 )),

@@ -56,6 +56,7 @@ void main() {
         ],
         supportedLocales: S.delegate.supportedLocales,
         home: ProductInfoPage(
+          productInfo: recommendedProductList[0],
           recommendedProductList: recommendedProductList,
         ),
       ));

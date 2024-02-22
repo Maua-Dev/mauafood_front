@@ -37,14 +37,12 @@ class _ProductCardCartWidgetState extends State<ProductCardCartWidget> {
               children: [
                 SizedBox(
                   width: 100,
-                  child: Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: CachedNetworkImage(
-                        imageUrl: widget.product.photo,
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CachedNetworkImage(
+                      imageUrl: widget.product.photo,
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
                   ),
                 ),

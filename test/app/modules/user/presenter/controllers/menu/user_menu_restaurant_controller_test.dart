@@ -96,6 +96,7 @@ void main() {
 
   group('[TEST] - loadRestaurantMenu', () {
     test('must return MenuLoadedSuccessState', () async {
+      when(getFavorites.call()).thenAnswer((_) async => right([]));
       controller = UserMenuRestaurantController(
         usecaseSuccess,
         restaurantInfo,
@@ -103,11 +104,13 @@ void main() {
         removeFavoriteProduct,
         getFavorites,
       );
+
       await controller.loadRestaurantMenu();
       expect(controller.listAllProduct, isNotEmpty);
     });
 
     test('must return MenuErrorState', () async {
+      when(getFavorites.call()).thenAnswer((_) async => right([]));
       controller = UserMenuRestaurantController(
         usecaseFailed,
         restaurantInfo,
@@ -122,6 +125,14 @@ void main() {
 
   group('[TEST] - setter', () {
     test('changeState', () {
+      when(getFavorites.call()).thenAnswer((_) async => right([]));
+      controller = UserMenuRestaurantController(
+        usecaseFailed,
+        restaurantInfo,
+        addFavoriteProduct,
+        removeFavoriteProduct,
+        getFavorites,
+      );
       controller.changeState(
           UserMenuLoadedSuccessState(listProduct: listMock, index: 0));
       expect(controller.state, isA<UserMenuLoadedSuccessState>());

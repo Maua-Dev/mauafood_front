@@ -15,10 +15,12 @@ class ProductInfoPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreenHelper.width(context) < 500
+    return ScreenHelper.width(context) <= 800
         ? ProductInfoPagePhone(
             productInfo: productInfo,
             recommendedProductList: recommendedProductList)
-        : ProductInfoPageTablet(recommendedProductList: recommendedProductList);
+        : ProductInfoPageTablet(
+            productInfo: productInfo,
+            recommendedProductList: recommendedProductList);
   }
 }

@@ -13,9 +13,11 @@ import '../../../../user/presenter/controllers/cart/cart_controller.dart';
 import '../widgets/recommended_product_widget.dart';
 
 class ProductInfoPageTablet extends StatefulWidget {
+  final Product productInfo;
   final List<Product> recommendedProductList;
   const ProductInfoPageTablet({
     super.key,
+    required this.productInfo,
     required this.recommendedProductList,
   });
 
@@ -26,11 +28,17 @@ class ProductInfoPageTablet extends StatefulWidget {
 class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
   final ProductInfoController controller = Modular.get();
   final CartController controllerCart = Modular.get();
+  late Product product;
+  @override
+  void initState() {
+    super.initState();
+    product = widget.productInfo;
+  }
 
   @override
   Widget build(BuildContext context) {
     final recommendedProductListFilter = widget.recommendedProductList
-        .where((element) => element.id != controller.product.id)
+        .where((element) => element.id != product.id)
         .toList();
     return Scaffold(
       backgroundColor: const Color(0xffFAF9F6),
@@ -48,7 +56,7 @@ class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
             child: SizedBox.fromSize(
               size: Size.fromHeight(MediaQuery.of(context).size.height / 4),
               child: CachedNetworkImage(
-                imageUrl: controller.product.photo!,
+                imageUrl: product.photo!,
                 placeholder: (context, url) => const Center(
                   child: CircularProgressIndicator(),
                 ),
@@ -81,19 +89,20 @@ class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               Text(
-                                controller.product.name,
+                                product.name,
                                 style: AppTextStyles.h1,
                               ),
                               Text(
-                                S.of(context).productPriceCurrency(
-                                    controller.product.price),
+                                S
+                                    .of(context)
+                                    .productPriceCurrency(product.price),
                                 style: AppTextStyles.h1.copyWith(fontSize: 22),
                               ),
                               const SizedBox(
                                 height: 16,
                               ),
                               Text(
-                                controller.product.description ?? "",
+                                product.description ?? "",
                                 style: AppTextStyles.h3
                                     .copyWith(fontWeight: FontWeight.bold),
                                 textAlign: TextAlign.left,
@@ -272,8 +281,10 @@ class _ProductInfoPageTabletState extends State<ProductInfoPageTablet> {
                             width: MediaQuery.of(context).size.width / 4,
                             child: RecommendedProductWidget(
                               product: recommendedProductListFilter[index],
-                              onPressed: () => controller.changeProduct(
-                                  recommendedProductListFilter[index]),
+                              onPressed: () {
+                                product = recommendedProductListFilter[index];
+                                setState(() {});
+                              },
                             ),
                           ),
                           separatorBuilder: (context, index) => const SizedBox(

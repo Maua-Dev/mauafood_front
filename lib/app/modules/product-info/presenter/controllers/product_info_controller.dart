@@ -2,7 +2,6 @@ import 'package:mauafood_front/app/shared/domain/entities/product.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 import 'package:mobx/mobx.dart';
 import '../../../../shared/infra/models/cart_product_model.dart';
-import '../../../user/presenter/models/product_viewmodel.dart';
 
 part 'product_info_controller.g.dart';
 

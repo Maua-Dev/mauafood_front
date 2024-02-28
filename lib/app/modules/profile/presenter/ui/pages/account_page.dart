@@ -9,7 +9,7 @@ class AccountPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ProfileController _store = Modular.get();
+    final ProfileController store = Modular.get();
     return Scaffold(
       backgroundColor: AppColors.backgroundColor2,
       appBar: AppBar(
@@ -50,7 +50,7 @@ class AccountPage extends StatelessWidget {
               color: AppColors.mainBlueColor,
             ),
             title: const Text('Sair'),
-            onTap: _store.logout,
+            onTap: store.logout,
           ),
           // ElevatedButton.icon(
           //   icon: Icon(

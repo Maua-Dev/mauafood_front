@@ -289,7 +289,7 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 200,
               ),
             ],

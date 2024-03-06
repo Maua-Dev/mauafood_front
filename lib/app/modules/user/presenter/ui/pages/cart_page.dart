@@ -90,50 +90,65 @@ class _CartPageState extends State<CartPage> {
                           ),
                         ],
                       ),
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 24.0),
-                            child: Padding(
-                              padding: const EdgeInsets.only(right: 80.0),
-                              child: Text(
-                                controller.restaurantCart.restaurantName,
-                                style: const TextStyle(
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.bold,
+                      child: Expanded(
+                        child: SizedBox(
+                          child: Column(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 24.0),
+                                child: Padding(
+                                  padding: const EdgeInsets.only(right: 80.0),
+                                  child: Text(
+                                    controller.restaurantCart.restaurantName,
+                                    style: const TextStyle(
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                              SizedBox(
+                                height: ScreenHelper.height(context) * 0.6,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 16.0,
+                                      bottom: 8,
+                                      left: 16,
+                                      right: 16),
+                                  child: Observer(builder: (_) {
+                                    return ListView.builder(
+                                      physics:
+                                          const AlwaysScrollableScrollPhysics(),
+                                      shrinkWrap: true,
+                                      itemBuilder: (context, index) {
+                                        return ProductCardCartWidget(
+                                          product: controller.cartList[
+                                              controller.cartList.length -
+                                                  1 -
+                                                  index],
+                                          onAdd: () =>
+                                              controller.addQuantitytoProduct(
+                                                  controller.cartList.length -
+                                                      1 -
+                                                      index),
+                                          onSubtract: () => {
+                                            controller
+                                                .subtractQuantitytoProduct(
+                                                    controller.cartList.length -
+                                                        1 -
+                                                        index),
+                                            setState(() {}),
+                                          },
+                                        );
+                                      },
+                                      itemCount: controller.cartList.length,
+                                    );
+                                  }),
+                                ),
+                              ),
+                            ],
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 16.0, bottom: 8, left: 16, right: 16),
-                            child: Observer(builder: (_) {
-                              return ListView.builder(
-                                shrinkWrap: true,
-                                itemBuilder: (context, index) {
-                                  return ProductCardCartWidget(
-                                    product: controller.cartList[
-                                        controller.cartList.length - 1 - index],
-                                    onAdd: () =>
-                                        controller.addQuantitytoProduct(
-                                            controller.cartList.length -
-                                                1 -
-                                                index),
-                                    onSubtract: () => {
-                                      controller.subtractQuantitytoProduct(
-                                          controller.cartList.length -
-                                              1 -
-                                              index),
-                                      setState(() {}),
-                                    },
-                                  );
-                                },
-                                itemCount: controller.cartList.length,
-                              );
-                            }),
-                          ),
-                        ],
+                        ),
                       ),
                     ),
                     Positioned(

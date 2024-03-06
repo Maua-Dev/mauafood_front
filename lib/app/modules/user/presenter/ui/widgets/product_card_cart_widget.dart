@@ -26,7 +26,7 @@ class _ProductCardCartWidgetState extends State<ProductCardCartWidget> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.product.observation.isEmpty ? 135 : 165,
+      height: widget.product.observation.isEmpty ? 140 : 180,
       child: InkWell(
         child: Card(
           shape: RoundedRectangleBorder(

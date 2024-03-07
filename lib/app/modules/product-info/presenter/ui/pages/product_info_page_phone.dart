@@ -4,6 +4,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/product-info/presenter/controllers/product_info_controller.dart';
 import 'package:mauafood_front/app/shared/domain/entities/product.dart';
+import 'package:mauafood_front/app/shared/domain/enums/product_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
@@ -35,6 +36,19 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
     product = widget.productInfo;
   }
 
+  var colors = {
+    ProductEnum.CANDIES: Color.fromARGB(255, 249, 197, 255),
+    ProductEnum.DESSERT: Color.fromARGB(255, 255, 215, 246),
+    ProductEnum.DRINKS: Color.fromARGB(255, 198, 247, 207),
+    ProductEnum.PASTAS: Color.fromARGB(255, 255, 225, 225),
+    ProductEnum.PLATES: Color.fromARGB(255, 213, 210, 255),
+    ProductEnum.PORTIONS: Color.fromARGB(255, 228, 243, 247),
+    ProductEnum.SALADS: Color.fromARGB(255, 255, 251, 204),
+    ProductEnum.SANDWICHES: Color.fromARGB(255, 249, 255, 187),
+    ProductEnum.SAVOURY: Color.fromARGB(255, 255, 234, 220),
+    ProductEnum.SNACKS: Color.fromARGB(255, 255, 199, 199),
+  };
+
   @override
   Widget build(BuildContext context) {
     final recommendedProductListFilter = widget.recommendedProductList
@@ -54,7 +68,7 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
         physics: const BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
-            backgroundColor: const Color(0xffFAF9F6),
+            backgroundColor: colors[product.type],
             leading: BackButton(
               color: AppColors.mainBlueColor,
             ),

@@ -25,7 +25,42 @@ jobs:
 
       - name: Get flutter dependencies
         run: flutter pub get
-      
+      - name: Setup AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: sa-east-1
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
+          role-session-name: github-action
+  
+      - run: npm install -g @aws-amplify/cli
+      - name: Setup Amplify projects
+        run: |
+          AWSCLOUDFORMATIONCONFIG="{\
+          \"configLevel\":\"general\",\
+          \"useProfile\":true,\
+          \"profileName\":\"default\",\
+          \"accessKeyId\":\"${{ env.AWS_ACCESS_KEY_ID}}\",\
+          \"secretAccessKey\":\"${{ env.AWS_SECRET_ACCESS_KEY}}\",\
+          \"region\":\"sa-east-1\"\
+          }"
+          CONFIG="{\
+          \"ResDir\":\"lib\"\
+          }"
+          FRONTEND="{\
+          \"frontend\":\"flutter\",\
+          \"config\":$CONFIG\
+          }"
+          AMPLIFY="{\
+          \"projectName\":\"${{ secrets.AMPLIFY_AUTH_PROJECT }}\",\
+          \"appId\":\"${{ secrets.AMPLIFY_AUTH_APP_ID }}\",\
+          \"envName\":\"${{ github.ref_name }}\",\
+          \"defaultEditor\":\"code\"\
+          }"
+          PROVIDERS="{\
+          \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
+          }"
+       
+          amplify pull --amplify $AMPLIFY --frontend $FRONTEND --providers $PROVIDERS --yes
       # Report:
       - name: Install lcov
         run: sudo apt-get install lcov

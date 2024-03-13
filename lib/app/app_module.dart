@@ -16,8 +16,7 @@ import 'shared/helpers/services/http/http_request_interface.dart';
 
 class AppModule extends Module {
   @override
-  List<Module> get imports =>
-      [MicroAppAuthModule(amplifyconfig: amplifyconfig)];
+  List<Module> get imports => [MicroAppAuthModule(amplifyconfig)];
 
   @override
   List<Bind<Object>> get binds => [

@@ -557,7 +557,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                   .floating,
                                                           backgroundColor:
                                                               AppColors
-                                                                  .errorColor,
+                                                                  .redColor,
                                                           content: Text(
                                                               state.failure
                                                                   .message,

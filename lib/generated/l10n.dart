@@ -994,6 +994,25 @@ class S {
     );
   }
 
+  /// `{status, select, PENDING{Pending} PREPARING{Preparing} REFUSED{Refused} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}`
+  String statusNameSchema(Object status) {
+    return Intl.select(
+      status,
+      {
+        'PENDING': 'Pending',
+        'PREPARING': 'Preparing',
+        'REFUSED': 'Refused',
+        'READY': 'Ready',
+        'CANCELED': 'Canceled',
+        'ALL': 'All',
+        'other': 'Others',
+      },
+      name: 'statusNameSchema',
+      desc: '',
+      args: [status],
+    );
+  }
+
   /// `Recommendations`
   String get recommendationsTitle {
     return Intl.message(

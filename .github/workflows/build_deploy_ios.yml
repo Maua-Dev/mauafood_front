@@ -11,7 +11,7 @@ jobs:
   build_IOS_App:
     if: ${{contains(github.event.head_commit.message, 'bump version') || contains(github.event.head_commit.message, 'hotfix')  }}
     name: Build IOS App
-    runs-on: macos-latest
+    runs-on: macos-13
     environment: ${{ github.ref_name }}
     permissions:
       id-token: write
@@ -28,7 +28,7 @@ jobs:
       - name: Setup Flutter Version
         uses: subosito/flutter-action@v1
         with:
-          channel: "stable"
+          flutter-version: "3.13.1"
 
       - name: Get flutter dependencies
         run: flutter pub get

@@ -12,10 +12,9 @@ import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_da
 import 'package:mauafood_front/app/shared/infra/repositories/menu_repository.dart';
 
 import 'domain/repositories/favorite_repository.dart';
-import 'infra/datasource/favorite_datasource.dart';
 import 'infra/repositories/favorite_repository.dart';
 import 'presenter/controllers/profile_controller.dart';
-import 'external/hive_datasource.dart';
+import 'presenter/ui/pages/account_page.dart';
 
 class ProfileModule extends Module {
   @override
@@ -26,10 +25,9 @@ class ProfileModule extends Module {
         Bind<GetFavoritesProduct>((i) => GetFavoritesProductImpl(i(), i())),
         Bind<RemoveFavoriteProduct>(((i) => RemoveFavoriteProductImpl(i()))),
         Bind((i) => UpdatePhotoImpl(i())),
-        Bind.lazySingleton((i) => ProfileController(i(), i())),
-        Bind<FavoriteDatasource>((i) => FavoritesHiveDatasource(i())),
+        Bind.lazySingleton((i) => ProfileController(i(), i(), i())),
         Bind(
-          (i) => FavoritesController(i()),
+          (i) => FavoritesController(i(), i()),
         )
       ];
 
@@ -41,5 +39,6 @@ class ProfileModule extends Module {
         ),
         ChildRoute('/favorites/',
             child: (context, args) => const FavoritesPage()),
+        ChildRoute('/account/', child: (context, args) => const AccountPage())
       ];
 }

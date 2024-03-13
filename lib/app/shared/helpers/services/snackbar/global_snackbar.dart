@@ -9,7 +9,7 @@ final GlobalKey<ScaffoldMessengerState> rootScaffoldMessengerKey =
 abstract class GlobalSnackBar {
   static void error(String message) {
     rootScaffoldMessengerKey.currentState!.showSnackBar(SnackBar(
-      backgroundColor: AppColors.errorColor,
+      backgroundColor: AppColors.redColor,
       behavior: SnackBarBehavior.floating,
       content: Text(message,
           style: AppTextStyles.h2.copyWith(color: AppColors.white)),

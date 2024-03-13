@@ -53,7 +53,7 @@ jobs:
           AMPLIFY="{\
           \"projectName\":\"${{ secrets.AMPLIFY_AUTH_PROJECT }}\",\
           \"appId\":\"${{ secrets.AMPLIFY_AUTH_APP_ID }}\",\
-          \"envName\":\"${{ github.ref_name }}\",\
+          \"envName\":\"develop\",\
           \"defaultEditor\":\"code\"\
           }"
           PROVIDERS="{\

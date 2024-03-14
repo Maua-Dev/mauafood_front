@@ -39,12 +39,6 @@ class _RestaurantsPageState extends State<RestaurantsPage> {
           backgroundColor: AppColors.mainBlueColor,
           elevation: 0,
           automaticallyImplyLeading: false,
-          actions: [
-            if (controller.isLogged)
-              IconButton(
-                  onPressed: controller.logout,
-                  icon: const Icon(Icons.logout_outlined))
-          ],
         ),
         body: Container(
           decoration: BoxDecoration(

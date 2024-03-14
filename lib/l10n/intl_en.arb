@@ -142,6 +142,11 @@
 
 
 
+    "statusNameSchema": "{status, select, PENDING{Pending} PREPARING{Preparing} REFUSED{Refused} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}",
+
+
+
+
     "recommendationsTitle": "Recommendations",
     "createProductTitle": "Create product",
     "editProductTitle": "Edit product",

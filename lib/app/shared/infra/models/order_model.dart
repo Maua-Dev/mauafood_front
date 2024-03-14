@@ -51,4 +51,26 @@ class OrderProductModel extends OrderProduct {
   static List<OrderProductModel> fromMaps(List array) {
     return array.map((e) => OrderProductModel.fromMap(e)).toList();
   }
+
+  factory OrderProductModel.newInstance() {
+    return OrderProductModel(
+      id: '',
+      name: '',
+      observation: '',
+      quantity: 1,
+    );
+  }
+
+  OrderProductModel copyWith({
+    String? id,
+    String? name,
+    String? observation,
+    int? quantity,
+  }) {
+    return OrderProductModel(
+        id: id ?? this.id,
+        name: name ?? this.name,
+        quantity: quantity ?? this.quantity,
+        observation: observation ?? this.observation);
+  }
 }

@@ -5,6 +5,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:like_button/like_button.dart';
 
 import 'package:mauafood_front/app/modules/profile/presenter/controllers/favorites_controller.dart';
+import 'package:mauafood_front/app/shared/helpers/services/s3/assets_s3.dart';
 import 'package:mauafood_front/app/shared/helpers/services/snackbar/global_snackbar.dart';
 import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -88,6 +89,25 @@ class _FavoritesPageState extends State<FavoritesPage> {
           GlobalSnackBar.error((store.state as ErrorFavoriteState).message);
         }
         final list = (store.state as SuccessFavoriteState).products;
+        if (list.isEmpty) {
+          return Stack(
+            alignment: Alignment.center,
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 300,
+                child: Image.network(
+                  greyLogo,
+                  fit: BoxFit.contain,
+                ),
+              ),
+              Text(
+                'Não há favoritos ainda!',
+                style: AppTextStyles.h2,
+              ),
+            ],
+          );
+        }
         return ListView.separated(
           itemCount: list.length,
           itemBuilder: (BuildContext context, int index) {
@@ -141,7 +161,7 @@ class _FavoritesPageState extends State<FavoritesPage> {
                           );
 
                           if (res ?? false) {
-                            return store.removeFavorite(item.id!);
+                            return store.removeFavorite(item);
                           }
                           return true;
                         },

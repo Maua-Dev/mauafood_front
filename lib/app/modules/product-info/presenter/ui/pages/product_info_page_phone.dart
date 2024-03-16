@@ -36,7 +36,7 @@ class _ProductInfoPagePhoneState extends State<ProductInfoPagePhone> {
     product = widget.productInfo;
   }
 
-  var colors = {
+  var colors = const {
     ProductEnum.CANDIES: Color.fromARGB(255, 249, 197, 255),
     ProductEnum.DESSERT: Color.fromARGB(255, 255, 215, 246),
     ProductEnum.DRINKS: Color.fromARGB(255, 198, 247, 207),

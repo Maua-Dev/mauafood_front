@@ -1,17 +1,20 @@
+import 'package:enum_to_string/enum_to_string.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
+
 import '../../domain/enums/product_enum.dart';
 import '../../domain/entities/product.dart';
 
 class ProductModel extends Product {
   const ProductModel(
-      {required super.id,
+      {super.id,
       required super.name,
-      required super.description,
+      super.description,
       required super.price,
       super.prepareTime,
       required super.type,
-      required super.photo,
+      super.photo,
       required super.available,
-      required super.lastUpdate});
+      super.lastUpdate});
 
   factory ProductModel.fromMap(Map<String, dynamic> json) {
     return ProductModel(
@@ -29,5 +32,32 @@ class ProductModel extends Product {
 
   static List<ProductModel> fromMaps(List array) {
     return array.map((e) => ProductModel.fromMap(e)).toList();
+  }
+
+  Map<String, dynamic> toJson(RestaurantEnum restaurantEnum) {
+    return {
+      'available': available,
+      'price': price,
+      'name': name,
+      'description': description,
+      'meal_type': EnumToString.convertToString(type).toUpperCase(),
+      'photo': photo,
+      'restaurant': EnumToString.convertToString(restaurantEnum).toUpperCase(),
+      'prepare_time': prepareTime,
+    };
+  }
+
+  Map<String, dynamic> newProductJson(RestaurantEnum restaurantEnum) {
+    return {
+      'product_id': id,
+      'restaurant': EnumToString.convertToString(restaurantEnum).toUpperCase(),
+      'new_available': available,
+      'new_price': price,
+      'new_name': name,
+      'new_description': description,
+      'new_prepare_time': prepareTime,
+      'new_meal_type': EnumToString.convertToString(type).toUpperCase(),
+      'new_photo': photo,
+    };
   }
 }

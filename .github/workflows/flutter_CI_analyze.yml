@@ -7,6 +7,9 @@ jobs:
   flutter_analyze:
     name: Run flutter analyze
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -18,10 +21,46 @@ jobs:
 
       - uses: subosito/flutter-action@v1
         with:
-          channel: "stable"
+          flutter-version: "3.13.1"
 
       - name: Get flutter dependencies
         run: flutter pub get
+      - name: Setup AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-region: sa-east-1
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/GithubActionsRole
+          role-session-name: github-action
+  
+      - run: npm install -g @aws-amplify/cli
+      - name: Setup Amplify projects
+        run: |
+          AWSCLOUDFORMATIONCONFIG="{\
+          \"configLevel\":\"general\",\
+          \"useProfile\":true,\
+          \"profileName\":\"default\",\
+          \"accessKeyId\":\"${{ env.AWS_ACCESS_KEY_ID}}\",\
+          \"secretAccessKey\":\"${{ env.AWS_SECRET_ACCESS_KEY}}\",\
+          \"region\":\"sa-east-1\"\
+          }"
+          CONFIG="{\
+          \"ResDir\":\"lib\"\
+          }"
+          FRONTEND="{\
+          \"frontend\":\"flutter\",\
+          \"config\":$CONFIG\
+          }"
+          AMPLIFY="{\
+          \"projectName\":\"${{ secrets.AMPLIFY_AUTH_PROJECT }}\",\
+          \"appId\":\"${{ secrets.AMPLIFY_AUTH_APP_ID }}\",\
+          \"envName\":\"dev\",\
+          \"defaultEditor\":\"code\"\
+          }"
+          PROVIDERS="{\
+          \"awscloudformation\":$AWSCLOUDFORMATIONCONFIG\
+          }"
+       
+          amplify pull --amplify $AMPLIFY --frontend $FRONTEND --providers $PROVIDERS --yes
 
       - name: Run Analyze code
         run: flutter analyze

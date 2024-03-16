@@ -250,6 +250,176 @@ class S {
     );
   }
 
+  /// `Name`
+  String get nameTitle {
+    return Intl.message(
+      'Name',
+      name: 'nameTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Photo`
+  String get photoTitle {
+    return Intl.message(
+      'Photo',
+      name: 'photoTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Prepare Time`
+  String get prepareTimeTitle {
+    return Intl.message(
+      'Prepare Time',
+      name: 'prepareTimeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price`
+  String get priceTitle {
+    return Intl.message(
+      'Price',
+      name: 'priceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Biggest Price`
+  String get biggestPriceTitle {
+    return Intl.message(
+      'Biggest Price',
+      name: 'biggestPriceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lowest Price`
+  String get lowestPriceTitle {
+    return Intl.message(
+      'Lowest Price',
+      name: 'lowestPriceTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price order`
+  String get priceOrder {
+    return Intl.message(
+      'Price order',
+      name: 'priceOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price range`
+  String get priceRangeOrder {
+    return Intl.message(
+      'Price range',
+      name: 'priceRangeOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Category`
+  String get categoryTitle {
+    return Intl.message(
+      'Category',
+      name: 'categoryTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Categories`
+  String get categoriesTitle {
+    return Intl.message(
+      'Categories',
+      name: 'categoriesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get descriptionTitle {
+    return Intl.message(
+      'Description',
+      name: 'descriptionTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product Availability`
+  String get productAvailabilityTitle {
+    return Intl.message(
+      'Product Availability',
+      name: 'productAvailabilityTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Preview`
+  String get previewTitle {
+    return Intl.message(
+      'Preview',
+      name: 'previewTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `minutes`
+  String get minutesTitle {
+    return Intl.message(
+      'minutes',
+      name: 'minutesTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get saveTitle {
+    return Intl.message(
+      'Save',
+      name: 'saveTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get createTitle {
+    return Intl.message(
+      'Create',
+      name: 'createTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get editTitle {
+    return Intl.message(
+      'Edit',
+      name: 'editTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{notifications, select, normalPart{Want to receive } email{email notifications} app{app notifications} other{}}`
   String notificationsOptionsSchema(Object notifications) {
     return Intl.select(
@@ -271,6 +441,116 @@ class S {
     return Intl.message(
       'Full Name',
       name: 'labelName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancelationTitle {
+    return Intl.message(
+      'Cancel',
+      name: 'cancelationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get deleteTitle {
+    return Intl.message(
+      'Delete',
+      name: 'deleteTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply`
+  String get applyTitle {
+    return Intl.message(
+      'Apply',
+      name: 'applyTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clean filter`
+  String get cleanFilterTitle {
+    return Intl.message(
+      'Clean filter',
+      name: 'cleanFilterTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete the product?`
+  String get deleteProductConfirmationTitle {
+    return Intl.message(
+      'Are you sure you want to delete the product?',
+      name: 'deleteProductConfirmationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product successfully deleted.`
+  String get productSuccessfullyDeletedTitle {
+    return Intl.message(
+      'Product successfully deleted.',
+      name: 'productSuccessfullyDeletedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Poduct successfully created.`
+  String get productSuccessfullyCreatedTitle {
+    return Intl.message(
+      'Poduct successfully created.',
+      name: 'productSuccessfullyCreatedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Product successfully edited.`
+  String get productSuccessfullyEditedTitle {
+    return Intl.message(
+      'Product successfully edited.',
+      name: 'productSuccessfullyEditedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Data storage`
+  String get dataStorageTitle {
+    return Intl.message(
+      'Data storage',
+      name: 'dataStorageTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it.`
+  String get dataStorageAlertTitle {
+    return Intl.message(
+      'If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it.',
+      name: 'dataStorageAlertTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Close`
+  String get closeTitle {
+    return Intl.message(
+      'Close',
+      name: 'closeTitle',
       desc: '',
       args: [],
     );
@@ -566,14 +846,14 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{Souza de Abreu} hora_h{H Hour} moleza{Cantina do Moleza} other{}}`
+  /// `{restaurant, select, souza_de_abreu{Souza de Abreu} hora_h{H Hour} cantina_do_moleza{Cantina do Moleza} other{}}`
   String restaurantsNameSchema(Object restaurant) {
     return Intl.select(
       restaurant,
       {
-        'biba': 'Souza de Abreu',
+        'souza_de_abreu': 'Souza de Abreu',
         'hora_h': 'H Hour',
-        'moleza': 'Cantina do Moleza',
+        'cantina_do_moleza': 'Cantina do Moleza',
         'other': '',
       },
       name: 'restaurantsNameSchema',
@@ -582,14 +862,14 @@ class S {
     );
   }
 
-  /// `{restaurant, select, biba{bibaImage} hora_h{hora_hImage} moleza{molezaImage} other{}}`
+  /// `{restaurant, select, souza_de_abreu{bibaImage} hora_h{hora_hImage} cantina_do_moleza{molezaImage} other{}}`
   String restaurantsImageSchema(Object restaurant) {
     return Intl.select(
       restaurant,
       {
-        'biba': 'bibaImage',
+        'souza_de_abreu': 'bibaImage',
         'hora_h': 'hora_hImage',
-        'moleza': 'molezaImage',
+        'cantina_do_moleza': 'molezaImage',
         'other': '',
       },
       name: 'restaurantsImageSchema',
@@ -628,13 +908,23 @@ class S {
     );
   }
 
-  /// `{product, select, ALL{All} SANDWICHES{Sandwich} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}`
+  /// `Customers view`
+  String get customersView {
+    return Intl.message(
+      'Customers view',
+      name: 'customersView',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{product, select, ALL{All} SANDWICHES{Sandwiches} DRINKS{Drinks} CANDIES{Candies} PLATES{Dishes} PORTIONS{Portions} PASTAS{Pastas} SNACKS{Snacks} SALADS{Salads} DESSERT{Dessert} SAVOURY{Savoury} other{Other}}`
   String productNameSchema(Object product) {
     return Intl.select(
       product,
       {
         'ALL': 'All',
-        'SANDWICHES': 'Sandwich',
+        'SANDWICHES': 'Sandwiches',
         'DRINKS': 'Drinks',
         'CANDIES': 'Candies',
         'PLATES': 'Dishes',
@@ -649,6 +939,30 @@ class S {
       name: 'productNameSchema',
       desc: '',
       args: [product],
+    );
+  }
+
+  /// `{name, select, All{ALL} Sandwiches{SANDWICHES} Drinks{DRINKS} Candies{CANDIES} Dishes{PLATES} Portions{PORTIONS} Pastas{PASTAS} Snacks{SNACKS} Salads{SALADS} Dessert{DESSERT} Savoury{SAVOURY} other{OUTROS}}`
+  String productToEnumSchema(Object name) {
+    return Intl.select(
+      name,
+      {
+        'All': 'ALL',
+        'Sandwiches': 'SANDWICHES',
+        'Drinks': 'DRINKS',
+        'Candies': 'CANDIES',
+        'Dishes': 'PLATES',
+        'Portions': 'PORTIONS',
+        'Pastas': 'PASTAS',
+        'Snacks': 'SNACKS',
+        'Salads': 'SALADS',
+        'Dessert': 'DESSERT',
+        'Savoury': 'SAVOURY',
+        'other': 'OUTROS',
+      },
+      name: 'productToEnumSchema',
+      desc: '',
+      args: [name],
     );
   }
 
@@ -680,11 +994,50 @@ class S {
     );
   }
 
+  /// `{status, select, PENDING{Pending} PREPARING{Preparing} REFUSED{Refused} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}`
+  String statusNameSchema(Object status) {
+    return Intl.select(
+      status,
+      {
+        'PENDING': 'Pending',
+        'PREPARING': 'Preparing',
+        'REFUSED': 'Refused',
+        'READY': 'Ready',
+        'CANCELED': 'Canceled',
+        'ALL': 'All',
+        'other': 'Others',
+      },
+      name: 'statusNameSchema',
+      desc: '',
+      args: [status],
+    );
+  }
+
   /// `Recommendations`
   String get recommendationsTitle {
     return Intl.message(
       'Recommendations',
       name: 'recommendationsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create product`
+  String get createProductTitle {
+    return Intl.message(
+      'Create product',
+      name: 'createProductTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit product`
+  String get editProductTitle {
+    return Intl.message(
+      'Edit product',
+      name: 'editProductTitle',
       desc: '',
       args: [],
     );
@@ -715,6 +1068,66 @@ class S {
     return Intl.message(
       'Email successfully sent!',
       name: 'messageSentSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error sending email, please try again later.`
+  String get messageSentError {
+    return Intl.message(
+      'Error sending email, please try again later.',
+      name: 'messageSentError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cesta`
+  String get cart {
+    return Intl.message(
+      'Cesta',
+      name: 'cart',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Help`
+  String get help {
+    return Intl.message(
+      'Help',
+      name: 'help',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Orders`
+  String get orders {
+    return Intl.message(
+      'Orders',
+      name: 'orders',
       desc: '',
       args: [],
     );
@@ -848,6 +1261,36 @@ class S {
   }
 
   // skipped getter for the '' key
+
+  /// `An error ocurred while changing your profile picture`
+  String get profileErrorPictureMessage {
+    return Intl.message(
+      'An error ocurred while changing your profile picture',
+      name: 'profileErrorPictureMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile picture successfully updated`
+  String get profileSuccessPictureMessage {
+    return Intl.message(
+      'Profile picture successfully updated',
+      name: 'profileSuccessPictureMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select`
+  String get selectButton {
+    return Intl.message(
+      'Select',
+      name: 'selectButton',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

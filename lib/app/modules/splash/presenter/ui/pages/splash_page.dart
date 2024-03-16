@@ -9,7 +9,7 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _store = Modular.get<SplashController>();
+    Modular.get<SplashController>();
     return Scaffold(
       backgroundColor: AppColors.mainBlueColor,
       body: Center(

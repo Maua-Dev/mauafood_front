@@ -136,6 +136,10 @@
     },
 
 
+    "statusNameSchema": "{status, select, PENDING{Pendente} PREPARING{Em preparo} REFUSED{Recusado} READY{Pronto} CANCELED{Cancelado} ALL{Todos} other{Outros}}",
+
+
+
 
     "recommendationsTitle": "Recomendações",
     "createProductTitle": "Criar produto",

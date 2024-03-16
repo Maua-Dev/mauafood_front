@@ -45,8 +45,8 @@ mixin _$FavoritesController on FavoritesControllerBase, Store {
       AsyncAction('FavoritesControllerBase.removeFavorite', context: context);
 
   @override
-  Future<bool> removeFavorite(String id) {
-    return _$removeFavoriteAsyncAction.run(() => super.removeFavorite(id));
+  Future<bool> removeFavorite(FavoriteViewModel item) {
+    return _$removeFavoriteAsyncAction.run(() => super.removeFavorite(item));
   }
 
   late final _$FavoritesControllerBaseActionController =

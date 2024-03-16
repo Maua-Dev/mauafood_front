@@ -10,8 +10,6 @@ import 'package:mauafood_front/app/modules/user/presenter/ui/pages/user_menu_pag
 
 import '../product-info/product_info_module.dart';
 import '../profile/domain/repositories/favorite_repository.dart';
-import '../profile/external/hive_datasource.dart';
-import '../profile/infra/datasource/favorite_datasource.dart';
 import '../profile/infra/repositories/favorite_repository.dart';
 import '../restaurants/restaurant_module.dart';
 import '../../shared/domain/repositories/menu_repository_interface.dart';
@@ -36,7 +34,6 @@ class UserMenuModule extends Module {
           (i) => GetFavoritesImpl(i()),
         ),
         Bind<FavoriteRepository>((i) => FavoriteRepositoryImpl(i())),
-        Bind<FavoriteDatasource>((i) => FavoritesHiveDatasource(i())),
       ];
 
   @override

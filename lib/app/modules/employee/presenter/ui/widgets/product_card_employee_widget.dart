@@ -142,7 +142,7 @@ class ProductCardEmployeeWidget extends StatelessWidget {
                                                       behavior: SnackBarBehavior
                                                           .floating,
                                                       backgroundColor:
-                                                          AppColors.errorColor,
+                                                          AppColors.redColor,
                                                       content: Text(
                                                           state.failure.message,
                                                           style: AppTextStyles

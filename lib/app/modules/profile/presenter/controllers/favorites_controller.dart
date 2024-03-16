@@ -1,6 +1,8 @@
 import 'package:mauafood_front/app/modules/profile/domain/usecases/get_favorites_product.dart';
+import 'package:mauafood_front/app/modules/profile/domain/usecases/remove_favorite_product.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/states/favorite_state.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/ui/models/favorite_viewmodel.dart';
+import 'package:mauafood_front/app/shared/helpers/services/snackbar/global_snackbar.dart';
 
 import 'package:mobx/mobx.dart';
 part 'favorites_controller.g.dart';
@@ -9,8 +11,9 @@ class FavoritesController = FavoritesControllerBase with _$FavoritesController;
 
 abstract class FavoritesControllerBase with Store {
   final GetFavoritesProduct _getFavoritesProduct;
-
-  FavoritesControllerBase(this._getFavoritesProduct) {
+  final RemoveFavoriteProduct _removeFavoriteProduct;
+  FavoritesControllerBase(
+      this._getFavoritesProduct, this._removeFavoriteProduct) {
     loadFavorites();
   }
   @observable
@@ -29,9 +32,16 @@ abstract class FavoritesControllerBase with Store {
   }
 
   @action
-  Future<bool> removeFavorite(String id) async {
-    productsFavorites.removeWhere((element) => element.id == id);
-    setState(SuccessFavoriteState(productsFavorites));
+  Future<bool> removeFavorite(FavoriteViewModel item) async {
+    final result = await _removeFavoriteProduct(item.id!);
+    result.fold((l) {
+      GlobalSnackBar.error('Erro ao remover ${item.name} aos favoritos');
+    }, (r) {
+      productsFavorites.removeWhere((element) => element.id == item.id);
+      setState(SuccessFavoriteState(productsFavorites));
+      GlobalSnackBar.success('${item.name} removido dos favoritos');
+    });
+
     return true;
   }
 }

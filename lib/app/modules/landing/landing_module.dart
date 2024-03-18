@@ -57,13 +57,6 @@ class LandingModule extends Module {
           ChildRoute('/faq/', child: (_, args) => const FaqPage()),
           ModuleRoute('/profile/',
               module: ProfileModule(), guards: [AuthGuard()]),
-          ChildRoute('/orders/',
-              child: (_, args) => const Center(
-                    child: Text(
-                      "Orders Page",
-                      style: TextStyle(fontSize: 48),
-                    ),
-                  ))
         ],
         transition: TransitionType.fadeIn),
   ];

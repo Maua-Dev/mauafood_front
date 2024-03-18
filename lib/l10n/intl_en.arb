@@ -40,6 +40,8 @@
     "categoryTitle": "Category",
     "categoriesTitle": "Categories",
     "descriptionTitle": "Description",
+    "observationTitle": "Observation",
+    "totalTitle": "Total",
     "productAvailabilityTitle": "Product Availability",
     "previewTitle": "Preview",
     "minutesTitle": "minutes",
@@ -59,6 +61,8 @@
     "dataStorageTitle": "Data storage",
     "dataStorageAlertTitle": "If you confirm the sending of the message, you are agreeing that we store your name and e-mail so that we can have your feedback and, if necessary, respond to it.",
     "closeTitle": "Close",
+    "withoutObservationTitle": "Without observation",
+    "emptyOrdersListWarn": "No orders at the moment",
 
     "requiredFieldAlert": "Required field.",
     "invalidEmailAlert": "Invalid email.",
@@ -134,6 +138,8 @@
         }
     },
 
+    "statusNameSchema": "{status, select, PENDING{Pending} PREPARING{Preparing} REFUSED{Refused} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}",
+
 
 
     "statusNameSchema": "{status, select, PENDING{Pending} PREPARING{Preparing} REFUSED{Refused} READY{Ready} CANCELED{Canceled} ALL{All} other{Others}}",
@@ -159,7 +165,14 @@
     "help": "Help",
     "orders": "Orders",
 
-
+    "refuseOrder": "Refuse order",
+    "refuseOrderAlert": "Upon clicking “OK” the request will be declined and removed from the control list.",
+    "othersTitle": "Others",
+    "lackOfInputTitle": "Lack of input",
+    "closedTitle": "Closed",
+    "overloadTitle": "Overload",
+    "goBackTitle": "Go back",
+    "whatHappenedTitle": "Type what happened here",
 
 
     

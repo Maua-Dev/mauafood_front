@@ -501,7 +501,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                                                   .floating,
                                                           backgroundColor:
                                                               AppColors
-                                                                  .mainBlueColor,
+                                                                  .redColor,
                                                           content: Text(
                                                               widget
                                                                   .snackBarText,

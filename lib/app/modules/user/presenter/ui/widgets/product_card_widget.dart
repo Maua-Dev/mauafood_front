@@ -54,10 +54,13 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
                               ? Image.file(widget.mobilePhoto!)
                               : Image.memory(widget.webPhoto!)
                           : const Icon(Icons.image_not_supported)
-                      : CachedNetworkImage(
-                          imageUrl: widget.product.photo ?? '',
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
+                      : ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: CachedNetworkImage(
+                            imageUrl: widget.product.photo ?? '',
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                          ),
                         ),
                 ),
               ),

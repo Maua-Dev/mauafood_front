@@ -131,6 +131,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cleanFilterTitle":
             MessageLookupByLibrary.simpleMessage("Clean filter"),
         "closeTitle": MessageLookupByLibrary.simpleMessage("Close"),
+        "closedTitle": MessageLookupByLibrary.simpleMessage("Closed"),
         "codeErrorAlert":
             MessageLookupByLibrary.simpleMessage("Error with code."),
         "codeTitle": MessageLookupByLibrary.simpleMessage("Code"),
@@ -171,6 +172,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailTitle": MessageLookupByLibrary.simpleMessage("E-mail"),
         "emptyListErrorMessage": MessageLookupByLibrary.simpleMessage(
             "List is empty, no items found for this request"),
+        "emptyOrdersListWarn":
+            MessageLookupByLibrary.simpleMessage("No orders at the moment"),
         "enterTitle": MessageLookupByLibrary.simpleMessage("Enter"),
         "entityErrorMessage": m1,
         "equalPasswordAlert":
@@ -189,6 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotPasswordTitle":
             MessageLookupByLibrary.simpleMessage("Forgot password?"),
         "fullNameTitle": MessageLookupByLibrary.simpleMessage("Full Name"),
+        "goBackTitle": MessageLookupByLibrary.simpleMessage("Go back"),
         "haveAccountTitle":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "havePasswordTitle":
@@ -207,6 +211,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelMessage": MessageLookupByLibrary.simpleMessage("Message"),
         "labelName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "labelSend": MessageLookupByLibrary.simpleMessage("Send now"),
+        "lackOfInputTitle":
+            MessageLookupByLibrary.simpleMessage("Lack of input"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "lowestPriceTitle":
             MessageLookupByLibrary.simpleMessage("Lowest Price"),
@@ -220,7 +226,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("New password"),
         "noItemsFoundErrorMessage": m2,
         "notificationsOptionsSchema": m3,
+        "observationTitle": MessageLookupByLibrary.simpleMessage("Observation"),
         "orders": MessageLookupByLibrary.simpleMessage("Orders"),
+        "othersTitle": MessageLookupByLibrary.simpleMessage("Others"),
+        "overloadTitle": MessageLookupByLibrary.simpleMessage("Overload"),
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Your password must contain: \n - One or more uppercase letters \n - One or more lowercase letters \n - One or more numbers \n - One or more special characters\n(#, ?, !, @, \\\$, %, ^, &, *, -) \n - Minimum 8 characters"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Password"),
@@ -253,6 +262,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Recommendations"),
         "recommendedTitle":
             MessageLookupByLibrary.simpleMessage("More Options"),
+        "refuseOrder": MessageLookupByLibrary.simpleMessage("Refuse order"),
+        "refuseOrderAlert": MessageLookupByLibrary.simpleMessage(
+            "Upon clicking “OK” the request will be declined and removed from the control list."),
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "To complete your registration, we will send you an email with a code, enter it in the field below."),
         "registerTitle": MessageLookupByLibrary.simpleMessage("Register"),
@@ -279,11 +291,16 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Email confirmed!"),
         "termsAcceptAlert": MessageLookupByLibrary.simpleMessage(
             "It is necessary to accept the Terms of Use."),
+        "totalTitle": MessageLookupByLibrary.simpleMessage("Total"),
         "typeContact": MessageLookupByLibrary.simpleMessage("Contact us"),
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure you typed email correctly."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(
             "Make sure you enter email and password."),
-        "understoodTitle": MessageLookupByLibrary.simpleMessage("Understood!")
+        "understoodTitle": MessageLookupByLibrary.simpleMessage("Understood!"),
+        "whatHappenedTitle":
+            MessageLookupByLibrary.simpleMessage("Type what happened here"),
+        "withoutObservationTitle":
+            MessageLookupByLibrary.simpleMessage("Without observation")
       };
 }

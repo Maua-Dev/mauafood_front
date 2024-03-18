@@ -40,6 +40,8 @@
     "categoryTitle": "Categoria",
     "categoriesTitle": "Categorias",
     "descriptionTitle": "Descrição",
+    "observationTitle": "Observação",
+    "totalTitle": "Total",
     "productAvailabilityTitle": "Disponibilidade do Produto",
     "previewTitle": "Pré-visualização",
     "minutesTitle": "minutos",
@@ -59,6 +61,9 @@
     "dataStorageTitle": "Armazenamento de dados",
     "dataStorageAlertTitle": "Caso voce confirme o envio da mensagem, está concordando que armazenemos seu nome e e-mail para que possamos ter o seu feedback e caso necessário, responde-lo.",
     "closeTitle": "Fechar",
+    "withoutObservationTitle": "Sem observação",
+    "emptyOrdersListWarn": "Sem pedidos no momento",
+
 
     "requiredFieldAlert": "Campo obrigatório.",
     "invalidEmailAlert": "E-mail inválido.",
@@ -135,6 +140,8 @@
         }
     },
 
+    "statusNameSchema": "{status, select, PENDING{Pendente} PREPARING{Em preparo} REFUSED{Recusado} READY{Pronto} CANCELED{Cancelado} ALL{Todos} other{Outros}}",
+
 
     "statusNameSchema": "{status, select, PENDING{Pendente} PREPARING{Em preparo} REFUSED{Recusado} READY{Pronto} CANCELED{Cancelado} ALL{Todos} other{Outros}}",
 
@@ -158,6 +165,15 @@
     "profile": "Perfil",
     "help": "Ajuda",
     "orders": "Pedidos",
+
+    "refuseOrder": "Recusar pedido",
+    "refuseOrderAlert": "Ao clicar em “OK” o pedido será recusado e removido da lista de controle.",
+    "othersTitle": "Outros",
+    "lackOfInputTitle": "Falta de insumo",
+    "closedTitle": "Fechado",
+    "overloadTitle": "Sobrecarga",
+    "goBackTitle": "Voltar",
+    "whatHappenedTitle": "Digite o que aconteceu aqui",
 
 
     

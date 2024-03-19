@@ -49,17 +49,17 @@ class _ProfilePageState extends State<ProfilePage> {
       "Conta",
       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
     ),
-    // const Text(
-    //   "Meus dados",
-    //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    // ),
+    const Text(
+      "Acompanhar Pedido",
+      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+    ),
     // const Text(
     //   "Pagamentos",
     //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
     // ),
   ];
 
-  final routes = ["favorites/", "account/"];
+  final routes = ["favorites/", "account/", "evaluation/"];
 
   @override
   Widget build(BuildContext context) {

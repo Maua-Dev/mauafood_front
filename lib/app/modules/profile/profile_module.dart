@@ -3,7 +3,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/profile/domain/usecases/get_favorites_product.dart';
 import 'package:mauafood_front/app/modules/profile/domain/usecases/remove_favorite_product.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/controllers/favorites_controller.dart';
-import 'package:mauafood_front/app/modules/profile/presenter/ui/pages/evaluatin_page.dart';
+import 'package:mauafood_front/app/modules/profile/presenter/ui/pages/evaluation_page.dart';
 
 import 'package:mauafood_front/app/modules/profile/presenter/ui/pages/favorites_page.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/ui/pages/profile_page.dart';

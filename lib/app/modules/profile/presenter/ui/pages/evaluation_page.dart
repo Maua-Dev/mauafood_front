@@ -22,9 +22,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
   final PopupStore popupStore = PopupStore();
   @override
   Widget build(BuildContext context) {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      popupStore.togglePopup();
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {});
 
     return Scaffold(
       body: Center(
@@ -66,7 +64,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                     children: [
                       Expanded(
                           child: Text(
-                        "Avalie o restaurante, seu feedback é importante!",
+                        popupStore.grade.toString(),
                         style: TextStyle(
                           fontSize: 16.0,
                           color: AppColors.letterThinColor,
@@ -77,9 +75,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                   const SizedBox(
                     height: 80,
                   ),
-                  Observer(builder: (_) {
-                    return StarsWidget(controller: PopupStore());
-                  }),
+                  StarsWidget(controller: PopupStore())
                 ],
               ),
               actions: [
@@ -89,6 +85,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                     child: ElevatedButton(
                       onPressed: () {
                         Navigator.pop(context);
+                        popupStore.togglePopup();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.lightBlueColor,

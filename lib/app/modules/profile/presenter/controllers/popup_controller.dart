@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 part 'popup_controller.g.dart';
@@ -17,7 +18,10 @@ abstract class PopupStoreBase with Store {
   int grade = 0;
 
   @action
-  void setStars(int value) {
+  setStars(int value) {
     grade = value;
   }
+
+
+
 }

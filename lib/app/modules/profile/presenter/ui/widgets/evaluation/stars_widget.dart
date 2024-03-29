@@ -8,7 +8,6 @@ class StarsWidget extends StatelessWidget {
   StarsWidget({super.key, required this.controller});
   PopupStore controller;
 
-// swicth case to change the star icon using the controller variable 
   @override
   Widget build(BuildContext context) {
     return Observer(builder: (_) {
@@ -24,43 +23,43 @@ class StarsWidget extends StatelessWidget {
                 size: 48.0,
                 color: controller.grade >= 1
                     ? AppColors.lightBlueColor
-                    : AppColors.letterColor),
+                    : AppColors.letterThinColor),
           ),
           GestureDetector(
             onTap: () => controller.setStars(2),
             child: Icon(
-              controller.grade >= 1 ? Icons.star_rounded : Icons.star_border_rounded,
+              controller.grade >= 2 ? Icons.star_rounded : Icons.star_border_rounded,
                 size: 48.0,
                 color: controller.grade >= 2
-                    ? AppColors.yellowColor
-                    : AppColors.letterColor),
+                    ? AppColors.lightBlueColor
+                    : AppColors.letterThinColor),
           ),
           GestureDetector(
             onTap: () => controller.setStars(3),
             child: Icon(
-              controller.grade >= 1 ? Icons.star_rounded : Icons.star_border_rounded,
+              controller.grade >= 3 ? Icons.star_rounded : Icons.star_border_rounded,
                 size: 48.0,
                 color: controller.grade >= 3
-                    ? AppColors.yellowColor
-                    : AppColors.letterColor),
+                    ? AppColors.lightBlueColor
+                    : AppColors.letterThinColor),
           ),
           GestureDetector(
             onTap: () => controller.setStars(4),
             child: Icon(
-              controller.grade >= 1 ? Icons.star_rounded : Icons.star_border_rounded,
+              controller.grade >= 4 ? Icons.star_rounded : Icons.star_border_rounded,
                 size: 48.0,
                 color: controller.grade >= 4
-                    ? AppColors.yellowColor
-                    : AppColors.letterColor),
+                    ? AppColors.lightBlueColor
+                    : AppColors.letterThinColor),
           ),
           GestureDetector(
             onTap: () => controller.setStars(5),
             child: Icon(
-              controller.grade >= 1 ? Icons.star_rounded : Icons.star_border_rounded,
+              controller.grade >= 5 ? Icons.star_rounded : Icons.star_border_rounded,
                 size: 48.0,
                 color: controller.grade == 5
-                    ? AppColors.yellowColor
-                    : AppColors.letterColor),
+                    ? AppColors.lightBlueColor
+                    : AppColors.letterThinColor),
           ),
         ],
       );

@@ -21,7 +21,4 @@ abstract class PopupStoreBase with Store {
   setStars(int value) {
     grade = value;
   }
-
-
-
 }

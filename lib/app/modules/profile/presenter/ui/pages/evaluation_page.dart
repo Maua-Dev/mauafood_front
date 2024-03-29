@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import "package:mauafood_front/app/modules/profile/presenter/controllers/popup_controller.dart";
 import 'package:mauafood_front/app/modules/profile/presenter/ui/widgets/evaluation/stars_widget.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
+import 'package:mauafood_front/app/modules/user/presenter/controllers/cart/cart_controller.dart';
+import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
 
 class EvaluationPage extends StatelessWidget {
   const EvaluationPage({super.key});
@@ -23,6 +26,7 @@ class EvaluationPopup extends StatefulWidget {
 
 class _EvaluationPopupState extends State<EvaluationPopup> {
   final PopupStore popupStore = PopupStore();
+  final CartController controller = Modular.get();
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {});
@@ -50,13 +54,14 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Nome do Resturante",
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.letterColor,
+                          controller.restaurantCart.restaurantName,
+                          style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.letterColor,
+                          ),
                         ),
-                      )
+                      
                     ],
                   ),
                   const SizedBox(

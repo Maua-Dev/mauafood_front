@@ -14,7 +14,10 @@ class EvaluationPage extends StatelessWidget {
 }
 
 class EvaluationPopup extends StatefulWidget {
+  const EvaluationPopup({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _EvaluationPopupState createState() => _EvaluationPopupState();
 }
 
@@ -64,7 +67,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                     children: [
                       Expanded(
                           child: Text(
-                        popupStore.grade.toString(),
+                            "Avalie o restaurante, seu feedback é importante! ",
                         style: TextStyle(
                           fontSize: 16.0,
                           color: AppColors.letterThinColor,
@@ -84,7 +87,6 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                     width: 180,
                     child: ElevatedButton(
                       onPressed: () {
-                        Navigator.pop(context);
                         popupStore.togglePopup();
                       },
                       style: ElevatedButton.styleFrom(

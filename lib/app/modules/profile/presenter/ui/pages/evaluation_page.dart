@@ -57,6 +57,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                           controller.restaurantCart.restaurantName,
                           style: TextStyle(
                             fontSize: 20.0,
+
                             fontWeight: FontWeight.bold,
                             color: AppColors.letterColor,
                           ),
@@ -113,7 +114,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
               ],
             );
           } else {
-            return const Text("Página carregada");
+            return const Text("PopUp Fechado");
           }
         }),
       ),

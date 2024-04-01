@@ -12,6 +12,10 @@ var baseLogosImages = '$baseUrlS3/logos/images';
 
 var baseRestaurantImages = '$baseUrlS3/restaurants/restaurant_front';
 
+var evaluation_background = '$baseRandomImages/evaluation_background.png';
+
+var baseRandomImages = '$baseUrlS3/random';
+
 var splashGif = '$baseLogosGif/splash_screen_gif.gif';
 
 var greyLogo = '$baseLogosImages/grey_logo.png';

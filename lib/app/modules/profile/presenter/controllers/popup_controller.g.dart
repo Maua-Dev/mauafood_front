@@ -55,7 +55,18 @@ mixin _$PopupStore on PopupStoreBase, Store {
   }
 
   @override
-  void setStars(int value) {
+  void openPopUp() {
+    final _$actionInfo = _$PopupStoreBaseActionController.startAction(
+        name: 'PopupStoreBase.openPopUp');
+    try {
+      return super.openPopUp();
+    } finally {
+      _$PopupStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  dynamic setStars(int value) {
     final _$actionInfo = _$PopupStoreBaseActionController.startAction(
         name: 'PopupStoreBase.setStars');
     try {

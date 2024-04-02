@@ -170,7 +170,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                           child: Column(
                             children: [
                               const SizedBox(
-                                height: 50,
+                                height: 20,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -195,7 +195,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                               Padding(
                                   padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                                   child: SizedBox(
-                                    height: 280,
+                                    height: 208,
                                     child: Image.network(
                                       evaluation_background,
                                       fit: BoxFit.contain,
@@ -203,6 +203,58 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                                 ),
                               
                         ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text('Volte Sempre!',style: TextStyle(
+                                  color: AppColors.letterThinColor, 
+                                  fontSize: 16.0,
+                                  fontWeight:FontWeight.bold))
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                          Center(
+                          child: SizedBox(
+                          width: 160,
+                          height: 40,
+                            child: ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: AppColors.lightBlueColor,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                              ),
+                              child: Text(
+                                "Home",
+                                style:
+                                    TextStyle(color: AppColors.white, fontSize: 16.0),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Center(
+                          child: TextButton(
+                            onPressed: () {
+                              popupStore.openPopUp();
+                              
+                            }, child: Text("Avaliar",
+                            style: TextStyle(
+                              color: AppColors.letterColor,
+                              fontSize: 16.0,
+
+                            ),),
+                          ),
+                        ),                             
                             ],
                           ),
             

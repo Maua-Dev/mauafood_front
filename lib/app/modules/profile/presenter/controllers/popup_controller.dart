@@ -13,6 +13,10 @@ abstract class PopupStoreBase with Store {
   void togglePopup() {
     showPopup = !showPopup;
   }
+  @action
+  void openPopUp(){
+    showPopup = showPopup;
+  }
 
   @observable
   int grade = 0;

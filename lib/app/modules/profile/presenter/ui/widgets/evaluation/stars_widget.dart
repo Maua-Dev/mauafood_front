@@ -5,8 +5,8 @@ import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
 // ignore: must_be_immutable
 class StarsWidget extends StatelessWidget {
-  StarsWidget({super.key, required this.controller});
   PopupStore controller;
+  StarsWidget({super.key, required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,7 @@ class StarsWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           GestureDetector(
-            onTap: () {
-              controller.setStars(1);
-            } ,
+            onTap: () => controller.setStars(1),
             child: Icon(
                 controller.grade >= 1 ? Icons.star_rounded : Icons.star_border_rounded,
                 size: 48.0,

@@ -66,7 +66,7 @@ mixin _$PopupStore on PopupStoreBase, Store {
   }
 
   @override
-  dynamic setStars(int value) {
+  void setStars(int value) {
     final _$actionInfo = _$PopupStoreBaseActionController.startAction(
         name: 'PopupStoreBase.setStars');
     try {

@@ -18,11 +18,18 @@ abstract class PopupStoreBase with Store {
     showPopup = showPopup;
   }
 
-  @observable
-  int grade = 0;
+ @observable
+int grade = 0;
 
-  @action
-  setStars(int value) {
-    grade = value;
-  }
+@action
+void setStars(int value) {
+  grade = value;
+  autorun((_) { 
+  });
+
+
+ int getStars(){
+  return grade;
+ }
+}
 }

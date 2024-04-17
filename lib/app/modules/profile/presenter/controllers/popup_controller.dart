@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 
 part 'popup_controller.g.dart';
@@ -13,23 +12,23 @@ abstract class PopupStoreBase with Store {
   void togglePopup() {
     showPopup = !showPopup;
   }
+
   @action
-  void openPopUp(){
+  void openPopUp() {
     showPopup = showPopup;
   }
 
- @observable
-int grade = 0;
+  @observable
+  int grade = 0;
 
-@action
-void setStars(int value) {
-  grade = value;
-  autorun((_) { 
-  });
+  @action
+  void setStars(int value) {
+    grade = value;
+    autorun((_) {});
 
-
- int getStars(){
-  return grade;
- }
-}
+    // ignore: unused_element
+    int getStars() {
+      return grade;
+    }
+  }
 }

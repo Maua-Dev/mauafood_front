@@ -14,7 +14,7 @@ class FeedbackDatasource extends IFeedbackDatasource {
       '/create-feedback',
       data: data,
     );
-    if (response.statusCode != 200) {
+    if (response.statusCode != 201) {
       throw Exception('Não foi possível enviar o feedback');
     }
     return response.data["message"];

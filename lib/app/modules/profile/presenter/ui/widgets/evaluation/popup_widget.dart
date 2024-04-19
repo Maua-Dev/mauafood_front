@@ -31,7 +31,7 @@ class PopUpWidget extends StatelessWidget {
                   iconSize: 40.0,
                   color: AppColors.mainBlueColor,
                   onPressed: () {
-                    Navigator.pop(context); // Redirects user to profile page
+                    controller.togglePopup(); // Redirects user to profile page
                   },
                 )),
             Row(
@@ -88,7 +88,6 @@ class PopUpWidget extends StatelessWidget {
                 onPressed: controller.grade == 0
                     ? null
                     : () => {
-                          controller.togglePopup,
                           controller.sendFeedback()
                         }, // Toggle button state based on star selection
                 style: ElevatedButton.styleFrom(

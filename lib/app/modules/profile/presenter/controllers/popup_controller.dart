@@ -26,10 +26,11 @@ abstract class PopupStoreBase with Store {
   Future<void> sendFeedback() async {
     FeedbackModel feedback = FeedbackModel.newInstance();
 
-    feedback = feedback.copyWith(value: grade);
+    feedback = feedback.copyWith(
+        value: grade, orderId: "4b685f9a-5262-49aa-a7a7-ad7ddffc51b9");
 
     var result = await _sendFeedback(feedback);
-    result.fold((l) => print("NÂO FUNCIONOU"), (r) => print(r));
+    result.fold((l) => print(l), (r) => print(r));
   }
 
   @observable

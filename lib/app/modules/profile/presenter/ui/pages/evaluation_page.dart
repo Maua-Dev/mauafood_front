@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import "package:mauafood_front/app/modules/profile/presenter/controllers/popup_controller.dart";
 import 'package:mauafood_front/app/modules/profile/presenter/ui/widgets/evaluation/popup_widget.dart';
 import 'package:mauafood_front/app/shared/helpers/services/s3/assets_s3.dart';
@@ -27,7 +28,7 @@ class EvaluationPopup extends StatefulWidget {
 }
 
 class _EvaluationPopupState extends State<EvaluationPopup> {
-  final PopupStore popupStore = PopupStore();
+  final PopupStore popupStore = Modular.get();
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +76,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Obrigado por usar no',
+                            'Obrigado por usar o',
                             style: TextStyle(
                                 color: AppColors.letterColor,
                                 fontSize: ScreenHelper.width(context) < 400

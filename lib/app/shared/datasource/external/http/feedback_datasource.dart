@@ -11,7 +11,7 @@ class FeedbackDatasource extends IFeedbackDatasource {
   Future<String> sendRestaurantFeedback(FeedbackModel feedback) async {
     var data = feedback.toJson();
     final response = await _client.post(
-      '/mss-product/create-feedback',
+      '/create-feedback',
       data: data,
     );
     if (response.statusCode != 200) {

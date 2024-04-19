@@ -3,13 +3,19 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/profile/domain/usecases/get_favorites_product.dart';
 import 'package:mauafood_front/app/modules/profile/domain/usecases/remove_favorite_product.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/controllers/favorites_controller.dart';
+import 'package:mauafood_front/app/modules/profile/presenter/controllers/popup_controller.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/ui/pages/evaluation_page.dart';
 
 import 'package:mauafood_front/app/modules/profile/presenter/ui/pages/favorites_page.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/ui/pages/profile_page.dart';
 import 'package:mauafood_front/app/modules/user/domain/usecases/update_user.dart';
+import 'package:mauafood_front/app/shared/datasource/external/http/feedback_datasource.dart';
 import 'package:mauafood_front/app/shared/datasource/external/http/menu_datasource.dart';
+import 'package:mauafood_front/app/shared/domain/repositories/feedback_repository_interface.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/send_feedback_usecase.dart';
+import 'package:mauafood_front/app/shared/infra/datasource/external/http/feedback_datasource_interface.dart';
 import 'package:mauafood_front/app/shared/infra/datasource/external/http/menu_datasource_interface.dart';
+import 'package:mauafood_front/app/shared/infra/repositories/feedback_repository.dart';
 import 'package:mauafood_front/app/shared/infra/repositories/menu_repository.dart';
 
 import 'domain/repositories/favorite_repository.dart';
@@ -26,10 +32,14 @@ class ProfileModule extends Module {
         Bind<GetFavoritesProduct>((i) => GetFavoritesProductImpl(i(), i())),
         Bind<RemoveFavoriteProduct>(((i) => RemoveFavoriteProductImpl(i()))),
         Bind((i) => UpdatePhotoImpl(i())),
+        Bind<IFeedbackDatasource>((i) => FeedbackDatasource(i())),
+        Bind<IFeedbackRepository>((i) => FeedbackRespository(datasource: i())),
+        Bind<ISendFeedbackUsecase>((i) => SendFeedbackUsecase(repository: i())),
         Bind.lazySingleton((i) => ProfileController(i(), i(), i())),
         Bind(
           (i) => FavoritesController(i(), i()),
-        )
+        ),
+        Bind((i) => PopupStore(i()))
       ];
 
   @override

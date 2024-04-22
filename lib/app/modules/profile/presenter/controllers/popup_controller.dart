@@ -8,6 +8,7 @@ class PopupStore = PopupStoreBase with _$PopupStore;
 abstract class PopupStoreBase with Store {
   @observable
   bool showPopup = true;
+  bool evaluated = true;
 
   @action
   void togglePopup() {
@@ -16,6 +17,11 @@ abstract class PopupStoreBase with Store {
   @action
   void openPopUp(){
     showPopup = showPopup;
+  }
+
+  @action
+  void evaluatedPopUp(){
+    evaluated = !evaluated;
   }
 
  @observable

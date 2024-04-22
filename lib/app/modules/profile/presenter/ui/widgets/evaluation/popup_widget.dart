@@ -34,9 +34,9 @@ final CartController restaurantcontroller = Modular.get();
                         icon: const Icon(Icons.close_rounded),
                         iconSize: 40.0,
                         color: AppColors.mainBlueColor,
-                        onPressed: () {
-                          Navigator.pop(context);  // Redirects user to profile page
-                        },
+                        onPressed:(){
+                          controller.togglePopup();
+                        }
                       )),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

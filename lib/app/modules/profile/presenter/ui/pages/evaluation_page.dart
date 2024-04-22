@@ -33,7 +33,7 @@ class EvaluationPopup extends StatefulWidget {
 }
 
 class _EvaluationPopupState extends State<EvaluationPopup> {
-  final PopupStore popupStore = PopupStore();
+  final PopupStore controller = PopupStore();
 
   @override
   Widget build(BuildContext context) {
@@ -156,9 +156,8 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                         ),
                         Center(
                           child: TextButton(
-                              onPressed: () {
-                               popupStore.togglePopup(); // Sets showPopup variable to true on button click (displays popup)
-                              },
+                              onPressed:() {
+                              controller.evaluated == false ? controller.openPopUp(): controller.togglePopup();},
                               child: Text(
                                 "Avaliar",
                                 style: TextStyle(
@@ -177,11 +176,11 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
           ),
           // Shows widget on "avaliar" button click
           Visibility(
-            visible: popupStore.showPopup,
+            visible: controller.showPopup,
             child: Observer(builder: (_) {
-              if (popupStore.showPopup){ 
+              if (controller.showPopup){ 
 
-                 return PopUpWidget(controller: popupStore);// Checks showPopup  and displays popup widget if true
+                 return PopUpWidget(controller: controller);// Checks showPopup  and displays popup widget if true
               }else {
                 return
                 const SizedBox.shrink(); // Checks showPopup and doesn't displays popup widget if false
@@ -192,9 +191,9 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
 
           Center(
                 child: Observer(builder: (_) {
-                return popupStore.showPopup ? Container( // Checks showPopup  and displays popup widget if true
+                return controller.showPopup ? Container( // Checks showPopup  and displays popup widget if true
               color: AppColors.white,
-              child: PopUpWidget(controller: popupStore), ) : 
+              child: PopUpWidget(controller: controller), ) : 
               const SizedBox.shrink();  // Checks showPopup and doesn't displays popup widget if false
               
       }),

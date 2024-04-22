@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -28,11 +30,7 @@ class EvaluationPopup extends StatefulWidget {
 }
 
 class _EvaluationPopupState extends State<EvaluationPopup> {
-<<<<<<< HEAD
-  final PopupStore controller = PopupStore();
-=======
   final PopupStore popupStore = Modular.get();
->>>>>>> f92fd381683f4cd70178d65042dda4447f1f7467
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +50,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 24, horizontal: 8),
                         child: SizedBox(
-                          height: 80,
+                          height: ScreenHelper.height(context)* 0.10,
                           child: Image.network(
                             whiteLogo,
                             fit: BoxFit.contain,
@@ -62,19 +60,23 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                     ),
                   ],
                 ),
+                
                 Container(
-                  height: ScreenHelper.height(context) < 700 ? 539 : 804,
+                  height: 
+                  ScreenHelper.height(context) < 700 ? 547
+                          :ScreenHelper.height(context) * 0.84,
                   width: double.infinity,
                   decoration: BoxDecoration(
+                      
                       color: AppColors.white,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(54.0),
                         topRight: Radius.circular(8.0),
-                      )),
+                      ),),
                   child: Column(
                     children: [
-                      const SizedBox(
-                        height: 20,
+                   SizedBox(
+                        height:ScreenHelper.height(context) < 700 ? 10: ScreenHelper.height(context) * 0.02,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -107,15 +109,16 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                             vertical: 8, horizontal: 8),
                         child: SizedBox(
                           height:
-                              ScreenHelper.height(context) < 700 ? 208 : 408,
+                          ScreenHelper.height(context) < 700 ? 220:
+                              ScreenHelper.height(context) *0.40,
                           child: Image.network(
                             evaluation_background,
                             fit: BoxFit.contain,
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: ScreenHelper.height(context) *0.02,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -129,13 +132,13 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                                   fontWeight: FontWeight.bold))
                         ],
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: ScreenHelper.height(context) *0.05,
                       ),
                       Center(
                         child: SizedBox(
                           width: ScreenHelper.width(context) < 400 ? 160 : 200,
-                          height: 40,
+                          height: ScreenHelper.height(context)*0.05,
                           child: ElevatedButton(
                             onPressed: () {
                               Navigator.pop(context);
@@ -162,8 +165,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                       Center(
                           child: TextButton(
                         onPressed: () {
-                          popupStore
-                              .togglePopup(); // Sets showPopup variable to true on button click (displays popup)
+                          popupStore.togglePopup(); // Sets showPopup variable to true on button click (displays popup)
                         },
                         child: Text(
                           "Avaliar",
@@ -176,142 +178,6 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                       )),
                     ],
                   ),
-<<<<<<< HEAD
-                  Container(
-                    height: ScreenHelper.height(context) < 700 ? 539
-                     : 804,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(54.0),
-                          topRight: Radius.circular(8.0),
-                        )),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              'Obrigado por usar no',
-                              style: TextStyle(
-                                  color: AppColors.letterColor,
-                                  fontSize: ScreenHelper.width(context) < 400 ? 24.0 : 32.0,
-                                  fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('MauáFood!',
-                                style: TextStyle(
-                                    color: AppColors.blueLetterColor,
-                                    fontSize: ScreenHelper.width(context) < 400 ? 24.0 : 32.0,
-                                    fontWeight: FontWeight.bold))
-                          ],
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 8, horizontal: 8),
-                          child: SizedBox(
-                            height: ScreenHelper.height(context) < 700  ? 208 : 408,
-                            child: Image.network(
-                              evaluation_background,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text('Volte Sempre!',
-                                style: TextStyle(
-                                    color: AppColors.letterThinColor,
-                                    fontSize: ScreenHelper.width(context) < 400 ? 16.0 : 24.0,
-                                    fontWeight: FontWeight.bold))
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Center(
-                          child: SizedBox(
-                            width:ScreenHelper.width(context) < 400 ? 160 : 200 ,
-                            height: 40,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.lightBlueColor,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8)),
-                              ),
-                              child: Text(
-                                "Home",
-                                style: TextStyle(
-                                    color: AppColors.white, 
-                                    fontSize: ScreenHelper.width(context) < 400 ? 16.0 : 24.0 ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Center(
-                          child: TextButton(
-                              onPressed:() {
-                              controller.evaluated == false ? controller.openPopUp(): controller.togglePopup();},
-                              child: Text(
-                                "Avaliar",
-                                style: TextStyle(
-                                  color: AppColors.letterColor,
-                                  fontSize: ScreenHelper.width(context) < 400 ? 16.0 : 24.0,
-                                ),
-                              ),
-                            )
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              );
-            }),
-          ),
-          // Shows widget on "avaliar" button click
-          Visibility(
-            visible: controller.showPopup,
-            child: Observer(builder: (_) {
-              if (controller.showPopup){ 
-
-                 return PopUpWidget(controller: controller);// Checks showPopup  and displays popup widget if true
-              }else {
-                return
-                const SizedBox.shrink(); // Checks showPopup and doesn't displays popup widget if false
-              }
-              
-      }),
-            ),
-
-          Center(
-                child: Observer(builder: (_) {
-                return controller.showPopup ? Container( // Checks showPopup  and displays popup widget if true
-              color: AppColors.white,
-              child: PopUpWidget(controller: controller), ) : 
-              const SizedBox.shrink();  // Checks showPopup and doesn't displays popup widget if false
-              
-      }),
-              ),
-
-=======
                 ),
               ],
             );
@@ -331,7 +197,6 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
             }
           }),
         ),
->>>>>>> f92fd381683f4cd70178d65042dda4447f1f7467
 
         Center(
           child: Observer(builder: (_) {

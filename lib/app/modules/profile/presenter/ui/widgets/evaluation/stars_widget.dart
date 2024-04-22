@@ -9,7 +9,7 @@ class StarsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    double iconSize = 56;
+    double iconSize = 40;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24.0),

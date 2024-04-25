@@ -52,6 +52,7 @@ abstract class OrdersControllerBase with Store {
   StatusEnum statusFiltered = StatusEnum.ALL;
 
   void listenToWebsocket(dynamic event) {
+    if (event == null) return;
     var order = OrderModel.fromMap(jsonDecode(event));
 
     ordersList.insert(0, order);

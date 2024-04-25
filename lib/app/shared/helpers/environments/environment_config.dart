@@ -15,7 +15,7 @@ class EnvironmentConfig {
   static const ENV = String.fromEnvironment(
     'ENV',
   );
-
+  static const WSS_ORDER = String.fromEnvironment('WSS_ORDER');
   static Future<IMenuRepository> getUserRepo() async {
     await Modular.isModuleReady<UserMenuModule>();
     // EnvironmentEnum value = EnvironmentEnum.values.firstWhere(

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:auth_package/core/auth_store.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/helpers/environments/environment_config.dart';
@@ -18,6 +16,5 @@ class OrderWebsocket implements Disposable {
   @override
   void dispose() {
     channel.sink.close();
-    print('OrderWebsocket disposed');
   }
 }

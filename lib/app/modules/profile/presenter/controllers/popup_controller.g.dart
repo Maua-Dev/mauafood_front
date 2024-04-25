@@ -40,6 +40,14 @@ mixin _$PopupStore on PopupStoreBase, Store {
     });
   }
 
+  late final _$sendFeedbackAsyncAction =
+      AsyncAction('PopupStoreBase.sendFeedback', context: context);
+
+  @override
+  Future<void> sendFeedback() {
+    return _$sendFeedbackAsyncAction.run(() => super.sendFeedback());
+  }
+
   late final _$PopupStoreBaseActionController =
       ActionController(name: 'PopupStoreBase', context: context);
 

@@ -44,58 +44,6 @@ class PopUpWidget extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-<<<<<<< HEAD
-                  Container(
-                      alignment: Alignment.topRight,
-                      child: IconButton(
-                        icon: const Icon(Icons.close_rounded),
-                        iconSize: 40.0,
-                        color: AppColors.mainBlueColor,
-                        onPressed:(){
-                          controller.togglePopup();
-                        }
-                      )),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        restaurantcontroller.restaurantCart.restaurantName, // contoller cart - Restaurant Name
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.letterColor,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Expanded(
-                          child: Text(
-                        "Avalie o restaurante, seu feedback é importante! ",
-                        style: TextStyle(
-                          fontSize:
-                              ScreenHelper.width(context) < 400 ? 16.0 : 24.0,
-                          color: AppColors.letterThinColor,
-                        ),
-                      )),
-                    ],
-                  ),
-                  Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: 50,
-                        child: Image.network(
-                          greyLogo,
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-=======
                   Text(
                     restaurantcontroller.restaurantCart.restaurantName.isEmpty
                         ? "Nome do Restaurante"
@@ -105,7 +53,6 @@ class PopUpWidget extends StatelessWidget {
                       fontSize: 20.0,
                       fontWeight: FontWeight.w900,
                       color: AppColors.letterColor,
->>>>>>> f92fd381683f4cd70178d65042dda4447f1f7467
                     ),
                   ),
                 ],

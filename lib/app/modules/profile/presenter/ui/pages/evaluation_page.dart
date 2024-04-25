@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -19,6 +17,19 @@ class EvaluationPage extends StatelessWidget {
       backgroundColor: AppColors.mainBlueColor,
     );
   }
+}
+
+double calculateContainerHeight(BuildContext context) {
+  double totalHeight = MediaQuery.of(context).size.height;
+  double logoHeight = ScreenHelper.height(context) * 0.12;
+  double defaultContainerHeight = ScreenHelper.height(context) < 700 ? 539 : ScreenHelper.height(context) * 0.83 - 0.2;
+  double spaceBetweenElements = ScreenHelper.height(context) < 700 ? 5 : ScreenHelper.height(context) * 0.02;
+  double imageHeight = ScreenHelper.height(context) < 700 ? 220 : ScreenHelper.height(context) * 0.40;
+  double textHeight = ScreenHelper.height(context) * 0.05;
+  
+  double containerHeight = totalHeight - logoHeight - defaultContainerHeight - spaceBetweenElements - imageHeight - spaceBetweenElements - textHeight - textHeight - 5;
+  
+  return containerHeight;
 }
 
 class EvaluationPopup extends StatefulWidget {
@@ -50,7 +61,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 24, horizontal: 8),
                         child: SizedBox(
-                          height: ScreenHelper.height(context)* 0.10,
+                          height: ScreenHelper.height(context)* 0.12,
                           child: Image.network(
                             whiteLogo,
                             fit: BoxFit.contain,
@@ -62,9 +73,9 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                 ),
                 
                 Container(
-                  height: 
-                  ScreenHelper.height(context) < 700 ? 547
-                          :ScreenHelper.height(context) * 0.84,
+                  height: ScreenHelper.height(context) < 700 ? 539 : 
+                  ScreenHelper.height(context) > 900 ? ScreenHelper.height(context) *(0.82 + 0.008):
+                  ScreenHelper.height(context) * (0.82 + 0.003),
                   width: double.infinity,
                   decoration: BoxDecoration(
                       
@@ -72,11 +83,12 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(54.0),
                         topRight: Radius.circular(8.0),
-                      ),),
+                      ),
+                      border: Border.all(color: AppColors.white, width: 2)),
                   child: Column(
                     children: [
                    SizedBox(
-                        height:ScreenHelper.height(context) < 700 ? 10: ScreenHelper.height(context) * 0.02,
+                        height:ScreenHelper.height(context) < 700 ? 5: ScreenHelper.height(context) * 0.02,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -137,7 +149,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                       ),
                       Center(
                         child: SizedBox(
-                          width: ScreenHelper.width(context) < 400 ? 160 : 200,
+                          width:150,
                           height: ScreenHelper.height(context)*0.05,
                           child: ElevatedButton(
                             onPressed: () {
@@ -160,7 +172,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                         ),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 5,
                       ),
                       Center(
                           child: TextButton(
@@ -197,7 +209,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
             }
           }),
         ),
-
+    
         Center(
           child: Observer(builder: (_) {
             return popupStore.showPopup

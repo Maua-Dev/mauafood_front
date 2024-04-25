@@ -76,7 +76,7 @@ abstract class _LandingControllerBase with Store {
     {
       'icon': FontAwesomeIcons.barsStaggered,
       'title': S.current.orders,
-      'route': '/landing/orders/',
+      'route': '/landing/employee/orders/',
     },
     {
       'icon': FontAwesomeIcons.user,

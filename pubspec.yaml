@@ -43,7 +43,8 @@ dependencies:
   webview_flutter: ^4.2.3
   like_button: ^2.0.5
   shimmer: ^3.0.0
-  
+  web_socket_channel: ^2.4.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -19,19 +19,6 @@ class EvaluationPage extends StatelessWidget {
   }
 }
 
-double calculateContainerHeight(BuildContext context) {
-  double totalHeight = MediaQuery.of(context).size.height;
-  double logoHeight = ScreenHelper.height(context) * 0.12;
-  double defaultContainerHeight = ScreenHelper.height(context) < 700 ? 539 : ScreenHelper.height(context) * 0.83 - 0.2;
-  double spaceBetweenElements = ScreenHelper.height(context) < 700 ? 5 : ScreenHelper.height(context) * 0.02;
-  double imageHeight = ScreenHelper.height(context) < 700 ? 220 : ScreenHelper.height(context) * 0.40;
-  double textHeight = ScreenHelper.height(context) * 0.05;
-  
-  double containerHeight = totalHeight - logoHeight - defaultContainerHeight - spaceBetweenElements - imageHeight - spaceBetweenElements - textHeight - textHeight - 5;
-  
-  return containerHeight;
-}
-
 class EvaluationPopup extends StatefulWidget {
   const EvaluationPopup({super.key});
 
@@ -75,7 +62,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                 Container(
                   height: ScreenHelper.height(context) < 700 ? 539 : 
                   ScreenHelper.height(context) > 900 ? ScreenHelper.height(context) *(0.82 + 0.008):
-                  ScreenHelper.height(context) * (0.82 + 0.003),
+                  ScreenHelper.height(context) * (0.82 + 0.001),
                   width: double.infinity,
                   decoration: BoxDecoration(
                       
@@ -88,7 +75,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                   child: Column(
                     children: [
                    SizedBox(
-                        height:ScreenHelper.height(context) < 700 ? 5: ScreenHelper.height(context) * 0.02,
+                        height:ScreenHelper.height(context) < 700 ? 8: ScreenHelper.height(context) * 0.03,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -120,9 +107,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 8, horizontal: 8),
                         child: SizedBox(
-                          height:
-                          ScreenHelper.height(context) < 700 ? 220:
-                              ScreenHelper.height(context) *0.40,
+                          height:ScreenHelper.height(context) < 700 ? 200:ScreenHelper.height(context) * 0.30,
                           child: Image.network(
                             evaluation_background,
                             fit: BoxFit.contain,

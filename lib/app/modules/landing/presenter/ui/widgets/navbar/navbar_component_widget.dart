@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -25,8 +24,7 @@ class NavBarComponentWidget extends StatelessWidget {
     final isSelect = selectIndex == index;
     return InkWell(
       onTap: () {
-        onSelect(index);
-        Modular.to.navigate(route);
+        Modular.to.navigate("/landing/profile/order-status");
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),

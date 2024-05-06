@@ -105,6 +105,17 @@ class MessageLookup extends MessageLookupByLibrary {
           })}";
 
   static String m12(status) => "${Intl.select(status, {
+            'PENDING': 'Aguarde um momento, seu pedido será aprovado!',
+            'PREPARING':
+                'Seu pedido foi aprovado! Logo começará a ser preparado!',
+            'REFUSED': 'Recusado',
+            'READY': 'Seu pedido está pronto! Venha retirar!',
+            'CANCELED': 'Cancelado',
+            'ALL': 'Todos',
+            'other': 'Outros',
+          })}";
+
+  static String m13(status) => "${Intl.select(status, {
             'PENDING': 'Pendente',
             'PREPARING': 'Em preparo',
             'REFUSED': 'Recusado',
@@ -124,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "authErrorsSchema": m0,
         "biggestPriceTitle":
             MessageLookupByLibrary.simpleMessage("Maior Preço"),
+        "cancelOrderTitle":
+            MessageLookupByLibrary.simpleMessage("Cancelar pedido"),
         "cancelationTitle": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "cart": MessageLookupByLibrary.simpleMessage("Cesta"),
         "categoriesTitle": MessageLookupByLibrary.simpleMessage("Categorias"),
@@ -133,6 +146,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "cleanFilterTitle":
             MessageLookupByLibrary.simpleMessage("Limpar filtro"),
         "closeTitle": MessageLookupByLibrary.simpleMessage("Fechar"),
+        "closedTitle": MessageLookupByLibrary.simpleMessage("Fechado"),
         "codeErrorAlert":
             MessageLookupByLibrary.simpleMessage("Erro com código."),
         "codeTitle": MessageLookupByLibrary.simpleMessage("Código"),
@@ -174,6 +188,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "emailTitle": MessageLookupByLibrary.simpleMessage("E-mail"),
         "emptyListErrorMessage": MessageLookupByLibrary.simpleMessage(
             "Lista vazia, itens não encontrados para essa requisição"),
+        "emptyOrdersListWarn":
+            MessageLookupByLibrary.simpleMessage("Sem pedidos no momento"),
         "enterTitle": MessageLookupByLibrary.simpleMessage("Entrar"),
         "entityErrorMessage": m1,
         "equalPasswordAlert":
@@ -192,6 +208,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "forgotPasswordTitle":
             MessageLookupByLibrary.simpleMessage("Esqueceu a senha?"),
         "fullNameTitle": MessageLookupByLibrary.simpleMessage("Nome Completo"),
+        "goBackTitle": MessageLookupByLibrary.simpleMessage("Voltar"),
         "haveAccountTitle":
             MessageLookupByLibrary.simpleMessage("Já tem uma conta?"),
         "havePasswordTitle":
@@ -211,6 +228,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "labelMessage": MessageLookupByLibrary.simpleMessage("Mensagem"),
         "labelName": MessageLookupByLibrary.simpleMessage("Nome Completo"),
         "labelSend": MessageLookupByLibrary.simpleMessage("Enviar agora"),
+        "lackOfInputTitle":
+            MessageLookupByLibrary.simpleMessage("Falta de insumo"),
         "loginTitle": MessageLookupByLibrary.simpleMessage("Login"),
         "lowestPriceTitle": MessageLookupByLibrary.simpleMessage("Menor Preço"),
         "messageSentError": MessageLookupByLibrary.simpleMessage(
@@ -222,7 +241,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "newPasswordTitle": MessageLookupByLibrary.simpleMessage("Nova senha"),
         "noItemsFoundErrorMessage": m2,
         "notificationsOptionsSchema": m3,
+        "observationTitle": MessageLookupByLibrary.simpleMessage("Observação"),
         "orders": MessageLookupByLibrary.simpleMessage("Pedidos"),
+        "othersTitle": MessageLookupByLibrary.simpleMessage("Outros"),
+        "overloadTitle": MessageLookupByLibrary.simpleMessage("Sobrecarga"),
         "passwordInstructionsAlert": MessageLookupByLibrary.simpleMessage(
             "Sua senha deve conter: \n - Uma ou mais letras maiúsculas \n - Uma ou mais letras minúsculas \n - Um ou mais números \n - Um ou mais caracteres especiais\n(#, ?, !, @, \\\$, %, ^, &, *, -)  \n - Mínimo de 8 caracteres"),
         "passwordTitle": MessageLookupByLibrary.simpleMessage("Senha"),
@@ -257,6 +279,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Recomendações"),
         "recommendedTitle":
             MessageLookupByLibrary.simpleMessage("Outras Opções"),
+        "refuseOrder": MessageLookupByLibrary.simpleMessage("Recusar pedido"),
+        "refuseOrderAlert": MessageLookupByLibrary.simpleMessage(
+            "Ao clicar em “OK” o pedido será recusado e removido da lista de controle."),
         "registerEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "Para completar seu cadastro enviamos um e-mail com um código, insira-o no campo abaixo."),
         "registerTitle": MessageLookupByLibrary.simpleMessage("Cadastrar"),
@@ -277,19 +302,25 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendCodeEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "Enviamos um código de confirmação em seu e-mail, digite-o no campo abaixo."),
         "sendTitle": MessageLookupByLibrary.simpleMessage("Enviar"),
-        "statusNameSchema": m12,
+        "statusAlertSchema": m12,
+        "statusNameSchema": m13,
         "successChangePassword":
             MessageLookupByLibrary.simpleMessage("Senha alterada com sucesso!"),
         "successConfirmEmail":
             MessageLookupByLibrary.simpleMessage("E-mail confirmado!"),
         "termsAcceptAlert": MessageLookupByLibrary.simpleMessage(
             "É necessário aceitar os Termos de Uso."),
+        "totalTitle": MessageLookupByLibrary.simpleMessage("Total"),
         "typeContact":
             MessageLookupByLibrary.simpleMessage("Entre em contato conosco"),
         "typeEmailCorrectlyAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se que digitou e-mail corretamente."),
         "typeEmailPasswordAlert": MessageLookupByLibrary.simpleMessage(
             "Certifique-se que digitou e-mail e senha."),
-        "understoodTitle": MessageLookupByLibrary.simpleMessage("Entendido!")
+        "understoodTitle": MessageLookupByLibrary.simpleMessage("Entendido!"),
+        "whatHappenedTitle":
+            MessageLookupByLibrary.simpleMessage("Digite o que aconteceu aqui"),
+        "withoutObservationTitle":
+            MessageLookupByLibrary.simpleMessage("Sem observação")
       };
 }

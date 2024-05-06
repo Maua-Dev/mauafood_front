@@ -360,6 +360,26 @@ class S {
     );
   }
 
+  /// `Observation`
+  String get observationTitle {
+    return Intl.message(
+      'Observation',
+      name: 'observationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get totalTitle {
+    return Intl.message(
+      'Total',
+      name: 'totalTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Product Availability`
   String get productAvailabilityTitle {
     return Intl.message(
@@ -451,6 +471,16 @@ class S {
     return Intl.message(
       'Cancel',
       name: 'cancelationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel order`
+  String get cancelOrderTitle {
+    return Intl.message(
+      'Cancel order',
+      name: 'cancelOrderTitle',
       desc: '',
       args: [],
     );
@@ -551,6 +581,26 @@ class S {
     return Intl.message(
       'Close',
       name: 'closeTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Without observation`
+  String get withoutObservationTitle {
+    return Intl.message(
+      'Without observation',
+      name: 'withoutObservationTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No orders at the moment`
+  String get emptyOrdersListWarn {
+    return Intl.message(
+      'No orders at the moment',
+      name: 'emptyOrdersListWarn',
       desc: '',
       args: [],
     );
@@ -1013,6 +1063,26 @@ class S {
     );
   }
 
+  /// `{status, select, PENDING{Please wait a moment, your order will be approved!} PREPARING{Your request has been approved! It will soon begin to be prepared!} REFUSED{Refused} READY{Your order is ready! Come pick it up!} CANCELED{Canceled} ALL{All} other{Others}}`
+  String statusAlertSchema(Object status) {
+    return Intl.select(
+      status,
+      {
+        'PENDING': 'Please wait a moment, your order will be approved!',
+        'PREPARING':
+            'Your request has been approved! It will soon begin to be prepared!',
+        'REFUSED': 'Refused',
+        'READY': 'Your order is ready! Come pick it up!',
+        'CANCELED': 'Canceled',
+        'ALL': 'All',
+        'other': 'Others',
+      },
+      name: 'statusAlertSchema',
+      desc: '',
+      args: [status],
+    );
+  }
+
   /// `Recommendations`
   String get recommendationsTitle {
     return Intl.message(
@@ -1128,6 +1198,86 @@ class S {
     return Intl.message(
       'Orders',
       name: 'orders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refuse order`
+  String get refuseOrder {
+    return Intl.message(
+      'Refuse order',
+      name: 'refuseOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Upon clicking “OK” the request will be declined and removed from the control list.`
+  String get refuseOrderAlert {
+    return Intl.message(
+      'Upon clicking “OK” the request will be declined and removed from the control list.',
+      name: 'refuseOrderAlert',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Others`
+  String get othersTitle {
+    return Intl.message(
+      'Others',
+      name: 'othersTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Lack of input`
+  String get lackOfInputTitle {
+    return Intl.message(
+      'Lack of input',
+      name: 'lackOfInputTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Closed`
+  String get closedTitle {
+    return Intl.message(
+      'Closed',
+      name: 'closedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Overload`
+  String get overloadTitle {
+    return Intl.message(
+      'Overload',
+      name: 'overloadTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go back`
+  String get goBackTitle {
+    return Intl.message(
+      'Go back',
+      name: 'goBackTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type what happened here`
+  String get whatHappenedTitle {
+    return Intl.message(
+      'Type what happened here',
+      name: 'whatHappenedTitle',
       desc: '',
       args: [],
     );

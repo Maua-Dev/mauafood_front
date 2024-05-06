@@ -2,7 +2,8 @@ import 'package:mauafood_front/app/shared/domain/entities/order.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 
 class OrderModel extends Order {
-  final List<OrderProductModel> products;
+  final List<OrderProductModel>? products;
+  bool isExpanded = false;
 
   OrderModel(
       {required super.status,

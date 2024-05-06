@@ -21,6 +21,6 @@ class CartDatasource extends ICartDatasource {
     if (response.statusCode != 201) {
       throw Exception('Não foi possível fazer o pedido');
     }
-    return response.data['order_id'];
+    return OrderModel.fromMap(response.data['order']);
   }
 }

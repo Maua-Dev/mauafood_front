@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/user/domain/usecases/create_order_usecase.dart';
 import 'package:mauafood_front/app/modules/user/presenter/controllers/cart/states/cart_states.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
@@ -35,42 +36,13 @@ abstract class CartControllerBase with Store {
   Future<void> createOrder(BuildContext context) async {
     var result = await _createOrder(cartList, restaurantCart);
 
-    changeState(result.fold((l) => CartErrorState(failure: l), (order) {
-      showDialog(
-          context: context,
-          builder: (BuildContext context) {
-            return AlertDialog(
-              title: Container(
-                width: 400,
-                height: 300,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(40),
-                  color: AppColors.white,
-                ),
-                child: const Column(
-                  children: [
-                    Icon(
-                      Icons.check_circle_outline,
-                      size: 200,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(top: 24.0),
-                      child: Text(
-                        "Seu pedido foi enviado ao restaurante!",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            );
-          });
-      return CartLoadedSuccessState(order: order, productList: cartList);
-    }));
+    // changeState(result.fold((l) => CartErrorState(failure: l), (order) {
+    //   return CartLoadedSuccessState(order: order, productList: cartList);
+    // }));
+
+    result.fold((l) => "Não funcionou...", (r) => "Funcionou!");
+
+    Modular.to.navigate("/landing/profile/evaluation/");
     cartList = [];
     restaurantCart = RestaurantEnum.none;
   }

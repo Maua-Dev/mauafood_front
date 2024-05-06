@@ -1,3 +1,4 @@
+import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/helpers/services/http/http_request_interface.dart';
 import 'package:mauafood_front/app/shared/infra/models/order_model.dart';
 import '../../../domain/enums/restaurant_enum.dart';
@@ -19,7 +20,7 @@ class CartDatasource extends ICartDatasource {
       },
     );
     if (response.statusCode != 201) {
-      throw Exception('Não foi possível fazer o pedido');
+      throw Failure(message: 'Not possible to create order');
     }
     return OrderModel.fromMap(response.data['order']);
   }

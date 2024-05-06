@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/send_feedback_usecase.dart';
 import 'package:mauafood_front/app/shared/infra/models/feedback_model.dart';
 import 'package:mobx/mobx.dart';
@@ -26,11 +25,11 @@ abstract class PopupStoreBase with Store {
   }
 
   @action
-  void evaluatedPopUp(){
+  void evaluatedPopUp() {
     evaluated = !evaluated;
   }
 
- @observable
+  @observable
   int grade = 0;
 
   @action

@@ -232,7 +232,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                                                                     width: ScreenHelper.width(context) < 425 ? 80 : 160,
                                                                                     child: Text(
                                                                                       overflow: TextOverflow.clip,
-                                                                                      state.ordersList[index].userName!,
+                                                                                      state.ordersList[index].userName,
                                                                                       style: AppTextStyles.h1.copyWith(fontSize: ScreenHelper.width(context) < 425 ? 16 : 20),
                                                                                     ),
                                                                                   ),
@@ -263,7 +263,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                                                                     ),
                                                                                   const Spacer(),
                                                                                   Text(
-                                                                                    DateTime.fromMillisecondsSinceEpoch(state.ordersList[index].creationTime!, isUtc: true).toString().substring(10, 16),
+                                                                                    DateTime.fromMillisecondsSinceEpoch(state.ordersList[index].creationTime, isUtc: true).toString().substring(10, 16),
                                                                                     style: AppTextStyles.h1.copyWith(fontSize: ScreenHelper.width(context) < 425 ? 14 : 16),
                                                                                   ),
                                                                                 ],
@@ -300,7 +300,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                                                                                 child: Padding(
                                                                                                   padding: const EdgeInsets.all(8.0),
                                                                                                   child: Text(
-                                                                                                    state.ordersList[index].products![productIndex].observation == null || state.ordersList[index].products![productIndex].observation == "" ? S.of(context).withoutObservationTitle : state.ordersList[index].products![productIndex].observation!,
+                                                                                                    state.ordersList[index].products![productIndex].observation == "" ? S.of(context).withoutObservationTitle : state.ordersList[index].products![productIndex].observation,
                                                                                                     style: AppTextStyles.h3.copyWith(fontSize: 14),
                                                                                                   ),
                                                                                                 ),
@@ -319,7 +319,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                                                               const SizedBox(height: 4),
                                                                               Text(
                                                                                 S.of(context).productPriceCurrency(
-                                                                                      state.ordersList[index].totalPrice!,
+                                                                                      state.ordersList[index].totalPrice,
                                                                                     ),
                                                                                 style: AppTextStyles.h1.copyWith(fontSize: ScreenHelper.width(context) < 425 ? 14 : 16),
                                                                               ),

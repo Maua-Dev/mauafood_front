@@ -28,9 +28,13 @@ abstract class _OrderStatusStoreBase with Store {
 
   @observable
   OrderModel order = OrderModel(
-    status: StatusEnum.PENDING,
-    id: "8f90159a-5b53-4b7d-84d5-e0b0e9e16c28",
-  );
+      status: StatusEnum.PENDING,
+      id: "",
+      totalPrice: 10,
+      userName: '',
+      userId: '',
+      creationTime: 0,
+      products: []);
 
   @action
   Future<void> getCurrentOrderStateById(String orderId) async {

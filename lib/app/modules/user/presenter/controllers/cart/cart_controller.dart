@@ -40,9 +40,9 @@ abstract class CartControllerBase with Store {
     //   return CartLoadedSuccessState(order: order, productList: cartList);
     // }));
 
-    result.fold((l) => "Não funcionou...", (r) => "Funcionou!");
-
-    Modular.to.navigate("/landing/profile/evaluation/");
+    result.fold((l) => "Não funcionou...", (r) {
+      Modular.to.navigate("/landing/profile/evaluation/");
+    });
     cartList = [];
     restaurantCart = RestaurantEnum.none;
   }

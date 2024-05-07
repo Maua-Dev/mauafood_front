@@ -24,7 +24,8 @@ class NavBarComponentWidget extends StatelessWidget {
     final isSelect = selectIndex == index;
     return InkWell(
       onTap: () {
-        Modular.to.navigate("/landing/profile/order-status");
+        Modular.to.navigate(route);
+        selectIndex == index ? onSelect(index) : onSelect(index);
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),

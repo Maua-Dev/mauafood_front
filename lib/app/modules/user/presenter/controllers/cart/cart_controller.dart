@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/profile/presenter/controllers/order_status_controller.dart';
 import 'package:mauafood_front/app/modules/user/domain/usecases/create_order_usecase.dart';
 import 'package:mauafood_front/app/modules/user/presenter/controllers/cart/states/cart_states.dart';
 import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
@@ -17,6 +18,7 @@ abstract class CartControllerBase with Store {
   List<CartProductModel> cartList = ObservableList<CartProductModel>();
 
   final ICreateOrderUsecase _createOrder;
+  final OrderStatusController orderController;
 
   @observable
   double totalPrice = 0;
@@ -30,18 +32,16 @@ abstract class CartControllerBase with Store {
   @action
   void changeState(CartState value) => state = value;
 
-  CartControllerBase(this._createOrder);
+  CartControllerBase(this._createOrder, this.orderController);
 
   @action
   Future<void> createOrder(BuildContext context) async {
     var result = await _createOrder(cartList, restaurantCart);
 
-    // changeState(result.fold((l) => CartErrorState(failure: l), (order) {
-    //   return CartLoadedSuccessState(order: order, productList: cartList);
-    // }));
-
     result.fold((l) => "Não funcionou...", (r) {
-      Modular.to.navigate("/landing/profile/evaluation/");
+      // Modular.to.navigate("/landing/profile/evaluation/");
+      Modular.to.navigate("/landing/profile/order-status/");
+      orderController.getCurrentOrderStateById(r);
     });
     cartList = [];
     restaurantCart = RestaurantEnum.none;

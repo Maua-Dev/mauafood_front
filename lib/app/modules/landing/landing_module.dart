@@ -2,6 +2,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/employee/employee_menu_module.dart';
 import 'package:mauafood_front/app/modules/landing/presenter/controllers/landing_controller.dart';
 import 'package:mauafood_front/app/modules/landing/presenter/ui/pages/landing_page.dart';
+import 'package:mauafood_front/app/modules/profile/presenter/controllers/order_status_controller.dart';
 import 'package:mauafood_front/app/modules/user/domain/repositories/cart_repository.dart';
 import 'package:mauafood_front/app/modules/user/domain/repositories/cart_repository_interface.dart';
 import 'package:mauafood_front/app/modules/user/domain/usecases/create_order_usecase.dart';
@@ -14,7 +15,13 @@ import 'package:mauafood_front/app/modules/user/user_menu_module.dart';
 import 'package:mauafood_front/app/modules/profile/profile_module.dart';
 import 'package:mauafood_front/app/modules/user/user_module.dart';
 import 'package:mauafood_front/app/shared/datasource/external/http/cart_datasource.dart';
+import 'package:mauafood_front/app/shared/datasource/external/http/orders_datasource.dart';
+import 'package:mauafood_front/app/shared/domain/repositories/orders_repository_interface.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/abort_order_usecase.dart';
+import 'package:mauafood_front/app/shared/domain/usecases/get_current_order_state_by_id_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/send_email.dart';
+import 'package:mauafood_front/app/shared/infra/datasource/external/http/orders_datasource_interface.dart';
+import 'package:mauafood_front/app/shared/infra/repositories/orders_repository.dart';
 import '../../shared/datasource/external/http/contact_datasource.dart';
 import '../../shared/domain/repositories/contact_repository_interface.dart';
 
@@ -31,7 +38,9 @@ class LandingModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => LandingController(i())),
-    Bind<CartController>((i) => CartController(i())),
+    Bind<IOrdersDatasource>((i) => OrdersDatasource(i())),
+    Bind<IOrdersRepository>((i) => OrdersRepository(i())),
+    Bind<CartController>((i) => CartController(i(), i())),
     Bind<ICreateOrderUsecase>((i) => CreateOrderUsecase(repository: i())),
     Bind<ICartRepository>((i) => CartRepository(datasource: i())),
     Bind<ICartDatasource>((i) => CartDatasource(i())),
@@ -43,6 +52,10 @@ class LandingModule extends Module {
     Bind<ContactController>(
       (i) => ContactController(i(), i(), i()),
     ),
+    Bind<IGetCurrentOrderStateByIdUsecase>(
+        ((i) => GetCurrentOrderStateByIdUsecase(repository: i()))),
+    Bind<IAbortOrderUsecase>(((i) => AbortOrderUsecase(repository: i()))),
+    Bind<OrderStatusController>(((i) => OrderStatusController(i(), i())))
   ];
 
   @override

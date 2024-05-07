@@ -25,30 +25,14 @@ mixin _$OrderStatusController on _OrderStatusStoreBase, Store {
     });
   }
 
-  late final _$orderAtom =
-      Atom(name: '_OrderStatusStoreBase.order', context: context);
-
-  @override
-  OrderModel get order {
-    _$orderAtom.reportRead();
-    return super.order;
-  }
-
-  @override
-  set order(OrderModel value) {
-    _$orderAtom.reportWrite(value, super.order, () {
-      super.order = value;
-    });
-  }
-
   late final _$getCurrentOrderStateByIdAsyncAction = AsyncAction(
       '_OrderStatusStoreBase.getCurrentOrderStateById',
       context: context);
 
   @override
-  Future<void> getCurrentOrderStateById(String orderId) {
+  Future<void> getCurrentOrderStateById(OrderModel order) {
     return _$getCurrentOrderStateByIdAsyncAction
-        .run(() => super.getCurrentOrderStateById(orderId));
+        .run(() => super.getCurrentOrderStateById(order));
   }
 
   late final _$abortOrderAsyncAction =
@@ -76,8 +60,7 @@ mixin _$OrderStatusController on _OrderStatusStoreBase, Store {
   @override
   String toString() {
     return '''
-state: ${state},
-order: ${order}
+state: ${state}
     ''';
   }
 }

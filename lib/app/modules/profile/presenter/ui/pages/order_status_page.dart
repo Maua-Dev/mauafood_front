@@ -76,7 +76,8 @@ class OrderStatusPage extends StatelessWidget {
                                                     alignment:
                                                         Alignment.centerLeft,
                                                     child: Text(
-                                                      store.order.status.name,
+                                                      store.orderToGet.status
+                                                          .name,
                                                       style: AppTextStyles.h2
                                                           .copyWith(
                                                         color: AppColors
@@ -108,7 +109,7 @@ class OrderStatusPage extends StatelessWidget {
                                                           height: 4,
                                                           decoration:
                                                               BoxDecoration(
-                                                            color: store.order
+                                                            color: store.orderToGet
                                                                         .status !=
                                                                     StatusEnum
                                                                         .PENDING
@@ -126,7 +127,7 @@ class OrderStatusPage extends StatelessWidget {
                                                         child: Container(
                                                           height: 4,
                                                           decoration: BoxDecoration(
-                                                              color: store.order
+                                                              color: store.orderToGet
                                                                           .status ==
                                                                       StatusEnum
                                                                           .READY
@@ -167,8 +168,8 @@ class OrderStatusPage extends StatelessWidget {
                                                       ),
                                                       Flexible(
                                                         child: Text(
-                                                          store.order.status
-                                                              .alert,
+                                                          store.orderToGet
+                                                              .status.alert,
                                                           style: AppTextStyles
                                                               .h2HighlightBold
                                                               .copyWith(
@@ -186,10 +187,10 @@ class OrderStatusPage extends StatelessWidget {
                                                             maxHeight: 250),
                                                     child: SizedBox(
                                                         child: Image.network(
-                                                            store.order.status
-                                                                .image)),
+                                                            store.orderToGet
+                                                                .status.image)),
                                                   ),
-                                                  if (store.order.status ==
+                                                  if (store.orderToGet.status ==
                                                       StatusEnum.PENDING)
                                                     ConstrainedBox(
                                                       constraints:

@@ -15,10 +15,17 @@ abstract class _OrderStatusStoreBase with Store {
   final IGetCurrentOrderStateByIdUsecase _getCurrentOrderStateByIdUsecase;
   final IAbortOrderUsecase _abortOrderUsecase;
 
+  OrderModel orderToGet = OrderModel(
+      status: StatusEnum.PENDING,
+      id: "",
+      totalPrice: 0,
+      userName: "",
+      userId: "",
+      creationTime: 0,
+      products: []);
+
   _OrderStatusStoreBase(
-      this._getCurrentOrderStateByIdUsecase, this._abortOrderUsecase) {
-    getCurrentOrderStateById(order.id);
-  }
+      this._getCurrentOrderStateByIdUsecase, this._abortOrderUsecase);
 
   @observable
   OrderStatusState state = const InitialOrderStatusState();
@@ -26,23 +33,14 @@ abstract class _OrderStatusStoreBase with Store {
   @action
   void changeState(OrderStatusState value) => state = value;
 
-  @observable
-  OrderModel order = OrderModel(
-      status: StatusEnum.PENDING,
-      id: "",
-      totalPrice: 10,
-      userName: '',
-      userId: '',
-      creationTime: 0,
-      products: []);
-
   @action
-  Future<void> getCurrentOrderStateById(String orderId) async {
+  Future<void> getCurrentOrderStateById(OrderModel order) async {
     changeState(const LoadingOrderStatusState());
-    var response = await _getCurrentOrderStateByIdUsecase(orderId);
+    var response = await _getCurrentOrderStateByIdUsecase(order.id);
 
     changeState(response.fold((l) => ErrorOrderStatusState(l.message), ((r) {
       order.status = r.status;
+      orderToGet = order;
       return SuccessOrderStatusState(order);
     })));
   }
@@ -50,7 +48,7 @@ abstract class _OrderStatusStoreBase with Store {
   @action
   Future<void> abortOrder() async {
     changeState(const LoadingOrderStatusState());
-    var result = await _abortOrderUsecase(order.id, "");
+    var result = await _abortOrderUsecase(orderToGet.id, "");
 
     changeState(
       result.fold(
@@ -59,7 +57,7 @@ abstract class _OrderStatusStoreBase with Store {
           return state;
         },
         (r) {
-          return SuccessOrderStatusState(order);
+          return SuccessOrderStatusState(orderToGet);
         },
       ),
     );

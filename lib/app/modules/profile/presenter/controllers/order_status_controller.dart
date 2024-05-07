@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:mauafood_front/app/modules/profile/presenter/states/order_status_state.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/abort_order_usecase.dart';
@@ -14,6 +16,15 @@ class OrderStatusController = _OrderStatusStoreBase
 abstract class _OrderStatusStoreBase with Store {
   final IGetCurrentOrderStateByIdUsecase _getCurrentOrderStateByIdUsecase;
   final IAbortOrderUsecase _abortOrderUsecase;
+
+  void longPooling(OrderModel order) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
+      getCurrentOrderStateById(order);
+      if (order.status == StatusEnum.READY) {
+        timer.cancel();
+      }
+    });
+  }
 
   OrderModel orderToGet = OrderModel(
       status: StatusEnum.PENDING,
@@ -36,6 +47,7 @@ abstract class _OrderStatusStoreBase with Store {
   @action
   Future<void> getCurrentOrderStateById(OrderModel order) async {
     changeState(const LoadingOrderStatusState());
+
     var response = await _getCurrentOrderStateByIdUsecase(order.id);
 
     changeState(response.fold((l) => ErrorOrderStatusState(l.message), ((r) {

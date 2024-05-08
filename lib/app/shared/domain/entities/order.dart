@@ -8,6 +8,7 @@ class Order {
   final double totalPrice;
   final int creationTime;
   final String? abortedReason;
+  final DateTime? time;
 
   Order(
       {required this.status,
@@ -16,7 +17,8 @@ class Order {
       required this.userId,
       required this.totalPrice,
       required this.creationTime,
-      this.abortedReason});
+      this.abortedReason,
+      this.time});
 }
 
 class OrderProduct {

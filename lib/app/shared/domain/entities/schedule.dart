@@ -4,13 +4,15 @@ class Schedule{
   
   final String id;
   final DateTime initialTime;
+  final DateTime endTime;
   final RestaurantEnum resturant;
   final bool isActive;
 
   Schedule(
-    this.id,
-    this.initialTime,
-    this.resturant,
-    this.isActive);
+    {required this.id,
+     required this.initialTime,
+    required this.endTime,
+    required this.resturant,
+    required this.isActive});
 }
 

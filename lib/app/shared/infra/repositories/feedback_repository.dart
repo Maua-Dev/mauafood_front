@@ -24,4 +24,5 @@ class FeedbackRespository implements IFeedbackRepository {
       return left(ErrorRequest(message: errorType.errorMessage));
     }
   }
+
 }

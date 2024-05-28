@@ -4,7 +4,7 @@ import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/infra/models/schedule_model.dart';
 
 abstract class IUpdateScheduleUseCase{
-  Future<Either<Failure, SheduleModel>>call(SheduleModel? initialTime, SheduleModel? endTime, SheduleModel isActive);
+  Future<Either<Failure,List<SheduleModel>>>call( SheduleModel id, SheduleModel initialTime, SheduleModel endTime, SheduleModel isActive);
 }
 
 class UpdateSchedule extends IUpdateScheduleUseCase{
@@ -13,9 +13,9 @@ class UpdateSchedule extends IUpdateScheduleUseCase{
   UpdateSchedule(this.repository);
   
   @override
-  Future<Either<Failure, SheduleModel>> call(SheduleModel? initialTime, SheduleModel? endTime, SheduleModel isActive)
+  Future<Either<Failure,List<SheduleModel>>>call(SheduleModel id, SheduleModel initialTime, SheduleModel endTime, SheduleModel isActive)
   async {
-    return await repository.updateSchedule(initialTime, endTime, isActive);
+    return await repository.updateSchedule(id, initialTime, endTime, isActive);
     
   }
 }

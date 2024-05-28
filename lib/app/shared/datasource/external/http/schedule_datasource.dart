@@ -4,13 +4,13 @@ import 'package:mauafood_front/app/shared/infra/models/schedule_model.dart';
 
 class ScheduleDataSource implements IScheduleDataSource{
   @override
-  Future<SheduleModel> getAllSchedulesByRestaurant(SheduleModel restaurant, SheduleModel initialTime, SheduleModel  endTime) {
+  Future<List<SheduleModel>> getAllSchedulesByRestaurant(SheduleModel restaurant, SheduleModel initialTime, SheduleModel  endTime) {
     // TODO: implement getAllSchedulesByRestaurant
     throw UnimplementedError();
   }
 
   @override
-  Future<SheduleModel> updateSchedule(SheduleModel initialTime, SheduleModel  endTime, SheduleModel isActive) {
+  Future<List<SheduleModel>> updateSchedule(SheduleModel id,  SheduleModel initialTime, SheduleModel  endTime, SheduleModel isActive) {
     // TODO: implement updateSchedule
     throw UnimplementedError();
   }

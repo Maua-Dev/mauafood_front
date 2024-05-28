@@ -30,6 +30,28 @@ class OrderModel extends Order {
   static List<OrderModel> fromMaps(List array) {
     return array.map((e) => OrderModel.fromMap(e)).toList();
   }
+
+  OrderModel copyWith({
+    String? id,
+    StatusEnum? status,
+    double? totalPrice,
+    String? userName,
+    String? userId,
+    int? creationTime,
+    String? abortedReason,
+    List<OrderProductModel>? products,
+  }) {
+    return OrderModel(
+      id: id ?? this.id,
+      status: status ?? this.status,
+      totalPrice: totalPrice ?? this.totalPrice,
+      userName: userName ?? this.userName,
+      userId: userId ?? this.userId,
+      creationTime: creationTime ?? this.creationTime,
+      abortedReason: abortedReason ?? this.abortedReason,
+      products: products ?? this.products,
+    );
+  }
 }
 
 class OrderProductModel extends OrderProduct {

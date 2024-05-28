@@ -17,15 +17,66 @@ abstract class _OrderStatusStoreBase with Store {
   final IGetCurrentOrderStateByIdUsecase _getCurrentOrderStateByIdUsecase;
   final IAbortOrderUsecase _abortOrderUsecase;
 
+  _OrderStatusStoreBase(
+      this._getCurrentOrderStateByIdUsecase, this._abortOrderUsecase) {
+    startPolling();
+  }
+
+  @action
   void longPooling(OrderModel order) {
-    Timer.periodic(const Duration(seconds: 1), (timer) {
-      getCurrentOrderStateById(order);
-      if (order.status == StatusEnum.READY) {
+    int i = 0;
+    setValue();
+    Timer.periodic(const Duration(seconds: 5), (timer) {
+      // getCurrentOrderStateById(order);
+      print("Entrou");
+      if (order.status == StatusEnum.READY || i > 5) {
         timer.cancel();
       }
     });
   }
 
+  @observable
+  bool value = false;
+
+  Timer? _timer;
+
+  // Inicia o polling
+  @action
+  void startPolling() {
+    _timer = Timer.periodic(Duration(seconds: 5), (timer) {
+      print("Entrou");
+      setValue();
+    });
+  }
+
+  // Para o polling
+  @action
+  void stopPolling() {
+    _timer?.cancel();
+  }
+
+  // Método que deve ser chamado quando o controlador é descartado
+  void dispose() {
+    stopPolling();
+  }
+
+  @action
+  void setValue() {
+    if (orderToGet.status == StatusEnum.READY) {
+      print("Mudou pra pending");
+      orderToGet = orderToGet.copyWith(status: StatusEnum.PENDING);
+    }
+    if (orderToGet.status == StatusEnum.PREPARING) {
+      print("Mudou pra ready");
+      orderToGet = orderToGet.copyWith(status: StatusEnum.READY);
+    }
+    if (orderToGet.status == StatusEnum.PENDING) {
+      print("Mudou pra preparing");
+      orderToGet = orderToGet.copyWith(status: StatusEnum.PREPARING);
+    }
+  }
+
+  @observable
   OrderModel orderToGet = OrderModel(
       status: StatusEnum.PENDING,
       id: "",
@@ -34,9 +85,6 @@ abstract class _OrderStatusStoreBase with Store {
       userId: "",
       creationTime: 0,
       products: []);
-
-  _OrderStatusStoreBase(
-      this._getCurrentOrderStateByIdUsecase, this._abortOrderUsecase);
 
   @observable
   OrderStatusState state = const InitialOrderStatusState();

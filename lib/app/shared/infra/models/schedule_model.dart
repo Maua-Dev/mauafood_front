@@ -9,4 +9,5 @@ class SheduleModel extends Schedule{
     required super.resturant, 
     required super.isActive});
 
+
 }

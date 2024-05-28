@@ -7,6 +7,4 @@ abstract class IScheduleRepository{
 
   Future<Either<Failure,SheduleModel>>updateSchedule(SheduleModel? initialTime,SheduleModel? endTime, SheduleModel isActive);
 
-  Future<Either<Failure,SheduleModel>>getScheduleByid(SheduleModel id);
-
 }

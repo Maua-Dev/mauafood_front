@@ -8,18 +8,14 @@ class ScheduleDataSource implements IScheduleDataSource{
     // TODO: implement getAllSchedulesByRestaurant
     throw UnimplementedError();
   }
-  
+
   @override
-  Future<SheduleModel> getScheduleByid(SheduleModel id) {
-    // TODO: implement getScheduleByid
-    throw UnimplementedError();
-  }
-  
-  @override
-  Future<SheduleModel> updateSchedule(SheduleModel?initialTime, SheduleModel? endTime, SheduleModel isActive) {
+  Future<SheduleModel> updateSchedule(SheduleModel initialTime, SheduleModel  endTime, SheduleModel isActive) {
     // TODO: implement updateSchedule
     throw UnimplementedError();
   }
+
+  
 
   
 }

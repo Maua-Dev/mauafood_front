@@ -13,10 +13,10 @@ class SheduleRepository extends IScheduleRepository{
 
   SheduleRepository({required this.dataSource});
   @override
-  Future<Either<Failure,List<SheduleModel>>>getAllSchedulesByRestaurant(SheduleModel restaurant, SheduleModel initialTime, SheduleModel endTime)
+  Future<Either<Failure,List<ScheduleModel>>>getAllSchedulesByRestaurant(ScheduleModel restaurant)
   async {
     try{
-      var response = await dataSource.getAllSchedulesByRestaurant(restaurant, initialTime, endTime);
+      var response = await dataSource.getAllSchedulesByRestaurant(restaurant);
       return right(response);
     } on DioError catch(e){
       HttpStatusCodeEnum errorType = getHttpStatusFunction(e.response!.statusCode);
@@ -27,10 +27,10 @@ class SheduleRepository extends IScheduleRepository{
   }
 
   @override
-  Future<Either<Failure,List<SheduleModel>>>updateSchedule( SheduleModel id,SheduleModel initialTime, SheduleModel endTime, SheduleModel isActive) 
+  Future<Either<Failure,List<ScheduleModel>>>updateSchedule(ScheduleModel id) 
   async{
     try{
-      var response = await dataSource.updateSchedule(id, initialTime, endTime, isActive);
+      var response = await dataSource.updateSchedule(id);
       return right(response);
     }on DioError catch(e){
       HttpStatusCodeEnum errorType = getHttpStatusFunction(e.response!.statusCode);

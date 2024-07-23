@@ -6,13 +6,15 @@ class Schedule{
   final DateTime initialTime;
   final DateTime endTime;
   final RestaurantEnum resturant;
-  final bool isActive;
+  final bool acceptedReservation;
 
   Schedule(
     {required this.id,
      required this.initialTime,
     required this.endTime,
     required this.resturant,
-    required this.isActive});
+    required this.acceptedReservation});
 }
+
+
 

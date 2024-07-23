@@ -4,7 +4,7 @@ import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/infra/models/schedule_model.dart';
 
 abstract class IGetAllSchedulesByRestaurantUseCase{
-  Future<Either<Failure,List<SheduleModel>>>call(SheduleModel restaurant, SheduleModel initialTime, SheduleModel endTime);
+  Future<Either<Failure,List<ScheduleModel>>>call(ScheduleModel restaurant);
 }
 
 class GetAllSchedule extends IGetAllSchedulesByRestaurantUseCase{
@@ -13,9 +13,9 @@ class GetAllSchedule extends IGetAllSchedulesByRestaurantUseCase{
   GetAllSchedule(this.repository);
   
   @override
-  Future<Either<Failure,List<SheduleModel>>>call(SheduleModel restaurant, SheduleModel initialTime, SheduleModel endTime) 
+  Future<Either<Failure,List<ScheduleModel>>>call(ScheduleModel restaurant) 
   async{
-    return await repository.getAllSchedulesByRestaurant(restaurant, initialTime, endTime);
+    return await repository.getAllSchedulesByRestaurant(restaurant);
   }
 
 

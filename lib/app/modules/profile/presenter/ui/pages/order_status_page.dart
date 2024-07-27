@@ -11,9 +11,14 @@ import 'package:mauafood_front/generated/l10n.dart';
 
 import '../../controllers/order_status_controller.dart';
 
-class OrderStatusPage extends StatelessWidget {
+class OrderStatusPage extends StatefulWidget {
   const OrderStatusPage({super.key});
 
+  @override
+  State<OrderStatusPage> createState() => _OrderStatusPageState();
+}
+
+class _OrderStatusPageState extends State<OrderStatusPage> {
   @override
   Widget build(BuildContext context) {
     OrderStatusController store = Modular.get<OrderStatusController>();
@@ -197,11 +202,8 @@ class OrderStatusPage extends StatelessWidget {
                                                           const BoxConstraints(
                                                               maxWidth: 400),
                                                       child: ElevatedButton(
-                                                        onPressed: () async {
-                                                          await store
-                                                              .abortOrder();
-                                                          Modular.to.navigate(
-                                                              '/landing/profile/');
+                                                        onPressed: () {
+                                                          store.setValue();
                                                         },
                                                         style: ElevatedButton.styleFrom(
                                                             minimumSize:

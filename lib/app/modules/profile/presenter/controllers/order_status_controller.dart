@@ -18,16 +18,13 @@ abstract class _OrderStatusStoreBase with Store {
   final IAbortOrderUsecase _abortOrderUsecase;
 
   _OrderStatusStoreBase(
-      this._getCurrentOrderStateByIdUsecase, this._abortOrderUsecase) {
-    startPolling();
-  }
+      this._getCurrentOrderStateByIdUsecase, this._abortOrderUsecase) {}
 
   @action
   void longPooling(OrderModel order) {
     int i = 0;
-    setValue();
     Timer.periodic(const Duration(seconds: 5), (timer) {
-      // getCurrentOrderStateById(order);
+      getCurrentOrderStateById(order);
       print("Entrou");
       if (order.status == StatusEnum.READY || i > 5) {
         timer.cancel();
@@ -44,8 +41,7 @@ abstract class _OrderStatusStoreBase with Store {
   @action
   void startPolling() {
     _timer = Timer.periodic(Duration(seconds: 5), (timer) {
-      print("Entrou");
-      setValue();
+      getCurrentOrderStateById(orderToGet);
     });
   }
 

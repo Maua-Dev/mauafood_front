@@ -13,7 +13,7 @@ class LoadingOrderStatusState implements OrderStatusState {
 }
 
 class SuccessOrderStatusState implements OrderStatusState {
-  final OrderModel order;
+  final OrderStatusModel order;
   const SuccessOrderStatusState(this.order);
 }
 

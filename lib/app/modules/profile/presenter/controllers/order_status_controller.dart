@@ -17,6 +17,12 @@ abstract class _OrderStatusStoreBase with Store {
   final IGetCurrentOrderStateByIdUsecase _getCurrentOrderStateByIdUsecase;
   final IAbortOrderUsecase _abortOrderUsecase;
 
+  @observable
+  OrderStatusModel orderToGet = OrderStatusModel(
+    status: StatusEnum.PENDING,
+    id: "",
+    abortedReason: "",
+  );
   _OrderStatusStoreBase(
       this._getCurrentOrderStateByIdUsecase, this._abortOrderUsecase) {}
 
@@ -24,7 +30,7 @@ abstract class _OrderStatusStoreBase with Store {
   void longPooling(OrderModel order) {
     int i = 0;
     Timer.periodic(const Duration(seconds: 5), (timer) {
-      getCurrentOrderStateById(order);
+      getCurrentOrderStateById(order.id);
       print("Entrou");
       if (order.status == StatusEnum.READY || i > 5) {
         timer.cancel();
@@ -41,7 +47,7 @@ abstract class _OrderStatusStoreBase with Store {
   @action
   void startPolling() {
     _timer = Timer.periodic(Duration(seconds: 5), (timer) {
-      getCurrentOrderStateById(orderToGet);
+      getCurrentOrderStateById(orderToGet.id);
     });
   }
 
@@ -73,31 +79,24 @@ abstract class _OrderStatusStoreBase with Store {
   }
 
   @observable
-  OrderModel orderToGet = OrderModel(
-      status: StatusEnum.PENDING,
-      id: "",
-      totalPrice: 0,
-      userName: "",
-      userId: "",
-      creationTime: 0,
-      products: []);
-
-  @observable
   OrderStatusState state = const InitialOrderStatusState();
 
   @action
   void changeState(OrderStatusState value) => state = value;
 
   @action
-  Future<void> getCurrentOrderStateById(OrderModel order) async {
+  Future<void> getCurrentOrderStateById(String id) async {
     changeState(const LoadingOrderStatusState());
 
-    var response = await _getCurrentOrderStateByIdUsecase(order.id);
+    var response = await _getCurrentOrderStateByIdUsecase(id);
 
     changeState(response.fold((l) => ErrorOrderStatusState(l.message), ((r) {
-      order.status = r.status;
-      orderToGet = order;
-      return SuccessOrderStatusState(order);
+      orderToGet.copyWith(
+        status: r.status,
+        id: r.id,
+        abortedReason: r.abortedReason,
+      );
+      return SuccessOrderStatusState(orderToGet);
     })));
   }
 

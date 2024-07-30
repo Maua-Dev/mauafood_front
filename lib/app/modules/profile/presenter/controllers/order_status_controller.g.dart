@@ -9,6 +9,22 @@ part of 'order_status_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$OrderStatusController on _OrderStatusStoreBase, Store {
+  late final _$orderToGetAtom =
+      Atom(name: '_OrderStatusStoreBase.orderToGet', context: context);
+
+  @override
+  OrderStatusModel get orderToGet {
+    _$orderToGetAtom.reportRead();
+    return super.orderToGet;
+  }
+
+  @override
+  set orderToGet(OrderStatusModel value) {
+    _$orderToGetAtom.reportWrite(value, super.orderToGet, () {
+      super.orderToGet = value;
+    });
+  }
+
   late final _$valueAtom =
       Atom(name: '_OrderStatusStoreBase.value', context: context);
 
@@ -22,22 +38,6 @@ mixin _$OrderStatusController on _OrderStatusStoreBase, Store {
   set value(bool value) {
     _$valueAtom.reportWrite(value, super.value, () {
       super.value = value;
-    });
-  }
-
-  late final _$orderToGetAtom =
-      Atom(name: '_OrderStatusStoreBase.orderToGet', context: context);
-
-  @override
-  OrderModel get orderToGet {
-    _$orderToGetAtom.reportRead();
-    return super.orderToGet;
-  }
-
-  @override
-  set orderToGet(OrderModel value) {
-    _$orderToGetAtom.reportWrite(value, super.orderToGet, () {
-      super.orderToGet = value;
     });
   }
 
@@ -62,9 +62,9 @@ mixin _$OrderStatusController on _OrderStatusStoreBase, Store {
       context: context);
 
   @override
-  Future<void> getCurrentOrderStateById(OrderModel order) {
+  Future<void> getCurrentOrderStateById(String id) {
     return _$getCurrentOrderStateByIdAsyncAction
-        .run(() => super.getCurrentOrderStateById(order));
+        .run(() => super.getCurrentOrderStateById(id));
   }
 
   late final _$abortOrderAsyncAction =
@@ -136,8 +136,8 @@ mixin _$OrderStatusController on _OrderStatusStoreBase, Store {
   @override
   String toString() {
     return '''
-value: ${value},
 orderToGet: ${orderToGet},
+value: ${value},
 state: ${state}
     ''';
   }

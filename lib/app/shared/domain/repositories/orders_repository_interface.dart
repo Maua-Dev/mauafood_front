@@ -9,5 +9,6 @@ abstract class IOrdersRepository {
       String orderId, StatusEnum status);
   Future<Either<Failure, OrderModel>> abortOrder(
       String orderId, String abortedReason);
-  Future<Either<Failure, OrderModel>> getCurrentOrderStateById(String orderId);
+  Future<Either<Failure, OrderStatusModel>> getCurrentOrderStateById(
+      String orderId);
 }

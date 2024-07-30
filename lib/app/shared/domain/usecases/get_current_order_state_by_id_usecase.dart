@@ -4,7 +4,7 @@ import 'package:mauafood_front/app/shared/infra/models/order_model.dart';
 import '../../helpers/errors/errors.dart';
 
 abstract class IGetCurrentOrderStateByIdUsecase {
-  Future<Either<Failure, OrderModel>> call(String orderId);
+  Future<Either<Failure, OrderStatusModel>> call(String orderId);
 }
 
 class GetCurrentOrderStateByIdUsecase
@@ -14,7 +14,7 @@ class GetCurrentOrderStateByIdUsecase
   GetCurrentOrderStateByIdUsecase({required this.repository});
 
   @override
-  Future<Either<Failure, OrderModel>> call(String orderId) async {
+  Future<Either<Failure, OrderStatusModel>> call(String orderId) async {
     var result = await repository.getCurrentOrderStateById(orderId);
     return result.fold(
         (failureResult) => result, (successResult) => Right(successResult));

@@ -58,12 +58,12 @@ class OrdersRepository implements IOrdersRepository {
   }
 
   @override
-  Future<Either<Failure, OrderModel>> getCurrentOrderStateById(
+  Future<Either<Failure, OrderStatusModel>> getCurrentOrderStateById(
       String orderId) async {
-    OrderModel order;
+    OrderStatusModel order;
     try {
       var orderMap = await datasource.getCurrentOrderStateById(orderId);
-      order = OrderModel.fromMap(orderMap['order']);
+      order = OrderStatusModel.fromMap(orderMap["order"]);
     } on DioError catch (e) {
       HttpStatusCodeEnum errorType =
           getHttpStatusFunction(e.response!.statusCode);

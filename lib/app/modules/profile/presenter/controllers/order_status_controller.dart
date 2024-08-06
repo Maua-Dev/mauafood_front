@@ -31,7 +31,6 @@ abstract class _OrderStatusStoreBase with Store {
     int i = 0;
     Timer.periodic(const Duration(seconds: 5), (timer) {
       getCurrentOrderStateById(order.id);
-      print("Entrou");
       if (order.status == StatusEnum.READY || i > 5) {
         timer.cancel();
       }
@@ -96,6 +95,9 @@ abstract class _OrderStatusStoreBase with Store {
         id: r.id,
         abortedReason: r.abortedReason,
       );
+
+      print(
+          "r: Status: ${r.status} | ID: ${r.id} | AbortedReason: ${r.abortedReason}\nOrderToGet: Status: ${r.status} | ID: ${r.id} | AbortedReason: ${r.abortedReason}");
       return SuccessOrderStatusState(orderToGet);
     })));
   }

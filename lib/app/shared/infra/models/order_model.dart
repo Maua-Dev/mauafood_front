@@ -19,7 +19,7 @@ class OrderModel extends Order {
   factory OrderModel.fromMap(Map<String, dynamic> json) {
     return OrderModel(
         id: json['order_id'],
-        status: StatusEnumExtension.stringToEnumMap(json['order_status']),
+        status: StatusEnumExtension.stringToEnumMap(json['status']),
         abortedReason: json['aborted_reason'],
         creationTime: json['creation_time_milliseconds'],
         totalPrice: json['total_price'],
@@ -110,7 +110,7 @@ class OrderStatusModel extends OrderStatus {
   factory OrderStatusModel.fromMap(Map<String, dynamic> json) {
     return OrderStatusModel(
         id: json['order_id'],
-        status: StatusEnumExtension.stringToEnumMap(json['order_status']),
+        status: StatusEnumExtension.stringToEnumMap(json['status']),
         abortedReason: json['aborted_reason']);
   }
 

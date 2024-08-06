@@ -90,14 +90,14 @@ abstract class _OrderStatusStoreBase with Store {
     var response = await _getCurrentOrderStateByIdUsecase(id);
 
     changeState(response.fold((l) => ErrorOrderStatusState(l.message), ((r) {
-      orderToGet.copyWith(
+      orderToGet = orderToGet.copyWith(
         status: r.status,
         id: r.id,
         abortedReason: r.abortedReason,
       );
 
       print(
-          "r: Status: ${r.status} | ID: ${r.id} | AbortedReason: ${r.abortedReason}\nOrderToGet: Status: ${r.status} | ID: ${r.id} | AbortedReason: ${r.abortedReason}");
+          "r: Status: ${r.status} | ID: ${r.id} | AbortedReason: ${r.abortedReason}\nOrderToGet: Status: ${orderToGet.status} | ID: ${orderToGet.id} | AbortedReason: ${orderToGet.abortedReason}");
       return SuccessOrderStatusState(orderToGet);
     })));
   }

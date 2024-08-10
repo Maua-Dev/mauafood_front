@@ -9,125 +9,58 @@ part of 'order_status_controller.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$OrderStatusController on _OrderStatusStoreBase, Store {
-  late final _$orderToGetAtom =
-      Atom(name: '_OrderStatusStoreBase.orderToGet', context: context);
+  late final _$orderStatusAtom =
+      Atom(name: '_OrderStatusStoreBase.orderStatus', context: context);
 
   @override
-  OrderStatusModel get orderToGet {
-    _$orderToGetAtom.reportRead();
-    return super.orderToGet;
+  StatusEnum get orderStatus {
+    _$orderStatusAtom.reportRead();
+    return super.orderStatus;
   }
 
   @override
-  set orderToGet(OrderStatusModel value) {
-    _$orderToGetAtom.reportWrite(value, super.orderToGet, () {
-      super.orderToGet = value;
+  set orderStatus(StatusEnum value) {
+    _$orderStatusAtom.reportWrite(value, super.orderStatus, () {
+      super.orderStatus = value;
     });
   }
 
-  late final _$valueAtom =
-      Atom(name: '_OrderStatusStoreBase.value', context: context);
+  late final _$counterAtom =
+      Atom(name: '_OrderStatusStoreBase.counter', context: context);
 
   @override
-  bool get value {
-    _$valueAtom.reportRead();
-    return super.value;
+  int get counter {
+    _$counterAtom.reportRead();
+    return super.counter;
   }
 
   @override
-  set value(bool value) {
-    _$valueAtom.reportWrite(value, super.value, () {
-      super.value = value;
+  set counter(int value) {
+    _$counterAtom.reportWrite(value, super.counter, () {
+      super.counter = value;
     });
-  }
-
-  late final _$stateAtom =
-      Atom(name: '_OrderStatusStoreBase.state', context: context);
-
-  @override
-  OrderStatusState get state {
-    _$stateAtom.reportRead();
-    return super.state;
-  }
-
-  @override
-  set state(OrderStatusState value) {
-    _$stateAtom.reportWrite(value, super.state, () {
-      super.state = value;
-    });
-  }
-
-  late final _$getCurrentOrderStateByIdAsyncAction = AsyncAction(
-      '_OrderStatusStoreBase.getCurrentOrderStateById',
-      context: context);
-
-  @override
-  Future<void> getCurrentOrderStateById(String id) {
-    return _$getCurrentOrderStateByIdAsyncAction
-        .run(() => super.getCurrentOrderStateById(id));
-  }
-
-  late final _$abortOrderAsyncAction =
-      AsyncAction('_OrderStatusStoreBase.abortOrder', context: context);
-
-  @override
-  Future<void> abortOrder() {
-    return _$abortOrderAsyncAction.run(() => super.abortOrder());
   }
 
   late final _$_OrderStatusStoreBaseActionController =
       ActionController(name: '_OrderStatusStoreBase', context: context);
 
   @override
-  void longPooling(OrderModel order) {
-    final _$actionInfo = _$_OrderStatusStoreBaseActionController.startAction(
-        name: '_OrderStatusStoreBase.longPooling');
-    try {
-      return super.longPooling(order);
-    } finally {
-      _$_OrderStatusStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void startPolling() {
+  void startPolling(String id) {
     final _$actionInfo = _$_OrderStatusStoreBaseActionController.startAction(
         name: '_OrderStatusStoreBase.startPolling');
     try {
-      return super.startPolling();
+      return super.startPolling(id);
     } finally {
       _$_OrderStatusStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 
   @override
-  void stopPolling() {
+  void addToCounter() {
     final _$actionInfo = _$_OrderStatusStoreBaseActionController.startAction(
-        name: '_OrderStatusStoreBase.stopPolling');
+        name: '_OrderStatusStoreBase.addToCounter');
     try {
-      return super.stopPolling();
-    } finally {
-      _$_OrderStatusStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setValue() {
-    final _$actionInfo = _$_OrderStatusStoreBaseActionController.startAction(
-        name: '_OrderStatusStoreBase.setValue');
-    try {
-      return super.setValue();
-    } finally {
-      _$_OrderStatusStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void changeState(OrderStatusState value) {
-    final _$actionInfo = _$_OrderStatusStoreBaseActionController.startAction(
-        name: '_OrderStatusStoreBase.changeState');
-    try {
-      return super.changeState(value);
+      return super.addToCounter();
     } finally {
       _$_OrderStatusStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -136,9 +69,8 @@ mixin _$OrderStatusController on _OrderStatusStoreBase, Store {
   @override
   String toString() {
     return '''
-orderToGet: ${orderToGet},
-value: ${value},
-state: ${state}
+orderStatus: ${orderStatus},
+counter: ${counter}
     ''';
   }
 }

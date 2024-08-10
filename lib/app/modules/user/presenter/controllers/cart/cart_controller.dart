@@ -39,8 +39,8 @@ abstract class CartControllerBase with Store {
     var result = await _createOrder(cartList, restaurantCart);
 
     result.fold((l) => "Não funcionou...", (r) {
-      Modular.to.navigate("/landing/profile/order-status/");
-      orderController.startPolling(r);
+      Modular.to.navigate("/landing/profile/order-status/", arguments: r.id);
+      orderController.startPolling();
     });
     cartList = [];
     restaurantCart = RestaurantEnum.none;

@@ -79,10 +79,45 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
                           const SizedBox(
                             height: 8,
                           ),
+                          Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(top: 6),
+                                child: Container(
+                                  width: 8,
+                                  height: 8,
+                                  decoration: BoxDecoration(
+                                      color: AppColors.mainBlueColor,
+                                      borderRadius: BorderRadius.circular(50)),
+                                ),
+                              ),
+                              const SizedBox(
+                                width: 8,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  store.orderStatus.alert,
+                                  style: AppTextStyles.h2HighlightBold.copyWith(
+                                    color: AppColors.letterColor,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                          Observer(builder: (_) {
+                            return ConstrainedBox(
+                              constraints: const BoxConstraints(maxHeight: 250),
+                              child: SizedBox(
+                                  child:
+                                      Image.network(store.orderStatus.image)),
+                            );
+                          }),
                         ],
                       ),
                     ),
-                  )))
+                  ))),
         ],
       ),
     );

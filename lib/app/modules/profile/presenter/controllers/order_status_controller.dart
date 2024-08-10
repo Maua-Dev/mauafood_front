@@ -22,44 +22,45 @@ abstract class _OrderStatusStoreBase with Store {
   @observable
   StatusEnum orderStatus = StatusEnum.PENDING;
 
-  Timer? _timerPending;
-  Timer? _timerPreparing;
-
   @observable
-  int counter = 0;
+  Timer? _timer;
 
   @action
-  void startPolling(String id) {
-    print(" antes $counter");
-    startTimer();
-  }
-
-  void startTimer() {
-    counter = 0;
-    _timerPending = Timer.periodic(const Duration(seconds: 5), (timer) {
-      addToCounter();
-      if (counter > 5) {
-        timer.cancel();
+  Future<void> startPolling(String id) async {
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) async {
+      var result = await getCurrentOrderStateById(id);
+      print("result.status: ${result.status}");
+      if (result.status == StatusEnum.PREPARING) {
+        print("result.status: ${result.status}");
+        stopPolling();
       }
+      orderStatus = result.status;
     });
   }
 
   @action
-  void addToCounter() {
-    counter++;
-    print(counter);
+  void stopPolling() {
+    _timer?.cancel();
   }
 
-  // @action
-  // void startPolling(OrderModel order) {
-  //   Future.delayed(const Duration(seconds: 5), () async {
-  //     var result = await _getCurrentOrderStateByIdUsecase(order.id);
-  //     result.fold((l) => print(l), (r) {
-  //       orderStatus = r.status;
-  //       if (orderStatus == StatusEnum.PENDING) {
-  //         startPolling(order);
-  //       }
-  //     });
-  //   });
-  // }
+  @action
+  Future<OrderStatusModel> getCurrentOrderStateById(String id) async {
+    var response = await _getCurrentOrderStateByIdUsecase(id);
+
+    return response.fold(
+      (l) => OrderStatusModel(
+        status: StatusEnum.PENDING,
+        id: id,
+        abortedReason: null,
+      ),
+      (r) {
+        print("r: $r");
+        return OrderStatusModel(
+          status: r.status,
+          id: r.id,
+          abortedReason: r.abortedReason,
+        );
+      },
+    );
+  }
 }

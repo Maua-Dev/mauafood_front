@@ -59,11 +59,8 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Observer(builder: (_) {
-                            return Text(store.counter.toString());
+                            return Text(store.orderStatus.name);
                           }),
-                          ElevatedButton(
-                              onPressed: () => store.startTimer(),
-                              child: Text("add"))
                         ],
                       ),
                     ),

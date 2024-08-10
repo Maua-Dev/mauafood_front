@@ -25,42 +25,49 @@ mixin _$OrderStatusController on _OrderStatusStoreBase, Store {
     });
   }
 
-  late final _$counterAtom =
-      Atom(name: '_OrderStatusStoreBase.counter', context: context);
+  late final _$_timerAtom =
+      Atom(name: '_OrderStatusStoreBase._timer', context: context);
 
   @override
-  int get counter {
-    _$counterAtom.reportRead();
-    return super.counter;
+  Timer? get _timer {
+    _$_timerAtom.reportRead();
+    return super._timer;
   }
 
   @override
-  set counter(int value) {
-    _$counterAtom.reportWrite(value, super.counter, () {
-      super.counter = value;
+  set _timer(Timer? value) {
+    _$_timerAtom.reportWrite(value, super._timer, () {
+      super._timer = value;
     });
+  }
+
+  late final _$startPollingAsyncAction =
+      AsyncAction('_OrderStatusStoreBase.startPolling', context: context);
+
+  @override
+  Future<void> startPolling(String id) {
+    return _$startPollingAsyncAction.run(() => super.startPolling(id));
+  }
+
+  late final _$getCurrentOrderStateByIdAsyncAction = AsyncAction(
+      '_OrderStatusStoreBase.getCurrentOrderStateById',
+      context: context);
+
+  @override
+  Future<OrderStatusModel> getCurrentOrderStateById(String id) {
+    return _$getCurrentOrderStateByIdAsyncAction
+        .run(() => super.getCurrentOrderStateById(id));
   }
 
   late final _$_OrderStatusStoreBaseActionController =
       ActionController(name: '_OrderStatusStoreBase', context: context);
 
   @override
-  void startPolling(String id) {
+  void stopPolling() {
     final _$actionInfo = _$_OrderStatusStoreBaseActionController.startAction(
-        name: '_OrderStatusStoreBase.startPolling');
+        name: '_OrderStatusStoreBase.stopPolling');
     try {
-      return super.startPolling(id);
-    } finally {
-      _$_OrderStatusStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void addToCounter() {
-    final _$actionInfo = _$_OrderStatusStoreBaseActionController.startAction(
-        name: '_OrderStatusStoreBase.addToCounter');
-    try {
-      return super.addToCounter();
+      return super.stopPolling();
     } finally {
       _$_OrderStatusStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -69,8 +76,7 @@ mixin _$OrderStatusController on _OrderStatusStoreBase, Store {
   @override
   String toString() {
     return '''
-orderStatus: ${orderStatus},
-counter: ${counter}
+orderStatus: ${orderStatus}
     ''';
   }
 }

@@ -29,9 +29,7 @@ abstract class _OrderStatusStoreBase with Store {
   Future<void> startPolling(String id) async {
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) async {
       var result = await getCurrentOrderStateById(id);
-      print("result.status: ${result.status}");
-      if (result.status == StatusEnum.PREPARING) {
-        print("result.status: ${result.status}");
+      if (result.status == StatusEnum.READY) {
         stopPolling();
       }
       orderStatus = result.status;
@@ -54,7 +52,6 @@ abstract class _OrderStatusStoreBase with Store {
         abortedReason: null,
       ),
       (r) {
-        print("r: $r");
         return OrderStatusModel(
           status: r.status,
           id: r.id,

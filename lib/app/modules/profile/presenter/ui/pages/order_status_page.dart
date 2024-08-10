@@ -4,9 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/controllers/order_status_controller.dart';
+import 'package:mauafood_front/app/modules/profile/presenter/ui/widgets/order_status/order_status_lines.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/services/s3/assets_s3.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
+import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 
 class OrderStatusPage extends StatefulWidget {
   OrderStatusPage({super.key, required this.orderId});
@@ -59,8 +61,24 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Observer(builder: (_) {
-                            return Text(store.orderStatus.name);
+                            return Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                store.orderStatus.name,
+                                style: AppTextStyles.h2.copyWith(
+                                  color: AppColors.letterThinColor,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            );
                           }),
+                          const SizedBox(
+                            height: 16,
+                          ),
+                          const OrderStatusLines(),
+                          const SizedBox(
+                            height: 8,
+                          ),
                         ],
                       ),
                     ),

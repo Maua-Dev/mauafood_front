@@ -118,7 +118,10 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
                           Observer(builder: (_) {
                             return SizedBox(
                                 child: store.orderStatus == StatusEnum.PENDING
-                                    ? OrderStatusButton(setValue: () => null)
+                                    ? OrderStatusButton(abortOrder: () {
+                                        store.abortOrder(widget.orderId);
+                                        store.stopPolling();
+                                      })
                                     : const SizedBox());
                           })
                         ],

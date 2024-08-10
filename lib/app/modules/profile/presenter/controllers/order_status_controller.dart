@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:dartz/dartz.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/abort_order_usecase.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/get_current_order_state_by_id_usecase.dart';
+import 'package:mauafood_front/app/shared/helpers/services/snackbar/global_snackbar.dart';
 import 'package:mauafood_front/app/shared/infra/models/order_model.dart';
 import 'package:mobx/mobx.dart';
 
@@ -59,5 +61,19 @@ abstract class _OrderStatusStoreBase with Store {
         );
       },
     );
+  }
+
+  @action
+  Future<void> abortOrder(String id) async {
+    var result = await _abortOrderUsecase(id, "");
+
+    result.fold((l) {
+      GlobalSnackBar.error(l.message);
+      print("Não funcionou");
+    }, (r) {
+      GlobalSnackBar.success("Pedido cancelado com sucesso");
+      Modular.to.pop();
+      Modular.to.navigate("/landing/restaurants/");
+    });
   }
 }

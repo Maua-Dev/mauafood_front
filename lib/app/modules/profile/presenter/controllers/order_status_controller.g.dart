@@ -59,6 +59,14 @@ mixin _$OrderStatusController on _OrderStatusStoreBase, Store {
         .run(() => super.getCurrentOrderStateById(id));
   }
 
+  late final _$abortOrderAsyncAction =
+      AsyncAction('_OrderStatusStoreBase.abortOrder', context: context);
+
+  @override
+  Future<void> abortOrder(String id) {
+    return _$abortOrderAsyncAction.run(() => super.abortOrder(id));
+  }
+
   late final _$_OrderStatusStoreBaseActionController =
       ActionController(name: '_OrderStatusStoreBase', context: context);
 

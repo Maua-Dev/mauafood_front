@@ -68,6 +68,6 @@ class ProfileModule extends Module {
         ChildRoute('/evaluation/',
             child: (context, args) => const EvaluationPage()),
         ChildRoute("/order-status/",
-            child: ((context, args) => const OrderStatusPage()))
+            child: ((context, args) => OrderStatusPage(orderId: args.data))),
       ];
 }

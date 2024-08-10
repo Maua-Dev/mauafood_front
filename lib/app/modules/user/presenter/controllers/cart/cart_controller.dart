@@ -40,7 +40,6 @@ abstract class CartControllerBase with Store {
 
     result.fold((l) => "Não funcionou...", (r) {
       Modular.to.navigate("/landing/profile/order-status/", arguments: r.id);
-      orderController.startPolling();
     });
     cartList = [];
     restaurantCart = RestaurantEnum.none;

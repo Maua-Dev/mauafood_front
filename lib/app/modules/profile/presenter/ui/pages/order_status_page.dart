@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/controllers/order_status_controller.dart';
+import 'package:mauafood_front/app/modules/profile/presenter/ui/widgets/order_status/order_status_button.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/ui/widgets/order_status/order_status_lines.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/services/s3/assets_s3.dart';
@@ -114,6 +115,12 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
                                       Image.network(store.orderStatus.image)),
                             );
                           }),
+                          Observer(builder: (_) {
+                            return SizedBox(
+                                child: store.orderStatus == StatusEnum.PENDING
+                                    ? OrderStatusButton(setValue: () => null)
+                                    : const SizedBox());
+                          })
                         ],
                       ),
                     ),

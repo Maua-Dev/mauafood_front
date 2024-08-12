@@ -13,8 +13,8 @@ import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 
 class OrderStatusPage extends StatefulWidget {
-  OrderStatusPage({super.key, required this.orderId});
-  String orderId;
+  OrderStatusPage({super.key, this.orderId});
+  String? orderId = "";
 
   @override
   State<OrderStatusPage> createState() => _OrderStatusPageState();
@@ -25,7 +25,7 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
 
   @override
   void initState() {
-    store.startPolling(widget.orderId);
+    store.startPolling(widget.orderId!);
     super.initState();
   }
 
@@ -121,7 +121,7 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
                                 child: store.orderStatus == StatusEnum.PENDING
                                     ? OrderStatusButton(
                                         abortOrder: () {
-                                          store.abortOrder(widget.orderId);
+                                          store.abortOrder(widget.orderId!);
                                           store.stopPolling();
                                         },
                                         buttonTitle:

@@ -138,11 +138,11 @@ mixin _$LandingController on _LandingControllerBase, Store {
   }
 
   @override
-  void setActiveOrder(bool value) {
+  void setActiveOrder(bool value, String id) {
     final _$actionInfo = _$_LandingControllerBaseActionController.startAction(
         name: '_LandingControllerBase.setActiveOrder');
     try {
-      return super.setActiveOrder(value);
+      return super.setActiveOrder(value, id);
     } finally {
       _$_LandingControllerBaseActionController.endAction(_$actionInfo);
     }

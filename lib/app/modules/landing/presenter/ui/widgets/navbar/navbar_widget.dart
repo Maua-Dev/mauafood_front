@@ -41,6 +41,7 @@ class NavBarWidget extends StatelessWidget {
                       route: navbar[index]['route'],
                       title: navbar[index]['title'],
                       selectIndex: controller.index,
+                      value: navbar[index]['value'],
                     )),
           );
         }),

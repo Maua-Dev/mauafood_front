@@ -29,6 +29,8 @@ abstract class CartControllerBase with Store {
   @observable
   CartState state = CartInitialState();
 
+  String id = "";
+
   @action
   void changeState(CartState value) => state = value;
 
@@ -39,6 +41,7 @@ abstract class CartControllerBase with Store {
     var result = await _createOrder(cartList, restaurantCart);
 
     result.fold((l) => "Não funcionou...", (r) {
+      id = r.id;
       Modular.to.navigate("/landing/profile/order-status/", arguments: r.id);
     });
     cartList = [];

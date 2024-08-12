@@ -10,6 +10,7 @@ class NavBarComponentWidget extends StatelessWidget {
   final String route;
   final Function(int) onSelect;
   final int selectIndex;
+  final String? value;
   const NavBarComponentWidget(
       {super.key,
       required this.index,
@@ -17,14 +18,15 @@ class NavBarComponentWidget extends StatelessWidget {
       required this.title,
       required this.route,
       required this.onSelect,
-      required this.selectIndex});
+      required this.selectIndex,
+      this.value});
 
   @override
   Widget build(BuildContext context) {
     final isSelect = selectIndex == index;
     return InkWell(
       onTap: () {
-        Modular.to.navigate(route);
+        Modular.to.navigate(route, arguments: value);
         selectIndex == index ? onSelect(index) : onSelect(index);
       },
       child: AnimatedContainer(

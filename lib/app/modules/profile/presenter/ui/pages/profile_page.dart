@@ -28,16 +28,6 @@ class _ProfilePageState extends State<ProfilePage> {
       size: 22,
       color: AppColors.mainBlueColor,
     ),
-    Icon(
-      FontAwesomeIcons.solidAddressCard,
-      size: 22,
-      color: AppColors.mainBlueColor,
-    ),
-    Icon(
-      FontAwesomeIcons.brazilianRealSign,
-      size: 22,
-      color: AppColors.mainBlueColor,
-    ),
   ];
 
   final texts = [
@@ -49,17 +39,9 @@ class _ProfilePageState extends State<ProfilePage> {
       "Conta",
       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
     ),
-    const Text(
-      "Acompanhar Pedido",
-      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    ),
-    // const Text(
-    //   "Pagamentos",
-    //   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    // ),
   ];
 
-  final routes = ["favorites/", "account/", "evaluation/"];
+  final routes = ["favorites/", "account/"];
 
   @override
   Widget build(BuildContext context) {

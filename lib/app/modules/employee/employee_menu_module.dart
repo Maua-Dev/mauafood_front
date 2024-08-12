@@ -29,7 +29,7 @@ class EmployeeMenuModule extends Module {
             (i) => GetRestaurantProductUsecase(repository: i())),
         Bind<EmployeeMenuRestaurantController>(
           (i) => EmployeeMenuRestaurantController(
-              i(), RestaurantEnum.cantina_do_moleza, i(), i()),
+              i(), RestaurantEnum.souza_de_abreu, i(), i()),
         ),
         Bind<OrdersController>(
           (i) => OrdersController(i(), i(), i()),
@@ -58,8 +58,8 @@ class EmployeeMenuModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
-          child: (context, args) => const EmployeeMenuPage(
-              restaurant: RestaurantEnum.cantina_do_moleza),
+          child: (context, args) =>
+              const EmployeeMenuPage(restaurant: RestaurantEnum.souza_de_abreu),
         ),
         ChildRoute('/orders/', child: (_, args) => const OrdersPage())
       ];

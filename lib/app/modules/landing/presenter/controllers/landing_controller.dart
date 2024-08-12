@@ -67,6 +67,36 @@ abstract class _LandingControllerBase with Store {
       'route': '/landing/faq/',
     },
   ];
+
+  @action
+  void setActiveOrder(bool value) => isActiveOrder = value;
+
+  @observable
+  bool isActiveOrder = false;
+
+  final navbarUserActiveOrder = [
+    {
+      'icon': FontAwesomeIcons.house,
+      'title': S.current.home,
+      'route': '/landing/restaurants/',
+    },
+    {
+      'icon': FontAwesomeIcons.utensils,
+      'title': "Pedido",
+      'route': '/landing/profile/order-status/',
+    },
+    {
+      'icon': FontAwesomeIcons.user,
+      'title': S.current.profile,
+      'route': '/landing/profile/',
+    },
+    {
+      'icon': FontAwesomeIcons.circleQuestion,
+      'title': S.current.help,
+      'route': '/landing/faq/',
+    },
+  ];
+
   final _navbarEmployee = [
     {
       'icon': FontAwesomeIcons.house,

@@ -107,6 +107,22 @@ mixin _$LandingController on _LandingControllerBase, Store {
     });
   }
 
+  late final _$isActiveOrderAtom =
+      Atom(name: '_LandingControllerBase.isActiveOrder', context: context);
+
+  @override
+  bool get isActiveOrder {
+    _$isActiveOrderAtom.reportRead();
+    return super.isActiveOrder;
+  }
+
+  @override
+  set isActiveOrder(bool value) {
+    _$isActiveOrderAtom.reportWrite(value, super.isActiveOrder, () {
+      super.isActiveOrder = value;
+    });
+  }
+
   late final _$_LandingControllerBaseActionController =
       ActionController(name: '_LandingControllerBase', context: context);
 
@@ -122,11 +138,23 @@ mixin _$LandingController on _LandingControllerBase, Store {
   }
 
   @override
+  void setActiveOrder(bool value) {
+    final _$actionInfo = _$_LandingControllerBaseActionController.startAction(
+        name: '_LandingControllerBase.setActiveOrder');
+    try {
+      return super.setActiveOrder(value);
+    } finally {
+      _$_LandingControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 loading: ${loading},
 isFirstUse: ${isFirstUse},
 user: ${user},
+isActiveOrder: ${isActiveOrder},
 isLogged: ${isLogged},
 isUser: ${isUser},
 isEmployee: ${isEmployee},

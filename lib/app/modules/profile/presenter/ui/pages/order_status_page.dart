@@ -7,6 +7,7 @@ import 'package:mauafood_front/app/modules/landing/presenter/controllers/landing
 import 'package:mauafood_front/app/modules/profile/presenter/controllers/order_status_controller.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/ui/widgets/order_status/order_status_button.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/ui/widgets/order_status/order_status_lines.dart';
+import 'package:mauafood_front/app/modules/user/presenter/controllers/cart/cart_controller.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/services/s3/assets_s3.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -24,6 +25,7 @@ class OrderStatusPage extends StatefulWidget {
 class _OrderStatusPageState extends State<OrderStatusPage> {
   OrderStatusController store = Modular.get<OrderStatusController>();
   LandingController landingController = Modular.get<LandingController>();
+  CartController cartController = Modular.get<CartController>();
 
   @override
   void initState() {
@@ -125,6 +127,11 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
                                         abortOrder: () {
                                           store.abortOrder(widget.orderId!);
                                           store.stopPolling();
+                                          landingController.setActiveOrder(
+                                              false, '');
+                                          Modular.to
+                                              .navigate("/landing/restaurants");
+                                          cartController.resetRestaurantName();
                                         },
                                         buttonTitle:
                                             S.of(context).cancelOrderTitle,

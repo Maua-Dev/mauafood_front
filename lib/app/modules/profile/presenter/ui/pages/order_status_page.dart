@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:mauafood_front/app/modules/landing/presenter/controllers/landing_controller.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/controllers/order_status_controller.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/ui/widgets/order_status/order_status_button.dart';
 import 'package:mauafood_front/app/modules/profile/presenter/ui/widgets/order_status/order_status_lines.dart';
@@ -22,6 +23,7 @@ class OrderStatusPage extends StatefulWidget {
 
 class _OrderStatusPageState extends State<OrderStatusPage> {
   OrderStatusController store = Modular.get<OrderStatusController>();
+  LandingController landingController = Modular.get<LandingController>();
 
   @override
   void initState() {
@@ -134,6 +136,9 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
                                 child: store.orderStatus == StatusEnum.READY
                                     ? OrderStatusButton(
                                         abortOrder: () {
+                                          landingController.setActiveOrder(
+                                              false, "");
+                                          landingController.selectIndex(2);
                                           Modular.to.navigate(
                                               "/landing/profile/evaluation/");
                                         },

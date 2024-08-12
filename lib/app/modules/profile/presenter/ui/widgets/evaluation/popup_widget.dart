@@ -60,8 +60,7 @@ class _PopUpWidgetState extends State<PopUpWidget> {
                   Text(
                     widget.controller.restaurantName.name.isEmpty
                         ? "Nome do Restaurante"
-                        : widget.controller.restaurantName
-                            .name, // contoller cart - Restaurant Name
+                        : widget.controller.restaurantName.restaurantName,
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.w900,

@@ -162,7 +162,8 @@ abstract class OrdersControllerBase with Store {
   Timer? timer;
 
   void startTimer() {
-    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    getAllActiveOrders();
+    timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       getAllActiveOrders();
     });
   }

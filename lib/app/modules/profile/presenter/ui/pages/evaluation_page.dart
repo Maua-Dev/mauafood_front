@@ -29,7 +29,6 @@ class EvaluationPopup extends StatefulWidget {
 
 class _EvaluationPopupState extends State<EvaluationPopup> {
   final PopupStore popupStore = Modular.get();
-
   @override
   Widget build(BuildContext context) {
     WidgetsBinding.instance.addPostFrameCallback((_) {});
@@ -48,7 +47,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 24, horizontal: 8),
                         child: SizedBox(
-                          height: ScreenHelper.height(context)* 0.12,
+                          height: ScreenHelper.height(context) * 0.12,
                           child: Image.network(
                             whiteLogo,
                             fit: BoxFit.contain,
@@ -58,14 +57,14 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                     ),
                   ],
                 ),
-                
                 Container(
-                  height: ScreenHelper.height(context) < 700 ? 539 : 
-                  ScreenHelper.height(context) > 900 ? ScreenHelper.height(context) *(0.82 + 0.008):
-                  ScreenHelper.height(context) * (0.82 + 0.001),
+                  height: ScreenHelper.height(context) < 700
+                      ? 539
+                      : ScreenHelper.height(context) > 900
+                          ? ScreenHelper.height(context) * (0.82 + 0.008)
+                          : ScreenHelper.height(context) * (0.82 + 0.001),
                   width: double.infinity,
                   decoration: BoxDecoration(
-                      
                       color: AppColors.white,
                       borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(54.0),
@@ -74,8 +73,10 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                       border: Border.all(color: AppColors.white, width: 2)),
                   child: Column(
                     children: [
-                   SizedBox(
-                        height:ScreenHelper.height(context) < 700 ? 8: ScreenHelper.height(context) * 0.03,
+                      SizedBox(
+                        height: ScreenHelper.height(context) < 700
+                            ? 8
+                            : ScreenHelper.height(context) * 0.03,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -107,7 +108,9 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                         padding: const EdgeInsets.symmetric(
                             vertical: 8, horizontal: 8),
                         child: SizedBox(
-                          height:ScreenHelper.height(context) < 700 ? 200:ScreenHelper.height(context) * 0.30,
+                          height: ScreenHelper.height(context) < 700
+                              ? 200
+                              : ScreenHelper.height(context) * 0.30,
                           child: Image.network(
                             evaluation_background,
                             fit: BoxFit.contain,
@@ -115,7 +118,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                         ),
                       ),
                       SizedBox(
-                        height: ScreenHelper.height(context) *0.02,
+                        height: ScreenHelper.height(context) * 0.02,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -130,15 +133,15 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                         ],
                       ),
                       SizedBox(
-                        height: ScreenHelper.height(context) *0.05,
+                        height: ScreenHelper.height(context) * 0.05,
                       ),
                       Center(
                         child: SizedBox(
-                          width:150,
-                          height: ScreenHelper.height(context)*0.05,
+                          width: 150,
+                          height: ScreenHelper.height(context) * 0.05,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              Modular.to.navigate("/landing/restaurants/");
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: AppColors.lightBlueColor,
@@ -162,7 +165,8 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
                       Center(
                           child: TextButton(
                         onPressed: () {
-                          popupStore.togglePopup(); // Sets showPopup variable to true on button click (displays popup)
+                          popupStore
+                              .togglePopup(); // Sets showPopup variable to true on button click (displays popup)
                         },
                         child: Text(
                           "Avaliar",
@@ -194,7 +198,7 @@ class _EvaluationPopupState extends State<EvaluationPopup> {
             }
           }),
         ),
-    
+
         Center(
           child: Observer(builder: (_) {
             return popupStore.showPopup

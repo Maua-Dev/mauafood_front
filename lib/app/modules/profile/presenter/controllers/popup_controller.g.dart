@@ -44,12 +44,25 @@ mixin _$PopupStore on PopupStoreBase, Store {
       AsyncAction('PopupStoreBase.sendFeedback', context: context);
 
   @override
-  Future<void> sendFeedback() {
-    return _$sendFeedbackAsyncAction.run(() => super.sendFeedback());
+  Future<void> sendFeedback(
+      String id, RestaurantEnum restaurantName, BuildContext context) {
+    return _$sendFeedbackAsyncAction
+        .run(() => super.sendFeedback(id, restaurantName, context));
   }
 
   late final _$PopupStoreBaseActionController =
       ActionController(name: 'PopupStoreBase', context: context);
+
+  @override
+  dynamic setRestaurantName(RestaurantEnum restaurant) {
+    final _$actionInfo = _$PopupStoreBaseActionController.startAction(
+        name: 'PopupStoreBase.setRestaurantName');
+    try {
+      return super.setRestaurantName(restaurant);
+    } finally {
+      _$PopupStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void togglePopup() {

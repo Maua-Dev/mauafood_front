@@ -10,10 +10,23 @@ import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
 // ignore: must_be_immutable
-class PopUpWidget extends StatelessWidget {
+class PopUpWidget extends StatefulWidget {
   PopUpWidget({super.key, required this.controller});
   final PopupStore controller;
+
+  @override
+  State<PopUpWidget> createState() => _PopUpWidgetState();
+}
+
+class _PopUpWidgetState extends State<PopUpWidget> {
   final CartController restaurantcontroller = Modular.get();
+
+  @override
+  void initState() {
+    widget.controller.setRestaurantName(restaurantcontroller.restaurantCart);
+    restaurantcontroller.resetRestaurantName();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +50,7 @@ class PopUpWidget extends StatelessWidget {
                     iconSize: 40.0,
                     color: AppColors.mainBlueColor,
                     onPressed: () {
-                      controller
+                      widget.controller
                           .togglePopup(); // Redirects user to profile page
                     },
                   )),
@@ -45,10 +58,10 @@ class PopUpWidget extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    restaurantcontroller.restaurantCart.restaurantName.isEmpty
+                    widget.controller.restaurantName.name.isEmpty
                         ? "Nome do Restaurante"
-                        : restaurantcontroller.restaurantCart
-                            .restaurantName, // contoller cart - Restaurant Name
+                        : widget.controller.restaurantName
+                            .name, // contoller cart - Restaurant Name
                     style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.w900,
@@ -86,7 +99,8 @@ class PopUpWidget extends StatelessWidget {
                 ),
               ),
               StarsWidget(
-                  controller: controller) // display StarsWidget - rating stars
+                  controller:
+                      widget.controller) // display StarsWidget - rating stars
             ],
           ),
         ),
@@ -95,11 +109,16 @@ class PopUpWidget extends StatelessWidget {
             child: SizedBox(
               width: 180,
               child: ElevatedButton(
-                onPressed: controller.grade == 0
+                onPressed: widget.controller.grade == 0
                     ? null
                     : () => {
-                          controller.sendFeedback()
-                        }, // Toggle button state based on star selection
+                          widget.controller.togglePopup(),
+                          widget.controller.sendFeedback(
+                              restaurantcontroller.id,
+                              widget.controller.restaurantName,
+                              context),
+                          restaurantcontroller.resetRestaurantName()
+                        },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.lightBlueColor,
                   shape: RoundedRectangleBorder(

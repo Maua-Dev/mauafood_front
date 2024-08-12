@@ -45,7 +45,6 @@ abstract class CartControllerBase with Store {
       Modular.to.navigate("/landing/profile/order-status/", arguments: r.id);
     });
     cartList = [];
-    restaurantCart = RestaurantEnum.none;
   }
 
   @action
@@ -68,6 +67,12 @@ abstract class CartControllerBase with Store {
           style: AppTextStyles.h2.copyWith(color: AppColors.white)),
     ));
     return false;
+  }
+
+  void resetRestaurantName() {
+    print("Restaurant resetado");
+    restaurantCart = RestaurantEnum.none;
+    print("Restaurante $restaurantCart");
   }
 
   @action

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/orders/order_state.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
@@ -20,7 +22,7 @@ abstract class OrdersControllerBase with Store {
   final IAbortOrderUsecase _abortOrderUsecase;
   OrdersControllerBase(this._getAllActiveOrdersUsecase,
       this._changeOrderStatusUsecase, this._abortOrderUsecase) {
-    getAllActiveOrders();
+    startTimer();
   }
 
   List<StatusEnum> statusList = [...StatusEnum.values];
@@ -157,6 +159,16 @@ abstract class OrdersControllerBase with Store {
   @action
   void changeOrderState(OrderState value) => orderState = value;
 
+  Timer? timer;
+
+  void startTimer() {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      getAllActiveOrders();
+    });
+  }
+
+  bool isFirst = true;
+
   @observable
   List<OrderModel> ordersList = [];
 
@@ -165,18 +177,20 @@ abstract class OrdersControllerBase with Store {
 
   @action
   Future<void> getAllActiveOrders() async {
-    changeState(OrdersLoadingState());
-    /* ordersList = mockedOrdersList;
-    ordersList.sort((a, b) {
-      if (a.status.index.compareTo(b.status.index) == 0) {
-        return a.creationTime.compareTo(b.creationTime);
-      } else {
-        return a.status.index.compareTo(b.status.index);
-      }
-    });
-    changeState(OrdersLoadedSuccessState(ordersList: ordersList)); */
+    if (isFirst) {
+      changeState(OrdersLoadingState());
+      isFirst = false;
+    }
     var result = await _getAllActiveOrdersUsecase();
     changeState(result.fold((l) => OrdersErrorState(failure: l), (list) {
+      for (var element in list) {
+        for (var beforeElement in ordersList) {
+          if (element.id == beforeElement.id) {
+            break;
+          }
+        }
+        ordersList.add(element);
+      }
       ordersList = list;
       ordersList.sort((a, b) {
         if (a.status.index.compareTo(b.status.index) == 0) {

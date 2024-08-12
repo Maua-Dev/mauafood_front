@@ -11,7 +11,7 @@ import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 
 // ignore: must_be_immutable
 class PopUpWidget extends StatefulWidget {
-  PopUpWidget({super.key, required this.controller});
+  const PopUpWidget({super.key, required this.controller});
   final PopupStore controller;
 
   @override

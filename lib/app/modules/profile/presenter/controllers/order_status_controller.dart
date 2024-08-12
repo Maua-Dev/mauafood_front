@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:dartz/dartz.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/abort_order_usecase.dart';
@@ -11,6 +9,7 @@ import 'package:mobx/mobx.dart';
 
 part 'order_status_controller.g.dart';
 
+// ignore: library_private_types_in_public_api
 class OrderStatusController = _OrderStatusStoreBase
     with _$OrderStatusController;
 
@@ -69,7 +68,6 @@ abstract class _OrderStatusStoreBase with Store {
 
     result.fold((l) {
       GlobalSnackBar.error(l.message);
-      print("Não funcionou");
     }, (r) {
       GlobalSnackBar.success("Pedido cancelado com sucesso");
       Modular.to.pop();

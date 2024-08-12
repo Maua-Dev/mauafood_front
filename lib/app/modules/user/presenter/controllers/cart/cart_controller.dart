@@ -70,9 +70,7 @@ abstract class CartControllerBase with Store {
   }
 
   void resetRestaurantName() {
-    print("Restaurant resetado");
     restaurantCart = RestaurantEnum.none;
-    print("Restaurante $restaurantCart");
   }
 
   @action

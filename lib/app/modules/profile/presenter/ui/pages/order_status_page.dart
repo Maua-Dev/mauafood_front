@@ -10,6 +10,7 @@ import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/helpers/services/s3/assets_s3.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
+import 'package:mauafood_front/generated/l10n.dart';
 
 class OrderStatusPage extends StatefulWidget {
   OrderStatusPage({super.key, required this.orderId});
@@ -118,10 +119,26 @@ class _OrderStatusPageState extends State<OrderStatusPage> {
                           Observer(builder: (_) {
                             return SizedBox(
                                 child: store.orderStatus == StatusEnum.PENDING
-                                    ? OrderStatusButton(abortOrder: () {
-                                        store.abortOrder(widget.orderId);
-                                        store.stopPolling();
-                                      })
+                                    ? OrderStatusButton(
+                                        abortOrder: () {
+                                          store.abortOrder(widget.orderId);
+                                          store.stopPolling();
+                                        },
+                                        buttonTitle:
+                                            S.of(context).cancelOrderTitle,
+                                      )
+                                    : const SizedBox());
+                          }),
+                          Observer(builder: (_) {
+                            return SizedBox(
+                                child: store.orderStatus == StatusEnum.READY
+                                    ? OrderStatusButton(
+                                        abortOrder: () {
+                                          Modular.to.navigate(
+                                              "/landing/profile/evaluation/");
+                                        },
+                                        buttonTitle: "Avaliar pedido!",
+                                      )
                                     : const SizedBox());
                           })
                         ],

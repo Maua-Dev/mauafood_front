@@ -61,7 +61,14 @@ abstract class PopupStoreBase with Store {
         content: Text("Não foi possivel realizar a avaliação",
             style: AppTextStyles.h2.copyWith(color: AppColors.white)),
       ));
-    }, (r) => togglePopup());
+    },
+        (r) => ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              duration: const Duration(milliseconds: 800),
+              behavior: SnackBarBehavior.floating,
+              backgroundColor: AppColors.mainBlueColor,
+              content: Text("Avaliação realizada com sucesso!",
+                  style: AppTextStyles.h2.copyWith(color: AppColors.white)),
+            )));
   }
 
   @action

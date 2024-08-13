@@ -14,7 +14,6 @@ import 'package:mauafood_front/app/shared/helpers/utils/screen_helper.dart';
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
 import 'package:mauafood_front/app/shared/themes/app_text_styles.dart';
 import 'package:mauafood_front/app/shared/widgets/text_field_widget.dart';
-import 'package:currency_text_input_formatter/currency_text_input_formatter.dart';
 
 import '../../../../../../generated/l10n.dart';
 
@@ -248,10 +247,7 @@ class _ProductFormDialogWidgetState extends State<ProductFormDialogWidget> {
                                         ).format(widget.product?.price)
                                       : "",
                                   inputFormatters: [
-                                    CurrencyTextInputFormatter(
-                                        decimalDigits: 2,
-                                        symbol: 'R\$',
-                                        enableNegative: false),
+                                    FilteringTextInputFormatter.digitsOnly
                                   ],
                                   validator: productFormController
                                       .validateProductPrice,

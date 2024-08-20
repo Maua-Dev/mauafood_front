@@ -11,7 +11,8 @@
       "flutterMode": "debug",
       "args": [
         "--dart-define=MSS_PRODUCT=https://nuwaggibeb.execute-api.sa-east-1.amazonaws.com/prod/mss-product",
-        "--dart-define=S3_ASSETS_BASE_URL=https://dygzp3rn48wd5.cloudfront.net"
+        "--dart-define=S3_ASSETS_BASE_URL=https://dygzp3rn48wd5.cloudfront.net",
+        "--dart-define=WSS_ORDER=wss://ni19pbgxrg.execute-api.sa-east-1.amazonaws.com/prod/"
       ]
     }
   ]

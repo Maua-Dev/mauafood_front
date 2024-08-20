@@ -61,6 +61,7 @@
     "closeTitle": "Fechar",
     "withoutObservationTitle": "Sem observação",
     "emptyOrdersListWarn": "Sem pedidos no momento",
+
     "requiredFieldAlert": "Campo obrigatório.",
     "invalidEmailAlert": "E-mail inválido.",
     "invalidPasswordAlert": "Senha inválida.",
@@ -123,6 +124,12 @@
             }
         }
     },
+
+
+    "statusNameSchema": "{status, select, PENDING{Pendente} PREPARING{Em preparo} REFUSED{Recusado} READY{Pronto} CANCELED{Cancelado} ALL{Todos} other{Outros}}",
+
+
+
     "statusNameSchema": "{status, select, PENDING{Pendente} PREPARING{Em preparo} REFUSED{Recusado} READY{Pronto} CANCELED{Cancelado} ALL{Todos} other{Outros}}",
     "statusAlertSchema": "{status, select, PENDING{Aguarde um momento, seu pedido será aprovado!} PREPARING{Seu pedido foi aprovado! Logo começará a ser preparado!} REFUSED{Recusado} READY{Seu pedido está pronto! Venha retirar!} CANCELED{Cancelado} ALL{Todos} other{Outros}}",
     "recommendationsTitle": "Recomendações",
@@ -137,6 +144,7 @@
     "profile": "Perfil",
     "help": "Ajuda",
     "orders": "Pedidos",
+
     "refuseOrder": "Recusar pedido",
     "refuseOrderAlert": "Ao clicar em “OK” o pedido será recusado e removido da lista de controle.",
     "othersTitle": "Outros",
@@ -145,6 +153,7 @@
     "overloadTitle": "Sobrecarga",
     "goBackTitle": "Voltar",
     "whatHappenedTitle": "Digite o que aconteceu aqui",
+
     "errorGeneric": "Algo deu errado!",
     "errorItemNotFound": "Nenhum item encontrado.",
     "errorEmptyList": "Lista vazia.",

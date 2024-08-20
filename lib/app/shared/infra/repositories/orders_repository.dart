@@ -71,4 +71,5 @@ class OrdersRepository implements IOrdersRepository {
     }
     return right(order);
   }
+
 }

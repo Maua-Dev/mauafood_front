@@ -2,7 +2,9 @@ import 'package:mauafood_front/app/shared/domain/entities/order.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 
 class OrderModel extends Order {
+
   final List<OrderProductModel>? products;
+
   bool isExpanded = false;
 
   OrderModel({
@@ -62,7 +64,7 @@ class OrderProductModel extends OrderProduct {
     required super.id,
     required super.name,
     required super.quantity,
-    required super.observation,
+    super.observation,
   });
 
   factory OrderProductModel.fromMap(Map<String, dynamic> json) {

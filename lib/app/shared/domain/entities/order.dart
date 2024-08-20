@@ -23,12 +23,12 @@ class OrderProduct {
   final String id;
   final String name;
   final int quantity;
-  final String observation;
+  final String? observation;
   OrderProduct({
     required this.id,
     required this.name,
     required this.quantity,
-    required this.observation,
+    this.observation,
   });
 }
 

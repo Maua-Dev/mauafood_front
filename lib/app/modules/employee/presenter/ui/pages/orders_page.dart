@@ -272,7 +272,9 @@ class _OrdersPageState extends State<OrdersPage> {
                                                                               Column(
                                                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                                                 children: List.generate(
+
                                                                                   state.ordersList[index].products!.length,
+
                                                                                   (productIndex) => Padding(
                                                                                     padding: const EdgeInsets.symmetric(vertical: 16),
                                                                                     child: Column(
@@ -280,7 +282,9 @@ class _OrdersPageState extends State<OrdersPage> {
                                                                                       crossAxisAlignment: CrossAxisAlignment.start,
                                                                                       children: [
                                                                                         Text(
+
                                                                                           "• ${state.ordersList[index].products![productIndex].quantity} x ${state.ordersList[index].products![productIndex].name}",
+
                                                                                           overflow: TextOverflow.ellipsis,
                                                                                           style: AppTextStyles.h2.copyWith(fontSize: 16),
                                                                                         ),
@@ -300,7 +304,9 @@ class _OrdersPageState extends State<OrdersPage> {
                                                                                                 child: Padding(
                                                                                                   padding: const EdgeInsets.all(8.0),
                                                                                                   child: Text(
-                                                                                                    state.ordersList[index].products![productIndex].observation == "" ? S.of(context).withoutObservationTitle : state.ordersList[index].products![productIndex].observation,
+
+                                                                                                    state.ordersList[index].products[productIndex].observation == null || state.ordersList[index].products[productIndex].observation == "" ? S.of(context).withoutObservationTitle : state.ordersList[index].products[productIndex].observation!,
+
                                                                                                     style: AppTextStyles.h3.copyWith(fontSize: 14),
                                                                                                   ),
                                                                                                 ),

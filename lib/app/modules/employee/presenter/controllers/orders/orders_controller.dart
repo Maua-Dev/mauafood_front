@@ -1,6 +1,11 @@
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'dart:convert';
+
+import 'package:flutter/material.dart';
+import 'package:mauafood_front/app/modules/employee/external/order_websocket.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/orders/order_state.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 import 'package:mauafood_front/app/shared/domain/usecases/abort_order_usecase.dart';
@@ -22,130 +27,20 @@ abstract class OrdersControllerBase with Store {
   final IAbortOrderUsecase _abortOrderUsecase;
   OrdersControllerBase(this._getAllActiveOrdersUsecase,
       this._changeOrderStatusUsecase, this._abortOrderUsecase) {
+    
+  final OrderWebsocket orderWebsocket;
+  OrdersControllerBase(
+      this._getAllActiveOrdersUsecase,
+      this._changeOrderStatusUsecase,
+      this._abortOrderUsecase,
+      this.orderWebsocket) {
     startTimer();
+    getAllActiveOrders();
+    orderWebsocket.channel.stream.listen(listenToWebsocket);
+
   }
 
   List<StatusEnum> statusList = [...StatusEnum.values];
-
-  /* List<OrderModel> mockedOrdersList = [
-    OrderModel(
-      userName: "Brenas",
-      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
-      id: "d4c63753-5119-4990-b427-926798499924",
-      totalPrice: 55,
-      observation: "Bauru sem tomate com pepino e maionese verde",
-      status: StatusEnum.READY,
-      products: [
-        OrderProductModel(
-            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
-            name: "Carteira",
-            quantity: 3)
-      ],
-      creationTime: 1692156322000,
-    ),
-    OrderModel(
-      userName: "Vitor Soller",
-      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
-      id: "d4c63753-5119-4990-b427-926798499924",
-      totalPrice: 10,
-      status: StatusEnum.CANCELED,
-      products: [
-        OrderProductModel(
-            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
-            name: "Carteira",
-            quantity: 2)
-      ],
-      creationTime: 1692156322000,
-    ),
-    OrderModel(
-      userName: "Carol Mota",
-      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
-      id: "d4c63753-5119-4990-b427-926798499924",
-      totalPrice: 15,
-      status: StatusEnum.REFUSED,
-      products: [
-        OrderProductModel(
-            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
-            name: "Lateral",
-            quantity: 3),
-        OrderProductModel(
-            id: "9589b258-ed44-4c24-b7d6-e96ae221basd",
-            name: "Computador",
-            quantity: 1),
-        OrderProductModel(
-            id: "9589b258-ed44-4c24-b7d6-e96ae221ba32",
-            name: "Coxinha",
-            quantity: 2),
-      ],
-      creationTime: 1692156322000,
-    ),
-    OrderModel(
-      userName: "Enrico Santarelli",
-      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
-      id: "d4c63753-5119-4990-b427-926798499924",
-      totalPrice: 115,
-      observation: "Calabresa e um vasco",
-      status: StatusEnum.PENDING,
-      products: [
-        OrderProductModel(
-            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
-            name: "Carteira",
-            quantity: 3)
-      ],
-      creationTime: 1692156322000,
-    ),
-    OrderModel(
-      userName: "Vitor Soller",
-      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
-      id: "d4c63753-5119-4990-b427-926798499924",
-      totalPrice: 10,
-      status: StatusEnum.CANCELED,
-      products: [
-        OrderProductModel(
-            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
-            name: "Carteira",
-            quantity: 3)
-      ],
-      creationTime: 1692156322000,
-    ),
-    OrderModel(
-      userName: "Carol Mota",
-      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
-      id: "d4c63753-5119-4990-b427-926798499924",
-      totalPrice: 15,
-      status: StatusEnum.PREPARING,
-      products: [
-        OrderProductModel(
-            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
-            name: "Carteira",
-            quantity: 2),
-        OrderProductModel(
-            id: "9589b258-ed44-4c24-b7d6-e96ae221basd",
-            name: "Pão de Queijo",
-            quantity: 1),
-        OrderProductModel(
-            id: "9589b258-ed44-4c24-b7d6-e96ae221ba32",
-            name: "Joelho",
-            quantity: 1),
-      ],
-      creationTime: 1692156322000,
-    ),
-    OrderModel(
-      userName: "Enrico Santarelli",
-      userId: "93bc6ada-c0d1-7054-66ab-e17414c48af9",
-      id: "d4c63753-5119-4990-b427-926798499924",
-      totalPrice: 115,
-      observation: "Calabresa e um vasco",
-      status: StatusEnum.REFUSED,
-      products: [
-        OrderProductModel(
-            id: "9589b258-ed44-4c24-b7d6-e96ae221baae",
-            name: "Carteira",
-            quantity: 3),
-      ],
-      creationTime: 1692156322000,
-    ),
-  ]; */
 
   @observable
   OrdersState state = OrdersInitialState();
@@ -158,6 +53,7 @@ abstract class OrdersControllerBase with Store {
 
   @action
   void changeOrderState(OrderState value) => orderState = value;
+
 
   Timer? timer;
 
@@ -176,6 +72,7 @@ abstract class OrdersControllerBase with Store {
   @observable
   StatusEnum statusFiltered = StatusEnum.ALL;
 
+
   @action
   Future<void> getAllActiveOrders() async {
     if (isFirst) {
@@ -192,6 +89,28 @@ abstract class OrdersControllerBase with Store {
         }
         ordersList.add(element);
       }
+
+  void listenToWebsocket(dynamic event) {
+    if (event == null) return;
+    var order = OrderModel.fromMap(jsonDecode(event));
+
+    ordersList.insert(0, order);
+    ordersList.sort((a, b) {
+      if (a.status.index.compareTo(b.status.index) == 0) {
+        return a.creationTime.compareTo(b.creationTime);
+      } else {
+        return a.status.index.compareTo(b.status.index);
+      }
+    });
+    changeState(OrdersLoadedSuccessState(ordersList: ordersList));
+  }
+
+  @action
+  Future<void> getAllActiveOrders() async {
+    changeState(OrdersLoadingState());
+
+    var result = await _getAllActiveOrdersUsecase();
+    changeState(result.fold((l) => OrdersErrorState(failure: l), (list) {
       ordersList = list;
       ordersList.sort((a, b) {
         if (a.status.index.compareTo(b.status.index) == 0) {

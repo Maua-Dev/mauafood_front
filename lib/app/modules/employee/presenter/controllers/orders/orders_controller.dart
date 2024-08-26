@@ -1,6 +1,7 @@
-import 'dart:convert';
 
+import 'dart:async';
 import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'package:mauafood_front/app/modules/employee/external/order_websocket.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/orders/order_state.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
@@ -10,7 +11,6 @@ import 'package:mauafood_front/app/shared/domain/usecases/get_all_active_orders.
 import 'package:mauafood_front/app/shared/helpers/services/snackbar/global_snackbar.dart';
 import 'package:mauafood_front/app/shared/infra/models/order_model.dart';
 import 'package:mobx/mobx.dart';
-
 import '../../../../../../generated/l10n.dart';
 import '../../states/orders/orders_state.dart';
 part 'orders_controller.g.dart';
@@ -21,15 +21,22 @@ abstract class OrdersControllerBase with Store {
   final IGetAllActiveOrdersUsecase _getAllActiveOrdersUsecase;
   final IChangeOrderStatusUsecase _changeOrderStatusUsecase;
   final IAbortOrderUsecase _abortOrderUsecase;
+  
+  OrdersControllerBase(this._getAllActiveOrdersUsecase,
+      this._changeOrderStatusUsecase, this._abortOrderUsecase) {
+    
   final OrderWebsocket orderWebsocket;
   OrdersControllerBase(
       this._getAllActiveOrdersUsecase,
       this._changeOrderStatusUsecase,
       this._abortOrderUsecase,
       this.orderWebsocket) {
+    startTimer();
     getAllActiveOrders();
     orderWebsocket.channel.stream.listen(listenToWebsocket);
+
   }
+      
 
   List<StatusEnum> statusList = [...StatusEnum.values];
 
@@ -45,11 +52,45 @@ abstract class OrdersControllerBase with Store {
   @action
   void changeOrderState(OrderState value) => orderState = value;
 
+
+  Timer? timer;
+
+  void startTimer() {
+    getAllActiveOrders();
+    timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      getAllActiveOrders();
+    });
+  }
+
+  bool isFirst = true;
+
   @observable
   List<OrderModel> ordersList = [];
 
   @observable
   StatusEnum statusFiltered = StatusEnum.ALL;
+
+
+  @action
+  Future<void> getAllActiveOrders() async {
+    if (isFirst) {
+      changeState(OrdersLoadingState());
+      isFirst = false;
+    }
+    var result = await _getAllActiveOrdersUsecase();
+    changeState(result.fold((l) {
+      return OrdersErrorState(failure: l);
+    }, (list) {
+      for (var element in list) {
+        for (var beforeElement in ordersList) {
+          if (element.id == beforeElement.id) {
+            break;
+          }
+        }
+        ordersList.add(element);
+      }
+    }));
+  }
 
   void listenToWebsocket(dynamic event) {
     if (event == null) return;
@@ -69,15 +110,7 @@ abstract class OrdersControllerBase with Store {
   @action
   Future<void> getAllActiveOrders() async {
     changeState(OrdersLoadingState());
-    /* ordersList = mockedOrdersList;
-    ordersList.sort((a, b) {
-      if (a.status.index.compareTo(b.status.index) == 0) {
-        return a.creationTime.compareTo(b.creationTime);
-      } else {
-        return a.status.index.compareTo(b.status.index);
-      }
-    });
-    changeState(OrdersLoadedSuccessState(ordersList: ordersList)); */
+
     var result = await _getAllActiveOrdersUsecase();
     changeState(result.fold((l) => OrdersErrorState(failure: l), (list) {
       ordersList = list;
@@ -199,4 +232,5 @@ abstract class OrdersControllerBase with Store {
 
   @observable
   bool isMissingDescription = false;
+}
 }

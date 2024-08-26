@@ -31,3 +31,14 @@ class OrderProduct {
     this.observation,
   });
 }
+
+class OrderStatus {
+  final String id;
+  final StatusEnum status;
+  final String? abortedReason;
+  OrderStatus({
+    required this.id,
+    required this.status,
+    this.abortedReason,
+  });
+}

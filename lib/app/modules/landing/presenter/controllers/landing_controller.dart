@@ -41,7 +41,9 @@ abstract class _LandingControllerBase with Store {
   int _selectedIndex = 0;
 
   @action
-  void selectIndex(int index) => _selectedIndex = index;
+  void selectIndex(int index) {
+    _selectedIndex = index;
+  }
 
   @computed
   int get index => _selectedIndex;
@@ -67,6 +69,44 @@ abstract class _LandingControllerBase with Store {
       'route': '/landing/faq/',
     },
   ];
+
+  @action
+  void setActiveOrder(bool value, String id) {
+    isActiveOrder = value;
+
+    navbarUserActiveOrder = [
+      {
+        'icon': FontAwesomeIcons.house,
+        'title': S.current.home,
+        'route': '/landing/restaurants/',
+        'value': null,
+      },
+      {
+        'icon': FontAwesomeIcons.utensils,
+        'title': "Pedido",
+        'route': '/landing/profile/order-status/',
+        'value': id,
+      },
+      {
+        'icon': FontAwesomeIcons.user,
+        'title': S.current.profile,
+        'route': '/landing/profile/',
+        'value': null,
+      },
+      {
+        'icon': FontAwesomeIcons.circleQuestion,
+        'title': S.current.help,
+        'route': '/landing/faq/',
+        'value': null,
+      },
+    ];
+  }
+
+  @observable
+  bool isActiveOrder = false;
+
+  var navbarUserActiveOrder = [];
+
   final _navbarEmployee = [
     {
       'icon': FontAwesomeIcons.house,

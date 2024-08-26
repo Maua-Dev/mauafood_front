@@ -26,7 +26,9 @@ class NavBarWidget extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12),
         child: Observer(builder: (context) {
-          final navbar = controller.navbar;
+          final navbar = controller.isActiveOrder
+              ? controller.navbarUserActiveOrder
+              : controller.navbar;
           final navbarLenght = navbar.length;
           return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,6 +41,7 @@ class NavBarWidget extends StatelessWidget {
                       route: navbar[index]['route'],
                       title: navbar[index]['title'],
                       selectIndex: controller.index,
+                      value: navbar[index]['value'],
                     )),
           );
         }),

@@ -2,33 +2,60 @@ import 'package:mauafood_front/app/shared/domain/entities/order.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
 
 class OrderModel extends Order {
-  final List<OrderProductModel> products;
+
+  final List<OrderProductModel>? products;
+
   bool isExpanded = false;
 
-  OrderModel(
-      {required super.status,
-      required super.id,
-      required super.totalPrice,
-      required super.userName,
-      required super.userId,
-      required super.creationTime,
-      super.abortedReason,
-      required this.products});
+  OrderModel({
+    required super.status,
+    required super.id,
+    required super.totalPrice,
+    required super.userName,
+    required super.userId,
+    required super.creationTime,
+    super.abortedReason,
+    required this.products,
+  });
 
   factory OrderModel.fromMap(Map<String, dynamic> json) {
     return OrderModel(
         id: json['order_id'],
-        creationTime: json['creation_time_milliseconds'],
         status: StatusEnumExtension.stringToEnumMap(json['status']),
-        totalPrice: json['total_price'],
         abortedReason: json['aborted_reason'],
+        creationTime: json['creation_time_milliseconds'],
+        totalPrice: json['total_price'],
         userId: json['user_id'],
         userName: json['user_name'],
-        products: OrderProductModel.fromMaps(json['products']));
+        products: OrderProductModel.fromMaps(
+          json['products'],
+        ));
   }
 
   static List<OrderModel> fromMaps(List array) {
     return array.map((e) => OrderModel.fromMap(e)).toList();
+  }
+
+  OrderModel copyWith({
+    String? id,
+    StatusEnum? status,
+    double? totalPrice,
+    String? userName,
+    String? userId,
+    int? creationTime,
+    String? abortedReason,
+    List<OrderProductModel>? products,
+  }) {
+    return OrderModel(
+      id: id ?? this.id,
+      status: status ?? this.status,
+      totalPrice: totalPrice ?? this.totalPrice,
+      userName: userName ?? this.userName,
+      userId: userId ?? this.userId,
+      creationTime: creationTime ?? this.creationTime,
+      abortedReason: abortedReason ?? this.abortedReason,
+      products: products ?? this.products,
+    );
   }
 }
 
@@ -72,5 +99,32 @@ class OrderProductModel extends OrderProduct {
         name: name ?? this.name,
         quantity: quantity ?? this.quantity,
         observation: observation ?? this.observation);
+  }
+}
+
+class OrderStatusModel extends OrderStatus {
+  OrderStatusModel({
+    required super.id,
+    required super.status,
+    super.abortedReason,
+  });
+
+  factory OrderStatusModel.fromMap(Map<String, dynamic> json) {
+    return OrderStatusModel(
+        id: json['order_id'],
+        status: StatusEnumExtension.stringToEnumMap(json['status']),
+        abortedReason: json['aborted_reason']);
+  }
+
+  OrderStatusModel copyWith({
+    String? id,
+    StatusEnum? status,
+    String? abortedReason,
+  }) {
+    return OrderStatusModel(
+      id: id ?? this.id,
+      status: status ?? this.status,
+      abortedReason: abortedReason ?? this.abortedReason,
+    );
   }
 }

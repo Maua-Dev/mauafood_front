@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:mauafood_front/app/modules/employee/external/order_websocket.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/orders/orders_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/orders/order_state.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/orders/orders_state.dart';
@@ -13,6 +14,7 @@ import 'package:mauafood_front/app/shared/helpers/errors/errors.dart';
 import 'package:mauafood_front/app/shared/infra/models/order_model.dart';
 import 'package:mauafood_front/generated/l10n.dart';
 import 'package:mockito/mockito.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
 
 class GetAllActiveOrdersSucessUsecaseMock extends Mock
     implements IGetAllActiveOrdersUsecase {
@@ -46,6 +48,16 @@ class ChangeOrderStatusSucessUsecaseMock extends Mock
 
 class AbortOrderSucessUsecaseMock extends Mock implements IAbortOrderUsecase {}
 
+class OrderWebSocketMock extends Mock implements OrderWebsocket {
+  @override
+  late final WebSocketChannel channel = WebSocketChannelMock();
+}
+
+class WebSocketChannelMock extends Mock implements WebSocketChannel {
+  @override
+  late final Stream stream = Stream.fromIterable([null]);
+}
+
 void main() {
   group('OrdersController', () {
     late OrdersController controller;
@@ -57,17 +69,18 @@ void main() {
         ChangeOrderStatusSucessUsecaseMock();
     AbortOrderSucessUsecaseMock mockAbortOrderSucessUsecase =
         AbortOrderSucessUsecaseMock();
-
+    OrderWebSocketMock mockOrderWebSocket = OrderWebSocketMock();
     setUp(() async {
       await S.load(const Locale.fromSubtags(languageCode: 'en'));
     });
 
     test('must change order state correctly', () {
       controller = OrdersController(
-        mockGetAllActiveOrdersSucessUsecase,
-        mockChangeOrderStatusSucessUsecase,
-        mockAbortOrderSucessUsecase,
-      );
+          mockGetAllActiveOrdersSucessUsecase,
+          mockChangeOrderStatusSucessUsecase,
+          mockAbortOrderSucessUsecase,
+          mockOrderWebSocket);
+
       controller.changeOrderState(OrderInitialState());
       expect(controller.orderState, isA<OrderInitialState>());
       controller
@@ -81,10 +94,10 @@ void main() {
 
     test('must change state correctly', () {
       controller = OrdersController(
-        mockGetAllActiveOrdersSucessUsecase,
-        mockChangeOrderStatusSucessUsecase,
-        mockAbortOrderSucessUsecase,
-      );
+          mockGetAllActiveOrdersSucessUsecase,
+          mockChangeOrderStatusSucessUsecase,
+          mockAbortOrderSucessUsecase,
+          mockOrderWebSocket);
 
       final orders = [
         OrderModel(
@@ -111,20 +124,20 @@ void main() {
     test('must update ordersList when getAllActiveOrdersUsecase returns data',
         () async {
       controller = OrdersController(
-        mockGetAllActiveOrdersSucessUsecase,
-        mockChangeOrderStatusSucessUsecase,
-        mockAbortOrderSucessUsecase,
-      );
+          mockGetAllActiveOrdersSucessUsecase,
+          mockChangeOrderStatusSucessUsecase,
+          mockAbortOrderSucessUsecase,
+          mockOrderWebSocket);
       await controller.getAllActiveOrders();
       expect(controller.ordersList, isNotEmpty);
     });
 
     test('must return OrdersErrorState', () async {
       controller = OrdersController(
-        mockGetAllActiveOrdersFailedUsecase,
-        mockChangeOrderStatusSucessUsecase,
-        mockAbortOrderSucessUsecase,
-      );
+          mockGetAllActiveOrdersFailedUsecase,
+          mockChangeOrderStatusSucessUsecase,
+          mockAbortOrderSucessUsecase,
+          mockOrderWebSocket);
 
       await controller.getAllActiveOrders();
       expect(controller.state, isA<OrdersErrorState>());

@@ -174,6 +174,8 @@ class _CartPageState extends State<CartPage> {
                                 GestureDetector(
                                   onTap: () => {
                                     controller.createOrder(context),
+                                    controllerNavBar.setActiveOrder(
+                                        true, controller.id),
                                     setState(() {}),
                                   },
                                   child: Container(

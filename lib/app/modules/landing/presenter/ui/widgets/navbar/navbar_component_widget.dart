@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'package:mauafood_front/app/shared/themes/app_colors.dart';
@@ -11,6 +10,7 @@ class NavBarComponentWidget extends StatelessWidget {
   final String route;
   final Function(int) onSelect;
   final int selectIndex;
+  final String? value;
   const NavBarComponentWidget(
       {super.key,
       required this.index,
@@ -18,15 +18,16 @@ class NavBarComponentWidget extends StatelessWidget {
       required this.title,
       required this.route,
       required this.onSelect,
-      required this.selectIndex});
+      required this.selectIndex,
+      this.value});
 
   @override
   Widget build(BuildContext context) {
     final isSelect = selectIndex == index;
     return InkWell(
       onTap: () {
-        onSelect(index);
-        Modular.to.navigate(route);
+        Modular.to.navigate(route, arguments: value);
+        selectIndex == index ? onSelect(index) : onSelect(index);
       },
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 350),

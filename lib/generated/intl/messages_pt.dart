@@ -105,6 +105,17 @@ class MessageLookup extends MessageLookupByLibrary {
           })}";
 
   static String m12(status) => "${Intl.select(status, {
+            'PENDING': 'Aguarde um momento, seu pedido será aprovado!',
+            'PREPARING':
+                'Seu pedido foi aprovado! Logo começará a ser preparado!',
+            'REFUSED': 'Recusado',
+            'READY': 'Seu pedido está pronto! Venha retirar!',
+            'CANCELED': 'Cancelado',
+            'ALL': 'Todos',
+            'other': 'Outros',
+          })}";
+
+  static String m13(status) => "${Intl.select(status, {
             'PENDING': 'Pendente',
             'PREPARING': 'Em preparo',
             'REFUSED': 'Recusado',
@@ -124,6 +135,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "authErrorsSchema": m0,
         "biggestPriceTitle":
             MessageLookupByLibrary.simpleMessage("Maior Preço"),
+        "cancelOrderTitle":
+            MessageLookupByLibrary.simpleMessage("Cancelar pedido"),
         "cancelationTitle": MessageLookupByLibrary.simpleMessage("Cancelar"),
         "cart": MessageLookupByLibrary.simpleMessage("Cesta"),
         "categoriesTitle": MessageLookupByLibrary.simpleMessage("Categorias"),
@@ -289,7 +302,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendCodeEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "Enviamos um código de confirmação em seu e-mail, digite-o no campo abaixo."),
         "sendTitle": MessageLookupByLibrary.simpleMessage("Enviar"),
-        "statusNameSchema": m12,
+        "statusAlertSchema": m12,
+        "statusNameSchema": m13,
         "successChangePassword":
             MessageLookupByLibrary.simpleMessage("Senha alterada com sucesso!"),
         "successConfirmEmail":

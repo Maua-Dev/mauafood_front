@@ -3,7 +3,7 @@
     "questionMark": "?",
     "appAcceptTerms": "Li e aceito os Termos de Uso",
     "restaurantTitle": "{restaurantName}",
-    "@restaurantTitle" : {
+    "@restaurantTitle": {
         "placeholders": {
             "placeholders": {
                 "restaurantName": {}
@@ -12,10 +12,7 @@
     },
     "attentionTitle": "Atenção",
     "understoodTitle": "Entendido!",
-    "disclaimerText":"O MauáFood trabalha em conjunto com os restaurantes para estarmos sempre atualizados, porém não nos responsabilizamos por qualquer diferença entre os preços, disponibilidade e informações dos produtos dos menus exibidos.\nQualquer erro encontrado nos informe clicando no ícone de e-mail no canto inferior direito da tela!",
-
-
-
+    "disclaimerText": "O MauáFood trabalha em conjunto com os restaurantes para estarmos sempre atualizados, porém não nos responsabilizamos por qualquer diferença entre os preços, disponibilidade e informações dos produtos dos menus exibidos.\nQualquer erro encontrado nos informe clicando no ícone de e-mail no canto inferior direito da tela!",
     "emailTitle": "E-mail",
     "passwordTitle": "Senha",
     "confirmPasswordTitle": "Confirme sua senha",
@@ -51,6 +48,7 @@
     "notificationsOptionsSchema": "{notifications, select, normalPart{Deseja receber } email{notificações por e-mail} app{notificações pelo app} other{}}",
     "labelName": "Nome Completo",
     "cancelationTitle": "Cancelar",
+    "cancelOrderTitle": "Cancelar pedido",
     "deleteTitle": "Excluir",
     "applyTitle": "Aplicar",
     "cleanFilterTitle": "Limpar filtro",
@@ -63,8 +61,6 @@
     "closeTitle": "Fechar",
     "withoutObservationTitle": "Sem observação",
     "emptyOrdersListWarn": "Sem pedidos no momento",
-
-
     "requiredFieldAlert": "Campo obrigatório.",
     "invalidEmailAlert": "E-mail inválido.",
     "invalidPasswordAlert": "Senha inválida.",
@@ -79,7 +75,6 @@
     "fillFieldsInstructionsAlert": "Certifique-se de que preencheu todos os campos.",
     "termsAcceptAlert": "É necessário aceitar os Termos de Uso.",
     "codeErrorAlert": "Erro com código.",
-
     "forgotPasswordTitle": "Esqueceu a senha?",
     "changePasswordTitle": "Alterar senha",
     "emailConfirmationTitle": "Confirmação de e-mail",
@@ -87,8 +82,6 @@
     "confirmationCodeInstructionsTitle": "Por favor, digite seu e-mail, vamos mandar um código de verificação.",
     "sendCodeEmailInstructionsTitle": "Enviamos um código de confirmação em seu e-mail, digite-o no campo abaixo.",
     "registerEmailInstructionsTitle": "Para completar seu cadastro enviamos um e-mail com um código, insira-o no campo abaixo.",
-
-
     "searchTitle": "Pesquisa",
     "restaurantsTitle": "Restaurantes",
     "seeMenuTitle": "Ver cardápio",
@@ -97,25 +90,16 @@
     "doLoginTitle": "Faça o login",
     "havePasswordTitle": "Já tem uma senha?",
     "haveAccountTitle": "Já tem uma conta?",
-
-
-
     "restaurantsNameSchema": "{restaurant, select, souza_de_abreu{Souza de Abreu} hora_h{Hora H} cantina_do_moleza{Cantina do Moleza} other{}}",
     "restaurantsImageSchema": "{restaurant, select, souza_de_abreu{bibaImage} hora_h{hora_hImage} cantina_do_moleza{molezaImage} other{}}",
-
-
     "typeContact": "Entre em contato conosco",
     "labelMessage": "Mensagem",
     "labelSend": "Enviar agora",
-
     "customersView": "Visão dos clientes",
-
-
-
     "productNameSchema": "{product, select, ALL{Tudo} SANDWICHES{Lanches} DRINKS{Bebidas} CANDIES{Doces} PLATES{Pratos} PORTIONS{Porções} PASTAS{Massas} SNACKS{Snacks} SALADS{Saladas} DESSERT{Sobremesa} SAVOURY{Salgado} other{Outros}}",
     "productToEnumSchema": "{name, select, Tudo{ALL} Lanches{SANDWICHES} Bebidas{DRINKS} Doces{CANDIES} Pratos{PLATES} Porcoes{PORTIONS} Massas{PASTAS} Snacks{SNACKS} Saladas{SALADS} Sobremesa{DESSERT} Salgado{SAVOURY} other{OUTROS}}",
     "productPriceCurrency": "{amount} ",
-    "@productPriceCurrency" : {
+    "@productPriceCurrency": {
         "placeholders": {
             "amount": {
                 "type": "double",
@@ -132,32 +116,20 @@
         }
     },
     "productPrepareTimeMinutes": "{prepareTime} min",
-    "@productPrepareTimeMinutes" : {
+    "@productPrepareTimeMinutes": {
         "placeholders": {
             "placeholders": {
                 "prepareTime": {}
             }
         }
     },
-
     "statusNameSchema": "{status, select, PENDING{Pendente} PREPARING{Em preparo} REFUSED{Recusado} READY{Pronto} CANCELED{Cancelado} ALL{Todos} other{Outros}}",
-
-
-    "statusNameSchema": "{status, select, PENDING{Pendente} PREPARING{Em preparo} REFUSED{Recusado} READY{Pronto} CANCELED{Cancelado} ALL{Todos} other{Outros}}",
-
-
-
-
+    "statusAlertSchema": "{status, select, PENDING{Aguarde um momento, seu pedido será aprovado!} PREPARING{Seu pedido foi aprovado! Logo começará a ser preparado!} REFUSED{Recusado} READY{Seu pedido está pronto! Venha retirar!} CANCELED{Cancelado} ALL{Todos} other{Outros}}",
     "recommendationsTitle": "Recomendações",
     "createProductTitle": "Criar produto",
     "editProductTitle": "Editar produto",
-
-
-
     "successChangePassword": "Senha alterada com sucesso!",
     "successConfirmEmail": "E-mail confirmado!",
-
-
     "messageSentSuccessfully": "Email enviado com sucesso!",
     "messageSentError": "Error ao enviar Email, Tente novamente mais tarde.",
     "cart": "Cesta",
@@ -165,7 +137,6 @@
     "profile": "Perfil",
     "help": "Ajuda",
     "orders": "Pedidos",
-
     "refuseOrder": "Recusar pedido",
     "refuseOrderAlert": "Ao clicar em “OK” o pedido será recusado e removido da lista de controle.",
     "othersTitle": "Outros",
@@ -174,50 +145,39 @@
     "overloadTitle": "Sobrecarga",
     "goBackTitle": "Voltar",
     "whatHappenedTitle": "Digite o que aconteceu aqui",
-
-
-    
     "errorGeneric": "Algo deu errado!",
     "errorItemNotFound": "Nenhum item encontrado.",
     "errorEmptyList": "Lista vazia.",
     "errorEmailOrPassword": "Erro com e-mail ou senha.",
     "errorFields": "Erro com os campos inseridos.",
-
     "authErrorsSchema": "{schema, select, codeDeliveryFailure{Falha ao enviar código para o e-mail, tente novamente.} codeMismatch{Código fornecido está errado, tente novamente.} invalidParameter{Algum campo preenchido de forma errada.} usernameExists{Já existe um cadastro com este e-mail.} notAuthorized{E-mail não confirmado, confirme-o.} userNotConfirmed{E-mail não confirmado, confirme-o.} signedOut{E-mail ou senha incorretos.} limitExceeded{Muitas tentativas em sequência, tente novamente mais tarde.} invalidParameter{E-mail, provavelmente, já confirmado.} tooManyFailedAttempts{Parece que você tentou errou o código muitas vezes, entre em contato.} userNotFound{Não encontramos este e-mail cadastrado.} internalError{Estamos com problemas internos, tente mais tarde.} codeMismatch{Código fornecido está errado, tente novamente.} other{Ocorreu algum erro ao confirmar e-mail.}}",
-
     "entityErrorMessage": "Campo {entityErrorMessage} não é válido",
-    "@entityErrorMessage" : {
+    "@entityErrorMessage": {
         "placeholders": {
             "placeholders": {
                 "restaurantName": {}
             }
         }
     },
-
     "emptyListErrorMessage": "Lista vazia, itens não encontrados para essa requisição",
-
     "contactError": "Erro ao enviar mensagem, tente novamente mais tarde.",
-
     "requestErrorMessage": "{message}",
-    "@requestErrorMessage" : {
+    "@requestErrorMessage": {
         "placeholders": {
             "placeholders": {
                 "restaurantName": {}
             }
         }
     },
-
     "noItemsFoundErrorMessage": "Itens não encontrados para: {message}",
-    "@noItemsFoundErrorMessage" : {
+    "@noItemsFoundErrorMessage": {
         "placeholders": {
             "placeholders": {
                 "restaurantName": {}
             }
         }
     },
-
     "": "",
-
     "profileErrorPictureMessage": "Ocorreu um erro ao mudar a foto de perfil",
     "profileSuccessPictureMessage": "Foto de perfil atualizado com sucesso",
     "selectButton": "Selecionar"

@@ -103,6 +103,17 @@ class MessageLookup extends MessageLookupByLibrary {
           })}";
 
   static String m12(status) => "${Intl.select(status, {
+            'PENDING': 'Please wait a moment, your order will be approved!',
+            'PREPARING':
+                'Your request has been approved! It will soon begin to be prepared!',
+            'REFUSED': 'Refused',
+            'READY': 'Your order is ready! Come pick it up!',
+            'CANCELED': 'Canceled',
+            'ALL': 'All',
+            'other': 'Others',
+          })}";
+
+  static String m13(status) => "${Intl.select(status, {
             'PENDING': 'Pending',
             'PREPARING': 'Preparing',
             'REFUSED': 'Refused',
@@ -122,6 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "authErrorsSchema": m0,
         "biggestPriceTitle":
             MessageLookupByLibrary.simpleMessage("Biggest Price"),
+        "cancelOrderTitle":
+            MessageLookupByLibrary.simpleMessage("Cancel order"),
         "cancelationTitle": MessageLookupByLibrary.simpleMessage("Cancel"),
         "cart": MessageLookupByLibrary.simpleMessage("Cesta"),
         "categoriesTitle": MessageLookupByLibrary.simpleMessage("Categories"),
@@ -284,7 +297,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "sendCodeEmailInstructionsTitle": MessageLookupByLibrary.simpleMessage(
             "We sent a confirmation code to your email, enter it in the field below."),
         "sendTitle": MessageLookupByLibrary.simpleMessage("Send"),
-        "statusNameSchema": m12,
+        "statusAlertSchema": m12,
+        "statusNameSchema": m13,
         "successChangePassword": MessageLookupByLibrary.simpleMessage(
             "Password changed successfully!"),
         "successConfirmEmail":

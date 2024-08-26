@@ -3,8 +3,7 @@ import 'package:mauafood_front/app/modules/employee/external/order_websocket.dar
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/orders/orders_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/product-form/product_form_controller.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/controllers/menu/employee_menu_restaurant_controller.dart';
-// import 'package:mauafood_front/app/modules/employee/presenter/ui/pages/employee_menu_page.dart';
-import 'package:mauafood_front/app/modules/employee/presenter/ui/pages/home_page.dart';
+import 'package:mauafood_front/app/modules/employee/presenter/ui/pages/employee_menu_page.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/ui/pages/orders_page.dart';
 import 'package:mauafood_front/app/shared/datasource/external/http/orders_datasource.dart';
 import 'package:mauafood_front/app/shared/domain/repositories/orders_repository_interface.dart';
@@ -31,7 +30,7 @@ class EmployeeMenuModule extends Module {
             (i) => GetRestaurantProductUsecase(repository: i())),
         Bind<EmployeeMenuRestaurantController>(
           (i) => EmployeeMenuRestaurantController(
-              i(), RestaurantEnum.cantina_do_moleza, i(), i()),
+              i(), RestaurantEnum.souza_de_abreu, i(), i()),
         ),
         Bind<OrdersController>(
           (i) => OrdersController(i(), i(), i(), i()),
@@ -61,7 +60,8 @@ class EmployeeMenuModule extends Module {
   List<ModularRoute> get routes => [
         ChildRoute(
           Modular.initialRoute,
-          child: (context, args) => const HomePage(),
+          child: (context, args) =>
+              const EmployeeMenuPage(restaurant: RestaurantEnum.souza_de_abreu),
         ),
         ChildRoute('/orders/', child: (_, args) => const OrdersPage())
       ];

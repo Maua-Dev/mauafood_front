@@ -23,11 +23,22 @@ class OrderProduct {
   final String id;
   final String name;
   final int quantity;
-  final String? observation;
+  final String observation;
   OrderProduct({
     required this.id,
     required this.name,
     required this.quantity,
-    this.observation,
+    required this.observation,
+  });
+}
+
+class OrderStatus {
+  final String id;
+  final StatusEnum status;
+  final String? abortedReason;
+  OrderStatus({
+    required this.id,
+    required this.status,
+    this.abortedReason,
   });
 }

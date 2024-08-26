@@ -1,10 +1,7 @@
 
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'dart:convert';
-
-import 'package:flutter/material.dart';
 import 'package:mauafood_front/app/modules/employee/external/order_websocket.dart';
 import 'package:mauafood_front/app/modules/employee/presenter/states/orders/order_state.dart';
 import 'package:mauafood_front/app/shared/domain/enums/status_enum.dart';
@@ -14,7 +11,6 @@ import 'package:mauafood_front/app/shared/domain/usecases/get_all_active_orders.
 import 'package:mauafood_front/app/shared/helpers/services/snackbar/global_snackbar.dart';
 import 'package:mauafood_front/app/shared/infra/models/order_model.dart';
 import 'package:mobx/mobx.dart';
-
 import '../../../../../../generated/l10n.dart';
 import '../../states/orders/orders_state.dart';
 part 'orders_controller.g.dart';
@@ -25,6 +21,7 @@ abstract class OrdersControllerBase with Store {
   final IGetAllActiveOrdersUsecase _getAllActiveOrdersUsecase;
   final IChangeOrderStatusUsecase _changeOrderStatusUsecase;
   final IAbortOrderUsecase _abortOrderUsecase;
+  
   OrdersControllerBase(this._getAllActiveOrdersUsecase,
       this._changeOrderStatusUsecase, this._abortOrderUsecase) {
     
@@ -39,6 +36,7 @@ abstract class OrdersControllerBase with Store {
     orderWebsocket.channel.stream.listen(listenToWebsocket);
 
   }
+      
 
   List<StatusEnum> statusList = [...StatusEnum.values];
 
@@ -80,7 +78,9 @@ abstract class OrdersControllerBase with Store {
       isFirst = false;
     }
     var result = await _getAllActiveOrdersUsecase();
-    changeState(result.fold((l) => OrdersErrorState(failure: l), (list) {
+    changeState(result.fold((l) {
+      return OrdersErrorState(failure: l);
+    }, (list) {
       for (var element in list) {
         for (var beforeElement in ordersList) {
           if (element.id == beforeElement.id) {
@@ -89,6 +89,8 @@ abstract class OrdersControllerBase with Store {
         }
         ordersList.add(element);
       }
+    }));
+  }
 
   void listenToWebsocket(dynamic event) {
     if (event == null) return;
@@ -230,4 +232,5 @@ abstract class OrdersControllerBase with Store {
 
   @observable
   bool isMissingDescription = false;
+}
 }

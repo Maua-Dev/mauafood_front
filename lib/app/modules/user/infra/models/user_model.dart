@@ -1,5 +1,3 @@
-import 'package:mauafood_front/app/shared/domain/enums/restaurant_enum.dart';
-
 import '../../domain/entities/user.dart';
 
 class UserModel extends User {

@@ -28,7 +28,6 @@ class UserRepositoryImpl implements UserRepository {
   Future<Either<Failure, User>> getUser() async {
     try {
       final user = await _datasource.getUser();
-      print("User restaurant: ${user.restaurant}");
       return Right(user);
     } on Failure catch (e) {
       return Left(e);

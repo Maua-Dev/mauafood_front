@@ -263,7 +263,7 @@ class _OrdersPageState extends State<OrdersPage> {
                                                                                     ),
                                                                                   const Spacer(),
                                                                                   Text(
-                                                                                    DateTime.fromMillisecondsSinceEpoch(state.ordersList[index].creationTime, isUtc: true).toString().substring(10, 16),
+                                                                                    DateTime.fromMillisecondsSinceEpoch(state.ordersList[index].creationTime, isUtc: true).subtract(const Duration(hours: 3)).toString().substring(10, 16),
                                                                                     style: AppTextStyles.h1.copyWith(fontSize: ScreenHelper.width(context) < 425 ? 14 : 16),
                                                                                   ),
                                                                                 ],

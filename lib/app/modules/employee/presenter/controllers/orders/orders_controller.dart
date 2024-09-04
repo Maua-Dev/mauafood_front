@@ -65,49 +65,74 @@ abstract class OrdersControllerBase with Store {
   @observable
   StatusEnum statusFiltered = StatusEnum.ALL;
 
-  void listenToWebsocket(dynamic event) {
-    if (event == null) return;
-    var order = OrderModel.fromMap(jsonDecode(event));
 
+// method to subtract 3 hours from creationTime (setting the DateTime to local time)
+DateTime adjustForTimezone(DateTime dateTime) {
+  DateTime adjustedDateTime = dateTime.subtract(const Duration(hours: 3));
+  return adjustedDateTime;
+}
+
+  void listenToWebsocket(dynamic event) {
+  if (event == null) return;
+  var order = OrderModel.fromMap(jsonDecode(event));
+
+
+  if (!ordersList.any((existingOrder) => existingOrder.id == order.id)) {
     ordersList.insert(0, order);
-    ordersList.sort((a, b) {
-      if (a.status.index.compareTo(b.status.index) == 0) {
-        return a.creationTime.compareTo(b.creationTime);
+  }
+
+  var filteredList = ordersList;
+  if (statusFiltered != StatusEnum.ALL) {
+    filteredList = filteredList.where((order) => order.status == statusFiltered).toList();
+  }
+
+filteredList.sort((a, b) {
+if (a.status.index.compareTo(b.status.index) == 0) {
+        return adjustForTimezone(DateTime.fromMillisecondsSinceEpoch(a.creationTime, isUtc: true))
+            .compareTo(adjustForTimezone(DateTime.fromMillisecondsSinceEpoch(b.creationTime, isUtc: true)));
       } else {
         return a.status.index.compareTo(b.status.index);
       }
-    });
-    changeState(OrdersLoadedSuccessState(ordersList: ordersList));
-  }
+  });
 
-  @action
-  Future<void> getAllActiveOrders() async {
-    if (isFirst) {
-      changeState(OrdersLoadingState());
-      isFirst = false;
-    }
-    var result = await _getAllActiveOrdersUsecase();
-    changeState(result.fold((l) => OrdersErrorState(failure: l), (list) {
-      for (var element in list) {
-        for (var beforeElement in ordersList) {
-          if (element.id == beforeElement.id) {
-            break;
-          }
-        }
+
+  changeState(OrdersLoadedSuccessState(ordersList: filteredList));
+}
+@action
+Future<void> getAllActiveOrders() async {
+  if (isFirst) {
+    changeState(OrdersLoadingState());
+    isFirst = false;
+  }
+  
+  var result = await _getAllActiveOrdersUsecase();
+  changeState(result.fold((l) => OrdersErrorState(failure: l), (list) {
+    for (var element in list) {
+      if (!ordersList.any((order) => order.id == element.id)) {
         ordersList.add(element);
       }
-      ordersList = list;
-      ordersList.sort((a, b) {
-        if (a.status.index.compareTo(b.status.index) == 0) {
-          return a.creationTime.compareTo(b.creationTime);
-        } else {
-          return a.status.index.compareTo(b.status.index);
-        }
-      });
-      return OrdersLoadedSuccessState(ordersList: list);
-    }));
-  }
+    }
 
+
+    var filteredList = ordersList;
+    if (statusFiltered != StatusEnum.ALL) {
+      filteredList = filteredList.where((order) => order.status == statusFiltered).toList();
+    }
+
+
+      filteredList.sort((a, b) {
+      if (a.status.index.compareTo(b.status.index) == 0) {
+        return adjustForTimezone(DateTime.fromMillisecondsSinceEpoch(a.creationTime, isUtc: true))
+            .compareTo(adjustForTimezone(DateTime.fromMillisecondsSinceEpoch(b.creationTime, isUtc: true)));
+      } else {
+        return a.status.index.compareTo(b.status.index);
+      }
+  });
+
+
+    return OrdersLoadedSuccessState(ordersList: filteredList);
+  }));
+}
   @action
   Future<void> changeOrderStatus(
       int index, StatusEnum? value, BuildContext context) async {
@@ -130,8 +155,9 @@ abstract class OrdersControllerBase with Store {
     );
 
     ordersList.sort((a, b) {
-      if (a.status.index.compareTo(b.status.index) == 0) {
-        return a.creationTime.compareTo(b.creationTime);
+     if (a.status.index.compareTo(b.status.index) == 0) {
+        return adjustForTimezone(DateTime.fromMillisecondsSinceEpoch(a.creationTime, isUtc: true))
+            .compareTo(adjustForTimezone(DateTime.fromMillisecondsSinceEpoch(b.creationTime, isUtc: true)));
       } else {
         return a.status.index.compareTo(b.status.index);
       }
@@ -158,10 +184,10 @@ abstract class OrdersControllerBase with Store {
         },
       ),
     );
-
     ordersList.sort((a, b) {
       if (a.status.index.compareTo(b.status.index) == 0) {
-        return a.creationTime.compareTo(b.creationTime);
+        return adjustForTimezone(DateTime.fromMillisecondsSinceEpoch(a.creationTime, isUtc: true))
+            .compareTo(adjustForTimezone(DateTime.fromMillisecondsSinceEpoch(b.creationTime, isUtc: true)));
       } else {
         return a.status.index.compareTo(b.status.index);
       }
@@ -174,20 +200,17 @@ abstract class OrdersControllerBase with Store {
   int statusIndex = 0;
 
   @action
-  void setStatusIndex(int index, StatusEnum status) {
-    var list = ordersList;
-    statusIndex = index;
-    statusFiltered = status;
-    if (index != 0) {
-      list = list
-          .where(
-            (e) => e.status == status,
-          )
-          .toList();
-    }
+void setStatusIndex(int index, StatusEnum status) {
+  statusIndex = index;
+  statusFiltered = status;
 
-    changeState(OrdersLoadedSuccessState(ordersList: list));
+  var filteredList = ordersList;
+  if (status != StatusEnum.ALL) {
+    filteredList = filteredList.where((order) => order.status == status).toList();
   }
+
+  changeState(OrdersLoadedSuccessState(ordersList: filteredList));
+}
 
   @observable
   int reasonIndex = 0;
